@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fair Rent Split Calculator: Split Rent by Room Size</title>
+<meta name="description" content="Split rent fairly between roommates by bedroom size, private bathrooms and couples sharing a room. Shared space split equally. Free, instant, no sign-up.">
+<link rel="canonical" href="https://tidyfigure.com/rent-split-calculator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TidyFigure">
+<meta property="og:title" content="Fair Rent Split Calculator: Split Rent by Room Size">
+<meta property="og:description" content="Split rent fairly between roommates by bedroom size, private bathrooms and couples sharing a room. Shared space split equally. Free, instant, no sign-up.">
+<meta property="og:url" content="https://tidyfigure.com/rent-split-calculator">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FF5B35">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Fair Rent Split Calculator","url":"https://tidyfigure.com/rent-split-calculator","description":"Split rent fairly between roommates by bedroom size, private bathrooms and couples sharing a room. Shared space split equally. Free, instant, no sign-up.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (runs in a web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TidyFigure","url":"https://tidyfigure.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the fairest way to split rent with roommates?","acceptedAnswer":{"@type":"Answer","text":"Split the shared areas equally per person, and split the rest by bedroom size. This avoids people in small rooms subsidising large rooms, while still charging everyone for the kitchen and living room they all use."}},{"@type":"Question","name":"How much more should someone with a private bathroom pay?","acceptedAnswer":{"@type":"Answer","text":"Many households count an en-suite bathroom as 10–20% extra room size. This calculator uses 15% by default, and you can change it."}},{"@type":"Question","name":"How should a couple sharing a room split rent?","acceptedAnswer":{"@type":"Answer","text":"A couple uses one bedroom, so they pay one room’s private share. They use the shared spaces twice as much as a single person, so they pay two shares of the common space. The calculator does this when you set people to 2."}},{"@type":"Question","name":"Do I use square metres or square feet?","acceptedAnswer":{"@type":"Answer","text":"Either. Only the ratio between rooms matters, so use the same unit for every room."}},{"@type":"Question","name":"What percentage of rent is for shared space?","acceptedAnswer":{"@type":"Answer","text":"Usually 30–50%. Work it out by comparing the area of common rooms with the total floor area, or agree on a number together. The default is 40%."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tidyfigure.com/"},{"@type":"ListItem","position":2,"name":"Everyday life","item":"https://tidyfigure.com/#life"},{"@type":"ListItem","position":3,"name":"Fair Rent Split Calculator","item":"https://tidyfigure.com/rent-split-calculator"}]}</script>
+<!--TF:HEAD-->
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--slate)"/><path d="M9 11h14M16 11v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="var(--accent)"/></svg><span>Tidy<b>Figure</b></span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
+<nav class="main-nav" id="main-nav" aria-label="Main"><a href="index.html#image" data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /> </svg>Image</a><a href="index.html#pdf" data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg>PDF</a><a href="index.html#text" data-cat="text" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polyline points="4 7 4 4 20 4 20 7" /> <line x1="9" x2="15" y1="20" y2="20" /> <line x1="12" x2="12" y1="4" y2="20" /> </svg>Text</a><a href="index.html#qr" data-cat="qr"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="5" height="5" x="3" y="3" rx="1" /> <rect width="5" height="5" x="16" y="3" rx="1" /> <rect width="5" height="5" x="3" y="16" rx="1" /> <path d="M21 16h-3a2 2 0 0 0-2 2v3" /> <path d="M21 21v.01" /> <path d="M12 7v3a2 2 0 0 1-2 2H7" /> <path d="M3 12h.01" /> <path d="M12 3h.01" /> <path d="M12 16v.01" /> <path d="M16 12h1" /> <path d="M21 12v.01" /> <path d="M12 21v-1" /> </svg>QR &amp; Barcode</a><a href="index.html#random" data-cat="random" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /> </svg>Generators</a><a href="index.html#health" data-cat="health"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /> </svg>Health</a><a href="index.html#money" data-cat="money"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /> </svg>Finance</a><a href="index.html#calc" data-cat="calc" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg>Calculators</a><a href="index.html#time" data-cat="time" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg>Time</a><a href="index.html#convert" data-cat="convert" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m17 2 4 4-4 4" /> <path d="M3 11v-1a4 4 0 0 1 4-4h14" /> <path d="m7 22-4-4 4-4" /> <path d="M21 13v1a4 4 0 0 1-4 4H3" /> </svg>Converters</a><a href="index.html#social" data-cat="social" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5.8 11.3 2 22l10.7-3.79" /> <path d="M4 3h.01" /> <path d="M22 8h.01" /> <path d="M15 2h.01" /> <path d="M22 20h.01" /> <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /> <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" /> <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" /> <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /> </svg>Social</a><a href="index.html#life" data-cat="life" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg>Life</a><a class="cta" href="index.html#tools">All tools</a></nav>
+</div></header><div class="nav-shade"></div>
+<!--TF:BODY_TOP-->
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#life">Everyday life</a><span aria-hidden="true">/</span><span>Fair Rent Split Calculator</span></nav>
+<div class="tool-head"><span class="tile lg" data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg></span><h1>Fair Rent Split Calculator</h1></div>
+<p class="answer">The fairest common way to split rent is in two parts: split the <strong>shared space</strong> (kitchen, living room, hallway) equally per person, and split the <strong>rest by bedroom size</strong>, giving extra weight to rooms with a private bathroom. Couples sharing a room pay for one room but two shares of the common space.</p>
+<section class="tool" aria-label="Fair Rent Split Calculator">
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Total monthly rent</span><input type="number" id="rent" inputmode="decimal" min="0" step="any" value="2400"></label>
+      <label class="f"><span>Shared-space share (%)</span><input type="number" id="common" inputmode="decimal" min="0" max="100" step="1" value="40"></label>
+      <label class="f"><span>Private bathroom bonus (%)</span><input type="number" id="bath" inputmode="decimal" min="0" max="100" step="1" value="15"></label>
+    </div>
+    <p class="group-title">Bedrooms</p>
+    <div class="list" id="rooms"></div>
+    <button type="button" class="add" id="add-room">+ Add a bedroom</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+
+</section>
+<!--TF:AD:top-->
+<p class="private"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg>Everything runs in your browser. Nothing you type is sent anywhere.</p>
+<div class="layout">
+<article class="prose">
+
+<h2>Why an even split often feels unfair</h2>
+<p>Splitting rent evenly works when bedrooms are the same. Most homes aren't like that. One person gets the big room with an en-suite, another gets the box room next to the front door. If everyone pays the same, the person in the small room is subsidising the person in the big one, and that resentment tends to grow over a year-long lease.</p>
+<p>Splitting purely by square footage goes too far the other way. Everyone uses the kitchen, the living room and the hallway equally, so the person in the small room ends up paying almost nothing for space they use as much as anyone.</p>
+
+<h2>How this calculator splits rent</h2>
+<p>It uses a hybrid method that many roommates settle on:</p>
+<ol>
+<li><strong>Shared-space share.</strong> A percentage of the rent (40% by default) pays for common areas. It is divided equally between every person living in the home, so a couple pays two shares.</li>
+<li><strong>Private-space share.</strong> The rest is divided between bedrooms in proportion to their size.</li>
+<li><strong>Bathroom bonus.</strong> A room with its own bathroom counts as bigger (15% by default) when splitting the private share.</li>
+</ol>
+<div class="formula">Shared part of a room  = rent × shared % × people in room ÷ all people
+Room weight            = room size × (1 + bathroom bonus, if it has one)
+Private part of a room = rent × (1 − shared %) × room weight ÷ all weights
+Room pays              = shared part + private part</div>
+
+<h2>Choosing the shared-space percentage</h2>
+<p>A good rule of thumb is to compare the floor area of the shared spaces with the total floor area of the home. If the bedrooms add up to about 60% of the home, use 40% for shared space. Use a higher number if the living areas are large or everyone works from the kitchen table, and a lower number if people mostly stay in their rooms.</p>
+
+<h2>Worked example</h2>
+<p>Rent is 2,400. Ana has a 16 m² room with her own bathroom, Ben and Kai share a 13 m² room, and Chloe has a 9 m² room. Shared space is 40% and the bathroom bonus is 15%.</p>
+<ul>
+<li>Shared part: 960 ÷ 4 people = 240 each. Ana 240, Ben &amp; Kai 480, Chloe 240.</li>
+<li>Weights: Ana 16 × 1.15 = 18.4, Ben &amp; Kai 13, Chloe 9, total 40.4.</li>
+<li>Private part (1,440): Ana 655.84, Ben &amp; Kai 463.37, Chloe 320.79.</li>
+<li>Totals: Ana <strong>895.84</strong>, Ben &amp; Kai <strong>943.37</strong> (471.68 each), Chloe <strong>560.79</strong>.</li>
+</ul>
+<p>An even split would be 600 per person. Ana pays more for the big room and bathroom; the couple each pay less because they share a room.</p>
+
+<h2>Other things roommates adjust for</h2>
+<ul>
+<li><strong>Balconies, walk-in wardrobes or better light:</strong> add a few square metres to that room's size.</li>
+<li><strong>Parking spaces:</strong> take the parking cost out of the rent first and charge it to whoever uses it.</li>
+<li><strong>Bills:</strong> utilities are usually split evenly per person, not by room size. Use the group expense splitter for those.</li>
+</ul>
+<!--TF:AD:article-->
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>What is the fairest way to split rent with roommates?</summary><p>Split the shared areas equally per person, and split the rest by bedroom size. This avoids people in small rooms subsidising large rooms, while still charging everyone for the kitchen and living room they all use.</p></details>
+<details class="faq"><summary>How much more should someone with a private bathroom pay?</summary><p>Many households count an en-suite bathroom as 10–20% extra room size. This calculator uses 15% by default, and you can change it.</p></details>
+<details class="faq"><summary>How should a couple sharing a room split rent?</summary><p>A couple uses one bedroom, so they pay one room’s private share. They use the shared spaces twice as much as a single person, so they pay two shares of the common space. The calculator does this when you set people to 2.</p></details>
+<details class="faq"><summary>Do I use square metres or square feet?</summary><p>Either. Only the ratio between rooms matters, so use the same unit for every room.</p></details>
+<details class="faq"><summary>What percentage of rent is for shared space?</summary><p>Usually 30–50%. Work it out by comparing the area of common rooms with the total floor area, or agree on a number together. The default is 40%.</p></details>
+</article>
+<aside class="side">
+<!--TF:AD:side-->
+<section aria-labelledby="side-a"><h2 id="side-a">More everyday life</h2><ul><li data-slug="group-expense-splitter"><a href="group-expense-splitter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <path d="M16 3.13a4 4 0 0 1 0 7.75" /> </svg></span>Group Expense Splitter</a></li><li data-slug="furniture-fit-calculator"><a href="furniture-fit-calculator.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" /> <path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" /> <path d="M4 18v2" /> <path d="M20 18v2" /> <path d="M12 4v9" /> </svg></span>Will It Fit? Furniture Door Calculator</a></li><li data-slug="dinner-timing-planner"><a href="dinner-timing-planner.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z" /> <path d="M6 17h12" /> </svg></span>Dinner Timing Planner</a></li><li data-slug="baking-pan-converter"><a href="baking-pan-converter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="9" cy="7" r="2" /> <path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6" /> <path d="M16 13H3" /> <path d="M16 17H3" /> </svg></span>Baking Pan Size Converter</a></li><li data-slug="recipe-scaler"><a href="recipe-scaler.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 12h20" /> <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" /> <path d="m4 8 16-4" /> <path d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8" /> </svg></span>Recipe Scaler</a></li><li data-slug="decision-matrix"><a href="decision-matrix.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="M7 21h10" /> <path d="M12 3v18" /> <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /> </svg></span>Decision Matrix Calculator</a></li><li data-slug="road-trip-cost-splitter"><a href="road-trip-cost-splitter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /> <circle cx="7" cy="17" r="2" /> <path d="M9 17h6" /> <circle cx="17" cy="17" r="2" /> </svg></span>Road Trip Cost Splitter</a></li></ul></section>
+<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul><li data-slug="image-compressor"><a href="image-compressor.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" /> <path d="m14 19 3 3v-5.5" /> <path d="m17 22 3-3" /> <circle cx="9" cy="9" r="2" /> </svg></span>Image Compressor</a></li><li data-slug="image-resizer"><a href="image-resizer.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /> <path d="M14 15H9v-5" /> <path d="M16 3h5v5" /> <path d="M21 3 9 15" /> </svg></span>Image Resizer</a></li><li data-slug="crop-image"><a href="crop-image.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /> </svg></span>Crop Image</a></li><li data-slug="photo-editor"><a href="photo-editor.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></span>Photo Editor</a></li><li data-slug="image-metadata-remover"><a href="image-metadata-remover.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m2 2 20 20" /> <path d="M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71" /> <path d="M9.309 3.652A12.252 12.252 0 0 0 11.24 2.28a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1v7a9.784 9.784 0 0 1-.08 1.264" /> </svg></span>Image Metadata Remover</a></li><li data-slug="merge-pdf"><a href="merge-pdf.html"><span class="tile " data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 7h-3a2 2 0 0 1-2-2V2" /> <path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z" /> <path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8" /> </svg></span>Merge PDF</a></li></ul></section>
+</aside>
+</div>
+</main>
+<footer class="foot"><div class="wrap">
+<div><h2>Image tools</h2><ul><li data-slug="image-compressor"><a href="image-compressor.html">Image Compressor</a></li><li data-slug="image-resizer"><a href="image-resizer.html">Image Resizer</a></li><li data-slug="image-converter"><a href="image-converter.html">Image Converter</a></li><li data-slug="crop-image"><a href="crop-image.html">Crop Image</a></li><li data-slug="rotate-image"><a href="rotate-image.html">Rotate &amp; Flip Image</a></li><li data-slug="photo-editor"><a href="photo-editor.html">Photo Editor</a></li></ul></div>
+<div><h2>PDF tools</h2><ul><li data-slug="merge-pdf"><a href="merge-pdf.html">Merge PDF</a></li><li data-slug="jpg-to-pdf"><a href="jpg-to-pdf.html">JPG to PDF</a></li><li data-slug="split-pdf"><a href="split-pdf.html">Split PDF</a></li><li data-slug="rotate-pdf"><a href="rotate-pdf.html">Rotate PDF</a></li><li data-slug="delete-pdf-pages"><a href="delete-pdf-pages.html">Delete PDF Pages</a></li><li data-slug="organize-pdf"><a href="organize-pdf.html">Organize PDF</a></li></ul></div>
+<div><h2>Text tools</h2><ul><li data-slug="word-counter"><a href="word-counter.html">Word Counter</a></li><li data-slug="character-counter"><a href="character-counter.html">Character Counter</a></li><li data-slug="case-converter"><a href="case-converter.html">Case Converter</a></li><li data-slug="fancy-text-generator"><a href="fancy-text-generator.html">Fancy Text Generator</a></li><li data-slug="remove-duplicate-lines"><a href="remove-duplicate-lines.html">Remove Duplicate Lines</a></li><li data-slug="lorem-ipsum-generator"><a href="lorem-ipsum-generator.html">Lorem Ipsum Generator</a></li></ul></div>
+<div><h2>QR code &amp; barcode tools</h2><ul><li data-slug="qr-code-generator"><a href="qr-code-generator.html">QR Code Generator</a></li><li data-slug="wifi-qr-code-generator"><a href="wifi-qr-code-generator.html">Wi-Fi QR Code Generator</a></li><li data-slug="whatsapp-qr-code-generator"><a href="whatsapp-qr-code-generator.html">WhatsApp QR Code Generator</a></li><li data-slug="vcard-qr-code-generator"><a href="vcard-qr-code-generator.html">vCard QR Code Generator</a></li><li data-slug="qr-code-scanner"><a href="qr-code-scanner.html">QR Code Scanner</a></li><li data-slug="barcode-reader"><a href="barcode-reader.html">Barcode Reader</a></li></ul></div>
+<div><h2>Generators &amp; random</h2><ul><li data-slug="password-generator"><a href="password-generator.html">Password Generator</a></li><li data-slug="random-number-generator"><a href="random-number-generator.html">Random Number Generator</a></li><li data-slug="spin-the-wheel"><a href="spin-the-wheel.html">Spin the Wheel</a></li><li data-slug="flip-a-coin"><a href="flip-a-coin.html">Flip a Coin</a></li><li data-slug="roll-a-dice"><a href="roll-a-dice.html">Roll a Dice</a></li></ul></div>
+<div><h2>Health &amp; fitness calculators</h2><ul><li data-slug="calorie-calculator"><a href="calorie-calculator.html">Calorie Calculator</a></li><li data-slug="bmi-calculator"><a href="bmi-calculator.html">BMI Calculator</a></li><li data-slug="bmr-calculator"><a href="bmr-calculator.html">BMR Calculator</a></li><li data-slug="macro-calculator"><a href="macro-calculator.html">Macro Calculator</a></li><li data-slug="body-fat-calculator"><a href="body-fat-calculator.html">Body Fat Calculator</a></li><li data-slug="ideal-weight-calculator"><a href="ideal-weight-calculator.html">Ideal Weight Calculator</a></li></ul></div>
+<div><h2>Finance calculators</h2><ul><li data-slug="compound-interest-calculator"><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li><li data-slug="sip-calculator"><a href="sip-calculator.html">SIP Calculator</a></li><li data-slug="loan-calculator"><a href="loan-calculator.html">Loan Calculator</a></li><li data-slug="savings-goal-calculator"><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li><li data-slug="retirement-calculator"><a href="retirement-calculator.html">Retirement Calculator</a></li><li data-slug="inflation-calculator"><a href="inflation-calculator.html">Inflation Calculator</a></li></ul></div>
+<div><h2>Calculators</h2><ul><li data-slug="percentage-calculator"><a href="percentage-calculator.html">Percentage Calculator</a></li><li data-slug="pizza-size-calculator"><a href="pizza-size-calculator.html">Pizza Size Calculator</a></li><li data-slug="unit-price-calculator"><a href="unit-price-calculator.html">Unit Price Calculator</a></li><li data-slug="discount-calculator"><a href="discount-calculator.html">Discount Calculator</a></li></ul></div>
+<div class="legal"><span>© 2026 TidyFigure. Free online tools, built by <a href="https://aivrasol.com" rel="noopener">AivraSol</a>. Your files never leave your device.</span>
+<span><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="index.html#tools">All tools</a></span></div>
+</div></footer>
+<script>(function(){var b=document.querySelector('.nav-toggle'),r=document.documentElement;if(!b)return;function set(o){r.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',o)}b.addEventListener('click',function(){set(!r.classList.contains('nav-open'))});document.querySelector('.nav-shade').addEventListener('click',function(){set(false)});document.querySelectorAll('.main-nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();</script>
+
+<script src="app.js"></script>
+
+<script>
+(function () {
+const list = $('#rooms');
+makeList(list, $('#add-room'), v => `
+  <label class="f f-name"><span>Who lives here</span><input data-f="name" type="text" value="${esc(v.name ?? '')}" placeholder="e.g. Sam"></label>
+  <label class="f"><span>Room size</span><input data-f="size" type="number" inputmode="decimal" min="0" step="any" value="${esc(v.size ?? '')}" placeholder="m² or sq ft"></label>
+  <label class="f"><span>People</span><input data-f="people" type="number" inputmode="numeric" min="1" step="1" value="${esc(v.people ?? 1)}"></label>
+  <label class="check"><input data-f="bath" type="checkbox"${v.bath ? ' checked' : ''}>Own bathroom</label>
+  <button type="button" class="rm" aria-label="Remove this bedroom">×</button>`,
+  [
+    { name: 'Ana', size: 16, people: 1, bath: true },
+    { name: 'Ben & Kai', size: 13, people: 2 },
+    { name: 'Chloe', size: 9, people: 1 },
+  ], calc);
+onAny('#rent, #common, #bath', calc);
+
+function calc() {
+  const rent = val($('#rent'));
+  const common = Math.min(100, Math.max(0, val($('#common')) || 0)) / 100;
+  const bonus = Math.max(0, val($('#bath')) || 0) / 100;
+  const rooms = $$('.row', list).map((r, i) => ({
+    name: field(r, 'name').value.trim() || `Room ${i + 1}`,
+    size: val(field(r, 'size')),
+    people: Math.max(1, Math.round(val(field(r, 'people')) || 1)),
+    bath: field(r, 'bath').checked,
+  })).filter(r => r.size > 0);
+
+  const out = $('#out');
+  if (!(rent > 0) || !rooms.length) { out.innerHTML = '<p class="empty">Enter the rent and at least one room size.</p>'; return; }
+
+  const persons = rooms.reduce((s, r) => s + r.people, 0);
+  const weights = rooms.map(r => r.size * (r.bath ? 1 + bonus : 1));
+  const totalW = weights.reduce((a, b) => a + b, 0);
+  rooms.forEach((r, i) => {
+    r.shared = rent * common * r.people / persons;
+    r.privatePart = rent * (1 - common) * weights[i] / totalW;
+    r.total = r.shared + r.privatePart;
+    r.each = r.total / r.people;
+  });
+  const even = rent / persons;
+  const top = rooms.reduce((a, b) => (a.each >= b.each ? a : b));
+  const low = rooms.reduce((a, b) => (a.each <= b.each ? a : b));
+
+  let html = `<p class="kicker">Fair split of ${fmt(rent)}</p>
+    <div class="scroll"><table class="tbl"><thead><tr><th>Room</th><th class="n">Room pays</th><th class="n">Per person</th><th class="n">vs even split</th></tr></thead><tbody>`;
+  rooms.forEach(r => {
+    const d = r.each - even;
+    html += `<tr><td>${esc(r.name)}${r.bath ? ' <small>(own bath)</small>' : ''}</td><td class="n"><mark>${fmt(r.total)}</mark></td><td class="n">${fmt(r.each)}</td><td class="n">${d >= 0 ? '+' : '−'}${fmt(Math.abs(d))}</td></tr>`;
+  });
+  html += `</tbody><tfoot><tr><td>Total</td><td class="n">${fmt(rooms.reduce((s, r) => s + r.total, 0))}</td><td></td><td></td></tr></tfoot></table></div>`;
+  html += `<p class="note">An even split would be ${fmt(even)} per person. ${esc(top.name)} pays the most per person (${fmt(top.each)}) and ${esc(low.name)} the least (${fmt(low.each)}).</p>`;
+  html += `<p class="note">${fmt(common * 100, 0)}% of the rent covers shared space and is split equally per person. The other ${fmt(100 - common * 100, 0)}% is split by room size${bonus > 0 ? `, with private bathrooms counted ${fmt(bonus * 100, 0)}% larger` : ''}.</p>`;
+  out.innerHTML = html;
+}
+calc();
+
+})();
+</script>
+<!--TF:BODY_END-->
+</body>
+</html>

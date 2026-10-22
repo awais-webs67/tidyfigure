@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Direction">
+      <label><input type="radio" name="dir" id="d-add" value="add" checked><span>Add tax</span></label>
+      <label><input type="radio" name="dir" id="d-rem" value="remove"><span>Remove tax</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span id="amt-label">Price before tax</span><input type="number" id="amt" inputmode="decimal" min="0" step="any" value="100"></label>
+      <label class="f"><span>Tax rate (%)</span><input type="number" id="rate" inputmode="decimal" min="0" max="100" step="any" value="20"></label>
+    </div>
+    <div class="chips" id="rates"><button type="button" class="chip" data-r="5">5%</button><button type="button" class="chip" data-r="10">10%</button><button type="button" class="chip" data-r="15">15%</button><button type="button" class="chip" data-r="18">18%</button><button type="button" class="chip" data-r="20">20%</button><button type="button" class="chip" data-r="25">25%</button></div>
+    <p class="note">Rates differ by country and product and can change, so check your tax authority’s current rate.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose photos">
+      {{icon:image-up}}
+      <strong>Drop photos here or click to choose</strong>
+      <span>See hidden EXIF data, including GPS location, then remove it</span>
+      <input type="file" id="file" accept="image/*" multiple>
+    </div>
+    <p class="note">JPG and PNG are cleaned without re-compressing, so quality is untouched. Other formats, and photos that rely on an orientation tag, are re-saved upright at 95% quality.</p>
+    <button type="button" class="btn ghost" id="sample">Try with a sample photo</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Hidden data</p><p class="empty">Choose photos to see what they reveal.</p></div>
+</div>

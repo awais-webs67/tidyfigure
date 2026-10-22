@@ -1,0 +1,19 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose PDF files to merge">
+      {{icon:file-up}}
+      <strong>Drop PDF files here or click to choose</strong>
+      <span>Add two or more PDFs, then put them in order</span>
+      <input type="file" id="file" accept="application/pdf,.pdf" multiple>
+    </div>
+    <ul class="files" id="list"></ul>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="merge" disabled>{{icon:merge}}Merge PDFs</button>
+      <button type="button" class="btn ghost" id="sample">Try with sample PDFs</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Merged PDF</p>
+    <p class="empty">Add at least two PDF files. Use the arrows to change their order.</p>
+  </div>
+</div>

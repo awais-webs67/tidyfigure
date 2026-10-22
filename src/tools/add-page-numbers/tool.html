@@ -1,0 +1,19 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">Numbers are added to every page</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <div class="fields">
+      <label class="f"><span>Position</span><select id="pos"><option value="bc" selected>Bottom centre</option><option value="br">Bottom right</option><option value="bl">Bottom left</option><option value="tc">Top centre</option><option value="tr">Top right</option><option value="tl">Top left</option></select></label>
+      <label class="f"><span>Format</span><select id="fmt"><option value="n" selected>1</option><option value="page">Page 1</option><option value="of">Page 1 of 10</option><option value="slash">1 / 10</option><option value="dash">- 1 -</option></select></label>
+      <label class="f"><span>Start at</span><input type="number" id="start" inputmode="numeric" min="0" step="1" value="1"></label>
+      <label class="f"><span>Font size</span><input type="number" id="size" inputmode="numeric" min="6" max="40" step="1" value="11"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="skip">Don’t number the first page (cover)</label>
+    <div class="btns"><button type="button" class="btn big-btn" id="go" disabled>{{icon:list-ordered}}Add page numbers</button><button type="button" class="btn ghost" id="sample">Try with a sample PDF</button></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Preview</p><p class="empty">Choose a PDF to see a preview.</p></div>
+</div>

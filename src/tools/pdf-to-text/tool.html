@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">Text is extracted from every page</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <label class="check"><input type="checkbox" id="markers" checked>Mark where each page starts</label>
+    <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Text</p><p class="empty">Choose a PDF to extract its text.</p></div>
+</div>

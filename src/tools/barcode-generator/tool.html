@@ -1,0 +1,24 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Barcode type</span><select id="fmt">
+        <option value="CODE128" selected>Code 128 (any text)</option><option value="EAN13">EAN-13 (products)</option><option value="EAN8">EAN-8</option>
+        <option value="UPC">UPC-A (US products)</option><option value="CODE39">Code 39</option><option value="ITF14">ITF-14 (cartons)</option>
+        <option value="codabar">Codabar</option><option value="MSI">MSI</option><option value="pharmacode">Pharmacode</option></select></label>
+      <label class="f"><span>Value</span><input type="text" id="val" value="TF-2026-0042" autocomplete="off"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Bar width</span><input type="range" id="w" min="1" max="4" step="1" value="2"></label>
+      <label class="f"><span>Height</span><input type="range" id="h" min="30" max="200" step="5" value="90"></label>
+      <label class="f"><span>Bars</span><input type="color" id="fg" value="#000000"></label>
+      <label class="f"><span>Background</span><input type="color" id="bg" value="#ffffff"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="text" checked>Show the value under the bars</label>
+    <p class="note" id="hint"></p>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <div class="stage" style="background:#fff"><svg id="svg"></svg></div>
+    <p class="note" id="err"></p>
+    <div class="btns"><button type="button" class="btn" id="png">{{icon:download}}PNG</button><button type="button" class="btn ghost" id="dsvg">{{icon:download}}SVG</button></div>
+  </div>
+</div>

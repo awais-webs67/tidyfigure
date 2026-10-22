@@ -1,0 +1,15 @@
+<div class="inputs">
+  <div class="chips" id="cats" role="group" aria-label="What to convert"></div>
+  <div class="fields" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));align-items:end">
+    <label class="f"><span>Value</span><input type="number" id="v" inputmode="decimal" step="any" value="10"></label>
+    <label class="f"><span>From</span><select id="from"></select></label>
+    <button type="button" class="btn ghost" id="swap" aria-label="Swap units" style="align-self:end">{{icon:arrow-left-right}}Swap</button>
+    <label class="f"><span>To</span><select id="to"></select></label>
+  </div>
+  <div class="out">
+    <p class="kicker" id="label"></p>
+    <p class="big"><mark id="result"></mark></p>
+    <p class="note" id="formula"></p>
+    <div class="scroll"><table class="tbl" id="all"></table></div>
+  </div>
+</div>

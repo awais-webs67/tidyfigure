@@ -1,0 +1,21 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Paste entries or comments (one per line; “name: comment” works too)</span><textarea id="entries" class="mono">@sara_bakes: I'd love this! @mike_t @anna.k
+@john.d: Count me in 🙌 @lisa
+@sara_bakes: Entering again!
+@mike_t: Done ✅ @john.d @priya
+@priya.s: Amazing giveaway @sam
+@anna.k: Please pick me!
+@leo_runs: Following ✔ @mia @kai
+@kai.z: 🙏🙏 @leo_runs</textarea></label>
+    <div class="fields">
+      <label class="f"><span>Winners</span><input type="number" id="n" inputmode="numeric" min="1" max="100" value="1"></label>
+      <label class="f"><span>Back-up winners</span><input type="number" id="alt" inputmode="numeric" min="0" max="20" value="1"></label>
+      <label class="f"><span>Must mention at least</span><select id="tags"><option value="0">No requirement</option><option value="1" selected>1 friend (@)</option><option value="2">2 friends</option><option value="3">3 friends</option></select></label>
+      <label class="f"><span>Must include word (optional)</span><input type="text" id="kw" placeholder="e.g. #giveaway" autocomplete="off"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="dedupe" checked>One entry per person (remove duplicates)</label>
+    <button type="button" class="btn big-btn" id="draw">{{icon:gift}}Pick winner</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

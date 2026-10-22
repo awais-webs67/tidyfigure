@@ -1,0 +1,16 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Savings goal</span><input type="number" id="goal" inputmode="decimal" min="0" step="any" value="20000"></label>
+      <label class="f"><span>Already saved</span><input type="number" id="have" inputmode="decimal" min="0" step="any" value="2000"></label>
+      <label class="f"><span>Interest rate (% a year)</span><input type="number" id="r" inputmode="decimal" step="any" value="4"></label>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Solve for">
+      <label><input type="radio" name="mode" id="m-time" value="time" checked><span>I want to reach it by…</span></label>
+      <label><input type="radio" name="mode" id="m-pay" value="pay"><span>I can save each month…</span></label>
+    </div>
+    <label class="f" id="months-wrap"><span>Months from now</span><input type="number" id="months" inputmode="numeric" min="1" max="600" step="1" value="36"></label>
+    <label class="f" id="pay-wrap" hidden><span>Monthly saving</span><input type="number" id="pay" inputmode="decimal" min="0" step="any" value="500"></label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,16 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="I know">
+      <label><input type="radio" name="mode" id="m-both" value="both" checked><span>Cost and price</span></label>
+      <label><input type="radio" name="mode" id="m-margin" value="margin"><span>Cost and margin</span></label>
+      <label><input type="radio" name="mode" id="m-markup" value="markup"><span>Cost and markup</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Cost</span><input type="number" id="cost" inputmode="decimal" min="0" step="any" value="40"></label>
+      <label class="f" id="price-wrap"><span>Selling price</span><input type="number" id="price" inputmode="decimal" min="0" step="any" value="65"></label>
+      <label class="f" id="margin-wrap" hidden><span>Margin (%)</span><input type="number" id="margin" inputmode="decimal" min="0" max="99.9" step="any" value="35"></label>
+      <label class="f" id="markup-wrap" hidden><span>Markup (%)</span><input type="number" id="markup" inputmode="decimal" min="0" step="any" value="50"></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

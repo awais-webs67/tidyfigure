@@ -1,0 +1,20 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Units">
+      <label><input type="radio" name="sys" id="sys-metric" value="metric" checked><span>km · L/100 km</span></label>
+      <label><input type="radio" name="sys" id="sys-us" value="us"><span>miles · US mpg</span></label>
+      <label><input type="radio" name="sys" id="sys-uk" value="uk"><span>miles · UK mpg</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span id="dist-label">Trip distance (km)</span><input type="number" id="dist" inputmode="decimal" min="0" step="any" value="420"></label>
+      <label class="f"><span id="eco-label">Fuel use (L/100 km)</span><input type="number" id="eco" inputmode="decimal" min="0" step="any" value="7.5"></label>
+      <label class="f"><span id="price-label">Fuel price (per litre)</span><input type="number" id="price" inputmode="decimal" min="0" step="any" value="1.80"></label>
+      <label class="f"><span>Tolls &amp; parking (split evenly)</span><input type="number" id="extra" inputmode="decimal" min="0" step="any" value="24"></label>
+    </div>
+    <p class="group-title">Who was in the car, and how far</p>
+    <div class="list" id="riders"></div>
+    <button type="button" class="add" id="add-rider">+ Add a passenger</button>
+    <label class="check"><input type="checkbox" id="driver-free">The driver (first person) doesn't pay for fuel</label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

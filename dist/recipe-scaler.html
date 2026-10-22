@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recipe Scaler: Resize Any Recipe With Easy Kitchen Measures</title>
+<meta name="description" content="Paste any recipe and scale it up or down by servings. Handles fractions like 1 1/2 and ¾, converts awkward amounts to easier spoons and cups. Free.">
+<link rel="canonical" href="https://tidyfigure.com/recipe-scaler">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TidyFigure">
+<meta property="og:title" content="Recipe Scaler: Resize Any Recipe With Easy Kitchen Measures">
+<meta property="og:description" content="Paste any recipe and scale it up or down by servings. Handles fractions like 1 1/2 and ¾, converts awkward amounts to easier spoons and cups. Free.">
+<meta property="og:url" content="https://tidyfigure.com/recipe-scaler">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FF5B35">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Recipe Scaler","url":"https://tidyfigure.com/recipe-scaler","description":"Paste any recipe and scale it up or down by servings. Handles fractions like 1 1/2 and ¾, converts awkward amounts to easier spoons and cups. Free.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (runs in a web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TidyFigure","url":"https://tidyfigure.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I scale a recipe from 4 to 6 servings?","acceptedAnswer":{"@type":"Answer","text":"Divide 6 by 4 to get 1.5, then multiply every ingredient by 1.5. For example, 2 cups of flour becomes 3 cups and 1 teaspoon of salt becomes 1½ teaspoons."}},{"@type":"Question","name":"How do I halve a recipe with 1 egg?","acceptedAnswer":{"@type":"Answer","text":"Beat the egg and use half of it, about 25 g or 1½ tablespoons. The scaler suggests this automatically when an egg amount isn’t a whole number."}},{"@type":"Question","name":"How many tablespoons are in a cup?","acceptedAnswer":{"@type":"Answer","text":"There are 16 tablespoons in a US cup and 3 teaspoons in a tablespoon, so 48 teaspoons make a cup."}},{"@type":"Question","name":"Can I paste a recipe from a website?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste the ingredient list with one ingredient per line. Lines that start with a number are scaled; other lines, like \"salt to taste\", are left as they are."}},{"@type":"Question","name":"Does the scaler work with metric recipes?","acceptedAnswer":{"@type":"Answer","text":"Yes. Grams, kilograms, millilitres and litres are scaled and rounded to sensible precision, and imperial units like ounces and pounds work too."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tidyfigure.com/"},{"@type":"ListItem","position":2,"name":"Everyday life","item":"https://tidyfigure.com/#life"},{"@type":"ListItem","position":3,"name":"Recipe Scaler","item":"https://tidyfigure.com/recipe-scaler"}]}</script>
+<!--TF:HEAD-->
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--slate)"/><path d="M9 11h14M16 11v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="var(--accent)"/></svg><span>Tidy<b>Figure</b></span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
+<nav class="main-nav" id="main-nav" aria-label="Main"><a href="/#image" data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /> </svg>Image</a><a href="/#pdf" data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg>PDF</a><a href="/#text" data-cat="text" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polyline points="4 7 4 4 20 4 20 7" /> <line x1="9" x2="15" y1="20" y2="20" /> <line x1="12" x2="12" y1="4" y2="20" /> </svg>Text</a><a href="/#qr" data-cat="qr"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="5" height="5" x="3" y="3" rx="1" /> <rect width="5" height="5" x="16" y="3" rx="1" /> <rect width="5" height="5" x="3" y="16" rx="1" /> <path d="M21 16h-3a2 2 0 0 0-2 2v3" /> <path d="M21 21v.01" /> <path d="M12 7v3a2 2 0 0 1-2 2H7" /> <path d="M3 12h.01" /> <path d="M12 3h.01" /> <path d="M12 16v.01" /> <path d="M16 12h1" /> <path d="M21 12v.01" /> <path d="M12 21v-1" /> </svg>QR &amp; Barcode</a><a href="/#random" data-cat="random" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /> </svg>Generators</a><a href="/#health" data-cat="health"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /> </svg>Health</a><a href="/#money" data-cat="money"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /> </svg>Finance</a><a href="/#calc" data-cat="calc" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg>Calculators</a><a href="/#time" data-cat="time" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg>Time</a><a href="/#convert" data-cat="convert" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m17 2 4 4-4 4" /> <path d="M3 11v-1a4 4 0 0 1 4-4h14" /> <path d="m7 22-4-4 4-4" /> <path d="M21 13v1a4 4 0 0 1-4 4H3" /> </svg>Converters</a><a href="/#social" data-cat="social" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5.8 11.3 2 22l10.7-3.79" /> <path d="M4 3h.01" /> <path d="M22 8h.01" /> <path d="M15 2h.01" /> <path d="M22 20h.01" /> <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /> <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" /> <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" /> <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /> </svg>Social</a><a href="/#life" data-cat="life" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg>Life</a><a class="cta" href="/#tools">All tools</a></nav>
+</div></header><div class="nav-shade"></div>
+<!--TF:BODY_TOP-->
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#life">Everyday life</a><span aria-hidden="true">/</span><span>Recipe Scaler</span></nav>
+<div class="tool-head"><span class="tile lg" data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 12h20" /> <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" /> <path d="m4 8 16-4" /> <path d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8" /> </svg></span><h1>Recipe Scaler</h1></div>
+<p class="answer">To scale a recipe, divide the servings you want by the servings the recipe makes, and multiply every ingredient by that number. Going from 4 to 6 servings means multiplying by <strong>1.5</strong>. Paste your ingredient list and this scaler does it line by line, rounds to amounts you can actually measure, and swaps awkward amounts like "0.375 cups" for spoons.</p>
+<section class="tool" aria-label="Recipe Scaler">
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Recipe serves</span><input type="number" id="from" inputmode="decimal" min="0" step="any" value="4"></label>
+      <label class="f"><span>I want to serve</span><input type="number" id="to" inputmode="decimal" min="0" step="any" value="6"></label>
+    </div>
+    <label class="f"><span>Ingredients (paste one per line)</span><textarea id="recipe" spellcheck="false">1 1/2 cups all-purpose flour
+3 1/2 tsp baking powder
+1 tbsp sugar
+1/4 tsp salt
+1 1/4 cups milk
+1 egg
+3 tbsp melted butter
+200 g blueberries
+Maple syrup, to serve</textarea></label>
+    <label class="check"><input type="checkbox" id="smart" checked>Switch to easier spoon and cup sizes</label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+
+</section>
+<!--TF:AD:top-->
+<p class="private"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg>Everything runs in your browser. Nothing you type is sent anywhere.</p>
+<div class="layout">
+<article class="prose">
+
+<h2>How recipe scaling works</h2>
+<p>Every recipe has a scaling factor: the number of servings you want divided by the number it was written for. Multiply every quantity by that factor and the proportions stay the same, so the dish tastes the same.</p>
+<div class="formula">Scaling factor = servings you want ÷ servings in the recipe
+New amount     = original amount × scaling factor</div>
+<p>The hard part isn't the multiplication. It's that 1½ cups × 1.5 = 2.25 cups, and ⅓ cup × 0.75 = 0.25 cups, and 3 tablespoons × 1.5 = 4.5 tablespoons. This scaler reads fractions the way recipes write them (1 1/2, 1½, ¾, 2–3), scales them, and writes the answer back in measures you have in your drawer.</p>
+
+<h2>Easier measures</h2>
+<p>With "switch to easier spoon and cup sizes" turned on, the scaler converts between teaspoons, tablespoons and cups using standard kitchen equivalents:</p>
+<div class="formula">3 teaspoons  = 1 tablespoon
+16 tablespoons = 1 cup
+48 teaspoons  = 1 cup</div>
+<ul>
+<li>Less than ¼ cup becomes tablespoons: ⅛ cup becomes 2 tbsp.</li>
+<li>Less than 1 tablespoon becomes teaspoons: ⅓ tbsp becomes 1 tsp.</li>
+<li>3 teaspoons or more becomes tablespoons: 5¼ tsp becomes 1¾ tbsp.</li>
+<li>Large spoon amounts only move up to cups when they match a real cup measure, so 4½ tbsp stays as it is instead of becoming "roughly ¼ cup".</li>
+</ul>
+<p>Grams and millilitres are rounded to sensible precision: half a gram for small amounts, whole numbers up to 100, and the nearest 5 above that.</p>
+
+<h2>Worked example: pancakes for 6 instead of 4</h2>
+<p>The factor is 6 ÷ 4 = 1.5.</p>
+<ul>
+<li>1½ cups flour → <strong>2¼ cups</strong></li>
+<li>3½ tsp baking powder → 5¼ tsp → <strong>1¾ tbsp</strong></li>
+<li>1¼ cups milk → <strong>1⅞ cups</strong></li>
+<li>1 egg → <strong>1½ eggs</strong>: beat 2 eggs and use ¾ of the mix</li>
+<li>200 g blueberries → <strong>300 g</strong></li>
+</ul>
+
+<h2>What doesn't scale perfectly</h2>
+<ul>
+<li><strong>Salt, spices and chilli:</strong> when doubling or more, start with about ¾ of the scaled amount and taste.</li>
+<li><strong>Baking powder and yeast:</strong> fine to scale up to about double. For very large batches, bakers often use a little less.</li>
+<li><strong>Cooking time:</strong> a bigger pot of stew takes longer to come to temperature; a bigger cake needs a bigger pan, not just a longer bake. Use the baking pan converter for cakes.</li>
+<li><strong>Pan size:</strong> doubling a recipe in the same pan changes depth and baking time.</li>
+</ul>
+<!--TF:AD:article-->
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>How do I scale a recipe from 4 to 6 servings?</summary><p>Divide 6 by 4 to get 1.5, then multiply every ingredient by 1.5. For example, 2 cups of flour becomes 3 cups and 1 teaspoon of salt becomes 1½ teaspoons.</p></details>
+<details class="faq"><summary>How do I halve a recipe with 1 egg?</summary><p>Beat the egg and use half of it, about 25 g or 1½ tablespoons. The scaler suggests this automatically when an egg amount isn’t a whole number.</p></details>
+<details class="faq"><summary>How many tablespoons are in a cup?</summary><p>There are 16 tablespoons in a US cup and 3 teaspoons in a tablespoon, so 48 teaspoons make a cup.</p></details>
+<details class="faq"><summary>Can I paste a recipe from a website?</summary><p>Yes. Paste the ingredient list with one ingredient per line. Lines that start with a number are scaled; other lines, like "salt to taste", are left as they are.</p></details>
+<details class="faq"><summary>Does the scaler work with metric recipes?</summary><p>Yes. Grams, kilograms, millilitres and litres are scaled and rounded to sensible precision, and imperial units like ounces and pounds work too.</p></details>
+</article>
+<aside class="side">
+<!--TF:AD:side-->
+<section aria-labelledby="side-a"><h2 id="side-a">More everyday life</h2><ul><li data-slug="rent-split-calculator"><a href="/rent-split-calculator"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg></span>Fair Rent Split Calculator</a></li><li data-slug="group-expense-splitter"><a href="/group-expense-splitter"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <path d="M16 3.13a4 4 0 0 1 0 7.75" /> </svg></span>Group Expense Splitter</a></li><li data-slug="furniture-fit-calculator"><a href="/furniture-fit-calculator"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" /> <path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" /> <path d="M4 18v2" /> <path d="M20 18v2" /> <path d="M12 4v9" /> </svg></span>Will It Fit? Furniture Door Calculator</a></li><li data-slug="dinner-timing-planner"><a href="/dinner-timing-planner"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z" /> <path d="M6 17h12" /> </svg></span>Dinner Timing Planner</a></li><li data-slug="baking-pan-converter"><a href="/baking-pan-converter"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="9" cy="7" r="2" /> <path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6" /> <path d="M16 13H3" /> <path d="M16 17H3" /> </svg></span>Baking Pan Size Converter</a></li><li data-slug="decision-matrix"><a href="/decision-matrix"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="M7 21h10" /> <path d="M12 3v18" /> <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /> </svg></span>Decision Matrix Calculator</a></li><li data-slug="road-trip-cost-splitter"><a href="/road-trip-cost-splitter"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /> <circle cx="7" cy="17" r="2" /> <path d="M9 17h6" /> <circle cx="17" cy="17" r="2" /> </svg></span>Road Trip Cost Splitter</a></li></ul></section>
+<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul><li data-slug="unit-price-calculator"><a href="/unit-price-calculator"><span class="tile " data-cat="calc"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" /> <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /> </svg></span>Unit Price Calculator</a></li><li data-slug="image-compressor"><a href="/image-compressor"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" /> <path d="m14 19 3 3v-5.5" /> <path d="m17 22 3-3" /> <circle cx="9" cy="9" r="2" /> </svg></span>Image Compressor</a></li><li data-slug="image-resizer"><a href="/image-resizer"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /> <path d="M14 15H9v-5" /> <path d="M16 3h5v5" /> <path d="M21 3 9 15" /> </svg></span>Image Resizer</a></li><li data-slug="crop-image"><a href="/crop-image"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /> </svg></span>Crop Image</a></li><li data-slug="photo-editor"><a href="/photo-editor"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></span>Photo Editor</a></li><li data-slug="image-metadata-remover"><a href="/image-metadata-remover"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m2 2 20 20" /> <path d="M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71" /> <path d="M9.309 3.652A12.252 12.252 0 0 0 11.24 2.28a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1v7a9.784 9.784 0 0 1-.08 1.264" /> </svg></span>Image Metadata Remover</a></li></ul></section>
+</aside>
+</div>
+</main>
+<footer class="foot"><div class="wrap">
+<div><h2>Image tools</h2><ul><li data-slug="image-compressor"><a href="/image-compressor">Image Compressor</a></li><li data-slug="image-resizer"><a href="/image-resizer">Image Resizer</a></li><li data-slug="image-converter"><a href="/image-converter">Image Converter</a></li><li data-slug="crop-image"><a href="/crop-image">Crop Image</a></li><li data-slug="rotate-image"><a href="/rotate-image">Rotate &amp; Flip Image</a></li><li data-slug="photo-editor"><a href="/photo-editor">Photo Editor</a></li></ul></div>
+<div><h2>PDF tools</h2><ul><li data-slug="merge-pdf"><a href="/merge-pdf">Merge PDF</a></li><li data-slug="jpg-to-pdf"><a href="/jpg-to-pdf">JPG to PDF</a></li><li data-slug="split-pdf"><a href="/split-pdf">Split PDF</a></li><li data-slug="rotate-pdf"><a href="/rotate-pdf">Rotate PDF</a></li><li data-slug="delete-pdf-pages"><a href="/delete-pdf-pages">Delete PDF Pages</a></li><li data-slug="organize-pdf"><a href="/organize-pdf">Organize PDF</a></li></ul></div>
+<div><h2>Text tools</h2><ul><li data-slug="word-counter"><a href="/word-counter">Word Counter</a></li><li data-slug="character-counter"><a href="/character-counter">Character Counter</a></li><li data-slug="case-converter"><a href="/case-converter">Case Converter</a></li><li data-slug="fancy-text-generator"><a href="/fancy-text-generator">Fancy Text Generator</a></li><li data-slug="remove-duplicate-lines"><a href="/remove-duplicate-lines">Remove Duplicate Lines</a></li><li data-slug="lorem-ipsum-generator"><a href="/lorem-ipsum-generator">Lorem Ipsum Generator</a></li></ul></div>
+<div><h2>QR code &amp; barcode tools</h2><ul><li data-slug="qr-code-generator"><a href="/qr-code-generator">QR Code Generator</a></li><li data-slug="wifi-qr-code-generator"><a href="/wifi-qr-code-generator">Wi-Fi QR Code Generator</a></li><li data-slug="whatsapp-qr-code-generator"><a href="/whatsapp-qr-code-generator">WhatsApp QR Code Generator</a></li><li data-slug="vcard-qr-code-generator"><a href="/vcard-qr-code-generator">vCard QR Code Generator</a></li><li data-slug="qr-code-scanner"><a href="/qr-code-scanner">QR Code Scanner</a></li><li data-slug="barcode-reader"><a href="/barcode-reader">Barcode Reader</a></li></ul></div>
+<div><h2>Generators &amp; random</h2><ul><li data-slug="password-generator"><a href="/password-generator">Password Generator</a></li><li data-slug="random-number-generator"><a href="/random-number-generator">Random Number Generator</a></li><li data-slug="spin-the-wheel"><a href="/spin-the-wheel">Spin the Wheel</a></li><li data-slug="flip-a-coin"><a href="/flip-a-coin">Flip a Coin</a></li><li data-slug="roll-a-dice"><a href="/roll-a-dice">Roll a Dice</a></li></ul></div>
+<div><h2>Health &amp; fitness calculators</h2><ul><li data-slug="calorie-calculator"><a href="/calorie-calculator">Calorie Calculator</a></li><li data-slug="bmi-calculator"><a href="/bmi-calculator">BMI Calculator</a></li><li data-slug="bmr-calculator"><a href="/bmr-calculator">BMR Calculator</a></li><li data-slug="macro-calculator"><a href="/macro-calculator">Macro Calculator</a></li><li data-slug="body-fat-calculator"><a href="/body-fat-calculator">Body Fat Calculator</a></li><li data-slug="ideal-weight-calculator"><a href="/ideal-weight-calculator">Ideal Weight Calculator</a></li></ul></div>
+<div><h2>Finance calculators</h2><ul><li data-slug="compound-interest-calculator"><a href="/compound-interest-calculator">Compound Interest Calculator</a></li><li data-slug="sip-calculator"><a href="/sip-calculator">SIP Calculator</a></li><li data-slug="loan-calculator"><a href="/loan-calculator">Loan Calculator</a></li><li data-slug="savings-goal-calculator"><a href="/savings-goal-calculator">Savings Goal Calculator</a></li><li data-slug="retirement-calculator"><a href="/retirement-calculator">Retirement Calculator</a></li><li data-slug="inflation-calculator"><a href="/inflation-calculator">Inflation Calculator</a></li></ul></div>
+<div><h2>Calculators</h2><ul><li data-slug="percentage-calculator"><a href="/percentage-calculator">Percentage Calculator</a></li><li data-slug="pizza-size-calculator"><a href="/pizza-size-calculator">Pizza Size Calculator</a></li><li data-slug="unit-price-calculator"><a href="/unit-price-calculator">Unit Price Calculator</a></li><li data-slug="discount-calculator"><a href="/discount-calculator">Discount Calculator</a></li></ul></div>
+<div class="legal"><span>© 2026 TidyFigure. Free online tools, built by <a href="https://aivrasol.com" rel="noopener">AivraSol</a>. Your files never leave your device.</span>
+<span><a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/#tools">All tools</a></span></div>
+</div></footer>
+<script>(function(){var b=document.querySelector('.nav-toggle'),r=document.documentElement;if(!b)return;function set(o){r.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',o)}b.addEventListener('click',function(){set(!r.classList.contains('nav-open'))});document.querySelector('.nav-shade').addEventListener('click',function(){set(false)});document.querySelectorAll('.main-nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();</script>
+
+<script src="/app.js"></script>
+
+<script>
+(function () {
+const UNI = { '¼': 1 / 4, '½': 1 / 2, '¾': 3 / 4, '⅓': 1 / 3, '⅔': 2 / 3, '⅛': 1 / 8, '⅜': 3 / 8, '⅝': 5 / 8, '⅞': 7 / 8 };
+const Q = '(?:\\d+\\s+\\d+\\/\\d+|\\d+\\/\\d+|\\d+(?:[.,]\\d+)?(?:\\s*[¼½¾⅓⅔⅛⅜⅝⅞])?|[¼½¾⅓⅔⅛⅜⅝⅞])';
+const LINE = new RegExp(`^(\\s*[-*•]?\\s*)(${Q})(?:\\s*(?:-|–|to)\\s*(${Q}))?(.*)$`);
+// Spoon and cup sizes in teaspoons, so they can be swapped for easier ones.
+const SPOON = { tsp: 1, tbsp: 3, cup: 48 };
+const UNIT_RE = [
+  [/^\s*(cups?|c\.)(?=\s|$)/i, 'cup'],
+  [/^\s*(tablespoons?|tbsps?|tbs)\b/i, 'tbsp'], [/^\s*(T)\b/, 'tbsp'],
+  [/^\s*(teaspoons?|tsps?)\b/i, 'tsp'], [/^\s*(t)\b/, 'tsp'],
+  [/^\s*(kilograms?|kgs?)\b/i, 'kg'], [/^\s*(grams?|g)\b/i, 'g'],
+  [/^\s*(millilit(?:er|re)s?|ml)\b/i, 'ml'], [/^\s*(lit(?:er|re)s?|l)\b/i, 'l'],
+  [/^\s*(ounces?|oz)\b/i, 'oz'], [/^\s*(pounds?|lbs?)\b/i, 'lb'],
+];
+const FRACS = [[0, ''], [1 / 8, '⅛'], [1 / 4, '¼'], [1 / 3, '⅓'], [3 / 8, '⅜'], [1 / 2, '½'], [5 / 8, '⅝'], [2 / 3, '⅔'], [3 / 4, '¾'], [7 / 8, '⅞'], [1, '']];
+
+function parseQty(s) {
+  s = s.trim();
+  let total = 0;
+  const last = s.slice(-1);
+  if (UNI[last] !== undefined) { total += UNI[last]; s = s.slice(0, -1).trim(); }
+  if (!s) return total;
+  s.split(/\s+/).forEach(part => {
+    if (part.includes('/')) { const [a, b] = part.split('/').map(Number); total += b ? a / b : 0; } else total += parseFloat(part.replace(',', '.')) || 0;
+  });
+  return total;
+}
+
+// Kitchen-friendly number: nearest ⅛ or ⅓ for spoons and cups, sensible rounding for grams and millilitres.
+function pretty(x, unit) {
+  if (unit === 'g' || unit === 'ml') {
+    if (x < 10) return fmtMax(Math.round(x * 2) / 2, 1);
+    if (x < 100) return fmtMax(Math.round(x), 0);
+    return fmtMax(Math.round(x / 5) * 5, 0);
+  }
+  if (unit === 'kg' || unit === 'l') return fmtMax(x, 2);
+  const whole = Math.floor(x);
+  const [f, glyph] = FRACS.reduce((a, b) => (Math.abs(b[0] - (x - whole)) < Math.abs(a[0] - (x - whole)) ? b : a));
+  const w = whole + (f === 1 ? 1 : 0);
+  if (!w && !glyph) return fmtMax(x, 2);
+  return (w ? String(w) : '') + glyph;
+}
+
+function easier(amount, unit) {
+  if (!(unit in SPOON)) return [amount, unit];
+  const tsp = amount * SPOON[unit];
+  if (unit === 'cup' && tsp >= 12) return [amount, unit]; // ¼ cup or more stays in cups
+  if (tsp < 3) return [tsp, 'tsp'];
+  if (tsp < 12) return [tsp / 3, 'tbsp'];
+  // Only move up to cups when it lands close to a cup measure (4½ tbsp is easier than "about ¼ cup").
+  const cups = tsp / 48, whole = Math.floor(cups);
+  const nearest = FRACS.reduce((a, b) => (Math.abs(b[0] - (cups - whole)) < Math.abs(a[0] - (cups - whole)) ? b : a))[0];
+  return Math.abs(whole + nearest - cups) / cups < 0.03 ? [cups, 'cup'] : [tsp / 3, 'tbsp'];
+}
+const unitWord = (u, n) => (u === 'cup' ? (n > 1 ? 'cups' : 'cup') : u === 'l' ? 'L' : u);
+
+onAny('#from, #to, #recipe, #smart', calc);
+
+function calc() {
+  const from = val($('#from')), to = val($('#to'));
+  const out = $('#out');
+  if (!(from > 0 && to > 0)) { out.innerHTML = '<p class="empty">Enter how many the recipe serves and how many you want to serve.</p>'; return; }
+  const k = to / from;
+  const smart = $('#smart').checked;
+  let changed = 0;
+
+  const lines = $('#recipe').value.split('\n').map(line => {
+    const m = line.match(LINE);
+    if (!m || !line.trim()) return esc(line);
+    const [, lead, q1, q2, restRaw] = m;
+    let rest = restRaw;
+    let unit = null;
+    for (const [re, u] of UNIT_RE) {
+      const um = rest.match(re);
+      if (um) { unit = u; rest = rest.slice(um[0].length); break; }
+    }
+    let a = parseQty(q1) * k;
+    let b = q2 ? parseQty(q2) * k : null;
+    let u = unit;
+    if (smart && unit) {
+      const [na, nu] = easier(a, unit);
+      if (b !== null) b = b * (na / a);
+      a = na; u = nu;
+    }
+    changed++;
+    const qty = pretty(a, u) + (b !== null ? '–' + pretty(b, u) : '');
+    const unitTxt = u ? ' ' + unitWord(u, b ?? a) : '';
+    let tip = '';
+    if (!unit && /\beggs?\b/i.test(rest) && Math.abs(a - Math.round(a)) > 0.12) {
+      const whole = Math.ceil(a);
+      tip = ` <small>(beat ${whole} egg${whole > 1 ? 's' : ''} and use ${pretty(a / whole, null)} of the mix)</small>`;
+    }
+    return `${esc(lead)}<mark>${esc(qty)}${esc(unitTxt)}</mark>${esc(unit ? rest : rest)}${tip}`;
+  });
+
+  out.innerHTML = `<p class="kicker">Scaled recipe</p><p class="big"><mark>× ${fmtMax(k, 2)}</mark></p>
+    <p class="sub">From ${fmtMax(from, 2)} to ${fmtMax(to, 2)} servings. ${changed} ingredient${changed === 1 ? '' : 's'} adjusted.</p>
+    <div class="copybox" id="scaled">${lines.join('\n')}</div>
+    <div class="copyrow"><button type="button" class="btn ghost" data-copy="scaled">Copy</button></div>`;
+}
+calc();
+
+})();
+</script>
+<!--TF:BODY_END-->
+</body>
+</html>

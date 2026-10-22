@@ -1,0 +1,15 @@
+{
+  "name": "tidyfigure",
+  "version": "1.0.0",
+  "description": "Free, evergreen calculator tools for everyday problems. Plain HTML, CSS and JavaScript: no framework, no database, no API costs. Every tool runs in the visitor's browser.",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "lucide-static": "^0.452.0"
+  }
+}

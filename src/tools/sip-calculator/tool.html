@@ -1,0 +1,12 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Monthly investment</span><input type="number" id="m" inputmode="decimal" min="0" step="any" value="5000"></label>
+      <label class="f"><span>Expected return (% a year)</span><input type="number" id="r" inputmode="decimal" step="any" value="12"></label>
+      <label class="f"><span>Years</span><input type="number" id="y" inputmode="numeric" min="1" max="50" step="1" value="15"></label>
+      <label class="f"><span>Yearly step-up (%)</span><input type="number" id="step" inputmode="decimal" min="0" max="50" step="any" value="0"></label>
+    </div>
+    <p class="note">Step-up raises your monthly investment every year, for example 10% as your salary grows.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

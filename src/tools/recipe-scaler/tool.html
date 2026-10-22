@@ -1,0 +1,19 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Recipe serves</span><input type="number" id="from" inputmode="decimal" min="0" step="any" value="4"></label>
+      <label class="f"><span>I want to serve</span><input type="number" id="to" inputmode="decimal" min="0" step="any" value="6"></label>
+    </div>
+    <label class="f"><span>Ingredients (paste one per line)</span><textarea id="recipe" spellcheck="false">1 1/2 cups all-purpose flour
+3 1/2 tsp baking powder
+1 tbsp sugar
+1/4 tsp salt
+1 1/4 cups milk
+1 egg
+3 tbsp melted butter
+200 g blueberries
+Maple syrup, to serve</textarea></label>
+    <label class="check"><input type="checkbox" id="smart" checked>Switch to easier spoon and cup sizes</label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

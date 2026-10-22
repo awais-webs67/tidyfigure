@@ -1,0 +1,32 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Make favicon from">
+      <label><input type="radio" name="mode" id="m-text" value="text" checked><span>Letters or emoji</span></label>
+      <label><input type="radio" name="mode" id="m-img" value="img"><span>My image</span></label>
+    </div>
+    <div id="text-box" class="fields">
+      <label class="f"><span>Text (1–2 characters)</span><input type="text" id="txt" value="T" maxlength="4" autocomplete="off"></label>
+      <label class="f"><span>Font</span><select id="font"><option value="Inter" selected>Modern sans</option><option value="Bebas Neue">Condensed</option><option value="Georgia">Serif</option><option value="JetBrains Mono">Monospace</option></select></label>
+      <label class="f"><span>Text colour</span><input type="color" id="fg" value="#ffffff"></label>
+      <label class="f"><span>Background</span><input type="color" id="bg" value="#ff5b35"></label>
+    </div>
+    <div id="img-box" hidden>
+      <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose an image" style="padding:18px">
+        <strong>Drop a square logo here or click to choose</strong><span id="loaded">PNG or SVG with transparency works best</span>
+        <input type="file" id="file" accept="image/*">
+      </div>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Shape</span><select id="shape"><option value="square">Square</option><option value="rounded" selected>Rounded</option><option value="circle">Circle</option></select></label>
+      <label class="f"><span>Site name (for the manifest)</span><input type="text" id="site" value="My Website" autocomplete="off"></label>
+    </div>
+  </div>
+  <div class="out">
+    <p class="kicker">Preview</p>
+    <div id="previews" style="display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"></div>
+    <button type="button" class="btn big-btn" id="zip">{{icon:download}}Download favicon pack (.zip)</button>
+    <p class="note">Includes favicon.ico, PNGs from 16 to 512 px, the Apple touch icon and site.webmanifest. Paste this into your site’s &lt;head&gt;:</p>
+    <div class="copybox" id="snippet"></div>
+    <div class="copyrow"><button type="button" class="btn ghost" data-copy="snippet">Copy HTML</button></div>
+  </div>
+</div>

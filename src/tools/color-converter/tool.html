@@ -1,0 +1,12 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields" style="grid-template-columns:auto minmax(0,1fr);align-items:end">
+      <label class="f"><span>Pick</span><input type="color" id="pick" value="#0b7f5e"></label>
+      <label class="f"><span>Or type any colour (HEX, RGB, HSL or a name)</span><input type="text" id="txt" value="#0B7F5E" autocomplete="off" spellcheck="false"></label>
+    </div>
+    <div id="swatch" style="height:120px;border-radius:14px;border:1px solid var(--line)"></div>
+    <p class="group-title">Tints and shades (tap to copy)</p>
+    <div id="scale" style="display:grid;grid-template-columns:repeat(11,1fr);gap:4px"></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

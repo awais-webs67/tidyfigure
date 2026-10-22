@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Pay</span><input type="number" id="amt" inputmode="decimal" min="0" step="any" value="25"></label>
+      <label class="f"><span>Per</span><select id="per"><option value="hour" selected>Hour</option><option value="day">Day</option><option value="week">Week</option><option value="month">Month</option><option value="year">Year</option></select></label>
+      <label class="f"><span>Hours per week</span><input type="number" id="hpw" inputmode="decimal" min="1" max="100" step="any" value="40"></label>
+      <label class="f"><span>Days per week</span><input type="number" id="dpw" inputmode="decimal" min="1" max="7" step="any" value="5"></label>
+      <label class="f"><span>Paid weeks per year</span><input type="number" id="wpy" inputmode="decimal" min="1" max="52.18" step="any" value="52"></label>
+    </div>
+    <p class="note">Before tax. Use 52 paid weeks if holidays are paid; reduce it for unpaid time off (for example 48 for a contractor taking 4 weeks off).</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

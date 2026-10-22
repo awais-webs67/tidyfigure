@@ -1,0 +1,27 @@
+<div class="tool-grid">
+  <div class="out" style="align-items:center">
+    <div style="position:relative;width:100%;max-width:440px">
+      <canvas id="wheel" width="880" height="880" style="width:100%;aspect-ratio:1;display:block" aria-label="Decision wheel"></canvas>
+      <svg viewBox="0 0 40 40" aria-hidden="true" style="position:absolute;left:50%;top:-6px;width:40px;height:40px;transform:translateX(-50%);filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))"><path d="M20 38 6 6h28z" fill="var(--ink)"/></svg>
+    </div>
+    <button type="button" class="btn big-btn" id="spin" style="align-self:center">{{icon:rotate-cw}}Spin the wheel</button>
+    <p class="big" id="result" style="text-align:center" aria-live="polite"></p>
+  </div>
+  <div class="inputs">
+    <label class="f"><span>Entries (one per line)</span><textarea id="entries">Pizza
+Sushi
+Burgers
+Tacos
+Curry
+Pasta
+Salad
+Noodles</textarea></label>
+    <label class="check"><input type="checkbox" id="remove">Remove the winner after each spin</label>
+    <div class="btns">
+      <button type="button" class="btn ghost" id="shuffle">{{icon:shuffle}}Shuffle</button>
+      <button type="button" class="btn ghost" id="yesno">Yes / No wheel</button>
+      <button type="button" class="btn ghost" id="names">Names wheel</button>
+    </div>
+    <p class="note" id="count"></p>
+  </div>
+</div>

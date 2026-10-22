@@ -1,0 +1,17 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">Every page becomes an image</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <div class="fields">
+      <label class="f"><span>Image format</span><select id="fmt"><option value="image/jpeg" selected>JPG</option><option value="image/png">PNG (sharper text, bigger)</option><option value="image/webp">WebP</option></select></label>
+      <label class="f"><span>Resolution</span><select id="dpi"><option value="72">72 DPI (screen, small)</option><option value="150" selected>150 DPI (recommended)</option><option value="300">300 DPI (print)</option></select></label>
+      <label class="f"><span>Pages (e.g. 1-3, 5)</span><input type="text" id="range" placeholder="All pages" autocomplete="off"></label>
+    </div>
+    <div class="btns"><button type="button" class="btn big-btn" id="go" disabled>{{icon:image-down}}Convert to images</button><button type="button" class="btn ghost" id="sample">Try with a sample PDF</button></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Images</p><p class="empty">Choose a PDF, then press Convert.</p></div>
+</div>

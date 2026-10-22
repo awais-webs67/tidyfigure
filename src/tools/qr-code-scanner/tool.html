@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="stage" style="padding:0;background:#20272d;aspect-ratio:4/3;display:grid;place-items:center;overflow:hidden">
+      <video id="video" playsinline muted style="width:100%;height:100%;object-fit:cover" hidden></video>
+      <p class="note" id="cam-msg" style="color:#cfd6dd;padding:20px">Press “Scan with camera” and point it at a code.</p>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="cam">{{icon:camera}}<span>Scan with camera</span></button>
+      <label class="btn ghost big-btn" for="file" style="cursor:pointer">{{icon:image-up}}Upload an image</label>
+      <input type="file" id="file" accept="image/*" class="sr-only">
+    </div>
+    <button type="button" class="btn ghost" id="sample">Try a sample code</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Result</p><p class="empty">The decoded content will appear here.</p></div>
+</div>

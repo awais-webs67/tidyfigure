@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Decision Matrix Calculator: Weighted Scoring for Big Choices</title>
+<meta name="description" content="Compare options with a weighted decision matrix. Score jobs, homes, cars or schools on what matters to you, then see if the result holds up. Free.">
+<link rel="canonical" href="https://tidyfigure.com/decision-matrix">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TidyFigure">
+<meta property="og:title" content="Decision Matrix Calculator: Weighted Scoring for Big Choices">
+<meta property="og:description" content="Compare options with a weighted decision matrix. Score jobs, homes, cars or schools on what matters to you, then see if the result holds up. Free.">
+<meta property="og:url" content="https://tidyfigure.com/decision-matrix">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FF5B35">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Decision Matrix Calculator","url":"https://tidyfigure.com/decision-matrix","description":"Compare options with a weighted decision matrix. Score jobs, homes, cars or schools on what matters to you, then see if the result holds up. Free.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (runs in a web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TidyFigure","url":"https://tidyfigure.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you make a weighted decision matrix?","acceptedAnswer":{"@type":"Answer","text":"List your options and the factors that matter. Give each factor a weight for importance, score each option on each factor, multiply scores by weights and add them up. The highest total best fits your priorities."}},{"@type":"Question","name":"What is the difference between a decision matrix and a pros and cons list?","acceptedAnswer":{"@type":"Answer","text":"A pros and cons list treats every point as equally important. A weighted matrix makes you say how much each factor matters and scores every option on the same factors, so options can be compared fairly."}},{"@type":"Question","name":"How many criteria should a decision matrix have?","acceptedAnswer":{"@type":"Answer","text":"Five to seven factors works well for most personal decisions. Too few misses important differences; too many makes small factors add up and drown out the ones that matter most."}},{"@type":"Question","name":"What if two options have almost the same score?","acceptedAnswer":{"@type":"Answer","text":"Look at the sensitivity note. It shows which factor’s weight decides the result. Think carefully about that one factor, or gather more information about it."}},{"@type":"Question","name":"Can I use this for job offers or choosing a car?","acceptedAnswer":{"@type":"Answer","text":"Yes. Rename the options and factors to anything: salary, growth and commute for a job; price, running costs and reliability for a car."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tidyfigure.com/"},{"@type":"ListItem","position":2,"name":"Everyday life","item":"https://tidyfigure.com/#life"},{"@type":"ListItem","position":3,"name":"Decision Matrix Calculator","item":"https://tidyfigure.com/decision-matrix"}]}</script>
+<!--TF:HEAD-->
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--slate)"/><path d="M9 11h14M16 11v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="var(--accent)"/></svg><span>Tidy<b>Figure</b></span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
+<nav class="main-nav" id="main-nav" aria-label="Main"><a href="index.html#image" data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /> </svg>Image</a><a href="index.html#pdf" data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg>PDF</a><a href="index.html#text" data-cat="text" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polyline points="4 7 4 4 20 4 20 7" /> <line x1="9" x2="15" y1="20" y2="20" /> <line x1="12" x2="12" y1="4" y2="20" /> </svg>Text</a><a href="index.html#qr" data-cat="qr"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="5" height="5" x="3" y="3" rx="1" /> <rect width="5" height="5" x="16" y="3" rx="1" /> <rect width="5" height="5" x="3" y="16" rx="1" /> <path d="M21 16h-3a2 2 0 0 0-2 2v3" /> <path d="M21 21v.01" /> <path d="M12 7v3a2 2 0 0 1-2 2H7" /> <path d="M3 12h.01" /> <path d="M12 3h.01" /> <path d="M12 16v.01" /> <path d="M16 12h1" /> <path d="M21 12v.01" /> <path d="M12 21v-1" /> </svg>QR &amp; Barcode</a><a href="index.html#random" data-cat="random" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /> </svg>Generators</a><a href="index.html#health" data-cat="health"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /> </svg>Health</a><a href="index.html#money" data-cat="money"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /> </svg>Finance</a><a href="index.html#calc" data-cat="calc" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg>Calculators</a><a href="index.html#time" data-cat="time" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg>Time</a><a href="index.html#convert" data-cat="convert" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m17 2 4 4-4 4" /> <path d="M3 11v-1a4 4 0 0 1 4-4h14" /> <path d="m7 22-4-4 4-4" /> <path d="M21 13v1a4 4 0 0 1-4 4H3" /> </svg>Converters</a><a href="index.html#social" data-cat="social" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5.8 11.3 2 22l10.7-3.79" /> <path d="M4 3h.01" /> <path d="M22 8h.01" /> <path d="M15 2h.01" /> <path d="M22 20h.01" /> <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /> <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" /> <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" /> <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /> </svg>Social</a><a href="index.html#life" data-cat="life" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg>Life</a><a class="cta" href="index.html#tools">All tools</a></nav>
+</div></header><div class="nav-shade"></div>
+<!--TF:BODY_TOP-->
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#life">Everyday life</a><span aria-hidden="true">/</span><span>Decision Matrix Calculator</span></nav>
+<div class="tool-head"><span class="tile lg" data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="M7 21h10" /> <path d="M12 3v18" /> <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /> </svg></span><h1>Decision Matrix Calculator</h1></div>
+<p class="answer">A decision matrix scores each option on the factors that matter, multiplies each score by how important that factor is, and adds them up. The highest total is the best fit <em>for your priorities</em>. This calculator also checks whether the winner would change if you'd weighted one factor differently, so you know if it's a clear result or a close call.</p>
+<section class="tool" aria-label="Decision Matrix Calculator">
+<div class="inputs">
+  <p class="note">Give each factor a weight (how much it matters, 1–5) and score every option on it (1 = poor, 10 = excellent).</p>
+  <div class="scroll"><table class="tbl matrix" id="matrix"></table></div>
+  <div class="chips">
+    <button type="button" class="add" id="add-opt">+ Add an option</button>
+    <button type="button" class="add" id="add-crit">+ Add a factor</button>
+  </div>
+</div>
+<div class="out" id="out" aria-live="polite" style="margin-top:18px"></div>
+
+</section>
+<!--TF:AD:top-->
+<p class="private"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg>Everything runs in your browser. Nothing you type is sent anywhere.</p>
+<div class="layout">
+<article class="prose">
+
+<h2>What a weighted decision matrix is</h2>
+<p>Big decisions get stuck because we compare options on several things at once. One flat is cheaper, the other is brighter, the third is closer to work. A decision matrix (also called a weighted scoring model or Pugh matrix) breaks the decision into factors, makes you say how much each factor matters, and then scores every option on every factor.</p>
+<p>It doesn't make the decision for you. It shows you what your own priorities imply, which is often surprisingly different from your gut feeling, and that difference is useful in itself.</p>
+
+<h2>How the score is calculated</h2>
+<div class="formula">Weighted score of an option = Σ (factor weight × option's score on that factor)
+Maximum possible             = Σ (factor weight × 10)</div>
+<p>Weights run from 1 (nice to have) to 5 (critical). Scores run from 1 (poor) to 10 (excellent). Showing the result as a percentage of the maximum makes options easy to compare at a glance.</p>
+
+<h2>Is it a clear result or a close call?</h2>
+<p>Weights are the most subjective part of any matrix. To show how much your answer depends on them, the calculator re-runs the matrix with each factor's weight set to 1 and to 5, one at a time. If the winner never changes, the result is robust. If it flips, you'll see exactly which factor decides the outcome, and that's usually the real question you need to think about.</p>
+
+<h2>Worked example: choosing a place to live</h2>
+<p>Three options are scored on cost (weight 5), commute (4), space (3), natural light (2) and neighbourhood (3):</p>
+<ul>
+<li>Flat on Elm St: 6, 8, 5, 4, 6 → 30 + 32 + 15 + 8 + 18 = <strong>103</strong></li>
+<li>Flat by the park: 4, 5, 8, 9, 9 → 20 + 20 + 24 + 18 + 27 = <strong>109</strong></li>
+<li>House share: 9, 6, 4, 6, 5 → 45 + 24 + 12 + 12 + 15 = <strong>108</strong></li>
+</ul>
+<p>The flat by the park wins, but only by one point over the house share. If cost mattered a little less, or the neighbourhood less, the answer changes. That tells you the real decision is how much you value saving money against living somewhere you enjoy.</p>
+
+<h2>Tips for a useful matrix</h2>
+<ul>
+<li><strong>Keep factors independent.</strong> "Rent" and "total monthly cost" overlap and count the same thing twice.</li>
+<li><strong>Set weights before scoring.</strong> Otherwise it's tempting to tweak weights until your favourite wins.</li>
+<li><strong>Use 5–7 factors.</strong> Fewer misses things; more drowns the important ones.</li>
+<li><strong>Turn deal-breakers into rules.</strong> If an option fails something non-negotiable, remove it instead of scoring it low.</li>
+<li><strong>Notice your reaction.</strong> If you feel disappointed by the winner, a factor is missing or a weight is wrong.</li>
+</ul>
+<!--TF:AD:article-->
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>How do you make a weighted decision matrix?</summary><p>List your options and the factors that matter. Give each factor a weight for importance, score each option on each factor, multiply scores by weights and add them up. The highest total best fits your priorities.</p></details>
+<details class="faq"><summary>What is the difference between a decision matrix and a pros and cons list?</summary><p>A pros and cons list treats every point as equally important. A weighted matrix makes you say how much each factor matters and scores every option on the same factors, so options can be compared fairly.</p></details>
+<details class="faq"><summary>How many criteria should a decision matrix have?</summary><p>Five to seven factors works well for most personal decisions. Too few misses important differences; too many makes small factors add up and drown out the ones that matter most.</p></details>
+<details class="faq"><summary>What if two options have almost the same score?</summary><p>Look at the sensitivity note. It shows which factor’s weight decides the result. Think carefully about that one factor, or gather more information about it.</p></details>
+<details class="faq"><summary>Can I use this for job offers or choosing a car?</summary><p>Yes. Rename the options and factors to anything: salary, growth and commute for a job; price, running costs and reliability for a car.</p></details>
+</article>
+<aside class="side">
+<!--TF:AD:side-->
+<section aria-labelledby="side-a"><h2 id="side-a">More everyday life</h2><ul><li data-slug="rent-split-calculator"><a href="rent-split-calculator.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg></span>Fair Rent Split Calculator</a></li><li data-slug="group-expense-splitter"><a href="group-expense-splitter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <path d="M16 3.13a4 4 0 0 1 0 7.75" /> </svg></span>Group Expense Splitter</a></li><li data-slug="furniture-fit-calculator"><a href="furniture-fit-calculator.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" /> <path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" /> <path d="M4 18v2" /> <path d="M20 18v2" /> <path d="M12 4v9" /> </svg></span>Will It Fit? Furniture Door Calculator</a></li><li data-slug="dinner-timing-planner"><a href="dinner-timing-planner.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z" /> <path d="M6 17h12" /> </svg></span>Dinner Timing Planner</a></li><li data-slug="baking-pan-converter"><a href="baking-pan-converter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="9" cy="7" r="2" /> <path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6" /> <path d="M16 13H3" /> <path d="M16 17H3" /> </svg></span>Baking Pan Size Converter</a></li><li data-slug="recipe-scaler"><a href="recipe-scaler.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 12h20" /> <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" /> <path d="m4 8 16-4" /> <path d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8" /> </svg></span>Recipe Scaler</a></li><li data-slug="road-trip-cost-splitter"><a href="road-trip-cost-splitter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /> <circle cx="7" cy="17" r="2" /> <path d="M9 17h6" /> <circle cx="17" cy="17" r="2" /> </svg></span>Road Trip Cost Splitter</a></li></ul></section>
+<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul><li data-slug="unit-price-calculator"><a href="unit-price-calculator.html"><span class="tile " data-cat="calc"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" /> <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /> </svg></span>Unit Price Calculator</a></li><li data-slug="image-compressor"><a href="image-compressor.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" /> <path d="m14 19 3 3v-5.5" /> <path d="m17 22 3-3" /> <circle cx="9" cy="9" r="2" /> </svg></span>Image Compressor</a></li><li data-slug="image-resizer"><a href="image-resizer.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /> <path d="M14 15H9v-5" /> <path d="M16 3h5v5" /> <path d="M21 3 9 15" /> </svg></span>Image Resizer</a></li><li data-slug="crop-image"><a href="crop-image.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /> </svg></span>Crop Image</a></li><li data-slug="photo-editor"><a href="photo-editor.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></span>Photo Editor</a></li><li data-slug="image-metadata-remover"><a href="image-metadata-remover.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m2 2 20 20" /> <path d="M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71" /> <path d="M9.309 3.652A12.252 12.252 0 0 0 11.24 2.28a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1v7a9.784 9.784 0 0 1-.08 1.264" /> </svg></span>Image Metadata Remover</a></li></ul></section>
+</aside>
+</div>
+</main>
+<footer class="foot"><div class="wrap">
+<div><h2>Image tools</h2><ul><li data-slug="image-compressor"><a href="image-compressor.html">Image Compressor</a></li><li data-slug="image-resizer"><a href="image-resizer.html">Image Resizer</a></li><li data-slug="image-converter"><a href="image-converter.html">Image Converter</a></li><li data-slug="crop-image"><a href="crop-image.html">Crop Image</a></li><li data-slug="rotate-image"><a href="rotate-image.html">Rotate &amp; Flip Image</a></li><li data-slug="photo-editor"><a href="photo-editor.html">Photo Editor</a></li></ul></div>
+<div><h2>PDF tools</h2><ul><li data-slug="merge-pdf"><a href="merge-pdf.html">Merge PDF</a></li><li data-slug="jpg-to-pdf"><a href="jpg-to-pdf.html">JPG to PDF</a></li><li data-slug="split-pdf"><a href="split-pdf.html">Split PDF</a></li><li data-slug="rotate-pdf"><a href="rotate-pdf.html">Rotate PDF</a></li><li data-slug="delete-pdf-pages"><a href="delete-pdf-pages.html">Delete PDF Pages</a></li><li data-slug="organize-pdf"><a href="organize-pdf.html">Organize PDF</a></li></ul></div>
+<div><h2>Text tools</h2><ul><li data-slug="word-counter"><a href="word-counter.html">Word Counter</a></li><li data-slug="character-counter"><a href="character-counter.html">Character Counter</a></li><li data-slug="case-converter"><a href="case-converter.html">Case Converter</a></li><li data-slug="fancy-text-generator"><a href="fancy-text-generator.html">Fancy Text Generator</a></li><li data-slug="remove-duplicate-lines"><a href="remove-duplicate-lines.html">Remove Duplicate Lines</a></li><li data-slug="lorem-ipsum-generator"><a href="lorem-ipsum-generator.html">Lorem Ipsum Generator</a></li></ul></div>
+<div><h2>QR code &amp; barcode tools</h2><ul><li data-slug="qr-code-generator"><a href="qr-code-generator.html">QR Code Generator</a></li><li data-slug="wifi-qr-code-generator"><a href="wifi-qr-code-generator.html">Wi-Fi QR Code Generator</a></li><li data-slug="whatsapp-qr-code-generator"><a href="whatsapp-qr-code-generator.html">WhatsApp QR Code Generator</a></li><li data-slug="vcard-qr-code-generator"><a href="vcard-qr-code-generator.html">vCard QR Code Generator</a></li><li data-slug="qr-code-scanner"><a href="qr-code-scanner.html">QR Code Scanner</a></li><li data-slug="barcode-reader"><a href="barcode-reader.html">Barcode Reader</a></li></ul></div>
+<div><h2>Generators &amp; random</h2><ul><li data-slug="password-generator"><a href="password-generator.html">Password Generator</a></li><li data-slug="random-number-generator"><a href="random-number-generator.html">Random Number Generator</a></li><li data-slug="spin-the-wheel"><a href="spin-the-wheel.html">Spin the Wheel</a></li><li data-slug="flip-a-coin"><a href="flip-a-coin.html">Flip a Coin</a></li><li data-slug="roll-a-dice"><a href="roll-a-dice.html">Roll a Dice</a></li></ul></div>
+<div><h2>Health &amp; fitness calculators</h2><ul><li data-slug="calorie-calculator"><a href="calorie-calculator.html">Calorie Calculator</a></li><li data-slug="bmi-calculator"><a href="bmi-calculator.html">BMI Calculator</a></li><li data-slug="bmr-calculator"><a href="bmr-calculator.html">BMR Calculator</a></li><li data-slug="macro-calculator"><a href="macro-calculator.html">Macro Calculator</a></li><li data-slug="body-fat-calculator"><a href="body-fat-calculator.html">Body Fat Calculator</a></li><li data-slug="ideal-weight-calculator"><a href="ideal-weight-calculator.html">Ideal Weight Calculator</a></li></ul></div>
+<div><h2>Finance calculators</h2><ul><li data-slug="compound-interest-calculator"><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li><li data-slug="sip-calculator"><a href="sip-calculator.html">SIP Calculator</a></li><li data-slug="loan-calculator"><a href="loan-calculator.html">Loan Calculator</a></li><li data-slug="savings-goal-calculator"><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li><li data-slug="retirement-calculator"><a href="retirement-calculator.html">Retirement Calculator</a></li><li data-slug="inflation-calculator"><a href="inflation-calculator.html">Inflation Calculator</a></li></ul></div>
+<div><h2>Calculators</h2><ul><li data-slug="percentage-calculator"><a href="percentage-calculator.html">Percentage Calculator</a></li><li data-slug="pizza-size-calculator"><a href="pizza-size-calculator.html">Pizza Size Calculator</a></li><li data-slug="unit-price-calculator"><a href="unit-price-calculator.html">Unit Price Calculator</a></li><li data-slug="discount-calculator"><a href="discount-calculator.html">Discount Calculator</a></li></ul></div>
+<div class="legal"><span>© 2026 TidyFigure. Free online tools, built by <a href="https://aivrasol.com" rel="noopener">AivraSol</a>. Your files never leave your device.</span>
+<span><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="index.html#tools">All tools</a></span></div>
+</div></footer>
+<script>(function(){var b=document.querySelector('.nav-toggle'),r=document.documentElement;if(!b)return;function set(o){r.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',o)}b.addEventListener('click',function(){set(!r.classList.contains('nav-open'))});document.querySelector('.nav-shade').addEventListener('click',function(){set(false)});document.querySelectorAll('.main-nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();</script>
+
+<script src="app.js"></script>
+
+<script>
+(function () {
+const state = {
+  opts: ['Flat on Elm St', 'Flat by the park', 'House share'],
+  crit: [
+    { name: 'Monthly cost', w: 5, s: [6, 4, 9] },
+    { name: 'Commute', w: 4, s: [8, 5, 6] },
+    { name: 'Space', w: 3, s: [5, 8, 4] },
+    { name: 'Natural light', w: 2, s: [4, 9, 6] },
+    { name: 'Neighbourhood', w: 3, s: [6, 9, 5] },
+  ],
+};
+const table = $('#matrix');
+const wOpts = w => [1, 2, 3, 4, 5].map(n => `<option value="${n}"${n === w ? ' selected' : ''}>${n}</option>`).join('');
+
+function render() {
+  let h = `<thead><tr><th>Factor</th><th>Weight</th>${state.opts.map((o, j) => `<th><input type="text" data-o="${j}" value="${esc(o)}" aria-label="Option ${j + 1} name"></th>`).join('')}<th></th></tr></thead><tbody>`;
+  state.crit.forEach((c, i) => {
+    h += `<tr><td><input type="text" data-c="${i}" value="${esc(c.name)}" aria-label="Factor ${i + 1} name"></td>
+      <td><select data-w="${i}" aria-label="Weight of ${esc(c.name)}">${wOpts(c.w)}</select></td>
+      ${state.opts.map((o, j) => `<td><input type="number" inputmode="numeric" min="1" max="10" step="1" data-s="${i},${j}" value="${c.s[j] ?? ''}" aria-label="${esc(o)}: ${esc(c.name)}"></td>`).join('')}
+      <td><button type="button" class="rm" data-rmc="${i}" aria-label="Remove ${esc(c.name)}">×</button></td></tr>`;
+  });
+  h += `</tbody><tfoot><tr><td>Weighted score</td><td></td>${state.opts.map((o, j) => `<td class="n" data-total="${j}"></td>`).join('')}<td></td></tr>
+    <tr><td></td><td></td>${state.opts.map((o, j) => `<td><button type="button" class="rm" data-rmo="${j}" aria-label="Remove ${esc(o)}">×</button></td>`).join('')}<td></td></tr></tfoot>`;
+  table.innerHTML = h;
+  calc();
+}
+
+table.addEventListener('input', e => {
+  const t = e.target;
+  if (t.dataset.o !== undefined) state.opts[+t.dataset.o] = t.value;
+  else if (t.dataset.c !== undefined) state.crit[+t.dataset.c].name = t.value;
+  else if (t.dataset.w !== undefined) state.crit[+t.dataset.w].w = +t.value;
+  else if (t.dataset.s !== undefined) { const [i, j] = t.dataset.s.split(',').map(Number); state.crit[i].s[j] = val(t); }
+  calc();
+});
+table.addEventListener('change', e => { if (e.target.dataset.w !== undefined) { state.crit[+e.target.dataset.w].w = +e.target.value; calc(); } });
+table.addEventListener('click', e => {
+  const b = e.target.closest('.rm');
+  if (!b) return;
+  if (b.dataset.rmc !== undefined && state.crit.length > 1) state.crit.splice(+b.dataset.rmc, 1);
+  if (b.dataset.rmo !== undefined && state.opts.length > 2) { const j = +b.dataset.rmo; state.opts.splice(j, 1); state.crit.forEach(c => c.s.splice(j, 1)); }
+  render();
+});
+$('#add-opt').addEventListener('click', () => { state.opts.push(`Option ${state.opts.length + 1}`); state.crit.forEach(c => c.s.push(5)); render(); });
+$('#add-crit').addEventListener('click', () => { state.crit.push({ name: `Factor ${state.crit.length + 1}`, w: 3, s: state.opts.map(() => 5) }); render(); });
+
+const score = (crit, j) => crit.reduce((sum, c) => sum + c.w * (ok(c.s[j]) ? Math.min(10, Math.max(0, c.s[j])) : 0), 0);
+const winnerOf = crit => state.opts.map((o, j) => score(crit, j)).reduce((bi, v, j, arr) => (v > arr[bi] ? j : bi), 0);
+
+function calc() {
+  const max = state.crit.reduce((s, c) => s + c.w * 10, 0);
+  const totals = state.opts.map((o, j) => score(state.crit, j));
+  const order = totals.map((t, j) => j).sort((a, b) => totals[b] - totals[a]);
+  const win = order[0], second = order[1];
+  $$('[data-total]', table).forEach(td => {
+    const j = +td.dataset.total;
+    td.innerHTML = j === win ? `<mark>${fmtMax(totals[j], 1)}</mark>` : fmtMax(totals[j], 1);
+  });
+  const name = j => esc(state.opts[j] || `Option ${j + 1}`);
+  const gap = totals[win] - totals[second];
+  let html = `<p class="kicker">Best match for what matters to you</p><p class="big"><mark>${name(win)}</mark></p>
+    <p class="sub">${fmtMax(totals[win], 1)} of ${max} points (${fmt(totals[win] / max * 100, 0)}%). ${gap === 0 ? `Tied with ${name(second)}.` : `Ahead of ${name(second)} by ${fmtMax(gap, 1)} point${gap === 1 ? '' : 's'} (${fmt(gap / max * 100, 1)}% of the maximum).`}</p>`;
+
+  // Sensitivity: would the winner change if one factor's weight were set to 1 or 5?
+  const flips = [];
+  state.crit.forEach((c, i) => {
+    [1, 5].forEach(w => {
+      if (w === c.w) return;
+      const alt = state.crit.map((x, k) => (k === i ? { ...x, w } : x));
+      const nw = winnerOf(alt);
+      if (nw !== win) flips.push(`if <strong>${esc(c.name)}</strong> ${w > c.w ? 'mattered more' : 'mattered less'} (weight ${w}), ${name(nw)} would win`);
+    });
+  });
+  html += flips.length
+    ? `<p class="note">Close call: ${flips.slice(0, 3).join('; ')}. Think hard about those weights.</p>`
+    : '<p class="note">A clear result: changing any single weight to 1 or 5 doesn\'t change the winner.</p>';
+  $('#out').innerHTML = html;
+}
+render();
+
+})();
+</script>
+<!--TF:BODY_END-->
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose images to compress">
+      {{icon:image-up}}
+      <strong>Drop images here or click to choose</strong>
+      <span>JPG, PNG or WebP · as many as you like</span>
+      <input type="file" id="file" accept="image/*" multiple>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Quality: <b id="qv">75</b>%</span><input type="range" id="quality" min="10" max="95" step="1" value="75"></label>
+      <label class="f"><span>Save as</span><select id="format"><option value="auto" selected>Auto (recommended)</option><option value="same">Same format</option><option value="image/jpeg">JPG</option><option value="image/webp">WebP (smallest)</option></select></label>
+      <label class="f"><span>Max width in pixels</span><input type="number" id="maxw" inputmode="numeric" min="1" step="1" placeholder="Keep original"></label>
+    </div>
+    <p class="note">75% quality usually looks identical to the original while cutting the file size by 60–80%. Lower it for email and web pages; raise it for printing.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Compressed images</p>
+    <p class="empty">Your compressed images will appear here.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample photo</button>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Total monthly rent</span><input type="number" id="rent" inputmode="decimal" min="0" step="any" value="2400"></label>
+      <label class="f"><span>Shared-space share (%)</span><input type="number" id="common" inputmode="decimal" min="0" max="100" step="1" value="40"></label>
+      <label class="f"><span>Private bathroom bonus (%)</span><input type="number" id="bath" inputmode="decimal" min="0" max="100" step="1" value="15"></label>
+    </div>
+    <p class="group-title">Bedrooms</p>
+    <div class="list" id="rooms"></div>
+    <button type="button" class="add" id="add-room">+ Add a bedroom</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

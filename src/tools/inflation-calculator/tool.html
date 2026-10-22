@@ -1,0 +1,12 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Amount</span><input type="number" id="amt" inputmode="decimal" min="0" step="any" value="1000"></label>
+      <label class="f"><span>Inflation rate (% a year)</span><input type="number" id="r" inputmode="decimal" step="any" value="3"></label>
+      <label class="f"><span>Years</span><input type="number" id="y" inputmode="numeric" min="1" max="100" step="1" value="10"></label>
+    </div>
+    <div class="chips" id="rates"><button type="button" class="chip" data-r="2">2% (central bank target)</button><button type="button" class="chip" data-r="3">3%</button><button type="button" class="chip" data-r="5">5%</button><button type="button" class="chip" data-r="10">10%</button><button type="button" class="chip" data-r="20">20%</button></div>
+    <p class="note">Enter your country’s inflation rate. It changes every year, so use a recent figure or a long-term average from your national statistics office.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

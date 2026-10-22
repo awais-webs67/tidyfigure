@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+<div class="tool-grid">
+  <div class="out">
+    <div class="stage" style="background:#20272d"><canvas id="cv" width="1080" height="1080" style="width:100%;height:auto"></canvas></div>
+    <div class="btns"><button type="button" class="btn big-btn" id="save">{{icon:download}}Download card</button><button type="button" class="btn ghost" id="shuffle">Shuffle confetti</button></div>
+  </div>
+  <div class="inputs">
+    <div class="chips" id="tpl" role="group" aria-label="Design">
+      <button type="button" class="chip on" data-t="confetti">Confetti</button><button type="button" class="chip" data-t="balloons">Balloons</button>
+      <button type="button" class="chip" data-t="gold">Gold &amp; navy</button><button type="button" class="chip" data-t="minimal">Minimal</button><button type="button" class="chip" data-t="kids">Kids</button>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Their name</span><input type="text" id="name" value="Sara" autocomplete="off"></label>
+      <label class="f"><span>Age (optional)</span><input type="number" id="age" inputmode="numeric" min="1" max="120" value="30"></label>
+      <label class="f"><span>From</span><input type="text" id="from" value="Love, Ali" autocomplete="off"></label>
+      <label class="f"><span>Size</span><select id="size"><option value="1080x1080" selected>Square (Instagram, WhatsApp)</option><option value="1080x1920">Story (9:16)</option><option value="1500x2100">Printable 5×7 in</option></select></label>
+    </div>
+    <label class="f"><span>Message</span><textarea id="msg" style="min-height:80px">Wishing you a year full of laughter, adventures and everything you love.</textarea></label>
+    <label class="f"><span>Photo in a circle (optional)</span><input type="file" id="photo" accept="image/*"></label>
+  </div>
+</div>

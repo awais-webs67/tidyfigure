@@ -1,0 +1,24 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose images to turn into a PDF">
+      {{icon:image-up}}
+      <strong>Drop photos or scans here or click to choose</strong>
+      <span>JPG, PNG, WebP · each image becomes one page</span>
+      <input type="file" id="file" accept="image/*" multiple>
+    </div>
+    <ul class="files" id="list"></ul>
+    <div class="fields">
+      <label class="f"><span>Page size</span><select id="size"><option value="a4" selected>A4</option><option value="letter">US Letter</option><option value="fit">Same as image</option></select></label>
+      <label class="f"><span>Orientation</span><select id="orient"><option value="auto" selected>Automatic</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+      <label class="f"><span>Margin</span><select id="margin"><option value="0">None</option><option value="20" selected>Small</option><option value="48">Large</option></select></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="make" disabled>{{icon:file-down}}Create PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample photo</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your PDF</p>
+    <p class="empty">Add images, put them in order, then press “Create PDF”.</p>
+  </div>
+</div>

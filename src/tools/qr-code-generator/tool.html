@@ -1,0 +1,62 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="QR code type">
+      <label><input type="radio" name="kind" id="k-url" value="url" checked><span>Link</span></label>
+      <label><input type="radio" name="kind" id="k-text" value="text"><span>Text</span></label>
+      <label><input type="radio" name="kind" id="k-wifi" value="wifi"><span>Wi-Fi</span></label>
+      <label><input type="radio" name="kind" id="k-email" value="email"><span>Email</span></label>
+      <label><input type="radio" name="kind" id="k-tel" value="tel"><span>Phone</span></label>
+      <label><input type="radio" name="kind" id="k-wa" value="wa"><span>WhatsApp</span></label>
+      <label><input type="radio" name="kind" id="k-sms" value="sms"><span>SMS</span></label>
+      <label><input type="radio" name="kind" id="k-vcard" value="vcard"><span>Contact card</span></label>
+    </div>
+    <div class="fields" data-kind="url"><label class="f"><span>Website address</span><input type="url" id="url" value="https://tidyfigure.com" autocomplete="off"></label></div>
+    <div class="fields" data-kind="text" hidden><label class="f"><span>Text</span><textarea id="txt" style="min-height:110px">Hello! Scan me 👋</textarea></label></div>
+    <div class="fields" data-kind="wifi" hidden>
+      <label class="f"><span>Network name (SSID)</span><input type="text" id="ssid" value="Home WiFi" autocomplete="off"></label>
+      <label class="f"><span>Password</span><input type="text" id="pass" value="" placeholder="Leave empty if open" autocomplete="off"></label>
+      <label class="f"><span>Security</span><select id="sec"><option value="WPA" selected>WPA / WPA2 / WPA3</option><option value="WEP">WEP</option><option value="nopass">None (open)</option></select></label>
+      <label class="check"><input type="checkbox" id="hidden-net">Hidden network</label>
+    </div>
+    <div class="fields" data-kind="email" hidden>
+      <label class="f"><span>Email address</span><input type="text" id="em" value="hello@example.com" autocomplete="off"></label>
+      <label class="f"><span>Subject (optional)</span><input type="text" id="subj" value="" autocomplete="off"></label>
+    </div>
+    <div class="fields" data-kind="tel" hidden><label class="f"><span>Phone number (with country code)</span><input type="text" id="tel" value="+44 20 7946 0000" autocomplete="off"></label></div>
+    <div class="fields" data-kind="wa" hidden>
+      <label class="f"><span>WhatsApp number (with country code)</span><input type="text" id="wa-num" value="+44 7700 900123" autocomplete="off"></label>
+      <label class="f"><span>Pre-filled message (optional)</span><input type="text" id="wa-msg" value="Hi! I’d like to know more." autocomplete="off"></label>
+    </div>
+    <div class="fields" data-kind="sms" hidden>
+      <label class="f"><span>Phone number</span><input type="text" id="sms-num" value="+1 555 0100" autocomplete="off"></label>
+      <label class="f"><span>Message</span><input type="text" id="sms-msg" value="JOIN" autocomplete="off"></label>
+    </div>
+    <div class="fields" data-kind="vcard" hidden>
+      <label class="f"><span>First name</span><input type="text" id="vc-first" value="Jane" autocomplete="off"></label>
+      <label class="f"><span>Last name</span><input type="text" id="vc-last" value="Example" autocomplete="off"></label>
+      <label class="f"><span>Phone</span><input type="text" id="vc-tel" value="+44 20 7946 0000" autocomplete="off"></label>
+      <label class="f"><span>Email</span><input type="text" id="vc-email" value="jane@example.com" autocomplete="off"></label>
+      <label class="f"><span>Company</span><input type="text" id="vc-org" value="Example Ltd" autocomplete="off"></label>
+      <label class="f"><span>Job title</span><input type="text" id="vc-title" value="Designer" autocomplete="off"></label>
+      <label class="f"><span>Website</span><input type="text" id="vc-url" value="https://example.com" autocomplete="off"></label>
+      <label class="f"><span>Address</span><input type="text" id="vc-adr" value="" placeholder="Street, City, Country" autocomplete="off"></label>
+    </div>
+    <p class="group-title">Style</p>
+    <div class="fields">
+      <label class="f"><span>Colour</span><input type="color" id="fg" value="#0d1321"></label>
+      <label class="f"><span>Background</span><input type="color" id="bg" value="#ffffff"></label>
+      <label class="f"><span>Error correction</span><select id="ecc"><option value="L">Low (7%)</option><option value="M" selected>Medium (15%)</option><option value="Q">High (25%)</option><option value="H">Highest (30%)</option></select></label>
+      <label class="f"><span>Dots</span><select id="dots"><option value="square" selected>Square</option><option value="round">Rounded dots</option></select></label>
+      <label class="f"><span>Logo in the middle (optional)</span><input type="file" id="logo" accept="image/*"></label>
+      <label class="f"><span>Download size</span><select id="px"><option value="512">512 px</option><option value="1024" selected>1024 px</option><option value="2048">2048 px (print)</option></select></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <canvas id="qr" width="320" height="320" style="width:100%;max-width:320px;aspect-ratio:1;align-self:center;border-radius:10px"></canvas>
+    <p class="note" id="info" style="text-align:center"></p>
+    <div class="btns" style="justify-content:center;align-self:stretch">
+      <button type="button" class="btn" id="dl-png">{{icon:download}}PNG</button>
+      <button type="button" class="btn ghost" id="dl-svg">{{icon:download}}SVG</button>
+    </div>
+  </div>
+</div>

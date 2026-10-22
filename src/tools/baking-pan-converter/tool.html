@@ -1,0 +1,23 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Measurement unit">
+      <label><input type="radio" name="unit" id="unit-in" value="in" checked><span>Inches</span></label>
+      <label><input type="radio" name="unit" id="unit-cm" value="cm"><span>Centimetres</span></label>
+    </div>
+    <p class="group-title">The recipe's pan</p>
+    <div class="fields" data-pan="a">
+      <label class="f"><span>Shape</span><select id="a-shape"><option value="round" selected>Round</option><option value="square">Square</option><option value="rect">Rectangle</option></select></label>
+      <label class="f"><span id="a-d1-label">Diameter</span><input type="number" id="a-d1" inputmode="decimal" min="0" step="any" value="9"></label>
+      <label class="f" id="a-d2-wrap" hidden><span>Length</span><input type="number" id="a-d2" inputmode="decimal" min="0" step="any" value="13"></label>
+    </div>
+    <div class="chips" data-for="a"></div>
+    <p class="group-title">Your pan</p>
+    <div class="fields" data-pan="b">
+      <label class="f"><span>Shape</span><select id="b-shape"><option value="round">Round</option><option value="square">Square</option><option value="rect" selected>Rectangle</option></select></label>
+      <label class="f"><span id="b-d1-label">Width</span><input type="number" id="b-d1" inputmode="decimal" min="0" step="any" value="9"></label>
+      <label class="f" id="b-d2-wrap"><span>Length</span><input type="number" id="b-d2" inputmode="decimal" min="0" step="any" value="13"></label>
+    </div>
+    <div class="chips" data-for="b"></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

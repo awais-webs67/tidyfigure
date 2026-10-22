@@ -1,0 +1,18 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose an image" style="padding:18px">
+      <strong>Drop an image here or click to choose</strong>
+      <span>Then tap anywhere on it to pick a colour</span>
+      <input type="file" id="file" accept="image/*">
+    </div>
+    <div class="stage" style="padding:0;background:#20272d"><canvas id="cv" width="10" height="10" style="cursor:crosshair;display:block;margin:0 auto;touch-action:none"></canvas></div>
+    <button type="button" class="btn ghost" id="sample">Use a sample photo</button>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Picked colour</p>
+    <div style="display:flex;gap:14px;align-items:center"><div id="sw" style="width:72px;height:72px;border-radius:6px;border:1px solid var(--line);background:#ccc"></div><canvas id="zoom" width="110" height="110" style="border-radius:6px;image-rendering:pixelated;border:1px solid var(--line)"></canvas></div>
+    <ul class="files" id="vals"></ul>
+    <p class="kicker" style="margin-top:6px">Main colours in this image</p>
+    <div id="palette" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"></div>
+  </div>
+</div>

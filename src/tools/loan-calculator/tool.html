@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Loan amount</span><input type="number" id="p" inputmode="decimal" min="0" step="any" value="25000"></label>
+      <label class="f"><span>Interest rate (% per year)</span><input type="number" id="r" inputmode="decimal" min="0" step="any" value="7.5"></label>
+      <label class="f"><span>Term</span><input type="number" id="t" inputmode="decimal" min="0" step="any" value="5"></label>
+      <label class="f"><span>Term in</span><select id="tu"><option value="y" selected>Years</option><option value="m">Months</option></select></label>
+    </div>
+    <label class="f"><span>Extra payment each month (optional)</span><input type="number" id="x" inputmode="decimal" min="0" step="any" value="0"></label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+<div class="scroll" style="margin-top:18px" id="sched-wrap"><table class="tbl" id="sched"></table></div>

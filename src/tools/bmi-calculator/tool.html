@@ -1,0 +1,19 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Units">
+      <label><input type="radio" name="u" id="u-m" value="metric" checked><span>Metric (kg, cm)</span></label>
+      <label><input type="radio" name="u" id="u-i" value="imperial"><span>Imperial (lb, ft/in)</span></label>
+    </div>
+    <div class="fields" id="metric">
+      <label class="f"><span>Height (cm)</span><input type="number" id="cm" inputmode="decimal" min="50" max="250" step="any" value="175"></label>
+      <label class="f"><span>Weight (kg)</span><input type="number" id="kg" inputmode="decimal" min="10" max="400" step="any" value="72"></label>
+    </div>
+    <div class="fields" id="imperial" hidden>
+      <label class="f"><span>Height (feet)</span><input type="number" id="ft" inputmode="numeric" min="1" max="8" step="1" value="5"></label>
+      <label class="f"><span>(inches)</span><input type="number" id="in" inputmode="decimal" min="0" max="11.9" step="any" value="9"></label>
+      <label class="f"><span>Weight (lb)</span><input type="number" id="lb" inputmode="decimal" min="20" max="900" step="any" value="159"></label>
+    </div>
+    <p class="note">For adults aged 18 and over. BMI doesn’t apply to children, pregnancy, or very muscular builds.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

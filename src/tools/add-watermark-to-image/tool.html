@@ -1,0 +1,28 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose photos to watermark" style="padding:20px">
+      <strong>Drop photos here or click to choose</strong>
+      <span id="loaded">One or many · the same watermark goes on all</span>
+      <input type="file" id="file" accept="image/*" multiple>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Watermark type">
+      <label><input type="radio" name="kind" id="k-text" value="text" checked><span>Text</span></label>
+      <label><input type="radio" name="kind" id="k-logo" value="logo"><span>Logo image</span></label>
+    </div>
+    <label class="f" id="text-wrap"><span>Text</span><input type="text" id="text" value="© Your Name 2026" autocomplete="off"></label>
+    <label class="f" id="logo-wrap" hidden><span>Logo (PNG with transparency works best)</span><input type="file" id="logo" accept="image/*"></label>
+    <div class="fields">
+      <label class="f"><span>Position</span><select id="pos"><option value="br" selected>Bottom right</option><option value="bl">Bottom left</option><option value="tr">Top right</option><option value="tl">Top left</option><option value="c">Centre</option><option value="tile">Tiled (repeat)</option></select></label>
+      <label class="f"><span>Colour</span><input type="color" id="color" value="#ffffff"></label>
+      <label class="f"><span>Size: <b id="szv">5</b>%</span><input type="range" id="size" min="2" max="30" value="5"></label>
+      <label class="f"><span>Opacity: <b id="opv">70</b>%</span><input type="range" id="op" min="10" max="100" value="70"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="shadow" checked>Shadow (readable on light and dark photos)</label>
+    <button type="button" class="btn ghost" id="sample">Try a sample photo</button>
+  </div>
+  <div class="out" id="out">
+    <div class="stage" style="background:#20272d"><canvas id="cv" width="10" height="10"></canvas></div>
+    <div class="btns"><button type="button" class="btn" id="save" disabled>Download</button></div>
+    <p class="note" id="count"></p>
+  </div>
+</div>

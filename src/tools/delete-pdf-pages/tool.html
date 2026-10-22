@@ -1,0 +1,14 @@
+<div class="inputs">
+  <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+    {{icon:file-up}}
+    <strong>Drop a PDF here or click to choose</strong>
+    <span id="loaded">Tap a page to remove it, tap again to keep it</span>
+    <input type="file" id="file" accept="application/pdf,.pdf">
+  </div>
+  <div class="toolbar" id="bar" hidden><button type="button" class="btn ghost" id="reset">Keep all pages</button><button type="button" class="btn" id="save">{{icon:download}}Save PDF without removed pages</button></div>
+  <ul class="pgrid" id="grid"></ul>
+  <div class="out" id="out" aria-live="polite">
+    <p class="empty">Choose a PDF to see its pages.</p>
+    <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+  </div>
+</div>

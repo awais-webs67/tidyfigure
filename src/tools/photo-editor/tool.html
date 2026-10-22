@@ -1,0 +1,25 @@
+<div class="tool-grid">
+  <div class="out">
+    <div class="stage" style="background:#20272d"><canvas id="cv" width="10" height="10"></canvas></div>
+    <div class="btns"><button type="button" class="btn ghost" id="compare">Hold to compare</button><button type="button" class="btn" id="save" disabled>Download photo</button></div>
+  </div>
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a photo" style="padding:18px">
+      <strong>Drop a photo here or click to choose</strong>
+      <span id="loaded">JPG, PNG or WebP</span>
+      <input type="file" id="file" accept="image/*">
+    </div>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-p="none">Original</button>
+      <button type="button" class="chip" data-p="vivid">Vivid</button>
+      <button type="button" class="chip" data-p="bw">Black &amp; white</button>
+      <button type="button" class="chip" data-p="vintage">Vintage</button>
+      <button type="button" class="chip" data-p="warm">Warm</button>
+      <button type="button" class="chip" data-p="cool">Cool</button>
+      <button type="button" class="chip" data-p="fade">Faded</button>
+      <button type="button" class="chip" data-p="drama">Dramatic</button>
+    </div>
+    <div class="fields" id="sliders"></div>
+    <button type="button" class="btn ghost" id="sample">Try a sample photo</button>
+  </div>
+</div>

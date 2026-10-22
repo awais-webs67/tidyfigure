@@ -1,0 +1,16 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>How many</span><input type="number" id="n" inputmode="numeric" min="1" max="500" step="1" value="3"></label>
+      <label class="f"><span>Of</span><select id="unit"><option value="p" selected>Paragraphs</option><option value="s">Sentences</option><option value="w">Words</option><option value="l">List items</option></select></label>
+    </div>
+    <label class="check"><input type="checkbox" id="classic" checked>Start with “Lorem ipsum dolor sit amet…”</label>
+    <label class="check"><input type="checkbox" id="html">Wrap in HTML tags</label>
+    <button type="button" class="btn" id="again">{{icon:refresh-cw}}Generate new text</button>
+  </div>
+  <div class="out">
+    <p class="kicker" id="count"></p>
+    <div class="copybox" id="result" style="font-family:var(--f-body);font-size:15.5px"></div>
+    <div class="copyrow"><button type="button" class="btn" data-copy="result">Copy</button></div>
+  </div>
+</div>

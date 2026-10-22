@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Length: <b id="lv">16</b> characters</span><input type="range" id="len" min="6" max="64" step="1" value="16"></label>
+    <div class="fields">
+      <label class="check"><input type="checkbox" id="upper" checked>Uppercase (A–Z)</label>
+      <label class="check"><input type="checkbox" id="lower" checked>Lowercase (a–z)</label>
+      <label class="check"><input type="checkbox" id="digits" checked>Numbers (0–9)</label>
+      <label class="check"><input type="checkbox" id="symbols" checked>Symbols (!@#$…)</label>
+      <label class="check"><input type="checkbox" id="similar">Avoid look-alikes (0 O l 1 I)</label>
+    </div>
+    <label class="f"><span>How many passwords</span><select id="count"><option value="1">1</option><option value="5" selected>5</option><option value="10">10</option><option value="25">25</option></select></label>
+    <button type="button" class="btn big-btn" id="again">{{icon:refresh-cw}}Generate new passwords</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

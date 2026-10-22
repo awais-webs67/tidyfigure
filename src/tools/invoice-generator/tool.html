@@ -1,0 +1,60 @@
+<style>
+  .inv-paper { background: #fff; color: #191f24; width: 100%; max-width: 794px; margin: 0 auto; padding: 44px 48px; font: 13px/1.5 Inter, Arial, sans-serif; box-shadow: 0 2px 14px rgba(0,0,0,.15); border-radius: 2px; }
+  .inv-paper h2 { font: 400 40px/1 "Bebas Neue", Impact, sans-serif; letter-spacing: .02em; margin: 0; color: #191f24; }
+  .inv-top { display: flex; justify-content: space-between; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
+  .inv-top img { max-height: 64px; max-width: 180px; }
+  .inv-meta { text-align: right; } .inv-meta div { color: #5f666b; }
+  .inv-meta b { color: #191f24; }
+  .inv-parties { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0; }
+  .inv-parties small { display: block; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--inv-accent, #ff5b35); font-size: 10.5px; margin-bottom: 4px; }
+  .inv-parties div { white-space: pre-line; }
+  .inv-tbl { width: 100%; border-collapse: collapse; }
+  .inv-tbl th { text-align: left; font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: #fff; background: var(--inv-accent, #ff5b35); padding: 8px 10px; }
+  .inv-tbl td { padding: 9px 10px; border-bottom: 1px solid #e1e3e5; vertical-align: top; }
+  .inv-tbl .r { text-align: right; white-space: nowrap; }
+  .inv-tot { margin: 16px 0 0 auto; width: min(300px, 100%); }
+  .inv-tot div { display: flex; justify-content: space-between; padding: 5px 10px; }
+  .inv-tot .grand { font-weight: 700; font-size: 16px; border-top: 2px solid #191f24; margin-top: 4px; padding-top: 9px; }
+  .inv-notes { margin-top: 30px; color: #5f666b; white-space: pre-line; border-top: 1px solid #e1e3e5; padding-top: 14px; }
+  .inv-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); }
+  @media (max-width: 860px) { .inv-grid { grid-template-columns: minmax(0, 1fr); } }
+  @media (max-width: 600px) { .inv-paper { padding: 24px 18px; } .inv-parties { grid-template-columns: 1fr; } }
+</style>
+<div class="tool-grid inv-grid">
+  <div class="inputs">
+    <p class="group-title">Your business</p>
+    <div class="fields">
+      <label class="f"><span>Business name</span><input type="text" id="from-name" value="Bright Studio Ltd"></label>
+      <label class="f"><span>Logo (optional)</span><input type="file" id="logo" accept="image/*"></label>
+    </div>
+    <label class="f"><span>Address, email, tax number</span><textarea id="from" style="min-height:80px">12 High Street, London W1 2AB
+hello@brightstudio.example
+VAT no. GB123456789</textarea></label>
+    <p class="group-title">Bill to</p>
+    <label class="f"><span>Client name and address</span><textarea id="to" style="min-height:80px">Acme Corporation
+Attn: Accounts Payable
+500 Market Street, San Francisco, CA</textarea></label>
+    <div class="fields">
+      <label class="f"><span>Invoice number</span><input type="text" id="num" value="INV-2026-014"></label>
+      <label class="f"><span>Invoice date</span><input type="date" id="date"></label>
+      <label class="f"><span>Due date</span><input type="date" id="due"></label>
+      <label class="f"><span>Currency</span><select id="cur"><option value="$">$ Dollar</option><option value="€">€ Euro</option><option value="£" selected>£ Pound</option><option value="¥">¥ Yen / Yuan</option><option value="₹">₹ Rupee (INR)</option><option value="Rs ">Rs Rupee (PKR)</option><option value="AED ">AED Dirham</option><option value="SAR ">SAR Riyal</option><option value="₦">₦ Naira</option><option value="">None</option></select></label>
+      <label class="f"><span>Accent colour</span><input type="color" id="accent" value="#ff5b35"></label>
+    </div>
+    <p class="group-title">Items</p>
+    <div class="list" id="items"></div>
+    <button type="button" class="add" id="add-item">+ Add item</button>
+    <div class="fields">
+      <label class="f"><span>Discount (%)</span><input type="number" id="disc" inputmode="decimal" min="0" max="100" step="any" value="0"></label>
+      <label class="f"><span>Shipping / other</span><input type="number" id="ship" inputmode="decimal" min="0" step="any" value="0"></label>
+    </div>
+    <label class="f"><span>Notes and payment details</span><textarea id="notes" style="min-height:80px">Payment within 14 days by bank transfer.
+Bank: Example Bank · Sort code 12-34-56 · Account 12345678
+Thank you for your business!</textarea></label>
+    <label class="check"><input type="checkbox" id="remember" checked>Remember my business details on this device</label>
+  </div>
+  <div class="out" style="background:#e9ecef">
+    <div class="btns"><button type="button" class="btn big-btn" id="pdf">{{icon:download}}Download PDF</button><button type="button" class="btn ghost" id="png">PNG</button><button type="button" class="btn ghost" id="next">Next invoice number</button></div>
+    <div style="overflow-x:auto"><div class="inv-paper" id="paper"></div></div>
+  </div>
+</div>

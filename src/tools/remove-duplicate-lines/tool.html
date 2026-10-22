@@ -1,0 +1,20 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Paste your list (one item per line)</span><textarea id="text" class="mono">apple@example.com
+banana@example.com
+Apple@example.com
+cherry@example.com
+banana@example.com
+
+date@example.com
+  cherry@example.com
+apple@example.com</textarea></label>
+    <div class="fields">
+      <label class="check"><input type="checkbox" id="ci" checked>Ignore upper/lower case</label>
+      <label class="check"><input type="checkbox" id="trim" checked>Ignore spaces at the start and end</label>
+      <label class="check"><input type="checkbox" id="empty" checked>Remove empty lines</label>
+    </div>
+    <label class="f"><span>Sort the result</span><select id="sort"><option value="none" selected>Keep original order</option><option value="az">A → Z</option><option value="za">Z → A</option><option value="num">Numbers, smallest first</option><option value="len">Shortest first</option></select></label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

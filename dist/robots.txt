@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tidyfigure.com/sitemap.xml

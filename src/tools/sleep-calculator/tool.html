@@ -1,0 +1,14 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Mode">
+      <label><input type="radio" name="mode" id="m-wake" value="wake" checked><span>I need to wake up at…</span></label>
+      <label><input type="radio" name="mode" id="m-bed" value="bed"><span>I’m going to bed at…</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span id="t-label">Wake-up time</span><input type="time" id="time" value="07:00"></label>
+      <label class="f"><span>Minutes to fall asleep</span><input type="number" id="fall" inputmode="numeric" min="0" max="60" step="5" value="15"></label>
+    </div>
+    <button type="button" class="btn ghost" id="now">Going to bed now</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

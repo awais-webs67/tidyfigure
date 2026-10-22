@@ -1,0 +1,21 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Original price</span><input type="number" id="price" inputmode="decimal" min="0" step="any" value="120"></label>
+      <label class="f"><span>Discount (%)</span><input type="number" id="d1" inputmode="decimal" min="0" max="100" step="any" value="25"></label>
+      <label class="f"><span>Extra discount (%) <small>optional</small></span><input type="number" id="d2" inputmode="decimal" min="0" max="100" step="any" value="10"></label>
+      <label class="f"><span>Sales tax / VAT (%) <small>optional</small></span><input type="number" id="tax" inputmode="decimal" min="0" step="any" value="0"></label>
+    </div>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-d="10">10% off</button>
+      <button type="button" class="chip" data-d="15">15% off</button>
+      <button type="button" class="chip" data-d="20">20% off</button>
+      <button type="button" class="chip" data-d="25">25% off</button>
+      <button type="button" class="chip" data-d="30">30% off</button>
+      <button type="button" class="chip" data-d="40">40% off</button>
+      <button type="button" class="chip" data-d="50">50% off</button>
+      <button type="button" class="chip" data-d="70">70% off</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Units"><label><input type="radio" name="units" id="u-metric" value="metric" checked><span>Metric (cm, kg)</span></label><label><input type="radio" name="units" id="u-imp" value="imperial"><span>US / Imperial (ft, lb)</span></label></div>
+<div class="fields" data-units="metric"><label class="f"><span>Weight (kg)</span><input type="number" id="kg" inputmode="decimal" min="25" max="300" step="any" value="70"></label></div>
+<div class="fields" data-units="imperial" hidden><label class="f"><span>Weight (lb)</span><input type="number" id="lb" inputmode="decimal" min="55" max="660" step="any" value="154"></label></div>
+
+    <div class="fields">
+      <label class="f"><span>Activity</span><select id="act"></select></label>
+      <label class="f"><span>Duration (minutes)</span><input type="number" id="min" inputmode="numeric" min="1" max="600" step="1" value="30"></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

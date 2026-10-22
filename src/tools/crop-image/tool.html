@@ -1,0 +1,23 @@
+<div class="inputs">
+  <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose an image to crop" style="padding:20px">
+    <strong>Drop an image here or click to choose</strong>
+    <span id="loaded">JPG, PNG or WebP</span>
+    <input type="file" id="file" accept="image/*">
+  </div>
+  <div class="chips" id="ratios" role="group" aria-label="Aspect ratio">
+    <button type="button" class="chip on" data-r="0">Free</button>
+    <button type="button" class="chip" data-r="1">1:1 Square</button>
+    <button type="button" class="chip" data-r="0.8">4:5 Instagram</button>
+    <button type="button" class="chip" data-r="1.7778">16:9 YouTube</button>
+    <button type="button" class="chip" data-r="0.5625">9:16 Story</button>
+    <button type="button" class="chip" data-r="1.3333">4:3</button>
+    <button type="button" class="chip" data-r="1.5">3:2</button>
+    <button type="button" class="chip" data-r="1.91">1.91:1 Facebook</button>
+  </div>
+  <div class="stage" style="padding:0;background:#20272d"><canvas id="cv" width="10" height="10" style="touch-action:none;cursor:crosshair;display:block;margin:0 auto"></canvas></div>
+  <div class="toolbar">
+    <span class="note" id="dims">Drag the box to move it; drag a corner to resize.</span>
+    <button type="button" class="btn ghost" id="sample">Try a sample photo</button>
+    <button type="button" class="btn" id="save" disabled>{{icon:crop}}Crop &amp; download</button>
+  </div>
+</div>

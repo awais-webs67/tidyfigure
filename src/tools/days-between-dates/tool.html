@@ -1,0 +1,23 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Mode">
+      <label><input type="radio" name="mode" id="mode-between" value="between" checked><span>Days between dates</span></label>
+      <label><input type="radio" name="mode" id="mode-add" value="add"><span>Add or subtract days</span></label>
+    </div>
+    <div id="between-fields" class="inputs">
+      <div class="fields">
+        <label class="f"><span>Start date</span><input type="date" id="a"></label>
+        <label class="f"><span>End date</span><input type="date" id="b"></label>
+      </div>
+      <label class="check"><input type="checkbox" id="incl">Include the end date (count both days)</label>
+    </div>
+    <div id="add-fields" class="inputs" hidden>
+      <div class="fields">
+        <label class="f"><span>Start date</span><input type="date" id="c"></label>
+        <label class="f"><span>Days to add (negative to subtract)</span><input type="number" id="n" inputmode="numeric" step="1" value="90"></label>
+      </div>
+      <label class="check"><input type="checkbox" id="biz">Count business days only (Mon–Fri)</label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

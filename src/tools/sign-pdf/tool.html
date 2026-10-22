@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@600&display=swap">
+<div class="tool-grid">
+  <div class="inputs">
+    <p class="group-title">1. Your signature</p>
+    <div class="seg" role="radiogroup" aria-label="Signature type">
+      <label><input type="radio" name="mode" id="mode-draw" value="draw" checked><span>Draw</span></label>
+      <label><input type="radio" name="mode" id="mode-type" value="type"><span>Type</span></label>
+    </div>
+    <div id="draw-box">
+      <canvas id="pad" width="900" height="300" style="width:100%;aspect-ratio:3;background:#fff;border:1px dashed var(--line);border-radius:6px;touch-action:none;cursor:crosshair" aria-label="Draw your signature here"></canvas>
+      <div class="btns" style="margin-top:8px"><button type="button" class="btn ghost" id="clear">Clear</button></div>
+    </div>
+    <div id="type-box" hidden class="fields">
+      <label class="f"><span>Your name</span><input type="text" id="name" value="Jane Example" autocomplete="name"></label>
+      <label class="f"><span>Style</span><select id="font"><option value="Caveat">Handwritten</option><option value="Dancing Script">Elegant script</option></select></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Ink colour</span><select id="ink"><option value="#111827">Black</option><option value="#1d3fbf" selected>Blue</option></select></label>
+      <label class="check" style="align-self:end;padding-bottom:10px"><input type="checkbox" id="date" checked>Add today’s date</label>
+    </div>
+    <p class="group-title">2. Your PDF</p>
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF to sign" style="padding:20px">
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">Then tap the page where the signature goes</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+  </div>
+  <div class="out" id="out">
+    <p class="kicker">3. Place it</p>
+    <div class="toolbar" id="pager" hidden>
+      <button type="button" class="btn ghost" id="prev" aria-label="Previous page">←</button><span id="pg" class="note"></span><button type="button" class="btn ghost" id="next" aria-label="Next page">→</button>
+      <label class="f" style="flex:1;min-width:140px"><span>Size: <b id="szv">30</b>% of page width</span><input type="range" id="sz" min="10" max="60" value="30"></label>
+    </div>
+    <div class="stage"><canvas id="view" width="10" height="10"></canvas></div>
+    <p class="note" id="hint">Choose a PDF, then tap where to sign. Tap again to add another signature or initials.</p>
+    <div class="btns"><button type="button" class="btn ghost" id="undo" disabled>Undo last</button><button type="button" class="btn" id="save" disabled>Download signed PDF</button></div>
+  </div>
+</div>

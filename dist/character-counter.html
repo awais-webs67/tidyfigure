@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Character Counter: Count Characters With &amp; Without Spaces</title>
+<meta name="description" content="Count characters with and without spaces, words and lines. Check your text against limits for X (Twitter), SMS, Instagram, SEO titles and meta descriptions.">
+<link rel="canonical" href="https://tidyfigure.com/character-counter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TidyFigure">
+<meta property="og:title" content="Character Counter: Count Characters With &amp; Without Spaces">
+<meta property="og:description" content="Count characters with and without spaces, words and lines. Check your text against limits for X (Twitter), SMS, Instagram, SEO titles and meta descriptions.">
+<meta property="og:url" content="https://tidyfigure.com/character-counter">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FF5B35">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Character Counter","url":"https://tidyfigure.com/character-counter","description":"Count characters with and without spaces, words and lines. Check your text against limits for X (Twitter), SMS, Instagram, SEO titles and meta descriptions.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (runs in a web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TidyFigure","url":"https://tidyfigure.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do spaces count as characters?","acceptedAnswer":{"@type":"Answer","text":"Yes, in most places. Social networks, SMS and SEO tags all count spaces. Some forms count characters without spaces, which this tool also shows."}},{"@type":"Question","name":"How many characters is an emoji?","acceptedAnswer":{"@type":"Answer","text":"Visually one, and this counter counts it as one. Some systems store emoji as two characters, and an emoji also switches an SMS to the 70-character limit."}},{"@type":"Question","name":"What is the character limit for a meta description?","acceptedAnswer":{"@type":"Answer","text":"Google shows roughly 155–160 characters on desktop before cutting it off. Aim for 120–155 characters."}},{"@type":"Question","name":"How long can an SEO title be?","acceptedAnswer":{"@type":"Answer","text":"Google shows about 60 characters (more precisely, about 600 pixels). Keep titles under 60 characters so they are not cut off."}},{"@type":"Question","name":"Is my text saved?","acceptedAnswer":{"@type":"Answer","text":"No. Counting happens in your browser, and your text is never uploaded."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tidyfigure.com/"},{"@type":"ListItem","position":2,"name":"Text tools","item":"https://tidyfigure.com/#text"},{"@type":"ListItem","position":3,"name":"Character Counter","item":"https://tidyfigure.com/character-counter"}]}</script>
+<!--TF:HEAD-->
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--slate)"/><path d="M9 11h14M16 11v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="var(--accent)"/></svg><span>Tidy<b>Figure</b></span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
+<nav class="main-nav" id="main-nav" aria-label="Main"><a href="/#image" data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /> </svg>Image</a><a href="/#pdf" data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg>PDF</a><a href="/#text" data-cat="text" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polyline points="4 7 4 4 20 4 20 7" /> <line x1="9" x2="15" y1="20" y2="20" /> <line x1="12" x2="12" y1="4" y2="20" /> </svg>Text</a><a href="/#qr" data-cat="qr"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="5" height="5" x="3" y="3" rx="1" /> <rect width="5" height="5" x="16" y="3" rx="1" /> <rect width="5" height="5" x="3" y="16" rx="1" /> <path d="M21 16h-3a2 2 0 0 0-2 2v3" /> <path d="M21 21v.01" /> <path d="M12 7v3a2 2 0 0 1-2 2H7" /> <path d="M3 12h.01" /> <path d="M12 3h.01" /> <path d="M12 16v.01" /> <path d="M16 12h1" /> <path d="M21 12v.01" /> <path d="M12 21v-1" /> </svg>QR &amp; Barcode</a><a href="/#random" data-cat="random" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /> </svg>Generators</a><a href="/#health" data-cat="health"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /> </svg>Health</a><a href="/#money" data-cat="money"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /> </svg>Finance</a><a href="/#calc" data-cat="calc" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg>Calculators</a><a href="/#time" data-cat="time" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg>Time</a><a href="/#convert" data-cat="convert" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m17 2 4 4-4 4" /> <path d="M3 11v-1a4 4 0 0 1 4-4h14" /> <path d="m7 22-4-4 4-4" /> <path d="M21 13v1a4 4 0 0 1-4 4H3" /> </svg>Converters</a><a href="/#social" data-cat="social" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5.8 11.3 2 22l10.7-3.79" /> <path d="M4 3h.01" /> <path d="M22 8h.01" /> <path d="M15 2h.01" /> <path d="M22 20h.01" /> <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /> <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" /> <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" /> <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /> </svg>Social</a><a href="/#life" data-cat="life" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg>Life</a><a class="cta" href="/#tools">All tools</a></nav>
+</div></header><div class="nav-shade"></div>
+<!--TF:BODY_TOP-->
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#text">Text tools</a><span aria-hidden="true">/</span><span>Character Counter</span></nav>
+<div class="tool-head"><span class="tile lg" data-cat="text"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 12h6" /> <path d="M15 6h6" /> <path d="m3 13 3.553-7.724a.5.5 0 0 1 .894 0L11 13" /> <path d="M3 18h18" /> <path d="M4 11h6" /> </svg></span><h1>Character Counter</h1></div>
+<p class="answer">Paste your text to count its characters instantly, <strong>with and without spaces</strong>. The bars show how much room you have left for common limits: <strong>280</strong> for an X post, <strong>160</strong> for an SMS or meta description, and <strong>60</strong> for a search result title. Emoji and accented letters count as one character each.</p>
+<section class="tool" aria-label="Character Counter">
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Type or paste your text</span><textarea id="text">Free online tools that just work: compress images, merge PDFs and count words in seconds. No sign-up, and your files never leave your device. 🚀</textarea></label>
+    <div class="btns">
+      <button type="button" class="btn ghost" id="clear">Clear text</button>
+      <button type="button" class="btn ghost" id="copy">Copy text</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+
+</section>
+<!--TF:AD:top-->
+<p class="private"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg>Everything runs in your browser. Nothing you type is sent anywhere.</p>
+<div class="layout">
+<article class="prose">
+
+<h2>What counts as a character?</h2>
+<p>Every letter, number, space, punctuation mark and line break is a character. This counter counts characters the way you see them: an emoji like 🚀, a flag, or a letter with an accent such as "é" counts as one, even though computers sometimes store them as two or more pieces. That's how most social networks and text fields count, too.</p>
+<p>"Without spaces" removes spaces, tabs and line breaks. Some essay and application forms set limits this way, so check which one your form uses.</p>
+
+<h2>Common character limits</h2>
+<div class="scroll"><table class="tbl">
+<thead><tr><th>Where</th><th class="n">Limit</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>X (Twitter) post</td><td class="n">280</td><td>Longer for paid accounts</td></tr>
+<tr><td>SMS text message</td><td class="n">160</td><td>Only 70 if it contains emoji or non-Latin letters</td></tr>
+<tr><td>Google title tag</td><td class="n">≈ 60</td><td>Longer titles are cut off with "…"</td></tr>
+<tr><td>Meta description</td><td class="n">≈ 160</td><td>Shown under your page in search results</td></tr>
+<tr><td>YouTube video title</td><td class="n">100</td><td>About 70 show in search</td></tr>
+<tr><td>Instagram caption</td><td class="n">2,200</td><td>Only the first 125 or so show before "more"</td></tr>
+<tr><td>LinkedIn post</td><td class="n">3,000</td><td>About 210 show before "see more"</td></tr>
+</tbody></table></div>
+<p>Networks occasionally change their limits, but these have been stable for years.</p>
+
+<h2>Why SMS messages split</h2>
+<p>A standard SMS holds 160 characters from a basic character set (the GSM alphabet: English letters, digits and common symbols). If your message includes a single emoji or a letter outside that set, the phone switches to a different encoding that holds only 70 characters. Long messages are sent in parts of 153 (or 67) characters, and your carrier may charge for each part. The counter shows how many parts your text needs.</p>
+
+<h2>Writing for limits</h2>
+<ul>
+<li><strong>Put the important words first.</strong> Titles and previews are cut from the end.</li>
+<li><strong>Cut filler:</strong> "in order to" → "to", "at this point in time" → "now".</li>
+<li><strong>Use numerals:</strong> "3" instead of "three".</li>
+<li><strong>Check after editing:</strong> the counter updates as you type, so you can trim until the bar turns green.</li>
+</ul>
+<!--TF:AD:article-->
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>Do spaces count as characters?</summary><p>Yes, in most places. Social networks, SMS and SEO tags all count spaces. Some forms count characters without spaces, which this tool also shows.</p></details>
+<details class="faq"><summary>How many characters is an emoji?</summary><p>Visually one, and this counter counts it as one. Some systems store emoji as two characters, and an emoji also switches an SMS to the 70-character limit.</p></details>
+<details class="faq"><summary>What is the character limit for a meta description?</summary><p>Google shows roughly 155–160 characters on desktop before cutting it off. Aim for 120–155 characters.</p></details>
+<details class="faq"><summary>How long can an SEO title be?</summary><p>Google shows about 60 characters (more precisely, about 600 pixels). Keep titles under 60 characters so they are not cut off.</p></details>
+<details class="faq"><summary>Is my text saved?</summary><p>No. Counting happens in your browser, and your text is never uploaded.</p></details>
+</article>
+<aside class="side">
+<!--TF:AD:side-->
+<section aria-labelledby="side-a"><h2 id="side-a">More text tools</h2><ul><li data-slug="word-counter"><a href="/word-counter"><span class="tile " data-cat="text"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5 4h1a3 3 0 0 1 3 3 3 3 0 0 1 3-3h1" /> <path d="M13 20h-1a3 3 0 0 1-3-3 3 3 0 0 1-3 3H5" /> <path d="M5 16H4a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1" /> <path d="M13 8h7a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-7" /> <path d="M9 7v10" /> </svg></span>Word Counter</a></li><li data-slug="case-converter"><a href="/case-converter"><span class="tile " data-cat="text"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m3 15 4-8 4 8" /> <path d="M4 13h6" /> <circle cx="18" cy="12" r="3" /> <path d="M21 9v6" /> </svg></span>Case Converter</a></li><li data-slug="fancy-text-generator"><a href="/fancy-text-generator"><span class="tile " data-cat="text"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /> </svg></span>Fancy Text Generator</a></li><li data-slug="remove-duplicate-lines"><a href="/remove-duplicate-lines"><span class="tile " data-cat="text"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M11 12H3" /> <path d="M16 6H3" /> <path d="M16 18H3" /> <path d="m19 10-4 4" /> <path d="m15 10 4 4" /> </svg></span>Remove Duplicate Lines</a></li><li data-slug="lorem-ipsum-generator"><a href="/lorem-ipsum-generator"><span class="tile " data-cat="text"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M13 4v16" /> <path d="M17 4v16" /> <path d="M19 4H9.5a4.5 4.5 0 0 0 0 9H13" /> </svg></span>Lorem Ipsum Generator</a></li></ul></section>
+<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul><li data-slug="image-compressor"><a href="/image-compressor"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" /> <path d="m14 19 3 3v-5.5" /> <path d="m17 22 3-3" /> <circle cx="9" cy="9" r="2" /> </svg></span>Image Compressor</a></li><li data-slug="image-resizer"><a href="/image-resizer"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /> <path d="M14 15H9v-5" /> <path d="M16 3h5v5" /> <path d="M21 3 9 15" /> </svg></span>Image Resizer</a></li><li data-slug="crop-image"><a href="/crop-image"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /> </svg></span>Crop Image</a></li><li data-slug="photo-editor"><a href="/photo-editor"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></span>Photo Editor</a></li><li data-slug="image-metadata-remover"><a href="/image-metadata-remover"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m2 2 20 20" /> <path d="M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71" /> <path d="M9.309 3.652A12.252 12.252 0 0 0 11.24 2.28a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1v7a9.784 9.784 0 0 1-.08 1.264" /> </svg></span>Image Metadata Remover</a></li><li data-slug="merge-pdf"><a href="/merge-pdf"><span class="tile " data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 7h-3a2 2 0 0 1-2-2V2" /> <path d="M9 18a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h7l4 4v10a2 2 0 0 1-2 2Z" /> <path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8" /> </svg></span>Merge PDF</a></li></ul></section>
+</aside>
+</div>
+</main>
+<footer class="foot"><div class="wrap">
+<div><h2>Image tools</h2><ul><li data-slug="image-compressor"><a href="/image-compressor">Image Compressor</a></li><li data-slug="image-resizer"><a href="/image-resizer">Image Resizer</a></li><li data-slug="image-converter"><a href="/image-converter">Image Converter</a></li><li data-slug="crop-image"><a href="/crop-image">Crop Image</a></li><li data-slug="rotate-image"><a href="/rotate-image">Rotate &amp; Flip Image</a></li><li data-slug="photo-editor"><a href="/photo-editor">Photo Editor</a></li></ul></div>
+<div><h2>PDF tools</h2><ul><li data-slug="merge-pdf"><a href="/merge-pdf">Merge PDF</a></li><li data-slug="jpg-to-pdf"><a href="/jpg-to-pdf">JPG to PDF</a></li><li data-slug="split-pdf"><a href="/split-pdf">Split PDF</a></li><li data-slug="rotate-pdf"><a href="/rotate-pdf">Rotate PDF</a></li><li data-slug="delete-pdf-pages"><a href="/delete-pdf-pages">Delete PDF Pages</a></li><li data-slug="organize-pdf"><a href="/organize-pdf">Organize PDF</a></li></ul></div>
+<div><h2>Text tools</h2><ul><li data-slug="word-counter"><a href="/word-counter">Word Counter</a></li><li data-slug="character-counter"><a href="/character-counter">Character Counter</a></li><li data-slug="case-converter"><a href="/case-converter">Case Converter</a></li><li data-slug="fancy-text-generator"><a href="/fancy-text-generator">Fancy Text Generator</a></li><li data-slug="remove-duplicate-lines"><a href="/remove-duplicate-lines">Remove Duplicate Lines</a></li><li data-slug="lorem-ipsum-generator"><a href="/lorem-ipsum-generator">Lorem Ipsum Generator</a></li></ul></div>
+<div><h2>QR code &amp; barcode tools</h2><ul><li data-slug="qr-code-generator"><a href="/qr-code-generator">QR Code Generator</a></li><li data-slug="wifi-qr-code-generator"><a href="/wifi-qr-code-generator">Wi-Fi QR Code Generator</a></li><li data-slug="whatsapp-qr-code-generator"><a href="/whatsapp-qr-code-generator">WhatsApp QR Code Generator</a></li><li data-slug="vcard-qr-code-generator"><a href="/vcard-qr-code-generator">vCard QR Code Generator</a></li><li data-slug="qr-code-scanner"><a href="/qr-code-scanner">QR Code Scanner</a></li><li data-slug="barcode-reader"><a href="/barcode-reader">Barcode Reader</a></li></ul></div>
+<div><h2>Generators &amp; random</h2><ul><li data-slug="password-generator"><a href="/password-generator">Password Generator</a></li><li data-slug="random-number-generator"><a href="/random-number-generator">Random Number Generator</a></li><li data-slug="spin-the-wheel"><a href="/spin-the-wheel">Spin the Wheel</a></li><li data-slug="flip-a-coin"><a href="/flip-a-coin">Flip a Coin</a></li><li data-slug="roll-a-dice"><a href="/roll-a-dice">Roll a Dice</a></li></ul></div>
+<div><h2>Health &amp; fitness calculators</h2><ul><li data-slug="calorie-calculator"><a href="/calorie-calculator">Calorie Calculator</a></li><li data-slug="bmi-calculator"><a href="/bmi-calculator">BMI Calculator</a></li><li data-slug="bmr-calculator"><a href="/bmr-calculator">BMR Calculator</a></li><li data-slug="macro-calculator"><a href="/macro-calculator">Macro Calculator</a></li><li data-slug="body-fat-calculator"><a href="/body-fat-calculator">Body Fat Calculator</a></li><li data-slug="ideal-weight-calculator"><a href="/ideal-weight-calculator">Ideal Weight Calculator</a></li></ul></div>
+<div><h2>Finance calculators</h2><ul><li data-slug="compound-interest-calculator"><a href="/compound-interest-calculator">Compound Interest Calculator</a></li><li data-slug="sip-calculator"><a href="/sip-calculator">SIP Calculator</a></li><li data-slug="loan-calculator"><a href="/loan-calculator">Loan Calculator</a></li><li data-slug="savings-goal-calculator"><a href="/savings-goal-calculator">Savings Goal Calculator</a></li><li data-slug="retirement-calculator"><a href="/retirement-calculator">Retirement Calculator</a></li><li data-slug="inflation-calculator"><a href="/inflation-calculator">Inflation Calculator</a></li></ul></div>
+<div><h2>Calculators</h2><ul><li data-slug="percentage-calculator"><a href="/percentage-calculator">Percentage Calculator</a></li><li data-slug="pizza-size-calculator"><a href="/pizza-size-calculator">Pizza Size Calculator</a></li><li data-slug="unit-price-calculator"><a href="/unit-price-calculator">Unit Price Calculator</a></li><li data-slug="discount-calculator"><a href="/discount-calculator">Discount Calculator</a></li></ul></div>
+<div class="legal"><span>© 2026 TidyFigure. Free online tools, built by <a href="https://aivrasol.com" rel="noopener">AivraSol</a>. Your files never leave your device.</span>
+<span><a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/#tools">All tools</a></span></div>
+</div></footer>
+<script>(function(){var b=document.querySelector('.nav-toggle'),r=document.documentElement;if(!b)return;function set(o){r.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',o)}b.addEventListener('click',function(){set(!r.classList.contains('nav-open'))});document.querySelector('.nav-shade').addEventListener('click',function(){set(false)});document.querySelectorAll('.main-nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();</script>
+
+<script src="/app.js"></script>
+
+<script>
+(function () {
+// Common limits. Social networks count emoji and most characters as 1 (X counts some as 2; we keep it simple).
+const LIMITS = [
+  ['X (Twitter) post', 280], ['SEO title tag', 60], ['Meta description', 160], ['SMS (one message)', 160],
+  ['Instagram caption', 2200], ['YouTube title', 100], ['LinkedIn post', 3000], ['Facebook post', 63206],
+];
+const ta = $('#text');
+ta.addEventListener('input', calc);
+$('#clear').addEventListener('click', () => { ta.value = ''; ta.focus(); calc(); });
+$('#copy').addEventListener('click', e => copyText(ta.value, e.target));
+
+// Characters as people see them: an emoji or an accented letter counts once.
+const seg = typeof Intl !== 'undefined' && Intl.Segmenter ? new Intl.Segmenter(undefined, { granularity: 'grapheme' }) : null;
+const count = s => seg ? [...seg.segment(s)].length : [...s].length;
+
+function calc() {
+  const t = ta.value;
+  const chars = count(t);
+  const noSpace = count(t.replace(/\s/g, ''));
+  const words = (t.match(/[\p{L}\p{N}]+(?:['’\-][\p{L}\p{N}]+)*/gu) || []).length;
+  const lines = t ? t.split('\n').length : 0;
+  const gsm = /^[\x20-\x7E\n\r£¥èéùìòÇØøÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉÄÖÑÜ§¿äöñüà€]*$/.test(t);
+  const smsPer = gsm ? (chars <= 160 ? 160 : 153) : (chars <= 70 ? 70 : 67);
+  const sms = chars ? Math.ceil(chars / smsPer) : 0;
+
+  let html = `<p class="kicker">Characters</p><p class="huge" style="text-align:left"><mark>${chars.toLocaleString()}</mark></p>
+    <div class="statgrid">
+      <div class="stat"><b>${noSpace.toLocaleString()}</b><span>Without spaces</span></div>
+      <div class="stat"><b>${words.toLocaleString()}</b><span>Words</span></div>
+      <div class="stat"><b>${lines}</b><span>Lines</span></div>
+      <div class="stat"><b>${sms}</b><span>SMS message${sms === 1 ? '' : 's'}</span></div>
+    </div>
+    <p class="kicker" style="margin-top:6px">Limits</p><div class="scroll"><table class="tbl"><tbody>`;
+  LIMITS.forEach(([name, max]) => {
+    const left = max - chars;
+    const pct = Math.min(100, chars / max * 100);
+    const color = left < 0 ? 'var(--bad)' : pct > 90 ? 'var(--warn)' : 'var(--good)';
+    html += `<tr><td>${name}<div style="height:5px;border-radius:3px;background:var(--line);margin-top:6px"><div style="height:5px;border-radius:3px;width:${pct}%;background:${color}"></div></div></td>
+      <td class="n" style="color:${left < 0 ? 'var(--bad)' : 'inherit'}">${left < 0 ? `${(-left).toLocaleString()} over` : `${left.toLocaleString()} left`}</td></tr>`;
+  });
+  html += `</tbody></table></div>${!gsm && chars ? '<p class="note">Your text has emoji or special characters, so an SMS holds only 70 characters instead of 160.</p>' : ''}`;
+  $('#out').innerHTML = html;
+}
+calc();
+
+})();
+</script>
+<!--TF:BODY_END-->
+</body>
+</html>

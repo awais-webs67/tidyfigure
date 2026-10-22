@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Current age</span><input type="number" id="age" inputmode="numeric" min="16" max="80" value="30"></label>
+      <label class="f"><span>Retire at</span><input type="number" id="ret" inputmode="numeric" min="30" max="85" value="65"></label>
+      <label class="f"><span>Current savings</span><input type="number" id="have" inputmode="decimal" min="0" step="any" value="15000"></label>
+      <label class="f"><span>Monthly saving</span><input type="number" id="pm" inputmode="decimal" min="0" step="any" value="400"></label>
+      <label class="f"><span>Return (% a year)</span><input type="number" id="r" inputmode="decimal" step="any" value="6"></label>
+      <label class="f"><span>Inflation (% a year)</span><input type="number" id="inf" inputmode="decimal" step="any" value="2.5"></label>
+      <label class="f"><span>Yearly income wanted in retirement (today’s money)</span><input type="number" id="want" inputmode="decimal" min="0" step="any" value="30000"></label>
+      <label class="f"><span>Other yearly income (pension, social security)</span><input type="number" id="other" inputmode="decimal" min="0" step="any" value="10000"></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

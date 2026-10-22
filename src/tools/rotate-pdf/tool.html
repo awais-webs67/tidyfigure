@@ -1,0 +1,14 @@
+<div class="inputs">
+  <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+    {{icon:file-up}}
+    <strong>Drop a PDF here or click to choose</strong>
+    <span id="loaded">Click ⟲ or ⟳ on a page to rotate just that page</span>
+    <input type="file" id="file" accept="application/pdf,.pdf">
+  </div>
+  <div class="toolbar" id="bar" hidden><button type="button" class="btn ghost" id="all-ccw">⟲ Rotate all left</button><button type="button" class="btn ghost" id="all-cw">⟳ Rotate all right</button><button type="button" class="btn ghost" id="reset">Reset</button><button type="button" class="btn" id="save">{{icon:download}}Save rotated PDF</button></div>
+  <ul class="pgrid" id="grid"></ul>
+  <div class="out" id="out" aria-live="polite">
+    <p class="empty">Choose a PDF to see its pages.</p>
+    <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+  </div>
+</div>

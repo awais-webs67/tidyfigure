@@ -1,0 +1,27 @@
+<div class="inputs">
+  <div class="out" style="align-items:center;padding:28px 18px">
+    <p class="huge" id="display" aria-live="off" style="color:var(--ink)">05:00</p>
+    <div style="width:100%;max-width:520px;height:8px;border-radius:4px;background:var(--line)"><div id="bar" style="height:8px;border-radius:4px;width:100%;background:var(--accent)"></div></div>
+    <p class="sub" id="status" aria-live="polite">Ready</p>
+    <div class="btns" style="justify-content:center">
+      <button type="button" class="btn big-btn" id="start">{{icon:play}}<span>Start</span></button>
+      <button type="button" class="btn ghost big-btn" id="reset">{{icon:rotate-ccw}}Reset</button>
+    </div>
+  </div>
+  <div class="fields">
+    <label class="f"><span>Hours</span><input type="number" id="h" inputmode="numeric" min="0" max="99" step="1" value="0"></label>
+    <label class="f"><span>Minutes</span><input type="number" id="m" inputmode="numeric" min="0" max="59" step="1" value="5"></label>
+    <label class="f"><span>Seconds</span><input type="number" id="s" inputmode="numeric" min="0" max="59" step="1" value="0"></label>
+  </div>
+  <div class="chips" id="presets">
+    <button type="button" class="chip" data-s="60">1 min</button>
+    <button type="button" class="chip" data-s="180">3 min</button>
+    <button type="button" class="chip" data-s="300">5 min</button>
+    <button type="button" class="chip" data-s="600">10 min</button>
+    <button type="button" class="chip" data-s="900">15 min</button>
+    <button type="button" class="chip" data-s="1500">25 min (Pomodoro)</button>
+    <button type="button" class="chip" data-s="1800">30 min</button>
+    <button type="button" class="chip" data-s="3600">1 hour</button>
+  </div>
+  <label class="check"><input type="checkbox" id="sound" checked>Play an alarm when time is up</label>
+</div>

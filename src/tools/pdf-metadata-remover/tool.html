@@ -1,0 +1,24 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">See and remove hidden document properties</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <div class="fields" id="fields" hidden>
+      <label class="f"><span>Title</span><input type="text" id="m-title" autocomplete="off"></label>
+      <label class="f"><span>Author</span><input type="text" id="m-author" autocomplete="off"></label>
+      <label class="f"><span>Subject</span><input type="text" id="m-subject" autocomplete="off"></label>
+      <label class="f"><span>Keywords</span><input type="text" id="m-keywords" autocomplete="off"></label>
+      <label class="f"><span>Creator (app)</span><input type="text" id="m-creator" autocomplete="off"></label>
+      <label class="f"><span>Producer</span><input type="text" id="m-producer" autocomplete="off"></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="wipe" disabled>{{icon:eraser}}Remove all metadata</button>
+      <button type="button" class="btn ghost" id="savefields" disabled>Save my edits</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Hidden properties</p><p class="empty">Choose a PDF to see its metadata.</p></div>
+</div>

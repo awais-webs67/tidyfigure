@@ -1,0 +1,10 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Calculate from</span><select id="method"><option value="lmp" selected>First day of last period</option><option value="conception">Conception date</option><option value="ivf3">IVF: day-3 embryo transfer</option><option value="ivf5">IVF: day-5 embryo transfer</option></select></label>
+    <div class="fields">
+      <label class="f"><span id="date-label">First day of last period</span><input type="date" id="date"></label>
+      <label class="f" id="cycle-wrap"><span>Usual cycle length (days)</span><input type="number" id="cycle" inputmode="numeric" min="20" max="45" step="1" value="28"></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

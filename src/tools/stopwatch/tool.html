@@ -1,0 +1,12 @@
+<div class="inputs">
+  <div class="out" style="align-items:center;padding:28px 18px">
+    <p class="huge" id="display" style="color:var(--ink)">00:00<span style="font-size:.5em;color:var(--muted)">.00</span></p>
+    <div class="btns" style="justify-content:center">
+      <button type="button" class="btn big-btn" id="start">{{icon:play}}<span>Start</span></button>
+      <button type="button" class="btn ghost big-btn" id="lap" disabled>{{icon:flag}}Lap</button>
+      <button type="button" class="btn ghost big-btn" id="reset" disabled>{{icon:rotate-ccw}}Reset</button>
+    </div>
+    <p class="note">Keyboard: Space = start/stop · L = lap · R = reset</p>
+  </div>
+  <div class="scroll" id="laps-wrap" hidden><table class="tbl"><thead><tr><th>Lap</th><th class="n">Lap time</th><th class="n">Total</th></tr></thead><tbody id="laps"></tbody></table></div>
+</div>

@@ -1,0 +1,22 @@
+<div class="inputs">
+  <label class="f"><span>Your text</span><textarea id="text" style="min-height:160px">the quick brown fox jumps over the lazy dog. it was a sunny day in the city of london.</textarea></label>
+  <div class="chips" id="cases" role="group" aria-label="Convert to">
+    <button type="button" class="chip" data-c="sentence">Sentence case</button>
+    <button type="button" class="chip" data-c="lower">lower case</button>
+    <button type="button" class="chip" data-c="upper">UPPER CASE</button>
+    <button type="button" class="chip on" data-c="title">Title Case</button>
+    <button type="button" class="chip" data-c="capital">Capitalize Each Word</button>
+    <button type="button" class="chip" data-c="camel">camelCase</button>
+    <button type="button" class="chip" data-c="pascal">PascalCase</button>
+    <button type="button" class="chip" data-c="snake">snake_case</button>
+    <button type="button" class="chip" data-c="kebab">kebab-case</button>
+    <button type="button" class="chip" data-c="constant">CONSTANT_CASE</button>
+    <button type="button" class="chip" data-c="alternating">aLtErNaTiNg</button>
+    <button type="button" class="chip" data-c="inverse">iNVERSE</button>
+  </div>
+  <div class="out">
+    <p class="kicker" id="label">Title Case</p>
+    <div class="copybox" id="result" style="font-family:var(--f-body);font-size:16px"></div>
+    <div class="copyrow"><button type="button" class="btn ghost" id="use">Replace my text with this</button><button type="button" class="btn" data-copy="result">Copy</button></div>
+  </div>
+</div>

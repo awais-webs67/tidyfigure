@@ -1,0 +1,20 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">The watermark is added to every page</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <label class="f"><span>Watermark text</span><input type="text" id="text" value="CONFIDENTIAL" maxlength="60" autocomplete="off"></label>
+    <div class="fields">
+      <label class="f"><span>Layout</span><select id="layout"><option value="center" selected>One, diagonal</option><option value="tile">Repeated (tiled)</option><option value="footer">Small, at the bottom</option></select></label>
+      <label class="f"><span>Colour</span><input type="color" id="color" value="#ff5b35"></label>
+      <label class="f"><span>Opacity: <b id="ov">20</b>%</span><input type="range" id="opacity" min="5" max="80" value="20"></label>
+      <label class="f"><span>Size: <b id="sv">72</b> pt</span><input type="range" id="size" min="12" max="140" value="72"></label>
+    </div>
+    <div class="chips" id="presets"><button type="button" class="chip">CONFIDENTIAL</button><button type="button" class="chip">DRAFT</button><button type="button" class="chip">COPY</button><button type="button" class="chip">SAMPLE</button><button type="button" class="chip">DO NOT COPY</button><button type="button" class="chip">PAID</button></div>
+    <div class="btns"><button type="button" class="btn big-btn" id="go" disabled>{{icon:stamp}}Add watermark</button><button type="button" class="btn ghost" id="sample">Try with a sample PDF</button></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Preview</p><p class="empty">Choose a PDF to see a preview.</p></div>
+</div>

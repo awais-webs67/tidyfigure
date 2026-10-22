@@ -1,0 +1,25 @@
+<style>
+  .dice { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; padding: 10px 0; min-height: 110px; }
+  .die { width: 84px; height: 84px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 10px 22px -12px rgba(0, 0, 0, .45), inset 0 -4px 0 rgba(0, 0, 0, .06);
+    display: grid; grid-template: repeat(3, 1fr) / repeat(3, 1fr); padding: 13px; gap: 2px; }
+  .die i { width: 14px; height: 14px; border-radius: 50%; background: var(--ink); place-self: center; }
+  .die.num { display: grid; place-items: center; font: 700 30px/1 var(--f-num); color: var(--ink); grid-template: 1fr / 1fr; }
+  .die small { font: 600 11px/1 var(--f-body); color: var(--muted); }
+  .die.roll { animation: shake .5s ease; }
+  @keyframes shake { 0% { transform: rotate(0) scale(1); } 30% { transform: rotate(-18deg) scale(.92); } 60% { transform: rotate(14deg) scale(1.05); } 100% { transform: rotate(0) scale(1); } }
+</style>
+<div class="tool-grid">
+  <div class="out" style="align-items:center">
+    <div class="dice" id="dice" aria-live="polite"></div>
+    <p class="big" id="total" style="text-align:center"></p>
+    <button type="button" class="btn big-btn" id="roll" style="align-self:center">{{icon:dices}}Roll</button>
+  </div>
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Number of dice</span><select id="n"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>8</option><option>10</option></select></label>
+      <label class="f"><span>Sides</span><select id="sides"><option value="4">d4</option><option value="6" selected>d6 (standard)</option><option value="8">d8</option><option value="10">d10</option><option value="12">d12</option><option value="20">d20</option><option value="100">d100</option></select></label>
+    </div>
+    <p class="group-title">Recent rolls</p>
+    <div class="copybox" id="history" style="min-height:60px"></div>
+  </div>
+</div>

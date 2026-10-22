@@ -1,0 +1,18 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>One link or text per line (up to 500)</span><textarea id="list" class="mono">https://example.com/product/1001
+https://example.com/product/1002
+https://example.com/product/1003
+Table 4
+Table 5
+TICKET-0006</textarea></label>
+    <div class="fields">
+      <label class="f"><span>Size</span><select id="px"><option value="512">512 px</option><option value="1024" selected>1024 px</option></select></label>
+      <label class="f"><span>File names</span><select id="naming"><option value="num" selected>qr-001, qr-002…</option><option value="text">From the text</option></select></label>
+      <label class="f"><span>Colour</span><input type="color" id="fg" value="#191f24"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="label" checked>Print the text under each code</label>
+    <button type="button" class="btn big-btn" id="zip">{{icon:download}}Download all as .zip</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker" id="count"></p><div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px"></div></div>
+</div>

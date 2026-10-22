@@ -1,0 +1,21 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Minimum</span><input type="number" id="min" inputmode="numeric" step="1" value="1"></label>
+      <label class="f"><span>Maximum</span><input type="number" id="max" inputmode="numeric" step="1" value="100"></label>
+      <label class="f"><span>How many numbers</span><input type="number" id="n" inputmode="numeric" min="1" max="10000" step="1" value="1"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="unique" checked>No repeats (each number at most once)</label>
+    <label class="check"><input type="checkbox" id="sorted">Sort the results</label>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-p="1,10,1">1–10</button>
+      <button type="button" class="chip" data-p="1,100,1">1–100</button>
+      <button type="button" class="chip" data-p="1,49,6">Lottery 6 of 49</button>
+      <button type="button" class="chip" data-p="1,6,1">Dice 1–6</button>
+      <button type="button" class="chip" data-p="0,9,4">4-digit PIN</button>
+      <button type="button" class="chip" data-p="1,1000,1">1–1000</button>
+    </div>
+    <button type="button" class="btn big-btn" id="go">{{icon:dices}}Generate</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

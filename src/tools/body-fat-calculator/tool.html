@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Units"><label><input type="radio" name="lu" id="lu-cm" value="cm" checked><span>Centimetres</span></label><label><input type="radio" name="lu" id="lu-in" value="in"><span>Inches</span></label></div>
+    <div class="fields">
+      <label class="f"><span>Sex</span><select id="sex"><option value="f" selected>Female</option><option value="m">Male</option></select></label>
+      <label class="f"><span>Height</span><input type="number" id="h" inputmode="decimal" step="any" value="168"></label>
+      <label class="f"><span>Neck</span><input type="number" id="neck" inputmode="decimal" step="any" value="33"></label>
+      <label class="f"><span>Waist</span><input type="number" id="waist" inputmode="decimal" step="any" value="76"></label>
+      <label class="f" id="hip-wrap"><span>Hips</span><input type="number" id="hip" inputmode="decimal" step="any" value="98"></label>
+      <label class="f"><span>Weight (optional, kg or lb)</span><input type="number" id="wt" inputmode="decimal" step="any" value="66"></label>
+    </div>
+    <p class="note" id="how"></p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Starting amount</span><input type="number" id="p" inputmode="decimal" min="0" step="any" value="10000"></label>
+      <label class="f"><span>Monthly contribution</span><input type="number" id="pm" inputmode="decimal" min="0" step="any" value="200"></label>
+      <label class="f"><span>Annual interest / return (%)</span><input type="number" id="r" inputmode="decimal" step="any" value="7"></label>
+      <label class="f"><span>Years</span><input type="number" id="y" inputmode="numeric" min="1" max="80" step="1" value="20"></label>
+      <label class="f"><span>Compounding</span><select id="n"><option value="1">Yearly</option><option value="4">Quarterly</option><option value="12" selected>Monthly</option><option value="365">Daily</option></select></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+<div id="chart-wrap" style="margin-top:18px"></div>

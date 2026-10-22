@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&display=swap">
+<div class="tool-grid">
+  <div class="out">
+    <div class="stage" style="background:#20272d"><canvas id="cv" width="10" height="10"></canvas></div>
+    <button type="button" class="btn big-btn" id="save" disabled>{{icon:download}}Download meme</button>
+  </div>
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose an image" style="padding:18px">
+      <strong>Drop your image here or click to choose</strong>
+      <span id="loaded">Or start with a plain background below</span>
+      <input type="file" id="file" accept="image/*">
+    </div>
+    <div class="chips" id="blanks"><button type="button" class="chip" data-c="#ffffff">White</button><button type="button" class="chip" data-c="#111111">Black</button><button type="button" class="chip" data-c="#ff5b35">Orange</button><button type="button" class="chip" data-c="sample">Sample photo</button></div>
+    <label class="f"><span>Top text</span><input type="text" id="top" value="When the tool" autocomplete="off"></label>
+    <label class="f"><span>Bottom text</span><input type="text" id="bottom" value="Actually just works" autocomplete="off"></label>
+    <div class="fields">
+      <label class="f"><span>Text size: <b id="szv">10</b>%</span><input type="range" id="size" min="5" max="20" value="10"></label>
+      <label class="f"><span>Text colour</span><input type="color" id="color" value="#ffffff"></label>
+      <label class="f"><span>Outline</span><input type="color" id="stroke" value="#000000"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="caps" checked>ALL CAPS</label>
+    <label class="check"><input type="checkbox" id="bar">Put text on white bars above and below (modern style)</label>
+  </div>
+</div>

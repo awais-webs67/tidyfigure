@@ -1,0 +1,35 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose images to resize">
+      {{icon:image-up}}
+      <strong>Drop images here or click to choose</strong>
+      <span>JPG, PNG or WebP · resize one or many</span>
+      <input type="file" id="file" accept="image/*" multiple>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Resize by">
+      <label><input type="radio" name="mode" id="mode-px" value="px" checked><span>By pixels</span></label>
+      <label><input type="radio" name="mode" id="mode-pct" value="pct"><span>By percentage</span></label>
+    </div>
+    <div class="fields" id="px-fields">
+      <label class="f"><span>Width (px)</span><input type="number" id="w" inputmode="numeric" min="1" step="1" value="1080"></label>
+      <label class="f"><span>Height (px)</span><input type="number" id="h" inputmode="numeric" min="1" step="1" placeholder="Auto"></label>
+    </div>
+    <div class="fields" id="pct-fields" hidden>
+      <label class="f"><span>Scale: <b id="pv">50</b>%</span><input type="range" id="pct" min="5" max="200" step="5" value="50"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="lock" checked>Keep proportions (leave height empty for auto)</label>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-w="1080" data-h="1080">Instagram square 1080×1080</button>
+      <button type="button" class="chip" data-w="1080" data-h="1350">Instagram portrait 1080×1350</button>
+      <button type="button" class="chip" data-w="1920" data-h="1080">Full HD 1920×1080</button>
+      <button type="button" class="chip" data-w="1200" data-h="630">Facebook / link 1200×630</button>
+      <button type="button" class="chip" data-w="1280" data-h="720">YouTube thumbnail 1280×720</button>
+      <button type="button" class="chip" data-w="600" data-h="600">Passport-style 600×600</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Resized images</p>
+    <p class="empty">Your resized images will appear here.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample photo</button>
+  </div>
+</div>

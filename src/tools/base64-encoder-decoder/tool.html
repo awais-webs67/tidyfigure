@@ -1,0 +1,16 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Direction">
+      <label><input type="radio" name="dir" id="dir-enc" value="enc" checked><span>Encode</span></label>
+      <label><input type="radio" name="dir" id="dir-dec" value="dec"><span>Decode</span></label>
+    </div>
+    <label class="f"><span id="in-label">Text to encode</span><textarea id="src" class="mono" spellcheck="false" style="min-height:160px">Hello, world! Ça va? 👋</textarea></label>
+    <label class="check"><input type="checkbox" id="urlsafe">URL-safe (use - and _ , no padding)</label>
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a file to encode" style="padding:18px">
+      <strong style="font-size:16px">Or encode a file to Base64</strong>
+      <span>Images, fonts, PDFs… creates a data URI</span>
+      <input type="file" id="file">
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

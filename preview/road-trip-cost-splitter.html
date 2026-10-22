@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Road Trip Cost Splitter: Split Fuel by Distance Each Person Rode</title>
+<meta name="description" content="Split car trip fuel costs fairly when passengers ride different distances. Works in km or miles, US or UK mpg, with tolls and parking. Free, instant.">
+<link rel="canonical" href="https://tidyfigure.com/road-trip-cost-splitter">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TidyFigure">
+<meta property="og:title" content="Road Trip Cost Splitter: Split Fuel by Distance Each Person Rode">
+<meta property="og:description" content="Split car trip fuel costs fairly when passengers ride different distances. Works in km or miles, US or UK mpg, with tolls and parking. Free, instant.">
+<meta property="og:url" content="https://tidyfigure.com/road-trip-cost-splitter">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FF5B35">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Road Trip Cost Splitter","url":"https://tidyfigure.com/road-trip-cost-splitter","description":"Split car trip fuel costs fairly when passengers ride different distances. Works in km or miles, US or UK mpg, with tolls and parking. Free, instant.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (runs in a web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TidyFigure","url":"https://tidyfigure.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you split gas money fairly on a road trip?","acceptedAnswer":{"@type":"Answer","text":"Split each stretch of road between the people in the car for that stretch. If everyone rides the whole way, that is simply the total fuel cost divided by the number of people."}},{"@type":"Question","name":"How do I calculate the fuel cost of a trip?","acceptedAnswer":{"@type":"Answer","text":"In metric, multiply the distance by L/100 km, divide by 100 and multiply by the price per litre. In the US, divide miles by mpg and multiply by the price per gallon."}},{"@type":"Question","name":"Should the driver pay for gas?","acceptedAnswer":{"@type":"Answer","text":"It’s up to the group. Many split it equally including the driver; others let the driver ride free as thanks. The calculator can do either."}},{"@type":"Question","name":"What about wear and tear on the car?","acceptedAnswer":{"@type":"Answer","text":"Fuel is only part of the cost of driving. If you want to include wear, tyres and insurance, add a per-km or per-mile amount to the fuel price, or add a fixed amount to tolls & parking."}},{"@type":"Question","name":"What if someone joins partway through the trip?","acceptedAnswer":{"@type":"Answer","text":"The calculator assumes everyone starts together and people get out along the way. For a trip where people join and leave at different points, split it into legs, run each leg separately and add up each person’s shares."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tidyfigure.com/"},{"@type":"ListItem","position":2,"name":"Everyday life","item":"https://tidyfigure.com/#life"},{"@type":"ListItem","position":3,"name":"Road Trip Cost Splitter","item":"https://tidyfigure.com/road-trip-cost-splitter"}]}</script>
+<!--TF:HEAD-->
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--slate)"/><path d="M9 11h14M16 11v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="var(--accent)"/></svg><span>Tidy<b>Figure</b></span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
+<nav class="main-nav" id="main-nav" aria-label="Main"><a href="index.html#image" data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /> </svg>Image</a><a href="index.html#pdf" data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg>PDF</a><a href="index.html#text" data-cat="text" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polyline points="4 7 4 4 20 4 20 7" /> <line x1="9" x2="15" y1="20" y2="20" /> <line x1="12" x2="12" y1="4" y2="20" /> </svg>Text</a><a href="index.html#qr" data-cat="qr"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="5" height="5" x="3" y="3" rx="1" /> <rect width="5" height="5" x="16" y="3" rx="1" /> <rect width="5" height="5" x="3" y="16" rx="1" /> <path d="M21 16h-3a2 2 0 0 0-2 2v3" /> <path d="M21 21v.01" /> <path d="M12 7v3a2 2 0 0 1-2 2H7" /> <path d="M3 12h.01" /> <path d="M12 3h.01" /> <path d="M12 16v.01" /> <path d="M16 12h1" /> <path d="M21 12v.01" /> <path d="M12 21v-1" /> </svg>QR &amp; Barcode</a><a href="index.html#random" data-cat="random" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /> </svg>Generators</a><a href="index.html#health" data-cat="health"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /> </svg>Health</a><a href="index.html#money" data-cat="money"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /> </svg>Finance</a><a href="index.html#calc" data-cat="calc" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg>Calculators</a><a href="index.html#time" data-cat="time" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg>Time</a><a href="index.html#convert" data-cat="convert" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m17 2 4 4-4 4" /> <path d="M3 11v-1a4 4 0 0 1 4-4h14" /> <path d="m7 22-4-4 4-4" /> <path d="M21 13v1a4 4 0 0 1-4 4H3" /> </svg>Converters</a><a href="index.html#social" data-cat="social" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5.8 11.3 2 22l10.7-3.79" /> <path d="M4 3h.01" /> <path d="M22 8h.01" /> <path d="M15 2h.01" /> <path d="M22 20h.01" /> <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /> <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" /> <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" /> <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /> </svg>Social</a><a href="index.html#life" data-cat="life" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg>Life</a><a class="cta" href="index.html#tools">All tools</a></nav>
+</div></header><div class="nav-shade"></div>
+<!--TF:BODY_TOP-->
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-hidden="true">/</span><a href="index.html#life">Everyday life</a><span aria-hidden="true">/</span><span>Road Trip Cost Splitter</span></nav>
+<div class="tool-head"><span class="tile lg" data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2" /> <circle cx="7" cy="17" r="2" /> <path d="M9 17h6" /> <circle cx="17" cy="17" r="2" /> </svg></span><h1>Road Trip Cost Splitter</h1></div>
+<p class="answer">The fairest way to split fuel on a shared car trip is <strong>by stretch of road</strong>: each part of the journey is split equally between the people in the car for that part. Someone who gets out halfway pays nothing for the second half. Tolls and parking are usually split evenly between everyone.</p>
+<section class="tool" aria-label="Road Trip Cost Splitter">
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Units">
+      <label><input type="radio" name="sys" id="sys-metric" value="metric" checked><span>km · L/100 km</span></label>
+      <label><input type="radio" name="sys" id="sys-us" value="us"><span>miles · US mpg</span></label>
+      <label><input type="radio" name="sys" id="sys-uk" value="uk"><span>miles · UK mpg</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span id="dist-label">Trip distance (km)</span><input type="number" id="dist" inputmode="decimal" min="0" step="any" value="420"></label>
+      <label class="f"><span id="eco-label">Fuel use (L/100 km)</span><input type="number" id="eco" inputmode="decimal" min="0" step="any" value="7.5"></label>
+      <label class="f"><span id="price-label">Fuel price (per litre)</span><input type="number" id="price" inputmode="decimal" min="0" step="any" value="1.80"></label>
+      <label class="f"><span>Tolls &amp; parking (split evenly)</span><input type="number" id="extra" inputmode="decimal" min="0" step="any" value="24"></label>
+    </div>
+    <p class="group-title">Who was in the car, and how far</p>
+    <div class="list" id="riders"></div>
+    <button type="button" class="add" id="add-rider">+ Add a passenger</button>
+    <label class="check"><input type="checkbox" id="driver-free">The driver (first person) doesn't pay for fuel</label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+
+</section>
+<!--TF:AD:top-->
+<p class="private"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg>Everything runs in your browser. Nothing you type is sent anywhere.</p>
+<div class="layout">
+<article class="prose">
+
+<h2>Why splitting fuel evenly isn't always fair</h2>
+<p>When everyone rides the whole way, dividing the fuel bill equally is fair and simple. But road trips, carpools and lifts home rarely work like that. One friend gets dropped off after an hour, another joins at a service station, and the driver goes the whole way. Splitting evenly makes the person who rode 50 km pay the same as the person who rode 400.</p>
+<p>Charging each person "their distance × cost per km" doesn't work either, because the car burns the same fuel whether it carries one person or four. The cost of each stretch has to be <em>shared</em> by the people in the car for it.</p>
+
+<h2>How the calculation works</h2>
+<ol>
+<li>Work out the fuel cost of the whole trip from distance, fuel economy and fuel price.</li>
+<li>Divide by the distance to get the fuel cost per km or mile.</li>
+<li>Cut the trip into stretches at every drop-off point.</li>
+<li>Split each stretch's cost equally between everyone still in the car.</li>
+<li>Split tolls and parking evenly between everyone.</li>
+</ol>
+<div class="formula">Fuel (metric)   = distance × L/100 km ÷ 100
+Fuel (US)       = miles ÷ US mpg        (in US gallons)
+Fuel (UK)       = miles ÷ UK mpg × 4.546 (in litres)
+Stretch cost    = stretch length × fuel cost per km
+Each rider pays = stretch cost ÷ people in the car</div>
+
+<h2>Worked example</h2>
+<p>A 420 km trip in a car using 7.5 L/100 km, with fuel at 1.80 per litre, uses 31.5 litres and costs 56.70 in fuel, or 0.135 per km. Tolls are 24. Sam drives and Priya rides the whole way, Leo gets out at 250 km and Mia at 120 km.</p>
+<ul>
+<li>0–120 km (4 people): 16.20 ÷ 4 = 4.05 each</li>
+<li>120–250 km (3 people): 17.55 ÷ 3 = 5.85 each</li>
+<li>250–420 km (2 people): 22.95 ÷ 2 = 11.475 each</li>
+</ul>
+<p>Fuel shares: Mia 4.05, Leo 9.90, Sam and Priya 21.38 each. Add 6.00 each for tolls, and Mia pays 10.05, Leo 15.90, and Sam and Priya 27.38.</p>
+
+<h2>Should the driver pay?</h2>
+<p>Groups handle this differently. Some split the cost equally including the driver, since everyone benefits from the trip. Others let the driver ride free to thank them for driving and for wear on their car. Tick the "driver doesn't pay" box and the driver's fuel share is shared out between passengers in proportion to how far they rode.</p>
+
+<h2>Converting fuel economy</h2>
+<ul>
+<li>US mpg to L/100 km: 235.21 ÷ mpg. 30 US mpg ≈ 7.8 L/100 km.</li>
+<li>UK mpg to L/100 km: 282.48 ÷ mpg. 40 UK mpg ≈ 7.1 L/100 km.</li>
+<li>A UK gallon (4.546 L) is about 20% bigger than a US gallon (3.785 L), so the same car shows a higher mpg in the UK.</li>
+</ul>
+<!--TF:AD:article-->
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>How do you split gas money fairly on a road trip?</summary><p>Split each stretch of road between the people in the car for that stretch. If everyone rides the whole way, that is simply the total fuel cost divided by the number of people.</p></details>
+<details class="faq"><summary>How do I calculate the fuel cost of a trip?</summary><p>In metric, multiply the distance by L/100 km, divide by 100 and multiply by the price per litre. In the US, divide miles by mpg and multiply by the price per gallon.</p></details>
+<details class="faq"><summary>Should the driver pay for gas?</summary><p>It’s up to the group. Many split it equally including the driver; others let the driver ride free as thanks. The calculator can do either.</p></details>
+<details class="faq"><summary>What about wear and tear on the car?</summary><p>Fuel is only part of the cost of driving. If you want to include wear, tyres and insurance, add a per-km or per-mile amount to the fuel price, or add a fixed amount to tolls & parking.</p></details>
+<details class="faq"><summary>What if someone joins partway through the trip?</summary><p>The calculator assumes everyone starts together and people get out along the way. For a trip where people join and leave at different points, split it into legs, run each leg separately and add up each person’s shares.</p></details>
+</article>
+<aside class="side">
+<!--TF:AD:side-->
+<section aria-labelledby="side-a"><h2 id="side-a">More everyday life</h2><ul><li data-slug="rent-split-calculator"><a href="rent-split-calculator.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg></span>Fair Rent Split Calculator</a></li><li data-slug="group-expense-splitter"><a href="group-expense-splitter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /> <circle cx="9" cy="7" r="4" /> <path d="M22 21v-2a4 4 0 0 0-3-3.87" /> <path d="M16 3.13a4 4 0 0 1 0 7.75" /> </svg></span>Group Expense Splitter</a></li><li data-slug="furniture-fit-calculator"><a href="furniture-fit-calculator.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3" /> <path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z" /> <path d="M4 18v2" /> <path d="M20 18v2" /> <path d="M12 4v9" /> </svg></span>Will It Fit? Furniture Door Calculator</a></li><li data-slug="dinner-timing-planner"><a href="dinner-timing-planner.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z" /> <path d="M6 17h12" /> </svg></span>Dinner Timing Planner</a></li><li data-slug="baking-pan-converter"><a href="baking-pan-converter.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="9" cy="7" r="2" /> <path d="M7.2 7.9 3 11v9c0 .6.4 1 1 1h16c.6 0 1-.4 1-1v-9c0-2-3-6-7-8l-3.6 2.6" /> <path d="M16 13H3" /> <path d="M16 17H3" /> </svg></span>Baking Pan Size Converter</a></li><li data-slug="recipe-scaler"><a href="recipe-scaler.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2 12h20" /> <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" /> <path d="m4 8 16-4" /> <path d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8" /> </svg></span>Recipe Scaler</a></li><li data-slug="decision-matrix"><a href="decision-matrix.html"><span class="tile " data-cat="life"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" /> <path d="M7 21h10" /> <path d="M12 3v18" /> <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" /> </svg></span>Decision Matrix Calculator</a></li></ul></section>
+<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul><li data-slug="unit-price-calculator"><a href="unit-price-calculator.html"><span class="tile " data-cat="calc"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" /> <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" /> </svg></span>Unit Price Calculator</a></li><li data-slug="image-compressor"><a href="image-compressor.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" /> <path d="m14 19 3 3v-5.5" /> <path d="m17 22 3-3" /> <circle cx="9" cy="9" r="2" /> </svg></span>Image Compressor</a></li><li data-slug="image-resizer"><a href="image-resizer.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /> <path d="M14 15H9v-5" /> <path d="M16 3h5v5" /> <path d="M21 3 9 15" /> </svg></span>Image Resizer</a></li><li data-slug="crop-image"><a href="crop-image.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /> </svg></span>Crop Image</a></li><li data-slug="photo-editor"><a href="photo-editor.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <line x1="21" x2="14" y1="4" y2="4" /> <line x1="10" x2="3" y1="4" y2="4" /> <line x1="21" x2="12" y1="12" y2="12" /> <line x1="8" x2="3" y1="12" y2="12" /> <line x1="21" x2="16" y1="20" y2="20" /> <line x1="12" x2="3" y1="20" y2="20" /> <line x1="14" x2="14" y1="2" y2="6" /> <line x1="8" x2="8" y1="10" y2="14" /> <line x1="16" x2="16" y1="18" y2="22" /> </svg></span>Photo Editor</a></li><li data-slug="image-metadata-remover"><a href="image-metadata-remover.html"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m2 2 20 20" /> <path d="M5 5a1 1 0 0 0-1 1v7c0 5 3.5 7.5 7.67 8.94a1 1 0 0 0 .67.01c2.35-.82 4.48-1.97 5.9-3.71" /> <path d="M9.309 3.652A12.252 12.252 0 0 0 11.24 2.28a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1v7a9.784 9.784 0 0 1-.08 1.264" /> </svg></span>Image Metadata Remover</a></li></ul></section>
+</aside>
+</div>
+</main>
+<footer class="foot"><div class="wrap">
+<div><h2>Image tools</h2><ul><li data-slug="image-compressor"><a href="image-compressor.html">Image Compressor</a></li><li data-slug="image-resizer"><a href="image-resizer.html">Image Resizer</a></li><li data-slug="image-converter"><a href="image-converter.html">Image Converter</a></li><li data-slug="crop-image"><a href="crop-image.html">Crop Image</a></li><li data-slug="rotate-image"><a href="rotate-image.html">Rotate &amp; Flip Image</a></li><li data-slug="photo-editor"><a href="photo-editor.html">Photo Editor</a></li></ul></div>
+<div><h2>PDF tools</h2><ul><li data-slug="merge-pdf"><a href="merge-pdf.html">Merge PDF</a></li><li data-slug="jpg-to-pdf"><a href="jpg-to-pdf.html">JPG to PDF</a></li><li data-slug="split-pdf"><a href="split-pdf.html">Split PDF</a></li><li data-slug="rotate-pdf"><a href="rotate-pdf.html">Rotate PDF</a></li><li data-slug="delete-pdf-pages"><a href="delete-pdf-pages.html">Delete PDF Pages</a></li><li data-slug="organize-pdf"><a href="organize-pdf.html">Organize PDF</a></li></ul></div>
+<div><h2>Text tools</h2><ul><li data-slug="word-counter"><a href="word-counter.html">Word Counter</a></li><li data-slug="character-counter"><a href="character-counter.html">Character Counter</a></li><li data-slug="case-converter"><a href="case-converter.html">Case Converter</a></li><li data-slug="fancy-text-generator"><a href="fancy-text-generator.html">Fancy Text Generator</a></li><li data-slug="remove-duplicate-lines"><a href="remove-duplicate-lines.html">Remove Duplicate Lines</a></li><li data-slug="lorem-ipsum-generator"><a href="lorem-ipsum-generator.html">Lorem Ipsum Generator</a></li></ul></div>
+<div><h2>QR code &amp; barcode tools</h2><ul><li data-slug="qr-code-generator"><a href="qr-code-generator.html">QR Code Generator</a></li><li data-slug="wifi-qr-code-generator"><a href="wifi-qr-code-generator.html">Wi-Fi QR Code Generator</a></li><li data-slug="whatsapp-qr-code-generator"><a href="whatsapp-qr-code-generator.html">WhatsApp QR Code Generator</a></li><li data-slug="vcard-qr-code-generator"><a href="vcard-qr-code-generator.html">vCard QR Code Generator</a></li><li data-slug="qr-code-scanner"><a href="qr-code-scanner.html">QR Code Scanner</a></li><li data-slug="barcode-reader"><a href="barcode-reader.html">Barcode Reader</a></li></ul></div>
+<div><h2>Generators &amp; random</h2><ul><li data-slug="password-generator"><a href="password-generator.html">Password Generator</a></li><li data-slug="random-number-generator"><a href="random-number-generator.html">Random Number Generator</a></li><li data-slug="spin-the-wheel"><a href="spin-the-wheel.html">Spin the Wheel</a></li><li data-slug="flip-a-coin"><a href="flip-a-coin.html">Flip a Coin</a></li><li data-slug="roll-a-dice"><a href="roll-a-dice.html">Roll a Dice</a></li></ul></div>
+<div><h2>Health &amp; fitness calculators</h2><ul><li data-slug="calorie-calculator"><a href="calorie-calculator.html">Calorie Calculator</a></li><li data-slug="bmi-calculator"><a href="bmi-calculator.html">BMI Calculator</a></li><li data-slug="bmr-calculator"><a href="bmr-calculator.html">BMR Calculator</a></li><li data-slug="macro-calculator"><a href="macro-calculator.html">Macro Calculator</a></li><li data-slug="body-fat-calculator"><a href="body-fat-calculator.html">Body Fat Calculator</a></li><li data-slug="ideal-weight-calculator"><a href="ideal-weight-calculator.html">Ideal Weight Calculator</a></li></ul></div>
+<div><h2>Finance calculators</h2><ul><li data-slug="compound-interest-calculator"><a href="compound-interest-calculator.html">Compound Interest Calculator</a></li><li data-slug="sip-calculator"><a href="sip-calculator.html">SIP Calculator</a></li><li data-slug="loan-calculator"><a href="loan-calculator.html">Loan Calculator</a></li><li data-slug="savings-goal-calculator"><a href="savings-goal-calculator.html">Savings Goal Calculator</a></li><li data-slug="retirement-calculator"><a href="retirement-calculator.html">Retirement Calculator</a></li><li data-slug="inflation-calculator"><a href="inflation-calculator.html">Inflation Calculator</a></li></ul></div>
+<div><h2>Calculators</h2><ul><li data-slug="percentage-calculator"><a href="percentage-calculator.html">Percentage Calculator</a></li><li data-slug="pizza-size-calculator"><a href="pizza-size-calculator.html">Pizza Size Calculator</a></li><li data-slug="unit-price-calculator"><a href="unit-price-calculator.html">Unit Price Calculator</a></li><li data-slug="discount-calculator"><a href="discount-calculator.html">Discount Calculator</a></li></ul></div>
+<div class="legal"><span>© 2026 TidyFigure. Free online tools, built by <a href="https://aivrasol.com" rel="noopener">AivraSol</a>. Your files never leave your device.</span>
+<span><a href="about.html">About</a> · <a href="privacy.html">Privacy</a> · <a href="index.html#tools">All tools</a></span></div>
+</div></footer>
+<script>(function(){var b=document.querySelector('.nav-toggle'),r=document.documentElement;if(!b)return;function set(o){r.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',o)}b.addEventListener('click',function(){set(!r.classList.contains('nav-open'))});document.querySelector('.nav-shade').addEventListener('click',function(){set(false)});document.querySelectorAll('.main-nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();</script>
+
+<script src="app.js"></script>
+
+<script>
+(function () {
+const SYS = {
+  metric: { d: 'km', eco: 'Fuel use (L/100 km)', price: 'Fuel price (per litre)', fuel: (dist, eco) => dist * eco / 100, fuelUnit: 'litres' },
+  us: { d: 'miles', eco: 'Fuel economy (US mpg)', price: 'Fuel price (per US gallon)', fuel: (dist, eco) => dist / eco, fuelUnit: 'US gallons' },
+  uk: { d: 'miles', eco: 'Fuel economy (UK mpg)', price: 'Fuel price (per litre)', fuel: (dist, eco) => dist / eco * 4.54609, fuelUnit: 'litres' },
+};
+const sys = () => SYS[$('input[name="sys"]:checked').value];
+
+const list = $('#riders');
+makeList(list, $('#add-rider'), v => `
+  <label class="f f-name"><span>Name</span><input data-f="name" type="text" value="${esc(v.name ?? '')}" placeholder="e.g. Sam"></label>
+  <label class="f"><span>Distance in the car</span><input data-f="dist" type="number" inputmode="decimal" min="0" step="any" value="${esc(v.dist ?? '')}" placeholder="whole trip"></label>
+  <button type="button" class="rm" aria-label="Remove this person">×</button>`,
+  [
+    { name: 'Sam (driver)', dist: 420 },
+    { name: 'Priya', dist: 420 },
+    { name: 'Leo', dist: 250 },
+    { name: 'Mia', dist: 120 },
+  ], calc);
+onAny('#dist, #eco, #price, #extra, #driver-free, input[name="sys"]', calc);
+
+function calc() {
+  const s = sys();
+  $('#dist-label').textContent = `Trip distance (${s.d})`;
+  $('#eco-label').textContent = s.eco;
+  $('#price-label').textContent = s.price;
+  const dist = val($('#dist')), eco = val($('#eco')), price = val($('#price'));
+  const extra = Math.max(0, val($('#extra')) || 0);
+  const out = $('#out');
+  const people = $$('.row', list).map((r, i) => {
+    const d = val(field(r, 'dist'));
+    return { name: field(r, 'name').value.trim() || `Person ${i + 1}`, d: Math.min(dist, ok(d) && d >= 0 ? d : dist), fuel: 0 };
+  });
+  if (!(dist > 0 && eco > 0 && price >= 0) || !people.length) { out.innerHTML = '<p class="empty">Enter the distance, fuel economy and fuel price.</p>'; return; }
+
+  const fuelAmount = s.fuel(dist, eco);
+  const fuelCost = fuelAmount * price;
+  const perUnit = fuelCost / dist;
+
+  // Walk the trip in stretches between drop-off points; each stretch is shared by whoever is still in the car.
+  const stops = [...new Set([0, ...people.map(p => p.d), dist])].sort((a, b) => a - b);
+  for (let i = 1; i < stops.length; i++) {
+    const from = stops[i - 1], to = stops[i];
+    let riders = people.filter(p => p.d >= to);
+    if (!riders.length) { const far = Math.max(...people.map(p => p.d)); riders = people.filter(p => p.d === far); }
+    riders.forEach(p => { p.fuel += (to - from) * perUnit / riders.length; });
+  }
+  if ($('#driver-free').checked && people.length > 1) {
+    const driverShare = people[0].fuel;
+    const others = people.slice(1);
+    const othersTotal = others.reduce((t, p) => t + p.fuel, 0);
+    others.forEach(p => { p.fuel += othersTotal ? driverShare * p.fuel / othersTotal : driverShare / others.length; });
+    people[0].fuel = 0;
+  }
+  people.forEach(p => { p.extra = extra / people.length; p.total = p.fuel + p.extra; });
+  const total = fuelCost + extra;
+
+  let html = `<p class="kicker">Trip cost</p><p class="big"><mark>${fmt(total)}</mark></p>
+    <p class="sub">${fmtMax(fuelAmount, 1)} ${s.fuelUnit} of fuel = ${fmt(fuelCost)}${extra ? `, plus ${fmt(extra)} tolls &amp; parking` : ''}</p>
+    <div class="scroll"><table class="tbl"><thead><tr><th>Person</th><th class="n">Rode</th><th class="n">Fuel</th><th class="n">Pays</th></tr></thead><tbody>`;
+  people.forEach(p => {
+    html += `<tr><td>${esc(p.name)}</td><td class="n">${fmtMax(p.d, 1)} ${s.d}</td><td class="n">${fmt(p.fuel)}</td><td class="n"><strong>${fmt(p.total)}</strong></td></tr>`;
+  });
+  html += `</tbody><tfoot><tr><td>Total</td><td></td><td class="n">${fmt(fuelCost)}</td><td class="n">${fmt(total)}</td></tr></tfoot></table></div>
+    <p class="note">Fuel costs ${fmt(perUnit, 3)} per ${s.d === 'km' ? 'km' : 'mile'}. Each stretch of road is split between the people in the car for that stretch.</p>`;
+  out.innerHTML = html;
+}
+calc();
+
+})();
+</script>
+<!--TF:BODY_END-->
+</body>
+</html>

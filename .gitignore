@@ -1,0 +1,6 @@
+node_modules/
+*.zip
+dist-php/data/settings.php
+dist-php/data/logins.json
+dist-php/data/cache/yt-*
+.DS_Store
