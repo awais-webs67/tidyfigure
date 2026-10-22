@@ -1,0 +1,28 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose an audio or video file">
+      {{icon:audio-lines}}
+      <strong>Drop an audio or video file</strong>
+      <span>MP3, M4A, WAV, voice notes, MP4, MOV, WebM</span>
+      <input type="file" id="file" accept="audio/*,video/*,.m4a,.opus,.ogg">
+    </div>
+    <div id="player" hidden></div>
+    <div class="fields">
+      <label class="f"><span>Language spoken</span><select id="lang">
+        <option value="">Detect automatically</option><option value="english">English</option><option value="urdu">Urdu</option><option value="hindi">Hindi</option><option value="arabic">Arabic</option>
+        <option value="bengali">Bengali</option><option value="punjabi">Punjabi</option><option value="spanish">Spanish</option><option value="french">French</option><option value="german">German</option>
+        <option value="portuguese">Portuguese</option><option value="italian">Italian</option><option value="dutch">Dutch</option><option value="turkish">Turkish</option><option value="russian">Russian</option>
+        <option value="persian">Persian</option><option value="indonesian">Indonesian</option><option value="malay">Malay</option><option value="chinese">Chinese</option><option value="japanese">Japanese</option><option value="korean">Korean</option>
+      </select></label>
+      <label class="f"><span>Output</span><select id="task"><option value="transcribe" selected>Text in the same language</option><option value="translate">Translate to English</option></select></label>
+      <label class="f"><span>Accuracy</span><select id="model"><option value="tiny">Fast (41 MB model)</option><option value="base" selected>Accurate (77 MB model)</option></select></label>
+    </div>
+    <button type="button" class="btn big-btn" id="go" disabled>{{icon:audio-lines}}Transcribe</button>
+    <p class="note">The speech-recognition AI (OpenAI Whisper) runs on your device, so recordings stay private. It downloads once and is then saved in your browser.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Transcript</p>
+    <p class="empty">Choose a recording and press Transcribe. You’ll get the text, timestamps and subtitle files.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample speech (11 s)</button>
+  </div>
+</div>

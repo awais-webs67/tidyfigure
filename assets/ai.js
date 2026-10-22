@@ -90,16 +90,31 @@ const AI = (() => {
     return c;
   }
 
-  // Speech recognition with Whisper. Returns { text, chunks: [{ timestamp: [start, end], text }] }.
+  // Speech recognition with Whisper (MIT licence), 8-bit on the CPU engine: tiny ≈ 41 MB, base ≈ 77 MB.
+  // audio16k: Float32Array of mono samples at 16 kHz. Returns { text, chunks: [{ timestamp: [start, end], text }] }.
   async function transcribe(audio16k, { model = 'base', language = null, task = 'transcribe', onProgress } = {}) {
     const t = await load(), id = `onnx-community/whisper-${model}`;
     if (!cache[id]) {
-      const dev = await device();
-      cache[id] = t.pipeline('automatic-speech-recognition', id, { dtype: dev === 'webgpu' ? { encoder_model: 'fp32', decoder_model_merged: 'q4' } : 'q8', device: dev, progress_callback: progressTracker(onProgress) })
+      cache[id] = t.pipeline('automatic-speech-recognition', id, { dtype: 'q8', device: 'wasm', progress_callback: progressTracker(onProgress) })
         .catch(e => { delete cache[id]; throw e; });
     }
     const asr = await cache[id];
-    return asr(audio16k, { language: language || null, task, chunk_length_s: 30, stride_length_s: 5, return_timestamps: true });
+    const opts = { task, chunk_length_s: 30, stride_length_s: 5, return_timestamps: true };
+    if (language) opts.language = language;
+    return asr(audio16k, opts);
+  }
+
+  // Decodes any audio or video file to 16 kHz mono, the format Whisper needs.
+  async function audio16k(file) {
+    const buf = await file.arrayBuffer();
+    const ac = new (window.AudioContext || window.webkitAudioContext)();
+    let decoded;
+    try { decoded = await ac.decodeAudioData(buf); } catch (e) { throw new Error('This file has no sound track your browser can read.'); } finally { ac.close(); }
+    const off = new OfflineAudioContext(1, Math.ceil(decoded.duration * 16000), 16000);
+    const srcNode = off.createBufferSource();
+    srcNode.buffer = decoded; srcNode.connect(off.destination); srcNode.start();
+    const r = await off.startRendering();
+    return { samples: r.getChannelData(0), duration: decoded.duration };
   }
 
   // Face landmarks with MediaPipe Face Landmarker (Apache 2.0, 3.7 MB). Returns pixel positions of the eyes, chin and forehead.
@@ -127,5 +142,5 @@ const AI = (() => {
     return new File([b], name, { type: b.type || 'application/octet-stream' });
   }
 
-  return { load, device, removeBackground, modelSize, transcribe, face, toCanvas, sampleBlob };
+  return { load, device, removeBackground, modelSize, transcribe, audio16k, face, toCanvas, sampleBlob };
 })();

@@ -1,0 +1,21 @@
+<div class="tool-grid">
+  <form class="inputs" id="form">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:lock-open}}
+      <strong>Drop a password-protected PDF</strong>
+      <span>It stays on your device</span>
+      <input type="file" id="file" accept=".pdf,application/pdf">
+    </div>
+    <div id="info" class="file-preview" hidden></div>
+    <div id="pwrow" hidden>
+      <label class="f"><span>PDF password</span><input type="password" id="pw" autocomplete="off"></label>
+      <label class="check"><input type="checkbox" id="show">Show password</label>
+    </div>
+    <button class="btn big-btn" id="go" disabled>{{icon:lock-open}}Unlock PDF</button>
+  </form>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Unlocked PDF</p>
+    <p class="empty">Remove the password and print, copy or edit restrictions from a PDF you’re allowed to open. You’ll need the password once.</p>
+    <button type="button" class="btn ghost" id="sample">Try a locked sample (password: <code>sample123</code>)</button>
+  </div>
+</div>

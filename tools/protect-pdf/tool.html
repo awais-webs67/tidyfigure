@@ -1,0 +1,29 @@
+<div class="tool-grid">
+  <form class="inputs" id="form">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:file-lock}}
+      <strong>Drop a PDF to protect</strong>
+      <span>It stays on your device</span>
+      <input type="file" id="file" accept=".pdf,application/pdf">
+    </div>
+    <div id="thumb" class="file-preview" hidden></div>
+    <div class="fields">
+      <label class="f"><span>Password</span><input type="password" id="pw" autocomplete="new-password" minlength="4" required></label>
+      <label class="f"><span>Repeat password</span><input type="password" id="pw2" autocomplete="new-password" minlength="4" required></label>
+    </div>
+    <label class="check"><input type="checkbox" id="show">Show password</label>
+    <p class="group-title">What people can do after opening it</p>
+    <div class="fields">
+      <label class="check"><input type="checkbox" id="print" checked>Print</label>
+      <label class="check"><input type="checkbox" id="copy" checked>Copy text</label>
+      <label class="check"><input type="checkbox" id="edit">Edit, add comments, fill forms</label>
+    </div>
+    <label class="f"><span>Encryption</span><select id="algo"><option value="AES-256" selected>AES-256 (strongest, Acrobat 9 and newer)</option><option value="AES-128">AES-128 (for very old PDF readers)</option></select></label>
+    <button class="btn big-btn" id="go" disabled>{{icon:file-lock}}Protect PDF</button>
+  </form>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Protected PDF</p>
+    <p class="empty">Choose a PDF and a password. Anyone opening the file will need the password.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample PDF</button>
+  </div>
+</div>
