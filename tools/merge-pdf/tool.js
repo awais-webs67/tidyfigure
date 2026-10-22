@@ -29,7 +29,7 @@ function render() {
   $('#merge').disabled = good.length < 2;
   const pages = good.reduce((s, d) => s + d.pages, 0);
   out.innerHTML = `<p class="kicker">Merged PDF</p>${good.length >= 2
-    ? `<p class="big"><mark>${pages} pages</mark></p><p class="sub">${good.length} files, in the order shown. Press “Merge PDFs” to create and download it.</p>`
+    ? `<p class="big"><mark>${pages} pages</mark></p><p class="sub">${good.length} files, in the order shown. Press “Merge PDFs” to preview the result.</p>`
     : '<p class="empty">Add at least two PDF files. Use the arrows to change their order.</p>'}`;
 }
 
@@ -44,9 +44,7 @@ $('#merge').addEventListener('click', async () => {
     }
     const bytesOut = await merged.save();
     const blob = new Blob([bytesOut], { type: 'application/pdf' });
-    download(blob, 'merged.pdf');
-    out.innerHTML = `<p class="kicker">Merged PDF</p><p class="big"><mark>Done</mark></p><p class="sub">${merged.getPageCount()} pages · ${bytes(blob.size)}. Your download should start automatically.</p><button type="button" class="btn" id="again">Download again</button>`;
-    $('#again').onclick = () => download(blob, 'merged.pdf');
+    await showPdfResult(out, bytesOut, { title: 'Merged PDF', name: 'merged.pdf', blob, label: 'Download merged PDF', note: 'Check the page order above. To change it, reorder the files and merge again.' });
   } catch (e) {
     out.innerHTML = `<p class="kicker">Merged PDF</p><p class="empty">Something went wrong: ${esc(e.message)}</p>`;
   }

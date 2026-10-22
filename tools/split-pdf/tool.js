@@ -63,7 +63,7 @@ function render() {
     return `${ns.length === 1 ? 'page' : 'pages'} ${parts.join(', ')}`;
   };
   out.innerHTML = `<p class="kicker">Result</p><p class="big"><mark>${g.files.length} file${g.files.length > 1 ? 's' : ''}</mark></p>
-    <p class="sub">${g.files.length > 1 ? 'Downloaded together as a .zip file.' : 'Downloaded as one PDF.'}</p>
+    <p class="sub">${g.files.length > 1 ? 'Press Split PDF to preview them, then download them together as a .zip file.' : 'Press Split PDF to preview it, then download one PDF.'}</p>
     <ul class="files">${g.files.slice(0, 8).map((pg, i) => `<li><span class="tile" data-cat="pdf">${i + 1}</span><span class="meta"><b>${esc(baseName(srcName))}-${g.files.length > 1 ? i + 1 : 'extract'}.pdf</b><small>${label(pg)}</small></span></li>`).join('')}</ul>
     ${g.files.length > 8 ? `<p class="note">…and ${g.files.length - 8} more.</p>` : ''}`;
 }
@@ -75,11 +75,27 @@ $('#go').addEventListener('click', async () => {
   const base = baseName(srcName);
   const make = async pages => { const d = await PDFDocument.create(); (await d.copyPages(src, pages)).forEach(p => d.addPage(p)); return d.save(); };
   if (g.files.length === 1) {
-    download(new Blob([await make(g.files[0])], { type: 'application/pdf' }), `${base}-extract.pdf`);
+    await showPdfResult(out, await make(g.files[0]), { title: 'Extracted PDF', name: `${base}-extract.pdf`, label: 'Download PDF' });
   } else {
-    const zip = new JSZip();
-    for (let i = 0; i < g.files.length; i++) zip.file(`${base}-${i + 1}.pdf`, await make(g.files[i]));
-    download(await zip.generateAsync({ type: 'blob' }), `${base}-split.zip`);
+    // Preview: the first page of each new file, then one .zip download.
+    const zip = new JSZip(), firsts = [];
+    for (let i = 0; i < g.files.length; i++) {
+      const b = await make(g.files[i]);
+      zip.file(`${base}-${i + 1}.pdf`, b);
+      if (i < 12) firsts.push(b);
+    }
+    const blob = await zip.generateAsync({ type: 'blob' });
+    out.innerHTML = `<p class="kicker">Result</p><p class="big"><mark>${g.files.length} files</mark></p><p class="sub">First page of each file:</p><div class="pdf-thumbs"></div>
+      <p class="sub">${esc(base)}-split.zip · ${bytes(blob.size)}</p><div class="btns"><button type="button" class="btn big-btn" id="dl">Download all (.zip)</button></div>`;
+    $('#dl').onclick = () => download(blob, `${base}-split.zip`);
+    const box = out.querySelector('.pdf-thumbs');
+    for (let i = 0; i < firsts.length; i++) {
+      const f = document.createElement('figure');
+      f.appendChild(await renderPdfPage(await openPdf(firsts[i]), 1, 0.25));
+      f.insertAdjacentHTML('beforeend', `<figcaption>${esc(base)}-${i + 1}.pdf</figcaption>`);
+      box.appendChild(f);
+    }
+    if (g.files.length > firsts.length) box.insertAdjacentHTML('beforeend', `<p class="sub more">+ ${g.files.length - firsts.length} more files</p>`);
   }
   $('#go').disabled = false;
 });

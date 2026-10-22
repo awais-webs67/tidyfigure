@@ -40,8 +40,7 @@ $('#go').addEventListener('click', async () => {
       <p class="sub">The compressed version (${bytes(blob.size)}) would be larger than your original (${bytes(file.size)}). This PDF is mostly text and vector graphics, which are already efficient. Try “Strong”, or remove pages you don’t need.</p>`;
     return;
   }
-  out.innerHTML = `<p class="kicker">Compressed PDF</p><p class="big"><mark>${bytes(blob.size)}</mark></p>
-    <p class="sub">from ${bytes(file.size)} · <span class="saving">${saved.toFixed(0)}% smaller</span></p>
-    <button type="button" class="btn" id="dl">Download compressed PDF</button>`;
-  $('#dl').onclick = () => download(blob, `${baseName(file.name)}-compressed.pdf`);
+  await showPdfResult(out, outBytes, { title: 'Compressed PDF', name: `${baseName(file.name)}-compressed.pdf`, blob, label: 'Download compressed PDF',
+    headline: `<p class="big"><mark>${bytes(blob.size)}</mark></p><p class="sub">from ${bytes(file.size)} · <span class="saving">${saved.toFixed(0)}% smaller</span></p>`,
+    note: 'Check the pages are still sharp enough. If text looks blurry, choose a lighter level and compress again.' });
 });

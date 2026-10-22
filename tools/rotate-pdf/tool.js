@@ -33,7 +33,7 @@ if ($('#all-cw')) $('#all-cw').addEventListener('click', () => pages.rotateAll(9
 if ($('#all-ccw')) $('#all-ccw').addEventListener('click', () => pages.rotateAll(-90));
 $('#save').addEventListener('click', async () => {
   $('#save').disabled = true;
-  const blob = new Blob([await pages.save()], { type: 'application/pdf' });
-  download(blob, `${baseName(pages.name)}-rotated.pdf`);
+  const pdfBytes = await pages.save();
+  await showPdfResult(out, pdfBytes, { title: 'New PDF', name: `${baseName(pages.name)}-rotated.pdf`, label: 'Download rotated PDF', note: 'This is the new file. To change it, edit the pages above and press the button again.' });
   $('#save').disabled = false;
 });

@@ -37,9 +37,15 @@ async function save(clear) {
     ['CreationDate', 'ModDate', 'Title', 'Author', 'Subject', 'Keywords', 'Creator', 'Producer', 'Trapped'].forEach(k => info.delete(PDFName.of(k)));
     pdf.catalog.delete(PDFName.of('Metadata'));
   }
-  const blob = new Blob([await pdf.save({ updateFieldAppearances: false })], { type: 'application/pdf' });
-  download(blob, `${baseName(file.name)}-${clear ? 'clean' : 'edited'}.pdf`);
-  out.innerHTML += `<p class="note"><strong>${clear ? 'All metadata removed.' : 'Edits saved.'}</strong> Your download should start automatically.</p>`;
+  const saved = await pdf.save({ updateFieldAppearances: false });
+  // Re-open the new file and list what's left, so people can check before downloading.
+  const back = await PDFDocument.load(saved, { ignoreEncryption: true, updateMetadata: false });
+  const left = [['Title', back.getTitle()], ['Author', back.getAuthor()], ['Subject', back.getSubject()], ['Keywords', back.getKeywords()], ['Creator', back.getCreator()], ['Producer', back.getProducer()], ['Created', back.getCreationDate()], ['Modified', back.getModificationDate()]].filter(r => r[1]);
+  const blob = new Blob([saved], { type: 'application/pdf' }), name = `${baseName(file.name)}-${clear ? 'clean' : 'edited'}.pdf`;
+  out.innerHTML = `<p class="kicker">New file</p><span class="verdict ${left.length ? 'tight' : 'ok'}">${left.length ? `${left.length} propert${left.length > 1 ? 'ies' : 'y'} kept` : 'No metadata left'}</span>
+    ${left.length ? `<div class="scroll"><table class="tbl"><tbody>${left.map(([k, v]) => `<tr><td>${k}</td><td>${esc(v instanceof Date ? v.toLocaleString() : String(v))}</td></tr>`).join('')}</tbody></table></div>` : '<p class="sub">We re-opened the new file: title, author, software and dates are all gone.</p>'}
+    <p class="sub">${esc(name)} · ${bytes(blob.size)}</p><div class="btns"><button type="button" class="btn big-btn" id="dl">Download ${clear ? 'clean' : 'edited'} PDF</button></div>`;
+  $('#dl').onclick = () => download(blob, name);
 }
 
 fileDrop($('#drop'), $('#file'), fs => open(fs[0]));

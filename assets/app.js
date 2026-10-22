@@ -201,6 +201,28 @@ async function samplePdf(pages = 4, title = 'Quarterly report', photo = false) {
 }
 const isPdf = f => f && (f.type === 'application/pdf' || /\.pdf$/i.test(f.name));
 
+// Result panel for PDF tools: thumbnails of the new file, so people check it before downloading.
+async function showPdfResult(out, pdfBytes, { title = 'Your PDF', name = 'document.pdf', headline = '', note = '', label = 'Download PDF', blob = null, max = 8 } = {}) {
+  const file = blob || new Blob([pdfBytes], { type: 'application/pdf' });
+  out.innerHTML = `<p class="kicker">${esc(title)}</p>${headline}<div class="pdf-thumbs" aria-label="Preview of the new PDF"><p class="sub">Making preview…</p></div>
+    <p class="sub pdf-meta"></p><div class="btns"><button type="button" class="btn big-btn pdf-dl">${esc(label)}</button></div>${note ? `<p class="note">${note}</p>` : ''}`;
+  out.querySelector('.pdf-dl').onclick = () => download(file, name);
+  const box = out.querySelector('.pdf-thumbs');
+  try {
+    const doc = await openPdf(pdfBytes);
+    out.querySelector('.pdf-meta').textContent = `${name} · ${doc.numPages} page${doc.numPages > 1 ? 's' : ''} · ${bytes(file.size)}`;
+    box.innerHTML = '';
+    for (let i = 1; i <= Math.min(doc.numPages, max); i++) {
+      const c = await renderPdfPage(doc, i, 0.3);
+      const f = document.createElement('figure');
+      f.appendChild(c); f.insertAdjacentHTML('beforeend', `<figcaption>${i}</figcaption>`);
+      box.appendChild(f);
+    }
+    if (doc.numPages > max) box.insertAdjacentHTML('beforeend', `<p class="sub more">+ ${doc.numPages - max} more page${doc.numPages - max > 1 ? 's' : ''}</p>`);
+  } catch (e) { box.innerHTML = '<p class="sub">Preview isn’t available, but the file is ready.</p>'; }
+  out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
 // ---------- Single-image tools ----------
 // Calls onImage(img, file) with a loaded <img> for the first image dropped or chosen.
 function pickImage(zone, input, onImage) {
