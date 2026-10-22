@@ -102,6 +102,24 @@ const AI = (() => {
     return asr(audio16k, { language: language || null, task, chunk_length_s: 30, stride_length_s: 5, return_timestamps: true });
   }
 
+  // Face landmarks with MediaPipe Face Landmarker (Apache 2.0, 3.7 MB). Returns pixel positions of the eyes, chin and forehead.
+  const MP = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+  async function face(canvas) {
+    if (!cache.face) {
+      cache.face = (async () => {
+        const v = await import(MP + '/vision_bundle.mjs');
+        const files = await v.FilesetResolver.forVisionTasks(MP + '/wasm');
+        return v.FaceLandmarker.createFromOptions(files, { baseOptions: { modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task', delegate: 'CPU' }, runningMode: 'IMAGE', numFaces: 1 });
+      })().catch(e => { delete cache.face; throw e; });
+    }
+    const lm = await cache.face, res = lm.detect(canvas), pts = res.faceLandmarks && res.faceLandmarks[0];
+    if (!pts) return null;
+    const P = i => ({ x: pts[i].x * canvas.width, y: pts[i].y * canvas.height });
+    const xs = pts.map(p => p.x * canvas.width);
+    // 468/473: iris centres; 152: chin; 10: top of the forehead.
+    return { eyeL: P(468), eyeR: P(473), chin: P(152), forehead: P(10), left: Math.min(...xs), right: Math.max(...xs) };
+  }
+
   async function sampleBlob(name) {
     const r = await fetch(SAMPLES + name);
     if (!r.ok) throw new Error('The sample couldn’t be downloaded.');
@@ -109,5 +127,5 @@ const AI = (() => {
     return new File([b], name, { type: b.type || 'application/octet-stream' });
   }
 
-  return { load, device, removeBackground, modelSize, transcribe, toCanvas, sampleBlob };
+  return { load, device, removeBackground, modelSize, transcribe, face, toCanvas, sampleBlob };
 })();

@@ -1,0 +1,43 @@
+<div class="tool-grid rb-grid">
+  <div class="inputs" id="form">
+    <div class="rb-top">
+      <div class="seg" role="radiogroup" aria-label="Template">
+        <label><input type="radio" name="tpl" value="modern" checked><span>Modern</span></label>
+        <label><input type="radio" name="tpl" value="classic"><span>Classic</span></label>
+        <label><input type="radio" name="tpl" value="compact"><span>Compact</span></label>
+      </div>
+      <label class="f rb-color"><span>Colour</span><input type="color" id="accent" value="#0e7c86"></label>
+    </div>
+    <details open class="rb-sec"><summary>Personal details</summary>
+      <div class="fields">
+        <label class="f"><span>Full name</span><input type="text" data-k="name"></label>
+        <label class="f"><span>Job title</span><input type="text" data-k="title"></label>
+        <label class="f"><span>Email</span><input type="email" data-k="email"></label>
+        <label class="f"><span>Phone</span><input type="tel" data-k="phone"></label>
+        <label class="f"><span>City, country</span><input type="text" data-k="location"></label>
+        <label class="f"><span>LinkedIn or website</span><input type="text" data-k="link"></label>
+      </div>
+      <label class="f"><span>Photo (optional, Modern template)</span><input type="file" id="photo" accept="image/*"></label>
+    </details>
+    <details open class="rb-sec"><summary>Profile summary</summary>
+      <label class="f"><span>2–4 sentences about your experience and what you offer</span><textarea data-k="summary" style="min-height:96px"></textarea></label>
+    </details>
+    <details open class="rb-sec"><summary>Work experience</summary>
+      <div class="list" id="exp"></div><button type="button" class="add" id="add-exp">+ Add a job</button>
+    </details>
+    <details class="rb-sec"><summary>Education</summary>
+      <div class="list" id="edu"></div><button type="button" class="add" id="add-edu">+ Add education</button>
+    </details>
+    <details class="rb-sec"><summary>Skills, languages & certificates</summary>
+      <label class="f"><span>Skills (separate with commas)</span><textarea data-k="skills" style="min-height:70px"></textarea></label>
+      <label class="f"><span>Languages (separate with commas)</span><input type="text" data-k="langs"></label>
+      <label class="f"><span>Certificates and awards (one per line)</span><textarea data-k="certs" style="min-height:70px"></textarea></label>
+    </details>
+    <div class="btns"><button type="button" class="btn ghost" id="blank">Start a blank resume</button><button type="button" class="btn ghost" id="export">Save as file</button><label class="btn ghost" style="cursor:pointer">Open file<input type="file" id="import" accept=".json,application/json" hidden></label></div>
+    <p class="note">Your resume is saved in this browser automatically. Use “Save as file” to keep a copy or move it to another device.</p>
+  </div>
+  <div class="out rb-out" id="out" aria-live="polite">
+    <div class="btns"><button type="button" class="btn big-btn" id="pdf">{{icon:download}}Download PDF</button><span class="sub" id="pages"></span></div>
+    <div id="preview" class="rb-preview"></div>
+  </div>
+</div>

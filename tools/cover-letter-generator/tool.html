@@ -1,0 +1,34 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Tone">
+      <label><input type="radio" name="tone" value="pro" checked><span>Professional</span></label>
+      <label><input type="radio" name="tone" value="warm"><span>Enthusiastic</span></label>
+      <label><input type="radio" name="tone" value="short"><span>Short &amp; direct</span></label>
+    </div>
+    <p class="group-title">You</p>
+    <div class="fields">
+      <label class="f"><span>Your name</span><input type="text" data-k="name" value="Ayesha Rahman"></label>
+      <label class="f"><span>Email and phone</span><input type="text" data-k="contact" value="ayesha.rahman@email.com · +44 7700 900123"></label>
+      <label class="f"><span>Current or last job title</span><input type="text" data-k="current" value="Digital Marketing Manager"></label>
+      <label class="f"><span>Years of experience</span><input type="text" data-k="years" value="7"></label>
+    </div>
+    <p class="group-title">The job</p>
+    <div class="fields">
+      <label class="f"><span>Job you’re applying for</span><input type="text" data-k="job" value="Head of Growth"></label>
+      <label class="f"><span>Company</span><input type="text" data-k="company" value="Greenline Energy"></label>
+      <label class="f"><span>Hiring manager (if known)</span><input type="text" data-k="manager" placeholder="e.g. Ms Patel"></label>
+      <label class="f"><span>Where you saw the job</span><input type="text" data-k="source" value="LinkedIn"></label>
+    </div>
+    <label class="f"><span>Your best achievements (one per line, with numbers if you can)</span><textarea data-k="wins" style="min-height:90px">Grew online revenue from £4.1m to £8.6m in two years
+Cut cost per acquisition by 32% while doubling ad spend</textarea></label>
+    <label class="f"><span>Skills they ask for that you have (separate with commas)</span><input type="text" data-k="skills" value="paid acquisition, SEO, analytics, team leadership"></label>
+    <label class="f"><span>Why this company? (one sentence)</span><input type="text" data-k="why" value="your mission to make clean energy affordable for every household"></label>
+    <button type="button" class="btn ghost" id="shuffle">{{icon:refresh-cw}}Try different wording</button>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your cover letter · click to edit</p>
+    <div class="letter" id="letter" contenteditable="true" spellcheck="true"></div>
+    <div class="btns"><button type="button" class="btn" id="copy">Copy</button><button type="button" class="btn ghost" id="pdf">Download PDF</button><button type="button" class="btn ghost" id="txt">.txt</button></div>
+    <p class="note" id="count"></p>
+  </div>
+</div>
