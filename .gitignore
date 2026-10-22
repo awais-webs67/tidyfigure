@@ -1,6 +1,7 @@
-node_modules/
-*.zip
-dist-php/data/settings.php
-dist-php/data/logins.json
-dist-php/data/cache/yt-*
+# Written by the installer: database password, never commit it
+/config.php
+# Generated caches
+/storage/cache/*
+!/storage/cache/.gitignore
+!/storage/cache/index.php
 .DS_Store

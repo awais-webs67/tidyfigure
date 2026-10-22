@@ -1,54 +1,65 @@
 # TidyFigure
 
-131 free online tools (PDF, image, video & audio, QR/barcode, text, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with a PHP admin panel. Every tool runs in the visitor's browser: files are never uploaded, there are no API costs, and nothing needs regular data updates.
+131 free online tools (PDF, image, video & audio, QR/barcode, text, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
+
+**Plain PHP + MySQL.** No Node, npm or build step: clone the repo into your web folder and it runs. Every tool runs in the visitor's browser, so files are never uploaded and there are no API costs.
 
 ## Folders
 
-| Folder | What it is |
+| Path | What it is |
 |---|---|
-| `src/tools/<slug>/` | One folder per tool: `tool.html` (inputs), `tool.js` (logic), `meta.js` (SEO title, description, article, FAQs) |
-| `src/assets/` | Shared CSS (theme), `app.js` helpers, `pdf-pages.js` (PDF page grid), `scan.js` (QR/barcode scanner), `media.js` (video/audio helpers) |
-| `src/php/` | Front controller, admin panel and YouTube API proxy |
-| `build.js` | Builds everything below |
-| `dist-php/` | **Upload this to cPanel / PHP hosting** (includes the admin panel) |
-| `dist/` | Plain static version for hosts without PHP (no admin panel, no YouTube counter) |
-| `preview/` | Open `preview/index.html` on your computer to browse locally |
+| `index.php` | Front controller: renders every page (homepage, tools, sitemap.xml, robots.txt) |
+| `tools/<slug>/` | One folder per tool: `meta.php` (name, SEO title, description, article, FAQs), `tool.html` (inputs), `tool.js` (logic) |
+| `app/site.php` | Site name and the list of categories |
+| `app/bootstrap.php`, `app/render.php` | Database connection, settings, page templates |
+| `app/schema.sql` | MySQL tables (the installer creates them) |
+| `app/icons/` | SVG icons ([Lucide](https://lucide.dev/icons)) |
+| `assets/` | CSS theme and shared JavaScript |
+| `admin/` | Admin panel |
+| `install/` | One-time installer |
+| `api/youtube.php` | Server side of the YouTube Subscriber Counter |
+| `storage/cache/` | Cache of the tool list (must be writable) |
 
-## Build
+`app/`, `tools/`, `storage/`, `config.php` and hidden files such as `.git` are blocked from the web by `.htaccess`.
 
-```bash
-npm install            # once: installs the icon set used at build time
-node build.js          # add --words to see each page's word count
-```
+## Install on cPanel with Git
 
-The build warns about SEO problems: titles over 65 characters, descriptions outside 110–160, missing icons or related tools, and pages under 400 words.
+1. **Subdomain:** cPanel → Domains → create `tidyfigure.yourdomain.com`. Note its **document root** (for example `/home/USER/tidyfigure.yourdomain.com`).
+2. **Clone:** cPanel → Git Version Control → Create → Clone URL `https://github.com/awais-webs67/tidyfigure.git`, Repository Path = the subdomain's document root (the folder must be empty or not exist yet).
+   If you already cloned it somewhere else, go to Domains → Manage the subdomain and set its document root to the clone folder (the folder that contains `index.php`).
+3. **Database:** cPanel → MySQL Databases → create a database and a user, then "Add user to database" with **ALL PRIVILEGES**.
+4. **SSL:** cPanel → SSL/TLS Status → run AutoSSL for the subdomain. (Until it has SSL, remove the two "Force HTTPS" lines from `.htaccess`.)
+5. **Install:** open `https://tidyfigure.yourdomain.com/install/` and enter the database details and your admin username and password. **Do this straight after cloning:** until it's done, anyone who finds `/install/` could set it up.
+6. Sign in at `/admin/`.
+7. Submit `https://tidyfigure.yourdomain.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 
-## Install on cPanel (PHP hosting)
+Requirements: PHP 8.0+ with PDO MySQL and mbstring, MySQL 5.7+ or MariaDB 10.3+, Apache or LiteSpeed with `mod_rewrite` (standard on cPanel). If the installer can't write `config.php`, it shows the text to paste into a new `config.php` file (see `config.sample.php`).
 
-1. Point your domain at the hosting account and turn on SSL (AutoSSL / Let's Encrypt in cPanel).
-2. Upload the **contents** of `dist-php/` into `public_html` (or the domain's folder), including the hidden `.htaccess` files. File Manager → Upload a zip → Extract is easiest.
-3. Make sure the `data/` folder is writable by PHP (permissions 755; use 775 if saving fails).
-4. Visit `https://yourdomain.com/admin/` **straight away** and create the admin password. The first visitor to an un-configured admin panel sets the password, so do this immediately after uploading.
-5. Submit `https://yourdomain.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+## Updating
 
-Requirements: PHP 8.0+, Apache or LiteSpeed with `mod_rewrite` (standard on cPanel). On nginx, send every request that isn't a real file to `index.php` and deny `/data`, `/inc` and `/pages`.
-
-When you update the site later, upload the new files but **don't delete `data/settings.php`**, which holds your admin settings.
+cPanel → Git Version Control → Manage → **Pull or Deploy** → **Update from Remote**. Your `config.php` and database are never touched by updates, because `config.php` isn't in Git.
 
 ## Admin panel (`/admin/`)
 
-- **Tools & SEO:** switch any tool on or off (it disappears from menus, sidebars and the sitemap, and returns 404), override the SEO title and meta description of any page with live character counters, and mark pages noindex.
-- **Ads & analytics:** Google Analytics 4 ID, AdSense publisher ID (Auto ads), three fixed ad slots (below the tool, inside the article, top of sidebar), plus custom code for `<head>` and before `</body>`.
-- **Site & API keys:** announcement bar, and the YouTube Data API key used by the subscriber counter (kept on the server, never shown to visitors).
-- **Password:** change the admin password.
+- **Tools & SEO:** switch any tool on or off (it disappears from menus, sidebars and the sitemap, and returns 404), override the SEO title and meta description of any page with live character counters, mark pages noindex, set the homepage title and description.
+- **Ads & analytics:** Google Analytics 4 ID, AdSense publisher ID (Auto ads), three fixed ad slots (below the tool, inside the article, top of the sidebar), plus custom code for `<head>` and before `</body>`.
+- **Site & API keys:** announcement bar, YouTube Data API key (kept on the server), contact email.
+- **Account:** change your username and password.
 
-Security: hashed password, CSRF protection, session cookies limited to the admin, lockout for 15 minutes after 5 wrong passwords, and `data/` blocked from the web.
+Everything is stored in MySQL: tables `tf_settings`, `tf_tools`, `tf_admins`, `tf_login_attempts` and `tf_yt_cache` (prefix chosen at install).
 
-## Adding a tool
+Security: hashed passwords, CSRF protection, session cookies limited to `/admin/`, lockout for 15 minutes after 5 wrong passwords, and changing the password signs out other sessions.
 
-1. Copy a folder in `src/tools/` and rename it to the new URL slug.
-2. Edit `tool.html`, `tool.js` and `meta.js`. In `tool.html`, `{{icon:name}}` inserts any [Lucide](https://lucide.dev/icons) icon. In `meta.js`, `libs: [...]` loads CDN libraries, `scripts: [...]` loads shared files from `src/assets`, and `use: 'other-tool'` with `preset` reuses another tool's code for a keyword landing page (see `wifi-qr-code-generator`).
-3. Run `node build.js` and upload `dist-php/` again. The tool appears in the homepage, menus, sitemap, schema and admin panel automatically.
+## Adding or editing a tool
+
+1. Copy a folder in `tools/` (for example `tools/tip-calculator`) and rename it to the new URL slug, like `tools/my-new-tool`.
+2. Edit the three files:
+   - `meta.php`: `name`, `category` (an id from `app/site.php`), `order`, `icon` (a file name in `app/icons`), `title` (≤ 65 characters), `description` (110–160), `short`, `keywords`, `related` (other slugs), `answer` (the 40–60 word answer at the top), `article` (HTML), `faqs`. Optional: `popular`, `files` (true for file tools), `libs` (CDN script URLs), `scripts` (files in `assets/`, like `media.js`).
+   - `tool.html`: the inputs. `{{icon:name}}` inserts an icon.
+   - `tool.js`: the logic. Helpers from `assets/app.js` (`$`, `val`, `fmt`, `onAny`, `fileDrop`, `download`…) are available.
+3. Upload or push it. The tool appears on the homepage, in menus, sidebars, the sitemap and the admin panel automatically.
+
+A landing page can reuse another tool's code: set `'use' => 'other-tool'` and a `'preset'` in `meta.php` (see `wifi-qr-code-generator` and `quotation-maker`). To add an icon, download its SVG from lucide.dev into `app/icons/`.
 
 ## SEO built into every page
 
@@ -57,13 +68,13 @@ Security: hashed password, CSRF protection, session cookies limited to the admin
 - A 40–60 word direct answer at the top (the format Google AI Overviews and featured snippets quote)
 - 400–800 words of original content per tool: how it works, formulas, worked examples, tips and 5 FAQs
 - Internal links: breadcrumbs, same-category sidebar, related tools, footer
-- Fast static pages, mobile-first layout with hamburger menu, light and dark themes, accessible labels
-- Dynamic `sitemap.xml` and `robots.txt` (admin and API paths disallowed)
+- Mobile-first layout with hamburger menu, light and dark themes, accessible labels
+- Dynamic `sitemap.xml` (with each tool's last-modified date) and `robots.txt`
 
 ## Notes
 
-- PDF tools use pdf-lib and PDF.js, scanners use ZXing, barcodes use JsBarcode, QR codes use qrcode-generator, zips use JSZip, EXIF reading uses exifr and the invoice PDF uses html2canvas. All load from cdnjs or jsDelivr at pinned versions.
-- Compress PDF re-renders pages as images (text becomes non-selectable); the page explains this to users.
-- The YouTube Subscriber Counter needs the PHP version and a YouTube Data API key.
-- Video tools (compressor, cutter) use the browser's built-in recorder, so they take as long as the clip to process. They save MP4 in Safari and recent Chrome, WebM elsewhere. MP3 encoding uses lamejs; GIFs use gifenc.
-- Quotation Maker and Receipt Maker reuse the Invoice Generator code with a preset (`use` + `preset` in `meta.js`).
+- PDF tools use pdf-lib and PDF.js, scanners use ZXing, barcodes JsBarcode, QR codes qrcode-generator, zips JSZip, EXIF exifr, invoice PDFs html2canvas, MP3 encoding lamejs and GIFs gifenc. All load from cdnjs or jsDelivr at pinned versions.
+- Video tools (compressor, cutter) use the browser's built-in recorder, so they take as long as the clip to process. They save MP4 in Safari and recent Chrome, WebM elsewhere.
+- The YouTube Subscriber Counter needs a YouTube Data API key (Admin → Site & API keys).
+- Public pages work even before installation or if MySQL is down; they use the default settings until the database is reachable.
+- On nginx instead of Apache: send every request that isn't a real file to `index.php`, and deny `/app`, `/tools`, `/storage`, `/config.php` and hidden files.
