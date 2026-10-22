@@ -1,0 +1,18 @@
+<div class="tool-grid">
+  <form class="inputs" id="form">
+    <label class="f"><span>Where should the QR code go?</span><input type="text" id="target" inputmode="url" autocapitalize="off" spellcheck="false" placeholder="https://yourrestaurant.com/menu" required></label>
+    <label class="f"><span>Name (only you see this)</span><input type="text" id="title" maxlength="160" placeholder="e.g. Table menu, spring flyer"></label>
+    <ul class="hq-points">
+      <li>{{icon:link-2}}<span><b>Change the link any time</b> without reprinting the code</span></li>
+      <li>{{icon:chart-no-axes-column}}<span><b>Count scans</b> per day, on phones and computers</span></li>
+      <li>{{icon:calendar-clock}}<span><b>Hosted for {{setting:qr_days}} days</b>, then deleted automatically</span></li>
+    </ul>
+    <button class="btn big-btn" id="go">{{icon:qr-code}}Create dynamic QR code</button>
+    <p class="note">Only link to pages you own or are allowed to share. Codes that point to scams or harmful content are removed.</p>
+  </form>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Preview</p>
+    <div class="qr-box qr-ghost" aria-hidden="true"></div>
+    <p class="empty">Enter a link and press Create. Your QR code appears here, ready to download as PNG or SVG.</p>
+  </div>
+</div>

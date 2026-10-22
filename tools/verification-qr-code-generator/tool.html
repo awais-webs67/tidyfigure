@@ -1,0 +1,31 @@
+<div class="tool-grid">
+  <form class="inputs" id="form">
+    <div class="chips" id="presets" aria-label="Examples">
+      <button type="button" class="chip on" data-p="cert">Certificate</button>
+      <button type="button" class="chip" data-p="id">Staff ID card</button>
+      <button type="button" class="chip" data-p="product">Product authenticity</button>
+      <button type="button" class="chip" data-p="letter">Experience letter</button>
+    </div>
+    <label class="f"><span>Document title</span><input type="text" id="doc" maxlength="120" required></label>
+    <div class="fields">
+      <label class="f"><span>Issued to</span><input type="text" id="to" maxlength="160"></label>
+      <label class="f"><span>Issued by (organisation)</span><input type="text" id="by" maxlength="160"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Issue date</span><input type="date" id="issued"></label>
+      <label class="f"><span>Valid until (optional)</span><input type="date" id="until"></label>
+      <label class="f"><span>Reference number</span><input type="text" id="ref" maxlength="80"></label>
+    </div>
+    <p class="group-title">More details (optional)</p>
+    <div class="list" id="fields"></div>
+    <button type="button" class="add" id="add-field">+ Add a detail</button>
+    <label class="f"><span>Note (optional)</span><textarea id="note" maxlength="600" style="min-height:70px" placeholder="e.g. To confirm, call our office on +44 20 7946 0000."></textarea></label>
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Attach a photo or PDF (optional)" style="padding:18px">
+      {{icon:file-up}}<strong>Attach the document or a photo (optional)</strong><span id="drop-label">PDF or image, up to {{setting:qr_max_mb}} MB</span>
+      <input type="file" id="file" accept=".pdf,image/jpeg,image/png,image/webp">
+    </div>
+    <button class="btn big-btn" id="go">{{icon:badge-check}}Create verification QR code</button>
+    <p class="note">Only create records for documents you issued yourself. Anyone who scans the code sees exactly what you enter here.</p>
+  </form>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

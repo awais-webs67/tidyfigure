@@ -199,6 +199,8 @@ function tf_tool(string $slug): ?array
     $code = TF_ROOT . '/tools/' . (!empty($m['use']) ? $m['use'] : $slug);
     $m['slug'] = $slug;
     $m['html'] = preg_replace_callback('/\{\{icon:([a-z0-9-]+)\}\}/', fn($x) => tf_icon($x[1]), (string) @file_get_contents("$code/tool.html"));
+    // {{setting:qr_days}} and {{setting:qr_max_mb}} show the admin's current limits in a tool's markup.
+    $m['html'] = preg_replace_callback('/\{\{setting:(qr_days|qr_max_mb)\}\}/', fn($x) => h(tf_settings()[$x[1]]), $m['html']);
     $m['js'] = (string) @file_get_contents("$code/tool.js");
     if (!empty($m['use'])) {
         $m['js'] = 'const PRESET = ' . json_encode($m['preset'] ?? null, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) . ";\n" . $m['js'];
