@@ -1,0 +1,31 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a photo">
+      {{icon:image-up}}
+      <strong>Drop a photo here or click to choose</strong>
+      <span>JPG, PNG or WebP · people, products, animals, cars</span>
+      <input type="file" id="file" accept="image/*">
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Quality">
+      <label><input type="radio" name="q" value="hq" checked><span>Best quality (any photo)</span></label>
+      <label><input type="radio" name="q" value="fast"><span>Fast (people only)</span></label>
+    </div>
+    <p class="note" id="q-note">Best quality downloads an AI model the first time (44–115 MB depending on your device), then it’s saved in your browser. Fast uses a 7 MB model made for portraits.</p>
+    <p class="group-title">New background</p>
+    <div class="chips" id="bg">
+      <button type="button" class="chip on" data-bg="none">Transparent</button>
+      <button type="button" class="chip" data-bg="#ffffff">White</button>
+      <button type="button" class="chip" data-bg="#000000">Black</button>
+      <button type="button" class="chip" data-bg="#e8f1ff">Light blue</button>
+      <button type="button" class="chip" data-bg="blur">Blurred original</button>
+      <button type="button" class="chip" data-bg="image">Your image…</button>
+      <label class="chip" style="display:inline-flex;align-items:center;gap:6px">Colour <input type="color" id="bgcolor" value="#ff5b35" style="width:28px;height:22px;padding:0;border:0"></label>
+    </div>
+    <input type="file" id="bgfile" accept="image/*" hidden>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Result</p>
+    <p class="empty">Choose a photo. The background is removed on your device: nothing is uploaded.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample photo</button>
+  </div>
+</div>

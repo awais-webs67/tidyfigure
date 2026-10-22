@@ -227,3 +227,11 @@ function bodyUnits(onChange) {
     sync,
   };
 }
+
+// Progress bar markup and updater.
+const progressHtml = label => `<p class="kicker">${esc(label)}</p><div class="bar"><i style="width:0%"></i></div><p class="sub" data-pct>0%</p>`;
+function setProgress(out, p, text) {
+  const i = out.querySelector('.bar i'), s = out.querySelector('[data-pct]');
+  if (i) i.style.width = `${Math.round(p * 100)}%`;
+  if (s) s.textContent = text || `${Math.round(p * 100)}%`;
+}

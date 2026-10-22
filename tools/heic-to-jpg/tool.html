@@ -1,0 +1,20 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose HEIC photos">
+      {{icon:image-up}}
+      <strong>Drop iPhone HEIC photos here</strong>
+      <span>.heic or .heif · as many as you like</span>
+      <input type="file" id="file" accept=".heic,.heif,image/heic,image/heif" multiple>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Convert to</span><select id="to"><option value="image/jpeg" selected>JPG (smallest, works everywhere)</option><option value="image/png">PNG (lossless, bigger)</option></select></label>
+      <label class="f" id="q-wrap"><span>Quality: <b id="qv">90</b>%</span><input type="range" id="q" min="50" max="100" value="90"></label>
+    </div>
+    <p class="note">Photos are converted on your device. Location and camera details (EXIF) are not copied into the new files, which is safer for sharing.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Converted photos</p>
+    <p class="empty">Choose HEIC photos from your iPhone or iPad. Each one is previewed before you download it.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample HEIC photo</button>
+  </div>
+</div>
