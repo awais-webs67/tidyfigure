@@ -1,0 +1,24 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Cron expression (minute hour day-of-month month day-of-week)</span><input type="text" id="expr" class="mono" value="30 9 * * 1-5" spellcheck="false" autocomplete="off" style="font-size:20px"></label>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-e="* * * * *">Every minute</button>
+      <button type="button" class="chip" data-e="*/5 * * * *">Every 5 minutes</button>
+      <button type="button" class="chip" data-e="0 * * * *">Hourly</button>
+      <button type="button" class="chip" data-e="0 0 * * *">Daily at midnight</button>
+      <button type="button" class="chip" data-e="30 9 * * 1-5">Weekdays 9:30</button>
+      <button type="button" class="chip" data-e="0 9 * * 1">Mondays 9:00</button>
+      <button type="button" class="chip" data-e="0 0 1 * *">1st of the month</button>
+      <button type="button" class="chip" data-e="0 3 * * 0">Sundays 3:00</button>
+      <button type="button" class="chip" data-e="0 */6 * * *">Every 6 hours</button>
+      <button type="button" class="chip" data-e="0 0 1 1 *">Yearly</button>
+    </div>
+    <p class="group-title">Or build it</p>
+    <div class="fields">
+      <label class="f"><span>Minute</span><select id="b-min"><option value="0">:00</option><option value="15">:15</option><option value="30" selected>:30</option><option value="45">:45</option><option value="*">every minute</option><option value="*/5">every 5 min</option><option value="*/10">every 10 min</option><option value="*/15">every 15 min</option><option value="*/30">every 30 min</option></select></label>
+      <label class="f"><span>Hour</span><select id="b-hour"></select></label>
+      <label class="f"><span>Days</span><select id="b-dow"><option value="*|*">Every day</option><option value="*|1-5" selected>Weekdays (Mon–Fri)</option><option value="*|0,6">Weekends</option><option value="*|1">Mondays</option><option value="*|5">Fridays</option><option value="1|*">1st of each month</option><option value="15|*">15th of each month</option></select></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

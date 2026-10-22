@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <p class="group-title">Your debts</p>
+    <div class="list" id="debts"></div>
+    <button type="button" class="add" id="add-debt">+ Add a debt</button>
+    <div class="fields">
+      <label class="f"><span>Extra you can pay each month</span><input type="number" id="extra" inputmode="decimal" min="0" step="any" value="250"></label>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Method">
+      <label><input type="radio" name="m" value="avalanche" checked><span>Avalanche (highest rate first)</span></label>
+      <label><input type="radio" name="m" value="snowball"><span>Snowball (smallest balance first)</span></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

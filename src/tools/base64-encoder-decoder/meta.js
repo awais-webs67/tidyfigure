@@ -1,6 +1,6 @@
 module.exports = {
   order: 3,
-  category: 'convert',
+  category: 'dev',
   icon: 'binary',
   name: 'Base64 Encoder & Decoder',
   keywords: 'base64 encode decode online data uri image to base64 url safe',

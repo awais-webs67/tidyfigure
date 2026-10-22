@@ -1,0 +1,18 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Input">
+      <label><input type="radio" name="src" value="text" checked><span>Text</span></label>
+      <label><input type="radio" name="src" value="file"><span>File (checksum)</span></label>
+    </div>
+    <label class="f" id="text-wrap"><span>Text to hash</span><textarea id="text" class="mono" spellcheck="false">hello world</textarea></label>
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a file to hash" hidden>
+      {{icon:file-check}}
+      <strong>Drop a file here or click to choose</strong>
+      <span>Any file · it’s read on your device, never uploaded</span>
+      <input type="file" id="file">
+    </div>
+    <label class="f"><span>Expected hash (optional, to verify a download)</span><input type="text" id="expect" class="mono" placeholder="Paste the checksum from the download page" spellcheck="false"></label>
+    <label class="check"><input type="checkbox" id="upper">Uppercase output</label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

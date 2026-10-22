@@ -1,0 +1,17 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Titles or text (one per line for bulk)</span><textarea id="in" style="min-height:160px">10 Easy Ways to Save Money in 2026 (Without a Budget!)
+Crème Brûlée: The Perfect French Dessert
+What's the Best Laptop for Students?</textarea></label>
+    <div class="fields">
+      <label class="f"><span>Separator</span><select id="sep"><option value="-" selected>Hyphen ( - )</option><option value="_">Underscore ( _ )</option><option value=".">Dot ( . )</option></select></label>
+      <label class="f"><span>Max length (characters)</span><input type="number" id="max" inputmode="numeric" min="0" step="1" value="60"></label>
+    </div>
+    <div class="fields">
+      <label class="check"><input type="checkbox" id="lower" checked>Lowercase</label>
+      <label class="check"><input type="checkbox" id="stop">Remove short filler words (a, the, of…)</label>
+      <label class="check"><input type="checkbox" id="nums">Remove numbers</label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

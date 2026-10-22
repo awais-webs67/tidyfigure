@@ -1,0 +1,25 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a video or audio file">
+      {{icon:file-video}}
+      <strong>Drop a video here or click to choose</strong>
+      <span>MP4, MOV, WebM, MKV and most audio files</span>
+      <input type="file" id="file" accept="video/*,audio/*,.mkv,.mov">
+    </div>
+    <div class="fields">
+      <label class="f"><span>Format</span><select id="fmt"><option value="mp3" selected>MP3</option><option value="wav">WAV (lossless)</option></select></label>
+      <label class="f" id="q-wrap"><span>Audio quality</span><select id="kbps"><option value="96">96 kbps (voice, smallest)</option><option value="128">128 kbps (good)</option><option value="192" selected>192 kbps (high)</option><option value="256">256 kbps (very high)</option><option value="320">320 kbps (best)</option></select></label>
+      <label class="f"><span>Channels</span><select id="mono"><option value="0" selected>Stereo</option><option value="1">Mono (half the size)</option></select></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Start (m:ss)</span><input type="text" id="start" inputmode="decimal" placeholder="0:00"></label>
+      <label class="f"><span>End (m:ss)</span><input type="text" id="end" inputmode="decimal" placeholder="End of video"></label>
+    </div>
+    <p class="note">Leave start and end empty to keep the whole sound track. Only convert videos you made yourself or have permission to use.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your audio</p>
+    <p class="empty">Choose a video and its sound track will be saved as an audio file.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample clip</button>
+  </div>
+</div>

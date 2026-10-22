@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Fixed costs (per month)</span><input type="number" id="fixed" inputmode="decimal" min="0" step="any" value="6000"></label>
+      <label class="f"><span>Selling price per unit</span><input type="number" id="price" inputmode="decimal" min="0" step="any" value="25"></label>
+      <label class="f"><span>Variable cost per unit</span><input type="number" id="var" inputmode="decimal" min="0" step="any" value="10"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Target profit (optional)</span><input type="number" id="target" inputmode="decimal" min="0" step="any" value="3000"></label>
+      <label class="f"><span>Units you expect to sell (optional)</span><input type="number" id="units" inputmode="numeric" min="0" step="1" value="550"></label>
+    </div>
+    <p class="note">Fixed costs stay the same however much you sell (rent, salaries, software, insurance). Variable costs rise with each sale (materials, packaging, payment fees, delivery).</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

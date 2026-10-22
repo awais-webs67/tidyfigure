@@ -1,0 +1,26 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Units">
+      <label><input type="radio" name="u" value="m" checked><span>Metric</span></label>
+      <label><input type="radio" name="u" value="ft"><span>Imperial</span></label>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Shape">
+      <label><input type="radio" name="shape" value="slab" checked><span>Slab / footing</span></label>
+      <label><input type="radio" name="shape" value="col"><span>Round column / post hole</span></label>
+    </div>
+    <div class="fields" id="slab">
+      <label class="f"><span>Length <i class="ua">(m)</i></span><input type="number" id="len" inputmode="decimal" min="0" step="any" value="3"></label>
+      <label class="f"><span>Width <i class="ua">(m)</i></span><input type="number" id="wid" inputmode="decimal" min="0" step="any" value="3"></label>
+      <label class="f"><span>Thickness <i class="ub">(cm)</i></span><input type="number" id="thk" inputmode="decimal" min="0" step="any" value="10"></label>
+    </div>
+    <div class="fields" id="col" hidden>
+      <label class="f"><span>Diameter <i class="ub">(cm)</i></span><input type="number" id="dia" inputmode="decimal" min="0" step="any" value="30"></label>
+      <label class="f"><span>Depth / height <i class="ua">(m)</i></span><input type="number" id="dep" inputmode="decimal" min="0" step="any" value="0.9"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>How many</span><input type="number" id="qty" inputmode="numeric" min="1" step="1" value="1"></label>
+      <label class="f"><span>Extra for spillage and uneven ground</span><select id="waste"><option value="0">None</option><option value="5">5%</option><option value="10" selected>10%</option><option value="15">15%</option></select></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

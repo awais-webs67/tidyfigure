@@ -1,0 +1,12 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Monthly take-home pay (after tax)</span><input type="number" id="inc" inputmode="decimal" min="0" step="any" value="3500"></label>
+      <label class="f"><span>Rule</span><select id="rule"><option value="50-30-20" selected>50 / 30 / 20</option><option value="60-20-20">60 / 20 / 20 (high-cost city)</option><option value="70-20-10">70 / 20 / 10</option><option value="40-30-30">40 / 30 / 30 (saving hard)</option></select></label>
+    </div>
+    <p class="group-title">Your monthly spending</p>
+    <div class="list" id="rows"></div>
+    <button type="button" class="add" id="add-row">+ Add an expense</button>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

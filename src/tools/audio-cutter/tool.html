@@ -1,0 +1,30 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose an audio file">
+      {{icon:audio-lines}}
+      <strong>Drop a song or audio file here</strong>
+      <span>MP3, M4A, WAV, OGG, FLAC, or a video's sound</span>
+      <input type="file" id="file" accept="audio/*,video/*,.m4a,.flac,.opus">
+    </div>
+    <div id="editor" hidden>
+      <canvas class="wave" id="wave" aria-label="Waveform. Drag to choose the part to keep."></canvas>
+      <p class="note">Drag across the waveform to select the part to keep.</p>
+      <div class="fields">
+        <label class="f"><span>Start (m:ss)</span><input type="text" id="start" inputmode="decimal"></label>
+        <label class="f"><span>End (m:ss)</span><input type="text" id="end" inputmode="decimal"></label>
+      </div>
+      <div class="fields">
+        <label class="f"><span>Fade in (s)</span><input type="number" id="fi" inputmode="decimal" min="0" max="10" step="0.5" value="0"></label>
+        <label class="f"><span>Fade out (s)</span><input type="number" id="fo" inputmode="decimal" min="0" max="10" step="0.5" value="1"></label>
+        <label class="f"><span>Save as</span><select id="fmt"><option value="128">MP3 128 kbps</option><option value="192" selected>MP3 192 kbps</option><option value="320">MP3 320 kbps</option><option value="wav">WAV (lossless)</option></select></label>
+      </div>
+      <div class="btns"><button type="button" class="btn ghost" id="play">{{icon:play}}Play selection</button><button type="button" class="btn ghost" id="ring">Ringtone (first 30 s)</button></div>
+    </div>
+    <button type="button" class="btn big-btn" id="go" disabled>{{icon:scissors}}Cut audio</button>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your audio</p>
+    <p class="empty">Choose a song or recording, select a part and save it as MP3 or WAV.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample tune</button>
+  </div>
+</div>

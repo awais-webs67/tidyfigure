@@ -1,0 +1,22 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="out" style="text-align:center;align-items:center">
+      <p class="kicker" id="status">Ready to record</p>
+      <p class="timer-big" id="time">0:00.0</p>
+      <button type="button" class="btn big-btn" id="rec">{{icon:monitor-dot}}Start screen recording</button>
+    </div>
+    <div class="fields">
+      <label class="check"><input type="checkbox" id="mic">Record my microphone too</label>
+      <label class="check"><input type="checkbox" id="sys" checked>Record system or tab sound</label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Quality</span><select id="q"><option value="2500000">Standard (2.5 Mbps)</option><option value="5000000" selected>High (5 Mbps)</option><option value="8000000">Very high (8 Mbps)</option></select></label>
+      <label class="f"><span>Countdown</span><select id="cd"><option value="0">None</option><option value="3" selected>3 seconds</option><option value="5">5 seconds</option></select></label>
+    </div>
+    <p class="note" id="support">Your browser will ask which screen, window or tab to share. To stop, press Stop here or use your browser's "Stop sharing" button.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your recording</p>
+    <p class="empty">Press Start, choose what to share, and your recording will appear here when you stop.</p>
+  </div>
+</div>

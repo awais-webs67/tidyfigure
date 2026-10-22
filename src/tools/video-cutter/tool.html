@@ -1,0 +1,31 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a video to cut">
+      {{icon:scissors}}
+      <strong>Drop a video here or click to choose</strong>
+      <span>MP4, MOV, WebM · stays on your device</span>
+      <input type="file" id="file" accept="video/*,.mkv,.mov">
+    </div>
+    <div id="editor" hidden>
+      <video class="player" id="vid" controls playsinline></video>
+      <div class="trim" aria-label="Choose the part to keep"><input type="range" id="r1" min="0" max="100" step="0.1" value="0" aria-label="Start"><input type="range" id="r2" min="0" max="100" step="0.1" value="100" aria-label="End"></div>
+      <div class="fields">
+        <label class="f"><span>Start (m:ss)</span><input type="text" id="start" inputmode="decimal" value="0:00.0"></label>
+        <label class="f"><span>End (m:ss)</span><input type="text" id="end" inputmode="decimal"></label>
+        <label class="f"><span>Quality</span><select id="q"><option value="0.12" selected>Same as original</option><option value="0.07">Smaller file</option></select></label>
+      </div>
+      <div class="btns">
+        <button type="button" class="btn ghost" id="set-start">Set start here</button>
+        <button type="button" class="btn ghost" id="set-end">Set end here</button>
+        <button type="button" class="btn ghost" id="preview">Play selection</button>
+      </div>
+      <label class="check"><input type="checkbox" id="mute">Remove sound</label>
+    </div>
+    <button type="button" class="btn big-btn" id="go" disabled>{{icon:scissors}}Cut video</button>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your clip</p>
+    <p class="empty">Choose a video, then drag the sliders to the part you want to keep.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample clip</button>
+  </div>
+</div>

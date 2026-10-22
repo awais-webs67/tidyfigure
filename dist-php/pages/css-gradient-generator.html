@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CSS Gradient Generator: Linear, Radial &amp; Conic, Free</title>
+<meta name="description" content="Create beautiful CSS gradients with any colours, angle and transparency. Live preview, presets and random ideas. Copy the CSS code or download a 1920×1080 PNG.">
+<link rel="canonical" href="https://tidyfigure.com/css-gradient-generator">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="TidyFigure">
+<meta property="og:title" content="CSS Gradient Generator: Linear, Radial &amp; Conic, Free">
+<meta property="og:description" content="Create beautiful CSS gradients with any colours, angle and transparency. Live preview, presets and random ideas. Copy the CSS code or download a 1920×1080 PNG.">
+<meta property="og:url" content="https://tidyfigure.com/css-gradient-generator">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#FF5B35">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"CSS Gradient Generator","url":"https://tidyfigure.com/css-gradient-generator","description":"Create beautiful CSS gradients with any colours, angle and transparency. Live preview, presets and random ideas. Copy the CSS code or download a 1920×1080 PNG.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any (runs in a web browser)","browserRequirements":"Requires JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TidyFigure","url":"https://tidyfigure.com"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I make a gradient in CSS?","acceptedAnswer":{"@type":"Answer","text":"Use background: linear-gradient(angle, colour1, colour2). For example: background: linear-gradient(90deg, #ff5b35, #ffb347);"}},{"@type":"Question","name":"What is the difference between linear, radial and conic gradients?","acceptedAnswer":{"@type":"Answer","text":"Linear changes along a line, radial spreads out from a centre point, and conic sweeps around a centre like a pie chart."}},{"@type":"Question","name":"How do I make a transparent gradient?","acceptedAnswer":{"@type":"Answer","text":"Lower the opacity of a colour stop. The CSS uses rgba() colours that fade into whatever is behind."}},{"@type":"Question","name":"Can I download the gradient as an image?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download PNG saves it at 1920×1080, ready for slides, wallpapers or social posts."}},{"@type":"Question","name":"Do CSS gradients work in all browsers?","acceptedAnswer":{"@type":"Answer","text":"Yes. Linear, radial and conic gradients work in all current browsers without prefixes."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tidyfigure.com/"},{"@type":"ListItem","position":2,"name":"Developer tools","item":"https://tidyfigure.com/#dev"},{"@type":"ListItem","position":3,"name":"CSS Gradient Generator","item":"https://tidyfigure.com/css-gradient-generator"}]}</script>
+<!--TF:HEAD-->
+</head>
+<body>
+<header class="site"><div class="wrap">
+<a class="brand" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--slate)"/><path d="M9 11h14M16 11v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="var(--accent)"/></svg><span>Tidy<b>Figure</b></span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
+<nav class="main-nav" id="main-nav" aria-label="Main"><a href="/#image" data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="18" height="18" x="3" y="3" rx="2" ry="2" /> <circle cx="9" cy="9" r="2" /> <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" /> </svg>Image</a><a href="/#pdf" data-cat="pdf"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /> <path d="M14 2v4a2 2 0 0 0 2 2h4" /> <path d="M10 9H8" /> <path d="M16 13H8" /> <path d="M16 17H8" /> </svg>PDF</a><a href="/#text" data-cat="text" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polyline points="4 7 4 4 20 4 20 7" /> <line x1="9" x2="15" y1="20" y2="20" /> <line x1="12" x2="12" y1="4" y2="20" /> </svg>Text</a><a href="/#media" data-cat="media"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z" /> <path d="m6.2 5.3 3.1 3.9" /> <path d="m12.4 3.4 3.1 4" /> <path d="M3 11h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" /> </svg>Video &amp; Audio</a><a href="/#qr" data-cat="qr"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="5" height="5" x="3" y="3" rx="1" /> <rect width="5" height="5" x="16" y="3" rx="1" /> <rect width="5" height="5" x="3" y="16" rx="1" /> <path d="M21 16h-3a2 2 0 0 0-2 2v3" /> <path d="M21 21v.01" /> <path d="M12 7v3a2 2 0 0 1-2 2H7" /> <path d="M3 12h.01" /> <path d="M12 3h.01" /> <path d="M12 16v.01" /> <path d="M16 12h1" /> <path d="M21 12v.01" /> <path d="M12 21v-1" /> </svg>QR &amp; Barcode</a><a href="/#random" data-cat="random" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z" /> <path d="M20 3v4" /> <path d="M22 5h-4" /> <path d="M4 17v2" /> <path d="M5 18H3" /> </svg>Generators</a><a href="/#health" data-cat="health" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /> <path d="M3.22 12H9.5l.5-1 2 4.5 2-7 1.5 3.5h5.27" /> </svg>Health</a><a href="/#money" data-cat="money"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" /> <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" /> </svg>Finance</a><a href="/#study" data-cat="study" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /> <path d="M22 10v6" /> <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /> </svg>Students</a><a href="/#calc" data-cat="calc" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="16" height="20" x="4" y="2" rx="2" /> <line x1="8" x2="16" y1="6" y2="6" /> <line x1="16" x2="16" y1="14" y2="18" /> <path d="M16 10h.01" /> <path d="M12 10h.01" /> <path d="M8 10h.01" /> <path d="M12 14h.01" /> <path d="M8 14h.01" /> <path d="M12 18h.01" /> <path d="M8 18h.01" /> </svg>Calculators</a><a href="/#time" data-cat="time" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="12" cy="12" r="10" /> <polyline points="12 6 12 12 16 14" /> </svg>Time</a><a href="/#convert" data-cat="convert" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m17 2 4 4-4 4" /> <path d="M3 11v-1a4 4 0 0 1 4-4h14" /> <path d="m7 22-4-4 4-4" /> <path d="M21 13v1a4 4 0 0 1-4 4H3" /> </svg>Converters</a><a href="/#dev" data-cat="dev" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <polyline points="16 18 22 12 16 6" /> <polyline points="8 6 2 12 8 18" /> </svg>Developer</a><a href="/#home" data-cat="home" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect width="16" height="6" x="2" y="2" rx="2" /> <path d="M10 16v-2a2 2 0 0 1 2-2h8a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" /> <rect width="4" height="6" x="8" y="16" rx="1" /> </svg>Home &amp; DIY</a><a href="/#social" data-cat="social" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M5.8 11.3 2 22l10.7-3.79" /> <path d="M4 3h.01" /> <path d="M22 8h.01" /> <path d="M15 2h.01" /> <path d="M22 20h.01" /> <path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /> <path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" /> <path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" /> <path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /> </svg>Social</a><a href="/#life" data-cat="life" class="more"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" /> <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /> </svg>Life</a><a class="cta" href="/#tools">All tools</a></nav>
+</div></header><div class="nav-shade"></div>
+<!--TF:BODY_TOP-->
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/#dev">Developer tools</a><span aria-hidden="true">/</span><span>CSS Gradient Generator</span></nav>
+<div class="tool-head"><span class="tile lg" data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="9" cy="9" r="7" /> <circle cx="15" cy="15" r="7" /> </svg></span><h1>CSS Gradient Generator</h1></div>
+<p class="answer">Pick a type (linear, radial or conic), set the angle and add colour stops, then copy the CSS. A two-colour linear gradient looks like <code>background: linear-gradient(135deg, #ff5b35 0%, #ffb347 100%);</code>. The generated code also includes a solid fallback colour, and you can download the gradient as a 1920×1080 PNG for slides or wallpapers.</p>
+<section class="tool" aria-label="CSS Gradient Generator">
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Type">
+      <label><input type="radio" name="type" value="linear" checked><span>Linear</span></label>
+      <label><input type="radio" name="type" value="radial"><span>Radial</span></label>
+      <label><input type="radio" name="type" value="conic"><span>Conic</span></label>
+    </div>
+    <label class="f" id="angle-wrap"><span>Angle: <b id="av">135</b>°</span><input type="range" id="angle" min="0" max="360" step="1" value="135"></label>
+    <label class="f" id="shape-wrap" hidden><span>Shape</span><select id="shape"><option value="circle">Circle</option><option value="ellipse" selected>Ellipse</option></select></label>
+    <p class="group-title">Colour stops</p>
+    <div class="list" id="stops"></div>
+    <button type="button" class="add" id="add-stop">+ Add a colour</button>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-p="#ff5b35,0|#ffb347,100">Sunset</button>
+      <button type="button" class="chip" data-p="#4facfe,0|#00f2fe,100">Sky</button>
+      <button type="button" class="chip" data-p="#43e97b,0|#38f9d7,100">Mint</button>
+      <button type="button" class="chip" data-p="#667eea,0|#764ba2,100">Purple</button>
+      <button type="button" class="chip" data-p="#f093fb,0|#f5576c,100">Candy</button>
+      <button type="button" class="chip" data-p="#191f24,0|#333f48,60|#ff5b35,100">Night</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <div class="swatch" id="sw" style="height:220px"></div>
+    <p class="kicker">CSS</p>
+    <div class="copybox" id="code"></div>
+    <div class="btns"><button type="button" class="btn" data-copy="code">Copy CSS</button><button type="button" class="btn ghost" id="png">Download PNG</button><button type="button" class="btn ghost" id="rnd">Random</button></div>
+  </div>
+</div>
+
+</section>
+<!--TF:AD:top-->
+<p class="private"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /> </svg>Everything runs in your browser. Nothing you type is sent anywhere.</p>
+<div class="layout">
+<article class="prose">
+
+<h2>The three kinds of CSS gradient</h2>
+<div class="formula">linear-gradient(135deg, #ff5b35 0%, #ffb347 100%)
+   → colours change along a straight line at an angle
+
+radial-gradient(circle, #4facfe 0%, #00f2fe 100%)
+   → colours spread outwards from the centre
+
+conic-gradient(from 0deg, red, yellow, lime, aqua, blue, magenta, red)
+   → colours sweep around the centre, like a colour wheel or pie chart</div>
+
+<h2>Angles in linear gradients</h2>
+<p>In CSS, <strong>0deg points up</strong> and angles go clockwise: 90deg goes left to right, 180deg top to bottom, and 135deg from the top-left corner to the bottom-right. You can also write directions in words, like <code>to right</code> or <code>to bottom left</code>.</p>
+
+<h2>Colour stops</h2>
+<p>Each stop is a colour and a position (0% is the start, 100% the end). Between stops the colours blend smoothly. Some tricks:</p>
+<ul>
+<li><strong>Hard edges:</strong> put two stops at the same position, like <code>#ff5b35 50%, #191f24 50%</code>, for a sharp split with no blend.</li>
+<li><strong>Transparency:</strong> lower a stop's opacity to fade into the background. This is great for darkening the bottom of a photo so text on it stays readable.</li>
+<li><strong>Three or more colours</strong> make richer backgrounds. Keep them in the same hue family to avoid muddy middles.</li>
+</ul>
+
+<h2>Text over a gradient</h2>
+<div class="formula">.hero {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,.7) 100%),
+              url(photo.jpg) center / cover;
+}</div>
+<p>Several backgrounds can be layered by separating them with commas: the first one is drawn on top. Check that text has enough contrast at both ends of the gradient.</p>
+
+<h2>Gradient text</h2>
+<div class="formula">.title {
+  background: linear-gradient(90deg, #ff5b35, #ffb347);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}</div>
+
+<h2>Browser support</h2>
+<p>Linear and radial gradients work in every browser in use today without prefixes. Conic gradients have worked in all major browsers since 2020. The first <code>background:</code> line in the generated CSS is a solid colour that very old browsers use instead.</p>
+
+<h2>Tips for good gradients</h2>
+<ul>
+<li>Neighbouring hues (orange to yellow, blue to cyan) blend more cleanly than opposites (red to green), which can turn grey in the middle.</li>
+<li>Subtle gradients, two shades of the same colour, look more professional for buttons and cards than bold rainbows.</li>
+<li>Use the <a href="/color-converter">colour converter</a> to get HEX, RGB or HSL codes from your brand colours.</li>
+</ul>
+<!--TF:AD:article-->
+<h2>Frequently asked questions</h2>
+<details class="faq"><summary>How do I make a gradient in CSS?</summary><p>Use background: linear-gradient(angle, colour1, colour2). For example: background: linear-gradient(90deg, #ff5b35, #ffb347);</p></details>
+<details class="faq"><summary>What is the difference between linear, radial and conic gradients?</summary><p>Linear changes along a line, radial spreads out from a centre point, and conic sweeps around a centre like a pie chart.</p></details>
+<details class="faq"><summary>How do I make a transparent gradient?</summary><p>Lower the opacity of a colour stop. The CSS uses rgba() colours that fade into whatever is behind.</p></details>
+<details class="faq"><summary>Can I download the gradient as an image?</summary><p>Yes. Download PNG saves it at 1920×1080, ready for slides, wallpapers or social posts.</p></details>
+<details class="faq"><summary>Do CSS gradients work in all browsers?</summary><p>Yes. Linear, radial and conic gradients work in all current browsers without prefixes.</p></details>
+</article>
+<aside class="side">
+<!--TF:AD:side-->
+<section aria-labelledby="side-a"><h2 id="side-a">More developer tools</h2><ul><li data-slug="regex-tester"><a href="/regex-tester"><span class="tile " data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M17 3v10" /> <path d="m12.67 5.5 8.66 5" /> <path d="m12.67 10.5 8.66-5" /> <path d="M9 17a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2z" /> </svg></span>Regex Tester</a></li><li data-slug="json-formatter"><a href="/json-formatter"><span class="tile " data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5c0 1.1.9 2 2 2h1" /> <path d="M16 21h1a2 2 0 0 0 2-2v-5c0-1.1.9-2 2-2a2 2 0 0 1-2-2V5a2 2 0 0 0-2-2h-1" /> </svg></span>JSON Formatter &amp; Validator</a></li><li data-slug="uuid-generator"><a href="/uuid-generator"><span class="tile " data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" /> <path d="M14 13.12c0 2.38 0 6.38-1 8.88" /> <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02" /> <path d="M2 12a10 10 0 0 1 18-6" /> <path d="M2 16h.01" /> <path d="M21.8 16c.2-2 .131-5.354 0-6" /> <path d="M5 19.5C5.5 18 6 15 6 12a6 6 0 0 1 .34-2" /> <path d="M8.65 22c.21-.66.45-1.32.57-2" /> <path d="M9 6.8a6 6 0 0 1 9 5.2v2" /> </svg></span>UUID Generator</a></li><li data-slug="base64-encoder-decoder"><a href="/base64-encoder-decoder"><span class="tile " data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="14" y="14" width="4" height="6" rx="2" /> <rect x="6" y="4" width="4" height="6" rx="2" /> <path d="M6 20h4" /> <path d="M14 10h4" /> <path d="M6 14h2v6" /> <path d="M14 4h2v6" /> </svg></span>Base64 Encoder &amp; Decoder</a></li><li data-slug="hash-generator"><a href="/hash-generator"><span class="tile " data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <line x1="4" x2="20" y1="9" y2="9" /> <line x1="4" x2="20" y1="15" y2="15" /> <line x1="10" x2="8" y1="3" y2="21" /> <line x1="16" x2="14" y1="3" y2="21" /> </svg></span>Hash Generator</a></li><li data-slug="url-encoder-decoder"><a href="/url-encoder-decoder"><span class="tile " data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" /> <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" /> </svg></span>URL Encoder &amp; Decoder</a></li><li data-slug="jwt-decoder"><a href="/jwt-decoder"><span class="tile " data-cat="dev"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z" /> <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" /> </svg></span>JWT Decoder</a></li></ul></section>
+<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul><li data-slug="color-converter"><a href="/color-converter"><span class="tile " data-cat="convert"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" /> <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" /> <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" /> <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" /> <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" /> </svg></span>Color Converter</a></li><li data-slug="image-color-picker"><a href="/image-color-picker"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="m2 22 1-1h3l9-9" /> <path d="M3 21v-3l9-9" /> <path d="m15 6 3.4-3.4a2.1 2.1 0 1 1 3 3L18 9l.4.4a2.1 2.1 0 1 1-3 3l-3.8-3.8a2.1 2.1 0 1 1 3-3l.4.4Z" /> </svg></span>Image Color Picker</a></li><li data-slug="favicon-generator"><a href="/favicon-generator"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <rect x="2" y="4" width="20" height="16" rx="2" /> <path d="M10 4v4" /> <path d="M2 8h20" /> <path d="M6 4v4" /> </svg></span>Favicon Generator</a></li><li data-slug="image-compressor"><a href="/image-compressor"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M10.3 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10l-3.1-3.1a2 2 0 0 0-2.814.014L6 21" /> <path d="m14 19 3 3v-5.5" /> <path d="m17 22 3-3" /> <circle cx="9" cy="9" r="2" /> </svg></span>Image Compressor</a></li><li data-slug="image-resizer"><a href="/image-resizer"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /> <path d="M14 15H9v-5" /> <path d="M16 3h5v5" /> <path d="M21 3 9 15" /> </svg></span>Image Resizer</a></li><li data-slug="crop-image"><a href="/crop-image"><span class="tile " data-cat="image"><svg class="i" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" > <path d="M6 2v14a2 2 0 0 0 2 2h14" /> <path d="M18 22V8a2 2 0 0 0-2-2H2" /> </svg></span>Crop Image</a></li></ul></section>
+</aside>
+</div>
+</main>
+<footer class="foot"><div class="wrap">
+<div><h2>Image tools</h2><ul><li data-slug="image-compressor"><a href="/image-compressor">Image Compressor</a></li><li data-slug="image-resizer"><a href="/image-resizer">Image Resizer</a></li><li data-slug="image-converter"><a href="/image-converter">Image Converter</a></li><li data-slug="crop-image"><a href="/crop-image">Crop Image</a></li><li data-slug="rotate-image"><a href="/rotate-image">Rotate &amp; Flip Image</a></li></ul></div>
+<div><h2>PDF tools</h2><ul><li data-slug="merge-pdf"><a href="/merge-pdf">Merge PDF</a></li><li data-slug="jpg-to-pdf"><a href="/jpg-to-pdf">JPG to PDF</a></li><li data-slug="split-pdf"><a href="/split-pdf">Split PDF</a></li><li data-slug="rotate-pdf"><a href="/rotate-pdf">Rotate PDF</a></li><li data-slug="delete-pdf-pages"><a href="/delete-pdf-pages">Delete PDF Pages</a></li></ul></div>
+<div><h2>Text tools</h2><ul><li data-slug="word-counter"><a href="/word-counter">Word Counter</a></li><li data-slug="character-counter"><a href="/character-counter">Character Counter</a></li><li data-slug="case-converter"><a href="/case-converter">Case Converter</a></li><li data-slug="fancy-text-generator"><a href="/fancy-text-generator">Fancy Text Generator</a></li><li data-slug="remove-duplicate-lines"><a href="/remove-duplicate-lines">Remove Duplicate Lines</a></li></ul></div>
+<div><h2>Video &amp; audio tools</h2><ul><li data-slug="video-to-mp3"><a href="/video-to-mp3">Video to MP3 Converter</a></li><li data-slug="video-compressor"><a href="/video-compressor">Video Compressor</a></li><li data-slug="video-cutter"><a href="/video-cutter">Video Cutter</a></li><li data-slug="video-to-gif"><a href="/video-to-gif">Video to GIF Maker</a></li><li data-slug="audio-cutter"><a href="/audio-cutter">Audio Cutter</a></li></ul></div>
+<div><h2>QR code &amp; barcode tools</h2><ul><li data-slug="qr-code-generator"><a href="/qr-code-generator">QR Code Generator</a></li><li data-slug="wifi-qr-code-generator"><a href="/wifi-qr-code-generator">Wi-Fi QR Code Generator</a></li><li data-slug="whatsapp-qr-code-generator"><a href="/whatsapp-qr-code-generator">WhatsApp QR Code Generator</a></li><li data-slug="vcard-qr-code-generator"><a href="/vcard-qr-code-generator">vCard QR Code Generator</a></li><li data-slug="qr-code-scanner"><a href="/qr-code-scanner">QR Code Scanner</a></li></ul></div>
+<div><h2>Generators &amp; random</h2><ul><li data-slug="password-generator"><a href="/password-generator">Password Generator</a></li><li data-slug="random-number-generator"><a href="/random-number-generator">Random Number Generator</a></li><li data-slug="spin-the-wheel"><a href="/spin-the-wheel">Spin the Wheel</a></li><li data-slug="flip-a-coin"><a href="/flip-a-coin">Flip a Coin</a></li><li data-slug="roll-a-dice"><a href="/roll-a-dice">Roll a Dice</a></li></ul></div>
+<div><h2>Health &amp; fitness calculators</h2><ul><li data-slug="calorie-calculator"><a href="/calorie-calculator">Calorie Calculator</a></li><li data-slug="bmi-calculator"><a href="/bmi-calculator">BMI Calculator</a></li><li data-slug="bmr-calculator"><a href="/bmr-calculator">BMR Calculator</a></li><li data-slug="macro-calculator"><a href="/macro-calculator">Macro Calculator</a></li><li data-slug="body-fat-calculator"><a href="/body-fat-calculator">Body Fat Calculator</a></li></ul></div>
+<div><h2>Finance &amp; business</h2><ul><li data-slug="compound-interest-calculator"><a href="/compound-interest-calculator">Compound Interest Calculator</a></li><li data-slug="sip-calculator"><a href="/sip-calculator">SIP Calculator</a></li><li data-slug="loan-calculator"><a href="/loan-calculator">Loan Calculator</a></li><li data-slug="savings-goal-calculator"><a href="/savings-goal-calculator">Savings Goal Calculator</a></li><li data-slug="retirement-calculator"><a href="/retirement-calculator">Retirement Calculator</a></li></ul></div>
+<div><h2>Student tools</h2><ul><li data-slug="gpa-calculator"><a href="/gpa-calculator">GPA Calculator</a></li><li data-slug="grade-calculator"><a href="/grade-calculator">Grade Calculator</a></li><li data-slug="citation-generator"><a href="/citation-generator">Citation Generator</a></li><li data-slug="flashcard-maker"><a href="/flashcard-maker">Flashcard Maker</a></li><li data-slug="typing-speed-test"><a href="/typing-speed-test">Typing Speed Test</a></li></ul></div>
+<div><h2>Calculators</h2><ul><li data-slug="percentage-calculator"><a href="/percentage-calculator">Percentage Calculator</a></li><li data-slug="pizza-size-calculator"><a href="/pizza-size-calculator">Pizza Size Calculator</a></li><li data-slug="unit-price-calculator"><a href="/unit-price-calculator">Unit Price Calculator</a></li><li data-slug="discount-calculator"><a href="/discount-calculator">Discount Calculator</a></li></ul></div>
+<div><h2>Time &amp; dates</h2><ul><li data-slug="online-timer"><a href="/online-timer">Online Timer</a></li><li data-slug="stopwatch"><a href="/stopwatch">Stopwatch</a></li><li data-slug="age-calculator"><a href="/age-calculator">Age Calculator</a></li><li data-slug="days-between-dates"><a href="/days-between-dates">Days Between Dates</a></li></ul></div>
+<div><h2>Converters</h2><ul><li data-slug="unit-converter"><a href="/unit-converter">Unit Converter</a></li><li data-slug="color-converter"><a href="/color-converter">Color Converter</a></li></ul></div>
+<div><h2>Developer tools</h2><ul><li data-slug="regex-tester"><a href="/regex-tester">Regex Tester</a></li><li data-slug="json-formatter"><a href="/json-formatter">JSON Formatter &amp; Validator</a></li><li data-slug="uuid-generator"><a href="/uuid-generator">UUID Generator</a></li><li data-slug="base64-encoder-decoder"><a href="/base64-encoder-decoder">Base64 Encoder &amp; Decoder</a></li><li data-slug="hash-generator"><a href="/hash-generator">Hash Generator</a></li></ul></div>
+<div><h2>Home &amp; DIY</h2><ul><li data-slug="paint-calculator"><a href="/paint-calculator">Paint Calculator</a></li><li data-slug="tile-calculator"><a href="/tile-calculator">Tile Calculator</a></li><li data-slug="concrete-calculator"><a href="/concrete-calculator">Concrete Calculator</a></li><li data-slug="electricity-cost-calculator"><a href="/electricity-cost-calculator">Electricity Cost Calculator</a></li></ul></div>
+<div><h2>Social media &amp; greetings</h2><ul><li data-slug="youtube-subscriber-counter"><a href="/youtube-subscriber-counter">YouTube Subscriber Counter</a></li><li data-slug="youtube-thumbnail-downloader"><a href="/youtube-thumbnail-downloader">YouTube Thumbnail Downloader</a></li><li data-slug="giveaway-picker"><a href="/giveaway-picker">Giveaway Picker</a></li><li data-slug="birthday-card-maker"><a href="/birthday-card-maker">Birthday Card Maker</a></li><li data-slug="wish-maker"><a href="/wish-maker">Wish Maker</a></li></ul></div>
+<div><h2>Everyday life</h2><ul><li data-slug="rent-split-calculator"><a href="/rent-split-calculator">Fair Rent Split Calculator</a></li><li data-slug="group-expense-splitter"><a href="/group-expense-splitter">Group Expense Splitter</a></li><li data-slug="furniture-fit-calculator"><a href="/furniture-fit-calculator">Will It Fit? Furniture Door Calculator</a></li><li data-slug="dinner-timing-planner"><a href="/dinner-timing-planner">Dinner Timing Planner</a></li><li data-slug="baking-pan-converter"><a href="/baking-pan-converter">Baking Pan Size Converter</a></li></ul></div>
+<div class="legal"><span>© 2026 TidyFigure. Free online tools, built by <a href="https://aivrasol.com" rel="noopener">AivraSol</a>. Your files never leave your device.</span>
+<span><a href="/about">About</a> · <a href="/privacy">Privacy</a> · <a href="/#tools">All tools</a></span></div>
+</div></footer>
+<script>(function(){var b=document.querySelector('.nav-toggle'),r=document.documentElement;if(!b)return;function set(o){r.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',o)}b.addEventListener('click',function(){set(!r.classList.contains('nav-open'))});document.querySelector('.nav-shade').addEventListener('click',function(){set(false)});document.querySelectorAll('.main-nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();</script>
+
+<script src="/app.js"></script>
+
+<script>
+(function () {
+const list = $('#stops');
+const stopRow = v => `<label class="f"><span>Colour</span><input data-f="c" type="color" value="${esc(v.c ?? '#ffffff')}"></label>
+  <label class="f"><span>Position %</span><input data-f="p" type="number" inputmode="numeric" min="0" max="100" step="1" value="${esc(v.p ?? 50)}"></label>
+  <label class="f"><span>Opacity %</span><input data-f="a" type="number" inputmode="numeric" min="0" max="100" step="5" value="${esc(v.a ?? 100)}"></label>
+  <button type="button" class="rm" aria-label="Remove colour">×</button>`;
+makeList(list, $('#add-stop'), stopRow, [{ c: '#ff5b35', p: 0 }, { c: '#ffb347', p: 100 }], render);
+onAny('input[name="type"], #angle, #shape', render);
+const col = (hex, a) => { if (a >= 100) return hex; const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16}, ${(n >> 8) & 255}, ${n & 255}, ${+(a / 100).toFixed(2)})`; };
+let css = '';
+function render() {
+  const type = $('input[name="type"]:checked').value, ang = $('#angle').value;
+  $('#av').textContent = ang;
+  $('#angle-wrap').hidden = type === 'radial'; $('#shape-wrap').hidden = type !== 'radial';
+  const stops = $$('.row', list).map(r => ({ c: field(r, 'c').value, p: Math.min(100, Math.max(0, val(field(r, 'p')) || 0)), a: Math.min(100, Math.max(0, ok(val(field(r, 'a'))) ? val(field(r, 'a')) : 100)) })).sort((x, y) => x.p - y.p);
+  const s = stops.map(x => `${col(x.c, x.a)} ${x.p}%`).join(', ');
+  const g = type === 'linear' ? `linear-gradient(${ang}deg, ${s})` : type === 'radial' ? `radial-gradient(${$('#shape').value}, ${s})` : `conic-gradient(from ${ang}deg, ${s})`;
+  css = `background: ${stops[0] ? col(stops[0].c, stops[0].a) : '#fff'};\nbackground: ${g};`;
+  $('#sw').style.background = g;
+  $('#code').textContent = css;
+}
+$('#presets').addEventListener('click', e => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  list.innerHTML = '';
+  b.dataset.p.split('|').forEach(s => { const [c, p] = s.split(','); const row = document.createElement('div'); row.className = 'row'; row.innerHTML = stopRow({ c, p }); list.appendChild(row); });
+  render();
+});
+$('#rnd').onclick = () => {
+  const h = randInt(0, 359), hsl = (hh, l) => { const c = document.createElement('canvas').getContext('2d'); c.fillStyle = `hsl(${hh % 360},75%,${l}%)`; return c.fillStyle; };
+  $$('.row', list).forEach((r, i, arr) => { field(r, 'c').value = hsl(h + i * randInt(30, 90), randInt(45, 65)); field(r, 'p').value = Math.round(i / Math.max(1, arr.length - 1) * 100); });
+  $('#angle').value = randInt(0, 359); render();
+};
+$('#png').onclick = async () => {
+  const c = document.createElement('canvas'); c.width = 1920; c.height = 1080;
+  const x = c.getContext('2d'), type = $('input[name="type"]:checked').value, a = $('#angle').value * Math.PI / 180;
+  const stops = $$('.row', list).map(r => ({ c: col(field(r, 'c').value, ok(val(field(r, 'a'))) ? val(field(r, 'a')) : 100), p: Math.min(100, Math.max(0, val(field(r, 'p')) || 0)) / 100 })).sort((p, q) => p.p - q.p);
+  let g;
+  if (type === 'linear') {
+    // Same geometry as CSS: the gradient line passes through the centre at the given angle and reaches the corners.
+    const len = Math.abs(1920 * Math.sin(a)) + Math.abs(1080 * Math.cos(a)), dx = Math.sin(a) * len / 2, dy = -Math.cos(a) * len / 2;
+    g = x.createLinearGradient(960 - dx, 540 - dy, 960 + dx, 540 + dy);
+  } else if (type === 'radial') g = x.createRadialGradient(960, 540, 0, 960, 540, Math.hypot(960, 540));
+  else g = x.createConicGradient(a - Math.PI / 2, 960, 540);
+  stops.forEach(s => g.addColorStop(s.p, s.c));
+  if (type === 'radial' && $('#shape').value === 'ellipse') { x.setTransform(1, 0, 0, 1080 / 1920, 0, 540 - 540 * 1080 / 1920); g = x.createRadialGradient(960, 540, 0, 960, 540, 960 * Math.SQRT2); stops.forEach(s => g.addColorStop(s.p, s.c)); }
+  x.fillStyle = g; x.fillRect(-2000, -2000, 6000, 6000);
+  download(await canvasBlob(c, 'image/png'), 'gradient-1920x1080.png');
+};
+render();
+
+})();
+</script>
+<!--TF:BODY_END-->
+</body>
+</html>

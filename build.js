@@ -21,13 +21,17 @@ const CATEGORIES = [
   { id: 'image', name: 'Image tools', nav: 'Image', icon: 'image', blurb: 'Compress, resize and convert photos without uploading them anywhere.' },
   { id: 'pdf', name: 'PDF tools', nav: 'PDF', icon: 'file-text', blurb: 'Merge, split and create PDFs right in your browser.' },
   { id: 'text', name: 'Text tools', nav: 'Text', icon: 'type', blurb: 'Count, clean up, convert and style text.' },
+  { id: 'media', name: 'Video & audio tools', nav: 'Video & Audio', icon: 'clapperboard', blurb: 'Turn videos into MP3, compress and cut clips, make GIFs and record your voice or screen.' },
   { id: 'qr', name: 'QR code & barcode tools', nav: 'QR & Barcode', icon: 'qr-code', blurb: 'Create and scan QR codes and barcodes for links, Wi-Fi, contacts and products.' },
   { id: 'random', name: 'Generators & random', nav: 'Generators', icon: 'sparkles', blurb: 'Passwords, giveaways, coin flips, dice and decision wheels.' },
   { id: 'health', name: 'Health & fitness calculators', nav: 'Health', icon: 'heart-pulse', blurb: 'Calories, BMI, body fat, water, sleep and pregnancy dates.' },
-  { id: 'money', name: 'Finance calculators', nav: 'Finance', icon: 'wallet', blurb: 'Interest, savings, retirement, salary, tax and invoices.' },
+  { id: 'money', name: 'Finance & business', nav: 'Finance', icon: 'wallet', blurb: 'Loans, savings, budgets, debt, retirement, tax, invoices and quotes.' },
+  { id: 'study', name: 'Student tools', nav: 'Students', icon: 'graduation-cap', blurb: 'GPA and grades, citations, flashcards and typing speed.' },
   { id: 'calc', name: 'Calculators', nav: 'Calculators', icon: 'calculator', blurb: 'Quick answers for percentages, loans, health and shopping.' },
   { id: 'time', name: 'Time & dates', nav: 'Time', icon: 'clock', blurb: 'Timers, stopwatches, ages and the days between dates.' },
-  { id: 'convert', name: 'Converters & developer tools', nav: 'Converters', icon: 'repeat', blurb: 'Units, colours, JSON and Base64.' },
+  { id: 'convert', name: 'Converters', nav: 'Converters', icon: 'repeat', blurb: 'Units and colours.' },
+  { id: 'dev', name: 'Developer tools', nav: 'Developer', icon: 'code', blurb: 'JSON, regex, hashes, UUIDs, JWTs, URLs, cron and CSS gradients.' },
+  { id: 'home', name: 'Home & DIY', nav: 'Home & DIY', icon: 'paint-roller', blurb: 'Paint, tiles, concrete and what your appliances cost to run.' },
   { id: 'social', name: 'Social media & greetings', nav: 'Social', icon: 'party-popper', blurb: 'YouTube tools, birthday cards and personalised wishes.' },
   { id: 'life', name: 'Everyday life', nav: 'Life', icon: 'house', blurb: 'Split rent and trips fairly, plan dinners and check furniture fits.' },
 ];
@@ -80,6 +84,7 @@ for (const t of tools) {
   if (!CATEGORIES.find(c => c.id === t.category)) warnings.push(`${t.slug}: unknown category "${t.category}"`);
   if (t.icon && !fs.existsSync(path.join(ICONS, `${t.icon}.svg`))) warnings.push(`${t.slug}: icon "${t.icon}" not found`);
   for (const r of t.related || []) if (!bySlug[r]) warnings.push(`${t.slug}: related tool "${r}" does not exist`);
+  for (const [, r] of (t.article || '').matchAll(/href="\/([a-z0-9-]+)"/g)) if (!bySlug[r]) warnings.push(`${t.slug}: article links to missing tool "${r}"`);
   t.wordCount = strip(t.answer + ' ' + t.article + ' ' + (t.faqs || []).flat().join(' ')).split(' ').length;
   if (t.wordCount < 400) warnings.push(`${t.slug}: only ${t.wordCount} words of content (aim for 400+)`);
 }
@@ -122,11 +127,11 @@ ${schema.map(ld).join('\n')}
   const header = `<header class="site"><div class="wrap">
 <a class="brand" href="${link('index')}">${logo}<span>${SITE.name.replace(/^(\w+?)(Figure)$/, '$1<b>$2</b>')}</span></a>
 <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
-<nav class="main-nav" id="main-nav" aria-label="Main">${CATEGORIES.map(c => `<a href="${link('index')}#${c.id}" data-cat="${c.id}"${['image', 'pdf', 'qr', 'health', 'money'].includes(c.id) ? '' : ' class="more"'}>${icon(c.icon)}${esc(c.nav)}</a>`).join('')}<a class="cta" href="${link('index')}#tools">All tools</a></nav>
+<nav class="main-nav" id="main-nav" aria-label="Main">${CATEGORIES.map(c => `<a href="${link('index')}#${c.id}" data-cat="${c.id}"${['image', 'pdf', 'media', 'qr', 'money'].includes(c.id) ? '' : ' class="more"'}>${icon(c.icon)}${esc(c.nav)}</a>`).join('')}<a class="cta" href="${link('index')}#tools">All tools</a></nav>
 </div></header><div class="nav-shade"></div>
 <!--TF:BODY_TOP-->`;
   const footer = `<footer class="foot"><div class="wrap">
-${CATEGORIES.slice(0, 8).map(c => `<div><h2>${esc(c.name)}</h2><ul>${tools.filter(t => t.category === c.id).slice(0, 6).map(t => `<li data-slug="${t.slug}"><a href="${link(t.slug)}">${esc(t.name)}</a></li>`).join('')}</ul></div>`).join('\n')}
+${CATEGORIES.map(c => `<div><h2>${esc(c.name)}</h2><ul>${tools.filter(t => t.category === c.id).slice(0, 5).map(t => `<li data-slug="${t.slug}"><a href="${link(t.slug)}">${esc(t.name)}</a></li>`).join('')}</ul></div>`).join('\n')}
 <div class="legal"><span>© ${new Date().getFullYear()} ${SITE.name}. Free online tools, built by <a href="${SITE.byUrl}" rel="noopener">${SITE.by}</a>. Your files never leave your device.</span>
 <span><a href="${link('about')}">About</a> · <a href="${link('privacy')}">Privacy</a> · <a href="${link('index')}#tools">All tools</a></span></div>
 </div></footer>`;
@@ -189,7 +194,7 @@ ${t.html}
 <p class="private">${icon('shield-check')}${t.files ? 'Your files are processed on your device and never uploaded.' : 'Everything runs in your browser. Nothing you type is sent anywhere.'}</p>
 <div class="layout">
 <article class="prose">
-${t.article}
+${t.article.replace(/href="\/([a-z0-9-]+)"/g, (m, s) => `href="${link(s)}"`)}
 <!--TF:AD:article-->
 <h2>Frequently asked questions</h2>
 ${t.faqs.map(([q, a]) => `<details class="faq"><summary>${esc(q)}</summary><p>${a}</p></details>`).join('\n')}

@@ -1,0 +1,22 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+      <label class="f"><span>Original text</span><textarea id="a" style="min-height:200px">The quick brown fox jumps over the lazy dog.
+Our office opens at 9 am, Monday to Friday.
+Please send your report by the end of the week.
+Thank you for your help.</textarea></label>
+      <label class="f"><span>Changed text</span><textarea id="b" style="min-height:200px">The quick red fox jumps over the sleeping dog.
+Our office opens at 8:30 am, Monday to Friday.
+Please send your report by Thursday.
+Thank you for your help.
+Questions? Call us any time.</textarea></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Compare by</span><select id="mode"><option value="word" selected>Words</option><option value="line">Whole lines</option><option value="char">Characters</option></select></label>
+      <label class="check"><input type="checkbox" id="ws">Ignore extra spaces</label>
+      <label class="check"><input type="checkbox" id="case">Ignore upper/lower case</label>
+    </div>
+    <div class="btns"><button type="button" class="btn ghost" id="swap">Swap</button><button type="button" class="btn ghost" id="clear">Clear both</button></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,20 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Gross household income (per year)</span><input type="number" id="inc" inputmode="decimal" min="0" step="any" value="90000"></label>
+      <label class="f"><span>Other debt payments (per month)</span><input type="number" id="debts" inputmode="decimal" min="0" step="any" value="400"></label>
+      <label class="f"><span>Down payment / deposit</span><input type="number" id="down" inputmode="decimal" min="0" step="any" value="60000"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Interest rate (% per year)</span><input type="number" id="rate" inputmode="decimal" min="0" step="any" value="6.5"></label>
+      <label class="f"><span>Term (years)</span><select id="term"><option>10</option><option>15</option><option>20</option><option>25</option><option selected>30</option><option>35</option></select></label>
+      <label class="f"><span>Property tax + insurance (% of price / yr)</span><input type="number" id="tax" inputmode="decimal" min="0" step="any" value="1.5"></label>
+      <label class="f"><span>HOA / service charge (per month)</span><input type="number" id="hoa" inputmode="decimal" min="0" step="any" value="0"></label>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Lending rule">
+      <label><input type="radio" name="rule" value="28-36" checked><span>Conservative 28/36</span></label>
+      <label><input type="radio" name="rule" value="31-43"><span>Flexible 31/43</span></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,8 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>JSON Web Token</span><textarea id="tok" class="mono" spellcheck="false" style="min-height:140px">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkphbmUgRG9lIiwicm9sZSI6ImVkaXRvciIsImlhdCI6MTc2MTEzNjAwMCwiZXhwIjoxNzYxMTM5NjAwfQ.placeholder</textarea></label>
+    <label class="f"><span>Secret, to verify an HS256/384/512 signature (optional)</span><input type="text" id="secret" class="mono" placeholder="your-256-bit-secret" spellcheck="false" autocomplete="off"></label>
+    <p class="note">The token is decoded in your browser and never sent anywhere. Still, avoid pasting live production tokens into any website you don’t control.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,12 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Test length</span><select id="dur"><option value="30">30 seconds</option><option value="60" selected>1 minute</option><option value="120">2 minutes</option><option value="180">3 minutes</option></select></label>
+      <label class="f"><span>Text</span><select id="kind"><option value="easy">Easy (common words)</option><option value="text" selected>Paragraphs</option><option value="hard">Hard (punctuation and numbers)</option></select></label>
+    </div>
+    <div class="typing" id="text" aria-label="Text to type"></div>
+    <label class="f"><span>Start typing here; the timer starts with your first key</span><textarea id="in" class="mono" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" style="min-height:90px"></textarea></label>
+    <div class="btns"><button type="button" class="btn ghost" id="reset">{{icon:rotate-ccw}}New text</button></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

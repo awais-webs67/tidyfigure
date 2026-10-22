@@ -1,6 +1,6 @@
 module.exports = {
   order: 2,
-  category: 'convert',
+  category: 'dev',
   icon: 'braces',
   name: 'JSON Formatter & Validator',
   keywords: 'json beautifier json validator pretty print json minify json lint',

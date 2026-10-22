@@ -1,0 +1,12 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Electricity price per kWh</span><input type="number" id="price" inputmode="decimal" min="0" step="any" value="0.25"></label>
+    </div>
+    <p class="group-title">Appliances</p>
+    <div class="list" id="apps"></div>
+    <button type="button" class="add" id="add-app">+ Add an appliance</button>
+    <p class="note">The power in watts (W) is on the label or in the manual. For appliances that cycle on and off (fridges, heaters with thermostats), use the average power, or the yearly kWh from the energy label ÷ 8,760 hours × 1,000.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

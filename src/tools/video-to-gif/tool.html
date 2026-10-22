@@ -1,0 +1,28 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a video to turn into a GIF">
+      {{icon:film}}
+      <strong>Drop a video here or click to choose</strong>
+      <span>MP4, MOV, WebM · stays on your device</span>
+      <input type="file" id="file" accept="video/*,.mkv,.mov">
+    </div>
+    <video class="player" id="vid" controls playsinline muted hidden></video>
+    <div class="fields">
+      <label class="f"><span>Start (m:ss)</span><input type="text" id="start" inputmode="decimal" value="0:00"></label>
+      <label class="f"><span>Length (seconds)</span><input type="number" id="len" inputmode="decimal" min="0.5" max="30" step="0.5" value="3"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Width</span><select id="w"><option value="240">240 px (tiny)</option><option value="320">320 px</option><option value="480" selected>480 px</option><option value="640">640 px (large)</option></select></label>
+      <label class="f"><span>Frames per second</span><select id="fps"><option value="8">8 (smallest)</option><option value="12" selected>12</option><option value="15">15</option><option value="20">20 (smoothest)</option></select></label>
+      <label class="f"><span>Speed</span><select id="speed"><option value="0.5">0.5× (slow motion)</option><option value="1" selected>1× (normal)</option><option value="2">2× (fast)</option></select></label>
+    </div>
+    <label class="f"><span>Caption (optional)</span><input type="text" id="cap" maxlength="60" placeholder="Text shown at the bottom"></label>
+    <label class="check"><input type="checkbox" id="rev">Boomerang (play forwards, then backwards)</label>
+    <button type="button" class="btn big-btn" id="go" disabled>{{icon:film}}Make GIF</button>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your GIF</p>
+    <p class="empty">Choose a video, pick a few seconds and press Make GIF.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample clip</button>
+  </div>
+</div>

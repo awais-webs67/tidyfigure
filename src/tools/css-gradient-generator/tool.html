@@ -1,0 +1,28 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Type">
+      <label><input type="radio" name="type" value="linear" checked><span>Linear</span></label>
+      <label><input type="radio" name="type" value="radial"><span>Radial</span></label>
+      <label><input type="radio" name="type" value="conic"><span>Conic</span></label>
+    </div>
+    <label class="f" id="angle-wrap"><span>Angle: <b id="av">135</b>°</span><input type="range" id="angle" min="0" max="360" step="1" value="135"></label>
+    <label class="f" id="shape-wrap" hidden><span>Shape</span><select id="shape"><option value="circle">Circle</option><option value="ellipse" selected>Ellipse</option></select></label>
+    <p class="group-title">Colour stops</p>
+    <div class="list" id="stops"></div>
+    <button type="button" class="add" id="add-stop">+ Add a colour</button>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-p="#ff5b35,0|#ffb347,100">Sunset</button>
+      <button type="button" class="chip" data-p="#4facfe,0|#00f2fe,100">Sky</button>
+      <button type="button" class="chip" data-p="#43e97b,0|#38f9d7,100">Mint</button>
+      <button type="button" class="chip" data-p="#667eea,0|#764ba2,100">Purple</button>
+      <button type="button" class="chip" data-p="#f093fb,0|#f5576c,100">Candy</button>
+      <button type="button" class="chip" data-p="#191f24,0|#333f48,60|#ff5b35,100">Night</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <div class="swatch" id="sw" style="height:220px"></div>
+    <p class="kicker">CSS</p>
+    <div class="copybox" id="code"></div>
+    <div class="btns"><button type="button" class="btn" data-copy="code">Copy CSS</button><button type="button" class="btn ghost" id="png">Download PNG</button><button type="button" class="btn ghost" id="rnd">Random</button></div>
+  </div>
+</div>

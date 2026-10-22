@@ -1,0 +1,16 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Version">
+      <label><input type="radio" name="ver" value="4" checked><span>UUID v4 (random)</span></label>
+      <label><input type="radio" name="ver" value="7"><span>UUID v7 (time-ordered)</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>How many</span><input type="number" id="n" inputmode="numeric" min="1" max="1000" step="1" value="5"></label>
+      <label class="f"><span>Format</span><select id="fmt"><option value="lower" selected>lowercase</option><option value="upper">UPPERCASE</option><option value="nodash">no dashes</option><option value="braces">{with braces}</option></select></label>
+    </div>
+    <button type="button" class="btn big-btn" id="go">{{icon:refresh-cw}}Generate</button>
+    <label class="f"><span>Check a UUID</span><input type="text" id="check" class="mono" placeholder="Paste a UUID to see its version"></label>
+    <p class="note" id="check-out"></p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

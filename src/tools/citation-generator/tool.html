@@ -1,0 +1,35 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Citation style">
+      <label><input type="radio" name="style" value="apa" checked><span>APA 7</span></label>
+      <label><input type="radio" name="style" value="mla"><span>MLA 9</span></label>
+      <label><input type="radio" name="style" value="harvard"><span>Harvard</span></label>
+      <label><input type="radio" name="style" value="chicago"><span>Chicago</span></label>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Source type">
+      <label><input type="radio" name="type" value="web" checked><span>Website</span></label>
+      <label><input type="radio" name="type" value="book"><span>Book</span></label>
+      <label><input type="radio" name="type" value="journal"><span>Journal article</span></label>
+    </div>
+    <label class="f"><span>Authors (one per line, e.g. Jane A. Doe). Leave empty if there’s no author.</span><textarea id="authors" style="min-height:70px">Jane A. Doe
+Michael Chen</textarea></label>
+    <label class="f"><span id="l-title">Page title</span><input type="text" id="title" value="How sleep affects memory and learning"></label>
+    <div class="fields">
+      <label class="f" data-for="web"><span>Website name</span><input type="text" id="site" value="Sleep Research Society"></label>
+      <label class="f" data-for="journal"><span>Journal name</span><input type="text" id="journal" value="Journal of Sleep Research"></label>
+      <label class="f" data-for="book"><span>Publisher</span><input type="text" id="publisher" value="Oxford University Press"></label>
+      <label class="f" data-for="book"><span>Edition (optional)</span><input type="text" id="edition" placeholder="e.g. 3"></label>
+      <label class="f"><span>Published (year or date)</span><input type="text" id="date" value="2024-03-15" placeholder="2024 or 2024-03-15"></label>
+    </div>
+    <div class="fields" data-for="journal">
+      <label class="f"><span>Volume</span><input type="text" id="vol" value="33"></label>
+      <label class="f"><span>Issue</span><input type="text" id="issue" value="2"></label>
+      <label class="f"><span>Pages</span><input type="text" id="pages" value="145-162"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span id="l-url">URL</span><input type="text" id="url" value="https://www.example.org/sleep-and-memory"></label>
+      <label class="f" data-for="web"><span>Date accessed</span><input type="date" id="acc"></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

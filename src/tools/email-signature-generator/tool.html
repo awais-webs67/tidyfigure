@@ -1,0 +1,33 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Full name</span><input type="text" id="name" value="Sara Ahmed"></label>
+      <label class="f"><span>Job title</span><input type="text" id="title" value="Marketing Manager"></label>
+      <label class="f"><span>Company</span><input type="text" id="company" value="Northwind Studio"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Phone</span><input type="tel" id="phone" value="+44 20 7946 0958"></label>
+      <label class="f"><span>Email</span><input type="email" id="email" value="sara@northwind.example"></label>
+      <label class="f"><span>Website</span><input type="url" id="web" value="https://northwind.example"></label>
+    </div>
+    <label class="f"><span>Address (optional)</span><input type="text" id="addr" value="21 Market Street, London"></label>
+    <label class="f"><span>Photo or logo URL (optional, must be a public https:// link)</span><input type="url" id="img" placeholder="https://yoursite.com/photo.jpg"></label>
+    <div class="fields">
+      <label class="f"><span>LinkedIn URL</span><input type="url" id="li" value="https://www.linkedin.com/in/example"></label>
+      <label class="f"><span>X / Twitter URL</span><input type="url" id="x" placeholder="https://x.com/…"></label>
+      <label class="f"><span>Instagram URL</span><input type="url" id="ig" placeholder="https://instagram.com/…"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Style</span><select id="tpl"><option value="classic" selected>Classic (accent bar)</option><option value="stack">Stacked</option><option value="minimal">Minimal</option></select></label>
+      <label class="f"><span>Accent colour</span><input type="color" id="accent" value="#ff5b35"></label>
+      <label class="f"><span>Font</span><select id="font"><option value="Arial, Helvetica, sans-serif" selected>Arial</option><option value="Verdana, Geneva, sans-serif">Verdana</option><option value="Georgia, 'Times New Roman', serif">Georgia</option><option value="Tahoma, Geneva, sans-serif">Tahoma</option><option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet</option></select></label>
+    </div>
+    <label class="f"><span>Sign-off line or disclaimer (optional)</span><input type="text" id="note" placeholder="e.g. I work flexibly, so please don't feel you need to reply outside your hours."></label>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your signature</p>
+    <div class="sig-preview" id="preview"></div>
+    <div class="btns"><button type="button" class="btn big-btn" id="copy">{{icon:copy}}Copy signature</button><button type="button" class="btn ghost" id="code">Copy HTML code</button></div>
+    <p class="note">Paste into your email app’s signature settings with Ctrl+V or Cmd+V. Steps for Gmail, Outlook and Apple Mail are below.</p>
+  </div>
+</div>

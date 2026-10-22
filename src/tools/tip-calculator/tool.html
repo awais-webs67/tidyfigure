@@ -1,0 +1,16 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Bill amount</span><input type="number" id="bill" inputmode="decimal" min="0" step="any" value="84.50"></label>
+      <label class="f"><span>Tip (%)</span><input type="number" id="pct" inputmode="decimal" min="0" max="100" step="any" value="18"></label>
+      <label class="f"><span>Number of people</span><input type="number" id="ppl" inputmode="numeric" min="1" step="1" value="3"></label>
+    </div>
+    <div class="chips" id="chips"><button type="button" class="chip" data-p="10">10%</button><button type="button" class="chip" data-p="12.5">12.5%</button><button type="button" class="chip" data-p="15">15%</button><button type="button" class="chip" data-p="18">18%</button><button type="button" class="chip" data-p="20">20%</button><button type="button" class="chip" data-p="25">25%</button></div>
+    <div class="fields">
+      <label class="f"><span>Tax included in the bill (optional)</span><input type="number" id="tax" inputmode="decimal" min="0" step="any" placeholder="0"></label>
+      <label class="f"><span>Round each share</span><select id="round"><option value="0">Don’t round</option><option value="1" selected>Up to a whole number</option><option value="5">Up to the nearest 5</option></select></label>
+    </div>
+    <p class="note">Enter the tax shown on the bill if you prefer to tip on the amount before tax.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

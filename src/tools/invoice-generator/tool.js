@@ -1,7 +1,13 @@
+// Quotation and receipt pages reuse this tool with a PRESET that changes the wording and sample data.
+const P = Object.assign({ doc: 'Invoice', num: 'INV-2026-014', to: 'Bill to', due: 'Due', dueLabel: 'Due date', days: 14, grand: 'Total due', notes: null, items: null }, typeof PRESET !== 'undefined' && PRESET ? PRESET : {});
 const KEY = 'tf-invoice-business';
 const today = new Date(), iso = d => d.toISOString().slice(0, 10);
 $('#date').value = iso(today);
-$('#due').value = iso(new Date(today.getTime() + 14 * 86400000));
+$('#due').value = iso(new Date(today.getTime() + P.days * 86400000));
+$('#num').value = P.num;
+$('#l-to').textContent = P.to; $('#l-num').textContent = `${P.doc} number`; $('#l-date').textContent = `${P.doc} date`; $('#l-due').textContent = P.dueLabel;
+if (P.notes) $('#notes').value = P.notes;
+if (P.toText) $('#to').value = P.toText;
 let logo = null;
 
 const list = $('#items');
@@ -11,16 +17,16 @@ makeList(list, $('#add-item'), v => `
   <label class="f"><span>Unit price</span><input data-f="price" type="number" inputmode="decimal" min="0" step="any" value="${esc(v.price ?? '')}"></label>
   <label class="f"><span>Tax %</span><input data-f="tax" type="number" inputmode="decimal" min="0" max="100" step="any" value="${esc(v.tax ?? 0)}"></label>
   <button type="button" class="rm" aria-label="Remove item">×</button>`,
-  [{ desc: 'Website design', qty: 1, price: 1800, tax: 20 }, { desc: 'Copywriting (hours)', qty: 6, price: 65, tax: 20 }, { desc: 'Stock photo licences', qty: 4, price: 25, tax: 20 }], render);
+  P.items || [{ desc: 'Website design', qty: 1, price: 1800, tax: 20 }, { desc: 'Copywriting (hours)', qty: 6, price: 65, tax: 20 }, { desc: 'Stock photo licences', qty: 4, price: 25, tax: 20 }], render);
 
 // Business details are a per-device convenience; storage may be unavailable, so every access is guarded.
 try {
   const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
-  if (saved) ['from-name', 'from', 'notes', 'cur', 'accent'].forEach(k => { if (saved[k] !== undefined) $('#' + k).value = saved[k]; });
+  if (saved) ['from-name', 'from', 'cur', 'accent', ...(P.notes ? [] : ['notes'])].forEach(k => { if (saved[k] !== undefined) $('#' + k).value = saved[k]; });
 } catch (e) { /* storage blocked */ }
 function remember() {
   try {
-    if ($('#remember').checked) localStorage.setItem(KEY, JSON.stringify(Object.fromEntries(['from-name', 'from', 'notes', 'cur', 'accent'].map(k => [k, $('#' + k).value]))));
+    if ($('#remember').checked) localStorage.setItem(KEY, JSON.stringify(Object.fromEntries(['from-name', 'from', 'cur', 'accent', ...(P.notes ? [] : ['notes'])].map(k => [k, $('#' + k).value]))));
     else localStorage.removeItem(KEY);
   } catch (e) { /* storage blocked */ }
 }
@@ -39,15 +45,15 @@ function render() {
   const p = $('#paper');
   p.style.setProperty('--inv-accent', $('#accent').value);
   p.innerHTML = `<div class="inv-top"><div>${logo ? `<img src="${logo}" alt="">` : `<h2>${esc($('#from-name').value)}</h2>`}</div>
-      <div class="inv-meta"><h2 style="color:${$('#accent').value}">Invoice</h2><div>No. <b>${esc($('#num').value)}</b></div><div>Date: <b>${nice($('#date').value)}</b></div><div>Due: <b>${nice($('#due').value)}</b></div></div></div>
-    <div class="inv-parties"><div><small>From</small><b>${esc($('#from-name').value)}</b><br>${esc($('#from').value)}</div><div><small>Bill to</small>${esc($('#to').value)}</div></div>
+      <div class="inv-meta"><h2 style="color:${$('#accent').value}">${P.doc}</h2><div>No. <b>${esc($('#num').value)}</b></div><div>Date: <b>${nice($('#date').value)}</b></div><div>${P.due}: <b>${nice($('#due').value)}</b></div></div></div>
+    <div class="inv-parties"><div><small>From</small><b>${esc($('#from-name').value)}</b><br>${esc($('#from').value)}</div><div><small>${P.to}</small>${esc($('#to').value)}</div></div>
     <table class="inv-tbl"><thead><tr><th>Description</th><th class="r">Qty</th><th class="r">Price</th><th class="r">Tax</th><th class="r">Amount</th></tr></thead>
       <tbody>${items.map(i => `<tr><td>${esc(i.desc)}</td><td class="r">${fmtMax(i.qty, 2)}</td><td class="r">${money(i.price)}</td><td class="r">${i.tax ? fmtMax(i.tax, 2) + '%' : '–'}</td><td class="r">${money(i.qty * i.price)}</td></tr>`).join('')}</tbody></table>
     <div class="inv-tot"><div><span>Subtotal</span><span>${money(sub)}</span></div>
       ${disc ? `<div><span>Discount ${fmtMax(disc * 100, 2)}%</span><span>−${money(sub * disc)}</span></div>` : ''}
       ${Object.entries(taxes).map(([r, t]) => `<div><span>Tax ${fmtMax(+r, 2)}%</span><span>${money(t)}</span></div>`).join('')}
       ${ship ? `<div><span>Shipping / other</span><span>${money(ship)}</span></div>` : ''}
-      <div class="grand"><span>Total due</span><span>${money(total)}</span></div></div>
+      <div class="grand"><span>${P.grand}</span><span>${money(total)}</span></div></div>
     ${$('#notes').value.trim() ? `<div class="inv-notes">${esc($('#notes').value)}</div>` : ''}`;
   remember();
 }
@@ -66,15 +72,15 @@ $('#pdf').addEventListener('click', async () => {
     if (!window.PDFLib) await loadScript(PDFLIB_URL);
     const c = await snapshot();
     const pdf = await PDFLib.PDFDocument.create();
-    pdf.setTitle(`Invoice ${$('#num').value}`); pdf.setAuthor($('#from-name').value);
+    pdf.setTitle(`${P.doc} ${$('#num').value}`); pdf.setAuthor($('#from-name').value);
     const img = await pdf.embedJpg(new Uint8Array(await (await canvasBlob(c, 'image/jpeg', 0.92)).arrayBuffer()));
     const W = 595.28, H = 841.89, h = W * c.height / c.width;
     // Long invoices continue onto extra pages.
     for (let top = 0, i = 0; top < h - 1; top += H, i++) pdf.addPage([W, H]).drawImage(img, { x: 0, y: H - h + top, width: W, height: h });
-    download(new Blob([await pdf.save()], { type: 'application/pdf' }), `${$('#num').value.replace(/[^\w-]+/g, '-') || 'invoice'}.pdf`);
+    download(new Blob([await pdf.save()], { type: 'application/pdf' }), `${$('#num').value.replace(/[^\w-]+/g, '-') || P.doc.toLowerCase()}.pdf`);
   } finally { $('#pdf').disabled = false; }
 });
-$('#png').addEventListener('click', async () => download(await canvasBlob(await snapshot(), 'image/png'), `${$('#num').value.replace(/[^\w-]+/g, '-') || 'invoice'}.png`));
+$('#png').addEventListener('click', async () => download(await canvasBlob(await snapshot(), 'image/png'), `${$('#num').value.replace(/[^\w-]+/g, '-') || P.doc.toLowerCase()}.png`));
 $('#next').addEventListener('click', () => { $('#num').value = $('#num').value.replace(/(\d+)(?!.*\d)/, d => String(+d + 1).padStart(d.length, '0')); render(); });
 $('#logo').addEventListener('change', () => { const f = $('#logo').files[0]; if (!f) { logo = null; render(); return; } const r = new FileReader(); r.onload = () => { logo = r.result; render(); }; r.readAsDataURL(f); });
 onAny('#from-name, #from, #to, #num, #date, #due, #cur, #accent, #disc, #ship, #notes, #remember', render);

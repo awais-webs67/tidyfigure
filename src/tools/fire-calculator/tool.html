@@ -1,0 +1,16 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Your age</span><input type="number" id="age" inputmode="numeric" min="15" max="90" step="1" value="30"></label>
+      <label class="f"><span>Yearly spending in retirement</span><input type="number" id="exp" inputmode="decimal" min="0" step="any" value="40000"></label>
+      <label class="f"><span>Invested now</span><input type="number" id="now" inputmode="decimal" min="0" step="any" value="100000"></label>
+      <label class="f"><span>You invest per year</span><input type="number" id="save" inputmode="decimal" min="0" step="any" value="30000"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Return after inflation (% / yr)</span><input type="number" id="ret" inputmode="decimal" step="any" value="5"></label>
+      <label class="f"><span>Withdrawal rate (%)</span><select id="swr"><option value="3">3% (very safe)</option><option value="3.5">3.5%</option><option value="4" selected>4% (the classic rule)</option><option value="4.5">4.5%</option><option value="5">5%</option></select></label>
+    </div>
+    <p class="note">Use a return <em>after</em> inflation (a "real" return), so every figure is in today's money. 4–6% is a common long-term assumption for a stock-heavy portfolio, but it isn't guaranteed.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

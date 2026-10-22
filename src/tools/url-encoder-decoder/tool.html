@@ -1,0 +1,14 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Mode">
+      <label><input type="radio" name="mode" value="enc" checked><span>Encode</span></label>
+      <label><input type="radio" name="mode" value="dec"><span>Decode</span></label>
+      <label><input type="radio" name="mode" value="parse"><span>Break down a URL</span></label>
+    </div>
+    <label class="f"><span id="l-in">Text to encode</span><textarea id="in" class="mono" spellcheck="false">café & croissants: 2 for €5 / day?</textarea></label>
+    <div class="fields" id="enc-opts">
+      <label class="f"><span>Encode as</span><select id="kind"><option value="comp" selected>Query value or path part (encodeURIComponent)</option><option value="uri">Whole URL (encodeURI)</option><option value="form">Form data (spaces as +)</option></select></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

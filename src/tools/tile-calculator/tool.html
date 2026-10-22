@@ -1,0 +1,25 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Units">
+      <label><input type="radio" name="u" value="m" checked><span>Metric (m, cm)</span></label>
+      <label><input type="radio" name="u" value="ft"><span>Imperial (ft, in)</span></label>
+    </div>
+    <p class="group-title">Area to tile</p>
+    <div class="fields">
+      <label class="f"><span>Length <i class="ua">(m)</i></span><input type="number" id="len" inputmode="decimal" min="0" step="any" value="3.6"></label>
+      <label class="f"><span>Width or height <i class="ua">(m)</i></span><input type="number" id="wid" inputmode="decimal" min="0" step="any" value="2.4"></label>
+      <label class="f"><span>Area to leave out <i class="usq">(m²)</i></span><input type="number" id="minus" inputmode="decimal" min="0" step="any" value="0" placeholder="e.g. bath, cupboard"></label>
+    </div>
+    <p class="group-title">Tile</p>
+    <div class="fields">
+      <label class="f"><span>Tile length <i class="ub">(cm)</i></span><input type="number" id="tl" inputmode="decimal" min="0" step="any" value="30"></label>
+      <label class="f"><span>Tile width <i class="ub">(cm)</i></span><input type="number" id="tw" inputmode="decimal" min="0" step="any" value="30"></label>
+      <label class="f"><span>Tiles per box</span><input type="number" id="box" inputmode="numeric" min="0" step="1" value="11"></label>
+      <label class="f"><span>Price per box (optional)</span><input type="number" id="price" inputmode="decimal" min="0" step="any" placeholder="0"></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Extra for cuts and breakage</span><select id="waste"><option value="5">5% (simple, few cuts)</option><option value="10" selected>10% (most rooms)</option><option value="15">15% (diagonal or herringbone)</option><option value="20">20% (complex room, large tiles)</option></select></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

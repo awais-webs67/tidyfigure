@@ -1,13 +1,13 @@
 # TidyFigure
 
-92 free online tools (PDF, image, QR/barcode, text, health, finance, social and more) in the AivraSol theme, with a PHP admin panel. Every tool runs in the visitor's browser: files are never uploaded, there are no API costs, and nothing needs regular data updates.
+131 free online tools (PDF, image, video & audio, QR/barcode, text, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with a PHP admin panel. Every tool runs in the visitor's browser: files are never uploaded, there are no API costs, and nothing needs regular data updates.
 
 ## Folders
 
 | Folder | What it is |
 |---|---|
 | `src/tools/<slug>/` | One folder per tool: `tool.html` (inputs), `tool.js` (logic), `meta.js` (SEO title, description, article, FAQs) |
-| `src/assets/` | Shared CSS (theme), `app.js` helpers, `pdf-pages.js` (PDF page grid), `scan.js` (QR/barcode scanner) |
+| `src/assets/` | Shared CSS (theme), `app.js` helpers, `pdf-pages.js` (PDF page grid), `scan.js` (QR/barcode scanner), `media.js` (video/audio helpers) |
 | `src/php/` | Front controller, admin panel and YouTube API proxy |
 | `build.js` | Builds everything below |
 | `dist-php/` | **Upload this to cPanel / PHP hosting** (includes the admin panel) |
@@ -65,3 +65,5 @@ Security: hashed password, CSRF protection, session cookies limited to the admin
 - PDF tools use pdf-lib and PDF.js, scanners use ZXing, barcodes use JsBarcode, QR codes use qrcode-generator, zips use JSZip, EXIF reading uses exifr and the invoice PDF uses html2canvas. All load from cdnjs or jsDelivr at pinned versions.
 - Compress PDF re-renders pages as images (text becomes non-selectable); the page explains this to users.
 - The YouTube Subscriber Counter needs the PHP version and a YouTube Data API key.
+- Video tools (compressor, cutter) use the browser's built-in recorder, so they take as long as the clip to process. They save MP4 in Safari and recent Chrome, WebM elsewhere. MP3 encoding uses lamejs; GIFs use gifenc.
+- Quotation Maker and Receipt Maker reuse the Invoice Generator code with a preset (`use` + `preset` in `meta.js`).

@@ -30,14 +30,14 @@
     <label class="f"><span>Address, email, tax number</span><textarea id="from" style="min-height:80px">12 High Street, London W1 2AB
 hello@brightstudio.example
 VAT no. GB123456789</textarea></label>
-    <p class="group-title">Bill to</p>
+    <p class="group-title" id="l-to">Bill to</p>
     <label class="f"><span>Client name and address</span><textarea id="to" style="min-height:80px">Acme Corporation
 Attn: Accounts Payable
 500 Market Street, San Francisco, CA</textarea></label>
     <div class="fields">
-      <label class="f"><span>Invoice number</span><input type="text" id="num" value="INV-2026-014"></label>
-      <label class="f"><span>Invoice date</span><input type="date" id="date"></label>
-      <label class="f"><span>Due date</span><input type="date" id="due"></label>
+      <label class="f"><span id="l-num">Invoice number</span><input type="text" id="num" value="INV-2026-014"></label>
+      <label class="f"><span id="l-date">Invoice date</span><input type="date" id="date"></label>
+      <label class="f"><span id="l-due">Due date</span><input type="date" id="due"></label>
       <label class="f"><span>Currency</span><select id="cur"><option value="$">$ Dollar</option><option value="€">€ Euro</option><option value="£" selected>£ Pound</option><option value="¥">¥ Yen / Yuan</option><option value="₹">₹ Rupee (INR)</option><option value="Rs ">Rs Rupee (PKR)</option><option value="AED ">AED Dirham</option><option value="SAR ">SAR Riyal</option><option value="₦">₦ Naira</option><option value="">None</option></select></label>
       <label class="f"><span>Accent colour</span><input type="color" id="accent" value="#ff5b35"></label>
     </div>
@@ -54,7 +54,7 @@ Thank you for your business!</textarea></label>
     <label class="check"><input type="checkbox" id="remember" checked>Remember my business details on this device</label>
   </div>
   <div class="out" style="background:#e9ecef">
-    <div class="btns"><button type="button" class="btn big-btn" id="pdf">{{icon:download}}Download PDF</button><button type="button" class="btn ghost" id="png">PNG</button><button type="button" class="btn ghost" id="next">Next invoice number</button></div>
+    <div class="btns"><button type="button" class="btn big-btn" id="pdf">{{icon:download}}Download PDF</button><button type="button" class="btn ghost" id="png">PNG</button><button type="button" class="btn ghost" id="next">Next number</button></div>
     <div style="overflow-x:auto"><div class="inv-paper" id="paper"></div></div>
   </div>
 </div>

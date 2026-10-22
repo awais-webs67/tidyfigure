@@ -1,0 +1,23 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a video to compress">
+      {{icon:file-video}}
+      <strong>Drop a video here or click to choose</strong>
+      <span>MP4, MOV, WebM · stays on your device</span>
+      <input type="file" id="file" accept="video/*,.mkv,.mov">
+    </div>
+    <div class="fields">
+      <label class="f"><span>Resolution</span><select id="res"><option value="0">Keep original</option><option value="1080">1080p (Full HD)</option><option value="720" selected>720p (HD)</option><option value="480">480p (small)</option><option value="360">360p (smallest)</option></select></label>
+      <label class="f"><span>Quality</span><select id="q"><option value="high">High</option><option value="medium" selected>Medium (recommended)</option><option value="low">Low (smallest file)</option></select></label>
+      <label class="f"><span>Target size (MB, optional)</span><input type="number" id="target" inputmode="decimal" min="0.5" step="any" placeholder="e.g. 25"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="mute">Remove sound (mute the video)</label>
+    <p class="note" id="est">Compression plays the video once, so a 2-minute video takes about 2 minutes. Keep this tab open.</p>
+    <button type="button" class="btn big-btn" id="go" disabled>{{icon:minimize-2}}Compress video</button>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Compressed video</p>
+    <p class="empty">Choose a video to see how small it can get.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample clip</button>
+  </div>
+</div>

@@ -20,6 +20,10 @@
    "name": "Text tools"
   },
   {
+   "id": "media",
+   "name": "Video & audio tools"
+  },
+  {
    "id": "qr",
    "name": "QR code & barcode tools"
   },
@@ -33,7 +37,11 @@
   },
   {
    "id": "money",
-   "name": "Finance calculators"
+   "name": "Finance & business"
+  },
+  {
+   "id": "study",
+   "name": "Student tools"
   },
   {
    "id": "calc",
@@ -45,7 +53,15 @@
   },
   {
    "id": "convert",
-   "name": "Converters & developer tools"
+   "name": "Converters"
+  },
+  {
+   "id": "dev",
+   "name": "Developer tools"
+  },
+  {
+   "id": "home",
+   "name": "Home & DIY"
   },
   {
    "id": "social",
@@ -266,6 +282,83 @@
    "category": "text",
    "title": "Lorem Ipsum Generator: Placeholder Text for Designs",
    "description": "Generate lorem ipsum placeholder text by paragraphs, sentences, words or list items, as plain text or HTML. Copy in one click. Free dummy text generator."
+  },
+  {
+   "slug": "readability-checker",
+   "name": "Readability Checker",
+   "category": "text",
+   "title": "Readability Checker: Flesch Score & Grade Level, Free",
+   "description": "Check how easy your writing is to read: Flesch reading ease, Flesch-Kincaid grade, Gunning fog, SMOG and more, plus long sentences highlighted to fix."
+  },
+  {
+   "slug": "text-compare",
+   "name": "Text Compare",
+   "category": "text",
+   "title": "Text Compare: Find the Differences Between Two Texts",
+   "description": "Paste two versions of a text to highlight exactly what changed: added and removed words, lines or characters. Ignore case or spaces. Free diff checker."
+  },
+  {
+   "slug": "slug-generator",
+   "name": "Slug Generator",
+   "category": "text",
+   "title": "Slug Generator: Turn Titles into SEO-Friendly URLs",
+   "description": "Convert page titles into clean URL slugs: lowercase, hyphens, accents removed, optional filler-word removal and a length limit. Works in bulk, one per line."
+  },
+  {
+   "slug": "hashtag-generator",
+   "name": "Hashtag Generator & Counter",
+   "category": "text",
+   "title": "Hashtag Generator & Counter for Instagram, TikTok & X",
+   "description": "Turn your keywords into clean, readable #CamelCase hashtags, or paste a caption to count its hashtags, find duplicates and broken tags. Free, no sign-up."
+  },
+  {
+   "slug": "video-to-mp3",
+   "name": "Video to MP3 Converter",
+   "category": "media",
+   "title": "Video to MP3 Converter: Extract Audio from MP4, MOV & WebM",
+   "description": "Convert MP4, MOV, WebM or MKV video to MP3 or WAV in your browser. Choose 96 to 320 kbps, stereo or mono, and cut a part. No upload, no sign-up."
+  },
+  {
+   "slug": "video-compressor",
+   "name": "Video Compressor",
+   "category": "media",
+   "title": "Video Compressor: Reduce MP4 & MOV File Size Online, Free",
+   "description": "Compress MP4, MOV and WebM videos in your browser. Pick 1080p, 720p or 480p, a quality level or a target size in MB. No upload, no watermark."
+  },
+  {
+   "slug": "video-cutter",
+   "name": "Video Cutter",
+   "category": "media",
+   "title": "Video Cutter: Trim & Cut MP4 Videos Online, No Upload",
+   "description": "Cut a part out of any MP4, MOV or WebM video in your browser. Drag to choose the start and end, preview it and download the clip. Free, no watermark."
+  },
+  {
+   "slug": "video-to-gif",
+   "name": "Video to GIF Maker",
+   "category": "media",
+   "title": "Video to GIF Converter: Make GIFs from MP4 & MOV, Free",
+   "description": "Turn any MP4, MOV or WebM clip into an animated GIF in your browser. Set the start, length, size and speed, add a caption or boomerang. No watermark."
+  },
+  {
+   "slug": "audio-cutter",
+   "name": "Audio Cutter",
+   "category": "media",
+   "title": "Audio Cutter: Trim MP3 Songs & Make Ringtones Online, Free",
+   "description": "Cut MP3, M4A, WAV and other audio files in your browser. Drag on the waveform, add fade in and out, and save as MP3 or WAV. Makes ringtones. No upload."
+  },
+  {
+   "slug": "voice-recorder",
+   "name": "Voice Recorder",
+   "category": "media",
+   "title": "Online Voice Recorder: Record Audio & Save as MP3, Free",
+   "description": "Record your voice with your microphone right in the browser. Pause and resume, see the sound level, and download as MP3. No sign-up and no upload."
+  },
+  {
+   "slug": "screen-recorder",
+   "name": "Screen Recorder",
+   "category": "media",
+   "title": "Free Online Screen Recorder: Record Screen with Audio",
+   "description": "Record your whole screen, one window or a browser tab with system sound and your microphone, right in the browser. No install, no watermark, no time limit."
   },
   {
    "slug": "qr-code-generator",
@@ -527,6 +620,125 @@
    "description": "Make professional invoices online: your logo, line items, VAT or sales tax, discounts and payment details. Download as PDF. No sign-up, no watermark, free."
   },
   {
+   "slug": "loan-comparison-calculator",
+   "name": "Loan Comparison Calculator",
+   "category": "money",
+   "title": "Loan Comparison Calculator: Compare EMI, Interest & Fees",
+   "description": "Compare up to four loan offers side by side. See the monthly payment (EMI), total interest, fees, APR and total cost of each, and which loan is cheapest."
+  },
+  {
+   "slug": "mortgage-affordability-calculator",
+   "name": "Mortgage Affordability Calculator",
+   "category": "money",
+   "title": "How Much House Can I Afford? Mortgage Affordability Calculator",
+   "description": "Find the home price you can afford from your income, monthly debts, down payment and interest rate, using the 28/36 rule lenders use, with tax and insurance."
+  },
+  {
+   "slug": "fire-calculator",
+   "name": "FIRE Calculator",
+   "category": "money",
+   "title": "FIRE Calculator: Financial Independence & Early Retirement",
+   "description": "Work out your FIRE number with the 4% rule, how many years until financial independence, the age you reach it, plus your Lean FIRE and Coast FIRE numbers."
+  },
+  {
+   "slug": "debt-payoff-planner",
+   "name": "Debt Payoff Planner",
+   "category": "money",
+   "title": "Debt Payoff Planner: Snowball vs Avalanche Calculator",
+   "description": "List your debts and see your debt-free date, the order to pay them off, and how much interest the snowball or avalanche method saves over minimum payments."
+  },
+  {
+   "slug": "budget-planner",
+   "name": "Budget Planner (50/30/20)",
+   "category": "money",
+   "title": "50/30/20 Budget Calculator: Free Monthly Budget Planner",
+   "description": "Plan your monthly budget with the 50/30/20 rule. List your spending as needs, wants or savings and see your targets, what’s left over and where you overspend."
+  },
+  {
+   "slug": "net-worth-calculator",
+   "name": "Net Worth Calculator",
+   "category": "money",
+   "title": "Net Worth Calculator: Assets Minus Liabilities, Free",
+   "description": "Calculate your personal net worth: list your savings, investments, pension, home and car, minus your mortgage, loans and cards. See your debt-to-asset ratio."
+  },
+  {
+   "slug": "break-even-calculator",
+   "name": "Break-Even Calculator",
+   "category": "money",
+   "title": "Break-Even Calculator: Units & Sales to Cover Your Costs",
+   "description": "Find your break-even point in units and sales from fixed costs, price and variable cost. Shows contribution margin, units for a profit target and safety margin."
+  },
+  {
+   "slug": "freelance-rate-calculator",
+   "name": "Freelance Rate Calculator",
+   "category": "money",
+   "title": "Freelance Rate Calculator: What Hourly & Day Rate to Charge",
+   "description": "Find the hourly and day rate you need as a freelancer or contractor, from your target income, business costs, tax, time off and how many hours you can bill."
+  },
+  {
+   "slug": "quotation-maker",
+   "name": "Quotation Maker",
+   "category": "money",
+   "title": "Free Quotation Maker: Create Price Quotes & Estimates (PDF)",
+   "description": "Make a professional quotation or estimate online: your logo, line items, tax, discount and a valid-until date. Download as a PDF. Free, no sign-up."
+  },
+  {
+   "slug": "receipt-maker",
+   "name": "Receipt Maker",
+   "category": "money",
+   "title": "Free Receipt Maker: Create Payment Receipts as PDF or PNG",
+   "description": "Create a clean payment receipt for your customers: your logo, items, tax, payment date and method. Download as PDF or PNG. Free, no sign-up, no watermark."
+  },
+  {
+   "slug": "tip-calculator",
+   "name": "Tip Calculator",
+   "category": "money",
+   "title": "Tip Calculator: Work Out the Tip & Split the Bill",
+   "description": "Calculate the tip on a restaurant bill at any percentage, split the total between any number of people, tip before tax and round each share up. Free."
+  },
+  {
+   "slug": "email-signature-generator",
+   "name": "Email Signature Generator",
+   "category": "money",
+   "title": "Free Email Signature Generator for Gmail & Outlook",
+   "description": "Create a professional HTML email signature with your name, title, phone, website, photo and social links. Copy it into Gmail, Outlook or Apple Mail. Free."
+  },
+  {
+   "slug": "gpa-calculator",
+   "name": "GPA Calculator",
+   "category": "study",
+   "title": "GPA Calculator: Semester & Cumulative GPA (4.0 Scale)",
+   "description": "Calculate your semester GPA from letter grades and credit hours, and your new cumulative GPA. Supports the 4.0 and 4.3 scales. Free, instant, no sign-up."
+  },
+  {
+   "slug": "grade-calculator",
+   "name": "Grade Calculator",
+   "category": "study",
+   "title": "Final Grade Calculator: What Do I Need on My Final Exam?",
+   "description": "Work out your current weighted grade and exactly what you need on the final exam, or remaining assignments, to finish with an A, B or any grade you choose."
+  },
+  {
+   "slug": "citation-generator",
+   "name": "Citation Generator",
+   "category": "study",
+   "title": "Citation Generator: APA 7, MLA 9, Harvard & Chicago, Free",
+   "description": "Create references and in-text citations for websites, books and journal articles in APA 7, MLA 9, Harvard and Chicago style. Copy with italics. Free, no ads."
+  },
+  {
+   "slug": "flashcard-maker",
+   "name": "Flashcard Maker",
+   "category": "study",
+   "title": "Flashcard Maker: Make & Study Online Flashcards, Free",
+   "description": "Make flashcards in seconds by pasting term – answer pairs. Study with flip cards that repeat the ones you miss, share decks with a link or print them. Free."
+  },
+  {
+   "slug": "typing-speed-test",
+   "name": "Typing Speed Test",
+   "category": "study",
+   "title": "Typing Speed Test: Check Your WPM & Accuracy, Free",
+   "description": "Take a free typing test and see your speed in words per minute (WPM) and your accuracy. Choose 30 seconds to 3 minutes and easy, normal or hard text."
+  },
+  {
    "slug": "percentage-calculator",
    "name": "Percentage Calculator",
    "category": "calc",
@@ -590,25 +802,102 @@
    "description": "Convert length, weight, temperature, volume, area, speed, time and data units instantly. km to miles, kg to lbs, Celsius to Fahrenheit, cm to inches and more."
   },
   {
-   "slug": "json-formatter",
-   "name": "JSON Formatter & Validator",
-   "category": "convert",
-   "title": "JSON Formatter & Validator: Beautify and Minify JSON",
-   "description": "Format, validate and minify JSON online. Pretty-print with 2 or 4 spaces, sort keys, and see exactly where errors are with fix tips. Private, runs in browser."
-  },
-  {
-   "slug": "base64-encoder-decoder",
-   "name": "Base64 Encoder & Decoder",
-   "category": "convert",
-   "title": "Base64 Encode & Decode Online (UTF-8, URL-safe, Files)",
-   "description": "Encode text to Base64 or decode Base64 to text, with full UTF-8 and emoji support and a URL-safe option. Convert images and files to Base64 data URIs. Private."
-  },
-  {
    "slug": "color-converter",
    "name": "Color Converter",
    "category": "convert",
    "title": "Color Converter: HEX to RGB, HSL & CMYK + Color Picker",
    "description": "Convert colours between HEX, RGB, HSL, HSV and CMYK. Pick any colour, check text contrast against WCAG, and get a palette of tints and shades. Free."
+  },
+  {
+   "slug": "regex-tester",
+   "name": "Regex Tester",
+   "category": "dev",
+   "title": "Regex Tester: Test JavaScript Regular Expressions Online",
+   "description": "Test regular expressions with live match highlighting, capture groups and find-and-replace. JavaScript syntax, flags g, i, m, s, u, plus common patterns."
+  },
+  {
+   "slug": "json-formatter",
+   "name": "JSON Formatter & Validator",
+   "category": "dev",
+   "title": "JSON Formatter & Validator: Beautify and Minify JSON",
+   "description": "Format, validate and minify JSON online. Pretty-print with 2 or 4 spaces, sort keys, and see exactly where errors are with fix tips. Private, runs in browser."
+  },
+  {
+   "slug": "uuid-generator",
+   "name": "UUID Generator",
+   "category": "dev",
+   "title": "UUID Generator: Random UUID v4 & v7 (GUID) Online",
+   "description": "Generate UUID v4 (random) or UUID v7 (time-ordered) identifiers in bulk, in lowercase, uppercase or without dashes. Uses secure randomness. Free."
+  },
+  {
+   "slug": "base64-encoder-decoder",
+   "name": "Base64 Encoder & Decoder",
+   "category": "dev",
+   "title": "Base64 Encode & Decode Online (UTF-8, URL-safe, Files)",
+   "description": "Encode text to Base64 or decode Base64 to text, with full UTF-8 and emoji support and a URL-safe option. Convert images and files to Base64 data URIs. Private."
+  },
+  {
+   "slug": "hash-generator",
+   "name": "Hash Generator",
+   "category": "dev",
+   "title": "Hash Generator: MD5, SHA-1, SHA-256 & SHA-512 Online",
+   "description": "Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or any file, and verify a download against its checksum. Files never leave your device."
+  },
+  {
+   "slug": "url-encoder-decoder",
+   "name": "URL Encoder & Decoder",
+   "category": "dev",
+   "title": "URL Encoder & Decoder: Percent-Encode Online, Free",
+   "description": "Encode text for use in URLs (percent-encoding), decode %20-style URLs back to text, and break any URL into host, path and query parameters. Free."
+  },
+  {
+   "slug": "css-gradient-generator",
+   "name": "CSS Gradient Generator",
+   "category": "dev",
+   "title": "CSS Gradient Generator: Linear, Radial & Conic, Free",
+   "description": "Create beautiful CSS gradients with any colours, angle and transparency. Live preview, presets and random ideas. Copy the CSS code or download a 1920×1080 PNG."
+  },
+  {
+   "slug": "jwt-decoder",
+   "name": "JWT Decoder",
+   "category": "dev",
+   "title": "JWT Decoder: Decode & Verify JSON Web Tokens Online",
+   "description": "Paste a JWT to decode its header and payload, see when it was issued and expires, and verify HS256, HS384 or HS512 signatures with your secret. Runs locally."
+  },
+  {
+   "slug": "cron-expression-generator",
+   "name": "Cron Expression Generator",
+   "category": "dev",
+   "title": "Cron Expression Generator & Explainer, with Next Run Times",
+   "description": "Write or paste a cron expression to see what it means in plain English and the next 8 run times. Presets and builder for crontab, Kubernetes and GitHub Actions."
+  },
+  {
+   "slug": "paint-calculator",
+   "name": "Paint Calculator",
+   "category": "home",
+   "title": "Paint Calculator: How Much Paint Do I Need for a Room?",
+   "description": "Work out how much paint you need for your walls and ceiling from the room size, doors, windows and number of coats. In litres or gallons, with tins to buy."
+  },
+  {
+   "slug": "tile-calculator",
+   "name": "Tile Calculator",
+   "category": "home",
+   "title": "Tile Calculator: How Many Tiles & Boxes Do I Need?",
+   "description": "Work out how many floor or wall tiles you need from the area and tile size, with extra for cuts and breakage, plus the number of boxes and cost. Metric or feet."
+  },
+  {
+   "slug": "concrete-calculator",
+   "name": "Concrete Calculator",
+   "category": "home",
+   "title": "Concrete Calculator: Slabs, Footings & Post Holes, in Bags",
+   "description": "Work out how much concrete you need for a slab, footing, column or post holes, in cubic metres or yards, and how many 20–40 kg or 40–80 lb bags to buy."
+  },
+  {
+   "slug": "electricity-cost-calculator",
+   "name": "Electricity Cost Calculator",
+   "category": "home",
+   "title": "Electricity Cost Calculator: Appliance Running Costs (kWh)",
+   "description": "Work out what each appliance costs to run per hour, day, month and year from its watts, hours of use and your price per kWh. Find what uses the most power."
   },
   {
    "slug": "youtube-subscriber-counter",

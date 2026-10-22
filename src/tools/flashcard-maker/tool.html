@@ -1,0 +1,19 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Your cards: one per line, term and answer separated by a dash, colon or tab</span><textarea id="src" class="mono" style="min-height:220px">Mitochondria - Produces the cell's energy (ATP)
+Ribosome - Builds proteins
+Nucleus - Holds the cell's DNA
+Cell membrane - Controls what enters and leaves the cell
+Chloroplast - Carries out photosynthesis in plant cells
+Vacuole - Stores water and nutrients
+Golgi apparatus - Packages and ships proteins
+Cell wall - Rigid outer layer of plant cells</textarea></label>
+    <div class="fields">
+      <label class="check"><input type="checkbox" id="rev">Show the answer side first</label>
+      <label class="check"><input type="checkbox" id="shuf" checked>Shuffle</label>
+    </div>
+    <div class="btns"><button type="button" class="btn" id="start">{{icon:play}}Study these cards</button><button type="button" class="btn ghost" id="share">Copy share link</button><button type="button" class="btn ghost" id="print">Print cards</button></div>
+    <p class="note" id="count"></p>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
