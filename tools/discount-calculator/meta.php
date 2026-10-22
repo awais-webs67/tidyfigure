@@ -55,6 +55,14 @@ Sale price   = price × (1 − discount ÷ 100)
 
 <h2>Working backwards</h2>
 <p>If you know the sale price and the discount, the original price is the sale price ÷ (1 − discount ÷ 100). A jacket that costs 63 after 30% off was 63 ÷ 0.7 = 90.</p>
+
+<h2>Is it really a bargain?</h2>
+<ul>
+<li><strong>Check the original price:</strong> some sales compare against a price the item was rarely sold at. Price-history tools and comparison sites help.</li>
+<li><strong>Compare unit prices:</strong> a bigger pack at 20% off can still cost more per item than a smaller one.</li>
+<li><strong>Stacked discounts don't add up:</strong> 20% off and then another 10% off is 28% in total, not 30%.</li>
+<li><strong>Count delivery and returns</strong> before deciding that an online discount beats a local shop.</li>
+</ul>
 EOT_TF,
   'faqs' => [
     [

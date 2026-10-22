@@ -47,6 +47,18 @@ function tf_connect(array $db): PDO
     ]);
 }
 
+// Creates any tables added in newer versions (safe to run repeatedly). Runs when the schema version changes.
+const TF_SCHEMA_VERSION = '2';
+function tf_migrate(): void
+{
+    $db = tf_db();
+    if (!$db || (tf_settings()['schema_version'] ?? '') === TF_SCHEMA_VERSION) return;
+    $prefix = preg_replace('/[^a-z0-9_]/i', '', (string) (tf_config()['db']['prefix'] ?? 'tf_'));
+    $sql = str_replace('{prefix}', $prefix, (string) file_get_contents(TF_ROOT . '/app/schema.sql'));
+    foreach (array_filter(array_map('trim', explode(';', preg_replace('/^--.*$/m', '', $sql)))) as $q) $db->exec($q);
+    tf_save_settings(['schema_version' => TF_SCHEMA_VERSION]);
+}
+
 function tf_table(string $name): string
 {
     $p = preg_replace('/[^a-z0-9_]/i', '', (string) (tf_config()['db']['prefix'] ?? 'tf_'));
@@ -66,6 +78,15 @@ function tf_setting_defaults(): array
         'head_code' => '', 'body_code' => '',
         'youtube_api_key' => '',
         'contact_email' => '',
+        'schema_version' => '',
+        // SEO
+        'verify_google' => '', 'verify_bing' => '', 'verify_yandex' => '', 'verify_pinterest' => '',
+        'social_profiles' => '',   // one URL per line (used in Organization schema and the footer)
+        'indexnow_key' => '',
+        'robots_extra' => '',
+        'title_suffix' => '0',     // '1' adds " | Site name" to tool titles that are short enough
+        // Hosted QR codes
+        'qr_enabled' => '1', 'qr_days' => '30', 'qr_max_mb' => '10', 'qr_per_hour' => '20', 'qr_blocked' => '',
     ];
 }
 
@@ -118,8 +139,19 @@ function tf_tool_on(string $slug): bool
 function tf_site(): array
 {
     static $s = null;
-    $s ??= require TF_ROOT . '/app/site.php';
+    if ($s === null) {
+        $s = require TF_ROOT . '/app/site.php';
+        $extra = require TF_ROOT . '/app/categories.php';
+        foreach ($s['categories'] as &$c) $c += $extra[$c['id']] ?? ['slug' => $c['id'] . '-tools', 'title' => $c['name'], 'description' => $c['blurb'], 'intro' => '<p>' . $c['blurb'] . '</p>', 'faqs' => []];
+        unset($c);
+    }
     return $s;
+}
+
+function tf_category(string $idOrSlug): ?array
+{
+    foreach (tf_site()['categories'] as $c) if ($c['id'] === $idOrSlug || $c['slug'] === $idOrSlug) return $c;
+    return null;
 }
 
 // Light details of every tool (no article text), sorted by category then order.

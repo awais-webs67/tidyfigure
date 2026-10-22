@@ -44,6 +44,9 @@ Annualised (CAGR)  = (final value ÷ invested)^(1 ÷ years) − 1</div>
 
 <h2>Limitations</h2>
 <p>ROI doesn't account for risk: a 10% return from a savings account and a 10% return from a volatile start-up aren't equally good. It also assumes a single investment at the start; for regular contributions over time, use the Compound Interest or SIP calculators instead.</p>
+
+<h2>Using ROI well</h2>
+<p>ROI is simple, which is its strength and its weakness. It ignores how long the money was tied up, so always compare the annualised figure when investments last different lengths of time. It also ignores risk: a safe 6% can be better than a risky 10%. Include every cost in the calculation, such as fees, taxes, maintenance and your own time, or the ROI will look better than reality.</p>
 EOT_TF,
   'faqs' => [
     [

@@ -52,6 +52,9 @@ Women: %BF = 495 ÷ (1.29579 − 0.35004 × log10(waist + hip − neck)
 
 <h2>Other measurement methods</h2>
 <p>DEXA scans are the most accurate widely available method. Bioimpedance scales are convenient but vary with hydration. Skinfold calipers are accurate in trained hands. For tracking change over time, consistency matters more than the method.</p>
+
+<h2>Measuring correctly</h2>
+<p>Small measuring errors change the result a lot, so take each measurement twice and use the average. Measure in the morning before eating, standing relaxed, with the tape snug but not pressing into the skin. Measure the neck just below the larynx (Adam's apple), the waist at the navel for men and at the narrowest point for women, and the hips at the widest point. Track the trend over weeks rather than reacting to a single reading.</p>
 EOT_TF,
   'faqs' => [
     [

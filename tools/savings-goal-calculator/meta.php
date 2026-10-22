@@ -46,6 +46,14 @@ i = yearly rate ÷ 12, n = number of months</div>
 <li><strong>Use windfalls:</strong> tax refunds, bonuses and gifts can shorten the timeline dramatically.</li>
 <li><strong>For goals over 5 years,</strong> consider investing rather than cash, and allow for inflation raising the target.</li>
 </ul>
+
+<h2>Ways to reach the goal sooner</h2>
+<ul>
+<li><strong>Automate it:</strong> set up a standing order on payday so the money moves before you can spend it.</li>
+<li><strong>Use a separate account,</strong> ideally one that pays interest, so savings aren't mixed with everyday spending.</li>
+<li><strong>Add windfalls:</strong> tax refunds, bonuses and gifts can cut months off the target.</li>
+<li><strong>Round up:</strong> rounding the monthly amount up to the next 10 or 50 makes a noticeable difference over a year.</li>
+</ul>
 EOT_TF,
   'faqs' => [
     [

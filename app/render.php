@@ -1,5 +1,6 @@
 <?php
-// Page templates: the shared layout, tool pages, the homepage, simple pages, the sitemap and robots.txt.
+// Page templates: the shared layout, tool pages, category pages, the homepage, simple pages,
+// the sitemap, robots.txt and the tool list used by the quick search.
 declare(strict_types=1);
 
 const TF_FONTS = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap';
@@ -14,9 +15,14 @@ function tf_ld(array $obj): string
     return '<script type="application/ld+json">' . json_encode($obj, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) . '</script>';
 }
 
+function tf_abs(string $slug = 'index'): string
+{
+    return tf_base_url() . ($slug === 'index' ? '/' : '/' . $slug);
+}
+
 function tf_tile(array $t, string $cls = ''): string
 {
-    return '<span class="tile ' . $cls . '" data-cat="' . h($t['category']) . '">' . tf_icon($t['icon'] ?? 'circle') . '</span>';
+    return '<span class="tile ' . $cls . '" data-cat="' . h($t['category'] ?? $t['id'] ?? '') . '">' . tf_icon($t['icon'] ?? 'circle') . '</span>';
 }
 
 // Turns <a href="/some-tool"> inside article text into a link that works wherever the site is installed.
@@ -25,16 +31,44 @@ function tf_links(string $html): string
     return preg_replace_callback('~href="/([a-z0-9-]+)"~', fn($m) => 'href="' . h(tf_url($m[1])) . '"', $html);
 }
 
+function tf_social_profiles(): array
+{
+    return array_values(array_filter(array_map('trim', preg_split('/\R/', tf_settings()['social_profiles'])), fn($u) => preg_match('~^https?://~', $u)));
+}
+
+function tf_faq_html(array $faqs): string
+{
+    return implode("\n", array_map(fn($f) => '<details class="faq"><summary>' . h($f[0]) . '</summary><p>' . $f[1] . '</p></details>', $faqs));
+}
+
+function tf_faq_schema(array $faqs): array
+{
+    return ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => array_map(fn($f) => ['@type' => 'Question', 'name' => tf_strip($f[0]), 'acceptedAnswer' => ['@type' => 'Answer', 'text' => tf_strip($f[1])]], $faqs)];
+}
+
+function tf_breadcrumbs(array $items): array
+{
+    $i = 0;
+    return ['@context' => 'https://schema.org', '@type' => 'BreadcrumbList', 'itemListElement' => array_map(function ($it) use (&$i) { return ['@type' => 'ListItem', 'position' => ++$i, 'name' => $it[0], 'item' => $it[1]]; }, $items)];
+}
+
 // The full HTML document around a page body.
-// $o: title, description, slug, schema (array of JSON-LD objects), noindex, scripts (HTML before </body>)
+// $o: title, description, slug (for canonical/og), schema (JSON-LD objects), noindex, scripts (HTML before </body>), og (image URL)
 function tf_layout(array $o, string $body): string
 {
     $site = tf_site();
     $s = tf_settings();
-    $canonical = h(tf_base_url() . ($o['slug'] === 'index' ? '/' : '/' . $o['slug']));
+    $canonical = h(tf_abs($o['slug']));
+    $og = h($o['og'] ?? tf_base_url() . '/og/' . ($o['slug'] === 'index' ? 'home' : $o['slug']) . '.png');
 
     $head = '';
     if (!empty($o['noindex'])) $head .= '<meta name="robots" content="noindex">' . "\n";
+    foreach (['verify_google' => 'google-site-verification', 'verify_bing' => 'msvalidate.01', 'verify_yandex' => 'yandex-verification', 'verify_pinterest' => 'p:domain_verify'] as $k => $meta) {
+        // Accept either the code or the whole <meta> tag pasted from the search engine.
+        $v = trim($s[$k]);
+        if (preg_match('/content="([^"]+)"/', $v, $m)) $v = $m[1];
+        if ($v !== '' && preg_match('/^[\w.\-=]+$/', $v)) $head .= '<meta name="' . $meta . '" content="' . h($v) . '">' . "\n";
+    }
     if (preg_match('/^G-[A-Z0-9]+$/', $s['analytics_id'])) {
         $id = $s['analytics_id'];
         $head .= "<script async src=\"https://www.googletagmanager.com/gtag/js?id=$id\"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','$id');</script>\n";
@@ -53,23 +87,28 @@ function tf_layout(array $o, string $body): string
     $logo = '<svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="var(--slate)"/><path d="M9 11h14M16 11v12" stroke="#fff" stroke-width="3" stroke-linecap="round"/><circle cx="23" cy="22" r="2.6" fill="var(--accent)"/></svg>';
     $name = h($site['site']['name']);
     $brand = preg_match('/^(\w+?)(Figure)$/', $site['site']['name'], $m) ? h($m[1]) . '<b>' . h($m[2]) . '</b>' : $name;
+    $tools = tf_tools();
     $nav = '';
     foreach ($site['categories'] as $c) {
-        $nav .= '<a href="' . h(tf_url()) . '#' . $c['id'] . '" data-cat="' . $c['id'] . '"' . (empty($c['primary']) ? ' class="more"' : '') . '>' . tf_icon($c['icon']) . h($c['nav']) . '</a>';
+        $n = count(array_filter($tools, fn($t) => $t['category'] === $c['id']));
+        if (!$n) continue;
+        $nav .= '<a href="' . h(tf_url($c['slug'])) . '" data-cat="' . $c['id'] . '"' . (empty($c['primary']) ? ' class="more"' : '') . '>' . tf_icon($c['icon']) . '<span>' . h($c['nav']) . '</span><small>' . $n . '</small></a>';
     }
-    $tools = tf_tools();
     $footer = '';
     foreach ($site['categories'] as $c) {
         $links = '';
         foreach (array_slice(array_filter($tools, fn($t) => $t['category'] === $c['id']), 0, 5) as $t) $links .= '<li><a href="' . h(tf_url($t['slug'])) . '">' . h($t['name']) . '</a></li>';
-        if ($links) $footer .= '<div><h2>' . h($c['name']) . '</h2><ul>' . $links . "</ul></div>\n";
+        if ($links) $footer .= '<div><h2><a href="' . h(tf_url($c['slug'])) . '">' . h($c['name']) . '</a></h2><ul>' . $links . "</ul></div>\n";
     }
+    $social = implode('', array_map(fn($u) => '<a href="' . h($u) . '" rel="noopener me">' . h(preg_replace('~^https?://(www\.)?([^/]+).*$~', '$2', $u)) . '</a>', tf_social_profiles()));
     $by = '<a href="' . h($site['site']['by_url']) . '" rel="noopener">' . h($site['site']['by']) . '</a>';
     $schema = implode("\n", array_map('tf_ld', $o['schema'] ?? []));
     $t = h($o['title']);
     $d = h($o['description']);
     $year = date('Y');
     $base = json_encode(TF_BASE);
+    $g = $GLOBALS;
+    $iconSearch = tf_icon('search');
 
     return <<<HTML
 <!doctype html>
@@ -79,36 +118,46 @@ function tf_layout(array $o, string $body): string
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>$t</title>
 <meta name="description" content="$d">
-<link rel="canonical" href="{$canonical}">
+<link rel="canonical" href="$canonical">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="$name">
 <meta property="og:title" content="$t">
 <meta property="og:description" content="$d">
-<meta property="og:url" content="{$canonical}">
-<meta name="twitter:card" content="summary">
+<meta property="og:url" content="$canonical">
+<meta property="og:image" content="$og">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FF5B35">
-<link rel="icon" href="{$GLOBALS['tf_favicon']}" type="image/svg+xml">
+<link rel="icon" href="{$g['tf_favicon']}" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{$GLOBALS['tf_fonts']}">
-<link rel="stylesheet" href="{$GLOBALS['tf_css']}">
+<link rel="stylesheet" href="{$g['tf_fonts']}">
+<link rel="stylesheet" href="{$g['tf_css']}">
+<script>window.TF_BASE=$base;try{var t=localStorage.getItem('tf-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 $schema
-<script>window.TF_BASE = $base;</script>
 $head
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
-<a class="brand" href="{$GLOBALS['tf_home']}">$logo<span>$brand</span></a>
+<a class="brand" href="{$g['tf_home']}" aria-label="$name home">$logo<span>$brand</span></a>
+<nav class="main-nav" id="main-nav" aria-label="Tool categories">{$nav}<a class="cta" href="{$g['tf_home']}#categories">All tools</a></nav>
+<button type="button" class="hbtn search-btn" data-open-search aria-label="Search tools">$iconSearch<span>Search tools</span><kbd>Ctrl K</kbd></button>
+<button type="button" class="hbtn theme-toggle" aria-label="Switch light or dark mode"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
 <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
-<nav class="main-nav" id="main-nav" aria-label="Main">{$nav}<a class="cta" href="{$GLOBALS['tf_home']}#tools">All tools</a></nav>
 </div></header><div class="nav-shade"></div>
+<div class="qs" id="qs" hidden role="dialog" aria-modal="true" aria-label="Search tools"><div class="qs-box"><label class="qs-input">$iconSearch<input type="search" placeholder="Search {$g['tf_count']} tools…" aria-label="Search tools" autocomplete="off"><kbd>Esc</kbd></label><ul class="qs-list"></ul></div></div>
 $announce
+<div id="main">
 $body
+</div>
 <footer class="foot"><div class="wrap">
-$footer<div class="legal"><span>© $year $name. Free online tools, built by $by. Your files never leave your device.</span>
-<span><a href="{$GLOBALS['tf_about']}">About</a> · <a href="{$GLOBALS['tf_privacy']}">Privacy</a> · <a href="{$GLOBALS['tf_home']}#tools">All tools</a></span></div>
+<div class="foot-brand"><a class="brand" href="{$g['tf_home']}">$logo<span>$brand</span></a><p>{$g['tf_count']} free online tools that run in your browser. Fast, private and free, with no sign-up.</p><p class="foot-social">$social</p></div>
+$footer<div class="legal"><span>© $year $name. Built by $by. Your files never leave your device.</span>
+<span><a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
 </div></footer>
-<script>(function(){var b=document.querySelector('.nav-toggle'),r=document.documentElement;if(!b)return;function set(o){r.classList.toggle('nav-open',o);b.setAttribute('aria-expanded',o)}b.addEventListener('click',function(){set(!r.classList.contains('nav-open'))});document.querySelector('.nav-shade').addEventListener('click',function(){set(false)});document.querySelectorAll('.main-nav a').forEach(function(a){a.addEventListener('click',function(){set(false)})});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false)})})();</script>
+<script src="{$g['tf_sitejs']}" defer></script>
 {$o['scripts']}
 {$s['body_code']}
 </body>
@@ -121,10 +170,12 @@ function tf_layout_globals(): void
 {
     $GLOBALS['tf_favicon'] = h(tf_asset('favicon.svg'));
     $GLOBALS['tf_css'] = h(tf_asset('style.css'));
+    $GLOBALS['tf_sitejs'] = h(tf_asset('site.js'));
     $GLOBALS['tf_fonts'] = h(TF_FONTS);
     $GLOBALS['tf_home'] = h(tf_url());
     $GLOBALS['tf_about'] = h(tf_url('about'));
     $GLOBALS['tf_privacy'] = h(tf_url('privacy'));
+    $GLOBALS['tf_count'] = count(tf_tools());
 }
 
 function tf_ad(string $slot): string
@@ -136,67 +187,79 @@ function tf_ad(string $slot): string
 // Title and description, with the admin panel's overrides applied.
 function tf_seo(string $slug, string $title, string $description): array
 {
-    if ($slug === 'index') {
-        $s = tf_settings();
-        return [trim($s['home_title']) ?: $title, trim($s['home_description']) ?: $description, false];
-    }
+    $s = tf_settings();
+    if ($slug === 'index') return [trim($s['home_title']) ?: $title, trim($s['home_description']) ?: $description, false];
     $o = tf_tool_settings()[$slug] ?? [];
-    return [trim((string) ($o['title'] ?? '')) ?: $title, trim((string) ($o['description'] ?? '')) ?: $description, !empty($o['noindex'])];
+    $t = trim((string) ($o['title'] ?? '')) ?: $title;
+    $suffix = ' | ' . tf_site()['site']['name'];
+    if ($s['title_suffix'] === '1' && mb_strlen($t . $suffix) <= 65) $t .= $suffix;
+    return [$t, trim((string) ($o['description'] ?? '')) ?: $description, !empty($o['noindex'])];
+}
+
+function tf_card(array $t): string
+{
+    return '<li data-name="' . h(mb_strtolower($t['name'] . ' ' . $t['short'] . ' ' . ($t['keywords'] ?? ''))) . '"><a class="card" data-cat="' . h($t['category']) . '" href="' . h(tf_url($t['slug'])) . '">' . tf_tile($t) . '<div><strong>' . h($t['name']) . '</strong><span>' . h($t['short']) . '</span>' . (!empty($t['popular']) ? '<em class="badge">Popular</em>' : '') . '</div></a></li>';
+}
+
+function tf_share_html(): string
+{
+    $i = fn($d) => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="' . $d . '"/></svg>';
+    return '<div class="share"><span>Share this tool</span>'
+        . '<a data-share="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp">' . $i('M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z') . '</a>'
+        . '<a data-share="x" target="_blank" rel="noopener" aria-label="Share on X">' . $i('M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.5 5.9L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z') . '</a>'
+        . '<a data-share="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook">' . $i('M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.6v3.3h2.7V22H14v-10.2h2.7l.4-3.3H14z') . '</a>'
+        . '<a data-share="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn">' . $i('M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z') . '</a>'
+        . '<button type="button" data-share="copy" aria-label="Copy link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg><b>Copied</b></button>'
+        . '<button type="button" data-share="native" hidden aria-label="More sharing options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg></button></div>';
 }
 
 function tf_page_tool(array $t): string
 {
     $site = tf_site();
-    $cat = null;
-    foreach ($site['categories'] as $c) if ($c['id'] === $t['category']) $cat = $c;
-    $cat ??= ['id' => $t['category'], 'name' => 'Tools'];
+    $cat = tf_category($t['category']) ?? ['id' => $t['category'], 'name' => 'Tools', 'slug' => '', 'icon' => 'circle'];
     $all = tf_tools();
     $same = array_slice(array_filter($all, fn($x) => $x['category'] === $t['category'] && $x['slug'] !== $t['slug']), 0, 7, true);
     $related = array_filter(array_map(fn($r) => $all[$r] ?? null, $t['related'] ?? []), fn($x) => $x && !isset($same[$x['slug']]));
     $relSlugs = array_column($related, 'slug');
     $popular = array_slice(array_filter($all, fn($x) => !empty($x['popular']) && $x['slug'] !== $t['slug'] && !isset($same[$x['slug']]) && !in_array($x['slug'], $relSlugs, true)), 0, 6 - min(count($related), 6));
     [$title, $desc, $noindex] = tf_seo($t['slug'], $t['title'], $t['description']);
-    $abs = fn($slug) => tf_base_url() . ($slug === 'index' ? '/' : '/' . $slug);
+    $updated = (int) @filemtime(TF_ROOT . '/tools/' . $t['slug'] . '/meta.php') ?: time();
 
     $schema = [
         [
-            '@context' => 'https://schema.org', '@type' => 'WebApplication', 'name' => $t['name'], 'url' => $abs($t['slug']),
+            '@context' => 'https://schema.org', '@type' => 'WebApplication', 'name' => $t['name'], 'url' => tf_abs($t['slug']),
             'description' => $desc, 'applicationCategory' => $t['appCategory'] ?? 'UtilitiesApplication', 'operatingSystem' => 'Any (runs in a web browser)',
             'browserRequirements' => 'Requires JavaScript', 'isAccessibleForFree' => true, 'offers' => ['@type' => 'Offer', 'price' => '0', 'priceCurrency' => 'USD'],
-            'publisher' => ['@type' => 'Organization', 'name' => $site['site']['name'], 'url' => $abs('index')],
+            'dateModified' => date('Y-m-d', $updated), 'image' => tf_base_url() . '/og/' . $t['slug'] . '.png',
+            'publisher' => ['@type' => 'Organization', 'name' => $site['site']['name'], 'url' => tf_abs()],
         ],
-        ['@context' => 'https://schema.org', '@type' => 'FAQPage', 'mainEntity' => array_map(fn($f) => ['@type' => 'Question', 'name' => $f[0], 'acceptedAnswer' => ['@type' => 'Answer', 'text' => tf_strip($f[1])]], $t['faqs'])],
-        [
-            '@context' => 'https://schema.org', '@type' => 'BreadcrumbList',
-            'itemListElement' => [
-                ['@type' => 'ListItem', 'position' => 1, 'name' => 'Home', 'item' => $abs('index')],
-                ['@type' => 'ListItem', 'position' => 2, 'name' => $cat['name'], 'item' => $abs('index') . '#' . $cat['id']],
-                ['@type' => 'ListItem', 'position' => 3, 'name' => $t['name'], 'item' => $abs($t['slug'])],
-            ],
-        ],
+        tf_faq_schema($t['faqs']),
+        tf_breadcrumbs([['Home', tf_abs()], [$cat['name'], tf_abs($cat['slug'])], [$t['name'], tf_abs($t['slug'])]]),
     ];
     $side = fn($x) => '<li><a href="' . h(tf_url($x['slug'])) . '">' . tf_tile($x) . h($x['name']) . '</a></li>';
-    $faqs = implode("\n", array_map(fn($f) => '<details class="faq"><summary>' . h($f[0]) . '</summary><p>' . $f[1] . '</p></details>', $t['faqs']));
     $more = array_merge(array_values($related), array_values($popular));
-    $body = '<main class="wrap">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="' . h(tf_url()) . '">Home</a><span aria-hidden="true">/</span><a href="' . h(tf_url()) . '#' . h($cat['id']) . '">' . h($cat['name']) . '</a><span aria-hidden="true">/</span><span>' . h($t['name']) . '</span></nav>
-<div class="tool-head">' . tf_tile($t, 'lg') . '<h1>' . h($t['name']) . '</h1></div>
+    $files = !empty($t['files']);
+    $chk = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+    $body = '<main class="wrap tool-page" data-cat="' . h($t['category']) . '">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="' . h(tf_url()) . '">Home</a><span aria-hidden="true">/</span><a href="' . h(tf_url($cat['slug'])) . '">' . h($cat['name']) . '</a><span aria-hidden="true">/</span><span>' . h($t['name']) . '</span></nav>
+<div class="tool-head">' . tf_tile($t, 'lg') . '<div><h1>' . h($t['name']) . '</h1><ul class="trust"><li>' . $chk . '100% free</li><li>' . $chk . 'No sign-up</li><li>' . $chk . ($files ? 'Files stay on your device' : 'Runs in your browser') . '</li></ul></div></div>
 <p class="answer">' . $t['answer'] . '</p>
 <section class="tool" aria-label="' . h($t['name']) . '">
 ' . $t['html'] . '
 </section>
+<div class="under-tool"><p class="private">' . tf_icon('shield-check') . ($files ? 'Your files are processed on your device and never uploaded.' : 'Everything runs in your browser. Nothing you type is sent anywhere.') . '</p>' . tf_share_html() . '</div>
 ' . tf_ad('top') . '
-<p class="private">' . tf_icon('shield-check') . (!empty($t['files']) ? 'Your files are processed on your device and never uploaded.' : 'Everything runs in your browser. Nothing you type is sent anywhere.') . '</p>
 <div class="layout">
 <article class="prose">
 ' . tf_links($t['article']) . '
 ' . tf_ad('article') . '
 <h2>Frequently asked questions</h2>
-' . $faqs . '
+' . tf_faq_html($t['faqs']) . '
+<p class="updated">Last updated ' . date('F Y', $updated) . ' · <a href="' . h(tf_url($cat['slug'])) . '">More ' . h(mb_strtolower($cat['name'])) . '</a></p>
 </article>
 <aside class="side">
 ' . tf_ad('side') . '
-' . ($same ? '<section aria-labelledby="side-a"><h2 id="side-a">More ' . h(strtolower($cat['name'])) . '</h2><ul>' . implode('', array_map($side, $same)) . '</ul></section>' : '') . '
+' . ($same ? '<section aria-labelledby="side-a"><h2 id="side-a">More ' . h(mb_strtolower($cat['name'])) . '</h2><ul>' . implode('', array_map($side, $same)) . '</ul><a class="side-all" href="' . h(tf_url($cat['slug'])) . '">See all →</a></section>' : '') . '
 ' . ($more ? '<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul>' . implode('', array_map($side, array_slice($more, 0, 6))) . '</ul></section>' : '') . '
 </aside>
 </div>
@@ -209,40 +272,93 @@ function tf_page_tool(array $t): string
     return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $t['slug'], 'schema' => $schema, 'noindex' => $noindex, 'scripts' => $scripts], $body);
 }
 
+function tf_page_category(array $c): string
+{
+    $tools = array_filter(tf_tools(), fn($t) => $t['category'] === $c['id']);
+    $i = 0;
+    $schema = [
+        ['@context' => 'https://schema.org', '@type' => 'CollectionPage', 'name' => $c['name'], 'url' => tf_abs($c['slug']), 'description' => $c['description'],
+            'mainEntity' => ['@type' => 'ItemList', 'numberOfItems' => count($tools), 'itemListElement' => array_values(array_map(function ($t) use (&$i) { return ['@type' => 'ListItem', 'position' => ++$i, 'url' => tf_abs($t['slug']), 'name' => $t['name']]; }, $tools))]],
+        tf_breadcrumbs([['Home', tf_abs()], [$c['name'], tf_abs($c['slug'])]]),
+    ];
+    if ($c['faqs']) $schema[] = tf_faq_schema($c['faqs']);
+    $others = '';
+    foreach (tf_site()['categories'] as $o) {
+        if ($o['id'] === $c['id'] || !array_filter(tf_tools(), fn($t) => $t['category'] === $o['id'])) continue;
+        $others .= '<a href="' . h(tf_url($o['slug'])) . '" data-cat="' . $o['id'] . '">' . tf_icon($o['icon']) . h($o['nav']) . '</a>';
+    }
+    $body = '<main class="wrap cat-page" data-cat="' . h($c['id']) . '">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="' . h(tf_url()) . '">Home</a><span aria-hidden="true">/</span><span>' . h($c['name']) . '</span></nav>
+<header class="cat-hero"><span class="tile xl" data-cat="' . h($c['id']) . '">' . tf_icon($c['icon']) . '</span><div><p class="eyebrow">' . count($tools) . ' free tools</p><h1>' . h($c['name']) . '</h1></div></header>
+<div class="cat-intro">' . $c['intro'] . '</div>
+<ul class="cards">' . implode('', array_map('tf_card', $tools)) . '</ul>
+' . tf_ad('top') . '
+' . ($c['faqs'] ? '<section class="prose home-faq"><h2>Frequently asked questions</h2>' . tf_faq_html($c['faqs']) . '</section>' : '') . '
+<section class="other-cats"><h2>More categories</h2><nav class="catnav">' . $others . '</nav></section>
+</main>';
+    return tf_layout(['title' => $c['title'], 'description' => $c['description'], 'slug' => $c['slug'], 'schema' => $schema, 'scripts' => ''], $body);
+}
+
 function tf_page_home(): string
 {
     $site = tf_site();
     $tools = tf_tools();
     $n = count($tools);
     $name = $site['site']['name'];
-    [$title, $desc] = tf_seo('index', "$name: Free Online Tools for Images, PDFs, Text & More", "$n free online tools that run in your browser: compress images, merge PDFs, count words, make QR codes, calculate percentages and more. No sign-up.");
-    $abs = fn($slug) => tf_base_url() . ($slug === 'index' ? '/' : '/' . $slug);
+    [$title, $desc] = tf_seo('index', "$name: $n Free Online Tools for PDF, Images, Video & More", "$n free online tools that run in your browser: merge PDFs, compress images, convert video to MP3, make QR codes, calculators and more. No sign-up.");
+    $faqs = [
+        ["Are $name tools really free?", "Yes. All $n tools are free to use with no sign-up, no watermark and no daily limit. The site is supported by advertising."],
+        ['Are my files uploaded to a server?', 'No. Images, PDFs, videos and text are processed in your browser on your own device. The only exceptions are hosted QR codes, which you choose to save on the site.'],
+        ['Do the tools work on my phone?', 'Yes. Every tool is designed for phones first and also works on tablets and computers, in any modern browser.'],
+        ['Do I need to install anything?', 'No. There is nothing to install and no account to create. Open a tool and use it straight away.'],
+        ["How do I find the right tool?", 'Use the search box (or press Ctrl K on a computer), or browse the categories below.'],
+    ];
     $i = 0;
     $schema = [
-        ['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => $name, 'url' => $abs('index'), 'description' => $desc],
-        ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => $name, 'url' => $abs('index'), 'logo' => tf_base_url() . '/assets/favicon.svg'],
-        ['@context' => 'https://schema.org', '@type' => 'ItemList', 'name' => "$name tools", 'itemListElement' => array_values(array_map(function ($t) use (&$i, $abs) { return ['@type' => 'ListItem', 'position' => ++$i, 'url' => $abs($t['slug']), 'name' => $t['name']]; }, $tools))],
+        ['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => $name, 'url' => tf_abs(), 'description' => $desc],
+        ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => $name, 'url' => tf_abs(), 'logo' => tf_base_url() . '/assets/favicon.svg'] + (tf_social_profiles() ? ['sameAs' => tf_social_profiles()] : []),
+        ['@context' => 'https://schema.org', '@type' => 'ItemList', 'name' => "$name tools", 'itemListElement' => array_values(array_map(function ($t) use (&$i) { return ['@type' => 'ListItem', 'position' => ++$i, 'url' => tf_abs($t['slug']), 'name' => $t['name']]; }, $tools))],
+        tf_faq_schema($faqs),
     ];
-    $card = fn($t) => '<li data-name="' . h(mb_strtolower($t['name'] . ' ' . $t['short'] . ' ' . ($t['keywords'] ?? ''))) . '"><a class="card" data-cat="' . h($t['category']) . '" href="' . h(tf_url($t['slug'])) . '">' . tf_tile($t) . '<div><strong>' . h($t['name']) . '</strong><span>' . h($t['short']) . '</span>' . (!empty($t['popular']) ? '<em class="badge">Popular</em>' : '') . '</div></a></li>';
+    // Popular tools, taking one from each category in turn so the panel shows variety.
+    $byCat = [];
+    foreach ($tools as $t) if (!empty($t['popular'])) $byCat[$t['category']][] = $t;
+    $popular = [];
+    while (count($popular) < 8 && $byCat) foreach ($byCat as $k => &$list) { if ($list) $popular[] = array_shift($list); if (!$list) unset($byCat[$k]); if (count($popular) >= 8) break; }
+    unset($list);
+    $pop = implode('', array_map(fn($t) => '<li><a href="' . h(tf_url($t['slug'])) . '">' . tf_tile($t) . '<span><b>' . h($t['name']) . '</b><small>' . h($t['short']) . '</small></span></a></li>', $popular));
+    $tiles = '';
     $cats = '';
-    $chips = '';
     foreach ($site['categories'] as $c) {
         $list = array_filter($tools, fn($t) => $t['category'] === $c['id']);
         if (!$list) continue;
-        $chips .= '<a href="#' . $c['id'] . '" data-cat="' . $c['id'] . '">' . tf_icon($c['icon']) . h($c['nav']) . '</a>';
-        $cats .= '<section class="cat" id="' . $c['id'] . '" aria-labelledby="h-' . $c['id'] . '"><div class="cat-head"><h2 id="h-' . $c['id'] . '">' . h($c['name']) . '</h2><p>' . h($c['blurb']) . '</p></div><ul class="cards">' . implode('', array_map($card, $list)) . "</ul></section>\n";
+        $tiles .= '<li><a class="cat-tile" href="' . h(tf_url($c['slug'])) . '" data-cat="' . $c['id'] . '"><span class="tile" data-cat="' . $c['id'] . '">' . tf_icon($c['icon']) . '</span><b>' . h($c['nav']) . '</b><small>' . count($list) . ' tools</small></a></li>';
+        $cats .= '<section class="cat" id="' . $c['id'] . '" aria-labelledby="h-' . $c['id'] . '"><div class="cat-head"><h2 id="h-' . $c['id'] . '"><a href="' . h(tf_url($c['slug'])) . '">' . h($c['name']) . '</a></h2><p>' . h($c['blurb']) . '</p><a class="cat-all" href="' . h(tf_url($c['slug'])) . '">View all ' . count($list) . ' →</a></div><ul class="cards">' . implode('', array_map('tf_card', $list)) . "</ul></section>\n";
     }
-    $body = '<main class="wrap">
-<section class="hero">
+    $feat = fn($icon, $h, $p) => '<li>' . tf_icon($icon) . '<b>' . $h . '</b><span>' . $p . '</span></li>';
+    $body = '<main class="home">
+<section class="hero"><div class="wrap hero-grid">
+<div class="hero-main">
 <p class="eyebrow">' . $n . ' free tools · no sign-up</p>
 <h1>Free online tools that <em>just work</em>.</h1>
-<p>' . $n . ' fast, private tools for images, PDFs, video, text, numbers and everyday life. No sign-up, no watermarks, and your files never leave your device.</p>
-<div class="search" role="search">' . tf_icon('search') . '<label class="sr-only" for="q">Search tools</label><input id="q" type="search" placeholder="Search ' . $n . ' tools, e.g. compress image, word count, QR code" autocomplete="off"></div>
+<p class="lead">Fast, private tools for PDFs, images, video, QR codes, money, health and everyday life. No sign-up, no watermarks, and your files never leave your device.</p>
+<div class="search" role="search">' . tf_icon('search') . '<label class="sr-only" for="q">Search tools</label><input id="q" type="search" placeholder="Search ' . $n . ' tools, e.g. merge pdf, video to mp3" autocomplete="off"></div>
 <ul class="stats"><li>' . tf_icon('shield-check') . 'Files stay on your device</li><li>' . tf_icon('zap') . 'Instant results</li><li>' . tf_icon('smartphone') . 'Works on any phone</li><li>' . tf_icon('badge-check') . '100% free</li></ul>
-<nav class="catnav" aria-label="Categories">' . $chips . '</nav>
-</section>
+</div>
+<aside class="hero-pop" aria-label="Popular tools"><p class="kicker">Popular right now</p><ul>' . $pop . '</ul></aside>
+</div></section>
+<div class="wrap">
+<section id="categories" class="cat-tiles-wrap" aria-labelledby="h-browse"><h2 id="h-browse" class="section-title">Browse by category</h2><ul class="cat-tiles">' . $tiles . '</ul></section>
 <div id="tools">
 ' . $cats . '<p class="no-results" id="none" hidden>No tool matches that search yet.</p>
+</div>
+<section class="why" aria-labelledby="h-why"><h2 id="h-why" class="section-title">Why people use ' . h($name) . '</h2><ul>'
+        . $feat('shield-check', 'Private by design', 'Files are processed on your device. Nothing is uploaded, so even confidential documents are safe.')
+        . $feat('zap', 'Instant', 'No uploads and no waiting in queues. Results appear as you type or as soon as your file opens.')
+        . $feat('badge-check', 'Free, no catches', 'No sign-up, no watermarks, no daily limits and no "premium" paywall halfway through.')
+        . $feat('smartphone', 'Made for phones', 'Every tool is designed for small screens first and works on any device and browser.')
+        . '</ul></section>
+<section class="prose home-faq"><h2>Frequently asked questions</h2>' . tf_faq_html($faqs) . '</section>
 </div>
 </main>';
     $js = <<<'JS'
@@ -251,6 +367,7 @@ function tf_page_home(): string
   var q = document.getElementById('q');
   q.addEventListener('input', function () {
     var v = q.value.trim().toLowerCase(), any = false;
+    document.getElementById('categories').hidden = !!v;
     document.querySelectorAll('#tools .cat').forEach(function (sec) {
       var shown = 0;
       sec.querySelectorAll('li[data-name]').forEach(function (li) {
@@ -260,6 +377,7 @@ function tf_page_home(): string
       sec.hidden = !shown; if (shown) any = true;
     });
     document.getElementById('none').hidden = any;
+    if (v) document.getElementById('tools').scrollIntoView({ block: 'start', behavior: 'smooth' });
   });
 })();
 </script>
@@ -274,18 +392,24 @@ function tf_page_simple(string $slug): ?string
     $email = h(trim(tf_settings()['contact_email']) ?: $site['site']['email']);
     $n = count(tf_tools());
     $pages = [
-        'about' => ["About {$site['site']['name']}", "{$site['site']['name']} makes fast, free online tools for images, PDFs, text and everyday maths. Everything runs in your browser, so your files stay private.", "
+        'about' => ["About {$site['site']['name']}", "{$site['site']['name']} makes fast, free online tools for PDFs, images, video, text and everyday maths. Everything runs in your browser, so your files stay private.", "
 <h1>About $name</h1>
-<p>$name is a collection of $n free online tools for the small jobs that come up every day: shrinking a photo for an email, merging two PDFs, counting the words in an essay, making a QR code, or working out a percentage.</p>
-<p>Every tool runs entirely in your web browser. When you compress an image or merge a PDF, the file is processed on your own device and is never uploaded to a server. That makes the tools faster and keeps your files private.</p>
-<h2>Accuracy</h2>
-<p>Calculator pages explain the formula they use and show a worked example, so you can check the result yourself. For legal, medical or financial decisions, please check with a qualified professional.</p>
+<p>$name is a collection of $n free online tools for the small jobs that come up every day: shrinking a photo for an email, merging two PDFs, turning a video into an MP3, counting the words in an essay, making a QR code, or working out a loan payment.</p>
+<p>Every tool runs in your web browser. When you compress an image or merge a PDF, the file is processed on your own device and is never uploaded to a server. That makes the tools faster and keeps your files private.</p>
+<h2>How we build the tools</h2>
+<p>Each calculator explains the formula it uses and includes a worked example, so you can check the result yourself. Health, finance and legal topics use established, published methods (such as the WHO BMI categories or the standard loan amortisation formula). We update pages when methods or standards change.</p>
+<p>For medical, financial or legal decisions, please check with a qualified professional: our tools give estimates, not advice.</p>
 <h2>Contact</h2>
 <p>Found a bug or want a new tool? Email <strong>$email</strong>.</p>"],
         'privacy' => ["Privacy Policy | {$site['site']['name']}", "How {$site['site']['name']} handles your data: files and text are processed in your browser and are never uploaded or stored on our servers.", '
 <h1>Privacy policy</h1>
 <h2>Your files and text</h2>
-<p>All tools run in your browser. Files you open (images, PDFs, videos) and text you type are processed on your device. They are not uploaded to us or stored on our servers. The only exception is the YouTube Subscriber Counter, which sends the channel name you enter to our server so it can ask YouTube for the public subscriber count.</p>
+<p>All tools run in your browser. Files you open (images, PDFs, videos) and text you type are processed on your device. They are not uploaded to us or stored on our servers.</p>
+<h2>Things you choose to save on our server</h2>
+<ul>
+<li><strong>Hosted QR codes</strong> (dynamic, file and verification QR codes): the link, file or details you enter are stored so the QR code works. They are deleted automatically after the period shown when you create them (30 days by default), or earlier if you delete them with your private manage link. We count scans (date and device type only).</li>
+<li><strong>YouTube Subscriber Counter:</strong> the channel name you enter is sent to our server, which asks YouTube for the public count.</li>
+</ul>
 <h2>Analytics and advertising</h2>
 <p>We may use analytics to count page visits, and we may show advertising to keep the tools free. Advertising partners such as Google may use cookies to show ads based on your visits to this and other websites. You can opt out of personalised advertising at <a href="https://adssettings.google.com" rel="nofollow">Google Ad Settings</a>.</p>
 <h2>Contact</h2>
@@ -293,27 +417,44 @@ function tf_page_simple(string $slug): ?string
     ];
     if (!isset($pages[$slug])) return null;
     [$title, $desc, $inner] = $pages[$slug];
-    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $slug, 'schema' => [['@context' => 'https://schema.org', '@type' => 'WebPage', 'name' => $title, 'url' => tf_base_url() . '/' . $slug]], 'scripts' => ''], '<main class="wrap"><article class="prose page">' . $inner . '</article></main>');
+    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $slug, 'schema' => [['@context' => 'https://schema.org', '@type' => $slug === 'about' ? 'AboutPage' : 'WebPage', 'name' => $title, 'url' => tf_abs($slug)]], 'scripts' => ''], '<main class="wrap"><article class="prose page">' . $inner . '</article></main>');
 }
 
 function tf_page_404(): string
 {
     $n = count(tf_tools());
+    $pop = implode('', array_map('tf_card', array_slice(array_filter(tf_tools(), fn($t) => !empty($t['popular'])), 0, 6)));
     return tf_layout(['title' => 'Page not found | ' . tf_site()['site']['name'], 'description' => 'This page does not exist.', 'slug' => 'index', 'schema' => [], 'noindex' => true, 'scripts' => ''],
-        '<main class="wrap"><article class="prose page"><h1>Page not found</h1><p>That page doesn’t exist. <a href="' . h(tf_url()) . '">See all ' . $n . ' tools</a>.</p></article></main>');
+        '<main class="wrap"><article class="prose page"><h1>Page not found</h1><p>That page doesn’t exist or the tool has moved. Try the search, or <a href="' . h(tf_url()) . '">see all ' . $n . ' tools</a>.</p><p><button type="button" class="btn" data-open-search>Search tools</button></p></article><h2 class="section-title">Popular tools</h2><ul class="cards">' . $pop . '</ul></main>');
+}
+
+// Small list for the quick search (fetched once by assets/site.js).
+function tf_tools_json(): string
+{
+    $out = [];
+    foreach (tf_tools() as $t) {
+        $cat = tf_category($t['category']);
+        $out[] = ['u' => $t['slug'], 'n' => $t['name'], 's' => $t['short'], 'k' => $t['keywords'] ?? '', 'c' => $t['category'], 'p' => !empty($t['popular']) ? 1 : 0, 'i' => tf_icon($t['icon'] ?? 'circle'), 'g' => $cat['nav'] ?? ''];
+    }
+    return json_encode($out, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
 
 function tf_sitemap(): string
 {
     $url = tf_base_url();
     $ts = tf_tool_settings();
-    $rows = [['/', time()]];
-    foreach (tf_tools() as $t) {
+    $tools = tf_tools();
+    $newest = 0;
+    $rows = [];
+    foreach ($tools as $t) {
         if (!empty($ts[$t['slug']]['noindex'])) continue;
-        $rows[] = ['/' . $t['slug'], (int) @filemtime(TF_ROOT . '/tools/' . $t['slug'] . '/meta.php')];
+        $m = (int) @filemtime(TF_ROOT . '/tools/' . $t['slug'] . '/meta.php');
+        $newest = max($newest, $m);
+        $rows[] = ['/' . $t['slug'], $m];
     }
-    $rows[] = ['/about', (int) @filemtime(TF_ROOT . '/app/render.php')];
-    $rows[] = ['/privacy', (int) @filemtime(TF_ROOT . '/app/render.php')];
+    $cats = [];
+    foreach (tf_site()['categories'] as $c) if (array_filter($tools, fn($t) => $t['category'] === $c['id'])) $cats[] = ['/' . $c['slug'], $newest];
+    $rows = array_merge([['/', $newest]], $cats, $rows, [['/about', (int) @filemtime(TF_ROOT . '/app/render.php')], ['/privacy', (int) @filemtime(TF_ROOT . '/app/render.php')]]);
     $x = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
     foreach ($rows as [$p, $m]) $x .= '  <url><loc>' . h($url . $p) . '</loc><lastmod>' . date('Y-m-d', $m ?: time()) . "</lastmod></url>\n";
     return $x . "</urlset>\n";
@@ -322,5 +463,6 @@ function tf_sitemap(): string
 function tf_robots(): string
 {
     $b = TF_BASE;
-    return "User-agent: *\nAllow: /\nDisallow: $b/admin/\nDisallow: $b/install/\nDisallow: $b/api/\n\nSitemap: " . tf_base_url() . "/sitemap.xml\n";
+    $extra = trim(str_replace("\r", '', tf_settings()['robots_extra']));
+    return "User-agent: *\nAllow: /\nDisallow: $b/admin/\nDisallow: $b/install/\nDisallow: $b/api/\nDisallow: $b/q/\n" . ($extra !== '' ? $extra . "\n" : '') . "\nSitemap: " . tf_base_url() . "/sitemap.xml\n";
 }

@@ -44,6 +44,9 @@ Example: running at 10 km/h (MET 9.8), 70 kg, 30 minutes
 
 <h2>Accuracy</h2>
 <p>MET values are averages. Fitter people are more efficient and may burn a little less for the same activity; hills, wind and effort level change the burn too. Smartwatches estimate using heart rate, which helps, but studies show they often overestimate calories.</p>
+
+<h2>Getting a more accurate number</h2>
+<p>The MET values are averages from research on adults. Your real burn depends on fitness, terrain, wind and how hard you actually work. A heart rate monitor gives a better personal estimate. When you use these numbers to plan eating, remember that fitness trackers and gym machines often overestimate, so many people eat back only half of the calories they burn while trying to lose weight.</p>
 EOT_TF,
   'faqs' => [
     [

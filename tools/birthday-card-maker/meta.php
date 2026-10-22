@@ -51,6 +51,14 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>The card is drawn in your browser. Names, messages and photos are never uploaded.</p>
+
+<h2>Ideas for a memorable card</h2>
+<ul>
+<li><strong>Use a recent photo</strong> of the two of you, or a funny childhood picture.</li>
+<li><strong>Mention a shared memory</strong> in the message, not just "Happy birthday".</li>
+<li><strong>Keep the main greeting short</strong> so it reads well on a phone screen, and put the longer message underneath.</li>
+<li><strong>Send it at the right moment:</strong> first thing in the morning on the day feels most personal.</li>
+</ul>
 EOT_TF,
   'faqs' => [
     [

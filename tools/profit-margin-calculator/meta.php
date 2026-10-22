@@ -45,6 +45,14 @@ Price for markup = cost × (1 + markup)</div>
 
 <h2>Pricing with VAT or sales tax</h2>
 <p>Calculate margins on prices <em>excluding</em> tax, because the tax isn't your money. Use the VAT Calculator to remove tax from a gross price first.</p>
+
+<h2>Common pricing mistakes</h2>
+<ul>
+<li><strong>Confusing markup with margin:</strong> adding 30% to cost gives a 23% margin, not 30%. Use the calculator to set the price from the margin you need.</li>
+<li><strong>Forgetting hidden costs:</strong> payment fees, packaging, shipping, returns and marketplace commissions all come out of your margin.</li>
+<li><strong>Discounting without checking:</strong> a 20% discount on a product with a 30% margin removes two-thirds of the profit on each sale.</li>
+<li><strong>Ignoring overheads:</strong> gross margin must also pay for rent, software and your time before there is any real profit.</li>
+</ul>
 EOT_TF,
   'faqs' => [
     [

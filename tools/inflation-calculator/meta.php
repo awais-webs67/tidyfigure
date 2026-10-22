@@ -44,6 +44,9 @@ Doubling time  ≈ 72 ÷ rate (%)</div>
 <li>Inflation-linked bonds and savings products track the official price index.</li>
 <li>Negotiate pay rises at least in line with inflation.</li>
 </ul>
+
+<h2>Protecting savings from inflation</h2>
+<p>Cash in an account that pays less than inflation loses buying power every year. To keep up, compare the interest rate on your savings with the current inflation rate, and consider longer-term options such as index funds or inflation-linked government bonds for money you won't need for several years. For short-term goals and emergency funds, safety matters more than beating inflation.</p>
 EOT_TF,
   'faqs' => [
     [

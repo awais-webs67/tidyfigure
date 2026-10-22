@@ -51,6 +51,9 @@ EOT_TF,
 <li>Check how it looks at small size on a phone.</li>
 </ul>
 <p>The Image Resizer has a 1280 × 720 preset, and the Image Compressor brings big files under the 2 MB limit.</p>
+
+<h2>Using thumbnails fairly</h2>
+<p>Thumbnails are created by the channel owner and are usually protected by copyright. It's fine to save one to look at, to reference in a review or commentary with credit, or to download your own channel's thumbnails as a backup. Don't reuse someone else's thumbnail as your own video's cover. If you want ideas for your own thumbnails, study what successful ones in your niche have in common: a clear face, a few large words and strong contrast.</p>
 EOT_TF,
   'faqs' => [
     [

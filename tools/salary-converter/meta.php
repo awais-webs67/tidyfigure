@@ -47,6 +47,9 @@ Hourly  = yearly ÷ (hours per week × paid weeks)</div>
 
 <h2>Before tax</h2>
 <p>All figures are gross (before income tax and deductions). Take-home pay depends on your country's tax rules, so check an official tax calculator for net pay.</p>
+
+<h2>Comparing job offers</h2>
+<p>When you compare two jobs, convert both to the same period and the same hours. A higher hourly rate can still earn less per year if it comes with fewer guaranteed hours or unpaid holidays. Also look beyond pay: pension contributions, health insurance, bonuses, overtime rates, commuting costs and remote-work days can be worth thousands a year.</p>
 EOT_TF,
   'faqs' => [
     [

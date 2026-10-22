@@ -35,6 +35,7 @@ if (!$done && ($_SERVER['REQUEST_METHOD'] ?? '') === 'POST') {
                 $err = 'These tables already have an admin account. Use a different table prefix, or restore your old config.php.';
             } else {
                 $pdo->prepare('INSERT INTO ' . $t('admins') . ' (username, password_hash, created_at) VALUES (?, ?, ?)')->execute([$v['admin'], password_hash($pass, PASSWORD_DEFAULT), time()]);
+                $pdo->prepare('REPLACE INTO ' . $t('settings') . ' (name, value, updated_at) VALUES (?, ?, ?)')->execute(['schema_version', TF_SCHEMA_VERSION, time()]);
                 if ($v['email'] !== '') $pdo->prepare('REPLACE INTO ' . $t('settings') . ' (name, value, updated_at) VALUES (?, ?, ?)')->execute(['contact_email', $v['email'], time()]);
                 $configText = "<?php\n// Database settings, written by the installer. Keep this file private and out of Git.\nreturn " . var_export(['db' => $db], true) . ";\n";
                 if (@file_put_contents(TF_CONFIG, $configText, LOCK_EX) !== false) {

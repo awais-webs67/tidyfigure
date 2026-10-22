@@ -59,6 +59,14 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>Scanning runs in your browser with the open-source ZXing library. The camera feed and images never leave your device.</p>
+
+<h2>Tips for a quick, accurate scan</h2>
+<ul>
+<li><strong>Light it evenly.</strong> Glare on shiny packaging is the most common reason a scan fails. Tilt the product slightly so the reflection moves off the bars.</li>
+<li><strong>Fill about half the frame.</strong> Too far away and the thin bars blur together; too close and the camera can't focus. Move back until the whole barcode is sharp.</li>
+<li><strong>Hold it flat.</strong> Barcodes on curved bottles scan better if you line the bars up vertically, so the curve runs along them rather than across.</li>
+<li><strong>Damaged or tiny codes:</strong> take a sharp photo instead and use the image option, then zoom in on the photo before choosing it.</li>
+</ul>
 EOT_TF,
   'faqs' => [
     [

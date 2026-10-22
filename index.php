@@ -19,6 +19,29 @@ if ($path === 'robots.txt') {
     echo tf_robots();
     exit;
 }
+if ($path === 'tools.json') {
+    header('Content-Type: application/json; charset=utf-8');
+    header('Cache-Control: public, max-age=600');
+    echo tf_tools_json();
+    exit;
+}
+if (preg_match('~^og/([a-z0-9-]+)\.png$~', $path, $m)) {
+    require __DIR__ . '/app/og.php';
+    tf_og_serve($m[1]);
+}
+// IndexNow key file
+$key = tf_settings()['indexnow_key'];
+if ($key !== '' && $path === $key . '.txt') {
+    header('Content-Type: text/plain; charset=utf-8');
+    echo $key;
+    exit;
+}
+// Hosted QR codes: /q/<code>
+if (preg_match('~^q/([A-Za-z0-9]{4,12})(?:/(file|manage))?$~', $path, $m)) {
+    require __DIR__ . '/app/qr.php';
+    tf_qr_route($m[1], $m[2] ?? '');
+    exit;
+}
 // Old or alternative addresses → the clean URL
 if (preg_match('/^(.+)\.html$/', $path, $m) || $path === 'index' || $path === 'index.php') {
     $to = ($m[1] ?? 'index') === 'index' ? 'index' : $m[1];
@@ -36,6 +59,10 @@ if ($path === '') {
 }
 if ($html = tf_page_simple($path)) {
     echo $html;
+    exit;
+}
+if (($c = tf_category($path)) && $c['slug'] === $path && array_filter(tf_tools(), fn($t) => $t['category'] === $c['id'])) {
+    echo tf_page_category($c);
     exit;
 }
 $tool = tf_tool_on($path) ? tf_tool($path) : null;

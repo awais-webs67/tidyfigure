@@ -45,6 +45,9 @@ Example at 20%:  100 → 120     120 → 100 (tax 20)</div>
 <li>Round tax per invoice (or per line, if your country requires it) to the nearest cent.</li>
 </ul>
 <p>The Invoice Generator adds tax to each line automatically.</p>
+
+<h2>Common VAT mistakes</h2>
+<p>The most frequent mistake is taking the tax rate as a percentage of the gross price to find the tax inside it. At 20%, the tax in a 120 price is 20, not 24. Another is mixing up prices that include tax (common for consumers) with prices that exclude it (common between businesses), so always label quotes and invoices clearly as "inc. VAT" or "ex. VAT". If you are registered for VAT or GST, keep a record of the tax on every sale and purchase for your returns.</p>
 EOT_TF,
   'faqs' => [
     [
