@@ -12,6 +12,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
     'https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js',
   ],
+  'scripts' => ['pdf-engine.js'],
   'appCategory' => 'BusinessApplication',
   'keywords' => 'edit pdf online free pdf editor add text to pdf edit text in pdf write on pdf whiteout pdf annotate pdf highlight pdf draw on pdf add image to pdf sign pdf fill pdf',
   'short' => 'Edit PDFs online: change existing text, add text, images, signatures, shapes, highlights and drawings.',
@@ -19,7 +20,7 @@ return [
   'description' => 'Free online PDF editor. Change existing text, add text, images and signatures, highlight, draw, white out and add shapes. No sign-up, no watermark, and your PDF is never uploaded.',
   'related' => ['sign-pdf', 'merge-pdf', 'compress-pdf'],
   'answer' => <<<'EOT_TF'
-To edit a PDF, open it in the editor and pick a tool: <strong>Edit text</strong> to change words already in the PDF, <strong>Text</strong> to type anywhere, plus Sign, Image, Draw, Highlight, Whiteout, shapes, ticks and dates. Move and resize anything, then press <strong>Preview &amp; download</strong> to check the finished PDF. It's free with no watermark, and the file never leaves your device.
+To edit a PDF, open it and choose <strong>Edit text</strong>, then click any line and type. The text is rewritten in the PDF's <strong>own font, size and colour</strong>, not pasted on top. <strong>Delete</strong> truly removes text, images and shapes, and you can add text, signatures, images and drawings. Press <strong>Preview &amp; download</strong> to check the finished PDF. It's free, with no watermark, and the file never leaves your device.
 EOT_TF,
   'article' => <<<'EOT_TF'
 
@@ -31,9 +32,12 @@ EOT_TF,
 <li>Press <strong>Preview &amp; download</strong>. You see every page of the finished PDF before you download it.</li>
 </ol>
 
-<h2>Change text that's already in the PDF</h2>
-<p>Choose <strong>Edit text</strong> and click a line of text. The editor covers the old line with the page's own background colour and puts the same words in an editable box, in a matching font, size and colour. Change what you need and click away. This is the quickest way to fix a typo, update a date or price, or correct a name in a PDF when you don't have the original Word file.</p>
-<p>PDFs don't store text like a word processor: each line is placed at a fixed position, and fonts often contain only the letters already used. That's why the editor replaces the line rather than editing it in place, the same method used by paid PDF editors. If the new text is longer, it continues to the right, so shorten it or reduce the size to keep the layout tidy.</p>
+<h2>Change text that's already in the PDF, in the same style</h2>
+<p>Choose <strong>Edit text</strong>. Every line of text gets a faint outline; click one and type. When you press Enter or click away, the editor removes the old words from the PDF and writes yours in their place using the <strong>font embedded in the PDF</strong>, at the same size, colour and position. Bold and italic words stay bold and italic, so changing a name inside a sentence keeps the rest of the sentence exactly as it was.</p>
+<p>PDFs usually contain only the letters they use. If you type a letter the original font doesn't include, that letter is written in the closest standard font (for example Helvetica for Arial, Times for Times New Roman), and the editor tells you which letters were affected. Press Escape to cancel an edit and get the original line back exactly.</p>
+
+<h2>Delete text, images and whole sections</h2>
+<p>Choose <strong>Delete</strong> and click a line of text, a picture, a logo or a shape to remove it. To remove a whole section, drag a box over it: everything inside is deleted, letter by letter, so text around the box stays in place. This really removes the content from the file; it doesn't just hide it under a white box, so deleted text can't be copied or searched afterwards. Ctrl+Z brings anything back.</p>
 
 <h2>Everything you can add</h2>
 <ul>
@@ -47,18 +51,19 @@ EOT_TF,
 </ul>
 
 <h2>Keyboard shortcuts</h2>
-<p>Ctrl+Z undoes and Ctrl+Y redoes. Delete removes the selected item, Ctrl+D duplicates it and the arrow keys nudge it (hold Shift to move faster). Letters choose tools: V select, T text, E edit text, D draw, H highlight, W whiteout, R box, O circle, L line and A arrow. Hold Ctrl and scroll to zoom.</p>
+<p>Ctrl+Z undoes and Ctrl+Y redoes, including text edits and deletions. Delete removes the selected item, Ctrl+D duplicates it and the arrow keys nudge it (hold Shift to move faster). Letters choose tools: V select, T text, E edit text, X delete, D draw, H highlight, W whiteout, R box, O circle, L line and A arrow. Hold Ctrl and scroll to zoom.</p>
 
 <h2>Private, free and with no watermark</h2>
 <p>Many online PDF editors upload your file to their servers, add a watermark or limit you to a few edits a day unless you pay. This editor runs entirely in your browser: your PDF is never uploaded, there's no account, no watermark and no limit. That makes it safe for contracts, bank forms, certificates and ID documents.</p>
-<p>A note on whiteout: it covers content visually, but the original text can still be inside the file and found by copying or searching. For truly confidential information, remove those pages with <a href="/delete-pdf-pages">Delete PDF Pages</a> or recreate the document.</p>
+<p>A note on whiteout: it only covers content, and the original text stays inside the file. To remove information for good, use <strong>Delete</strong> instead, which takes it out of the PDF itself.</p>
 
 <h2>More PDF tools</h2>
 <p>To put pages in order use <a href="/organize-pdf">Organize PDF</a>, to combine files use <a href="/merge-pdf">Merge PDF</a>, and to make the edited PDF smaller use <a href="/compress-pdf">Compress PDF</a>. A password-protected PDF must be unlocked with <a href="/unlock-pdf">Unlock PDF</a> before you can edit it.</p>
 EOT_TF,
   'faqs' => [
     ['How can I edit a PDF for free?', 'Open it in this editor, use the toolbar to change or add text, images, signatures and shapes, then press Preview & download. It is free with no sign-up or watermark.'],
-    ['Can I change existing text in a PDF?', 'Yes. Choose Edit text and click a line. The old words are covered and replaced with an editable copy in a matching font, size and colour.'],
+    ['Can I change existing text in a PDF in the same font?', 'Yes. Choose Edit text, click a line and type. The old text is removed and your text is written in the PDF’s own embedded font, size and colour. Letters the font doesn’t include use the closest standard font.'],
+    ['Can I delete text or a section from a PDF?', 'Yes. Choose Delete and click a line, image or shape, or drag a box over a section. The content is removed from the file, not just covered.'],
     ['Is my PDF uploaded?', 'No. The editor runs in your browser and the PDF never leaves your device.'],
     ['Can I sign a PDF with this editor?', 'Yes. Press Sign, then draw, type or upload your signature and drag it into place.'],
     ['Does it work on a phone?', 'Yes. The editor works on phones and tablets: tap a tool, then tap or drag on the page.'],

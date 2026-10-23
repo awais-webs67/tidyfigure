@@ -18,6 +18,21 @@ function fontFile(fam, bold) {
   return fontFiles[k];
 }
 const cssFont = fam => `${FONTS[fam].css}, ${FONTS[fam].fallback}`;
+// Fonts with the same letter widths as Arial, Times and Courier, to show text being edited close to the PDF's own font.
+const LOOK = { sans: ['arimo', 'PeArimo', 'Arial, sans-serif'], serif: ['tinos', 'PeTinos', '"Times New Roman", serif'], mono: ['cousine', 'PeCousine', '"Courier New", monospace'] };
+const lookFiles = {};
+function lookFont(fam, bold, italic) {
+  const [n, css] = LOOK[fam], k = `${fam}-${bold}-${italic}`;
+  lookFiles[k] ??= new FontFace(css, `url(https://cdn.jsdelivr.net/fontsource/fonts/${n}@5.1.0/latin-${bold ? 700 : 400}-${italic ? 'italic' : 'normal'}.ttf)`, { weight: bold ? '700' : '400', style: italic ? 'italic' : 'normal' })
+    .load().then(f => { document.fonts.add(f); }).catch(() => { delete lookFiles[k]; });
+  return lookFiles[k];
+}
+function baseOfCss(css, weight, style) {
+  const x = document.createElement('canvas').getContext('2d');
+  x.font = `${style} ${weight} 100px ${css}`;
+  const m = x.measureText('Hg');
+  return { asc: (m.fontBoundingBoxAscent ?? 90) / 100, desc: (m.fontBoundingBoxDescent ?? 22) / 100 };
+}
 // Distance from the top of a text line to its baseline, in ems, as the browser lays it out.
 function baseOf(fam, bold) {
   const x = document.createElement('canvas').getContext('2d');
@@ -28,7 +43,7 @@ function baseOf(fam, bold) {
 }
 
 const app = $('#app'), pagesEl = $('#pages'), scroller = $('#scroll'), out = $('#out');
-let srcBytes = null, srcName = '', doc = null, P = [], objs = [], imgs = {}, sel = null, editing = null;
+let srcBytes = null, srcName = '', doc = null, P = [], objs = [], imgs = {}, sel = null, editing = null, eng = null, ie = null;
 let zoom = 1, tool = 'select', seq = 1, hist = [], future = [];
 const dflt = {
   text: { font: 'sans', size: 16, bold: false, color: '#111827', opacity: 1 },
@@ -59,7 +74,9 @@ async function openFile(f) {
     doc = await openPdf(buf);
   } catch (e) { box.textContent = 'That file can’t be opened. It may be damaged.'; return; }
   srcBytes = buf; srcName = f.name;
-  objs = []; imgs = {}; hist = []; future = []; sel = null; editing = null;
+  objs = []; imgs = {}; hist = []; future = []; sel = null; editing = null; ie = null;
+  // The content engine lets text be edited in its own font and things be truly deleted.
+  try { eng = await PdfEngine.load(await PDFDocument.load(buf, { updateMetadata: false })); } catch (e) { eng = null; }
   $('#start').hidden = true; app.hidden = false; out.hidden = true;
   $('#fname').textContent = `${f.name} · ${doc.numPages} page${doc.numPages > 1 ? 's' : ''}`;
   P = [];
@@ -69,7 +86,7 @@ async function openFile(f) {
   }
   const widest = Math.max(...P.map(p => p.vp.width));
   zoom = Math.min(1.5, Math.max(0.3, (scroller.clientWidth - 32) / widest));
-  build(); buildThumbs(); setTool('select'); updateUndo();
+  build(); buildThumbs(); setTool('select'); lastState = state(); updateUndo();
   scroller.scrollTop = 0; scroller.dispatchEvent(new Event('scroll'));
   Object.keys(FONTS).forEach(k => fontFile(k, false).catch(() => {}));
   fontFile('sans', true).catch(() => {});
@@ -84,8 +101,8 @@ function build() {
   P.forEach((p, i) => {
     const wrap = document.createElement('div');
     wrap.className = 'pe-page'; wrap.dataset.i = i;
-    wrap.innerHTML = '<canvas aria-hidden="true"></canvas><div class="pe-layer"></div>';
-    p.wrap = wrap; p.canvas = wrap.firstChild; p.layer = wrap.lastChild; p.drawn = 0;
+    wrap.innerHTML = '<canvas aria-hidden="true"></canvas><div class="pe-guides" aria-hidden="true"></div><div class="pe-layer"></div>';
+    p.wrap = wrap; p.canvas = wrap.firstChild; p.guides = wrap.children[1]; p.layer = wrap.lastChild; p.drawn = 0;
     p.layer.dataset.i = i;
     pagesEl.appendChild(wrap);
     io.observe(wrap);
@@ -96,6 +113,7 @@ function layout() {
   P.forEach(p => { p.wrap.style.width = `${p.vp.width * zoom}px`; p.wrap.style.height = `${p.vp.height * zoom}px`; });
   $('#zlabel').textContent = `${Math.round(zoom * 100)}%`;
   redrawAll();
+  P.forEach((p, i) => guides(i));
 }
 async function paint(i) {
   const p = P[i], want = zoom * Math.min(2, window.devicePixelRatio || 1);
@@ -111,6 +129,7 @@ async function paint(i) {
   p.canvas.replaceWith(c); p.canvas = c;
 }
 function setZoom(z) {
+  if (ie) finishLine(true);
   const mid = (scroller.scrollTop + scroller.clientHeight / 2) / scroller.scrollHeight;
   zoom = Math.min(4, Math.max(0.25, z));
   layout();
@@ -125,10 +144,23 @@ async function buildThumbs() {
   const nav = $('#thumbs');
   nav.innerHTML = P.map((p, i) => `<button type="button" data-i="${i}" aria-label="Page ${i + 1}"><span class="pe-tc"></span><small>${i + 1}</small></button>`).join('');
   nav.onclick = e => { const b = e.target.closest('button'); if (b) P[+b.dataset.i].wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
-  for (let i = 0; i < P.length; i++) {
-    const c = await renderPdfPage(doc, i + 1, 96 / P[i].vp.width);
-    const slot = nav.querySelector(`[data-i="${i}"] .pe-tc`);
-    if (slot) slot.appendChild(c);
+  for (let i = 0; i < P.length; i++) await thumb(i);
+}
+async function thumb(i) {
+  const vp = P[i].page.getViewport({ scale: 96 / P[i].vp.width }), c = document.createElement('canvas');
+  c.width = Math.round(vp.width); c.height = Math.round(vp.height);
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+  await P[i].page.render({ canvasContext: x, viewport: vp }).promise;
+  const slot = $(`#thumbs [data-i="${i}"] .pe-tc`);
+  if (slot) { slot.innerHTML = ''; slot.appendChild(c); }
+}
+// After the engine changes a page, show the new version of it.
+async function refreshPages(set) {
+  for (const i of set) {
+    const d = await openPdf(await eng.pagePdf(i));
+    P[i].page = await d.getPage(1);
+    P[i].drawn = 0; P[i].lines = null;
+    paint(i); guides(i); thumb(i);
   }
 }
 function currentPage() {
@@ -219,13 +251,20 @@ function redrawAll() {
 const byId = id => objs.find(o => o.id === id);
 
 // ---------- History ----------
-function snapshot() { return JSON.stringify(objs); }
-function commit() { hist.push(lastState); lastState = snapshot(); if (hist.length > 200) hist.shift(); future = []; updateUndo(); }
-let lastState = '[]';
-function restore(s) { objs = JSON.parse(s); lastState = s; sel = null; editing = null; redrawAll(); showProps(); updateUndo(); }
+// A state is the added items plus the PDF's own content, so undo covers both.
+const state = () => ({ o: JSON.stringify(objs), e: eng ? eng.snapshot() : null, v: eng ? eng.version : 0 });
+const changed = () => !lastState || JSON.stringify(objs) !== lastState.o || (eng && eng.version !== lastState.v);
+function commit() { hist.push(lastState); lastState = state(); if (hist.length > 200) hist.shift(); future = []; updateUndo(); }
+let lastState = null;
+async function restore(s) {
+  objs = JSON.parse(s.o); sel = null; editing = null; redrawAll(); showProps();
+  if (eng && s.e) await refreshPages(eng.restore(s.e));
+  lastState = { ...s, v: eng ? eng.version : 0 };
+  updateUndo();
+}
 function updateUndo() { $('#undo').disabled = !hist.length; $('#redo').disabled = !future.length; }
-$('#undo').addEventListener('click', () => { if (!hist.length) return; stopEdit(); future.push(snapshot()); restore(hist.pop()); });
-$('#redo').addEventListener('click', () => { if (!future.length) return; stopEdit(); hist.push(snapshot()); restore(future.pop()); });
+$('#undo').addEventListener('click', async () => { if (ie) await finishLine(true); if (!hist.length) return; stopEdit(); future.push(state()); await restore(hist.pop()); });
+$('#redo').addEventListener('click', async () => { if (ie) await finishLine(true); if (!future.length) return; stopEdit(); hist.push(state()); await restore(future.pop()); });
 
 // ---------- Selection, properties ----------
 function select(id) {
@@ -235,6 +274,13 @@ function select(id) {
   showProps();
 }
 function showProps() {
+  if (ie) {
+    $$('#props .pe-p').forEach(p => { p.hidden = !['text', 'color'].includes(p.dataset.for) || !!p.querySelector('#p-font, #p-bold'); });
+    $('#hint').hidden = true;
+    $('#p-size').value = Math.round(ie.size * 10) / 10; $('#p-color').value = ie.color;
+    $$('.pe-colors [data-c]').forEach(b => b.classList.toggle('on', b.dataset.c === ie.color));
+    return;
+  }
   const o = byId(sel), k = o ? KIND[o.type] : kindOf(tool), d = o || dflt[k] || {};
   const show = {
     text: k === 'text',
@@ -256,6 +302,11 @@ function showProps() {
 }
 let propTimer = null;
 function setProp(key, v) {
+  if (ie) {
+    if (key === 'size') { ie.size = v; ie.sizeChanged = true; }
+    if (key === 'color') { ie.color = v; ie.colorChanged = true; }
+    placeIe(); showProps(); ie.t.focus(); return;
+  }
   const o = byId(sel);
   if (o) {
     o[key] = v;
@@ -291,14 +342,17 @@ function duplicate() {
 
 // ---------- Tools ----------
 function setTool(t) {
+  if (ie) finishLine(true);
   if (t === 'image') { $('#imgfile').click(); return; }
   if (t === 'sign') { openSign(); return; }
   stopEdit();
   tool = t;
   $$('.pe-tools [data-tool]').forEach(b => { b.classList.toggle('on', b.dataset.tool === t); b.setAttribute('aria-pressed', b.dataset.tool === t); });
   app.dataset.tool = t;
+  hover(null);
+  P.forEach((p, i) => guides(i));
   if (t !== 'select') select(null); else showProps();
-  const tips = { select: 'Click an item to select it. Drag to move, use a corner to resize. Double-click text to change it.', text: 'Click where you want to type.', edit: 'Click any text in the PDF to change it.', pen: 'Draw with your mouse or finger.', highlight: 'Drag over text to highlight it.', whiteout: 'Drag over anything to cover it in white.', rect: 'Drag to draw a box.', ellipse: 'Drag to draw a circle.', line: 'Drag to draw a line.', arrow: 'Drag to draw an arrow.', check: 'Click to add a tick.', cross: 'Click to add a cross.', date: 'Click to add today’s date.' };
+  const tips = { select: 'Click an item to select it. Drag to move, use a corner to resize. Double-click text to change it.', text: 'Click where you want to type.', edit: 'Click any line of text to change it. It keeps the PDF’s own font where possible.', delete: 'Click text, an image or a shape to delete it, or drag a box to delete everything inside.', pen: 'Draw with your mouse or finger.', highlight: 'Drag over text to highlight it.', whiteout: 'Drag over anything to cover it in white.', rect: 'Drag to draw a box.', ellipse: 'Drag to draw a circle.', line: 'Drag to draw a line.', arrow: 'Drag to draw an arrow.', check: 'Click to add a tick.', cross: 'Click to add a cross.', date: 'Click to add today’s date.' };
   $('#hint').textContent = tips[t] || '';
   showProps();
 }
@@ -347,15 +401,24 @@ function stopEdit() {
   if (!o.text.trim()) { e?.remove(); objs = objs.filter(x => x !== o); if (sel === o.id) sel = null; }
   else { draw(o); measure(o); }
   showProps();
-  if (snapshot() !== lastState) commit();
+  if (changed()) commit();
 }
 
 // ---------- Pointer handling ----------
 let drag = null;
-pagesEl.addEventListener('pointerdown', e => {
+pagesEl.addEventListener('pointerdown', async e => {
+  if (e.target.closest('.pe-ie')) return;
   const layer = e.target.closest('.pe-layer');
   if (!layer || e.button > 0) return;
   const i = +layer.dataset.i, [x, y] = pagePoint(e, i);
+  if (ie) { e.preventDefault(); await finishLine(true); if (tool !== 'edit') return; }
+  if (tool === 'delete' && !e.target.closest('.pe-o')) {
+    e.preventDefault();
+    const band = document.createElement('div'); band.className = 'pe-band'; P[i].wrap.appendChild(band);
+    drag = { mode: 'erase', i, x0: x, y0: y, band, moved: false };
+    layer.setPointerCapture(e.pointerId);
+    return;
+  }
   const oe = e.target.closest('.pe-o'), o = oe && byId(+oe.dataset.id);
   if (o && editing === o.id) return; // let the caret move inside the text
   if (o && (tool === 'select' || ['text', 'edit', 'date'].includes(tool) && o.type === 'text')) {
@@ -373,7 +436,7 @@ pagesEl.addEventListener('pointerdown', e => {
   e.preventDefault();
   if (tool === 'text') { const t = addText(i, x, y - dflt.text.size * 0.6, 'Type here'); startEdit(t, true); return; }
   if (tool === 'date') { addText(i, x, y - dflt.text.size * 0.6, new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })); commit(); return; }
-  if (tool === 'edit') { editExisting(i, x, y); return; }
+  if (tool === 'edit') { editLine(i, x, y); return; }
   if (tool === 'check' || tool === 'cross') { const s = 22, d = dflt.mark; addObj({ type: tool, page: i, x: x - s / 2, y: y - s / 2, w: s, h: s, color: d.color, width: d.width, opacity: d.opacity }, true); commit(); return; }
   const k = kindOf(tool), d = dflt[k];
   const o2 = { id: seq++, type: tool, page: i, x, y, w: 0, h: 0, color: d.color, opacity: d.opacity, width: d.width, fill: d.fill };
@@ -384,10 +447,23 @@ pagesEl.addEventListener('pointerdown', e => {
   layer.setPointerCapture(e.pointerId);
 });
 pagesEl.addEventListener('pointermove', e => {
-  if (!drag) return;
+  if (!drag) {
+    if ((tool === 'edit' || tool === 'delete') && eng && !ie) {
+      const layer = e.target.closest('.pe-layer');
+      if (!layer || e.target.closest('.pe-o')) { hover(null); return; }
+      const i = +layer.dataset.i, [x, y] = pagePoint(e, i), [ux, uy] = P[i].vp.convertToPdfPoint(x, y);
+      hover(i, tool === 'edit' ? hitLine(i, ux, uy) : hitLine(i, ux, uy) || hitObject(i, ux, uy));
+    }
+    return;
+  }
   const [x, y] = pagePoint(e, drag.i), o = drag.o, s = drag.start;
   let dx = x - drag.x0, dy = y - drag.y0;
   if (Math.abs(dx) + Math.abs(dy) > 1) drag.moved = true;
+  if (drag.mode === 'erase') {
+    Object.assign(drag.band.style, { left: `${Math.min(x, drag.x0) * zoom}px`, top: `${Math.min(y, drag.y0) * zoom}px`, width: `${Math.abs(dx) * zoom}px`, height: `${Math.abs(dy) * zoom}px` });
+    drag.x1 = x; drag.y1 = y;
+    return;
+  }
   if (drag.mode === 'move') {
     o.x = s.x + dx; o.y = s.y + dy;
   } else if (drag.mode === 'resize') {
@@ -416,7 +492,9 @@ function fromRaw(o) {
 function endDrag() {
   if (!drag) return;
   const { o, mode, moved } = drag;
+  const d0 = drag;
   drag = null;
+  if (mode === 'erase') { d0.band.remove(); erase(d0); return; }
   if (mode === 'create') {
     if (o.raw) {
       if (o.type === 'pen' && o.raw.length < 2) { o.raw.push([o.raw[0][0] + 0.5, o.raw[0][1] + 0.5]); }
@@ -458,11 +536,160 @@ document.addEventListener('keydown', e => {
   }
   if (e.key === 'Escape') { setTool('select'); select(null); return; }
   if (mod || e.altKey) return;
-  const keys = { v: 'select', t: 'text', e: 'edit', d: 'pen', h: 'highlight', w: 'whiteout', r: 'rect', o: 'ellipse', l: 'line', a: 'arrow' };
+  const keys = { x: 'delete', v: 'select', t: 'text', e: 'edit', d: 'pen', h: 'highlight', w: 'whiteout', r: 'rect', o: 'ellipse', l: 'line', a: 'arrow' };
   if (keys[e.key.toLowerCase()]) setTool(keys[e.key.toLowerCase()]);
 });
 
-// ---------- Edit existing text ----------
+// ---------- Real editing of the PDF's own content ----------
+const area = b => Math.max(0, b[2] - b[0]) * Math.max(0, b[3] - b[1]);
+function inPoly([x, y], poly) {
+  let inside = false;
+  for (let a = 0, b = poly.length - 1; a < poly.length; b = a++) {
+    const [xa, ya] = poly[a], [xb, yb] = poly[b];
+    if ((ya > y) !== (yb > y) && x < (xb - xa) * (y - ya) / (yb - ya) + xa) inside = !inside;
+  }
+  return inside;
+}
+function hitLine(i, ux, uy) {
+  const m = eng.model(i);
+  const hits = m.lines.filter(l => inPoly([ux, uy], l.poly));
+  return hits.sort((a, b) => area(a.bbox) - area(b.bbox))[0] || null;
+}
+function hitObject(i, ux, uy) {
+  const m = eng.model(i), vb = P[i].vp.viewBox, page = area(vb);
+  const hits = m.objects.filter(o => ux >= o.bbox[0] && ux <= o.bbox[2] && uy >= o.bbox[1] && uy <= o.bbox[3] && area(o.bbox) < page * 0.85);
+  const rank = o => (o.type === 'image' ? 0 : o.type === 'path' ? 1 : 2);
+  return hits.sort((a, b) => rank(a) - rank(b) || area(a.bbox) - area(b.bbox))[0] || null;
+}
+// Page-space box -> on-screen box (in points at 100%).
+function viewBox(i, b) {
+  const vp = P[i].vp, pts = [[b[0], b[1]], [b[2], b[1]], [b[2], b[3]], [b[0], b[3]]].map(([x, y]) => vp.convertToViewportPoint(x, y));
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+}
+let hoverEl = null;
+function hover(i, item) {
+  if (!item) { hoverEl?.remove(); hoverEl = null; return; }
+  const [x0, y0, x1, y1] = viewBox(i, item.bbox);
+  if (!hoverEl || hoverEl.parentNode !== P[i].wrap) { hoverEl?.remove(); hoverEl = document.createElement('div'); P[i].wrap.appendChild(hoverEl); }
+  hoverEl.className = `pe-hover ${tool === 'delete' ? 'del' : ''}`;
+  Object.assign(hoverEl.style, { left: `${(x0 - 2) * zoom}px`, top: `${(y0 - 2) * zoom}px`, width: `${(x1 - x0 + 4) * zoom}px`, height: `${(y1 - y0 + 4) * zoom}px` });
+}
+// Faint boxes around every line of text while the Edit text tool is on.
+function guides(i) {
+  const g = P[i] && P[i].guides;
+  if (!g) return;
+  g.innerHTML = '';
+  if (tool !== 'edit' || !eng) return;
+  let m;
+  try { m = eng.model(i); } catch (e) { return; }
+  g.innerHTML = m.lines.map(l => { const [x0, y0, x1, y1] = viewBox(i, l.bbox); return `<div class="pe-g" style="left:${x0 * zoom}px;top:${y0 * zoom}px;width:${(x1 - x0) * zoom}px;height:${(y1 - y0) * zoom}px"></div>`; }).join('');
+}
+const hex2 = v => Math.round(Math.max(0, Math.min(1, v)) * 255).toString(16).padStart(2, '0');
+const rgbHex = c => '#' + c.map(hex2).join('');
+const hexRgb01 = h => [1, 3, 5].map(k => parseInt(h.slice(k, k + 2), 16) / 255);
+
+async function editLine(i, x, y) {
+  if (!eng) { editExisting(i, x, y); return; }
+  const [ux, uy] = P[i].vp.convertToPdfPoint(x, y);
+  const m = eng.model(i), line = hitLine(i, ux, uy);
+  if (!line) {
+    // Scanned pages and unusual PDFs: fall back to covering the text.
+    if (m.error || !m.lines.length) editExisting(i, x, y);
+    else flash('No text there. Click right on a line of text, or use Text to add new text.');
+    return;
+  }
+  if (line.style.Tr === 3 || line.style.Tr === 7) { editExisting(i, x, y); return; }
+  hover(null);
+  const before = state();
+  await refreshPages(eng.removeGlyphs(line.glyphs));
+  const f = line.style.font, box = document.createElement('div'), t = document.createElement('div');
+  box.className = 'pe-ie'; t.className = 'pe-iet'; t.spellcheck = false; t.textContent = line.text;
+  box.appendChild(t); P[i].wrap.appendChild(box);
+  ie = { i, line, before, box, t, size: line.size, color: rgbHex(line.style.rgb), fam: f.family, bold: f.bold, italic: f.italic };
+  lookFont(f.family, f.bold, f.italic).then(placeIe);
+  placeIe();
+  try { t.contentEditable = 'plaintext-only'; } catch (err) { t.contentEditable = 'true'; }
+  if (t.contentEditable !== 'plaintext-only') t.contentEditable = 'true';
+  t.focus();
+  const r = document.createRange(); r.selectNodeContents(t); r.collapse(false);
+  const sl = getSelection(); sl.removeAllRanges(); sl.addRange(r);
+  t.onkeydown = ev => {
+    if (ev.key === 'Enter') { ev.preventDefault(); finishLine(true); }
+    if (ev.key === 'Escape') { ev.preventDefault(); finishLine(false); }
+  };
+  showProps();
+  const h = $('#hint'); h.hidden = false;
+}
+function placeIe() {
+  if (!ie) return;
+  const { i, line, box, t } = ie, vp = P[i].vp;
+  const o = [line.first.Trm[4], line.first.Trm[5]];
+  const [x0, y0] = vp.convertToViewportPoint(o[0], o[1]), [x1, y1] = vp.convertToViewportPoint(o[0] + line.dir[0], o[1] + line.dir[1]);
+  const ang = Math.atan2(y1 - y0, x1 - x0), [, css, fb] = LOOK[ie.fam];
+  const weight = ie.bold ? 700 : 400, style = ie.italic ? 'italic' : 'normal', LHi = 1.2;
+  const { asc, desc } = baseOfCss(`${css}, ${fb}`, weight, style), base = (LHi - asc - desc) / 2 + asc;
+  Object.assign(box.style, { left: `${x0 * zoom}px`, top: `${(y0 - base * ie.size) * zoom}px`, transform: `rotate(${ang}rad)`, transformOrigin: `0 ${base * ie.size * zoom}px` });
+  Object.assign(t.style, { font: `${style} ${weight} ${ie.size * zoom}px/${LHi} ${css}, ${fb}`, color: ie.color });
+}
+async function finishLine(save) {
+  const s = ie;
+  if (!s) return;
+  ie = null;
+  const text = s.t.innerText.replace(/\s*\n\s*/g, ' ').trim();
+  s.box.remove();
+  const opts = {};
+  if (s.sizeChanged) opts.size = s.size;
+  if (s.colorChanged) opts.color = hexRgb01(s.color);
+  if (!save || (text === s.line.text && !opts.size && !opts.color)) {
+    // Nothing changed: put the original text back exactly.
+    await refreshPages(eng.restore(s.before.e));
+    lastState = { ...s.before, v: eng.version };
+    showProps(); setTool(tool);
+    return;
+  }
+  if (text) {
+    try {
+      const r = await eng.addText(s.line, text, opts);
+      await refreshPages(r.pages);
+      if (r.missing.length) flash(`This PDF’s font doesn’t include ${r.missing.map(c => `“${c}”`).join(' ')}, so a very similar font was used for ${r.missing.length > 1 ? 'those letters' : 'that letter'}.`);
+    } catch (err) { flash('Couldn’t write that text: ' + err.message); }
+  }
+  hist.push(s.before); lastState = state(); future = []; updateUndo();
+  showProps();
+}
+// Deletes what was clicked, or everything inside a dragged box, from the PDF itself.
+async function erase(d) {
+  if (!eng) { flash('This PDF can’t be changed directly. Use Whiteout to cover things instead.'); return; }
+  const i = d.i, vp = P[i].vp;
+  let glyphs = [], objects = [];
+  if (!d.moved || d.x1 === undefined || Math.abs(d.x1 - d.x0) + Math.abs(d.y1 - d.y0) < 4) {
+    const [ux, uy] = vp.convertToPdfPoint(d.x0, d.y0);
+    const l = hitLine(i, ux, uy), o = l ? null : hitObject(i, ux, uy);
+    if (l) glyphs = l.glyphs; else if (o) objects = [o];
+    else { flash('Nothing to delete there. Drag a box to delete everything inside it.'); return; }
+  } else {
+    const a = vp.convertToPdfPoint(d.x0, d.y0), b = vp.convertToPdfPoint(d.x1, d.y1);
+    const r = [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[0], b[0]), Math.max(a[1], b[1])];
+    const m = eng.model(i), page = area(vp.viewBox);
+    glyphs = m.glyphs.filter(g => { const cx = g.poly.reduce((s, p) => s + p[0], 0) / 4, cy = g.poly.reduce((s, p) => s + p[1], 0) / 4; return cx >= r[0] && cx <= r[2] && cy >= r[1] && cy <= r[3]; });
+    objects = m.objects.filter(o => {
+      const ov = area([Math.max(r[0], o.bbox[0]), Math.max(r[1], o.bbox[1]), Math.min(r[2], o.bbox[2]), Math.min(r[3], o.bbox[3])]), a0 = area(o.bbox) || 1;
+      return ov / a0 >= (o.type === 'form' || a0 > page * 0.85 ? 0.95 : 0.6);
+    });
+    if (!glyphs.length && !objects.length) { flash('Nothing found inside that box.'); return; }
+  }
+  const before = state();
+  await refreshPages(eng.remove(glyphs, objects));
+  hover(null);
+  hist.push(before); lastState = state(); future = []; updateUndo();
+  const parts = [];
+  if (glyphs.length) parts.push(`${glyphs.filter(g => !g.space).length} letters`);
+  if (objects.length) parts.push(`${objects.length} image${objects.length > 1 ? 's' : ''} or shape${objects.length > 1 ? 's' : ''}`);
+  flash(`Deleted ${parts.join(' and ')} from the PDF. Undo with Ctrl+Z.`);
+}
+
+// ---------- Edit existing text (fallback: covers the old text) ----------
 async function textLines(i) {
   const p = P[i];
   if (p.lines) return p.lines;
@@ -525,7 +752,7 @@ async function editExisting(i, x, y) {
   startEdit(t, false);
 }
 let flashT = null;
-function flash(msg) { const h = $('#hint'); h.hidden = false; h.textContent = msg; h.classList.add('warn'); clearTimeout(flashT); flashT = setTimeout(() => { h.classList.remove('warn'); setTool(tool); }, 3500); }
+function flash(msg) { const h = $('#hint'); h.hidden = false; h.textContent = msg; h.classList.add('warn'); clearTimeout(flashT); flashT = setTimeout(() => { h.classList.remove('warn'); if (ie) showProps(); else setTool(tool); }, 5000); }
 
 // ---------- Images ----------
 async function imageFromBlob(blob) {
@@ -635,6 +862,7 @@ dlg.addEventListener('close', async () => {
 // ---------- Save ----------
 const hexRgb = h => rgb(parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255);
 $('#save').addEventListener('click', async () => {
+  if (ie) await finishLine(true);
   stopEdit(); select(null);
   const btn = $('#save');
   btn.disabled = true;
@@ -642,7 +870,9 @@ $('#save').addEventListener('click', async () => {
   out.innerHTML = '<p class="kicker">Edited PDF</p><p class="sub">Saving your changes…</p>';
   out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   try {
-    const pdf = await PDFDocument.load(srcBytes, { updateMetadata: false });
+    let base = srcBytes;
+    if (eng && eng.version) { eng.cleanup(); base = await eng.pdf.save(); }
+    const pdf = await PDFDocument.load(base, { updateMetadata: false });
     pdf.registerFontkit(fontkit);
     const pages = pdf.getPages(), fonts = {}, images = {};
     for (const o of objs) {
