@@ -1,0 +1,87 @@
+<div class="pe" id="pe">
+  <div class="pe-start" id="start">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF to edit">
+      {{icon:file-pen-line}}
+      <strong>Drop a PDF to edit, or click to choose</strong>
+      <span>Add text, edit existing text, images, shapes, drawings and signatures. Your file stays on your device.</span>
+      <input type="file" id="file" accept=".pdf,application/pdf">
+    </div>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample PDF</button>
+  </div>
+
+  <div class="pe-app" id="app" hidden>
+    <div class="pe-bar" role="toolbar" aria-label="Editing tools">
+      <div class="pe-tools">
+        <button type="button" data-tool="select" class="on" title="Select and move (V)" aria-label="Select">{{icon:mouse-pointer-2}}<span>Select</span></button>
+        <button type="button" data-tool="text" title="Add text (T)" aria-label="Add text">{{icon:type}}<span>Text</span></button>
+        <button type="button" data-tool="edit" title="Edit existing text (E)" aria-label="Edit existing text">{{icon:text-cursor-input}}<span>Edit text</span></button>
+        <button type="button" data-tool="sign" title="Add a signature" aria-label="Sign">{{icon:pen-line}}<span>Sign</span></button>
+        <button type="button" data-tool="image" title="Add an image" aria-label="Add image">{{icon:image}}<span>Image</span></button>
+        <button type="button" data-tool="pen" title="Draw (D)" aria-label="Draw">{{icon:pencil}}<span>Draw</span></button>
+        <button type="button" data-tool="highlight" title="Highlight (H)" aria-label="Highlight">{{icon:highlighter}}<span>Highlight</span></button>
+        <button type="button" data-tool="whiteout" title="Whiteout: cover something up (W)" aria-label="Whiteout">{{icon:eraser}}<span>Whiteout</span></button>
+        <button type="button" data-tool="rect" title="Rectangle (R)" aria-label="Rectangle">{{icon:square}}<span>Box</span></button>
+        <button type="button" data-tool="ellipse" title="Circle (O)" aria-label="Circle">{{icon:circle}}<span>Circle</span></button>
+        <button type="button" data-tool="line" title="Line (L)" aria-label="Line">{{icon:minus}}<span>Line</span></button>
+        <button type="button" data-tool="arrow" title="Arrow (A)" aria-label="Arrow">{{icon:move-up-right}}<span>Arrow</span></button>
+        <button type="button" data-tool="check" title="Tick mark" aria-label="Tick">{{icon:check}}<span>Tick</span></button>
+        <button type="button" data-tool="cross" title="Cross mark" aria-label="Cross">{{icon:x}}<span>Cross</span></button>
+        <button type="button" data-tool="date" title="Today’s date" aria-label="Date">{{icon:calendar}}<span>Date</span></button>
+      </div>
+      <div class="pe-actions">
+        <button type="button" id="undo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled>{{icon:undo-2}}</button>
+        <button type="button" id="redo" title="Redo (Ctrl+Y)" aria-label="Redo" disabled>{{icon:redo-2}}</button>
+        <button type="button" id="zout" title="Zoom out" aria-label="Zoom out">{{icon:zoom-out}}</button>
+        <span id="zlabel" class="pe-zoom">100%</span>
+        <button type="button" id="zin" title="Zoom in" aria-label="Zoom in">{{icon:zoom-in}}</button>
+        <button type="button" class="btn" id="save">{{icon:eye}}<span class="pe-wide">Preview &amp; download</span><span class="pe-narrow">Save</span></button>
+      </div>
+    </div>
+
+    <div class="pe-props" id="props" aria-label="Style">
+      <span class="pe-hint" id="hint">Click an item to select it. Drag to move, use the corner to resize.</span>
+      <label class="pe-p" data-for="text"><span>Font</span><select id="p-font"><option value="sans">Sans</option><option value="serif">Serif</option><option value="mono">Mono</option><option value="hand">Handwriting</option></select></label>
+      <label class="pe-p" data-for="text"><span>Size</span><input type="number" id="p-size" min="4" max="200" value="16"></label>
+      <label class="pe-p pe-tog" data-for="text" title="Bold"><input type="checkbox" id="p-bold"><b>B</b></label>
+      <label class="pe-p" data-for="stroke"><span>Width</span><input type="number" id="p-width" min="1" max="40" value="3"></label>
+      <div class="pe-p pe-colors" data-for="color" role="radiogroup" aria-label="Colour">
+        <button type="button" data-c="#111827" style="--c:#111827" aria-label="Black"></button>
+        <button type="button" data-c="#1d4ed8" style="--c:#1d4ed8" aria-label="Blue"></button>
+        <button type="button" data-c="#dc2626" style="--c:#dc2626" aria-label="Red"></button>
+        <button type="button" data-c="#16a34a" style="--c:#16a34a" aria-label="Green"></button>
+        <button type="button" data-c="#facc15" style="--c:#facc15" aria-label="Yellow"></button>
+        <button type="button" data-c="#ffffff" style="--c:#ffffff" aria-label="White"></button>
+        <input type="color" id="p-color" value="#111827" aria-label="Custom colour">
+      </div>
+      <label class="pe-p pe-tog" data-for="fill" title="Fill the shape"><input type="checkbox" id="p-fill"><span>Fill</span></label>
+      <label class="pe-p" data-for="opacity"><span>Opacity</span><input type="range" id="p-opacity" min="10" max="100" value="100"></label>
+      <button type="button" class="pe-p pe-del" data-for="any" id="dup" title="Duplicate (Ctrl+D)">{{icon:copy}}<span>Duplicate</span></button>
+      <button type="button" class="pe-p pe-del" data-for="any" id="del" title="Delete (Del)">{{icon:trash-2}}<span>Delete</span></button>
+    </div>
+
+    <div class="pe-main">
+      <nav class="pe-thumbs" id="thumbs" aria-label="Pages"></nav>
+      <div class="pe-scroll" id="scroll"><div class="pe-pages" id="pages"></div></div>
+    </div>
+    <div class="pe-foot"><span id="fname"></span><span id="pageinfo"></span><button type="button" class="linkish" id="newfile">Open another PDF</button></div>
+  </div>
+
+  <div class="out" id="out" hidden aria-live="polite"></div>
+  <input type="file" id="imgfile" accept="image/*" hidden>
+
+  <dialog class="pe-dlg" id="signdlg" aria-labelledby="signtitle">
+    <form method="dialog">
+      <h2 id="signtitle">Your signature</h2>
+      <div class="seg" role="radiogroup" aria-label="Signature type">
+        <label><input type="radio" name="smode" value="draw" checked><span>Draw</span></label>
+        <label><input type="radio" name="smode" value="type"><span>Type</span></label>
+        <label><input type="radio" name="smode" value="upload"><span>Upload</span></label>
+      </div>
+      <div data-smode="draw"><canvas id="pad" width="900" height="300" aria-label="Draw your signature here"></canvas><button type="button" class="linkish" id="padclear">Clear</button></div>
+      <div data-smode="type" hidden><input type="text" id="signname" value="" placeholder="Type your name" autocomplete="name"><p class="pe-signprev" id="signprev">Your name</p></div>
+      <div data-smode="upload" hidden><input type="file" id="signfile" accept="image/*"><p class="note">A photo of your signature on white paper works best: the white background is removed.</p></div>
+      <div class="pe-inks"><span>Ink</span><button type="button" data-ink="#111827" class="on" style="--c:#111827" aria-label="Black"></button><button type="button" data-ink="#1d3fbf" style="--c:#1d3fbf" aria-label="Blue"></button><button type="button" data-ink="#b91c1c" style="--c:#b91c1c" aria-label="Red"></button></div>
+      <div class="btns"><button value="cancel" class="btn ghost">Cancel</button><button value="ok" class="btn" id="signok">Place signature</button></div>
+    </form>
+  </dialog>
+</div>
