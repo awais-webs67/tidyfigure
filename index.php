@@ -7,6 +7,13 @@ require __DIR__ . '/app/render.php';
 
 $path = rawurldecode((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH));
 if (TF_BASE !== '' && str_starts_with($path, TF_BASE)) $path = substr($path, strlen(TF_BASE));
+// One address per page: /merge-pdf/ and /Merge-PDF go to /merge-pdf (hosted QR codes keep their case).
+$clean = strtolower(trim($path, '/'));
+if ($clean !== '' && !str_starts_with($clean, 'q/') && ($path !== '/' . $clean || preg_match('/[A-Z]/', $path)) && !str_contains($clean, '.')) {
+    $qs = (string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_QUERY);
+    header('Location: ' . tf_url($clean) . ($qs !== '' ? "?$qs" : ''), true, 301);
+    exit;
+}
 $path = trim($path, '/');
 
 if ($path === 'sitemap.xml') {
@@ -18,6 +25,16 @@ if ($path === 'robots.txt') {
     header('Content-Type: text/plain; charset=utf-8');
     echo tf_robots();
     exit;
+}
+if ($path === 'manifest.webmanifest') {
+    header('Content-Type: application/manifest+json; charset=utf-8');
+    header('Cache-Control: public, max-age=86400');
+    echo tf_manifest();
+    exit;
+}
+if (preg_match('~^icon-(180|192|512)\.png$~', $path, $m)) {
+    require __DIR__ . '/app/og.php';
+    tf_icon_serve((int) $m[1]);
 }
 if ($path === 'tools.json') {
     header('Content-Type: application/json; charset=utf-8');

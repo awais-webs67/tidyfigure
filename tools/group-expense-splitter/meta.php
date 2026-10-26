@@ -6,7 +6,7 @@ return [
   'order' => 4,
   'icon' => 'users',
   'short' => 'Who owes whom after a trip or dinner? Settle up in the fewest payments.',
-  'title' => 'Group Expense Splitter: Who Owes Whom, in the Fewest Payments',
+  'title' => 'Group Expense Splitter: Who Owes Whom, Fewest Payments',
   'description' => <<<'EOT_TF'
 Split shared trip, holiday or dinner costs and see exactly who owes whom. Settles a group in the fewest payments, with uneven shares. No app or sign-up.
 EOT_TF,

@@ -12,7 +12,7 @@ return [
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'audio to text converter free transcription speech to text video to text mp3 to text subtitle generator srt voice note transcribe urdu hindi whisper',
   'short' => 'Turn speech in audio or video into text and subtitles (SRT), in 20+ languages.',
-  'title' => 'Audio to Text Converter: Free AI Transcription & SRT Subtitles',
+  'title' => 'Audio to Text: Free AI Transcription & SRT Subtitles',
   'description' => 'Transcribe audio and video to text with AI, free: MP3, voice notes, MP4. 20+ languages incl. Urdu, Hindi and Arabic, timestamps, SRT subtitles. No upload.',
   'related' => ['video-to-mp3', 'voice-recorder', 'audio-cutter'],
   'answer' => <<<'EOT_TF'

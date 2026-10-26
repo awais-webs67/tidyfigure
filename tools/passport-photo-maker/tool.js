@@ -74,6 +74,7 @@ async function sharpen(id, asked = false) {
     if (id !== job) return;
     cut = c;
     setSharp('Hair edges sharpened.');
+    toast('Hair edges sharpened');
     draw();
   } catch (e) { if (id === job) setSharp(''); }
 }

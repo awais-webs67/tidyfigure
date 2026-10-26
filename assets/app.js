@@ -56,22 +56,94 @@ const rand = n => crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296 * n
 const randInt = (min, max) => min + Math.floor(rand(max - min + 1));
 
 // Drag-and-drop or click-to-choose files. accept is an <input accept> string.
-function fileDrop(zone, input, onFiles) {
-  zone.addEventListener('click', e => { if (e.target !== input) input.click(); });
-  zone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
-  input.addEventListener('change', () => { if (input.files.length) onFiles([...input.files]); input.value = ''; });
-  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
-  zone.addEventListener('dragleave', () => zone.classList.remove('over'));
-  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('over'); if (e.dataTransfer.files.length) onFiles([...e.dataTransfer.files]); });
+// ---------- Toasts: short confirmations at the bottom of the screen ("Photo added", "Downloaded") ----------
+const TOAST_ICONS = {
+  ok: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>',
+  err: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5M12 16.5v.01"/></svg>',
+};
+let toastBox = null;
+function toast(msg, kind = 'ok') {
+  if (!toastBox) {
+    toastBox = document.createElement('div');
+    toastBox.className = 'toasts'; toastBox.setAttribute('role', 'status'); toastBox.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toastBox);
+  }
+  const el = document.createElement('div');
+  el.className = `toast ${kind}`;
+  el.innerHTML = `${TOAST_ICONS[kind] || TOAST_ICONS.ok}<span></span>`;
+  el.lastChild.textContent = msg;
+  toastBox.appendChild(el);
+  while (toastBox.children.length > 3) toastBox.firstChild.remove();
+  requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('in')));
+  setTimeout(() => { el.classList.remove('in'); setTimeout(() => el.remove(), 250); }, kind === 'err' ? 5000 : 2800);
+  return el;
+}
+const shortName = n => (n.length > 34 ? `${n.slice(0, 22)}…${n.slice(-9)}` : n);
+// Does the file match the input's accept list ("image/*", ".pdf", "application/pdf")?
+function accepts(input, f) {
+  const acc = (input.accept || '').split(',').map(a => a.trim().toLowerCase()).filter(Boolean);
+  if (!acc.length) return true;
+  const n = f.name.toLowerCase(), t = (f.type || '').toLowerCase();
+  return acc.some(a => (a.startsWith('.') ? n.endsWith(a) : a.endsWith('/*') ? t.startsWith(a.slice(0, -1)) : t === a));
+}
+function addedMessage(files) {
+  if (files.length > 1) return `${files.length} files added`;
+  const f = files[0], t = f.type || '', n = f.name.toLowerCase();
+  const what = t.startsWith('image/') || /\.(heic|heif)$/.test(n) ? 'Photo' : t === 'application/pdf' || n.endsWith('.pdf') ? 'PDF' : t.startsWith('video/') ? 'Video' : t.startsWith('audio/') ? 'Audio' : 'File';
+  return `${what} added: ${shortName(f.name)}`;
 }
 
+function fileDrop(zone, input, onFiles) {
+  const take = files => {
+    if (!files.length) return;
+    if (!files.some(f => accepts(input, f))) { toast('This tool can’t open that type of file. Please choose another file.', 'err'); return; }
+    toast(addedMessage(files));
+    onFiles(files);
+  };
+  input.dataset.drop = '1';
+  zone.addEventListener('click', e => { if (e.target !== input) input.click(); });
+  zone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
+  input.addEventListener('change', () => { const f = [...input.files]; input.value = ''; take(f); });
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('over'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('over'));
+  zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('over'); take([...e.dataTransfer.files]); });
+}
+
+// Other file pickers (a logo, a card photo…) confirm the file too.
+document.addEventListener('change', e => {
+  const i = e.target;
+  if (i instanceof HTMLInputElement && i.type === 'file' && !i.dataset.drop && i.files.length) toast(addedMessage([...i.files]));
+}, true);
+
+// Several downloads in a row (a "download all") share one toast.
+let lastDl = null;
 function download(blob, name) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = name;
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(url), 4000);
+  const now = Date.now();
+  if (lastDl && now - lastDl.at < 1500 && lastDl.el.isConnected) { lastDl.n++; lastDl.at = now; lastDl.el.lastChild.textContent = `Downloaded ${lastDl.n} files`; }
+  else lastDl = { at: now, n: 1, el: toast(`Downloaded: ${shortName(name)}`) };
 }
+
+// When a long job finishes (its progress bar goes away), say so: "Done" or "Something went wrong".
+function watchJobs(out) {
+  let busy = !!out.querySelector('[data-pct]'), timer = 0;
+  new MutationObserver(() => {
+    if (out.querySelector('[data-pct]')) { busy = true; clearTimeout(timer); return; }
+    if (!busy) return;
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      if (out.querySelector('[data-pct]')) return;
+      busy = false;
+      if (out.querySelector('.verdict.no')) toast('That didn’t work. See the message for what to try.', 'err');
+      else toast('Done! Your result is ready.');
+    }, 350);
+  }).observe(out, { childList: true, subtree: true });
+}
+document.querySelectorAll('.tool .out').forEach(watchJobs);
 
 function loadImage(file) {
   return new Promise((resolve, reject) => {
@@ -132,7 +204,7 @@ function renderImageResults(out, items, label) {
 }
 
 function copyText(text, btn) {
-  const done = () => { if (btn) { const t = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = t; }, 1400); } };
+  const done = () => { toast('Copied to clipboard'); if (btn) { const t = btn.textContent; btn.textContent = 'Copied'; setTimeout(() => { btn.textContent = t; }, 1400); } };
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, () => {});
 }
 
@@ -142,7 +214,7 @@ document.addEventListener('click', e => {
   if (!b) return;
   const target = document.getElementById(b.dataset.copy);
   if (!target) return;
-  const done = () => { b.textContent = 'Copied'; setTimeout(() => { b.textContent = 'Copy'; }, 1500); };
+  const done = () => { toast('Copied to clipboard'); b.textContent = 'Copied'; setTimeout(() => { b.textContent = 'Copy'; }, 1500); };
   if (navigator.clipboard && navigator.clipboard.writeText) {
     navigator.clipboard.writeText(target.innerText).then(done, () => selectText(target));
   } else {

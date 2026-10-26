@@ -121,3 +121,43 @@ function tf_og_serve(string $slug): void
     readfile($file);
     exit;
 }
+
+// App icons (home screen, Apple touch icon) drawn from the favicon's shapes. Falls back to the SVG without GD.
+function tf_icon_serve(int $size): void
+{
+    if (!function_exists('imagecreatetruecolor')) {
+        header('Location: ' . tf_asset('favicon.svg'), true, 302);
+        exit;
+    }
+    $dir = TF_CACHE . '/og';
+    if (!is_dir($dir)) @mkdir($dir, 0755, true);
+    $file = "$dir/icon-v1-$size.png";
+    if (!is_file($file)) {
+        // Drawn 4× larger and scaled down, for smooth edges. The mark sits in the middle 80%, the safe area for round icons.
+        $S = $size * 4;
+        $big = imagecreatetruecolor($S, $S);
+        imagefill($big, 0, 0, tf_og_color($big, '#0B7F5E'));
+        $white = tf_og_color($big, '#ffffff');
+        $u = $S * 0.8 / 32;
+        $o = $S * 0.1;
+        $p = fn($v) => (int) round($o + $v * $u);
+        $r = 1.5 * $u;
+        imagefilledrectangle($big, $p(9), $p(9.5), $p(23), $p(12.5), $white);
+        imagefilledrectangle($big, $p(14.5), $p(11), $p(17.5), $p(23), $white);
+        foreach ([[9, 11], [23, 11], [16, 23]] as [$x, $y]) imagefilledellipse($big, $p($x), $p($y), (int) ($r * 2), (int) ($r * 2), $white);
+        imagefilledellipse($big, $p(23), $p(22), (int) (4.8 * $u), (int) (4.8 * $u), $white);
+        $img = imagecreatetruecolor($size, $size);
+        imagecopyresampled($img, $big, 0, 0, 0, 0, $size, $size, $S, $S);
+        imagepng($img, $file);
+        if (!is_file($file)) {
+            header('Content-Type: image/png');
+            imagepng($img);
+            exit;
+        }
+    }
+    header('Content-Type: image/png');
+    header('Cache-Control: public, max-age=2592000');
+    header('Content-Length: ' . filesize($file));
+    readfile($file);
+    exit;
+}

@@ -6,7 +6,7 @@ return [
   'order' => 10,
   'icon' => 'car',
   'short' => 'Split fuel fairly when people ride different distances, plus tolls and parking.',
-  'title' => 'Road Trip Cost Splitter: Split Fuel by Distance Each Person Rode',
+  'title' => 'Road Trip Cost Splitter: Split Fuel Cost by Distance',
   'description' => <<<'EOT_TF'
 Split car trip fuel costs fairly when passengers ride different distances. Works in km or miles, US or UK mpg, with tolls and parking. Free, instant.
 EOT_TF,

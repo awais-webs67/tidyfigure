@@ -6,7 +6,7 @@ return [
   'order' => 5,
   'icon' => 'sofa',
   'short' => 'Check if a sofa, bed or wardrobe fits through a door and around a hallway corner.',
-  'title' => 'Will It Fit Through the Door? Sofa & Furniture Fit Calculator',
+  'title' => 'Will It Fit Through the Door? Furniture Fit Calculator',
   'description' => <<<'EOT_TF'
 Check if a sofa, bed, wardrobe or fridge will fit through a door and around a hallway corner before you buy. Shows which way to carry it. Free.
 EOT_TF,

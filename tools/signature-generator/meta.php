@@ -10,7 +10,7 @@ return [
   'appCategory' => 'BusinessApplication',
   'keywords' => 'signature generator online draw signature create signature transparent png handwritten signature maker type signature from photo electronic signature',
   'short' => 'Draw, type or photograph your signature and download it as a transparent PNG.',
-  'title' => 'Signature Generator: Draw or Type a Signature, Transparent PNG',
+  'title' => 'Signature Generator: Draw or Type a Transparent Signature',
   'description' => 'Create your signature online: draw it, type it in a handwriting font or clean up a photo of it. Download a transparent PNG, JPG or SVG. Free and private.',
   'related' => ['sign-pdf', 'remove-background', 'email-signature-generator'],
   'answer' => <<<'EOT_TF'

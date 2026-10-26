@@ -58,11 +58,14 @@ function tf_layout(array $o, string $body): string
 {
     $site = tf_site();
     $s = tf_settings();
-    $canonical = h(tf_abs($o['slug']));
-    $og = h($o['og'] ?? tf_base_url() . '/og/' . ($o['slug'] === 'index' ? 'home' : $o['slug']) . '.png');
+    // A null slug (the 404 page) gets no canonical or og:url.
+    $canonical = $o['slug'] === null ? '' : h(tf_abs($o['slug']));
+    $og = h($o['og'] ?? tf_base_url() . '/og/' . (($o['slug'] ?? 'index') === 'index' ? 'home' : $o['slug']) . '.png');
 
     $head = '';
-    if (!empty($o['noindex'])) $head .= '<meta name="robots" content="noindex">' . "\n";
+    // Indexable pages allow large image previews and full snippets (Google Discover, rich results).
+    $head .= '<meta name="robots" content="' . (!empty($o['noindex']) ? 'noindex' : 'max-image-preview:large, max-snippet:-1, max-video-preview:-1') . '">' . "\n";
+    if ($canonical !== '') $head .= "<link rel=\"canonical\" href=\"$canonical\">\n<meta property=\"og:url\" content=\"$canonical\">\n";
     foreach (['verify_google' => 'google-site-verification', 'verify_bing' => 'msvalidate.01', 'verify_yandex' => 'yandex-verification', 'verify_pinterest' => 'p:domain_verify'] as $k => $meta) {
         // Accept either the code or the whole <meta> tag pasted from the search engine.
         $v = trim($s[$k]);
@@ -118,18 +121,23 @@ function tf_layout(array $o, string $body): string
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>$t</title>
 <meta name="description" content="$d">
-<link rel="canonical" href="$canonical">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="$name">
 <meta property="og:title" content="$t">
 <meta property="og:description" content="$d">
-<meta property="og:url" content="$canonical">
 <meta property="og:image" content="$og">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="$t">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="$t">
+<meta name="twitter:description" content="$d">
+<meta name="twitter:image" content="$og">
 <meta name="theme-color" content="#FF5B35">
 <link rel="icon" href="{$g['tf_favicon']}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{$g['tf_touch']}">
+<link rel="manifest" href="{$g['tf_manifest']}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{$g['tf_fonts']}">
@@ -169,6 +177,8 @@ HTML;
 function tf_layout_globals(): void
 {
     $GLOBALS['tf_favicon'] = h(tf_asset('favicon.svg'));
+    $GLOBALS['tf_touch'] = h(tf_url('icon-180.png'));
+    $GLOBALS['tf_manifest'] = h(tf_url('manifest.webmanifest'));
     $GLOBALS['tf_css'] = h(tf_asset('style.css'));
     $GLOBALS['tf_sitejs'] = h(tf_asset('site.js'));
     $GLOBALS['tf_fonts'] = h(TF_FONTS);
@@ -425,7 +435,7 @@ function tf_page_404(): string
 {
     $n = count(tf_tools());
     $pop = implode('', array_map('tf_card', array_slice(array_filter(tf_tools(), fn($t) => !empty($t['popular'])), 0, 6)));
-    return tf_layout(['title' => 'Page not found | ' . tf_site()['site']['name'], 'description' => 'This page does not exist.', 'slug' => 'index', 'schema' => [], 'noindex' => true, 'scripts' => ''],
+    return tf_layout(['title' => 'Page not found | ' . tf_site()['site']['name'], 'description' => 'This page does not exist.', 'slug' => null, 'schema' => [], 'noindex' => true, 'scripts' => ''],
         '<main class="wrap"><article class="prose page"><h1>Page not found</h1><p>That page doesn’t exist or the tool has moved. Try the search, or <a href="' . h(tf_url()) . '">see all ' . $n . ' tools</a>.</p><p><button type="button" class="btn" data-open-search>Search tools</button></p></article><h2 class="section-title">Popular tools</h2><ul class="cards">' . $pop . '</ul></main>');
 }
 
@@ -459,6 +469,18 @@ function tf_sitemap(): string
     $x = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
     foreach ($rows as [$p, $m]) $x .= '  <url><loc>' . h($url . $p) . '</loc><lastmod>' . date('Y-m-d', $m ?: time()) . "</lastmod></url>\n";
     return $x . "</urlset>\n";
+}
+
+// Lets visitors add the site to their home screen like an app (and gives browsers the app icons).
+function tf_manifest(): string
+{
+    $name = tf_site()['site']['name'];
+    $icon = fn($n) => ['src' => tf_url("icon-$n.png"), 'sizes' => "{$n}x{$n}", 'type' => 'image/png', 'purpose' => 'any maskable'];
+    return json_encode([
+        'name' => "$name: free online tools", 'short_name' => $name, 'description' => count(tf_tools()) . ' free online tools that run in your browser.',
+        'start_url' => tf_url() . '?source=app', 'scope' => tf_url(), 'display' => 'standalone', 'background_color' => '#ffffff', 'theme_color' => '#FF5B35',
+        'icons' => [['src' => tf_asset('favicon.svg'), 'sizes' => 'any', 'type' => 'image/svg+xml'], $icon(192), $icon(512)],
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
 }
 
 function tf_robots(): string

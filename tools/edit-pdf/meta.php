@@ -16,7 +16,7 @@ return [
   'appCategory' => 'BusinessApplication',
   'keywords' => 'edit pdf online free pdf editor add text to pdf edit text in pdf write on pdf whiteout pdf annotate pdf highlight pdf draw on pdf add image to pdf sign pdf fill pdf',
   'short' => 'Edit PDFs online: change existing text, add text, images, signatures, shapes, highlights and drawings.',
-  'title' => 'Edit PDF Online Free: PDF Editor to Change Text, Sign & Annotate',
+  'title' => 'Edit PDF Online Free: Change Text, Sign & Annotate',
   'description' => 'Free online PDF editor: change existing text, add text, images and signatures, highlight, draw and white out. No sign-up or watermark; your PDF stays private.',
   'related' => ['sign-pdf', 'merge-pdf', 'compress-pdf'],
   'answer' => <<<'EOT_TF'

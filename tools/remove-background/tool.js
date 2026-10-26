@@ -82,6 +82,7 @@ async function sharpen(id, asked = false) {
     try { localStorage.setItem(`${SECS_KEY}-hq`, ((performance.now() - t0) / 1000).toFixed(1)); } catch (e) { /* storage blocked */ }
     cut = result;
     setSharp('Edges sharpened with Best quality.');
+    toast('Edges sharpened');
     show();
   } catch (e) { if (id === job) setSharp('Quick result. The Best quality AI couldn’t load, but this one is ready to download.'); }
 }

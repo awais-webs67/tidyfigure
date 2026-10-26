@@ -11,9 +11,9 @@
   if (shade) shade.addEventListener('click', function () { setNav(false); });
   document.querySelectorAll('.main-nav a').forEach(function (a) { a.addEventListener('click', function () { setNav(false); }); });
 
-  // ----- Theme: follows the device until the visitor picks one (remembered on this device) -----
+  // ----- Theme: light until the visitor picks dark (remembered on this device) -----
   var themeBtn = document.querySelector('.theme-toggle');
-  function currentTheme() { return root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); }
+  function currentTheme() { return root.dataset.theme === 'dark' ? 'dark' : 'light'; }
   if (themeBtn) themeBtn.addEventListener('click', function () {
     var next = currentTheme() === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;

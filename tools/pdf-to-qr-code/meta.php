@@ -12,7 +12,7 @@ return [
   'appCategory' => 'BusinessApplication',
   'keywords' => 'pdf to qr code file to qr code menu qr code upload pdf qr image to qr code mp3 qr code document qr',
   'short' => 'Upload a PDF, image or audio file and get a QR code that opens it.',
-  'title' => 'PDF to QR Code: Turn a PDF, Image or MP3 into a QR Code, Free',
+  'title' => 'PDF to QR Code: Turn a PDF, Image or MP3 into a QR Code',
   'description' => 'Upload a PDF, image, MP3 or MP4 and get a QR code that opens it on any phone: menus, brochures, manuals and flyers. Preview first, no sign-up, free.',
   'related' => ['dynamic-qr-code-generator', 'qr-code-generator', 'compress-pdf'],
   'answer' => <<<'EOT_TF'

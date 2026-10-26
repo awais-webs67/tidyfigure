@@ -8,7 +8,7 @@ return [
   'appCategory' => 'FinanceApplication',
   'keywords' => 'how much house can i afford mortgage affordability home price income 28/36 rule dti borrow',
   'short' => 'How much house can you afford? Uses your income, debts, deposit and rate.',
-  'title' => 'How Much House Can I Afford? Mortgage Affordability Calculator',
+  'title' => 'Mortgage Affordability Calculator: How Much Can I Afford?',
   'description' => <<<'EOT_TF'
 Find the home price you can afford from your income, monthly debts, down payment and interest rate, using the 28/36 rule lenders use, with tax and insurance.
 EOT_TF,

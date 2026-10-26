@@ -11,7 +11,7 @@ return [
   'appCategory' => 'BusinessApplication',
   'keywords' => 'dynamic qr code generator free editable qr code trackable qr code scan tracking change qr link after printing',
   'short' => 'An editable QR code with scan tracking: change the link any time, free.',
-  'title' => 'Free Dynamic QR Code Generator: Editable Link & Scan Tracking',
+  'title' => 'Free Dynamic QR Code Generator: Edit Links, Track Scans',
   'description' => 'Make a free dynamic QR code: change where it points after printing and see how many people scan it, by day and device. No sign-up. Download PNG or SVG.',
   'related' => ['qr-code-generator', 'pdf-to-qr-code', 'verification-qr-code-generator'],
   'answer' => <<<'EOT_TF'
