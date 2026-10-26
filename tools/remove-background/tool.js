@@ -30,35 +30,63 @@ function working() {
   t.width = w; t.height = h; t.getContext('2d').drawImage(src, 0, 0, w, h);
   out.innerHTML = `<p class="kicker">Removing the background</p>
     <div class="ai-work"><span><img src="${t.toDataURL('image/jpeg', 0.8)}" alt="Your photo" width="${w}" height="${h}"><i></i></span></div>
-    <div class="bar"><i style="width:2%"></i></div><p class="sub" data-pct>Starting…</p><p class="note" id="ai-note"></p>`;
+    <div class="bar"><i style="width:2%"></i></div><p class="sub" data-pct>Starting…</p>`;
 }
 async function process() {
-  const q = quality(), id = ++job;
+  const want = quality(), id = ++job;
+  setSharp('');
   working();
   try {
-    if (!(await AI.isReady(q))) {
-      // First visit only: the AI is still arriving. It counts as the first 60% of the bar.
-      $('#ai-note').textContent = 'First time only: the AI is being set up on your device. Next time it starts straight away.';
-      setProgress(out, 0.02, 'Getting ready…');
-      await AI.preload(q, p => { if (id === job) setProgress(out, 0.02 + p * 0.58, `Getting ready… ${Math.round(p * 100)}%`); });
-      if (id !== job) return;
-      $('#ai-note').textContent = '';
-    }
-    // The AI gives no progress while it works, so the bar moves with the time this took last time on this device.
-    let est = 8;
-    try { est = +localStorage.getItem(`${SECS_KEY}-${q}`) || est; } catch (e) { /* storage blocked */ }
-    const from = parseFloat($('.bar i', out).style.width) / 100 || 0, t0 = performance.now();
-    const tick = setInterval(() => { if (id !== job) return clearInterval(tick); const k = 1 - Math.exp(-(performance.now() - t0) / 1000 / est * 2.2); setProgress(out, from + (0.97 - from) * k, 'Removing the background…'); }, 150);
-    const result = await AI.removeBackground(src, q).finally(() => clearInterval(tick));
+    // First visit: the small Quick AI gives a result within seconds; Best quality then sharpens it (see sharpen).
+    const q = await AI.quickOrBest(want);
+    const result = await cutOut(q, id);
     if (id !== job) return;
-    const secs = (performance.now() - t0) / 1000;
-    try { localStorage.setItem(`${SECS_KEY}-${q}`, secs.toFixed(1)); } catch (e) { /* storage blocked */ }
     cut = result;
-    out.dataset.secs = secs.toFixed(1);
     show();
+    if (q !== want) sharpen(id);
   } catch (e) { if (id === job) fail(e); }
 }
-function fail(e) { out.innerHTML = `<p class="kicker">Result</p><span class="verdict no">Couldn’t remove the background</span><p class="sub">${esc(e.message || String(e))}</p><p class="note">Check your connection (the AI model downloads the first time) or try the Fast option.</p>`; }
+async function cutOut(q, id) {
+  if (!(await AI.isReady(q))) {
+    // The AI is still arriving (first visit only). It counts as the first 60% of the bar.
+    setProgress(out, 0.02, 'Getting ready…');
+    await AI.preload(q, p => { if (id === job) setProgress(out, 0.02 + p * 0.58, `Getting ready… ${Math.round(p * 100)}%`); });
+    if (id !== job) return null;
+  }
+  // The AI gives no progress while it works, so the bar moves with the time this took last time on this device.
+  let est = q === 'fast' ? 2 : 8;
+  try { est = +localStorage.getItem(`${SECS_KEY}-${q}`) || est; } catch (e) { /* storage blocked */ }
+  const bar = $('.bar i', out), from = bar ? parseFloat(bar.style.width) / 100 || 0 : 0, t0 = performance.now();
+  const tick = setInterval(() => { if (id !== job) return clearInterval(tick); const k = 1 - Math.exp(-(performance.now() - t0) / 1000 / est * 2.2); setProgress(out, from + (0.97 - from) * k, 'Removing the background…'); }, 150);
+  const result = await AI.removeBackground(src, q).finally(() => clearInterval(tick));
+  const secs = (performance.now() - t0) / 1000;
+  try { localStorage.setItem(`${SECS_KEY}-${q}`, secs.toFixed(1)); } catch (e) { /* storage blocked */ }
+  if (id === job) out.dataset.secs = secs.toFixed(1);
+  return result;
+}
+
+// After a Quick result: load Best quality (by itself on an unmetered connection, otherwise when asked) and swap in its sharper cut-out.
+let sharp = '';
+function setSharp(html) { sharp = html; const el = $('#sharp'); if (el) el.innerHTML = html; }
+async function sharpen(id, asked = false) {
+  if (!asked && !AI.unmetered() && !(await AI.isCached('hq'))) {
+    if (id === job) setSharp(`Quick result. <button type="button" class="linkbtn" id="sharpen">Sharpen the edges</button> (one-time ${await AI.modelSize('hq')} MB download).`);
+    return;
+  }
+  try {
+    setSharp('Quick result · sharpening the edges…');
+    await AI.preload('hq', p => { if (id === job) setSharp(`Quick result · sharpening the edges… ${Math.round(p * 100)}%`); });
+    if (id !== job) return;
+    const t0 = performance.now(), result = await AI.removeBackground(src, 'hq');
+    if (id !== job) return;
+    try { localStorage.setItem(`${SECS_KEY}-hq`, ((performance.now() - t0) / 1000).toFixed(1)); } catch (e) { /* storage blocked */ }
+    cut = result;
+    setSharp('Edges sharpened with Best quality.');
+    show();
+  } catch (e) { if (id === job) setSharp('Quick result. The Best quality AI couldn’t load, but this one is ready to download.'); }
+}
+out.addEventListener('click', e => { if (e.target.id === 'sharpen') sharpen(job, true); });
+function fail(e) { out.innerHTML = `<p class="kicker">Result</p><span class="verdict no">Couldn’t remove the background</span><p class="sub">${esc(e.message || String(e))}</p><p class="note">Check your connection (the AI downloads the first time) or try the Quick option.</p>`; }
 
 // Final image with the chosen background.
 function compose() {
@@ -77,6 +105,7 @@ async function show() {
   out.innerHTML = `<p class="kicker">Result · drag to compare</p>
     <div class="compare checker" id="cmp" style="aspect-ratio:${c.width}/${c.height}"><img src="${src.toDataURL('image/jpeg', 0.85)}" alt="Original"><div class="after checker"><img src="${URL.createObjectURL(blob)}" alt="Background removed"></div><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"><span class="handle"></span></div>
     <p class="sub">${c.width}×${c.height} · ${bytes(blob.size)} · ${png ? 'PNG with transparency' : 'JPG'} · done in ${out.dataset.secs} s</p>
+    <p class="note" id="sharp">${sharp}</p>
     <div class="btns"><button type="button" class="btn big-btn" id="dl">Download ${png ? 'PNG' : 'JPG'}</button>${png ? '<button type="button" class="btn ghost" id="dl-white">JPG on white</button>' : ''}</div>`;
   const cmp = $('#cmp'), r = cmp.querySelector('input');
   const upd = () => cmp.style.setProperty('--pos', r.value + '%');

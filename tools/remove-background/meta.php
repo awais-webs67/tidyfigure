@@ -23,24 +23,24 @@ EOT_TF,
 <h2>How to remove a background</h2>
 <ol>
 <li>Drop a photo into the box, or tap to choose one from your phone.</li>
-<li>Choose <strong>Best quality</strong> for products, pets, cars and anything else, or <strong>Fast</strong> for photos of people.</li>
+<li>Leave <strong>Best quality</strong> on for the sharpest edges, or choose <strong>Quick</strong> for a result in about a second.</li>
 <li>Wait a few seconds. Drag the slider on the result to compare the original with the cut-out.</li>
 <li>Pick a new background if you want one, then download a PNG (transparent) or JPG.</li>
 </ol>
-<p>The first time you use each quality, your browser downloads the AI model: 44 MB for Best quality (115 MB on computers with a modern graphics card, for even sharper edges) and 7 MB for Fast. It's saved in your browser, so after that the tool starts instantly.</p>
+<p>There's nothing to install and no waiting before you start. On your first visit the tool uses the small Quick AI (about 9 MB in total), so your first photo is done within seconds, while the Best quality AI loads in the background and then sharpens the edges by itself. On mobile data it asks before loading the larger AI (44 MB). Both are saved in your browser, so on later visits Best quality starts straight away.</p>
 
 <h2>Free in full resolution</h2>
 <p>Many background removers give a small preview for free and charge for the full-size image. This one runs the AI on your own device, which costs nothing to run, so every download is the full resolution of your photo (up to 4096 pixels on the longest side), with no watermark and no limit.</p>
 
 <h2>Which quality to choose</h2>
 <div class="scroll"><table class="tbl">
-<thead><tr><th></th><th>Best quality</th><th>Fast</th></tr></thead>
+<thead><tr><th></th><th>Best quality</th><th>Quick</th></tr></thead>
 <tbody>
-<tr><td>Works on</td><td>Any subject: people, products, animals, cars, food</td><td>People (portraits, selfies, full body)</td></tr>
-<tr><td>Edges</td><td>Very fine detail, including hair and fur</td><td>Good on hair; may miss objects people hold</td></tr>
-<tr><td>Model download (once)</td><td>44 MB, or 115 MB with WebGPU</td><td>About 7 MB</td></tr>
+<tr><td>Works on</td><td>Any subject: people, products, animals, cars, food</td><td>Any subject, with softer edges</td></tr>
+<tr><td>Edges</td><td>Very fine detail, including hair and fur</td><td>Clean outline; fine hair and fur less detailed</td></tr>
+<tr><td>Model download (once)</td><td>44 MB, or 115 MB with WebGPU</td><td>About 5 MB</td></tr>
 <tr><td>Speed</td><td>A few seconds on a computer; up to half a minute on older phones</td><td>About a second</td></tr>
-<tr><td>AI model</td><td>BiRefNet lite with WebGPU, otherwise ISNet (both MIT licence)</td><td>MODNet (Apache 2.0 licence)</td></tr>
+<tr><td>AI model</td><td>BiRefNet lite with WebGPU, otherwise ISNet (both MIT licence)</td><td>U-2-Netp (Apache 2.0 licence)</td></tr>
 </tbody></table></div>
 <p>On computers with a recent Chrome or Edge, the tool uses your graphics card (WebGPU) and the larger BiRefNet model for the finest edges and extra speed.</p>
 
@@ -65,6 +65,6 @@ EOT_TF,
     ['Is my photo uploaded?', 'No. The photo is processed in your browser. Only the AI model is downloaded, once, from Hugging Face.'],
     ['How do I make a transparent PNG?', 'Leave the background set to Transparent and press Download PNG. The checkerboard shows the transparent areas.'],
     ['Can I put a white background behind the subject?', 'Yes. Choose White (or any colour, a blurred version of the original, or your own image) and download a JPG.'],
-    ['Why is the first use slow?', 'The AI model downloads the first time (44–115 MB for Best quality, 7 MB for Fast). After that it is stored in your browser and starts instantly.'],
+    ['Is the first use slow?', 'Only a little. The AI downloads the first time (about 9 MB). The first photo uses the small Quick AI so it is done in seconds, and the Best quality AI loads in the background to sharpen it. After that both are stored in your browser and start instantly.'],
   ],
 ];

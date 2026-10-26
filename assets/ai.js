@@ -39,15 +39,15 @@ const AI = (() => {
   }
 
   // hq on WebGPU: BiRefNet lite (MIT), the sharpest. hq without WebGPU: ISNet general (MIT), 8-bit so it runs well on CPU.
-  // fast: MODNet (Apache 2.0), made for portraits.
+  // fast: U-2-Netp (Apache 2.0), only 4.6 MB, so a first visit gets a result within seconds while hq loads.
   const MODELS = {
     birefnet: { id: 'onnx-community/BiRefNet_lite-ONNX', dtype: 'fp16', size: 115 },
     isnet: { id: 'xrds/isnet-general-onnx-int8', dtype: 'q8', size: 44 },
-    modnet: { id: 'Xenova/modnet', dtype: 'q8', size: 7 },
+    u2netp: { id: 'BritishWerewolf/U-2-Netp', dtype: 'fp32', size: 5, square: 320 },
   };
   let gpu = null;
   async function pick(quality) {
-    if (quality === 'fast') return 'modnet';
+    if (quality === 'fast') return 'u2netp';
     gpu ??= (await device()) === 'webgpu';
     return gpu ? 'birefnet' : 'isnet';
   }
@@ -63,7 +63,7 @@ const AI = (() => {
         const t = await load(), m = MODELS[key];
         return Promise.all([
           t.AutoModel.from_pretrained(m.id, { dtype: m.dtype, device: key === 'birefnet' ? 'webgpu' : 'wasm', progress_callback: track }),
-          t.AutoProcessor.from_pretrained(m.id),
+          m.square ? null : t.AutoProcessor.from_pretrained(m.id),
         ]);
       })().then(r => { st.ready = true; return r; }, e => { delete cache[key]; throw e; });
     }
@@ -74,17 +74,41 @@ const AI = (() => {
     if (onProgress && !st.ready) { st.subs.add(onProgress); if (st.total) onProgress(st.got / st.total, st.total); }
     try { return await st.promise; } finally { st.subs.delete(onProgress); }
   }
-  // Starts loading the model before the visitor needs it, so a dropped photo is processed straight away:
-  // at once when the browser already has it saved, or on a fast, unmetered connection; otherwise (mobile data,
-  // data saver) only when they show interest by touching the drop zone or the sample button.
-  function warmUp(quality, els = []) {
-    let started = false;
-    const go = () => { if (started) return; started = true; preload(typeof quality === 'function' ? quality() : quality).catch(() => { started = false; }); };
+  // True on a connection where a big download costs the visitor nothing extra: not mobile data or data saver.
+  function unmetered() {
     const c = navigator.connection, mobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-    const unmetered = c ? !c.saveData && c.type !== 'cellular' && (!c.effectiveType || c.effectiveType === '4g') && !(mobile && !c.type) : !mobile;
+    return c ? !c.saveData && c.type !== 'cellular' && (!c.effectiveType || c.effectiveType === '4g') && !(mobile && !c.type) : !mobile;
+  }
+  // Starts loading the AI before the visitor needs it, so a dropped photo is processed straight away.
+  // If the best model isn't saved in the browser yet, the small quick one comes first (a few MB), so the first
+  // photo gets a result within seconds; the best one follows in the background on an unmetered connection.
+  // It starts at once when the model is saved or the connection is unmetered; otherwise (mobile data, data saver)
+  // only when the visitor shows interest by touching the drop zone or the sample button.
+  // also: an optional loader for anything else the tool needs first (e.g. the face finder), run before the big model.
+  function warmUp(quality, els = [], also = null) {
+    const want = () => (typeof quality === 'function' ? quality() : quality);
+    let started = false;
+    const go = async () => {
+      if (started) return;
+      started = true;
+      try {
+        const q = want();
+        if (q === 'hq' && !(await isCached('hq'))) {
+          await preload('fast');
+          if (also) await also();
+          if (unmetered()) preload('hq').catch(() => {});
+        } else await Promise.all([preload(q), also && also()]);
+      } catch (e) { started = false; }
+    };
     const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 3000 }) : f => setTimeout(f, 1500);
-    isCached(typeof quality === 'function' ? quality() : quality).then(hit => { if (hit || unmetered) idle(go); });
+    isCached(want()).then(hit => { if (hit || unmetered()) idle(go); });
     els.forEach(el => el && ['pointerenter', 'pointerdown', 'focusin', 'dragenter', 'touchstart'].forEach(ev => el.addEventListener(ev, go, { passive: true })));
+  }
+  // What to run right now for the best result: 'hq' if it's loaded or saved in the browser, otherwise 'fast'
+  // (the caller can then load the sharper one with preload('hq') and run it again).
+  async function quickOrBest(quality = 'hq') {
+    if (quality !== 'hq') return quality;
+    return (await isReady('hq')) || (await isCached('hq')) ? 'hq' : 'fast';
   }
   async function isReady(quality = 'hq') { const st = cache[await pick(quality)]; return !!(st && st.ready); }
   // True when the browser already has the model file from an earlier visit, so loading it costs no data.
@@ -98,15 +122,17 @@ const AI = (() => {
 
   // Returns a canvas the size of the image, with the background made transparent.
   async function removeBackground(source, quality = 'hq', onProgress) {
-    const t = await load(), st = loadModel(await pick(quality));
+    const t = await load(), key = await pick(quality), st = loadModel(key);
     if (onProgress && !st.ready) { st.subs.add(onProgress); if (st.total) onProgress(st.got / st.total, st.total); }
     let model, processor;
     try { [model, processor] = await st.promise; } finally { st.subs.delete(onProgress); }
     const img = source instanceof HTMLCanvasElement ? source : await toCanvas(source);
-    const { pixel_values } = await processor(t.RawImage.fromCanvas(img));
+    const S = MODELS[key].square;
+    const pixel_values = S ? squareInput(t, img, S) : (await processor(t.RawImage.fromCanvas(img))).pixel_values;
     const inputName = (model.sessions.model && model.sessions.model.inputNames[0]) || 'input';
     const outputs = await model({ [inputName]: pixel_values });
     let mt = Object.values(outputs)[0];
+    if (S) mt = stretch(t, mt);
     mt = mt.dims.length === 4 ? mt[0] : mt;
     // Some models give probabilities (0–1), others raw scores that need a sigmoid.
     const d0 = mt.data;
@@ -122,6 +148,24 @@ const AI = (() => {
     for (let i = 0; i < mask.data.length; i++) d.data[i * 4 + 3] = mask.data[i];
     x.putImageData(d, 0, 0);
     return c;
+  }
+
+  // The photo squeezed to S×S, scaled the way U-2-Net was trained (ImageNet mean and spread).
+  function squareInput(t, img, S) {
+    const c = document.createElement('canvas'); c.width = c.height = S;
+    const x = c.getContext('2d'); x.drawImage(img, 0, 0, S, S);
+    const d = x.getImageData(0, 0, S, S).data, a = new Float32Array(3 * S * S), n = S * S;
+    const mean = [0.485, 0.456, 0.406], sd = [0.229, 0.224, 0.225];
+    for (let i = 0; i < n; i++) for (let k = 0; k < 3; k++) a[k * n + i] = (d[i * 4 + k] / 255 - mean[k]) / sd[k];
+    return new t.Tensor('float32', a, [1, 3, S, S]);
+  }
+  // U-2-Net's mask stretched to the full 0–1 range, as its authors do.
+  function stretch(t, mt) {
+    const d = mt.data; let lo = Infinity, hi = -Infinity;
+    for (const v of d) { if (v < lo) lo = v; if (v > hi) hi = v; }
+    const r = hi - lo || 1, o = new Float32Array(d.length);
+    for (let i = 0; i < d.length; i++) o[i] = (d[i] - lo) / r;
+    return new t.Tensor('float32', o, mt.dims.slice(-3));
   }
 
   async function toCanvas(src) {
@@ -165,7 +209,7 @@ const AI = (() => {
 
   // Face landmarks with MediaPipe Face Landmarker (Apache 2.0, 3.7 MB). Returns pixel positions of the eyes, chin and forehead.
   const MP = 'https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
-  async function face(canvas) {
+  function faceModel() {
     if (!cache.face) {
       cache.face = (async () => {
         const v = await import(MP + '/vision_bundle.mjs');
@@ -173,7 +217,10 @@ const AI = (() => {
         return v.FaceLandmarker.createFromOptions(files, { baseOptions: { modelAssetPath: 'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task', delegate: 'CPU' }, runningMode: 'IMAGE', numFaces: 1 });
       })().catch(e => { delete cache.face; throw e; });
     }
-    const lm = await cache.face, res = lm.detect(canvas), pts = res.faceLandmarks && res.faceLandmarks[0];
+    return cache.face;
+  }
+  async function face(canvas) {
+    const lm = await faceModel(), res = lm.detect(canvas), pts = res.faceLandmarks && res.faceLandmarks[0];
     if (!pts) return null;
     const P = i => ({ x: pts[i].x * canvas.width, y: pts[i].y * canvas.height });
     const xs = pts.map(p => p.x * canvas.width);
@@ -188,5 +235,5 @@ const AI = (() => {
     return new File([b], name, { type: b.type || 'application/octet-stream' });
   }
 
-  return { load, device, removeBackground, modelSize, preload, warmUp, isReady, isCached, transcribe, audio16k, face, toCanvas, sampleBlob };
+  return { load, device, removeBackground, modelSize, preload, warmUp, unmetered, quickOrBest, isReady, isCached, transcribe, audio16k, face, faceModel, toCanvas, sampleBlob };
 })();

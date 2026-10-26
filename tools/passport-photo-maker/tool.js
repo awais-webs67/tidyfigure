@@ -29,27 +29,55 @@ function spec() { const p = P(); $('#spec').textContent = `${p[6]} Saved at 300 
 spec();
 
 // Start loading the AI while the visitor is still choosing a photo (see AI.warmUp for when).
-AI.warmUp('hq', [$('#drop'), $('#sample')]);
+AI.warmUp('hq', [$('#drop'), $('#sample')], AI.faceModel);
 
+let job = 0, sharp = '', faceNote = '';
 async function start(f) {
-  name = 'passport-photo';
+  const id = ++job;
+  name = 'passport-photo'; sharp = ''; faceNote = '';
   src = await AI.toCanvas(f);
-  const first = !(await AI.isReady('hq'));
-  out.innerHTML = progressHtml(first ? 'Getting ready (first time only)' : 'Finding you in the photo') + (first ? '<p class="note">The AI is being set up on your device. Next time it starts straight away.</p>' : '');
+  // First visit: the small Quick AI cuts the person out within seconds; Best quality then sharpens it (see sharpen).
+  const q = await AI.quickOrBest('hq'), first = !(await AI.isReady(q));
+  out.innerHTML = progressHtml(first ? 'Getting ready' : 'Finding you in the photo');
   try {
-    if (first) await AI.preload('hq', p => setProgress(out, p * 0.5, `Getting ready… ${Math.round(p * 100)}%`));
+    if (first) await AI.preload(q, p => { if (id === job) setProgress(out, p * 0.5, `Getting ready… ${Math.round(p * 100)}%`); });
+    if (id !== job) return;
     out.querySelector('.kicker').textContent = 'Finding you in the photo';
     setProgress(out, 0.55, 'Replacing the background…');
-    cut = await AI.removeBackground(src, 'hq');
+    const c = await AI.removeBackground(src, q);
+    if (id !== job) return;
+    cut = c;
     setProgress(out, 0.7, 'Finding your face…');
-    headBox = await findHead(src, cut);
-    if (!headBox) out.insertAdjacentHTML('beforeend', '<p class="note">No face found: position the photo by hand.</p>');
+    const head = await findHead(src, cut);
+    if (id !== job) return;
+    headBox = head;
+    if (!headBox) faceNote = 'No face found: position the photo by hand.';
     $('#adjust').hidden = false;
     autoFit();
+    if (q !== 'hq') sharpen(id);
   } catch (e) {
-    out.innerHTML = `<p class="kicker">Passport photo</p><span class="verdict no">Couldn’t process the photo</span><p class="sub">${esc(e.message || String(e))}</p>`;
+    if (id === job) out.innerHTML = `<p class="kicker">Passport photo</p><span class="verdict no">Couldn’t process the photo</span><p class="sub">${esc(e.message || String(e))}</p>`;
   }
 }
+// After a Quick cut-out: load Best quality (by itself on an unmetered connection, otherwise when asked) and swap in its sharper edges.
+function setSharp(html) { sharp = html; const el = $('#pp-sharp'); if (el) el.innerHTML = html; }
+async function sharpen(id, asked = false) {
+  if (!asked && !AI.unmetered() && !(await AI.isCached('hq'))) {
+    if (id === job) setSharp(`<button type="button" class="linkbtn" id="sharpen">Sharpen the hair edges</button> (one-time ${await AI.modelSize('hq')} MB download).`);
+    return;
+  }
+  try {
+    setSharp('Sharpening the hair edges…');
+    await AI.preload('hq', p => { if (id === job) setSharp(`Sharpening the hair edges… ${Math.round(p * 100)}%`); });
+    if (id !== job) return;
+    const c = await AI.removeBackground(src, 'hq');
+    if (id !== job) return;
+    cut = c;
+    setSharp('Hair edges sharpened.');
+    draw();
+  } catch (e) { if (id === job) setSharp(''); }
+}
+out.addEventListener('click', e => { if (e.target.id === 'sharpen') sharpen(job, true); });
 
 // Head position from face landmarks: chin from the face mesh, top of the head from the AI mask (hair included),
 // capped so big hairstyles or a cropped head don't throw the size off. Also the head's tilt, to straighten it.
@@ -114,6 +142,7 @@ async function draw() {
       <div class="pp-wrap"><div class="pp-stage" id="pp-stage"><canvas id="pp-c"></canvas><div class="pp-guide" id="pp-guide"><i class="g-top"></i><i class="g-chin"></i><i class="g-oval"></i></div></div></div>
       <p class="sub" id="pp-info"></p>
       <div class="btns"><button type="button" class="btn big-btn" id="dl1">Download photo</button><button type="button" class="btn ghost" id="dl2">Download print sheet</button></div>
+      <p class="note" id="pp-face">${faceNote}</p><p class="note" id="pp-sharp">${sharp}</p>
       <details><summary>Print sheet preview</summary><img id="pp-sheet" alt="Print sheet" style="width:100%;border:1px solid var(--line);border-radius:6px;margin-top:8px"></details>
       <p class="note">Keep the top of the head inside the upper band and the chin inside the lower band. Rules change and offices can be strict: check your government’s current photo requirements before printing.</p>`;
     const st = $('#pp-stage');

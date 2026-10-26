@@ -241,6 +241,7 @@ input:focus, select:focus, textarea:focus { outline: 2px solid var(--accent); ou
 mark { background: linear-gradient(transparent 55%, var(--mark) 55%); color: inherit; padding: 0 .06em; }
 .num { font-family: var(--f-num); font-size: .92em; }
 .note { font-size: 14.5px; color: var(--muted); }
+.note:empty { display: none; }
 .empty { color: var(--muted); }
 .verdict { display: inline-flex; align-items: center; gap: 8px; font: 700 12.5px/1 var(--f-body); text-transform: uppercase; letter-spacing: .06em; padding: 7px 11px; border-radius: 999px; align-self: flex-start; background: color-mix(in srgb, currentColor 12%, transparent); }
 .verdict.ok { color: var(--good); } .verdict.tight { color: var(--warn); } .verdict.no { color: var(--bad); }
