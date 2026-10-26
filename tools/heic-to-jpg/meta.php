@@ -7,7 +7,7 @@ return [
   'icon' => 'image',
   'popular' => true,
   'files' => true,
-  'libs' => ['https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js'],
+  'libs' => ['vendor/heic2any-0.0.4.min.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'heic to jpg converter iphone photo heic to png heif to jpg convert heic online free batch windows open heic',
   'short' => 'Convert iPhone HEIC photos to JPG or PNG in bulk, with a preview of each.',

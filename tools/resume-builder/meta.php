@@ -6,7 +6,7 @@ return [
   'order' => 0,
   'icon' => 'file-user',
   'popular' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js', 'https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js'],
+  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js', 'vendor/fontkit-1.1.1.min.js'],
   'appCategory' => 'BusinessApplication',
   'keywords' => 'resume builder free cv maker online resume template pdf ats friendly resume no sign up curriculum vitae download free',
   'short' => 'Make a professional, ATS-friendly resume and download it as a PDF. Free, no sign-up.',

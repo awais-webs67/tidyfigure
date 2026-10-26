@@ -6,7 +6,7 @@ return [
   'order' => 15,
   'icon' => 'lock-open',
   'files' => true,
-  'libs' => ['https://cdn.jsdelivr.net/npm/@cantoo/pdf-lib@2.9.2/dist/pdf-lib.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
+  'libs' => ['vendor/cantoo-pdf-lib-2.9.2.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
   'appCategory' => 'UtilitiesApplication',
   'keywords' => 'unlock pdf remove pdf password decrypt pdf remove restrictions pdf print copy permission password protected pdf',
   'short' => 'Remove the password and print or copy restrictions from a PDF you can open.',

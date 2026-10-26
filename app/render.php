@@ -276,7 +276,8 @@ function tf_page_tool(array $t): string
 </div>
 </main>';
     $scripts = '';
-    foreach ($t['libs'] ?? [] as $src) $scripts .= '<script src="' . h($src) . '"></script>' . "\n";
+    // Libraries: full URLs load from a CDN; 'vendor/…' paths are copies hosted in assets/vendor.
+    foreach ($t['libs'] ?? [] as $src) $scripts .= '<script src="' . h(preg_match('~^https?://~', $src) ? $src : tf_asset($src)) . '"></script>' . "\n";
     $scripts .= '<script src="' . h(tf_asset('app.js')) . '"></script>' . "\n";
     foreach ($t['scripts'] ?? [] as $f) $scripts .= '<script src="' . h(tf_asset($f)) . '"></script>' . "\n";
     $scripts .= "<script>\n(function () {\n" . $t['js'] . "\n})();\n</script>";

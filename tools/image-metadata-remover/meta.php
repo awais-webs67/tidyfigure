@@ -7,7 +7,7 @@ return [
   'icon' => 'shield-off',
   'popular' => true,
   'files' => true,
-  'libs' => ['https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js'],
+  'libs' => ['vendor/exifr-7.1.3.full.js'],
   'keywords' => 'remove exif data photo gps location remover exif viewer strip metadata',
   'short' => 'See and remove hidden EXIF data from photos, including GPS location.',
   'title' => 'Remove EXIF Data & GPS Location From Photos, Free',

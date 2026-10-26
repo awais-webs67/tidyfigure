@@ -1,12 +1,7 @@
 // Resume builder. One layout engine measures text with the real font metrics (pdf-lib) and produces drawing
 // instructions; the same instructions draw the on-screen preview and the PDF, so they always match.
 const KEY = 'tf-resume';
-const FONT_URLS = {
-  sans: 'https://cdn.jsdelivr.net/fontsource/fonts/inter@5.1.0/latin-400-normal.ttf',
-  sansBold: 'https://cdn.jsdelivr.net/fontsource/fonts/inter@5.1.0/latin-700-normal.ttf',
-  serif: 'https://cdn.jsdelivr.net/fontsource/fonts/merriweather@5.1.0/latin-400-normal.ttf',
-  serifBold: 'https://cdn.jsdelivr.net/fontsource/fonts/merriweather@5.1.0/latin-700-normal.ttf',
-};
+const FONT_FILES = { sans: ['inter', 400], sansBold: ['inter', 700], serif: ['merriweather', 400], serifBold: ['merriweather', 700] };
 const SAMPLE = {
   name: 'Ayesha Rahman', title: 'Digital Marketing Manager', email: 'ayesha.rahman@email.com', phone: '+44 7700 900123', location: 'Manchester, UK', link: 'linkedin.com/in/ayesharahman',
   summary: 'Marketing manager with 7 years of experience growing brands through search, social and email. Led campaigns that doubled online sales for a national retailer. Comfortable with data, budgets and leading small teams.',
@@ -81,11 +76,12 @@ let FONTS = null;
 async function fonts() {
   if (!FONTS) FONTS = (async () => {
     if (!window.PDFLib) await loadScript(PDFLIB_URL);
-    const entries = await Promise.all(Object.entries(FONT_URLS).map(async ([k, u]) => [k, await (await fetch(u)).arrayBuffer()]));
+    const entries = await Promise.all(Object.entries(FONT_FILES).map(async ([k, [n, w]]) => [k, await fontBytes(n, w)]));
     const bytes = Object.fromEntries(entries);
     for (const [k, b] of entries) { const ff = new FontFace('rb-' + k, b.slice(0)); await ff.load(); document.fonts.add(ff); }
     return bytes;
   })();
+  FONTS.catch(() => { FONTS = null; }); // try again next time instead of keeping the failure
   return FONTS;
 }
 
@@ -218,7 +214,11 @@ async function build(forPdf) {
 const imgCache = {};
 async function render() {
   let res;
-  try { res = await build(false); } catch (e) { $('#preview').innerHTML = `<p class="empty">Loading fonts… (${esc(e.message)})</p>`; return; }
+  try { res = await build(false); } catch (e) {
+    $('#preview').innerHTML = `<span class="verdict no">Couldn’t prepare the preview</span><p class="sub">${esc(e.message)}</p><button type="button" class="btn ghost" id="rb-retry">Try again</button>`;
+    $('#rb-retry').onclick = () => { $('#preview').innerHTML = '<p class="empty">Loading…</p>'; render(); };
+    return;
+  }
   const S = 2, box = $('#preview');
   box.innerHTML = '';
   for (const ops of res.pages) {

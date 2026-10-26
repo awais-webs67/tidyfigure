@@ -7,7 +7,7 @@ return [
   'icon' => 'scan-line',
   'popular' => true,
   'libs' => [
-    'https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js',
+    'vendor/zxing-0.21.3.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
   ],
   'scripts' => ['scan.js'],

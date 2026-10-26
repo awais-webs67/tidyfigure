@@ -7,7 +7,7 @@ return [
   'icon' => 'file-lock',
   'popular' => true,
   'files' => true,
-  'libs' => ['https://cdn.jsdelivr.net/npm/@cantoo/pdf-lib@2.9.2/dist/pdf-lib.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
+  'libs' => ['vendor/cantoo-pdf-lib-2.9.2.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
   'appCategory' => 'UtilitiesApplication',
   'keywords' => 'protect pdf with password add password to pdf encrypt pdf lock pdf secure pdf aes 256 restrict printing copying',
   'short' => 'Add a password to a PDF with AES-256 encryption, and limit printing or copying.',

@@ -10,7 +10,7 @@ return [
   'libs' => [
     'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-    'https://cdn.jsdelivr.net/npm/@pdf-lib/fontkit@1.1.1/dist/fontkit.umd.min.js',
+    'vendor/fontkit-1.1.1.min.js',
   ],
   'scripts' => ['pdf-engine.js'],
   'appCategory' => 'BusinessApplication',

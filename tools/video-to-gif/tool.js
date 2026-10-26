@@ -19,7 +19,7 @@ async function load(f) {
 go.addEventListener('click', async () => {
   go.disabled = true;
   try {
-    gifenc ||= await import('https://cdn.jsdelivr.net/npm/gifenc@1.0.3/+esm');
+    gifenc ||= await import(`${window.TF_BASE || ''}/assets/vendor/gifenc-1.0.3.esm.js`).catch(() => import('https://cdn.jsdelivr.net/npm/gifenc@1.0.3/+esm'));
     const { GIFEncoder, quantize, applyPalette } = gifenc;
     const start = Math.max(0, parseClock($('#start').value) || 0), len = Math.min(30, Math.max(0.5, val($('#len')) || 3));
     const end = Math.min(work.duration, start + len), fps = +$('#fps').value, speed = +$('#speed').value;

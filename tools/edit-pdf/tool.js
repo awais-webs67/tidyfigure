@@ -2,17 +2,16 @@
 // measured in PDF points (1 unit = 1 pt at 100% zoom), and is written into the PDF with pdf-lib on save.
 const { PDFDocument, rgb, degrees, LineCapStyle, BlendMode } = PDFLib;
 const LH = 1.25; // line height of text boxes, in ems
-const FONT_URL = n => `https://cdn.jsdelivr.net/fontsource/fonts/${n}@5.1.0/latin-`;
 const FONTS = {
-  sans: { css: 'PeSans', url: FONT_URL('inter'), fallback: 'sans-serif' },
-  serif: { css: 'PeSerif', url: FONT_URL('merriweather'), fallback: 'serif' },
-  mono: { css: 'PeMono', url: FONT_URL('roboto-mono'), fallback: 'monospace' },
-  hand: { css: 'PeHand', url: FONT_URL('caveat'), fallback: 'cursive' },
+  sans: { css: 'PeSans', file: 'inter', fallback: 'sans-serif' },
+  serif: { css: 'PeSerif', file: 'merriweather', fallback: 'serif' },
+  mono: { css: 'PeMono', file: 'roboto-mono', fallback: 'monospace' },
+  hand: { css: 'PeHand', file: 'caveat', fallback: 'cursive' },
 };
 const fontFiles = {}; // 'sans-700' -> Promise<ArrayBuffer>
 function fontFile(fam, bold) {
   const k = `${fam}-${bold ? 700 : 400}`;
-  fontFiles[k] ??= fetch(`${FONTS[fam].url}${bold ? 700 : 400}-normal.ttf`).then(r => { if (!r.ok) throw new Error('A font couldn’t be downloaded.'); return r.arrayBuffer(); })
+  fontFiles[k] ??= fontBytes(FONTS[fam].file, bold ? 700 : 400)
     .then(buf => { const f = new FontFace(FONTS[fam].css, buf.slice(0), { weight: bold ? '700' : '400' }); document.fonts.add(f); return f.load().then(() => buf); })
     .catch(e => { delete fontFiles[k]; throw e; });
   return fontFiles[k];
@@ -77,9 +76,11 @@ async function openFile(f) {
   objs = []; imgs = {}; hist = []; future = []; sel = null; editing = null; ie = null;
   // The content engine lets text be edited in its own font and things be truly deleted.
   try { eng = await PdfEngine.load(await PDFDocument.load(buf, { updateMetadata: false })); } catch (e) { eng = null; }
+  // Stop watching the previous PDF's pages before showing the editor again.
+  io?.disconnect(); io = null; pagesEl.innerHTML = '';
+  P = [];
   $('#start').hidden = true; app.hidden = false; out.hidden = true;
   $('#fname').textContent = `${f.name} · ${doc.numPages} page${doc.numPages > 1 ? 's' : ''}`;
-  P = [];
   for (let i = 1; i <= doc.numPages; i++) {
     const page = await doc.getPage(i);
     P.push({ page, vp: page.getViewport({ scale: 1 }), drawn: 0 });
@@ -117,7 +118,7 @@ function layout() {
 }
 async function paint(i) {
   const p = P[i], want = zoom * Math.min(2, window.devicePixelRatio || 1);
-  if (p.drawn === want) return;
+  if (!p || p.drawn === want) return;
   p.drawn = want;
   p.task?.cancel();
   const vp = p.page.getViewport({ scale: want }), c = document.createElement('canvas');

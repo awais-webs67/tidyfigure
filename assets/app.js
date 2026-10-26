@@ -222,6 +222,16 @@ document.addEventListener('click', e => {
   }
 });
 
+// Font files for PDFs: from this site first (assets/fonts), then the jsDelivr CDN.
+// name: inter, merriweather, roboto-mono or caveat; weight: 400 or 700.
+async function fontBytes(name, weight) {
+  const urls = [`${window.TF_BASE || ''}/assets/fonts/${name}-${weight}.ttf`, `https://cdn.jsdelivr.net/fontsource/fonts/${name}@5.1.0/latin-${weight}-normal.ttf`];
+  for (const u of urls) {
+    try { const r = await fetch(u); if (r.ok) return await r.arrayBuffer(); } catch (e) { /* try the next source */ }
+  }
+  throw new Error('The fonts couldn’t be downloaded. Check your internet connection and try again.');
+}
+
 // ---------- PDF helpers (pages that load pdf.js and/or pdf-lib) ----------
 const PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 function pdfjs() {

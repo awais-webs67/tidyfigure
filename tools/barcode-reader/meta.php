@@ -8,7 +8,7 @@ return [
   'use' => 'qr-code-scanner',
   'preset' => 'all',
   'libs' => [
-    'https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js',
+    'vendor/zxing-0.21.3.min.js',
     'https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js',
   ],
   'scripts' => ['scan.js'],
