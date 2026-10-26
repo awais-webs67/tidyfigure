@@ -1,0 +1,52 @@
+<style>
+  .xl-head { display: flex; align-items: center; gap: 16px; border-bottom: 3px solid var(--xl, #0E5BA8); padding-bottom: 12px; margin-bottom: 18px; font-family: Inter, Arial, sans-serif; }
+  .xl-head img { max-width: 90px; max-height: 70px; }
+  .xl-head b { display: block; font-size: 22px; color: var(--xl, #0E5BA8); }
+  .xl-head small { display: block; color: #555; font-size: 12.5px; line-height: 1.4; }
+  .letter h3 { text-align: center; text-decoration: underline; letter-spacing: .04em; font: 700 16px/1.4 Georgia, serif; margin: 6px 0 16px; }
+  .letter ul { margin: 0 0 14px; padding-left: 1.3em; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="ldrop" role="button" tabindex="0" aria-label="Choose a company logo" style="min-height:80px;padding:12px">{{icon:image-up}}<strong>Company logo (optional)</strong><span>PNG or JPG</span><input type="file" id="logo" accept="image/*"></div>
+    <p class="group-title">Company</p>
+    <div class="fields">
+      <label class="f"><span>Company name</span><input data-k="co" value="Bluewave Technologies"></label>
+      <label class="f"><span>Address</span><input data-k="addr" value="45 Market Street, Springfield"></label>
+      <label class="f"><span>Phone, email or website</span><input data-k="contact" value="hr@bluewave.example · +1 555 0100"></label>
+      <label class="f"><span>Brand colour</span><input type="color" data-k="color" value="#0E5BA8"></label>
+    </div>
+    <p class="group-title">Employee</p>
+    <div class="fields">
+      <label class="f"><span>Title</span><select data-k="hon"><option value="Ms.">Ms.</option><option value="Mr.">Mr.</option><option value="Mx.">Mx.</option><option value="">None</option></select></label>
+      <label class="f"><span>Full name</span><input data-k="name" value="Sara Ahmed"></label>
+      <label class="f"><span>Pronouns</span><select data-k="pro"><option value="she">she / her</option><option value="he">he / him</option><option value="they">they / them</option></select></label>
+      <label class="f"><span>Job title</span><input data-k="role" value="Senior Accountant"></label>
+      <label class="f"><span>Department</span><input data-k="dept" value="Finance"></label>
+      <label class="f"><span>Employee ID (optional)</span><input data-k="eid" value=""></label>
+      <label class="f"><span>Joined on</span><input type="date" data-k="from" value="2021-03-01"></label>
+      <label class="f"><span>Last working day</span><input type="date" data-k="to" value="2025-08-31"></label>
+    </div>
+    <label class="f"><span>Main duties (one per line)</span><textarea data-k="duties" rows="4" style="min-height:110px">Monthly closing and financial reporting
+Corporate tax and VAT filing
+Supplier payments and bank reconciliation</textarea></label>
+    <label class="f"><span>Achievements (optional, used in the detailed letter)</span><textarea data-k="ach" rows="2" style="min-height:64px">Cut the monthly closing time from 10 days to 6.</textarea></label>
+    <div class="fields">
+      <label class="f"><span>Performance and conduct</span><select data-k="conduct"><option value="excellent">Excellent</option><option value="good" selected>Good</option><option value="ok">Satisfactory</option></select></label>
+      <label class="f"><span>Reason for leaving</span><select data-k="why"><option value="resigned">Resigned</option><option value="contract">Contract ended</option><option value="">Don’t mention</option></select></label>
+      <label class="f"><span>Letter type</span><select data-k="type"><option value="standard">Experience letter</option><option value="detailed">Detailed experience letter</option><option value="short">Short certificate</option><option value="relieving">Relieving letter</option></select></label>
+      <label class="f"><span>Date style</span><select data-k="ds"><option value="en-GB">31 August 2025</option><option value="en-US">August 31, 2025</option></select></label>
+    </div>
+    <p class="group-title">Signed by</p>
+    <div class="fields">
+      <label class="f"><span>Name</span><input data-k="sig" value="Daniel Brooks"></label>
+      <label class="f"><span>Job title</span><input data-k="sigt" value="Head of Human Resources"></label>
+      <label class="f"><span>Letter date</span><input type="date" data-k="date"></label>
+    </div>
+  </div>
+  <div class="out">
+    <p class="kicker">Your letter · click to edit the text</p>
+    <div class="letter" id="letter" contenteditable="true" spellcheck="true"></div>
+    <div class="btns"><button type="button" class="btn" id="pdf">{{icon:download}}Download PDF</button><button type="button" class="btn ghost" id="copy">{{icon:copy}}Copy text</button><button type="button" class="btn ghost" id="redo">Rewrite from the form</button></div>
+  </div>
+</div>

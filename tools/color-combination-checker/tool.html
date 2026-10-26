@@ -1,0 +1,35 @@
+<style>
+  .cc-in { display: grid; gap: 8px; }
+  .cc-in .row { display: flex; gap: 8px; align-items: center; padding: 0; border: 0; }
+  .cc-in input[type=color] { width: 48px; height: 42px; padding: 2px; flex: none; }
+  .cc-in input[type=text] { flex: 1; font-family: var(--f-num); text-transform: uppercase; }
+  .cc-in .x { border: 0; background: none; font-size: 22px; color: var(--muted); cursor: pointer; }
+  .cc-strip { display: flex; height: 90px; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .cc-strip div { flex: 1; display: grid; place-items: end center; padding-bottom: 8px; font: 700 12px var(--f-num); }
+  .cc-sample { border-radius: 12px; padding: 18px; border: 1px solid var(--line); }
+  .cc-sample h4 { margin: 0 0 6px; font: 800 20px/1.2 var(--f-body); }
+  .cc-sample p { margin: 0 0 12px; }
+  .cc-sample span { display: inline-block; padding: 8px 14px; border-radius: 8px; font-weight: 700; }
+  .cc-mx td, .cc-mx th { text-align: center; }
+  .cc-mx td b { display: block; font: 700 14px var(--f-num); }
+  .cc-mx td small { font-size: 11px; }
+  .cc-sim { display: grid; gap: 6px; }
+  .cc-sim div { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); }
+  .cc-sim div span { flex: 1; display: flex; height: 26px; border-radius: 6px; overflow: hidden; }
+  .cc-sim div i { flex: 1; }
+  .cc-pal { display: grid; gap: 8px; }
+  .cc-pal button { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 6px; cursor: pointer; color: var(--ink); font-weight: 600; font-size: 13.5px; text-align: left; }
+  .cc-pal button span { display: flex; width: 120px; height: 28px; border-radius: 6px; overflow: hidden; flex: none; }
+  .cc-pal button i { flex: 1; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="cc-in" id="list"></div>
+    <div class="btns"><button type="button" class="btn ghost" id="add">+ Add colour</button><button type="button" class="btn ghost" id="rand">Random palette</button></div>
+    <div class="cc-strip" id="strip"></div>
+    <div class="cc-sample" id="sample"><h4>Sample heading</h4><p>This is how your colours look in a small design: background, text and a button.</p><span>Button</span></div>
+    <p class="group-title">Colour-blind preview</p>
+    <div class="cc-sim" id="sim"></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

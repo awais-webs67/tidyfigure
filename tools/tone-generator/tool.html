@@ -1,0 +1,23 @@
+<style>
+  .tg-hz { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+  .tg-hz input { width: 170px; font: 700 34px/1.1 var(--f-num); padding: 6px 10px; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="tg-hz"><input type="number" id="hz" min="1" max="22000" step="any" value="440" aria-label="Frequency in hertz"><b style="font-size:20px">Hz</b><span class="sub" id="note"></span></div>
+    <input type="range" id="slide" min="0" max="1000" aria-label="Frequency slider">
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="play">{{icon:play}}<span>Play</span></button>
+      <button type="button" class="btn ghost" id="down">− semitone</button><button type="button" class="btn ghost" id="up">+ semitone</button>
+      <button type="button" class="btn ghost" id="sweep">Sweep 20 Hz → 20 kHz</button>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Wave</span><select id="wave"><option value="sine">Sine</option><option value="square">Square</option><option value="triangle">Triangle</option><option value="sawtooth">Sawtooth</option></select></label>
+      <label class="f"><span>Volume: <b id="vv">25%</b></span><input type="range" id="vol" min="0" max="100" value="25"></label>
+      <label class="f"><span>Balance: <b id="bv">centre</b></span><input type="range" id="pan" min="-100" max="100" value="0"></label>
+    </div>
+    <div class="chips" id="pre"><button type="button" class="chip" data-f="50">50 Hz hum</button><button type="button" class="chip" data-f="100">100 Hz</button><button type="button" class="chip" data-f="261.63">C4 261.63</button><button type="button" class="chip" data-f="440">A4 440</button><button type="button" class="chip" data-f="528">528 Hz</button><button type="button" class="chip" data-f="1000">1 kHz</button><button type="button" class="chip" data-f="8000">8 kHz</button><button type="button" class="chip" data-f="15000">15 kHz</button><button type="button" class="chip" data-f="17400">17.4 kHz</button></div>
+    <p class="note">Start quietly, especially with headphones.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Now</p><p class="empty">Press Play to start the tone.</p></div>
+</div>

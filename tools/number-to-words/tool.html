@@ -1,0 +1,20 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Number</span><input id="n" inputmode="decimal" value="1234.56" autocomplete="off"></label>
+    <div class="seg" role="radiogroup" aria-label="Format">
+      <label><input type="radio" name="mode" value="words" checked><span>Words</span></label>
+      <label><input type="radio" name="mode" value="cheque"><span>Cheque / currency</span></label>
+      <label><input type="radio" name="mode" value="ordinal"><span>Ordinal</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Style</span><select id="style"><option value="us">US (no “and”)</option><option value="uk">UK (“and”)</option></select></label>
+      <label class="f"><span>Number system</span><select id="sys"><option value="intl">Million, billion</option><option value="in">Lakh, crore</option></select></label>
+      <label class="f"><span>Currency</span><select id="cur">
+        <option value="dollar,dollars,cent,cents">US dollar</option><option value="pound,pounds,penny,pence">British pound</option><option value="euro,euros,cent,cents">Euro</option><option value="rupee,rupees,paisa,paise">Indian rupee</option><option value="rupee,rupees,paisa,paisa">Pakistani rupee</option><option value="dirham,dirhams,fil,fils">UAE dirham</option><option value="riyal,riyals,halala,halalas">Saudi riyal</option><option value="taka,taka,poisha,poisha">Bangladeshi taka</option><option value="naira,naira,kobo,kobo">Nigerian naira</option><option value="dollar,dollars,cent,cents">Australian/Canadian dollar</option>
+      </select></label>
+      <label class="f"><span>Letters</span><select id="case"><option value="sentence">Sentence case</option><option value="title">Title Case</option><option value="upper">UPPER CASE</option><option value="lower">lower case</option></select></label>
+    </div>
+    <label class="check"><input type="checkbox" id="only" checked> Add “only” (cheques)</label>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,15 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="out" style="text-align:center;align-items:center">
+      <p class="kicker" id="wk-k">This week</p>
+      <p class="huge" id="wk" style="color:var(--ink)">–</p>
+      <p class="sub" id="wk-range"></p>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Look up a date</span><input type="date" id="date"></label>
+      <label class="f"><span>List the weeks of</span><input type="number" id="year" min="1900" max="2200"></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+<div class="scroll" style="margin-top:18px" id="list"></div>

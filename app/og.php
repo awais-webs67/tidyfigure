@@ -94,7 +94,7 @@ function tf_og_file(string $title, string $kicker, string $text, string $catColo
 function tf_og_serve(string $slug): void
 {
     $colors = ['image' => '#0A66C2', 'pdf' => '#E00000', 'text' => '#6A47DB', 'random' => '#B86F00', 'time' => '#D62976', 'calc' => '#1E7A4C', 'convert' => '#1769FF', 'life' => '#FF5B35',
-        'health' => '#1FAF55', 'money' => '#0E7C86', 'social' => '#E2457F', 'qr' => '#333F48', 'media' => '#C2185B', 'study' => '#3F51B5', 'dev' => '#2E7D32', 'home' => '#8D5A2B'];
+        'health' => '#1FAF55', 'money' => '#0E7C86', 'social' => '#E2457F', 'qr' => '#333F48', 'media' => '#C2185B', 'study' => '#3F51B5', 'dev' => '#2E7D32', 'home' => '#8D5A2B', 'device' => '#00838F'];
     $site = tf_site()['site']['name'];
     $n = count(tf_tools());
     $file = null;

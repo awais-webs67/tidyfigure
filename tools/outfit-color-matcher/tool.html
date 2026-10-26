@@ -1,0 +1,47 @@
+<style>
+  .om { display: grid; grid-template-columns: minmax(200px, 300px) minmax(0, 1fr); gap: 20px; align-items: start; }
+  .om-fig { background: linear-gradient(#F6F3EE, #ECE7DF); border-radius: 14px; padding: 12px; }
+  .om-fig svg { width: 100%; height: auto; display: block; }
+  .om-parts { display: grid; gap: 12px; }
+  .om-part { display: grid; gap: 6px; }
+  .om-part b { font-size: 13.5px; color: var(--ink); display: flex; justify-content: space-between; gap: 8px; }
+  .om-sw { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+  .om-sw button { width: 26px; height: 26px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .18); cursor: pointer; padding: 0; }
+  .om-sw button.on { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+  .om-sw input[type=color] { width: 30px; height: 30px; padding: 0; border: 0; background: none; }
+  .om-combos { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+  .om-combos button { display: grid; gap: 6px; border: 1px solid var(--line); background: var(--surface); border-radius: 10px; padding: 8px; cursor: pointer; text-align: left; color: var(--ink); font-size: 13px; font-weight: 600; }
+  .om-combos button span { display: flex; height: 18px; border-radius: 5px; overflow: hidden; }
+  .om-combos button i { flex: 1; }
+  @media (max-width: 640px) { .om { grid-template-columns: 1fr; } .om-fig { max-width: 260px; margin: 0 auto; } }
+</style>
+<div class="om">
+  <div>
+    <div class="om-fig"><svg viewBox="0 0 200 410" id="fig" aria-label="Outfit preview">
+      <path d="M100 13c-15 0-25 10-25 25v6c0 15 10 26 25 26s25-11 25-26v-6c0-15-10-25-25-25z" id="skin1"/>
+      <path d="M74 36c0-17 12-27 26-27s27 9 27 26c-6-7-15-10-27-10s-20 4-26 11z" fill="#2B2420"/>
+      <rect x="91" y="64" width="18" height="16" rx="4" id="skin2"/>
+      <path id="pTop" d="M70 76 L130 76 L158 92 L166 190 L148 192 L142 122 L141 208 L59 208 L58 122 L52 192 L34 190 L42 92 Z"/>
+      <path id="pCollar" d="M84 74 L100 92 L116 74 L122 80 L104 100 L100 96 L96 100 L78 80 Z" opacity=".9"/>
+      <g id="gTie"><path id="pTie" d="M97 92 L103 92 L105 100 L109 154 L100 166 L91 154 L95 100 Z"/></g>
+      <g id="gScarf" hidden><path id="pScarf" d="M78 72 Q100 98 122 72 L127 82 Q100 112 73 82 Z M106 90 L117 88 L120 160 L108 162 Z"/></g>
+      <g id="gJacket"><path id="pJk1" d="M70 76 L99 128 L98 214 L58 214 L58 122 L52 194 L32 192 L40 90 Z"/><path id="pJk2" d="M130 76 L101 128 L102 214 L142 214 L142 122 L148 194 L168 192 L160 90 Z"/><path d="M70 76 L86 84 L94 112 L80 96 Z M130 76 L114 84 L106 112 L120 96 Z" fill="rgba(0,0,0,.18)"/><circle cx="104" cy="168" r="2.4" fill="rgba(0,0,0,.35)"/><circle cx="104" cy="188" r="2.4" fill="rgba(0,0,0,.35)"/></g>
+      <circle cx="43" cy="200" r="9" id="skin3"/><circle cx="157" cy="200" r="9" id="skin4"/>
+      <rect id="pBelt" x="59" y="206" width="82" height="9"/>
+      <path id="pBottom" d="M59 214 L141 214 L145 380 L106 380 L100 248 L94 380 L55 380 Z"/>
+      <path id="pShoe1" d="M54 380 L95 380 L97 397 L44 397 Q43 386 54 380 Z"/>
+      <path id="pShoe2" d="M105 380 L146 380 Q157 386 156 397 L103 397 Z"/>
+    </svg></div>
+    <div class="fields" style="margin-top:10px">
+      <label class="f"><span>Jacket or blazer</span><select id="jk"><option value="1">Yes</option><option value="0">No</option></select></label>
+      <label class="f"><span>Accessory</span><select id="acc"><option value="tie">Tie</option><option value="scarf">Scarf / dupatta</option><option value="none">None</option></select></label>
+      <label class="f"><span>Skin tone</span><select id="skin"><option value="#F1D3B8">Light</option><option value="#E0B48C" selected>Medium</option><option value="#B9825A">Tan</option><option value="#7A4E33">Deep</option></select></label>
+    </div>
+  </div>
+  <div class="om-parts">
+    <div class="om-parts" id="parts"></div>
+    <div class="out" id="out" aria-live="polite"></div>
+    <p class="group-title">Classic combinations (tap to try)</p>
+    <div class="om-combos" id="combos"></div>
+  </div>
+</div>

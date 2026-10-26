@@ -1,0 +1,25 @@
+<style>
+  .cps-pad { min-height: 260px; border: 2px dashed var(--accent); border-radius: 14px; background: var(--accent-soft); display: grid; place-items: center; text-align: center; cursor: pointer; user-select: none; -webkit-user-select: none; touch-action: manipulation; padding: 20px; }
+  .cps-pad:active { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+  .cps-pad.done { cursor: default; border-style: solid; }
+  .cps-pad b { display: block; font: 700 clamp(48px, 10vw, 84px)/1 var(--f-num); color: var(--ink); }
+  .cps-pad span { color: var(--muted); font-weight: 600; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="seg" role="radiogroup" aria-label="Test length" id="len">
+      <label><input type="radio" name="t" value="1"><span>1 s</span></label>
+      <label><input type="radio" name="t" value="5" checked><span>5 s</span></label>
+      <label><input type="radio" name="t" value="10"><span>10 s</span></label>
+      <label><input type="radio" name="t" value="30"><span>30 s</span></label>
+      <label><input type="radio" name="t" value="60"><span>60 s</span></label>
+    </div>
+    <div class="cps-pad" id="pad" role="button" tabindex="0" aria-label="Click here as fast as you can"><div><b id="big">Click here</b><span id="hint">The timer starts with your first click</span></div></div>
+    <div class="statgrid">
+      <div class="stat"><b id="s-time">5.0</b><span>seconds left</span></div>
+      <div class="stat"><b id="s-clicks">0</b><span>clicks</span></div>
+      <div class="stat"><b id="s-cps">0.0</b><span>clicks per second</span></div>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Your score</p><p class="empty">Click the box to start.</p></div>
+</div>

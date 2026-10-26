@@ -1,0 +1,21 @@
+<style>
+  .mn-top { display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+  .mn-top svg { width: 150px; height: 150px; flex: none; filter: drop-shadow(0 4px 14px rgba(0, 0, 0, .25)); }
+  .mn-cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; text-align: center; font-size: 12px; }
+  .mn-cal b { font-size: 11px; color: var(--muted); text-transform: uppercase; }
+  .mn-cal div { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 4px 2px; cursor: pointer; }
+  .mn-cal div.today { border-color: var(--accent); }
+  .mn-cal div.sel { background: var(--accent-soft); }
+  .mn-cal svg { width: 26px; height: 26px; display: block; margin: 2px auto 0; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="mn-top"><span id="pic"></span><div><p class="big" id="pname">–</p><p class="sub" id="pinfo"></p></div></div>
+    <div class="fields">
+      <label class="f"><span>Date</span><input type="date" id="date"></label>
+      <label class="f"><span>Hemisphere</span><select id="hemi"><option value="n">Northern</option><option value="s">Southern</option></select></label>
+    </div>
+    <div><p class="group-title" id="calh">Moon calendar</p><div class="mn-cal" id="cal"></div></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

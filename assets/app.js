@@ -232,6 +232,25 @@ async function fontBytes(name, weight) {
   throw new Error('The fonts couldn’t be downloaded. Check your internet connection and try again.');
 }
 
+// ---------- Camera and microphone ----------
+// A plain-language message for a failed getUserMedia call. what: 'camera' or 'microphone'.
+function mediaError(e, what) {
+  const n = e && e.name;
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return `<span class="verdict no">Not supported</span><p class="sub">This browser can’t use a ${what} on this page. Try a recent Chrome, Edge, Firefox or Safari.</p>`;
+  if (n === 'NotAllowedError' || n === 'SecurityError') return `<span class="verdict no">${what === 'camera' ? 'Camera' : 'Microphone'} access is blocked</span><p class="sub">Click the camera or lock icon next to the web address, set ${what === 'camera' ? 'Camera' : 'Microphone'} to <b>Allow</b>, then try again. On a phone, also check that your browser is allowed to use the ${what} in the phone’s settings.</p>`;
+  if (n === 'NotFoundError' || n === 'OverconstrainedError' || n === 'DevicesNotFoundError') return `<span class="verdict no">No ${what} found</span><p class="sub">Your device didn’t report a ${what}. Check that it’s plugged in (or switched on in Windows privacy settings or the laptop’s keyboard), then try again.</p>`;
+  if (n === 'NotReadableError' || n === 'TrackStartError') return `<span class="verdict no">The ${what} is busy</span><p class="sub">Another app or browser tab is using it. Close Zoom, Teams, Skype, Discord or other tabs that use the ${what}, then try again.</p>`;
+  return `<span class="verdict no">The ${what} couldn’t start</span><p class="sub">${esc((e && e.message) || String(e))}</p>`;
+}
+// Lists cameras ('videoinput') or microphones ('audioinput') in a <select>, keeping the current choice.
+async function fillDevices(select, kind, current) {
+  if (!select || !navigator.mediaDevices?.enumerateDevices) return;
+  const list = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === kind);
+  select.innerHTML = list.map((d, i) => `<option value="${esc(d.deviceId)}"${d.deviceId === current ? ' selected' : ''}>${esc(d.label || `${kind === 'videoinput' ? 'Camera' : 'Microphone'} ${i + 1}`)}</option>`).join('');
+  select.closest('.f')?.toggleAttribute('hidden', list.length < 2);
+}
+const stopStream = s => { if (s) s.getTracks().forEach(t => t.stop()); };
+
 // ---------- PDF helpers (pages that load pdf.js and/or pdf-lib) ----------
 const PDFJS_WORKER = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 function pdfjs() {

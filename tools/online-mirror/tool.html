@@ -1,0 +1,26 @@
+<style>
+  .mr-wrap { border-radius: 14px; padding: 0; transition: padding .2s, background .2s; background: #111; }
+  .mr-wrap.ring { background: #fff; padding: clamp(18px, 6vw, 70px); box-shadow: 0 0 0 1px var(--line); }
+  .mr-wrap:fullscreen { display: grid; place-items: center; border-radius: 0; }
+  .mr-stage { position: relative; aspect-ratio: 4 / 3; max-height: 75vh; margin: 0 auto; overflow: hidden; border-radius: 10px; background: #111; display: grid; place-items: center; color: #aaa; }
+  .mr-wrap:fullscreen .mr-stage { width: min(100%, 133vh); max-height: none; }
+  .mr-stage video { width: 100%; height: 100%; object-fit: cover; transform-origin: center; }
+  .mr-ctl { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px 18px; align-items: end; }
+</style>
+<div class="mr-wrap" id="wrap"><div class="mr-stage" id="stage"><span id="ph">Your mirror appears here</span><video id="v" playsinline muted hidden></video></div></div>
+<div class="inputs" style="margin-top:16px">
+  <div class="btns">
+    <button type="button" class="btn big-btn" id="go">{{icon:flip-horizontal-2}}<span>Open mirror</span></button>
+    <button type="button" class="btn ghost" id="snap" disabled>{{icon:camera}}Save photo</button>
+    <button type="button" class="btn ghost" id="full" disabled>Full screen</button>
+    <button type="button" class="btn ghost" id="stop" hidden>Close mirror</button>
+  </div>
+  <div class="mr-ctl">
+    <label class="f"><span>Zoom: <b id="zv">1.0×</b></span><input type="range" id="zoom" min="1" max="3" step="0.1" value="1"></label>
+    <label class="f"><span>Brightness: <b id="bv">100%</b></span><input type="range" id="bright" min="60" max="200" step="5" value="100"></label>
+    <label class="check"><input type="checkbox" id="ring"> Ring light (white screen edges)</label>
+    <label class="check"><input type="checkbox" id="mirror" checked> Mirror image</label>
+    <label class="f" hidden><span>Camera</span><select id="dev"></select></label>
+  </div>
+  <div id="msg"></div>
+</div>

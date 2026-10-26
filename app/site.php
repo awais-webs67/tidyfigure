@@ -14,6 +14,7 @@ return [
         ['id' => 'text', 'name' => 'Text tools', 'nav' => 'Text', 'icon' => 'type', 'blurb' => 'Count, clean up, convert and style text.'],
         ['id' => 'media', 'name' => 'Video & audio tools', 'nav' => 'Video & Audio', 'icon' => 'clapperboard', 'primary' => true, 'blurb' => 'Turn videos into MP3, compress and cut clips, make GIFs and record your voice or screen.'],
         ['id' => 'qr', 'name' => 'QR code & barcode tools', 'nav' => 'QR & Barcode', 'icon' => 'qr-code', 'primary' => true, 'blurb' => 'Create and scan QR codes and barcodes for links, Wi-Fi, contacts and products.'],
+        ['id' => 'device', 'name' => 'Device tests', 'nav' => 'Device tests', 'icon' => 'monitor-smartphone', 'blurb' => 'Check your microphone, webcam, keyboard, mouse and screen in seconds, right in the browser.'],
         ['id' => 'random', 'name' => 'Generators & random', 'nav' => 'Generators', 'icon' => 'sparkles', 'blurb' => 'Passwords, giveaways, coin flips, dice and decision wheels.'],
         ['id' => 'health', 'name' => 'Health & fitness calculators', 'nav' => 'Health', 'icon' => 'heart-pulse', 'blurb' => 'Calories, BMI, body fat, water, sleep and pregnancy dates.'],
         ['id' => 'money', 'name' => 'Finance & business', 'nav' => 'Finance', 'icon' => 'wallet', 'primary' => true, 'blurb' => 'Loans, savings, budgets, debt, retirement, tax, invoices and quotes.'],

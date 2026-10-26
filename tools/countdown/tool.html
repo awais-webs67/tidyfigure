@@ -1,0 +1,21 @@
+<style>
+  .cd-box { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+  .cd-box div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 6px; text-align: center; }
+  .cd-box b { display: block; font: 700 clamp(30px, 7vw, 58px)/1 var(--f-num); color: var(--ink); font-variant-numeric: tabular-nums; }
+  .cd-box span { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  #out:fullscreen { justify-content: center; padding: 6vw; background: var(--bg); }
+  #out:fullscreen .cd-box b { font-size: 11vw; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Counting down to</span><input id="name" maxlength="80" placeholder="e.g. Summer holiday"></label>
+    <div class="fields">
+      <label class="f"><span>Date</span><input type="date" id="date"></label>
+      <label class="f"><span>Time (optional)</span><input type="time" id="time"></label>
+    </div>
+    <p class="group-title">Holidays</p>
+    <div class="chips" id="hol"></div>
+    <div class="btns"><button type="button" class="btn" id="share">{{icon:link}}Copy share link</button><button type="button" class="btn ghost" id="full">Full screen</button></div>
+  </div>
+  <div class="out" id="out" aria-live="off"></div>
+</div>

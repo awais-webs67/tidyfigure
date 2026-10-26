@@ -1,0 +1,17 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <p class="group-title">Generate a hash</p>
+    <label class="f"><span>Password</span><div class="btns" style="flex-wrap:nowrap"><input type="password" id="pw" autocomplete="off" spellcheck="false" placeholder="Type a password" style="flex:1"><button type="button" class="btn ghost" id="show" aria-label="Show password">Show</button></div></label>
+    <div class="fields">
+      <label class="f"><span>Cost (rounds)</span><select id="cost"></select></label>
+      <label class="f"><span>Version prefix</span><select id="ver"><option value="2y">$2y$ (PHP, Laravel)</option><option value="2b">$2b$ (Node.js, Python)</option><option value="2a">$2a$ (Java, older)</option></select></label>
+    </div>
+    <p class="note" id="warn" hidden></p>
+    <div class="btns"><button type="button" class="btn big-btn" id="gen">{{icon:lock-keyhole}}Generate hash</button></div>
+    <p class="group-title" style="margin-top:14px">Verify a password</p>
+    <label class="f"><span>Password</span><input type="text" id="vpw" autocomplete="off" spellcheck="false"></label>
+    <label class="f"><span>Bcrypt hash</span><input type="text" id="vhash" autocomplete="off" spellcheck="false" placeholder="$2y$10$…"></label>
+    <div id="vres"></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Bcrypt hash</p><p class="empty">Type a password and click Generate hash.</p></div>
+</div>

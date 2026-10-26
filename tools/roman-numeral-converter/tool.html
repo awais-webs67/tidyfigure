@@ -1,0 +1,13 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Number or Roman numerals</span><input id="in" value="2026" autocomplete="off" autocapitalize="characters" spellcheck="false"></label>
+    <p class="group-title">Date to Roman numerals</p>
+    <div class="fields">
+      <label class="f"><span>Date</span><input type="date" id="date"></label>
+      <label class="f"><span>Order</span><select id="order"><option value="dmy">Day, month, year</option><option value="mdy">Month, day, year</option><option value="ymd">Year, month, day</option></select></label>
+      <label class="f"><span>Separator</span><select id="sep"><option value=".">Dots ·</option><option value=" • ">Bullets •</option><option value="-">Dashes -</option><option value="/">Slashes /</option><option value=" ">Spaces</option></select></label>
+    </div>
+    <div class="copybox" id="dateout" style="font-size:22px;text-align:center"></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

@@ -1,0 +1,23 @@
+<style>
+  .cp-stage { position: relative; background: #111; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 3; display: grid; place-items: center; color: #aaa; cursor: crosshair; touch-action: manipulation; }
+  .cp-stage video { width: 100%; height: 100%; object-fit: cover; }
+  .cp-aim { position: absolute; width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 2px solid #fff; border-radius: 50%; box-shadow: 0 0 0 2px rgba(0, 0, 0, .6), inset 0 0 0 2px rgba(0, 0, 0, .6); pointer-events: none; left: 50%; top: 50%; }
+  .cp-aim::after { content: ""; position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; background: #fff; border-radius: 50%; }
+  .cp-sw { height: 110px; border-radius: 10px; border: 1px solid var(--line); }
+  .cp-pal { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cp-pal button { width: 46px; height: 46px; border-radius: 8px; border: 1px solid var(--line); cursor: pointer; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="cp-stage" id="stage"><span id="ph">Camera preview</span><video id="v" playsinline muted hidden></video><span class="cp-aim" id="aim" hidden></span></div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go">{{icon:aperture}}<span>Start camera</span></button>
+      <button type="button" class="btn ghost" id="freeze" disabled>Freeze</button>
+      <button type="button" class="btn ghost" id="save" disabled>Save colour</button>
+    </div>
+    <div class="fields"><label class="f" hidden><span>Camera</span><select id="dev"></select></label></div>
+    <p class="note">Tap the picture to measure a different spot.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Colour</p><p class="empty">Start the camera and point it at something colourful.</p></div>
+</div>
+<div id="palwrap" hidden style="margin-top:16px"><p class="group-title">Saved colours (click to copy)</p><div class="cp-pal" id="pal"></div></div>

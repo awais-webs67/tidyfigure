@@ -1,0 +1,25 @@
+<style>
+  .mc-flash { height: 70px; border-radius: 10px; background: #111; border: 1px solid var(--line); transition: background .02s; }
+  .mc-flash.on { background: #FFD54A; box-shadow: 0 0 30px #FFD54A; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Text or Morse code</span><textarea id="in" rows="6" placeholder="Type text, or Morse code like ... --- ..."></textarea></label>
+    <div class="chips" id="ex"><button type="button" class="chip">SOS</button><button type="button" class="chip">Hello world</button><button type="button" class="chip">I love you</button><button type="button" class="chip">... --- ...</button></div>
+    <div class="fields">
+      <label class="f"><span>Speed: <b id="wv">15</b> WPM</span><input type="range" id="wpm" min="5" max="40" value="15"></label>
+      <label class="f"><span>Pitch: <b id="hv">600</b> Hz</span><input type="range" id="hz" min="300" max="1000" step="10" value="600"></label>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker" id="dir">Morse code</p>
+    <div class="copybox" id="res" style="font-size:17px"></div>
+    <div class="btns">
+      <button type="button" class="btn" id="play">{{icon:play}}<span>Play</span></button>
+      <button type="button" class="btn ghost" id="flash">Flash</button>
+      <button type="button" class="btn ghost" id="copy">{{icon:copy}}Copy</button>
+      <button type="button" class="btn ghost" id="wav">{{icon:download}}WAV</button>
+    </div>
+    <div class="mc-flash" id="light" aria-hidden="true"></div>
+  </div>
+</div>

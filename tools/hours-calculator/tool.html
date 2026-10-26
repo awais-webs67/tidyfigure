@@ -1,0 +1,17 @@
+<style>
+  .hc-tbl input { min-width: 0; width: 100%; padding: 8px 6px; }
+  .hc-tbl td { padding: 5px 4px; vertical-align: middle; }
+  .hc-tbl td:first-child { font-weight: 700; color: var(--ink); white-space: nowrap; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="scroll"><table class="tbl hc-tbl"><thead><tr><th>Day</th><th>Start</th><th>Finish</th><th>Break (min)</th><th class="n">Hours</th></tr></thead><tbody id="rows"></tbody></table></div>
+    <div class="fields">
+      <label class="f"><span>Hourly rate (optional)</span><input type="number" id="rate" inputmode="decimal" min="0" step="any" placeholder="e.g. 18.50"></label>
+      <label class="f"><span>Overtime after (hours/week)</span><input type="number" id="otl" inputmode="decimal" min="0" step="any" value="40"></label>
+      <label class="f"><span>Overtime rate</span><select id="otr"><option value="1">None</option><option value="1.25">1.25×</option><option value="1.5" selected>1.5× (time and a half)</option><option value="2">2× (double time)</option></select></label>
+    </div>
+    <div class="btns"><button type="button" class="btn ghost" id="fill">Fill Mon–Fri 9 to 5</button><button type="button" class="btn ghost" id="clear">Clear week</button></div>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>

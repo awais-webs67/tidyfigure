@@ -1,0 +1,22 @@
+<style>
+  .mt-meter { position: relative; height: 18px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); overflow: hidden; }
+  .mt-meter i { position: absolute; inset: 0 auto 0 0; width: 0; background: linear-gradient(90deg, #1FAF55 0 60%, #F5B544 60% 85%, #E5484D 85%); background-size: var(--w, 100%) 100%; transition: width .06s linear; }
+  .mt-meter b { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); left: 0; }
+  .mt-wave { width: 100%; height: 110px; display: block; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="btns"><button type="button" class="btn big-btn" id="go">{{icon:mic}}<span>Start mic test</span></button><button type="button" class="btn ghost big-btn" id="stop" hidden>Stop</button></div>
+    <div class="fields"><label class="f" hidden><span>Microphone</span><select id="dev"></select></label></div>
+    <div id="live" hidden>
+      <p class="group-title">Level</p>
+      <div class="mt-meter" aria-hidden="true"><i id="lvl"></i><b id="pk"></b></div>
+      <p class="sub" id="db">–</p>
+      <canvas class="mt-wave" id="wave" width="800" height="160" aria-label="Live waveform of your microphone"></canvas>
+      <div class="btns" style="margin-top:12px"><button type="button" class="btn ghost" id="rec">{{icon:play}}Record 5 seconds</button></div>
+      <div id="clip"></div>
+    </div>
+    <p class="note">Your browser will ask to use the microphone. The sound stays on your device.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Result</p><p class="empty">Click <b>Start mic test</b>, allow access and say something.</p></div>
+</div>

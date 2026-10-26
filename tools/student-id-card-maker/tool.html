@@ -1,0 +1,31 @@
+<style>
+  .idc-prev { display: grid; gap: 14px; }
+  .idc-prev canvas { width: 100%; height: auto; border-radius: 14px; box-shadow: 0 6px 22px rgba(0, 0, 0, .16); display: block; background: #fff; }
+  .idc-prev.portrait { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .idc-up { display: flex; gap: 10px; flex-wrap: wrap; }
+  .idc-up .drop { flex: 1 1 140px; min-height: 92px; padding: 12px; }
+  .idc-up .drop strong { font-size: 14px; }
+  .idc-up .drop svg { width: 26px; height: 26px; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="idc-up">
+      <div class="drop" id="pdrop" role="button" tabindex="0" aria-label="Choose a photo">{{icon:user-round}}<strong id="plabel">Photo</strong><span>JPG or PNG</span><input type="file" id="photo" accept="image/*"></div>
+      <div class="drop" id="ldrop" role="button" tabindex="0" aria-label="Choose a logo">{{icon:image-up}}<strong>Logo (optional)</strong><span>PNG with transparency is best</span><input type="file" id="logo" accept="image/*"></div>
+    </div>
+    <div class="fields" id="fields"></div>
+    <div class="fields">
+      <label class="f"><span>Design</span><select id="tpl"><option value="band">Modern band</option><option value="curve">Curved accent</option><option value="minimal">Minimal</option></select></label>
+      <label class="f"><span>Layout</span><select id="ori"><option value="land">Landscape</option><option value="port">Portrait (lanyard)</option></select></label>
+      <label class="f"><span>Colour</span><input type="color" id="color" value="#0E5BA8"></label>
+    </div>
+    <label class="check"><input type="checkbox" id="qr" checked> QR code on the back (name and ID)</label>
+    <div class="btns"><button type="button" class="btn ghost" id="reset">Clear all fields</button></div>
+  </div>
+  <div class="out">
+    <p class="kicker">Front and back · 300 dpi, standard card size (85.6 × 54 mm)</p>
+    <div class="idc-prev" id="prev"><canvas id="front"></canvas><canvas id="back"></canvas></div>
+    <div class="btns"><button type="button" class="btn" id="pdf">{{icon:download}}Print PDF (A4)</button><button type="button" class="btn ghost" id="pf">Front PNG</button><button type="button" class="btn ghost" id="pb">Back PNG</button></div>
+    <p class="note">Print at 100% (actual size) on card stock, cut along the marks, and laminate. Or send the PNGs to a PVC card printer.</p>
+  </div>
+</div>

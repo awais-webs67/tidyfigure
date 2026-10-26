@@ -1,0 +1,17 @@
+<div class="inputs">
+  <label class="f"><span>Paste your text</span><textarea id="in" rows="9" placeholder="Paste text with unwanted line breaks here…"></textarea></label>
+  <div class="fields">
+    <label class="f"><span>Line breaks</span><select id="mode"><option value="para" selected>Keep paragraphs</option><option value="all">Remove all</option><option value="empty">Only remove empty lines</option></select></label>
+    <label class="f"><span>Replace breaks with</span><select id="sep"><option value=" " selected>A space</option><option value="">Nothing</option><option value=", ">A comma</option><option value="; ">A semicolon</option><option value="custom">Custom…</option></select></label>
+    <label class="f" id="customf" hidden><span>Custom separator</span><input id="custom" value=" | "></label>
+  </div>
+  <div class="btns">
+    <label class="check"><input type="checkbox" id="hy" checked> Rejoin hyphenated words</label>
+    <label class="check"><input type="checkbox" id="sp" checked> Remove extra spaces</label>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <div class="np-bar" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px"><p class="kicker">Clean text</p><span class="sub" id="stat"></span></div>
+    <textarea id="res" rows="9" readonly aria-label="Clean text"></textarea>
+    <div class="btns"><button type="button" class="btn" id="copy">{{icon:copy}}Copy</button><button type="button" class="btn ghost" id="dl">{{icon:download}}Download .txt</button></div>
+  </div>
+</div>

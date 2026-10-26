@@ -6,3 +6,4 @@ Unchanged copies of the published npm builds (source-map comments removed).
 - exifr 7.1.3 (dist/full.umd.js): MIT
 - @cantoo/pdf-lib 2.9.2 (dist/pdf-lib.min.js): MIT
 - gifenc 1.0.3 (dist/gifenc.esm.js): MIT
+- bcryptjs 2.4.3 (dist/bcrypt.min.js): Apache License 2.0

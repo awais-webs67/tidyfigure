@@ -1,0 +1,29 @@
+<style>
+  .tz-list { display: grid; gap: 8px; }
+  .tz-row { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 4px 12px; align-items: center; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .tz-row b { font: 700 24px/1.1 var(--f-num); color: var(--ink); white-space: nowrap; }
+  .tz-row .city { font-weight: 700; color: var(--ink); overflow-wrap: anywhere; }
+  .tz-row small { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
+  .tz-row .x { border: 0; background: none; color: var(--muted); font-size: 20px; cursor: pointer; padding: 0 4px; }
+  .tz-row.src { border-color: var(--accent); }
+  .tz-plan { border-collapse: separate; border-spacing: 2px; font: 600 11px/1 var(--f-num); }
+  .tz-plan th { text-align: left; padding-right: 8px; font: 600 12.5px/1.2 var(--f-body); color: var(--ink); white-space: nowrap; }
+  .tz-plan td { width: 30px; min-width: 30px; height: 30px; text-align: center; border-radius: 5px; color: #1b2228; }
+  .tz-plan td.w { background: #BFE8CF; } .tz-plan td.e { background: #FBE3B0; } .tz-plan td.n { background: #D5DADF; }
+  .tz-plan td.now { outline: 2px solid var(--accent); }
+  .tz-plan td.all { box-shadow: inset 0 -4px 0 #1E7A4C; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="fields">
+      <label class="f"><span>Date and time</span><input type="datetime-local" id="when"></label>
+      <label class="f"><span>In time zone</span><input id="from" list="zones" autocomplete="off" placeholder="City or abbreviation, e.g. New York, EST"></label>
+    </div>
+    <div class="btns"><button type="button" class="btn ghost" id="now">Now</button><button type="button" class="btn ghost" id="swap">Use my time zone</button></div>
+    <label class="f"><span>Add a city</span><input id="add" list="zones" autocomplete="off" placeholder="Type a city or time zone and press Enter"></label>
+    <div class="chips" id="quick"></div>
+    <datalist id="zones"></datalist>
+  </div>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+<section style="margin-top:22px"><p class="group-title">Meeting planner: 24 hours from midnight in the first zone</p><p class="note">Green = 9 am to 6 pm, yellow = 7–9 am or 6–10 pm, grey = night. A dark line marks hours that are green for everyone.</p><div class="scroll" id="plan"></div></section>

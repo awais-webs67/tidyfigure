@@ -1,0 +1,26 @@
+<style>
+  .np { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 16px; }
+  .np-list { display: flex; flex-direction: column; gap: 6px; max-height: 560px; overflow-y: auto; }
+  .np-list button { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 9px; padding: 9px 11px; cursor: pointer; color: var(--ink); font: 600 14px/1.3 var(--f-body); overflow: hidden; }
+  .np-list button small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; margin-top: 2px; }
+  .np-list button.on { border-color: var(--accent); background: var(--accent-soft); }
+  .np-ed { width: 100%; min-height: 460px; resize: vertical; padding: 16px; border-radius: 10px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); line-height: 1.6; font-size: var(--fs, 16px); }
+  .np-ed.mono { font-family: var(--f-num); }
+  .np-bar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; color: var(--muted); font-size: 13.5px; }
+  @media (max-width: 760px) { .np { grid-template-columns: 1fr; } .np-list { flex-direction: row; overflow-x: auto; max-height: none; } .np-list button { flex: 0 0 160px; } }
+</style>
+<div class="np">
+  <div>
+    <div class="btns" style="margin-bottom:10px"><button type="button" class="btn" id="new">+ New note</button></div>
+    <div class="np-list" id="list"></div>
+  </div>
+  <div class="inputs" style="gap:10px">
+    <div class="np-bar"><span id="stat">0 words</span><span id="saved">Saved</span></div>
+    <textarea class="np-ed" id="ed" spellcheck="true" placeholder="Start typing. Your note saves automatically." aria-label="Note"></textarea>
+    <div class="np-bar">
+      <div class="btns"><button type="button" class="btn ghost" id="dl">{{icon:download}}Download</button><button type="button" class="btn ghost" id="open">Open file</button><button type="button" class="btn ghost" id="copy">{{icon:copy}}Copy</button><button type="button" class="btn ghost" id="del">{{icon:trash-2}}Delete</button></div>
+      <div class="btns"><select id="fs" aria-label="Text size"><option value="14">Small text</option><option value="16" selected>Normal text</option><option value="19">Large text</option><option value="23">Extra large</option></select><select id="ff" aria-label="Font"><option value="">Plain font</option><option value="mono">Typewriter font</option></select></div>
+    </div>
+    <input type="file" id="file" accept=".txt,.md,.csv,.json,.html,.css,.js,text/*" hidden>
+  </div>
+</div>

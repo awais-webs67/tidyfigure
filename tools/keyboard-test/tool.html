@@ -1,0 +1,29 @@
+<style>
+  .kb-wrap { overflow-x: auto; padding-bottom: 4px; }
+  .kb { --u: 38px; display: flex; gap: calc(var(--u) * .4); width: max-content; user-select: none; }
+  .kb-block { display: flex; flex-direction: column; gap: 5px; }
+  .kb-row { display: flex; gap: 5px; height: var(--u); }
+  .kb-row.gap { margin-bottom: calc(var(--u) * .25); }
+  .kb-k { width: calc(var(--u) * var(--w, 1) + 5px * (var(--w, 1) - 1)); height: var(--u); flex: none; border: 1px solid var(--line); border-bottom-width: 3px; border-radius: 6px; background: var(--surface); color: var(--ink); font: 600 11.5px/1.1 var(--f-body); display: grid; place-items: center; text-align: center; padding: 2px; transition: background .08s; }
+  .kb-k.sp { visibility: hidden; }
+  .kb-k.hit { background: color-mix(in srgb, #1FAF55 22%, var(--surface)); border-color: #1FAF55; }
+  .kb-k.down { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .kb-pad { display: grid; grid-template-columns: repeat(4, var(--u)); grid-template-rows: repeat(5, var(--u)); gap: 5px; margin-top: calc(var(--u) + 5px + var(--u) * .25); }
+  .kb-pad .kb-k { width: auto; height: auto; }
+  .kb-pad .tall { grid-row: span 2; }
+  .kb-pad .wide { grid-column: span 2; }
+  @media (max-width: 700px) { .kb { --u: 30px; } .kb-k { font-size: 9.5px; } }
+</style>
+<div class="kb-wrap" id="kbw"><div class="kb" id="kb" aria-label="On-screen keyboard"></div></div>
+<div class="tool-grid" style="margin-top:18px">
+  <div class="inputs">
+    <div class="statgrid">
+      <div class="stat"><b id="n-ok">0</b><span>keys that worked</span></div>
+      <div class="stat"><b id="n-held">0</b><span>held now</span></div>
+      <div class="stat"><b id="n-max">0</b><span>most at once (rollover)</span></div>
+    </div>
+    <div class="btns"><button type="button" class="btn ghost" id="reset">Reset</button><label class="check"><input type="checkbox" id="numpad" checked> Show number pad</label></div>
+    <p class="note">Just start typing. No keyboard? Connect one to your phone or tablet first.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite"><p class="kicker">Last key</p><p class="empty">Press any key.</p></div>
+</div>

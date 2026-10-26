@@ -1,0 +1,19 @@
+<style>
+  .sy-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); gap: 18px; align-items: start; }
+  .sy-grp h2 { font: 700 13px/1.2 var(--f-body); text-transform: uppercase; letter-spacing: .07em; color: var(--muted); margin: 18px 0 8px; }
+  .sy-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(46px, 1fr)); gap: 6px; }
+  .sy-grid button { aspect-ratio: 1; border: 1px solid var(--line); background: var(--surface); border-radius: 8px; font-size: 22px; line-height: 1; cursor: pointer; color: var(--ink); font-family: "Segoe UI Symbol", "Noto Sans Symbols 2", "Apple Symbols", system-ui, sans-serif; }
+  .sy-grid button:hover, .sy-grid button:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+  .sy-info { position: sticky; top: calc(var(--header-h) + 12px); }
+  .sy-big { font-size: 72px; line-height: 1.1; text-align: center; color: var(--ink); }
+  @media (max-width: 760px) { .sy-top { grid-template-columns: 1fr; } .sy-info { position: static; order: -1; } }
+</style>
+<div class="sy-top">
+  <div>
+    <label class="f"><span>Search symbols</span><input type="search" id="q" placeholder="e.g. check, heart, arrow, degree, euro" autocomplete="off"></label>
+    <div class="chips" id="jump" style="margin-top:10px"></div>
+    <div id="groups"></div>
+    <p class="empty" id="none" hidden>No symbol matches that search.</p>
+  </div>
+  <div class="out sy-info" id="out" aria-live="polite"><p class="kicker">Click a symbol to copy it</p><p class="sy-big">✓</p><p class="sub">Your recently copied symbols appear here.</p></div>
+</div>

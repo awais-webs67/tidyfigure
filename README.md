@@ -1,6 +1,6 @@
 # TidyFigure
 
-145 free online tools (PDF, image, video & audio, QR/barcode, text, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
+174 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
 
 **Plain PHP + MySQL.** No Node, npm or build step: clone the repo into your web folder and it runs. Every tool runs in the visitor's browser, so files are never uploaded and there are no API costs.
 
@@ -54,7 +54,7 @@ Security: hashed passwords, CSRF protection, session cookies limited to `/admin/
 
 1. Copy a folder in `tools/` (for example `tools/tip-calculator`) and rename it to the new URL slug, like `tools/my-new-tool`.
 2. Edit the three files:
-   - `meta.php`: `name`, `category` (an id from `app/site.php`), `order`, `icon` (a file name in `app/icons`), `title` (≤ 65 characters), `description` (110–160), `short`, `keywords`, `related` (other slugs), `answer` (the 40–60 word answer at the top), `article` (HTML), `faqs`. Optional: `popular`, `files` (true for file tools), `libs` (CDN script URLs), `scripts` (files in `assets/`, like `media.js`).
+   - `meta.php`: `name`, `category` (an id from `app/site.php`), `order`, `icon` (a file name in `app/icons`), `title` (≤ 65 characters), `description` (110–160), `short`, `keywords`, `related` (other slugs), `answer` (the 40–60 word answer at the top), `article` (HTML), `faqs`. Optional: `popular`, `files` (true for file tools), `libs` (CDN script URLs, or `vendor/…` for copies hosted in `assets/vendor`), `scripts` (files in `assets/`, like `media.js` or `color.js`).
    - `tool.html`: the inputs. `{{icon:name}}` inserts an icon.
    - `tool.js`: the logic. Helpers from `assets/app.js` (`$`, `val`, `fmt`, `onAny`, `fileDrop`, `download`…) are available.
 3. Upload or push it. The tool appears on the homepage, in menus, sidebars, the sitemap and the admin panel automatically.
@@ -73,7 +73,7 @@ A landing page can reuse another tool's code: set `'use' => 'other-tool'` and a 
 
 ## Notes
 
-- PDF tools use pdf-lib and PDF.js, scanners use ZXing, barcodes JsBarcode, QR codes qrcode-generator, zips JSZip, EXIF exifr, invoice PDFs html2canvas, MP3 encoding lamejs and GIFs gifenc. All load from cdnjs or jsDelivr at pinned versions.
+- PDF tools use pdf-lib and PDF.js, scanners use ZXing, barcodes JsBarcode, QR codes qrcode-generator, zips JSZip, EXIF exifr, invoice PDFs html2canvas, MP3 encoding lamejs, GIFs gifenc and bcrypt hashes bcrypt.js. Libraries load from cdnjs at pinned versions, except those hosted in `assets/vendor` (and PDF fonts in `assets/fonts`) so tools keep working where jsDelivr is blocked.
 - Video tools (compressor, cutter) use the browser's built-in recorder, so they take as long as the clip to process. They save MP4 in Safari and recent Chrome, WebM elsewhere.
 - The YouTube Subscriber Counter needs a YouTube Data API key (Admin → Site & API keys).
 - Public pages work even before installation or if MySQL is down; they use the default settings until the database is reachable.

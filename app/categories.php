@@ -24,6 +24,17 @@ return [
             ['Do the PDF tools add a watermark?', 'No. Your files come out exactly as you made them, with no watermark or branding.'],
         ],
     ],
+    'device' => [
+        'slug' => 'device-tests',
+        'title' => 'Online Device Tests: Mic, Webcam, Keyboard & Screen',
+        'description' => 'Free online device tests: check your microphone, webcam, keyboard keys, mouse clicks and screen resolution in seconds. Private: nothing is recorded or uploaded.',
+        'intro' => '<p>Before a video call, an online exam or a gaming session, make sure your hardware works. Test your microphone with a live sound meter, check your webcam picture and resolution, press every key on your keyboard, measure your clicks per second, find your exact screen resolution, or use your camera as a mirror.</p><p>Every test runs in your browser. Sound and video stay on your device: nothing is recorded on a server or sent anywhere.</p>',
+        'faqs' => [
+            ['Is it safe to allow camera and microphone access?', 'Yes. The tests only show your picture and sound level on your own screen. Nothing is recorded on a server or uploaded, and access stops when you close the page.'],
+            ['Why does my browser ask for permission?', 'Browsers never let a website use your camera or microphone without asking. Click Allow when asked; you can change it later in the browser’s site settings (the icon next to the address).'],
+            ['Do these tests work on phones?', 'Yes. The mic, camera, mirror, screen and click tests work on phones and tablets. The keyboard test needs a physical keyboard.'],
+        ],
+    ],
     'text' => [
         'slug' => 'text-tools',
         'title' => 'Free Text Tools: Word Counter, Case Converter & More',
