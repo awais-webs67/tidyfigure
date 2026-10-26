@@ -61,7 +61,7 @@ const kindOf = t => KIND[t === 'date' || t === 'edit' ? 'text' : t];
 fileDrop($('#drop'), $('#file'), files => { const f = files.find(isPdf); if (f) openFile(f); });
 $('#sample').addEventListener('click', async () => openFile(await samplePdf(3, 'Rental agreement')));
 $('#newfile').addEventListener('click', () => {
-  if (objs.length && !confirm('Close this PDF? Your edits will be lost.')) return;
+  if (unsaved() && !confirm('Close this PDF? Your edits will be lost.')) return;
   app.hidden = true; out.hidden = true; $('#start').hidden = false; $('#file').value = '';
 });
 
@@ -70,7 +70,7 @@ async function openFile(f) {
   const box = $('#drop span');
   try {
     const probe = await PDFDocument.load(buf, { ignoreEncryption: true, updateMetadata: false });
-    if (probe.isEncrypted) { box.innerHTML = 'This PDF is password-protected. Remove the password first with <a href="/unlock-pdf">Unlock PDF</a>, then edit it here.'; return; }
+    if (probe.isEncrypted) { box.innerHTML = `This PDF is password-protected. Remove the password first with <a href="${(window.TF_BASE || '') + '/unlock-pdf'}">Unlock PDF</a>, then edit it here.`; return; }
     doc = await openPdf(buf);
   } catch (e) { box.textContent = 'That file can’t be opened. It may be damaged.'; return; }
   srcBytes = buf; srcName = f.name;
@@ -251,6 +251,8 @@ function redrawAll() {
 const byId = id => objs.find(o => o.id === id);
 
 // ---------- History ----------
+// Anything changed: items added on top, or the PDF's own text and images edited or deleted (those are in the undo history).
+const unsaved = () => objs.length > 0 || hist.length > 0 || !!ie;
 // A state is the added items plus the PDF's own content, so undo covers both.
 const state = () => ({ o: JSON.stringify(objs), e: eng ? eng.snapshot() : null, v: eng ? eng.version : 0 });
 const changed = () => !lastState || JSON.stringify(objs) !== lastState.o || (eng && eng.version !== lastState.v);
@@ -871,7 +873,10 @@ $('#save').addEventListener('click', async () => {
   out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   try {
     let base = srcBytes;
-    if (eng && eng.version) { eng.cleanup(); base = await eng.pdf.save(); }
+    if (eng && eng.version) {
+      const putBack = eng.cleanup(); // removed images are restored afterwards, so undo still works
+      try { base = await eng.pdf.save(); } finally { putBack(); }
+    }
     const pdf = await PDFDocument.load(base, { updateMetadata: false });
     pdf.registerFontkit(fontkit);
     const pages = pdf.getPages(), fonts = {}, images = {};
@@ -912,4 +917,4 @@ $('#save').addEventListener('click', async () => {
   btn.disabled = false;
 });
 
-window.addEventListener('beforeunload', e => { if (objs.length && !app.hidden) e.preventDefault(); });
+window.addEventListener('beforeunload', e => { if (unsaved() && !app.hidden) e.preventDefault(); });

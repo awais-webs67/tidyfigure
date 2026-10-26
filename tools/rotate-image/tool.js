@@ -1,17 +1,22 @@
 let img = null, file = null, rot = 0, fh = false, fv = false;
 
-// Render the transformed image at a given scale onto a fresh canvas.
-function render(scale = 1) {
+// Size of the result at full resolution.
+function outSize() {
   const fine = +$('#angle').value * Math.PI / 180, total = rot * Math.PI / 180 + fine;
   const W = img.naturalWidth, H = img.naturalHeight;
   const cos = Math.abs(Math.cos(total)), sin = Math.abs(Math.sin(total));
-  let cw = W * cos + H * sin, ch = W * sin + H * cos;
   if ($('#autocrop').checked && fine) {
     // Largest axis-aligned rectangle inside the rotated image (keeps the original shape).
     const w0 = rot % 180 ? H : W, h0 = rot % 180 ? W : H, a = Math.abs(fine);
     const k = Math.min(w0 / (w0 * Math.cos(a) + h0 * Math.sin(a)), h0 / (w0 * Math.sin(a) + h0 * Math.cos(a)));
-    cw = w0 * k; ch = h0 * k;
+    return [w0 * k, h0 * k];
   }
+  return [W * cos + H * sin, W * sin + H * cos];
+}
+// Render the transformed image at a given scale onto a fresh canvas.
+function render(scale = 1) {
+  const fine = +$('#angle').value * Math.PI / 180, total = rot * Math.PI / 180 + fine;
+  const W = img.naturalWidth, H = img.naturalHeight, [cw, ch] = outSize();
   const c = document.createElement('canvas');
   c.width = Math.max(1, Math.round(cw * scale)); c.height = Math.max(1, Math.round(ch * scale));
   const x = c.getContext('2d');
@@ -29,8 +34,8 @@ function preview() {
   const maxW = 720, s = Math.min(1, maxW / Math.max(img.naturalWidth, img.naturalHeight));
   const c = render(s), cv = $('#cv');
   cv.width = c.width; cv.height = c.height; cv.getContext('2d').drawImage(c, 0, 0);
-  const full = render(1);
-  $('#info').textContent = `${full.width} × ${full.height} px · rotated ${(rot + +$('#angle').value + 360) % 360}°${fh ? ' · flipped horizontally' : ''}${fv ? ' · flipped vertically' : ''}`;
+  const [outW, outH] = outSize().map(v => Math.max(1, Math.round(v)));
+  $('#info').textContent = `${outW} × ${outH} px · rotated ${(rot + +$('#angle').value + 360) % 360}°${fh ? ' · flipped horizontally' : ''}${fv ? ' · flipped vertically' : ''}`;
 }
 document.querySelector('.inputs').addEventListener('click', e => {
   const b = e.target.closest('button[data-a]');

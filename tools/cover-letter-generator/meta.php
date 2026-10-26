@@ -9,7 +9,7 @@ return [
   'keywords' => 'cover letter generator free cover letter template job application letter example cover letter maker pdf',
   'short' => 'Write a tailored cover letter in minutes, in three tones. Edit and download as PDF.',
   'title' => 'Free Cover Letter Generator: Tailored Letter in Minutes, PDF',
-  'description' => 'Create a tailored cover letter from your achievements, skills and the job you want. Choose a professional, enthusiastic or short tone, edit it and download a PDF.',
+  'description' => 'Create a tailored cover letter from your achievements, skills and the job you want. Pick a professional, enthusiastic or short tone, edit it, download a PDF.',
   'related' => ['resume-builder', 'readability-checker', 'word-counter'],
   'answer' => <<<'EOT_TF'
 Enter the job, the company, your strongest achievements and the skills they ask for, then choose a tone. A complete cover letter appears instantly: opening, achievements, skills, why this company and a closing. <strong>Click the letter to edit it</strong>, press “Try different wording” for another version, and copy it or download a PDF.

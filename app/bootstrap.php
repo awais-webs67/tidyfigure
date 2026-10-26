@@ -87,6 +87,8 @@ function tf_setting_defaults(): array
         'title_suffix' => '0',     // '1' adds " | Site name" to tool titles that are short enough
         // Hosted QR codes
         'qr_enabled' => '1', 'qr_days' => '30', 'qr_max_mb' => '10', 'qr_per_hour' => '20', 'qr_blocked' => '',
+        // '1' lets AI tools (meta 'isolate') use every CPU core; ads can't show on those pages while it's on
+        'ai_isolate' => '1',
     ];
 }
 
@@ -126,6 +128,13 @@ function tf_tool_settings(bool $fresh = false): array
         }
     }
     return $t;
+}
+
+// AI tools marked 'isolate' in meta.php are sent with cross-origin isolation, which lets the AI use every CPU core
+// (2–4× faster). Ad iframes can't load on such pages, so it's a switch in Ads & analytics.
+function tf_tool_isolated(array $tool): bool
+{
+    return !empty($tool['isolate']) && tf_settings()['ai_isolate'] === '1';
 }
 
 function tf_tool_on(string $slug): bool

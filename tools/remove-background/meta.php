@@ -7,6 +7,7 @@ return [
   'icon' => 'eraser',
   'popular' => true,
   'files' => true,
+  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
   'scripts' => ['ai.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'remove background from image free remove bg ai background remover transparent png product photo white background hd',

@@ -73,7 +73,7 @@ function tf_layout(array $o, string $body): string
         $id = $s['analytics_id'];
         $head .= "<script async src=\"https://www.googletagmanager.com/gtag/js?id=$id\"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','$id');</script>\n";
     }
-    if (preg_match('/^ca-pub-\d+$/', $s['adsense_client'])) {
+    if (empty($o['noads']) && preg_match('/^ca-pub-\d+$/', $s['adsense_client'])) {
         $head .= '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' . $s['adsense_client'] . '" crossorigin="anonymous"></script>' . "\n";
     }
     $head .= $s['head_code'];
@@ -178,9 +178,9 @@ function tf_layout_globals(): void
     $GLOBALS['tf_count'] = count(tf_tools());
 }
 
-function tf_ad(string $slot): string
+function tf_ad(string $slot, bool $off = false): string
 {
-    $code = trim(tf_settings()['ad_' . $slot] ?? '');
+    $code = $off ? '' : trim(tf_settings()['ad_' . $slot] ?? '');
     return $code !== '' ? "<div class=\"ad-slot ad-$slot\">$code</div>" : '';
 }
 
@@ -223,6 +223,7 @@ function tf_page_tool(array $t): string
     $relSlugs = array_column($related, 'slug');
     $popular = array_slice(array_filter($all, fn($x) => !empty($x['popular']) && $x['slug'] !== $t['slug'] && !isset($same[$x['slug']]) && !in_array($x['slug'], $relSlugs, true)), 0, 6 - min(count($related), 6));
     [$title, $desc, $noindex] = tf_seo($t['slug'], $t['title'], $t['description']);
+    $noads = tf_tool_isolated($t);
     $updated = (int) @filemtime(TF_ROOT . '/tools/' . $t['slug'] . '/meta.php') ?: time();
 
     $schema = [
@@ -248,17 +249,17 @@ function tf_page_tool(array $t): string
 ' . $t['html'] . '
 </section>
 <div class="under-tool"><p class="private">' . tf_icon('shield-check') . ($files ? 'Your files are processed on your device and never uploaded.' : 'Everything runs in your browser. Nothing you type is sent anywhere.') . '</p>' . tf_share_html() . '</div>
-' . tf_ad('top') . '
+' . tf_ad('top', $noads) . '
 <div class="layout">
 <article class="prose">
 ' . tf_links($t['article']) . '
-' . tf_ad('article') . '
+' . tf_ad('article', $noads) . '
 <h2>Frequently asked questions</h2>
 ' . tf_faq_html($t['faqs']) . '
 <p class="updated">Last updated ' . date('F Y', $updated) . ' · <a href="' . h(tf_url($cat['slug'])) . '">More ' . h(mb_strtolower($cat['name'])) . '</a></p>
 </article>
 <aside class="side">
-' . tf_ad('side') . '
+' . tf_ad('side', $noads) . '
 ' . ($same ? '<section aria-labelledby="side-a"><h2 id="side-a">More ' . h(mb_strtolower($cat['name'])) . '</h2><ul>' . implode('', array_map($side, $same)) . '</ul><a class="side-all" href="' . h(tf_url($cat['slug'])) . '">See all →</a></section>' : '') . '
 ' . ($more ? '<section aria-labelledby="side-b"><h2 id="side-b">You might also need</h2><ul>' . implode('', array_map($side, array_slice($more, 0, 6))) . '</ul></section>' : '') . '
 </aside>
@@ -269,7 +270,7 @@ function tf_page_tool(array $t): string
     $scripts .= '<script src="' . h(tf_asset('app.js')) . '"></script>' . "\n";
     foreach ($t['scripts'] ?? [] as $f) $scripts .= '<script src="' . h(tf_asset($f)) . '"></script>' . "\n";
     $scripts .= "<script>\n(function () {\n" . $t['js'] . "\n})();\n</script>";
-    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $t['slug'], 'schema' => $schema, 'noindex' => $noindex, 'scripts' => $scripts], $body);
+    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $t['slug'], 'schema' => $schema, 'noindex' => $noindex, 'scripts' => $scripts, 'noads' => $noads], $body);
 }
 
 function tf_page_category(array $c): string

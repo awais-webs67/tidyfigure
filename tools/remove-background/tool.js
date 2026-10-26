@@ -12,20 +12,51 @@ $('#bgcolor').addEventListener('input', e => setBg(e.target.value, e.target.clos
 $('#bgfile').addEventListener('change', async e => { const f = e.target.files[0]; if (!f) return; bgImg = await loadImage(f); setBg('image', $('[data-bg="image"]')); });
 function setBg(v, chip) { bg = v; $$('#bg .chip').forEach(c => c.classList.toggle('on', c === chip)); if (cut) show(); }
 
+// Start loading the AI while the visitor is still choosing a photo (see AI.warmUp for when).
+const quality = () => $('input[name="q"]:checked').value;
+AI.warmUp(quality, [$('#drop'), $('#sample')]);
+
 async function start(f) {
   name = baseName(f.name);
   src = await AI.toCanvas(f);
   process();
 }
+
+// While it works: the visitor's own photo with a scanning shimmer and one progress bar for the whole job.
+let job = 0;
+const SECS_KEY = 'tf-bg-secs';
+function working() {
+  const w = Math.min(800, src.width), h = Math.round(src.height * w / src.width), t = document.createElement('canvas');
+  t.width = w; t.height = h; t.getContext('2d').drawImage(src, 0, 0, w, h);
+  out.innerHTML = `<p class="kicker">Removing the background</p>
+    <div class="ai-work"><span><img src="${t.toDataURL('image/jpeg', 0.8)}" alt="Your photo" width="${w}" height="${h}"><i></i></span></div>
+    <div class="bar"><i style="width:2%"></i></div><p class="sub" data-pct>Starting…</p><p class="note" id="ai-note"></p>`;
+}
 async function process() {
-  const q = $('input[name="q"]:checked').value;
-  out.innerHTML = progressHtml(`Loading the AI model (${await AI.modelSize(q)} MB, one-time download)`) + '<p class="note">After the first time, the model loads instantly from your browser.</p>';
-  const t0 = performance.now();
+  const q = quality(), id = ++job;
+  working();
   try {
-    cut = await AI.removeBackground(src, q, (p, total) => setProgress(out, p, `${Math.round(p * 100)}% of ${(total / 1048576).toFixed(0)} MB`));
-    out.dataset.secs = ((performance.now() - t0) / 1000).toFixed(1);
+    if (!(await AI.isReady(q))) {
+      // First visit only: the AI is still arriving. It counts as the first 60% of the bar.
+      $('#ai-note').textContent = 'First time only: the AI is being set up on your device. Next time it starts straight away.';
+      setProgress(out, 0.02, 'Getting ready…');
+      await AI.preload(q, p => { if (id === job) setProgress(out, 0.02 + p * 0.58, `Getting ready… ${Math.round(p * 100)}%`); });
+      if (id !== job) return;
+      $('#ai-note').textContent = '';
+    }
+    // The AI gives no progress while it works, so the bar moves with the time this took last time on this device.
+    let est = 8;
+    try { est = +localStorage.getItem(`${SECS_KEY}-${q}`) || est; } catch (e) { /* storage blocked */ }
+    const from = parseFloat($('.bar i', out).style.width) / 100 || 0, t0 = performance.now();
+    const tick = setInterval(() => { if (id !== job) return clearInterval(tick); const k = 1 - Math.exp(-(performance.now() - t0) / 1000 / est * 2.2); setProgress(out, from + (0.97 - from) * k, 'Removing the background…'); }, 150);
+    const result = await AI.removeBackground(src, q).finally(() => clearInterval(tick));
+    if (id !== job) return;
+    const secs = (performance.now() - t0) / 1000;
+    try { localStorage.setItem(`${SECS_KEY}-${q}`, secs.toFixed(1)); } catch (e) { /* storage blocked */ }
+    cut = result;
+    out.dataset.secs = secs.toFixed(1);
     show();
-  } catch (e) { fail(e); }
+  } catch (e) { if (id === job) fail(e); }
 }
 function fail(e) { out.innerHTML = `<p class="kicker">Result</p><span class="verdict no">Couldn’t remove the background</span><p class="sub">${esc(e.message || String(e))}</p><p class="note">Check your connection (the AI model downloads the first time) or try the Fast option.</p>`; }
 

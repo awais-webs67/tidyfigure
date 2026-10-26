@@ -1,4 +1,4 @@
-const { PDFDocument } = PDFLib;
+const { PDFDocument, degrees } = PDFLib;
 const pad = $('#pad'), px = pad.getContext('2d'), view = $('#view');
 let drawing = false, drawn = false, last = null;
 let file = null, srcBytes = null, doc = null, pageNo = 1, scale = 1, placed = [];
@@ -99,9 +99,9 @@ $('#save').addEventListener('click', async () => {
   const pages = pdf.getPages();
   for (const p of placed) {
     const png = await pdf.embedPng(p.img.toDataURL('image/png'));
-    const page = pages[p.page - 1], H = page.getHeight();
-    const h = p.w * p.img.height / p.img.width;
-    page.drawImage(png, { x: p.x, y: H - p.y - h, width: p.w, height: h });
+    const page = pages[p.page - 1], v = pageView(page); // the page as shown, even if it's stored rotated
+    const h = p.w * p.img.height / p.img.width, [x, y] = v.at(p.x, v.h - p.y - h);
+    page.drawImage(png, { x, y, width: p.w, height: h, rotate: degrees(v.angle) });
   }
   download(new Blob([await pdf.save()], { type: 'application/pdf' }), `${baseName(file.name)}-signed.pdf`);
 });

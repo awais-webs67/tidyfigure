@@ -201,6 +201,18 @@ async function samplePdf(pages = 4, title = 'Quarterly report', photo = false) {
 }
 const isPdf = f => f && (f.type === 'application/pdf' || /\.pdf$/i.test(f.name));
 
+// A pdf-lib page as people see it. Some PDFs store a page sideways with a note to turn it (rotation),
+// or show only part of it (crop box). Work in the page as displayed: w × h, x to the right and y up from
+// its bottom-left corner. at(x, y) gives the PDF's own coordinates and angle is the rotation that keeps
+// text and images upright.
+function pageView(page) {
+  const { x: x0, y: y0, width: W, height: H } = page.getCropBox();
+  const rot = ((page.getRotation().angle % 360) + 360) % 360;
+  const side = rot === 90 || rot === 270;
+  const at = (x, y) => rot === 90 ? [x0 + W - y, y0 + x] : rot === 180 ? [x0 + W - x, y0 + H - y] : rot === 270 ? [x0 + y, y0 + H - x] : [x0 + x, y0 + y];
+  return { w: side ? H : W, h: side ? W : H, at, angle: rot };
+}
+
 // Result panel for PDF tools: thumbnails of the new file, so people check it before downloading.
 async function showPdfResult(out, pdfBytes, { title = 'Your PDF', name = 'document.pdf', headline = '', note = '', label = 'Download PDF', blob = null, max = 8 } = {}) {
   const file = blob || new Blob([pdfBytes], { type: 'application/pdf' });

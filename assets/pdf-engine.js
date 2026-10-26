@@ -251,13 +251,14 @@ const PdfEngine = (() => {
         let parts = [];
         if (c instanceof PDFArray) for (let k = 0; k < c.size(); k++) parts.push(streamBytes(c.lookup(k)), latin1('\n'));
         else if (c) parts.push(streamBytes(c));
-        conts.set(key, { key, kind: 'page', i, src: concat(parts), res: node.Resources() });
+        const src = concat(parts);
+        conts.set(key, { key, kind: 'page', i, src, orig: src, res: node.Resources() });
       }
       return conts.get(key);
     }
     function formContainer(ref, stream, parentRes) {
       const key = 'r' + ref.toString();
-      if (!conts.has(key)) conts.set(key, { key, kind: 'form', ref, src: streamBytes(stream), res: look(stream.dict, 'Resources') || parentRes, dict: stream.dict });
+      if (!conts.has(key)) { const src = streamBytes(stream); conts.set(key, { key, kind: 'form', ref, src, orig: src, res: look(stream.dict, 'Resources') || parentRes, dict: stream.dict }); }
       return conts.get(key);
     }
     const opsOf = c => { if (c.opsSrc !== c.src) { c.ops = lex(c.src); c.opsSrc = c.src; } return c.ops; };
@@ -362,7 +363,9 @@ const PdfEngine = (() => {
             if (sub === 'Image') {
               const pts = [apply(A, 0, 0), apply(A, 1, 0), apply(A, 1, 1), apply(A, 0, 1)];
               model.objects.push({ type: 'image', key: c.key, op: k, bbox: box(pts), name, ref: xo instanceof PDFRef ? xo : null });
-            } else if (sub === 'Form' && depth < 6 && xo instanceof PDFRef) {
+            } else if (sub === 'Form' && depth >= 6) {
+              model.deep = true; // not looked inside, so cleanup() must not guess what it uses
+            } else if (sub === 'Form' && xo instanceof PDFRef) {
               const M = look(st.dict, 'Matrix') ? arr(look(st.dict, 'Matrix')).map(n) : ID;
               const bb = arr(look(st.dict, 'BBox')).map(n);
               const fb = mul(M, A);
@@ -592,7 +595,8 @@ const PdfEngine = (() => {
     function snapshot() { const s = new Map(); for (const [k, c] of conts) s.set(k, c.src); return s; }
     function restore(s) {
       const keys = new Set();
-      for (const [k, c] of conts) { const v = s.get(k); if (v && v !== c.src) { c.src = v; dirty.add(k); keys.add(k); } }
+      // A part missing from the snapshot hadn't been opened yet when it was taken, so it was still original.
+      for (const [k, c] of conts) { const v = s.has(k) ? s.get(k) : c.orig; if (v && v !== c.src) { c.src = v; dirty.add(k); keys.add(k); } }
       if (!keys.size) return new Set();
       version++;
       const pagesHit = changedPages(keys);
@@ -606,26 +610,50 @@ const PdfEngine = (() => {
       t.addPage(p);
       return t.save({ useObjectStreams: false });
     }
-    // Drops images that no page uses any more, so deleted pictures leave the file too.
+    // Every object reachable from the document root, by reference key.
+    function reachable() {
+      const seen = new Map(), stack = [ctx.trailerInfo.Root, ctx.trailerInfo.Info].filter(Boolean);
+      while (stack.length) {
+        let o = stack.pop();
+        if (o instanceof PDFRef) { const k = o.toString(); if (seen.has(k)) continue; seen.set(k, o); o = ctx.lookup(o); }
+        if (o instanceof PDFDict) { for (const [, v] of o.entries()) stack.push(v); }
+        else if (o instanceof PDFArray) { for (const v of o.asArray()) stack.push(v); }
+        else if (o && o.dict instanceof PDFDict) { for (const [, v] of o.dict.entries()) stack.push(v); }
+      }
+      return seen;
+    }
+    // Before saving: takes out images that no page draws any more (and anything only they used, such as their
+    // transparency masks), so deleted pictures really leave the file. Returns a function that puts everything
+    // back, so undo keeps working after a save. Does nothing if any page couldn't be read completely.
     function cleanup() {
+      const none = () => {};
+      if (!version) return none;
       const used = new Set(), resDicts = new Set();
       for (let i = 0; i < pages.length; i++) {
         const m = model(i);
+        if (m.error || m.deep) return none;
         m.objects.forEach(o => { if (o.type === 'image' && o.ref) used.add(o.ref.toString()); });
       }
       for (const c of conts.values()) if (c.res instanceof PDFDict) resDicts.add(c.res);
-      if (!version) return;
+      const before = reachable(), entries = [];
       for (const res of resDicts) {
         let d = res.get(PDFName.of('XObject'));
         if (d instanceof PDFRef) d = ctx.lookup(d);
         if (!(d instanceof PDFDict)) continue;
         for (const [k, v] of d.entries()) {
-          if (!(v instanceof PDFRef)) continue;
+          if (!(v instanceof PDFRef) || used.has(v.toString())) continue;
           const st = ctx.lookup(v);
-          if (!st || !st.dict || nm(look(st.dict, 'Subtype')) !== 'Image' || used.has(v.toString())) continue;
-          d.delete(k); ctx.delete(v);
+          if (!st || !st.dict || nm(look(st.dict, 'Subtype')) !== 'Image') continue;
+          entries.push([d, k, v]);
         }
       }
+      entries.forEach(([d, k]) => d.delete(k));
+      const after = reachable(), dropped = [];
+      for (const [k, ref] of before) if (!after.has(k)) { dropped.push([ref, ctx.lookup(ref)]); ctx.delete(ref); }
+      return () => {
+        dropped.forEach(([ref, obj]) => ctx.assign(ref, obj));
+        entries.forEach(([d, k, v]) => d.set(k, v));
+      };
     }
     return {
       pdf, pages: pages.length, model, remove, removeGlyphs: g => remove(g, []), removeObjects: o => remove([], o), addText, snapshot, restore, pagePdf, cleanup,

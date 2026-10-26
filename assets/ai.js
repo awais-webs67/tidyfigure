@@ -11,12 +11,19 @@ const AI = (() => {
     if (!lib) {
       lib = await import(LIB);
       lib.env.allowLocalModels = false;
+      // Pages sent with cross-origin isolation (see the AI speed setting in the admin panel) may use every CPU core.
+      if (self.crossOriginIsolated) lib.env.backends.onnx.wasm.numThreads = Math.min(8, navigator.hardwareConcurrency || 4);
+      // On the CPU, run the AI in a background worker so the page stays responsive (progress bar, scrolling)
+      // while it works. With WebGPU the graphics chip does the work, and the worker mode doesn't support it.
+      gpu ??= (await device()) === 'webgpu';
+      lib.env.backends.onnx.wasm.proxy = !gpu;
     }
     return lib;
   }
-  // WebGPU is much faster where available (recent Chrome/Edge); everything else uses WebAssembly.
+  // WebGPU is much faster where available (recent Chrome/Edge). The GPU model uses 16-bit numbers, which some
+  // graphics chips can't do (no 'shader-f16'); those, and everything else, use WebAssembly on the CPU.
   async function device() {
-    try { if (navigator.gpu && await navigator.gpu.requestAdapter()) return 'webgpu'; } catch (e) { /* no WebGPU */ }
+    try { const a = navigator.gpu && await navigator.gpu.requestAdapter(); if (a && a.features.has('shader-f16')) return 'webgpu'; } catch (e) { /* no WebGPU */ }
     return 'wasm';
   }
   // Turns Transformers.js download events into one overall percentage.
@@ -46,16 +53,55 @@ const AI = (() => {
   }
   async function modelSize(quality) { return MODELS[await pick(quality)].size; }
 
+  // A model loads once per page. The download can start early (preload, while the visitor is still choosing
+  // a photo); whoever asks for the model later joins the same download and still sees its progress.
+  function loadModel(key) {
+    if (!cache[key]) {
+      const st = cache[key] = { ready: false, got: 0, total: 0, subs: new Set() };
+      const track = progressTracker((frac, total) => { st.got = frac * total; st.total = total; st.subs.forEach(f => f(frac, total)); });
+      st.promise = (async () => {
+        const t = await load(), m = MODELS[key];
+        return Promise.all([
+          t.AutoModel.from_pretrained(m.id, { dtype: m.dtype, device: key === 'birefnet' ? 'webgpu' : 'wasm', progress_callback: track }),
+          t.AutoProcessor.from_pretrained(m.id),
+        ]);
+      })().then(r => { st.ready = true; return r; }, e => { delete cache[key]; throw e; });
+    }
+    return cache[key];
+  }
+  async function preload(quality = 'hq', onProgress) {
+    const st = loadModel(await pick(quality));
+    if (onProgress && !st.ready) { st.subs.add(onProgress); if (st.total) onProgress(st.got / st.total, st.total); }
+    try { return await st.promise; } finally { st.subs.delete(onProgress); }
+  }
+  // Starts loading the model before the visitor needs it, so a dropped photo is processed straight away:
+  // at once when the browser already has it saved, or on a fast, unmetered connection; otherwise (mobile data,
+  // data saver) only when they show interest by touching the drop zone or the sample button.
+  function warmUp(quality, els = []) {
+    let started = false;
+    const go = () => { if (started) return; started = true; preload(typeof quality === 'function' ? quality() : quality).catch(() => { started = false; }); };
+    const c = navigator.connection, mobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    const unmetered = c ? !c.saveData && c.type !== 'cellular' && (!c.effectiveType || c.effectiveType === '4g') && !(mobile && !c.type) : !mobile;
+    const idle = window.requestIdleCallback ? f => requestIdleCallback(f, { timeout: 3000 }) : f => setTimeout(f, 1500);
+    isCached(typeof quality === 'function' ? quality() : quality).then(hit => { if (hit || unmetered) idle(go); });
+    els.forEach(el => el && ['pointerenter', 'pointerdown', 'focusin', 'dragenter', 'touchstart'].forEach(ev => el.addEventListener(ev, go, { passive: true })));
+  }
+  async function isReady(quality = 'hq') { const st = cache[await pick(quality)]; return !!(st && st.ready); }
+  // True when the browser already has the model file from an earlier visit, so loading it costs no data.
+  async function isCached(quality = 'hq') {
+    try {
+      const m = MODELS[await pick(quality)], file = { q8: 'model_quantized', fp16: 'model_fp16' }[m.dtype] || 'model';
+      const c = await caches.open('transformers-cache');
+      return !!(await c.match(`https://huggingface.co/${m.id}/resolve/main/onnx/${file}.onnx`));
+    } catch (e) { return false; }
+  }
+
   // Returns a canvas the size of the image, with the background made transparent.
   async function removeBackground(source, quality = 'hq', onProgress) {
-    const t = await load(), key = await pick(quality), m = MODELS[key];
-    if (!cache[key]) {
-      cache[key] = Promise.all([
-        t.AutoModel.from_pretrained(m.id, { dtype: m.dtype, device: key === 'birefnet' ? 'webgpu' : 'wasm', progress_callback: progressTracker(onProgress) }),
-        t.AutoProcessor.from_pretrained(m.id),
-      ]).catch(e => { delete cache[key]; throw e; });
-    }
-    const [model, processor] = await cache[key];
+    const t = await load(), st = loadModel(await pick(quality));
+    if (onProgress && !st.ready) { st.subs.add(onProgress); if (st.total) onProgress(st.got / st.total, st.total); }
+    let model, processor;
+    try { [model, processor] = await st.promise; } finally { st.subs.delete(onProgress); }
     const img = source instanceof HTMLCanvasElement ? source : await toCanvas(source);
     const { pixel_values } = await processor(t.RawImage.fromCanvas(img));
     const inputName = (model.sessions.model && model.sessions.model.inputNames[0]) || 'input';
@@ -142,5 +188,5 @@ const AI = (() => {
     return new File([b], name, { type: b.type || 'application/octet-stream' });
   }
 
-  return { load, device, removeBackground, modelSize, transcribe, audio16k, face, toCanvas, sampleBlob };
+  return { load, device, removeBackground, modelSize, preload, warmUp, isReady, isCached, transcribe, audio16k, face, toCanvas, sampleBlob };
 })();

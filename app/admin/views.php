@@ -70,7 +70,7 @@ function tf_admin_page(string $page, array $admin, ?array $flash): string
 document.querySelectorAll("[data-max]").forEach(function (el) {
   var c = el.parentNode.querySelector(".count");
   function upd() { var n = (el.value || el.placeholder).length, m = +el.dataset.max, min = +(el.dataset.min || 0); c.textContent = n + " / " + m + (el.value ? "" : " (default)"); c.className = "count" + (n > m ? " over" : n < min ? " short" : " good");
-    var row = el.closest("[data-serp]"); if (row) { var t = row.querySelector("[data-serp-title]"), d = row.querySelector("[data-serp-desc]"), ti = row.querySelector("[data-max=\'60\']"), de = row.querySelector("[data-max=\'160\']");
+    var row = el.closest("[data-serp]"); if (row) { var t = row.querySelector("[data-serp-title]"), d = row.querySelector("[data-serp-desc]"), ti = row.querySelector("[data-max=\'65\']"), de = row.querySelector("[data-max=\'160\']");
       if (t && ti) t.textContent = (ti.value || ti.placeholder).slice(0, 62) + ((ti.value || ti.placeholder).length > 62 ? "…" : ""); if (d && de) d.textContent = (de.value || de.placeholder).slice(0, 158) + ((de.value || de.placeholder).length > 158 ? "…" : ""); } }
   el.addEventListener("input", upd); upd();
 });
@@ -213,7 +213,7 @@ function tf_admin_tools(array $admin): array
 <td class="n"><button type="button" class="btn ghost sm" data-edit="e-' . $k . '" aria-expanded="false">Edit SEO</button></td></tr>
 <tr id="e-' . $k . '" hidden class="a-edit" data-serp><td colspan="5"><div class="a-edit-grid">
 <div><input type="hidden" name="t[' . $k . '][on]" value="1"' . ($r['on'] ? '' : ' disabled') . '>
-<label class="f"><span>SEO title</span><input type="text" name="t[' . $k . '][title]" value="' . h($o['title'] ?? '') . '" placeholder="' . h($t['title']) . '" data-max="60" data-min="30"><span class="count"></span></label>
+<label class="f"><span>SEO title</span><input type="text" name="t[' . $k . '][title]" value="' . h($o['title'] ?? '') . '" placeholder="' . h($t['title']) . '" data-max="65" data-min="30"><span class="count"></span></label>
 <label class="f"><span>Meta description</span><textarea name="t[' . $k . '][description]" placeholder="' . h($t['description']) . '" data-max="160" data-min="110">' . h($o['description'] ?? '') . '</textarea><span class="count"></span></label>
 <label class="check"><input type="checkbox" name="t[' . $k . '][noindex]" value="1"' . ($r['noindex'] ? ' checked' : '') . '>Hide from search engines (noindex)</label></div>
 <div class="serp" aria-label="Google preview"><small>' . h($host) . ' › ' . $k . '</small><b data-serp-title></b><p data-serp-desc></p></div>
@@ -250,7 +250,7 @@ function tf_admin_seo(array $admin): array
 <form method="post" class="a-card">' . tf_admin_csrf() . '<input type="hidden" name="action" value="save_settings">
 <h2>Homepage</h2>
 <div class="a-edit-grid" data-serp><div>
-<label class="f"><span>Homepage title</span><input type="text" name="home_title" value="' . h($s['home_title']) . '" placeholder="' . h(tf_site()['site']['name'] . ': ' . count(tf_tools()) . ' Free Online Tools for PDF, Images, Video & More') . '" data-max="60" data-min="30"><span class="count"></span></label>
+<label class="f"><span>Homepage title</span><input type="text" name="home_title" value="' . h($s['home_title']) . '" placeholder="' . h(tf_site()['site']['name'] . ': ' . count(tf_tools()) . ' Free Online Tools for PDF, Images, Video & More') . '" data-max="65" data-min="30"><span class="count"></span></label>
 <label class="f"><span>Homepage description</span><textarea name="home_description" placeholder="' . h(count(tf_tools()) . ' free online tools that run in your browser: merge PDFs, compress images, convert video to MP3, make QR codes, calculators and more. No sign-up.') . '" data-max="160" data-min="110">' . h($s['home_description']) . '</textarea><span class="count"></span></label>
 <label class="check"><input type="checkbox" name="title_suffix" value="1"' . ($s['title_suffix'] === '1' ? ' checked' : '') . '>Add “| ' . h(tf_site()['site']['name']) . '” to tool titles when they are short enough</label>
 </div><div class="serp" aria-label="Google preview"><small>' . h(parse_url(tf_base_url(), PHP_URL_HOST)) . '</small><b data-serp-title></b><p data-serp-desc></p></div></div>
@@ -342,6 +342,9 @@ function tf_admin_ads(array $admin): array
 <h2>Ad slots</h2>
 <div class="a-slots"><div class="a-slot-map"><span>Tool</span><span class="hl">Slot 1</span><span>Article</span><span class="hl">Slot 2</span><span>FAQs</span></div><div>'
         . $ta('ad_top', 'Slot 1: below the tool') . $ta('ad_article', 'Slot 2: inside the article, before FAQs') . $ta('ad_side', 'Slot 3: top of the sidebar (desktop)') . '</div></div>
+<h2>AI tool speed</h2>
+<label class="check"><input type="checkbox" name="ai_isolate" value="1"' . ($s['ai_isolate'] === '1' ? ' checked' : '') . '>Make the AI tools 2–4× faster (Background Remover, Passport Photo Maker, Audio to Text)</label>
+<p class="a-muted">This lets the AI use every processor core on the visitor’s device. Browsers only allow that on pages that don’t load ads or other sites’ widgets, so <b>ads don’t show on these 3 pages</b> while it’s on (all other pages are unaffected). Untick it to show ads there instead; the tools still work, just more slowly.</p>
 <h2>Custom code</h2>' . $ta('head_code', 'Code in &lt;head&gt; (verification tags, pixels)') . $ta('body_code', 'Code before &lt;/body&gt; (chat widgets, cookie banners)') . '
 <p class="a-muted">Only paste code from services you trust: it runs on every page.</p>
 <div class="a-save"><button class="btn big-btn">Save</button></div></form>';

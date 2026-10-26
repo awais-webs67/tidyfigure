@@ -11,7 +11,7 @@ return [
   'keywords' => 'signature generator online draw signature create signature transparent png handwritten signature maker type signature from photo electronic signature',
   'short' => 'Draw, type or photograph your signature and download it as a transparent PNG.',
   'title' => 'Signature Generator: Draw or Type a Signature, Transparent PNG',
-  'description' => 'Create your signature online: draw it, type it in a handwriting font, or clean up a photo of it. Download a transparent PNG, JPG or SVG. Free, private, no sign-up.',
+  'description' => 'Create your signature online: draw it, type it in a handwriting font or clean up a photo of it. Download a transparent PNG, JPG or SVG. Free and private.',
   'related' => ['sign-pdf', 'remove-background', 'email-signature-generator'],
   'answer' => <<<'EOT_TF'
 Draw your signature with a mouse, finger or stylus, type your name in one of eight handwriting fonts, or <strong>take a photo of your signature on paper</strong> and the paper is removed automatically. The preview shows it on a document, and you download a <strong>transparent PNG</strong> that you can place on any PDF, Word or Google Docs file.

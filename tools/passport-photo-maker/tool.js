@@ -28,12 +28,19 @@ $('#auto').onclick = () => autoFit();
 function spec() { const p = P(); $('#spec').textContent = `${p[6]} Saved at 300 dpi: ${mmpx(p[2])}×${mmpx(p[3])} pixels.`; }
 spec();
 
+// Start loading the AI while the visitor is still choosing a photo (see AI.warmUp for when).
+AI.warmUp('hq', [$('#drop'), $('#sample')]);
+
 async function start(f) {
   name = 'passport-photo';
   src = await AI.toCanvas(f);
-  out.innerHTML = progressHtml(`Loading the AI that finds you in the photo (${await AI.modelSize('hq')} MB, one-time download)`);
+  const first = !(await AI.isReady('hq'));
+  out.innerHTML = progressHtml(first ? 'Getting ready (first time only)' : 'Finding you in the photo') + (first ? '<p class="note">The AI is being set up on your device. Next time it starts straight away.</p>' : '');
   try {
-    cut = await AI.removeBackground(src, 'hq', p => setProgress(out, p * 0.6));
+    if (first) await AI.preload('hq', p => setProgress(out, p * 0.5, `Getting ready… ${Math.round(p * 100)}%`));
+    out.querySelector('.kicker').textContent = 'Finding you in the photo';
+    setProgress(out, 0.55, 'Replacing the background…');
+    cut = await AI.removeBackground(src, 'hq');
     setProgress(out, 0.7, 'Finding your face…');
     headBox = await findHead(src, cut);
     if (!headBox) out.insertAdjacentHTML('beforeend', '<p class="note">No face found: position the photo by hand.</p>');

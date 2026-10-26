@@ -2,7 +2,9 @@ const out = $('#out');
 let file = null, audio = null;
 fileDrop($('#drop'), $('#file'), files => { const f = files.find(isMedia) || files[0]; if (f) load(f); });
 $('#sample').addEventListener('click', async () => { out.innerHTML = '<p class="kicker">Your audio</p><p class="sub">Recording a 5-second sample clip…</p>'; load(await sampleVideo(5)); });
-onAny('#fmt, #kbps, #mono, #start, #end', () => { $('#q-wrap').hidden = $('#fmt').value !== 'mp3'; if (audio) convert(); });
+// Wait until typing pauses before converting again: each run re-encodes the whole sound track.
+let again = null;
+onAny('#fmt, #kbps, #mono, #start, #end', () => { $('#q-wrap').hidden = $('#fmt').value !== 'mp3'; clearTimeout(again); if (audio) again = setTimeout(convert, 450); });
 
 async function load(f) {
   file = f; audio = null;

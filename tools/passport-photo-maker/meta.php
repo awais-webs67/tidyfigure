@@ -7,6 +7,7 @@ return [
   'icon' => 'user-round',
   'popular' => true,
   'files' => true,
+  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
   'scripts' => ['ai.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'passport photo maker online free passport size photo 2x2 photo 35x45 mm visa photo white background print sheet 4x6 id photo',

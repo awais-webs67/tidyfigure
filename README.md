@@ -1,6 +1,6 @@
 # TidyFigure
 
-131 free online tools (PDF, image, video & audio, QR/barcode, text, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
+145 free online tools (PDF, image, video & audio, QR/barcode, text, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
 
 **Plain PHP + MySQL.** No Node, npm or build step: clone the repo into your web folder and it runs. Every tool runs in the visitor's browser, so files are never uploaded and there are no API costs.
 

@@ -7,6 +7,7 @@ return [
   'icon' => 'audio-lines',
   'popular' => true,
   'files' => true,
+  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
   'scripts' => ['ai.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'audio to text converter free transcription speech to text video to text mp3 to text subtitle generator srt voice note transcribe urdu hindi whisper',

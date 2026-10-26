@@ -67,6 +67,10 @@ if (($c = tf_category($path)) && $c['slug'] === $path && array_filter(tf_tools()
 }
 $tool = tf_tool_on($path) ? tf_tool($path) : null;
 if ($tool) {
+    if (tf_tool_isolated($tool)) {
+        header('Cross-Origin-Opener-Policy: same-origin');
+        header('Cross-Origin-Embedder-Policy: credentialless');
+    }
     echo tf_page_tool($tool);
     exit;
 }
