@@ -33,8 +33,8 @@
 4. **Automatic updates (optional):** on the GIT page, turn on **Auto Deployment** and copy the webhook URL. In GitHub → Settings → **Webhooks** → Add webhook, paste it as the Payload URL, keep “Just the push event”, and save. Every push to `main` then updates the site.
 5. **Database:** hPanel → Databases → Management → create a database, user and password. Note them down (Hostinger adds a prefix such as `u123456789_`). The host is `localhost`.
 6. **SSL:** hPanel → Security → SSL: make sure the free SSL is active for the domain (it can take a few minutes after the domain is connected).
-7. **Install:** open `https://tidyfigure.co.uk/install/` straight away and enter the database details and your admin username and password.
-8. Sign in at `/admin/`, then submit `https://tidyfigure.co.uk/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+7. **Install:** open `https://YOUR-DOMAIN/install/` straight away and enter the database details and your admin username and password.
+8. Sign in at `/admin/`, then submit `https://YOUR-DOMAIN/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 
 To update by hand: hPanel → Advanced → GIT → **Deploy**. `config.php` isn’t in Git, so updates never overwrite it.
 

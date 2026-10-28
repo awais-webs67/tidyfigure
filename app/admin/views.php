@@ -359,7 +359,7 @@ function tf_admin_settings(array $admin): array
 <div class="fields"><label class="f"><span>Text (leave empty to hide)</span><input type="text" name="announcement_text" value="' . h($s['announcement_text']) . '" placeholder="New: Background Remover is here!"></label>
 <label class="f"><span>Link (optional)</span><input type="text" name="announcement_link" value="' . h($s['announcement_link']) . '" placeholder="/remove-background"></label></div>
 <h2>Contact</h2>
-<label class="f"><span>Contact email (shown on the About and Privacy pages)</span><input type="email" name="contact_email" value="' . h($s['contact_email']) . '" placeholder="' . h(tf_site()['site']['email']) . '"></label>
+<label class="f"><span>Contact email (shown on the About and Privacy pages)</span><input type="email" name="contact_email" value="' . h($s['contact_email']) . '" placeholder="' . h(tf_contact_email()) . '"></label>
 <h2>Hosted QR codes</h2>
 <label class="check"><input type="checkbox" name="qr_enabled" value="1"' . ($s['qr_enabled'] === '1' ? ' checked' : '') . '>Allow visitors to create dynamic, file and verification QR codes</label>
 <div class="fields"><label class="f"><span>Delete codes after (days)</span><input type="number" name="qr_days" min="1" max="365" value="' . h($s['qr_days']) . '"></label>

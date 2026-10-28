@@ -1,3 +1,5 @@
+// Start with this site's own address as the example link.
+if (!$('#url').value) $('#url').value = location.origin + (window.TF_BASE || '');
 if (qrcode.stringToBytesFuncs && qrcode.stringToBytesFuncs['UTF-8']) qrcode.stringToBytes = qrcode.stringToBytesFuncs['UTF-8']; // emoji and accents
 const kind = () => $('input[name="kind"]:checked').value;
 const wifiEsc = s => s.replace(/([\\;,:"])/g, '\\$1');

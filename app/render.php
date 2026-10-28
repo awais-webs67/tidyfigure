@@ -401,7 +401,7 @@ function tf_page_simple(string $slug): ?string
 {
     $site = tf_site();
     $name = h($site['site']['name']);
-    $email = h(trim(tf_settings()['contact_email']) ?: $site['site']['email']);
+    $email = h(tf_contact_email());
     $n = count(tf_tools());
     $pages = [
         'about' => ["About {$site['site']['name']}", "{$site['site']['name']} makes fast, free online tools for PDFs, images, video, text and everyday maths. Everything runs in your browser, so your files stay private.", "

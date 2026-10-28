@@ -21,7 +21,7 @@ $('#sample').addEventListener('click', async () => {
   if (FORMATS === 'all') {
     JsBarcode(c, '5012345678900', { format: 'EAN13', width: 3, height: 120, background: '#ffffff' });
   } else {
-    const q = qrcode(0, 'M'); q.addData('https://tidyfigure.co.uk/qr-code-scanner', 'Byte'); q.make();
+    const q = qrcode(0, 'M'); q.addData(`${location.origin}${window.TF_BASE || ''}/qr-code-scanner`, 'Byte'); q.make();
     const n = q.getModuleCount(), s = 10; c.width = c.height = (n + 8) * s;
     const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); x.fillStyle = '#000';
     for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (q.isDark(r, k)) x.fillRect((k + 4) * s, (r + 4) * s, s, s);

@@ -6,7 +6,7 @@ return [
         'name' => 'TidyFigure',
         'by' => 'AivraSol',              // shown in the footer
         'by_url' => 'https://aivrasol.com',
-        'email' => 'hello@tidyfigure.co.uk',
+        'email' => '',                   // empty = hello@ + the domain the site runs on (or set it in Admin → Site)
     ],
     'categories' => [
         ['id' => 'image', 'name' => 'Image tools', 'nav' => 'Image', 'icon' => 'image', 'primary' => true, 'blurb' => 'Compress, resize and convert photos without uploading them anywhere.'],

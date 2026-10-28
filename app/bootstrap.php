@@ -242,6 +242,15 @@ function tf_base_url(): string
 }
 
 // Site-relative link: tf_url('word-counter') → /word-counter, tf_url('index') → /
+// Contact email: the admin setting, then site.php, then hello@ + the domain the site runs on.
+function tf_contact_email(): string
+{
+    $set = trim(tf_settings()['contact_email']) ?: trim(tf_site()['site']['email']);
+    if ($set !== '') return $set;
+    $host = strtolower(preg_replace('/:\d+$/', '', preg_replace('/[^a-z0-9.\-:]/i', '', $_SERVER['HTTP_HOST'] ?? 'localhost')));
+    return 'hello@' . preg_replace('/^www\./', '', $host);
+}
+
 function tf_url(string $slug = 'index'): string
 {
     return TF_BASE . ($slug === 'index' ? '/' : '/' . $slug);
