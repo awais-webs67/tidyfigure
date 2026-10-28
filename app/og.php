@@ -105,8 +105,8 @@ function tf_og_serve(string $slug): void
     } elseif (tf_tool_on($slug) && ($t = tf_tools_all()[$slug] ?? null)) {
         $c = tf_category($t['category']);
         $file = tf_og_file($t['name'], $c['nav'] ?? 'Free tool', $t['short'], $colors[$t['category']] ?? '#FF5B35');
-    } elseif (in_array($slug, ['about', 'privacy'], true)) {
-        $file = tf_og_file($slug === 'about' ? "About $site" : 'Privacy policy', $site, 'Free online tools that keep your files on your device.', '#FF5B35');
+    } elseif (in_array($slug, ['about', 'privacy', 'contact', 'terms'], true)) {
+        $file = tf_og_file(['about' => "About $site", 'privacy' => 'Privacy policy', 'contact' => "Contact $site", 'terms' => 'Terms of use'][$slug], $site, 'Free online tools that keep your files on your device.', '#FF5B35');
     } else {
         http_response_code(404);
         exit;

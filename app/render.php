@@ -76,6 +76,7 @@ function tf_layout(array $o, string $body): string
         $id = $s['analytics_id'];
         $head .= "<script async src=\"https://www.googletagmanager.com/gtag/js?id=$id\"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','$id');</script>\n";
     }
+    if (preg_match('/^ca-pub-\d+$/', $s['adsense_client'])) $head .= '<meta name="google-adsense-account" content="' . $s['adsense_client'] . '">' . "\n";
     if (empty($o['noads']) && preg_match('/^ca-pub-\d+$/', $s['adsense_client'])) {
         $head .= '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' . $s['adsense_client'] . '" crossorigin="anonymous"></script>' . "\n";
     }
@@ -136,6 +137,7 @@ function tf_layout(array $o, string $body): string
 <meta name="twitter:image" content="$og">
 <meta name="theme-color" content="#FF5B35">
 <link rel="icon" href="{$g['tf_favicon']}" type="image/svg+xml">
+<link rel="icon" href="{$g['tf_icon48']}" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="{$g['tf_touch']}">
 <link rel="manifest" href="{$g['tf_manifest']}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -163,7 +165,7 @@ $body
 <footer class="foot"><div class="wrap">
 <div class="foot-brand"><a class="brand" href="{$g['tf_home']}">$logo<span>$brand</span></a><p>{$g['tf_count']} free online tools that run in your browser. Fast, private and free, with no sign-up.</p><p class="foot-social">$social</p></div>
 $footer<div class="legal"><span>© $year $name. Built by $by. Your files never leave your device.</span>
-<span><a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
+<span><a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_contact']}">Contact</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_terms']}">Terms</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
 </div></footer>
 <script src="{$g['tf_sitejs']}" defer></script>
 {$o['scripts']}
@@ -178,6 +180,7 @@ function tf_layout_globals(): void
 {
     $GLOBALS['tf_favicon'] = h(tf_asset('favicon.svg'));
     $GLOBALS['tf_touch'] = h(tf_url('icon-180.png'));
+    $GLOBALS['tf_icon48'] = h(tf_url('icon-48.png'));
     $GLOBALS['tf_manifest'] = h(tf_url('manifest.webmanifest'));
     $GLOBALS['tf_css'] = h(tf_asset('style.css'));
     $GLOBALS['tf_sitejs'] = h(tf_asset('site.js'));
@@ -185,6 +188,8 @@ function tf_layout_globals(): void
     $GLOBALS['tf_home'] = h(tf_url());
     $GLOBALS['tf_about'] = h(tf_url('about'));
     $GLOBALS['tf_privacy'] = h(tf_url('privacy'));
+    $GLOBALS['tf_contact'] = h(tf_url('contact'));
+    $GLOBALS['tf_terms'] = h(tf_url('terms'));
     $GLOBALS['tf_count'] = count(tf_tools());
 }
 
@@ -403,6 +408,7 @@ function tf_page_simple(string $slug): ?string
     $name = h($site['site']['name']);
     $email = h(tf_contact_email());
     $n = count(tf_tools());
+    $updated = date('j F Y', (int) @filemtime(__FILE__) ?: time());
     $pages = [
         'about' => ["About {$site['site']['name']}", "{$site['site']['name']} makes fast, free online tools for PDFs, images, video, text and everyday maths. Everything runs in your browser, so your files stay private.", "
 <h1>About $name</h1>
@@ -413,23 +419,72 @@ function tf_page_simple(string $slug): ?string
 <p>For medical, financial or legal decisions, please check with a qualified professional: our tools give estimates, not advice.</p>
 <h2>Contact</h2>
 <p>Found a bug or want a new tool? Email <strong>$email</strong>.</p>"],
-        'privacy' => ["Privacy Policy | {$site['site']['name']}", "How {$site['site']['name']} handles your data: files and text are processed in your browser and are never uploaded or stored on our servers.", '
+        'privacy' => ["Privacy Policy | {$site['site']['name']}", "How {$site['site']['name']} handles your data: files and text are processed in your browser and never uploaded. Cookies, advertising, analytics and your rights.", '
 <h1>Privacy policy</h1>
-<h2>Your files and text</h2>
-<p>All tools run in your browser. Files you open (images, PDFs, videos) and text you type are processed on your device. They are not uploaded to us or stored on our servers.</p>
+<p class="updated">Last updated ' . $updated . '</p>
+<p>This policy explains what information ' . $name . ' (“we”) handles when you use this website, and your choices. Contact us at <strong>' . $email . '</strong>.</p>
+<h2>Your files and text stay on your device</h2>
+<p>Our tools run in your web browser. Files you open (images, PDFs, videos, audio) and text you type are processed on your own device. They are not uploaded to us, and we cannot see them.</p>
+<h2>Information stored in your browser</h2>
+<p>Some tools remember your settings or work in your browser’s local storage so they are there next time, for example notes in the Online Notepad, your Pomodoro tasks or the details on an ID card. This stays on your device; you can delete it by clearing your browser’s site data.</p>
 <h2>Things you choose to save on our server</h2>
 <ul>
 <li><strong>Hosted QR codes</strong> (dynamic, file and verification QR codes): the link, file or details you enter are stored so the QR code works. They are deleted automatically after the period shown when you create them (30 days by default), or earlier if you delete them with your private manage link. We count scans (date and device type only).</li>
 <li><strong>YouTube Subscriber Counter:</strong> the channel name you enter is sent to our server, which asks YouTube for the public count.</li>
 </ul>
-<h2>Analytics and advertising</h2>
-<p>We may use analytics to count page visits, and we may show advertising to keep the tools free. Advertising partners such as Google may use cookies to show ads based on your visits to this and other websites. You can opt out of personalised advertising at <a href="https://adssettings.google.com" rel="nofollow">Google Ad Settings</a>.</p>
+<h2>Cookies and advertising</h2>
+<p>We show ads from Google AdSense to keep the tools free. Google and its partners use cookies and similar technologies to show ads, measure them and, with your permission where required, personalise them based on your visits to this and other websites. Learn how Google uses information from sites that use its services at <a href="https://policies.google.com/technologies/partner-sites" rel="nofollow noopener">policies.google.com/technologies/partner-sites</a>.</p>
+<p>Visitors in the UK, the European Economic Area and Switzerland are asked for consent before personalised ads or non-essential cookies are used, through a consent message from Google. You can change your choice at any time using the privacy link shown by that message, and you can opt out of personalised advertising at <a href="https://adssettings.google.com" rel="nofollow noopener">Google Ad Settings</a> or <a href="https://optout.aboutads.info" rel="nofollow noopener">aboutads.info</a>.</p>
+<h2>Analytics</h2>
+<p>We may use Google Analytics to understand how many people visit and which tools are popular. It collects information such as pages viewed, approximate location (country or city), device and browser type. We do not use it to identify you.</p>
+<h2>Services that load parts of the site</h2>
+<p>To keep the site fast, some code, fonts and AI models are loaded from other services: Google Fonts, cdnjs (Cloudflare), jsDelivr, Hugging Face (AI models for the background remover and transcription tools) and Google (face detection model). Like any website, these services receive your IP address and browser details when your browser requests a file from them. Your own files are never sent to them.</p>
+<h2>Your rights</h2>
+<p>Depending on where you live (for example under the UK GDPR, the EU GDPR or US state privacy laws), you may have the right to access, correct or delete personal information we hold about you, to object to or restrict its use, and to complain to a data protection authority (in the UK, the Information Commissioner’s Office). As we hold very little personal information, most requests concern hosted QR codes; email us and we will respond within 30 days.</p>
+<h2>Children</h2>
+<p>This website is for a general audience and is not directed at children under 13. We do not knowingly collect personal information from children.</p>
+<h2>Changes</h2>
+<p>We may update this policy. The date at the top shows when it last changed.</p>
 <h2>Contact</h2>
 <p>Questions about privacy: <strong>' . $email . '</strong>.</p>'],
+        'contact' => ["Contact Us | {$site['site']['name']}", "Contact {$site['site']['name']}: report a bug, suggest a new tool, ask about privacy or advertising. We read every message and usually reply within two working days.", '
+<h1>Contact us</h1>
+<p>We’d love to hear from you. Email us at:</p>
+<p class="big"><a href="mailto:' . $email . '">' . $email . '</a></p>
+<h2>What to write about</h2>
+<ul>
+<li><strong>Something isn’t working:</strong> tell us which tool, what you did, what you expected, and your browser and device (for example Chrome on Android). A screenshot helps.</li>
+<li><strong>A tool idea:</strong> describe the job you want to get done. Many of our tools started as suggestions.</li>
+<li><strong>Privacy questions or data requests:</strong> see our <a href="' . h(tf_url('privacy')) . '">privacy policy</a>.</li>
+<li><strong>Advertising and partnerships:</strong> include your company name and website.</li>
+</ul>
+<p>We usually reply within two working days. Please don’t send files you need to keep private: our tools process files on your own device, so we never need them.</p>'],
+        'terms' => ["Terms of Use | {$site['site']['name']}", "The terms for using {$site['site']['name']}: free tools provided as they are, results to check before relying on them, acceptable use of hosted QR codes, and our liability.", '
+<h1>Terms of use</h1>
+<p class="updated">Last updated ' . $updated . '</p>
+<p>By using ' . $name . ' you agree to these terms. If you don’t agree, please don’t use the site.</p>
+<h2>Free tools, provided as they are</h2>
+<p>Our tools are free to use for personal and commercial purposes. We work hard to make them accurate and reliable, but they are provided “as is”, without warranties of any kind. Keep copies of important files before you process them.</p>
+<h2>Check results before relying on them</h2>
+<p>Calculators and generators give estimates and drafts. Health, finance, tax, legal and other results are for information only and are not professional advice. Check important results with a qualified professional or the official source before you act on them.</p>
+<h2>Your content</h2>
+<p>Files and text you process stay on your device and remain yours. You are responsible for having the right to use the content you process and for how you use the results, for example letters, ID cards, signatures and certificates. Do not use the tools to create fake or misleading documents.</p>
+<h2>Hosted QR codes</h2>
+<p>When you save a hosted QR code, you must not link to or upload anything illegal, harmful, misleading, or that infringes other people’s rights. We may remove any hosted QR code and block abuse without notice.</p>
+<h2>Acceptable use</h2>
+<p>Don’t attempt to disrupt the site, overload it with automated requests, get around its limits, or access parts of it that aren’t meant to be public.</p>
+<h2>Our content</h2>
+<p>The site’s design, text and code belong to ' . $name . ' or its licensors. Open-source libraries we use remain under their own licences.</p>
+<h2>Links to other websites</h2>
+<p>We may link to other websites. We are not responsible for their content or practices.</p>
+<h2>Limitation of liability</h2>
+<p>To the fullest extent the law allows, we are not liable for any indirect or consequential loss, or for loss of data, profits or business, arising from your use of the site. Nothing in these terms limits liability that cannot be limited by law.</p>
+<h2>Changes</h2>
+<p>We may update these terms. The date at the top shows when they last changed. Questions: <strong>' . $email . '</strong>.</p>'],
     ];
     if (!isset($pages[$slug])) return null;
     [$title, $desc, $inner] = $pages[$slug];
-    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $slug, 'schema' => [['@context' => 'https://schema.org', '@type' => $slug === 'about' ? 'AboutPage' : 'WebPage', 'name' => $title, 'url' => tf_abs($slug)]], 'scripts' => ''], '<main class="wrap"><article class="prose page">' . $inner . '</article></main>');
+    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $slug, 'schema' => [['@context' => 'https://schema.org', '@type' => ['about' => 'AboutPage', 'contact' => 'ContactPage'][$slug] ?? 'WebPage', 'name' => $title, 'url' => tf_abs($slug)]], 'scripts' => ''], '<main class="wrap"><article class="prose page">' . $inner . '</article></main>');
 }
 
 function tf_page_404(): string
@@ -466,10 +521,21 @@ function tf_sitemap(): string
     }
     $cats = [];
     foreach (tf_site()['categories'] as $c) if (array_filter($tools, fn($t) => $t['category'] === $c['id'])) $cats[] = ['/' . $c['slug'], $newest];
-    $rows = array_merge([['/', $newest]], $cats, $rows, [['/about', (int) @filemtime(TF_ROOT . '/app/render.php')], ['/privacy', (int) @filemtime(TF_ROOT . '/app/render.php')]]);
+    $rows = array_merge([['/', $newest]], $cats, $rows, array_map(fn($p) => ['/' . $p, (int) @filemtime(TF_ROOT . '/app/render.php')], ['about', 'contact', 'privacy', 'terms']));
     $x = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
     foreach ($rows as [$p, $m]) $x .= '  <url><loc>' . h($url . $p) . '</loc><lastmod>' . date('Y-m-d', $m ?: time()) . "</lastmod></url>\n";
     return $x . "</urlset>\n";
+}
+
+// ads.txt: authorises Google AdSense (from the publisher ID in the admin panel) plus any extra lines.
+function tf_ads_txt(): string
+{
+    $s = tf_settings();
+    $lines = [];
+    if (preg_match('/^ca-(pub-\d+)$/', $s['adsense_client'], $m)) $lines[] = "google.com, {$m[1]}, DIRECT, f08c47fec0942fa0";
+    $extra = trim(str_replace("\r", '', $s['ads_txt_extra']));
+    if ($extra !== '') $lines[] = $extra;
+    return $lines ? implode("\n", $lines) . "\n" : "# No ad networks are set up yet. Add your AdSense publisher ID in Admin → Ads & analytics.\n";
 }
 
 // Lets visitors add the site to their home screen like an app (and gives browsers the app icons).

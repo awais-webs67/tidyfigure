@@ -75,6 +75,7 @@ function tf_setting_defaults(): array
         'analytics_id' => '',     // GA4 measurement ID, e.g. G-XXXXXXX
         'adsense_client' => '',   // e.g. ca-pub-1234567890
         'ad_top' => '', 'ad_article' => '', 'ad_side' => '',
+        'ads_txt_extra' => '',    // extra ads.txt lines for other ad networks (Google's line is added automatically)
         'head_code' => '', 'body_code' => '',
         'youtube_api_key' => '',
         'contact_email' => '',

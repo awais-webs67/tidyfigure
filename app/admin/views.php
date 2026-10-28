@@ -338,7 +338,8 @@ function tf_admin_ads(array $admin): array
 <h2>Analytics & AdSense</h2>
 <div class="fields"><label class="f"><span>Google Analytics 4 measurement ID</span><input type="text" name="analytics_id" value="' . h($s['analytics_id']) . '" placeholder="G-XXXXXXXXXX"></label>
 <label class="f"><span>AdSense publisher ID (turns on Auto ads)</span><input type="text" name="adsense_client" value="' . h($s['adsense_client']) . '" placeholder="ca-pub-1234567890123456"></label></div>
-<p class="a-muted">Auto ads places ads for you. To choose exact spots instead, paste ad unit code into the slots below. Remember to add an <code>ads.txt</code> file to your site folder when AdSense asks for it.</p>
+<p class="a-muted">Auto ads places ads for you. To choose exact spots instead, paste ad unit code into the slots below. The publisher ID also adds AdSense’s site-verification tag and your <a href="' . h(tf_url('ads.txt')) . '" target="_blank" rel="noopener">ads.txt</a> line automatically.</p>
+' . $ta('ads_txt_extra', 'Extra ads.txt lines (only for other ad networks)', 3) . '
 <h2>Ad slots</h2>
 <div class="a-slots"><div class="a-slot-map"><span>Tool</span><span class="hl">Slot 1</span><span>Article</span><span class="hl">Slot 2</span><span>FAQs</span></div><div>'
         . $ta('ad_top', 'Slot 1: below the tool') . $ta('ad_article', 'Slot 2: inside the article, before FAQs') . $ta('ad_side', 'Slot 3: top of the sidebar (desktop)') . '</div></div>

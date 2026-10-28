@@ -26,15 +26,21 @@ if ($path === 'robots.txt') {
     echo tf_robots();
     exit;
 }
+if ($path === 'ads.txt') {
+    header('Content-Type: text/plain; charset=utf-8');
+    header('Cache-Control: public, max-age=3600');
+    echo tf_ads_txt();
+    exit;
+}
 if ($path === 'manifest.webmanifest') {
     header('Content-Type: application/manifest+json; charset=utf-8');
     header('Cache-Control: public, max-age=86400');
     echo tf_manifest();
     exit;
 }
-if (preg_match('~^icon-(180|192|512)\.png$~', $path, $m)) {
+if (preg_match('~^icon-(48|180|192|512)\.png$~', $path, $m) || $path === 'favicon.ico') {
     require __DIR__ . '/app/og.php';
-    tf_icon_serve((int) $m[1]);
+    tf_icon_serve((int) ($m[1] ?? 48));
 }
 if ($path === 'tools.json') {
     header('Content-Type: application/json; charset=utf-8');
