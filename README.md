@@ -22,6 +22,22 @@
 
 `app/`, `tools/`, `storage/`, `config.php` and hidden files such as `.git` are blocked from the web by `.htaccess`.
 
+## Install on Hostinger with Git
+
+1. **Empty the site folder:** hPanel → Websites → Manage → Files → File Manager → open `public_html` and delete the default files (such as `default.php`). Git can only deploy into an empty folder.
+2. **PHP:** hPanel → Advanced → PHP Configuration → choose PHP 8.2 or newer. Check that `pdo_mysql`, `mbstring` and `gd` are ticked under PHP extensions (they are by default).
+3. **Connect the repository:** hPanel → Advanced → **GIT**.
+   - Public repository: Repository `https://github.com/awais-webs67/tidyfigure.git`, Branch `main`, Directory empty (= `public_html`). Click **Create**.
+   - Private repository: first copy the **SSH key** shown on the same page, add it in GitHub → repository → Settings → **Deploy keys** → Add deploy key (read access is enough), then use the address `git@github.com:awais-webs67/tidyfigure.git`.
+   - Click **Deploy** next to the repository.
+4. **Automatic updates (optional):** on the GIT page, turn on **Auto Deployment** and copy the webhook URL. In GitHub → Settings → **Webhooks** → Add webhook, paste it as the Payload URL, keep “Just the push event”, and save. Every push to `main` then updates the site.
+5. **Database:** hPanel → Databases → Management → create a database, user and password. Note them down (Hostinger adds a prefix such as `u123456789_`). The host is `localhost`.
+6. **SSL:** hPanel → Security → SSL: make sure the free SSL is active for the domain (it can take a few minutes after the domain is connected).
+7. **Install:** open `https://tidyfigure.co.uk/install/` straight away and enter the database details and your admin username and password.
+8. Sign in at `/admin/`, then submit `https://tidyfigure.co.uk/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
+
+To update by hand: hPanel → Advanced → GIT → **Deploy**. `config.php` isn’t in Git, so updates never overwrite it.
+
 ## Install on cPanel with Git
 
 1. **Subdomain:** cPanel → Domains → create `tidyfigure.yourdomain.com`. Note its **document root** (for example `/home/USER/tidyfigure.yourdomain.com`).
