@@ -7,6 +7,9 @@ header_remove('X-Powered-By'); // don't announce the PHP version
 if (($_SERVER['HTTPS'] ?? '') === 'on' || ($_SERVER['HTTPS'] ?? '') === '1' || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https') {
     header('Strict-Transport-Security: max-age=31536000');
 }
+// Browser features: camera, microphone, screen capture and fullscreen only for this site's own pages (webcam, mic,
+// scanner and recorder tools); features no tool uses are switched off, also for anything embedded such as ads.
+header('Permissions-Policy: camera=(self), microphone=(self), display-capture=(self), fullscreen=(self), geolocation=(), payment=(), usb=(), serial=(), hid=()');
 define('TF_BASE', rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/'));
 require __DIR__ . '/app/bootstrap.php';
 require __DIR__ . '/app/render.php';
