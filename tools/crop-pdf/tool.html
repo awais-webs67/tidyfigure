@@ -1,0 +1,46 @@
+<style>
+  .cp-stage { position: relative; margin: 0 auto; max-width: 100%; touch-action: none; user-select: none; -webkit-user-select: none; }
+  .cp-stage canvas { display: block; width: 100%; height: auto; box-shadow: 0 2px 12px rgba(0, 0, 0, .18); background: #fff; }
+  .cp-shade { position: absolute; inset: 0; pointer-events: none; }
+  .cp-box { position: absolute; border: 2px solid var(--accent); box-shadow: 0 0 0 9999px rgba(15, 20, 25, .45); cursor: move; }
+  .cp-box i { position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: #fff; border: 2px solid var(--accent); }
+  .cp-box i[data-h="nw"] { left: 0; top: 0; cursor: nwse-resize; } .cp-box i[data-h="ne"] { left: 100%; top: 0; cursor: nesw-resize; }
+  .cp-box i[data-h="sw"] { left: 0; top: 100%; cursor: nesw-resize; } .cp-box i[data-h="se"] { left: 100%; top: 100%; cursor: nwse-resize; }
+  .cp-box i[data-h="n"] { left: 50%; top: 0; cursor: ns-resize; } .cp-box i[data-h="s"] { left: 50%; top: 100%; cursor: ns-resize; }
+  .cp-box i[data-h="w"] { left: 0; top: 50%; cursor: ew-resize; } .cp-box i[data-h="e"] { left: 100%; top: 50%; cursor: ew-resize; }
+  .cp-wrap { overflow: hidden; padding: 12px; border-radius: 10px; background: var(--surface-2); }
+  .cp-nav { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+  .cp-nav button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-size: 18px; }
+  .cp-nav button:disabled { opacity: .35; cursor: default; }
+  .cp-m { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF to crop">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">Drag a box over the page to keep</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <div class="fields cp-m">
+      <label class="f"><span>Top (mm)</span><input type="number" id="m-t" min="0" step="1" value="0" inputmode="decimal"></label>
+      <label class="f"><span>Right (mm)</span><input type="number" id="m-r" min="0" step="1" value="0" inputmode="decimal"></label>
+      <label class="f"><span>Bottom (mm)</span><input type="number" id="m-b" min="0" step="1" value="0" inputmode="decimal"></label>
+      <label class="f"><span>Left (mm)</span><input type="number" id="m-l" min="0" step="1" value="0" inputmode="decimal"></label>
+    </div>
+    <div class="btns"><button type="button" class="btn ghost" id="auto" disabled>{{icon:square-dashed}}Remove white margins</button><button type="button" class="btn ghost" id="reset" disabled>Reset</button></div>
+    <div class="seg" role="radiogroup" aria-label="Pages to crop">
+      <label><input type="radio" name="scope" value="all" checked><span>All pages</span></label>
+      <label><input type="radio" name="scope" value="one"><span>This page only</span></label>
+      <label><input type="radio" name="scope" value="each"><span>Each page to its content</span></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:crop}}Crop PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Crop</p>
+    <p class="empty">Choose a PDF to see its first page.</p>
+  </div>
+</div>

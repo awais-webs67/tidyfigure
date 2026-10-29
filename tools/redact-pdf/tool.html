@@ -1,0 +1,40 @@
+<style>
+  .rd-stage { position: relative; margin: 0 auto; touch-action: none; user-select: none; -webkit-user-select: none; cursor: crosshair; }
+  .rd-stage canvas { display: block; width: 100%; height: auto; box-shadow: 0 2px 12px rgba(0, 0, 0, .18); background: #fff; }
+  .rd-box { position: absolute; background: rgba(0, 0, 0, .78); outline: 1px solid #000; }
+  .rd-box.new { background: rgba(220, 38, 38, .25); outline: 2px dashed #dc2626; }
+  .rd-box button { position: absolute; right: -10px; top: -10px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #fff; background: #dc2626; color: #fff; font: 700 13px/1 var(--f-body); cursor: pointer; padding: 0; display: grid; place-items: center; }
+  .rd-wrap { padding: 12px; border-radius: 10px; background: var(--surface-2); }
+  .rd-nav { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+  .rd-nav button { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; font-size: 18px; }
+  .rd-nav button:disabled { opacity: .35; cursor: default; }
+  .rd-quick { display: flex; flex-wrap: wrap; gap: 8px; }
+  .rd-quick button { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: 600 13px/1 var(--f-body); cursor: pointer; }
+  .rd-quick button:hover { border-color: var(--accent); }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF to redact">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">Then drag boxes over anything private</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <label class="f"><span>Find text to black out (every page)</span><input type="text" id="q" placeholder="e.g. a name or account number" autocomplete="off"></label>
+    <div class="btns"><button type="button" class="btn ghost" id="find" disabled>{{icon:search}}Find &amp; mark</button><button type="button" class="btn ghost" id="clear" disabled>Clear all boxes</button></div>
+    <div class="rd-quick" aria-label="Quick finds">
+      <button type="button" data-q="email" disabled>Email addresses</button>
+      <button type="button" data-q="phone" disabled>Phone numbers</button>
+      <button type="button" data-q="number" disabled>Long numbers (card, account, ID)</button>
+    </div>
+    <p class="note" id="found"></p>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:square-dashed}}Redact PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Redact</p>
+    <p class="empty">Choose a PDF to see its pages.</p>
+  </div>
+</div>
