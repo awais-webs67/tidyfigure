@@ -2,6 +2,7 @@
 // Mortgage Affordability Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Mortgage Affordability Calculator',
+  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'money',
   'order' => 14,
   'icon' => 'house',

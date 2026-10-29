@@ -2,6 +2,7 @@
 // Tile Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Tile Calculator',
+  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'home',
   'order' => 2,
   'icon' => 'grid-3x3',

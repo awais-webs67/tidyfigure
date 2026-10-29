@@ -2,6 +2,7 @@
 // Employee ID Card Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Employee ID Card Maker',
+  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'money',
   'order' => 40,
   'files' => true,

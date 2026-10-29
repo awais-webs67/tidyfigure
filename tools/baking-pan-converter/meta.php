@@ -2,6 +2,7 @@
 // Baking Pan Size Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Baking Pan Size Converter',
+  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'life',
   'order' => 7,
   'icon' => 'cake-slice',

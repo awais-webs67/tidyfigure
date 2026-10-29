@@ -2,6 +2,7 @@
 // YouTube Subscriber Counter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'YouTube Subscriber Counter',
+  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'social',
   'order' => 1,
   'icon' => 'youtube',

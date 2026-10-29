@@ -2,6 +2,7 @@
 // Compress PDF to 500 KB: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Compress PDF to 500 KB',
+  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'pdf',
   'order' => 33,
   'files' => true,

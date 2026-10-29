@@ -180,7 +180,7 @@ function tf_tools_all(): array
     static $all = null;
     if ($all !== null) return $all;
     $metas = glob(TF_ROOT . '/tools/*/meta.php') ?: [];
-    $sig = count($metas) . '-' . ($metas ? max(array_map('filemtime', $metas)) : 0);
+    $sig = 'v2-' . count($metas) . '-' . ($metas ? max(array_map('filemtime', $metas)) : 0); // bump v2 when the fields kept below change
     $file = TF_CACHE . '/tools-index.php';
     $cached = is_file($file) ? (include $file) : null;
     if (is_array($cached) && ($cached['sig'] ?? '') === $sig) return $all = $cached['tools'];
@@ -190,7 +190,7 @@ function tf_tools_all(): array
     foreach ($metas as $f) {
         $m = include $f;
         $slug = basename(dirname($f));
-        $all[$slug] = ['slug' => $slug] + array_intersect_key($m, array_flip(['name', 'category', 'order', 'icon', 'popular', 'keywords', 'aka', 'short', 'title', 'description', 'related']));
+        $all[$slug] = ['slug' => $slug] + array_intersect_key($m, array_flip(['name', 'updated', 'category', 'order', 'icon', 'popular', 'keywords', 'aka', 'short', 'title', 'description', 'related']));
     }
     uasort($all, fn($a, $b) => [$order[$a['category']] ?? 99, $a['order'] ?? 99, $a['slug']] <=> [$order[$b['category']] ?? 99, $b['order'] ?? 99, $b['slug']]);
     if (is_dir(TF_CACHE) && is_writable(TF_CACHE)) {
@@ -282,6 +282,16 @@ function tf_url(string $slug = 'index'): string
 {
     return TF_BASE . ($slug === 'index' ? '/' : '/' . $slug);
 }
+
+// When a tool really last changed: the 'updated' date in its meta.php. (File times are no use: every deploy resets them.)
+function tf_tool_date(array $t): int
+{
+    return strtotime((string) ($t['updated'] ?? '')) ?: strtotime(TF_SITE_UPDATED);
+}
+
+// Dates the About, Contact, Privacy and Terms texts last changed. Change a date when you change that page's text.
+const TF_PAGE_DATES = ['about' => '2026-10-29', 'contact' => '2026-10-28', 'privacy' => '2026-10-28', 'terms' => '2026-10-28'];
+const TF_SITE_UPDATED = '2026-10-29';
 
 function tf_asset(string $file): string
 {

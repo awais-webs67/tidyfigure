@@ -2,6 +2,7 @@
 // Barcode Reader: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Barcode Reader',
+  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'qr',
   'order' => 6,
   'icon' => 'scan-barcode',

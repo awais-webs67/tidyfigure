@@ -1,6 +1,12 @@
 <?php
 // Front controller: every page request comes here (see .htaccess) and is rendered from the tools folder.
 declare(strict_types=1);
+header_remove('X-Powered-By'); // don't announce the PHP version
+// Browsers that have seen the site over HTTPS use only HTTPS for it for a year (HSTS). Sent only on HTTPS pages,
+// so a site still without SSL is never locked out.
+if (($_SERVER['HTTPS'] ?? '') === 'on' || ($_SERVER['HTTPS'] ?? '') === '1' || strtolower($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https') {
+    header('Strict-Transport-Security: max-age=31536000');
+}
 define('TF_BASE', rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/'));
 require __DIR__ . '/app/bootstrap.php';
 require __DIR__ . '/app/render.php';
@@ -25,6 +31,22 @@ if ($path === 'robots.txt') {
     header('Content-Type: text/plain; charset=utf-8');
     echo tf_robots();
     exit;
+}
+if ($path === 'llms.txt') {
+    // A plain list of the site's tools for AI assistants and AI search (llmstxt.org format).
+    header('Content-Type: text/plain; charset=utf-8');
+    header('Cache-Control: public, max-age=3600');
+    echo tf_llms_txt();
+    exit;
+}
+if ($path === '.well-known/security.txt') {
+    // Where to report a security problem (RFC 9116). Only when a real contact email is set in the admin panel.
+    $mail = trim(tf_settings()['contact_email']) ?: trim(tf_site()['site']['email'] ?? '');
+    if ($mail !== '') {
+        header('Content-Type: text/plain; charset=utf-8');
+        echo "Contact: mailto:$mail\nExpires: " . gmdate('Y-m-d\TH:i:s\Z', strtotime('+1 year')) . "\nPreferred-Languages: en\nCanonical: " . tf_base_url() . "/.well-known/security.txt\n";
+        exit;
+    }
 }
 if ($path === 'ads.txt') {
     header('Content-Type: text/plain; charset=utf-8');
