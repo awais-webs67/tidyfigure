@@ -241,7 +241,33 @@ function tf_icon(string $name, string $cls = 'i'): string
     static $cache = [];
     $file = TF_ROOT . '/app/icons/' . preg_replace('/[^a-z0-9-]/', '', $name) . '.svg';
     $cache[$name] ??= is_file($file) ? trim((string) file_get_contents($file)) : '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>';
+    // Sprite mode (pages with hundreds of tool cards): each icon is drawn once in a hidden <symbol> and every copy
+    // points at it with <use>, which keeps the homepage HTML far smaller. See tf_sprite_start() / tf_sprite_html().
+    if (isset($GLOBALS['tf_sprite'])) {
+        $id = 'i-' . preg_replace('/[^a-z0-9-]/', '', $name);
+        if (!isset($GLOBALS['tf_sprite'][$id])) {
+            // <svg …attributes…>shapes</svg> → <symbol id … viewBox, fill, stroke…>shapes</symbol> (comments, class, size dropped).
+            preg_match('~<svg\b([^>]*)>(.*)</svg>~s', $cache[$name], $p);
+            $attrs = preg_replace('~\s(xmlns|class|width|height)="[^"]*"~', '', $p[1] ?? '');
+            $GLOBALS['tf_sprite'][$id] = '<symbol id="' . $id . '"' . preg_replace('~\s+~', ' ', $attrs) . '>' . trim(preg_replace('~<!--.*?-->~s', '', $p[2] ?? '')) . '</symbol>';
+        }
+        return '<svg class="' . h($cls) . '" aria-hidden="true" focusable="false"><use href="#' . $id . '"/></svg>';
+    }
     return preg_replace('/<svg/', '<svg class="' . h($cls) . '" aria-hidden="true" focusable="false"', $cache[$name], 1);
+}
+
+function tf_sprite_start(): void
+{
+    $GLOBALS['tf_sprite'] = [];
+}
+
+// The hidden <svg> holding every icon used so far in sprite mode; ends sprite mode.
+function tf_sprite_html(): string
+{
+    if (!isset($GLOBALS['tf_sprite'])) return '';
+    $out = $GLOBALS['tf_sprite'] ? '<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">' . implode('', $GLOBALS['tf_sprite']) . '</svg>' : '';
+    unset($GLOBALS['tf_sprite']);
+    return $out;
 }
 
 function tf_base_url(): string

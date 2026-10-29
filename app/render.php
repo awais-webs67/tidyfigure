@@ -137,6 +137,7 @@ function tf_layout(array $o, string $body): string
     $install = ($s['app_install'] ?? '1') === '1' ? '1' : '0';
     $g = $GLOBALS;
     $iconSearch = tf_icon('search');
+    $sprite = tf_sprite_html(); // after the layout's own icons, so they are in it too
 
     return <<<HTML
 <!doctype html>
@@ -171,7 +172,7 @@ $schema
 $head
 </head>
 <body>
-<a class="skip" href="#main">Skip to content</a>
+$sprite<a class="skip" href="#main">Skip to content</a>
 <header class="site" data-nosnippet><div class="wrap">
 <a class="brand" href="{$g['tf_home']}" aria-label="$name home">$logo<span>$brand</span></a>
 <nav class="main-nav" id="main-nav" aria-label="Tool categories">{$nav}<a class="cta" href="{$g['tf_home']}#categories">All tools</a><button type="button" class="nav-install" data-install hidden>Install app</button></nav>
@@ -365,6 +366,7 @@ function tf_page_tool(array $t): string
 
 function tf_page_category(array $c): string
 {
+    tf_sprite_start();
     $tools = array_filter(tf_tools(), fn($t) => $t['category'] === $c['id']);
     $i = 0;
     $schema = [
@@ -392,6 +394,7 @@ function tf_page_category(array $c): string
 
 function tf_page_home(): string
 {
+    tf_sprite_start();
     $site = tf_site();
     $tools = tf_tools();
     $n = count($tools);
