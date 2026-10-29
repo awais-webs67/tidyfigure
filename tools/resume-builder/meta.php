@@ -9,6 +9,7 @@ return [
   'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js', 'vendor/fontkit-1.1.1.min.js'],
   'appCategory' => 'BusinessApplication',
   'keywords' => 'resume builder free cv maker online resume template pdf ats friendly resume no sign up curriculum vitae download free',
+  'aka' => ['CV maker', 'resume maker', 'CV builder', 'free resume template'], // other names people search for
   'short' => 'Make a professional, ATS-friendly resume and download it as a PDF. Free, no sign-up.',
   'title' => 'Free Resume Builder: ATS-Friendly CV Templates, PDF Download',
   'description' => 'Build a professional resume in minutes with three ATS-friendly templates and a live preview. Download a real text PDF, free, with no sign-up and no watermark.',

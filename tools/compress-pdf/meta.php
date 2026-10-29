@@ -12,6 +12,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
   ],
   'keywords' => 'reduce pdf size shrink pdf make pdf smaller pdf under 1mb email',
+  'aka' => ['reduce PDF size', 'PDF compressor', 'shrink PDF', 'make PDF smaller'], // other names people search for
   'short' => 'Shrink scanned and image-heavy PDFs to fit email and upload limits.',
   'title' => 'Compress PDF: Reduce PDF File Size Online, Free',
   'description' => <<<'EOT_TF'

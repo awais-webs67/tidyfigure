@@ -7,6 +7,7 @@ return [
   'icon' => 'cake',
   'popular' => true,
   'keywords' => 'how old am i date of birth age in days months next birthday',
+  'aka' => ['date of birth calculator', 'how old am I', 'age finder'], // other names people search for
   'short' => 'Exact age in years, months and days, plus your next birthday.',
   'title' => 'Age Calculator: How Old Am I in Years, Months & Days?',
   'description' => <<<'EOT_TF'

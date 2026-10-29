@@ -8,6 +8,7 @@ return [
   'popular' => true,
   'files' => true,
   'keywords' => 'compress jpg png webp reduce photo size kb',
+  'aka' => ['compress image', 'reduce image size', 'photo compressor', 'image size reducer', 'compress JPEG'], // other names people search for
   'short' => 'Shrink JPG, PNG and WebP photos by up to 80% without visible quality loss.',
   'title' => 'Image Compressor: Reduce JPG, PNG & WebP File Size Free',
   'description' => <<<'EOT_TF'

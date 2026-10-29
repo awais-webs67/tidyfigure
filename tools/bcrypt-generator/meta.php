@@ -8,6 +8,7 @@ return [
   'libs' => ['vendor/bcryptjs-2.4.3.min.js'],
   'icon' => 'lock-keyhole',
   'keywords' => 'bcrypt generator bcrypt hash generator bcrypt online bcrypt checker verify bcrypt hash password hash generator 2y 2b cost rounds',
+  'aka' => ['bcrypt hash generator', 'bcrypt online', 'bcrypt checker', 'password hasher'], // other names people search for
   'short' => 'Hash a password with bcrypt, or check a password against a hash.',
   'title' => 'Bcrypt Generator and Checker: Hash Passwords Online',
   'description' => <<<'EOT_TF'

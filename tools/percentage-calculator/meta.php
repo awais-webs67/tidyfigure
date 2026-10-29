@@ -7,6 +7,7 @@ return [
   'icon' => 'percent',
   'popular' => true,
   'keywords' => 'percent of a number percentage change increase decrease what percent',
+  'aka' => ['percent calculator', 'calculate percentage', 'percentage finder'], // other names people search for
   'short' => 'X% of Y, what percent, percentage change, increase/decrease and reverse %.',
   'title' => 'Percentage Calculator: % of a Number, % Change & More',
   'description' => <<<'EOT_TF'

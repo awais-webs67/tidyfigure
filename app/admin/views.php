@@ -197,6 +197,7 @@ function tf_admin_tools(array $admin): array
     $copts = '<option value="">All categories</option>' . implode('', array_map(fn($c) => '<option value="' . h($c['id']) . '">' . h($c['nav']) . '</option>', $cats));
     $tr = '';
     $host = parse_url(tf_base_url(), PHP_URL_HOST);
+    $limits = json_decode(tf_settings()['tool_limits'] ?: '{}', true) ?: [];
     foreach ($rows as $slug => $r) {
         $t = $r['t'];
         $k = h($slug);
@@ -204,6 +205,7 @@ function tf_admin_tools(array $admin): array
         $cat = tf_category($t['category']);
         $badges = ($o['title'] ?? '') !== '' || ($o['description'] ?? '') !== '' ? '<span class="a-pill">Custom SEO</span>' : '';
         $badges .= $r['noindex'] ? '<span class="a-pill warn">Noindex</span>' : '';
+        $badges .= tf_tool_limit($slug) > 0 ? '<span class="a-pill">' . tf_tool_limit($slug) . ' a day</span>' : '';
         $badges .= $r['issues'] ? '<span class="a-pill warn" title="' . h(implode(' · ', $r['issues'])) . '">' . count($r['issues']) . ' SEO warning' . (count($r['issues']) > 1 ? 's' : '') . '</span>' : '';
         $tr .= '<tr data-row data-name="' . h(mb_strtolower($t['name'] . ' ' . $slug)) . '" data-cat="' . h($t['category']) . '" data-status="' . ($r['on'] ? 'on' : 'off') . '" class="' . ($r['on'] ? '' : 'is-off') . '">
 <td><label class="sw"><input type="checkbox" data-toggle-tool="' . $k . '"' . ($r['on'] ? ' checked' : '') . ' aria-label="Show ' . h($t['name']) . '"><i></i></label></td>
@@ -215,7 +217,8 @@ function tf_admin_tools(array $admin): array
 <div><input type="hidden" name="t[' . $k . '][on]" value="1"' . ($r['on'] ? '' : ' disabled') . '>
 <label class="f"><span>SEO title</span><input type="text" name="t[' . $k . '][title]" value="' . h($o['title'] ?? '') . '" placeholder="' . h($t['title']) . '" data-max="65" data-min="30"><span class="count"></span></label>
 <label class="f"><span>Meta description</span><textarea name="t[' . $k . '][description]" placeholder="' . h($t['description']) . '" data-max="160" data-min="110">' . h($o['description'] ?? '') . '</textarea><span class="count"></span></label>
-<label class="check"><input type="checkbox" name="t[' . $k . '][noindex]" value="1"' . ($r['noindex'] ? ' checked' : '') . '>Hide from search engines (noindex)</label></div>
+<label class="check"><input type="checkbox" name="t[' . $k . '][noindex]" value="1"' . ($r['noindex'] ? ' checked' : '') . '>Hide from search engines (noindex)</label>
+<label class="f"><span>Free downloads per day for each visitor (empty = default, 0 = unlimited)</span><input type="number" min="0" max="999" name="t[' . $k . '][limit]" value="' . h(isset($limits[$slug]) ? (string) $limits[$slug] : '') . '" placeholder="' . h(tf_settings()['limit_default'] ?: 'unlimited') . '" style="max-width:160px"></label></div>
 <div class="serp" aria-label="Google preview"><small>' . h($host) . ' › ' . $k . '</small><b data-serp-title></b><p data-serp-desc></p></div>
 </div></td></tr>';
     }
@@ -343,6 +346,13 @@ function tf_admin_ads(array $admin): array
 <h2>Ad slots</h2>
 <div class="a-slots"><div class="a-slot-map"><span>Tool</span><span class="hl">Slot 1</span><span>Article</span><span class="hl">Slot 2</span><span>FAQs</span></div><div>'
         . $ta('ad_top', 'Slot 1: below the tool') . $ta('ad_article', 'Slot 2: inside the article, before FAQs') . $ta('ad_side', 'Slot 3: top of the sidebar (desktop)') . '</div></div>
+<h2>Usage limits</h2>
+<p class="a-muted">Limit how many files each visitor can download from a tool per day (calculators and other tools without downloads aren’t affected). Set a number for all tools here, or for one tool under Tools → Edit SEO. Counts are kept in the visitor’s browser, so this is a soft limit.</p>
+<div class="fields"><label class="f"><span>Free downloads per tool per day (empty = unlimited)</span><input type="number" min="0" max="999" name="limit_default" value="' . h($s['limit_default']) . '" placeholder="unlimited"></label>
+<label class="f"><span>When the limit is reached</span><select name="limit_mode"><option value="wait"' . ($s['limit_mode'] !== 'reward' ? ' selected' : '') . '>Ask them to come back tomorrow</option><option value="reward"' . ($s['limit_mode'] === 'reward' ? ' selected' : '') . '>Offer a rewarded ad to unlock more</option></select></label>
+<label class="f"><span>Google Ad Manager rewarded ad unit</span><input type="text" name="reward_unit" value="' . h($s['reward_unit']) . '" placeholder="/1234567/rewarded_downloads"></label>
+<label class="f"><span>Extra downloads per rewarded ad</span><input type="number" min="1" max="50" name="reward_uses" value="' . h($s['reward_uses']) . '"></label></div>
+<p class="a-muted"><b>Important:</b> AdSense doesn’t allow rewarding people for viewing ordinary ads. Only use “rewarded ad” with a <b>rewarded ad unit from Google Ad Manager</b> (free to set up, linked to your AdSense account). If no unit is set, visitors are asked to come back tomorrow instead.</p>
 <h2>AI tool speed</h2>
 <label class="check"><input type="checkbox" name="ai_isolate" value="1"' . ($s['ai_isolate'] === '1' ? ' checked' : '') . '>Make the AI tools 2–4× faster (Background Remover, Passport Photo Maker, Audio to Text)</label>
 <p class="a-muted">This lets the AI use every processor core on the visitor’s device. Browsers only allow that on pages that don’t load ads or other sites’ widgets, so <b>ads don’t show on these 3 pages</b> while it’s on (all other pages are unaffected). Untick it to show ads there instead; the tools still work, just more slowly.</p>

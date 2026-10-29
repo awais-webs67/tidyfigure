@@ -7,6 +7,7 @@ return [
   'icon' => 'key-round',
   'popular' => true,
   'keywords' => 'strong password random secure generator create password',
+  'aka' => ['strong password generator', 'random password generator', 'password maker'], // other names people search for
   'short' => 'Create strong, random passwords with a strength meter. Never sent anywhere.',
   'title' => 'Password Generator: Create Strong, Random Passwords',
   'description' => <<<'EOT_TF'

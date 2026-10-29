@@ -10,6 +10,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
   ],
   'keywords' => 'qr code maker link wifi qr code free no expiry download png svg',
+  'aka' => ['QR code maker', 'QR generator', 'create QR code', 'free QR code'], // other names people search for
   'short' => 'Free QR codes for links, Wi-Fi, WhatsApp, contacts and more, with your logo.',
   'title' => 'QR Code Generator: Free QR Codes That Never Expire',
   'description' => <<<'EOT_TF'

@@ -76,6 +76,12 @@ function tf_setting_defaults(): array
         'adsense_client' => '',   // e.g. ca-pub-1234567890
         'ad_top' => '', 'ad_article' => '', 'ad_side' => '',
         'ads_txt_extra' => '',    // extra ads.txt lines for other ad networks (Google's line is added automatically)
+        // Usage limits: free downloads per tool per day ('' or 0 = unlimited)
+        'tool_limits' => '{}',    // JSON {slug: number}
+        'limit_default' => '',    // applies to tools without their own number
+        'limit_mode' => 'wait',   // 'wait' = until tomorrow, 'reward' = a Google Ad Manager rewarded ad unlocks more
+        'reward_unit' => '',      // Ad Manager rewarded ad unit path, e.g. /1234567/rewarded_downloads
+        'reward_uses' => '3',     // extra downloads per rewarded ad
         'head_code' => '', 'body_code' => '',
         'youtube_api_key' => '',
         'contact_email' => '',
@@ -181,7 +187,7 @@ function tf_tools_all(): array
     foreach ($metas as $f) {
         $m = include $f;
         $slug = basename(dirname($f));
-        $all[$slug] = ['slug' => $slug] + array_intersect_key($m, array_flip(['name', 'category', 'order', 'icon', 'popular', 'keywords', 'short', 'title', 'description', 'related']));
+        $all[$slug] = ['slug' => $slug] + array_intersect_key($m, array_flip(['name', 'category', 'order', 'icon', 'popular', 'keywords', 'aka', 'short', 'title', 'description', 'related']));
     }
     uasort($all, fn($a, $b) => [$order[$a['category']] ?? 99, $a['order'] ?? 99, $a['slug']] <=> [$order[$b['category']] ?? 99, $b['order'] ?? 99, $b['slug']]);
     if (is_dir(TF_CACHE) && is_writable(TF_CACHE)) {
@@ -243,6 +249,15 @@ function tf_base_url(): string
 }
 
 // Site-relative link: tf_url('word-counter') → /word-counter, tf_url('index') → /
+// Free downloads per day for a tool (0 = unlimited): its own number, else the default.
+function tf_tool_limit(string $slug): int
+{
+    $s = tf_settings();
+    $own = json_decode($s['tool_limits'] ?: '{}', true);
+    if (is_array($own) && isset($own[$slug]) && $own[$slug] !== '') return max(0, (int) $own[$slug]);
+    return max(0, (int) $s['limit_default']);
+}
+
 // Contact email: the admin setting, then site.php, then hello@ + the domain the site runs on.
 function tf_contact_email(): string
 {

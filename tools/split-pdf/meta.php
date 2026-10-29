@@ -12,6 +12,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
   ],
   'keywords' => 'extract pages separate pdf remove pages cut pdf',
+  'aka' => ['PDF splitter', 'extract pages from PDF', 'separate PDF pages'], // other names people search for
   'short' => 'Extract pages from a PDF, or split it into single pages or equal parts.',
   'title' => 'Split PDF: Extract Pages or Split a PDF Into Files, Free',
   'description' => <<<'EOT_TF'

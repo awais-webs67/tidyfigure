@@ -244,6 +244,7 @@ function tf_page_tool(array $t): string
     $schema = [
         [
             '@context' => 'https://schema.org', '@type' => 'WebApplication', 'name' => $t['name'], 'url' => tf_abs($t['slug']),
+        ] + (!empty($t['aka']) ? ['alternateName' => array_values($t['aka'])] : []) + [
             'description' => $desc, 'applicationCategory' => $t['appCategory'] ?? 'UtilitiesApplication', 'operatingSystem' => 'Any (runs in a web browser)',
             'browserRequirements' => 'Requires JavaScript', 'isAccessibleForFree' => true, 'offers' => ['@type' => 'Offer', 'price' => '0', 'priceCurrency' => 'USD'],
             'dateModified' => date('Y-m-d', $updated), 'image' => tf_base_url() . '/og/' . $t['slug'] . '.png',
@@ -259,7 +260,8 @@ function tf_page_tool(array $t): string
     $body = '<main class="wrap tool-page" data-cat="' . h($t['category']) . '">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="' . h(tf_url()) . '">Home</a><span aria-hidden="true">/</span><a href="' . h(tf_url($cat['slug'])) . '">' . h($cat['name']) . '</a><span aria-hidden="true">/</span><span>' . h($t['name']) . '</span></nav>
 <div class="tool-head">' . tf_tile($t, 'lg') . '<div><h1>' . h($t['name']) . '</h1><ul class="trust"><li>' . $chk . '100% free</li><li>' . $chk . 'No sign-up</li><li>' . $chk . ($files ? 'Files stay on your device' : 'Runs in your browser') . '</li></ul></div></div>
-<p class="answer">' . $t['answer'] . '</p>
+<p class="answer">' . $t['answer'] . '</p>' . (!empty($t['aka']) ? '
+<p class="aka">Also known as: ' . implode(' · ', array_map('h', $t['aka'])) . '</p>' : '') . '
 <section class="tool" aria-label="' . h($t['name']) . '">
 ' . $t['html'] . '
 </section>
@@ -283,6 +285,12 @@ function tf_page_tool(array $t): string
     $scripts = '';
     // Libraries: full URLs load from a CDN; 'vendor/…' paths are copies hosted in assets/vendor.
     foreach ($t['libs'] ?? [] as $src) $scripts .= '<script src="' . h(preg_match('~^https?://~', $src) ? $src : tf_asset($src)) . '"></script>' . "\n";
+    $limit = tf_tool_limit($t['slug']);
+    if ($limit > 0) {
+        $st = tf_settings();
+        $cfg = ['tool' => $t['slug'], 'n' => $limit, 'reward' => $st['limit_mode'] === 'reward' && preg_match('~^/\d+(/[\w.\-]+)+$~', $st['reward_unit']) ? $st['reward_unit'] : '', 'extra' => max(1, (int) $st['reward_uses'])];
+        $scripts .= '<script>window.TF_LIMIT=' . json_encode($cfg, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) . ';</script>' . "\n";
+    }
     $scripts .= '<script src="' . h(tf_asset('app.js')) . '"></script>' . "\n";
     foreach ($t['scripts'] ?? [] as $f) $scripts .= '<script src="' . h(tf_asset($f)) . '"></script>' . "\n";
     $scripts .= "<script>\n(function () {\n" . $t['js'] . "\n})();\n</script>";
@@ -332,8 +340,9 @@ function tf_page_home(): string
     ];
     $i = 0;
     $schema = [
-        ['@context' => 'https://schema.org', '@type' => 'WebSite', 'name' => $name, 'url' => tf_abs(), 'description' => $desc],
-        ['@context' => 'https://schema.org', '@type' => 'Organization', 'name' => $name, 'url' => tf_abs(), 'logo' => tf_base_url() . '/assets/favicon.svg'] + (tf_social_profiles() ? ['sameAs' => tf_social_profiles()] : []),
+        // Site name for Google: the brand, plus the spaced spelling people may type.
+        ['@context' => 'https://schema.org', '@type' => 'WebSite', '@id' => tf_abs() . '#website', 'name' => $name, 'alternateName' => [preg_replace('/(?<=[a-z])(?=[A-Z])/', ' ', $name), "$name Tools"], 'url' => tf_abs(), 'description' => $desc, 'inLanguage' => 'en', 'publisher' => ['@id' => tf_abs() . '#org']],
+        ['@context' => 'https://schema.org', '@type' => 'Organization', '@id' => tf_abs() . '#org', 'name' => $name, 'url' => tf_abs(), 'logo' => ['@type' => 'ImageObject', 'url' => tf_base_url() . '/icon-512.png', 'width' => 512, 'height' => 512], 'email' => tf_contact_email()] + (tf_social_profiles() ? ['sameAs' => tf_social_profiles()] : []),
         ['@context' => 'https://schema.org', '@type' => 'ItemList', 'name' => "$name tools", 'itemListElement' => array_values(array_map(function ($t) use (&$i) { return ['@type' => 'ListItem', 'position' => ++$i, 'url' => tf_abs($t['slug']), 'name' => $t['name']]; }, $tools))],
         tf_faq_schema($faqs),
     ];
@@ -501,7 +510,7 @@ function tf_tools_json(): string
     $out = [];
     foreach (tf_tools() as $t) {
         $cat = tf_category($t['category']);
-        $out[] = ['u' => $t['slug'], 'n' => $t['name'], 's' => $t['short'], 'k' => $t['keywords'] ?? '', 'c' => $t['category'], 'p' => !empty($t['popular']) ? 1 : 0, 'i' => tf_icon($t['icon'] ?? 'circle'), 'g' => $cat['nav'] ?? ''];
+        $out[] = ['u' => $t['slug'], 'n' => $t['name'], 's' => $t['short'], 'k' => trim(($t['keywords'] ?? '') . ' ' . implode(' ', $t['aka'] ?? [])), 'c' => $t['category'], 'p' => !empty($t['popular']) ? 1 : 0, 'i' => tf_icon($t['icon'] ?? 'circle'), 'g' => $cat['nav'] ?? ''];
     }
     return json_encode($out, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }

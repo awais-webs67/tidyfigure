@@ -11,6 +11,7 @@ return [
   'scripts' => ['ai.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'remove background from image free remove bg ai background remover transparent png product photo white background hd',
+  'aka' => ['background remover', 'remove bg', 'background eraser', 'photo background remover', 'cut out image'], // other names people search for
   'short' => 'AI removes the background from any photo in seconds. Full HD, free, no upload.',
   'title' => 'Remove Background from Image Free: AI Background Remover, HD',
   'description' => 'Remove the background from photos with AI, in full resolution and free. Get a transparent PNG or a white, colour, blurred or custom background. No upload.',

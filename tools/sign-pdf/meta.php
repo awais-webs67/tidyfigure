@@ -12,6 +12,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
   ],
   'keywords' => 'sign pdf online e-signature add signature to pdf draw signature',
+  'aka' => ['e-sign PDF', 'add signature to PDF', 'PDF signer', 'sign document online'], // other names people search for
   'short' => 'Draw or type your signature and place it anywhere on a PDF.',
   'title' => 'Sign PDF Online: Draw or Type a Signature, Free',
   'description' => <<<'EOT_TF'

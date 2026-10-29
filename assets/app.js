@@ -115,9 +115,72 @@ document.addEventListener('change', e => {
   if (i instanceof HTMLInputElement && i.type === 'file' && !i.dataset.drop && i.files.length) toast(addedMessage([...i.files]));
 }, true);
 
+// ---------- Daily download limits (set per tool in the admin panel) ----------
+// A "use" is one download; several downloads within a few seconds (a "download all") count once.
+const Limit = (() => {
+  const cfg = window.TF_LIMIT, key = cfg && `tf-use-${cfg.tool}`, today = () => new Date().toISOString().slice(0, 10);
+  let lastUse = 0;
+  const read = () => { try { const s = JSON.parse(localStorage.getItem(key)); if (s && s.d === today()) return s; } catch (e) { /* storage blocked */ } return { d: today(), n: 0, bonus: 0 }; };
+  const write = s => { try { localStorage.setItem(key, JSON.stringify(s)); } catch (e) { /* storage blocked */ } };
+  function allow() {
+    if (!cfg) return true;
+    if (Date.now() - lastUse < 4000) return true;
+    const s = read();
+    if (s.n >= cfg.n + s.bonus) return false;
+    s.n++; write(s); lastUse = Date.now();
+    return true;
+  }
+  function grant() { const s = read(); s.bonus += cfg.extra; write(s); }
+  let box = null;
+  function dialog(retry) {
+    box?.remove();
+    box = document.createElement('div');
+    box.className = 'limit-dlg'; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-labelledby', 'limit-h');
+    box.innerHTML = `<div class="limit-box"><p class="kicker">Daily limit reached</p><h2 id="limit-h">You’ve used today’s ${cfg.n} free download${cfg.n === 1 ? '' : 's'}</h2>
+      <p class="sub">${cfg.reward ? `Watch a short ad to unlock ${cfg.extra} more, or come back tomorrow.` : 'Come back tomorrow for more free downloads.'} Your work on this page is still here.</p>
+      <p class="sub" id="limit-msg"></p>
+      <div class="btns">${cfg.reward ? '<button type="button" class="btn" id="limit-ad">Watch an ad</button>' : ''}<button type="button" class="btn ghost" id="limit-close">Close</button></div></div>`;
+    document.body.appendChild(box);
+    const close = () => { box.remove(); box = null; };
+    box.querySelector('#limit-close').onclick = close;
+    box.addEventListener('click', e => { if (e.target === box) close(); });
+    document.addEventListener('keydown', function esc(e) { if (e.key === 'Escape') { close(); document.removeEventListener('keydown', esc); } });
+    const ad = box.querySelector('#limit-ad');
+    if (ad) ad.onclick = () => {
+      ad.disabled = true; ad.textContent = 'Loading the ad…';
+      rewarded(() => { grant(); close(); toast(`Unlocked ${cfg.extra} more downloads`); retry(); },
+        msg => { ad.disabled = false; ad.textContent = 'Try again'; box.querySelector('#limit-msg').textContent = msg; });
+    };
+    (ad || box.querySelector('#limit-close')).focus();
+  }
+  // Google Ad Manager rewarded ad (the only kind of "watch an ad to unlock" that Google's policies allow).
+  function rewarded(ok, fail) {
+    let done = false;
+    const finish = (good, msg) => { if (done) return; done = true; clearTimeout(timer); good ? ok() : fail(msg); };
+    const timer = setTimeout(() => finish(false, 'No ad is available right now. Please try again later or come back tomorrow.'), 15000);
+    window.googletag = window.googletag || { cmd: [] };
+    if (!document.querySelector('script[src*="gpt.js"]')) { const sc = document.createElement('script'); sc.async = true; sc.src = 'https://securepubads.g.doubleclick.net/tag/js/gpt.js'; sc.onerror = () => finish(false, 'The ad couldn’t load. An ad blocker may be stopping it.'); document.head.appendChild(sc); }
+    googletag.cmd.push(() => {
+      const slot = googletag.defineOutOfPageSlot(cfg.reward, googletag.enums.OutOfPageFormat.REWARDED);
+      if (!slot) { finish(false, 'Rewarded ads aren’t available on this page or device.'); return; }
+      let granted = false;
+      const pa = googletag.pubads();
+      slot.addService(pa);
+      pa.addEventListener('rewardedSlotReady', e => { if (e.slot === slot) e.makeRewardedVisible(); });
+      pa.addEventListener('rewardedSlotGranted', e => { if (e.slot === slot) granted = true; });
+      pa.addEventListener('rewardedSlotClosed', e => { if (e.slot !== slot) return; googletag.destroySlots([slot]); finish(granted, 'Watch the whole ad to unlock more downloads.'); });
+      pa.addEventListener('slotRenderEnded', e => { if (e.slot === slot && e.isEmpty) { googletag.destroySlots([slot]); finish(false, 'No ad is available right now. Please try again later or come back tomorrow.'); } });
+      googletag.enableServices();
+      googletag.display(slot);
+    });
+  }
+  return { allow, dialog, on: !!cfg };
+})();
+
 // Several downloads in a row (a "download all") share one toast.
 let lastDl = null;
 function download(blob, name) {
+  if (!Limit.allow()) { Limit.dialog(() => download(blob, name)); return; }
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url; a.download = name;
@@ -144,6 +207,22 @@ function watchJobs(out) {
   }).observe(out, { childList: true, subtree: true });
 }
 document.querySelectorAll('.tool .out').forEach(watchJobs);
+
+// Phones: mark a result panel .live once it shows a real preview, so CSS can keep it on screen (see style.css).
+(function stickyResults() {
+  const phone = matchMedia('(max-width: 860px)');
+  document.querySelectorAll('.tool-grid > .out').forEach(out => {
+    let t = 0;
+    const check = () => { clearTimeout(t); t = setTimeout(() => {
+      const live = phone.matches && [...out.querySelectorAll('canvas, video, img, .compare')].some(e => { const r = e.getBoundingClientRect(); return r.width >= 120 && r.height >= 90; });
+      out.classList.toggle('live', live);
+    }, 120); };
+    new MutationObserver(check).observe(out, { childList: true, subtree: true, attributes: true, attributeFilter: ['width', 'height', 'src', 'hidden', 'style', 'class'] });
+    phone.addEventListener?.('change', check);
+    window.addEventListener('load', check);
+    check();
+  });
+})();
 
 function loadImage(file) {
   return new Promise((resolve, reject) => {

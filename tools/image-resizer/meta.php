@@ -8,6 +8,7 @@ return [
   'popular' => true,
   'files' => true,
   'keywords' => 'resize photo pixels dimensions instagram crop scale picture',
+  'aka' => ['resize image', 'photo resizer', 'picture resizer', 'change image size'], // other names people search for
   'short' => 'Resize photos to exact pixels or a percentage, with Instagram and YouTube presets.',
   'title' => 'Image Resizer: Resize Photos to Any Size in Pixels, Free',
   'description' => <<<'EOT_TF'

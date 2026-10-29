@@ -11,6 +11,7 @@ return [
   'scripts' => ['ai.js'],
   'appCategory' => 'UtilitiesApplication',
   'keywords' => 'image to text converter ocr online free extract text from image photo to text screenshot to text scanned pdf to text urdu ocr arabic ocr',
+  'aka' => ['OCR online', 'picture to text', 'extract text from image', 'photo to text converter'], // other names people search for
   'short' => 'Copy the text out of photos, screenshots and scanned PDFs, in 20 languages.',
   'title' => 'Image to Text Converter: Free OCR for Photos & PDFs',
   'description' => 'Extract text from images, screenshots and scanned PDFs with free OCR. 20 languages including Urdu, Arabic and Hindi. Edit, copy or save as .txt. No upload.',

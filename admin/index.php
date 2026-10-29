@@ -100,6 +100,7 @@ $page = preg_replace('/[^a-z]/', '', (string) ($_GET['p'] ?? 'dashboard')) ?: 'd
 $clean = fn($v, $max = 500) => mb_substr(trim((string) $v), 0, $max);
 
 if ($action === 'save_tools') {
+    $limits = json_decode(tf_settings()['tool_limits'] ?: '{}', true) ?: [];
     $st = $db->prepare('INSERT INTO ' . tf_table('tools') . ' (slug, enabled, title, description, noindex, updated_at) VALUES (?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE enabled = VALUES(enabled), title = VALUES(title), description = VALUES(description), noindex = VALUES(noindex), updated_at = VALUES(updated_at)');
     $db->beginTransaction();
@@ -107,8 +108,11 @@ if ($action === 'save_tools') {
         $row = $_POST['t'][$t['slug']] ?? null;
         if ($row === null) continue; // not on the form (filtered out)
         $st->execute([$t['slug'], empty($row['on']) ? 0 : 1, $clean($row['title'] ?? '', 160), $clean($row['description'] ?? '', 320), empty($row['noindex']) ? 0 : 1, time()]);
+        $lim = trim((string) ($row['limit'] ?? ''));
+        if ($lim === '') unset($limits[$t['slug']]); else $limits[$t['slug']] = max(0, min(999, (int) $lim));
     }
     $db->commit();
+    tf_save_settings(['tool_limits' => json_encode((object) $limits)]);
     go('tools', 'Saved. Changes are live now.');
 }
 if ($action === 'toggle_tool') {
@@ -122,13 +126,17 @@ if ($action === 'toggle_tool') {
 if ($action === 'save_settings') {
     $allowed = [
         'seo' => ['home_title' => 160, 'home_description' => 320, 'title_suffix' => 1, 'verify_google' => 300, 'verify_bing' => 300, 'verify_yandex' => 300, 'verify_pinterest' => 300, 'social_profiles' => 2000, 'robots_extra' => 2000],
-        'ads' => ['analytics_id' => 30, 'adsense_client' => 40, 'ads_txt_extra' => 4000, 'ad_top' => 10000, 'ad_article' => 10000, 'ad_side' => 10000, 'head_code' => 20000, 'body_code' => 20000, 'ai_isolate' => 1],
+        'ads' => ['analytics_id' => 30, 'adsense_client' => 40, 'ads_txt_extra' => 4000, 'limit_default' => 3, 'limit_mode' => 10, 'reward_unit' => 120, 'reward_uses' => 2, 'ad_top' => 10000, 'ad_article' => 10000, 'ad_side' => 10000, 'head_code' => 20000, 'body_code' => 20000, 'ai_isolate' => 1],
         'settings' => ['announcement_text' => 200, 'announcement_link' => 300, 'contact_email' => 120, 'youtube_api_key' => 100, 'qr_enabled' => 1, 'qr_days' => 3, 'qr_max_mb' => 3, 'qr_per_hour' => 4, 'qr_blocked' => 5000],
     ][$page] ?? [];
     $vals = [];
     foreach ($allowed as $k => $max) $vals[$k] = $clean($_POST[$k] ?? '', $max);
     if (isset($vals['analytics_id'])) $vals['analytics_id'] = strtoupper($vals['analytics_id']);
     foreach (['title_suffix', 'qr_enabled', 'ai_isolate'] as $b) if (isset($vals[$b])) $vals[$b] = empty($_POST[$b]) ? '0' : '1';
+    if (isset($vals['limit_default'])) $vals['limit_default'] = $vals['limit_default'] === '' ? '' : (string) max(0, min(999, (int) $vals['limit_default']));
+    if (isset($vals['limit_mode'])) $vals['limit_mode'] = $vals['limit_mode'] === 'reward' ? 'reward' : 'wait';
+    if (isset($vals['reward_unit']) && !preg_match('~^/\d+(/[\w.\-]+)+$~', $vals['reward_unit'])) $vals['reward_unit'] = '';
+    if (isset($vals['reward_uses'])) $vals['reward_uses'] = (string) max(1, min(50, (int) $vals['reward_uses'] ?: 3));
     if (isset($vals['qr_days'])) $vals['qr_days'] = (string) max(1, min(365, (int) $vals['qr_days']));
     if (isset($vals['qr_max_mb'])) $vals['qr_max_mb'] = (string) max(1, min(100, (int) $vals['qr_max_mb']));
     if (isset($vals['qr_per_hour'])) $vals['qr_per_hour'] = (string) max(1, min(1000, (int) $vals['qr_per_hour']));

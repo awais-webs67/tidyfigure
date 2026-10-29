@@ -1,6 +1,6 @@
 # TidyFigure
 
-174 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
+178 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
 
 **Plain PHP + MySQL.** No Node, npm or build step: clone the repo into your web folder and it runs. Every tool runs in the visitor's browser, so files are never uploaded and there are no API costs.
 
@@ -58,7 +58,8 @@ cPanel → Git Version Control → Manage → **Pull or Deploy** → **Update fr
 ## Admin panel (`/admin/`)
 
 - **Tools & SEO:** switch any tool on or off (it disappears from menus, sidebars and the sitemap, and returns 404), override the SEO title and meta description of any page with live character counters, mark pages noindex, set the homepage title and description.
-- **Ads & analytics:** Google Analytics 4 ID, AdSense publisher ID (Auto ads), three fixed ad slots (below the tool, inside the article, top of the sidebar), plus custom code for `<head>` and before `</body>`.
+- **Ads & analytics:** Google Analytics 4 ID, AdSense publisher ID (Auto ads, site-verification tag and `/ads.txt` are added automatically), three fixed ad slots (below the tool, inside the article, top of the sidebar), plus custom code for `<head>` and before `</body>`.
+- **Usage limits:** free downloads per tool per day (a default for all tools, or per tool under Tools → Edit SEO). When the limit is reached, visitors are asked to come back tomorrow, or offered a Google Ad Manager **rewarded ad** to unlock more. AdSense doesn’t allow rewarding people for viewing ordinary ads, so only use an Ad Manager rewarded ad unit.
 - **Site & API keys:** announcement bar, YouTube Data API key (kept on the server), contact email.
 - **Account:** change your username and password.
 
@@ -70,7 +71,7 @@ Security: hashed passwords, CSRF protection, session cookies limited to `/admin/
 
 1. Copy a folder in `tools/` (for example `tools/tip-calculator`) and rename it to the new URL slug, like `tools/my-new-tool`.
 2. Edit the three files:
-   - `meta.php`: `name`, `category` (an id from `app/site.php`), `order`, `icon` (a file name in `app/icons`), `title` (≤ 65 characters), `description` (110–160), `short`, `keywords`, `related` (other slugs), `answer` (the 40–60 word answer at the top), `article` (HTML), `faqs`. Optional: `popular`, `files` (true for file tools), `libs` (CDN script URLs, or `vendor/…` for copies hosted in `assets/vendor`), `scripts` (files in `assets/`, like `media.js` or `color.js`).
+   - `meta.php`: `name`, `category` (an id from `app/site.php`), `order`, `icon` (a file name in `app/icons`), `title` (≤ 65 characters), `description` (110–160), `short`, `keywords`, `related` (other slugs), `answer` (the 40–60 word answer at the top), `article` (HTML), `faqs`. Optional: `aka` (other names people search for, shown under the intro and used in search), `popular`, `files` (true for file tools), `libs` (CDN script URLs, or `vendor/…` for copies hosted in `assets/vendor`), `scripts` (files in `assets/`, like `media.js` or `color.js`).
    - `tool.html`: the inputs. `{{icon:name}}` inserts an icon.
    - `tool.js`: the logic. Helpers from `assets/app.js` (`$`, `val`, `fmt`, `onAny`, `fileDrop`, `download`…) are available.
 3. Upload or push it. The tool appears on the homepage, in menus, sidebars, the sitemap and the admin panel automatically.

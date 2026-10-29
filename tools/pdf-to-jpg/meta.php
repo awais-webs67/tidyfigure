@@ -12,6 +12,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
   ],
   'keywords' => 'pdf to image pdf to png convert pdf pages to pictures',
+  'aka' => ['PDF to image', 'PDF to PNG', 'convert PDF to picture'], // other names people search for
   'short' => 'Turn every PDF page into a JPG, PNG or WebP image at up to 300 DPI.',
   'title' => 'PDF to JPG Converter: Turn PDF Pages Into Images, Free',
   'description' => <<<'EOT_TF'

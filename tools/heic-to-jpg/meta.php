@@ -10,6 +10,7 @@ return [
   'libs' => ['vendor/heic2any-0.0.4.min.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'heic to jpg converter iphone photo heic to png heif to jpg convert heic online free batch windows open heic',
+  'aka' => ['HEIC converter', 'iPhone photo to JPG', 'HEIC to JPEG'], // other names people search for
   'short' => 'Convert iPhone HEIC photos to JPG or PNG in bulk, with a preview of each.',
   'title' => 'HEIC to JPG Converter: Convert iPhone Photos Free, in Bulk',
   'description' => 'Convert iPhone HEIC and HEIF photos to JPG or PNG in your browser. Batch convert, preview every photo, choose the quality. No upload, no sign-up.',

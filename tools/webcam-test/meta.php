@@ -7,6 +7,7 @@ return [
   'popular' => true,
   'icon' => 'webcam',
   'keywords' => 'webcam test camera test online check my camera is my webcam working camera resolution fps test',
+  'aka' => ['camera test', 'webcam checker', 'test my camera'], // other names people search for
   'short' => 'See your camera live and check its resolution and frame rate.',
   'title' => 'Webcam Test: Check Your Camera Online, Free',
   'description' => <<<'EOT_TF'

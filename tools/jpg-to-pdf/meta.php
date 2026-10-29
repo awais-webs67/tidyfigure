@@ -11,6 +11,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
   ],
   'keywords' => 'image to pdf photo to pdf png to pdf convert pictures scan',
+  'aka' => ['image to PDF', 'photo to PDF', 'picture to PDF', 'JPEG to PDF converter'], // other names people search for
   'short' => 'Turn photos and scans into one PDF, with A4 or Letter pages and margins.',
   'title' => 'JPG to PDF Converter: Turn Photos Into a PDF, Free',
   'description' => <<<'EOT_TF'

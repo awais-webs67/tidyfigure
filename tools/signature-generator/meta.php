@@ -9,6 +9,7 @@ return [
   'files' => true,
   'appCategory' => 'BusinessApplication',
   'keywords' => 'signature generator online draw signature create signature transparent png handwritten signature maker type signature from photo electronic signature',
+  'aka' => ['signature maker', 'e-signature creator', 'online signature'], // other names people search for
   'short' => 'Draw, type or photograph your signature and download it as a transparent PNG.',
   'title' => 'Signature Generator: Draw or Type a Transparent Signature',
   'description' => 'Create your signature online: draw it, type it in a handwriting font or clean up a photo of it. Download a transparent PNG, JPG or SVG. Free and private.',

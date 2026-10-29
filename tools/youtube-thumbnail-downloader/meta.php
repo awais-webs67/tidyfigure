@@ -6,6 +6,7 @@ return [
   'order' => 2,
   'icon' => 'image-play',
   'keywords' => 'youtube thumbnail downloader get thumbnail from youtube video hd thumbnail save',
+  'aka' => ['YouTube thumbnail grabber', 'download YouTube thumbnail', 'YT thumbnail saver'], // other names people search for
   'short' => 'Get any YouTube video’s thumbnail in HD (1280×720) and smaller sizes.',
   'title' => 'YouTube Thumbnail Downloader: Save HD Thumbnails',
   'description' => <<<'EOT_TF'

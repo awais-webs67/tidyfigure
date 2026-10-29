@@ -11,6 +11,7 @@ return [
   'scripts' => ['ai.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'audio to text converter free transcription speech to text video to text mp3 to text subtitle generator srt voice note transcribe urdu hindi whisper',
+  'aka' => ['speech to text', 'transcribe audio', 'voice to text', 'audio transcription'], // other names people search for
   'short' => 'Turn speech in audio or video into text and subtitles (SRT), in 20+ languages.',
   'title' => 'Audio to Text: Free AI Transcription & SRT Subtitles',
   'description' => 'Transcribe audio and video to text with AI, free: MP3, voice notes, MP4. 20+ languages incl. Urdu, Hindi and Arabic, timestamps, SRT subtitles. No upload.',

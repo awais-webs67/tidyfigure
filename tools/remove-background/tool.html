@@ -14,13 +14,19 @@
     <p class="group-title">New background</p>
     <div class="chips" id="bg">
       <button type="button" class="chip on" data-bg="none">Transparent</button>
-      <button type="button" class="chip" data-bg="#ffffff">White</button>
-      <button type="button" class="chip" data-bg="#000000">Black</button>
-      <button type="button" class="chip" data-bg="#e8f1ff">Light blue</button>
       <button type="button" class="chip" data-bg="blur">Blurred original</button>
       <button type="button" class="chip" data-bg="image">Your image…</button>
-      <label class="chip" style="display:inline-flex;align-items:center;gap:6px">Colour <input type="color" id="bgcolor" value="#ff5b35" style="width:28px;height:22px;padding:0;border:0"></label>
+      <label class="chip" style="display:inline-flex;align-items:center;gap:6px" data-bg-custom>Any colour <input type="color" id="bgcolor" value="#ff5b35" style="width:28px;height:22px;padding:0;border:0"></label>
     </div>
+    <div class="bg-sw" id="bgsw" aria-label="Background colours"></div>
+    <div class="bg-sw grad" id="bggr" aria-label="Background gradients"></div>
+    <label class="f" id="blurf" hidden><span>Blur strength: <b id="blv">8</b></span><input type="range" id="blur" min="2" max="30" value="8"></label>
+    <style>
+      .bg-sw { display: flex; flex-wrap: wrap; gap: 7px; }
+      .bg-sw button { width: 34px; height: 34px; border-radius: 50%; border: 1px solid rgba(0, 0, 0, .18); cursor: pointer; padding: 0; }
+      .bg-sw.grad button { width: 52px; border-radius: 10px; }
+      .bg-sw button.on { box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent); }
+    </style>
     <input type="file" id="bgfile" accept="image/*" hidden>
   </div>
   <div class="out" id="out" aria-live="polite">

@@ -7,6 +7,7 @@ return [
   'popular' => true,
   'icon' => 'earth',
   'keywords' => 'time zone converter time difference est to ist pst to est gmt to est utc converter world clock meeting planner what time is it in',
+  'aka' => ['time converter', 'world time converter', 'time difference calculator'], // other names people search for
   'short' => 'Convert a time between cities and find a meeting time for everyone.',
   'title' => 'Time Zone Converter: Compare Times in Any City',
   'description' => <<<'EOT_TF'

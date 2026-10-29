@@ -12,6 +12,7 @@ return [
     'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
   ],
   'keywords' => 'combine pdf join pdf files merge documents',
+  'aka' => ['combine PDF', 'PDF merger', 'join PDF files', 'PDF combiner'], // other names people search for
   'short' => 'Combine several PDF files into one, in the order you choose.',
   'title' => 'Merge PDF: Combine PDF Files Into One, Free & Private',
   'description' => <<<'EOT_TF'

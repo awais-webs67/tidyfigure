@@ -8,6 +8,7 @@ return [
   'popular' => true,
   'appCategory' => 'BusinessApplication',
   'keywords' => 'free invoice generator invoice template pdf freelancer invoice maker vat invoice',
+  'aka' => ['invoice maker', 'free invoice template', 'bill generator'], // other names people search for
   'short' => 'Create a professional invoice with tax, discount and your logo, as a PDF.',
   'title' => 'Free Invoice Generator: Create & Download PDF Invoices',
   'description' => <<<'EOT_TF'

@@ -7,6 +7,7 @@ return [
   'icon' => 'text-cursor-input',
   'popular' => true,
   'keywords' => 'count words characters essay sentences reading time',
+  'aka' => ['word count tool', 'count words online', 'essay word counter'], // other names people search for
   'short' => 'Count words, characters, sentences and reading time as you type.',
   'title' => 'Word Counter: Count Words, Characters & Reading Time',
   'description' => <<<'EOT_TF'

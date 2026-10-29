@@ -8,6 +8,7 @@ return [
   'files' => true,
   'icon' => 'file-badge',
   'keywords' => 'experience letter format experience certificate maker experience letter template work experience letter relieving letter generator employment certificate',
+  'aka' => ['experience certificate generator', 'experience letter format', 'relieving letter maker'], // other names people search for
   'short' => 'Write a professional experience letter and download it as a PDF.',
   'title' => 'Experience Letter Maker: Free Template and PDF',
   'description' => <<<'EOT_TF'

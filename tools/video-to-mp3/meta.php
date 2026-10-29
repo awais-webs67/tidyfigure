@@ -10,6 +10,7 @@ return [
   'scripts' => ['media.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'mp4 to mp3 extract audio from video convert video to audio sound wav mov webm music',
+  'aka' => ['MP4 to MP3', 'extract audio from video', 'video to audio converter'], // other names people search for
   'short' => 'Pull the sound out of any video as an MP3 or WAV, at the quality you choose.',
   'title' => 'Video to MP3 Converter: Extract Audio from MP4, MOV & WebM',
   'description' => <<<'EOT_TF'

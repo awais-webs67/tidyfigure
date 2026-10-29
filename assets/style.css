@@ -666,3 +666,17 @@ main.home { padding-top: 0; }
 .toast svg { width: 18px; height: 18px; flex: none; color: #4CC98A; }
 .toast.err svg { color: #FF8A80; }
 @media (prefers-reduced-motion: reduce) { .toast { transition: opacity .2s; transform: none; } }
+
+/* Phones: once a tool shows a visual result (image, canvas, video), keep it on screen at the top while the
+   visitor changes the options below it. app.js adds .live when the panel shows a real preview (at least
+   120 × 90 px). Add data-nosticky to an .out panel to opt out. */
+@media (max-width: 860px) {
+  .tool-grid > .out.live:not([data-nosticky]) { position: sticky; top: calc(var(--header-h) + 6px); z-index: 6; order: -1; max-height: 50vh; overflow: auto; box-shadow: 0 8px 18px rgba(0, 0, 0, .14); }
+}
+
+/* Daily limit dialog */
+.limit-dlg { position: fixed; inset: 0; z-index: 1100; background: rgba(10, 14, 18, .55); display: grid; place-items: center; padding: 16px; }
+.limit-box { background: var(--surface); color: var(--muted); border-radius: 14px; padding: 24px; max-width: 440px; width: 100%; display: grid; gap: 10px; box-shadow: 0 20px 50px rgba(0, 0, 0, .3); }
+.limit-box h2 { margin: 0; font: 700 22px/1.25 var(--f-body); color: var(--ink); }
+.limit-box p { margin: 0; }
+.aka { margin: -6px 0 14px; font-size: 13.5px; color: var(--muted); max-width: 72ch; }

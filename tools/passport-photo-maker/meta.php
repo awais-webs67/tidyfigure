@@ -11,6 +11,7 @@ return [
   'scripts' => ['ai.js'],
   'appCategory' => 'MultimediaApplication',
   'keywords' => 'passport photo maker online free passport size photo 2x2 photo 35x45 mm visa photo white background print sheet 4x6 id photo',
+  'aka' => ['passport size photo', 'ID photo maker', 'visa photo maker', 'passport picture'], // other names people search for
   'short' => 'Passport and visa photos for 12 countries: white background, right size, print sheet.',
   'title' => 'Passport Photo Maker: Free 2×2 in & 35×45 mm Photos Online',
   'description' => 'Make passport and visa photos online: US 2×2, UK, Schengen, Canada, India, Pakistan and more. AI white background, auto head sizing and a 4×6 print sheet.',

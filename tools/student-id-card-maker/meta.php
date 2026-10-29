@@ -9,6 +9,7 @@ return [
   'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'],
   'icon' => 'id-card',
   'keywords' => 'student id card maker school id card generator student id card template college id card design online free printable id card',
+  'aka' => ['school ID card maker', 'student ID generator', 'college ID card maker'], // other names people search for
   'short' => 'Design a student ID card with photo and QR code, ready to print.',
   'title' => 'Student ID Card Maker: Free, Printable, With Photo',
   'description' => <<<'EOT_TF'

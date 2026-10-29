@@ -7,6 +7,7 @@ return [
   'popular' => true,
   'icon' => 'mic',
   'keywords' => 'mic test microphone test online check my mic is my microphone working mic check record and play back',
+  'aka' => ['microphone test', 'mic checker', 'test my mic'], // other names people search for
   'short' => 'Check your microphone with a live sound meter and a test recording.',
   'title' => 'Mic Test: Check Your Microphone Online, Free',
   'description' => <<<'EOT_TF'

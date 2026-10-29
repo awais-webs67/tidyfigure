@@ -7,6 +7,7 @@ return [
   'icon' => 'ruler',
   'popular' => true,
   'keywords' => 'convert km to miles kg to lbs celsius to fahrenheit cm to inches liters gallons',
+  'aka' => ['measurement converter', 'metric converter', 'conversion calculator'], // other names people search for
   'short' => 'Length, weight, temperature, volume, area, speed, time and data in one place.',
   'title' => 'Unit Converter: km to Miles, kg to lb, °C to °F & More',
   'description' => <<<'EOT_TF'
