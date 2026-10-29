@@ -222,14 +222,15 @@ const AI = (() => {
 
   // Speech recognition with Whisper (MIT licence), 8-bit on the CPU engine: tiny ≈ 41 MB, base ≈ 77 MB.
   // audio16k: Float32Array of mono samples at 16 kHz. Returns { text, chunks: [{ timestamp: [start, end], text }] }.
-  async function transcribe(audio16k, { model = 'base', language = null, task = 'transcribe', onProgress } = {}) {
-    const t = await load(), id = `onnx-community/whisper-${model}`;
+  // words: true gives a time for every word (for subtitles), using the "timestamped" version of the model.
+  async function transcribe(audio16k, { model = 'base', language = null, task = 'transcribe', onProgress, words = false } = {}) {
+    const t = await load(), id = `onnx-community/whisper-${model}${words ? '_timestamped' : ''}`;
     if (!cache[id]) {
       cache[id] = t.pipeline('automatic-speech-recognition', id, { dtype: 'q8', device: 'wasm', progress_callback: progressTracker(onProgress) })
         .catch(e => { delete cache[id]; throw e; });
     }
     const asr = await cache[id];
-    const opts = { task, chunk_length_s: 30, stride_length_s: 5, return_timestamps: true };
+    const opts = { task, chunk_length_s: 30, stride_length_s: 5, return_timestamps: words ? 'word' : true };
     if (language) opts.language = language;
     return asr(audio16k, opts);
   }

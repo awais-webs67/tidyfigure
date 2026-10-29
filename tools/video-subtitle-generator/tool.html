@@ -1,0 +1,36 @@
+<style>
+  .sg-stage { position: relative; background: #000; border-radius: 10px; overflow: hidden; }
+  .sg-stage video { width: 100%; max-height: 60vh; display: block; margin: 0 auto; }
+  .sg-cap { position: absolute; left: 5%; right: 5%; text-align: center; pointer-events: none; font: 800 var(--cs, 22px)/1.25 Arial, Helvetica, sans-serif; white-space: pre-wrap; }
+  .sg-cap span { padding: .08em .35em; border-radius: .2em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+  .sg-list { display: grid; gap: 6px; max-height: none; }
+  .sg-row { display: grid; grid-template-columns: auto 1fr; gap: 4px 10px; align-items: start; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+  .sg-row.on { border-color: var(--accent); background: var(--accent-soft); }
+  .sg-row .t { display: flex; flex-direction: column; gap: 3px; }
+  .sg-row input { width: 74px; font: 12px/1.2 var(--f-num); padding: 3px 4px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); color: var(--ink); }
+  .sg-row textarea { width: 100%; min-height: 2.4em; resize: vertical; font: 15px/1.35 var(--f-body); padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--ink); box-sizing: border-box; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a video">
+      {{icon:file-video}}
+      <strong>Drop a video here or click to choose</strong>
+      <span id="loaded">MP4, MOV or WebM · audio files work too</span>
+      <input type="file" id="file" accept="video/*,audio/*">
+    </div>
+    <div class="fields">
+      <label class="f"><span>Language spoken</span><select id="lang"><option value="">Detect automatically</option><option value="en">English</option><option value="ur">Urdu</option><option value="hi">Hindi</option><option value="ar">Arabic</option><option value="bn">Bengali</option><option value="pa">Punjabi</option><option value="es">Spanish</option><option value="fr">French</option><option value="de">German</option><option value="pt">Portuguese</option><option value="it">Italian</option><option value="tr">Turkish</option><option value="id">Indonesian</option><option value="ru">Russian</option><option value="fa">Persian</option><option value="nl">Dutch</option><option value="ja">Japanese</option><option value="ko">Korean</option><option value="zh">Chinese</option></select></label>
+      <label class="f"><span>Subtitles in</span><select id="task"><option value="transcribe">The same language</option><option value="translate">Translate to English</option></select></label>
+      <label class="f"><span>AI</span><select id="model"><option value="base">Accurate (75 MB)</option><option value="tiny">Quick (40 MB)</option></select></label>
+      <label class="f"><span>Line length</span><select id="len"><option value="42">Normal</option><option value="22">Short lines (TikTok, Reels)</option></select></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:captions}}Make subtitles</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample video</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Subtitles</p>
+    <p class="empty">Choose a video to add subtitles to it.</p>
+  </div>
+</div>
