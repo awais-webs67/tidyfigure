@@ -1,6 +1,6 @@
 # TidyFigure
 
-178 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
+193 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
 
 **Plain PHP + MySQL.** No Node, npm or build step: clone the repo into your web folder and it runs. Every tool runs in the visitor's browser, so files are never uploaded and there are no API costs.
 
@@ -60,7 +60,7 @@ cPanel → Git Version Control → Manage → **Pull or Deploy** → **Update fr
 - **Tools & SEO:** switch any tool on or off (it disappears from menus, sidebars and the sitemap, and returns 404), override the SEO title and meta description of any page with live character counters, mark pages noindex, set the homepage title and description.
 - **Ads & analytics:** Google Analytics 4 ID, AdSense publisher ID (Auto ads, site-verification tag and `/ads.txt` are added automatically), three fixed ad slots (below the tool, inside the article, top of the sidebar), plus custom code for `<head>` and before `</body>`.
 - **Usage limits:** free downloads per tool per day (a default for all tools, or per tool under Tools → Edit SEO). When the limit is reached, visitors are asked to come back tomorrow, or offered a Google Ad Manager **rewarded ad** to unlock more. AdSense doesn’t allow rewarding people for viewing ordinary ads, so only use an Ad Manager rewarded ad unit.
-- **Site & API keys:** announcement bar, YouTube Data API key (kept on the server), contact email.
+- **Site & API keys:** announcement bar, YouTube Data API key (kept on the server), contact email, and the company the site belongs to (AivraSol by default: shown in the footer and on the About page, and given to Google as the parent organisation).
 - **Account:** change your username and password.
 
 Everything is stored in MySQL: tables `tf_settings`, `tf_tools`, `tf_admins`, `tf_login_attempts` and `tf_yt_cache` (prefix chosen at install).
@@ -90,6 +90,8 @@ A landing page can reuse another tool's code: set `'use' => 'other-tool'` and a 
 
 ## Notes
 
+- Shared PDF helpers in `assets/`: `pdf-engine.js` (edit and truly delete the text and pictures inside a page: Edit PDF, Redact PDF), `pdf-read.js` (a page's lines, fonts, pictures, bullets and tables in reading order: PDF to Word, Excel, PowerPoint) and `dom-pdf.js` (turns laid-out HTML into a PDF with real text, swapping Office fonts for free fonts with the same letter widths and cutting long content into pages: Word, Excel, PowerPoint and HTML to PDF). `matte.js` is the background worker that cleans the edges of AI cut-outs.
+- Office files: docx-preview lays out .docx, pptx-preview lays out .pptx, SheetJS reads and writes spreadsheets, PptxGenJS writes .pptx, and .docx files are written directly with JSZip. OCR uses Tesseract.js.
 - PDF tools use pdf-lib and PDF.js, scanners use ZXing, barcodes JsBarcode, QR codes qrcode-generator, zips JSZip, EXIF exifr, invoice PDFs html2canvas, MP3 encoding lamejs, GIFs gifenc and bcrypt hashes bcrypt.js. Libraries load from cdnjs at pinned versions, except those hosted in `assets/vendor` (and PDF fonts in `assets/fonts`) so tools keep working where jsDelivr is blocked.
 - Video tools (compressor, cutter) use the browser's built-in recorder, so they take as long as the clip to process. They save MP4 in Safari and recent Chrome, WebM elsewhere.
 - The YouTube Subscriber Counter needs a YouTube Data API key (Admin → Site & API keys).

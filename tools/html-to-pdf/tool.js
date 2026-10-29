@@ -17,7 +17,7 @@ $('#sample').addEventListener('click', () => {
   .total { font-size: 20px; font-weight: bold; text-align: right; margin-top: 16px; }
   .note { background: #FFF4E5; border-left: 4px solid #FF9800; padding: 10px 14px; margin-top: 24px; }
 </style>
-<h1>Invoice #2026-041</h1>
+\x3Ch1>Invoice #2026-041\x3C/h1>
 <p class="muted">Example Studio · 14 Sample Street, London · hello@example.com</p>
 <p><strong>Bill to:</strong> Jane Example<br>Issued 29 October 2026 · Due 28 November 2026</p>
 <table>
