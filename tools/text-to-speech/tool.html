@@ -1,0 +1,36 @@
+<style>
+  .ts-text { width: 100%; min-height: 200px; resize: vertical; font: 16px/1.55 var(--f-body); padding: 12px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); box-sizing: border-box; }
+  .ts-voices { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; }
+  .ts-voices label { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); cursor: pointer; font-size: 14px; color: var(--ink); }
+  .ts-voices label:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+  .ts-voices input { accent-color: var(--accent); }
+  .ts-voices small { color: var(--muted); }
+  .ts-count { font-size: 13px; color: var(--muted); text-align: right; margin-top: -4px; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <label class="f"><span>Your text</span><textarea class="ts-text" id="text" maxlength="5000">Welcome to TidyFigure. This voice was made by an AI model that runs right here in your browser. Choose a voice, set the speed, and download the speech as an MP3 file.</textarea></label>
+    <p class="ts-count" id="count"></p>
+    <div class="seg" role="radiogroup" aria-label="Language">
+      <label><input type="radio" name="lang" value="en" checked><span>English (AI voices)</span></label>
+      <label><input type="radio" name="lang" value="other"><span>Other languages</span></label>
+    </div>
+    <div id="ai-voices">
+      <p class="group-title">Voice</p>
+      <div class="ts-voices" id="voices"></div>
+    </div>
+    <div id="dev-voices" hidden>
+      <label class="f"><span>Device voice</span><select id="devvoice"></select></label>
+      <p class="note">These voices are built into your device. They can be played but not downloaded.</p>
+    </div>
+    <label class="f"><span>Speed: <b id="sv">1.0</b>×</span><input type="range" id="speed" min="0.6" max="1.5" step="0.05" value="1"></label>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go">{{icon:audio-lines}}Speak</button>
+      <button type="button" class="btn ghost" id="stop" hidden>Stop</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Speech</p>
+    <p class="empty">Press Speak to hear your text. The AI voice model (about 90 MB) downloads the first time.</p>
+  </div>
+</div>

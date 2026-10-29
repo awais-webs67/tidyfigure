@@ -710,3 +710,23 @@ main.home { padding-top: 0; }
 .limit-box h2 { margin: 0; font: 700 22px/1.25 var(--f-body); color: var(--ink); }
 .limit-box p { margin: 0; }
 .aka { margin: -6px 0 14px; font-size: 13.5px; color: var(--muted); max-width: 72ch; }
+
+/* Install-app offer on phones (site.js) */
+.install-bar { position: fixed; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 70; max-width: 520px; margin: 0 auto; padding: 12px 12px 12px 14px; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, .22); font: 14px/1.4 var(--f-body); animation: pip-in .2s ease-out; }
+.install-row { display: flex; align-items: center; gap: 12px; }
+.install-row img { flex: none; width: 44px; height: 44px; border-radius: 11px; }
+.install-row > div { flex: 1; min-width: 0; }
+.install-row b { display: block; font-size: 15px; }
+.install-row span { display: block; color: var(--muted); font-size: 13px; }
+.install-bar .install-go { flex: none; padding: 10px 18px; }
+.install-x { flex: none; width: 32px; height: 32px; border: 0; border-radius: 50%; background: var(--surface-2, #F3F4F5); color: var(--ink); font: 700 20px/1 var(--f-body); cursor: pointer; display: grid; place-items: center; padding: 0; }
+.install-ios { padding-top: 14px; }
+.install-ios .install-x { position: absolute; top: 8px; right: 8px; }
+.install-ios ol { margin: 12px 0 2px; padding-left: 22px; }
+.install-ios li { margin: 4px 0; }
+.install-ios svg { vertical-align: -3px; color: #0A84FF; }
+.install-ios::after { content: ""; position: absolute; left: 50%; bottom: -8px; width: 14px; height: 14px; margin-left: -7px; background: var(--surface); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transform: rotate(45deg); }
+.nav-install { display: none; }
+@media (max-width: 860px) {
+  .nav-install:not([hidden]) { order: -1; display: block; width: 100%; margin: 14px 0 6px; padding: 12px 14px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent-soft); color: var(--accent-text, var(--accent)); font: 700 15px/1 var(--f-body); text-align: center; cursor: pointer; }
+}

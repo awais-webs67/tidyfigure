@@ -97,6 +97,8 @@ function tf_setting_defaults(): array
         'qr_enabled' => '1', 'qr_days' => '30', 'qr_max_mb' => '10', 'qr_per_hour' => '20', 'qr_blocked' => '',
         // '1' lets AI tools (meta 'isolate') use every CPU core; ads can't show on those pages while it's on
         'ai_isolate' => '1',
+        // '1' offers phone visitors an "Install app" button (adds the site to their home screen)
+        'app_install' => '1',
     ];
 }
 

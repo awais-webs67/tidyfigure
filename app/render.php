@@ -114,6 +114,7 @@ function tf_layout(array $o, string $body): string
     $d = h($o['description']);
     $year = date('Y');
     $base = json_encode(TF_BASE);
+    $install = ($s['app_install'] ?? '1') === '1' ? '1' : '0';
     $g = $GLOBALS;
     $iconSearch = tf_icon('search');
 
@@ -147,7 +148,7 @@ function tf_layout(array $o, string $body): string
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="{$g['tf_fonts']}">
 <link rel="stylesheet" href="{$g['tf_css']}">
-<script>window.TF_BASE=$base;try{var t=localStorage.getItem('tf-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>window.TF_BASE=$base;window.TF_INSTALL=$install;try{var t=localStorage.getItem('tf-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 $schema
 $head
 </head>
@@ -155,7 +156,7 @@ $head
 <a class="skip" href="#main">Skip to content</a>
 <header class="site"><div class="wrap">
 <a class="brand" href="{$g['tf_home']}" aria-label="$name home">$logo<span>$brand</span></a>
-<nav class="main-nav" id="main-nav" aria-label="Tool categories">{$nav}<a class="cta" href="{$g['tf_home']}#categories">All tools</a></nav>
+<nav class="main-nav" id="main-nav" aria-label="Tool categories">{$nav}<a class="cta" href="{$g['tf_home']}#categories">All tools</a><button type="button" class="nav-install" data-install hidden>Install app</button></nav>
 <button type="button" class="hbtn search-btn" data-open-search aria-label="Search tools">$iconSearch<span>Search tools</span><kbd>Ctrl K</kbd></button>
 <button type="button" class="hbtn theme-toggle" aria-label="Switch light or dark mode"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
 <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="main-nav"><svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>Menu</button>
@@ -562,7 +563,46 @@ function tf_manifest(): string
         'name' => "$name: free online tools", 'short_name' => $name, 'description' => count(tf_tools()) . ' free online tools that run in your browser.',
         'start_url' => tf_url() . '?source=app', 'scope' => tf_url(), 'display' => 'standalone', 'background_color' => '#ffffff', 'theme_color' => '#FF5B35',
         'icons' => [['src' => tf_asset('favicon.svg'), 'sizes' => 'any', 'type' => 'image/svg+xml'], $icon(192), $icon(512)],
+        'id' => tf_url(), 'categories' => ['productivity', 'utilities'],
+        // Long-press the app icon: the most used tools
+        'shortcuts' => array_map(fn($t) => ['name' => $t['name'], 'short_name' => $t['name'], 'url' => tf_url($t['slug']) . '?source=app', 'icons' => [['src' => tf_url('icon-192.png'), 'sizes' => '192x192', 'type' => 'image/png']]],
+            array_slice(array_values(array_filter(tf_tools(), fn($t) => !empty($t['popular']) && empty($t['use']))), 0, 4)),
     ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+}
+
+// The service worker (served at /sw.js). Pages always come from the network, so updates show at once and the
+// AI pages keep their cross-origin isolation headers; only when there is no connection a small offline page is shown.
+function tf_service_worker(): string
+{
+    $name = tf_site()['site']['name'];
+    $offline = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Offline · ' . h($name) . '</title>'
+        . '<style>body{margin:0;min-height:100vh;display:grid;place-items:center;font:16px/1.5 system-ui,sans-serif;background:#fff;color:#191F24;text-align:center;padding:24px;box-sizing:border-box}'
+        . '@media(prefers-color-scheme:dark){body{background:#12161A;color:#F1F3F4}}h1{font-size:22px;margin:0 0 8px}p{margin:0 0 20px;color:#5F666B}'
+        . 'button{font:700 15px system-ui,sans-serif;border:0;border-radius:10px;padding:12px 22px;background:#FF5B35;color:#fff;cursor:pointer}</style></head>'
+        . '<body><main><h1>You’re offline</h1><p>' . h($name) . ' needs an internet connection to open this page.<br>Check your connection and try again.</p>'
+        . '<button onclick="location.reload()">Try again</button></main></body></html>';
+    $skip = json_encode([TF_BASE . '/admin', TF_BASE . '/api', TF_BASE . '/install', TF_BASE . '/q/']);
+    $html = json_encode($offline, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+    return <<<JS
+'use strict';
+const OFFLINE = $html, SKIP = $skip;
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', e => e.waitUntil((async () => {
+  if (self.registration.navigationPreload) await self.registration.navigationPreload.enable();
+  await self.clients.claim();
+})()));
+self.addEventListener('fetch', e => {
+  const r = e.request;
+  if (r.mode !== 'navigate' || r.method !== 'GET') return;
+  const path = new URL(r.url).pathname;
+  if (SKIP.some(p => path.startsWith(p))) return;
+  e.respondWith((async () => {
+    try { return (await e.preloadResponse) || await fetch(r); }
+    catch (err) { return new Response(OFFLINE, { headers: { 'Content-Type': 'text/html; charset=utf-8' } }); }
+  })());
+});
+
+JS;
 }
 
 function tf_robots(): string

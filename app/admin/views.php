@@ -373,6 +373,8 @@ function tf_admin_settings(array $admin): array
 <label class="f"><span>Contact email (shown on the About and Privacy pages)</span><input type="email" name="contact_email" value="' . h($s['contact_email']) . '" placeholder="' . h(tf_contact_email()) . '"></label>
 <label class="f"><span>Company the site belongs to (footer, About page and Google)</span><input type="text" name="company_name" value="' . h($s['company_name']) . '" placeholder="' . h(tf_company()['name']) . '"></label>
 <label class="f"><span>Company website</span><input type="url" name="company_url" value="' . h($s['company_url']) . '" placeholder="' . h(tf_company()['url'] ?: 'https://') . '"></label>
+<h2>Install as an app</h2>
+<label class="check"><input type="checkbox" name="app_install" value="1"' . ($s['app_install'] === '1' ? ' checked' : '') . '>Offer phone visitors an “Install app” button, so the site opens from their home screen like an app</label>
 <h2>Hosted QR codes</h2>
 <label class="check"><input type="checkbox" name="qr_enabled" value="1"' . ($s['qr_enabled'] === '1' ? ' checked' : '') . '>Allow visitors to create dynamic, file and verification QR codes</label>
 <div class="fields"><label class="f"><span>Delete codes after (days)</span><input type="number" name="qr_days" min="1" max="365" value="' . h($s['qr_days']) . '"></label>

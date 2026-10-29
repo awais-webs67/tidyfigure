@@ -38,6 +38,13 @@ if ($path === 'manifest.webmanifest') {
     echo tf_manifest();
     exit;
 }
+if ($path === 'sw.js') {
+    // Service worker: lets phones install the site as an app and shows a friendly page when offline.
+    header('Content-Type: application/javascript; charset=utf-8');
+    header('Cache-Control: no-cache');
+    echo tf_service_worker();
+    exit;
+}
 if (preg_match('~^icon-(48|180|192|512)\.png$~', $path, $m) || $path === 'favicon.ico') {
     require __DIR__ . '/app/og.php';
     tf_icon_serve((int) ($m[1] ?? 48));

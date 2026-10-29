@@ -1,6 +1,6 @@
 # TidyFigure
 
-193 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
+207 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
 
 **Plain PHP + MySQL.** No Node, npm or build step: clone the repo into your web folder and it runs. Every tool runs in the visitor's browser, so files are never uploaded and there are no API costs.
 
@@ -61,6 +61,7 @@ cPanel → Git Version Control → Manage → **Pull or Deploy** → **Update fr
 - **Ads & analytics:** Google Analytics 4 ID, AdSense publisher ID (Auto ads, site-verification tag and `/ads.txt` are added automatically), three fixed ad slots (below the tool, inside the article, top of the sidebar), plus custom code for `<head>` and before `</body>`.
 - **Usage limits:** free downloads per tool per day (a default for all tools, or per tool under Tools → Edit SEO). When the limit is reached, visitors are asked to come back tomorrow, or offered a Google Ad Manager **rewarded ad** to unlock more. AdSense doesn’t allow rewarding people for viewing ordinary ads, so only use an Ad Manager rewarded ad unit.
 - **Site & API keys:** announcement bar, YouTube Data API key (kept on the server), contact email, and the company the site belongs to (AivraSol by default: shown in the footer and on the About page, and given to Google as the parent organisation).
+- **Install as an app:** phone visitors get an “Install app” offer (Android: the browser's install prompt; iPhone: Share → Add to Home Screen steps), also in the mobile menu. Switch it off under Settings. The service worker (`/sw.js`) always loads pages fresh from the server and only shows a small offline page when there is no connection.
 - **Account:** change your username and password.
 
 Everything is stored in MySQL: tables `tf_settings`, `tf_tools`, `tf_admins`, `tf_login_attempts` and `tf_yt_cache` (prefix chosen at install).

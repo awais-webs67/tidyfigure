@@ -1,4 +1,4 @@
-// Runs on every page: hamburger menu, light/dark switch, quick search (Ctrl+K or /) and share buttons.
+// Runs on every page: hamburger menu, light/dark switch, quick search (Ctrl+K or /), share buttons and the install-app offer.
 (function () {
   'use strict';
   var root = document.documentElement, base = window.TF_BASE || '';
@@ -93,4 +93,53 @@
       if (navigator.clipboard) navigator.clipboard.writeText(url).then(function () { copy.classList.add('done'); setTimeout(function () { copy.classList.remove('done'); }, 1500); });
     });
   });
+
+  // ----- Install as an app -----
+  // The service worker lets phones install the site and shows a friendly page when offline.
+  if ('serviceWorker' in navigator && window.isSecureContext) window.addEventListener('load', function () { navigator.serviceWorker.register(base + '/sw.js', { scope: base + '/' }).catch(function () {}); });
+  var standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var phone = matchMedia('(max-width: 860px)').matches || matchMedia('(pointer: coarse)').matches;
+  var KEY = 'tf-install-hide', prompted = null, bar = null;
+  function hiddenUntil() { try { return +localStorage.getItem(KEY) || 0; } catch (e) { return 0; } }
+  function hideFor(days) { try { localStorage.setItem(KEY, String(Date.now() + days * 864e5)); } catch (e) { /* storage blocked */ } }
+  function closeBar(days) { if (bar) { bar.remove(); bar = null; } if (days) hideFor(days); }
+  var appIcon = '<img src="' + base + '/icon-192.png" alt="" width="44" height="44">';
+  function iosHelp() {
+    closeBar(0);
+    bar = document.createElement('div');
+    bar.className = 'install-bar install-ios'; bar.setAttribute('role', 'dialog'); bar.setAttribute('aria-label', 'Install app');
+    bar.innerHTML = '<button type="button" class="install-x" aria-label="Close">×</button><div class="install-row">' + appIcon + '<div><b>Add to your Home Screen</b><span>Open every tool in one tap, like an app.</span></div></div>'
+      + '<ol><li>Tap <b>Share</b> <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg> in the browser bar</li><li>Choose <b>Add to Home Screen</b></li><li>Tap <b>Add</b></li></ol>';
+    bar.querySelector('.install-x').onclick = function () { closeBar(30); };
+    document.body.appendChild(bar);
+  }
+  function install() {
+    if (prompted) {
+      var p = prompted; prompted = null;
+      p.prompt();
+      p.userChoice.then(function (c) { closeBar(c.outcome === 'accepted' ? 365 : 30); showButtons(); }).catch(function () {});
+    } else if (ios) iosHelp();
+  }
+  function showButtons() { document.querySelectorAll('[data-install]').forEach(function (b) { b.hidden = !(prompted || ios); }); }
+  function offer() {
+    if (bar || hiddenUntil() > Date.now() || !phone) return;
+    if (document.querySelector('.pip:not([hidden])') || root.classList.contains('qs-open') || root.classList.contains('nav-open')) { setTimeout(offer, 8000); return; }
+    if (ios) { iosHelp(); return; }
+    bar = document.createElement('div');
+    bar.className = 'install-bar'; bar.setAttribute('role', 'dialog'); bar.setAttribute('aria-label', 'Install app');
+    bar.innerHTML = '<div class="install-row">' + appIcon + '<div><b>Install the app</b><span>Free · opens in one tap · no app store</span></div>'
+      + '<button type="button" class="btn install-go">Install</button><button type="button" class="install-x" aria-label="Not now">×</button></div>';
+    bar.querySelector('.install-go').onclick = install;
+    bar.querySelector('.install-x').onclick = function () { closeBar(14); };
+    document.body.appendChild(bar);
+  }
+  if (window.TF_INSTALL && !standalone) {
+    window.addEventListener('beforeinstallprompt', function (e) { e.preventDefault(); prompted = e; showButtons(); setTimeout(offer, 4000); });
+    window.addEventListener('appinstalled', function () { prompted = null; closeBar(365); showButtons(); });
+    document.querySelectorAll('[data-install]').forEach(function (b) { b.addEventListener('click', function () { setNav(false); install(); }); });
+    // Safari on iPhone has no install prompt: explain the Share → Add to Home Screen steps instead.
+    if (ios && /safari/i.test(navigator.userAgent) && !/crios|fxios|edgios/i.test(navigator.userAgent)) { showButtons(); setTimeout(offer, 6000); }
+    else ios = false;
+  }
 })();

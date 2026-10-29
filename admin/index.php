@@ -127,12 +127,12 @@ if ($action === 'save_settings') {
     $allowed = [
         'seo' => ['home_title' => 160, 'home_description' => 320, 'title_suffix' => 1, 'verify_google' => 300, 'verify_bing' => 300, 'verify_yandex' => 300, 'verify_pinterest' => 300, 'social_profiles' => 2000, 'robots_extra' => 2000],
         'ads' => ['analytics_id' => 30, 'adsense_client' => 40, 'ads_txt_extra' => 4000, 'limit_default' => 3, 'limit_mode' => 10, 'reward_unit' => 120, 'reward_uses' => 2, 'ad_top' => 10000, 'ad_article' => 10000, 'ad_side' => 10000, 'head_code' => 20000, 'body_code' => 20000, 'ai_isolate' => 1],
-        'settings' => ['announcement_text' => 200, 'announcement_link' => 300, 'contact_email' => 120, 'company_name' => 80, 'company_url' => 200, 'youtube_api_key' => 100, 'qr_enabled' => 1, 'qr_days' => 3, 'qr_max_mb' => 3, 'qr_per_hour' => 4, 'qr_blocked' => 5000],
+        'settings' => ['announcement_text' => 200, 'announcement_link' => 300, 'contact_email' => 120, 'company_name' => 80, 'company_url' => 200, 'app_install' => 1, 'youtube_api_key' => 100, 'qr_enabled' => 1, 'qr_days' => 3, 'qr_max_mb' => 3, 'qr_per_hour' => 4, 'qr_blocked' => 5000],
     ][$page] ?? [];
     $vals = [];
     foreach ($allowed as $k => $max) $vals[$k] = $clean($_POST[$k] ?? '', $max);
     if (isset($vals['analytics_id'])) $vals['analytics_id'] = strtoupper($vals['analytics_id']);
-    foreach (['title_suffix', 'qr_enabled', 'ai_isolate'] as $b) if (isset($vals[$b])) $vals[$b] = empty($_POST[$b]) ? '0' : '1';
+    foreach (['title_suffix', 'qr_enabled', 'ai_isolate', 'app_install'] as $b) if (isset($vals[$b])) $vals[$b] = empty($_POST[$b]) ? '0' : '1';
     if (isset($vals['limit_default'])) $vals['limit_default'] = $vals['limit_default'] === '' ? '' : (string) max(0, min(999, (int) $vals['limit_default']));
     if (isset($vals['limit_mode'])) $vals['limit_mode'] = $vals['limit_mode'] === 'reward' ? 'reward' : 'wait';
     if (isset($vals['reward_unit']) && !preg_match('~^/\d+(/[\w.\-]+)+$~', $vals['reward_unit'])) $vals['reward_unit'] = '';
