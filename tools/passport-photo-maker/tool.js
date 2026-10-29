@@ -135,21 +135,42 @@ function sheet(ph) {
   for (let r = 0; r < rws; r++) for (let k = 0; k < cols; k++) { const px = ox + k * (ph.width + gap), py = oy + r * (ph.height + gap); x.drawImage(ph, px, py); x.strokeRect(px - 0.5, py - 0.5, ph.width + 1, ph.height + 1); }
   return { c, n: cols * rws };
 }
-let drag = null;
-async function draw() {
-  const p = P(), ph = photo(), { c: sh, n } = sheet(ph);
+let drag = null, queued = false;
+// Drags, wheel turns and slider moves are merged into one redraw per screen frame.
+function draw() {
+  if (queued) return;
+  queued = true;
+  requestAnimationFrame(() => { queued = false; render(); });
+}
+// How many photos fit on the print sheet (without drawing it).
+function sheetCount(ph) {
+  const s = { '4x6': [6, 4], '5x7': [7, 5], a4: [11.69, 8.27], letter: [11, 8.5] }[$('#sheet').value];
+  const SW = Math.round(s[0] * DPI), SH = Math.round(s[1] * DPI), gap = mmpx(3), m = mmpx(4);
+  return Math.max(1, Math.floor((SW - 2 * m + gap) / (ph.width + gap))) * Math.max(1, Math.floor((SH - 2 * m + gap) / (ph.height + gap)));
+}
+// The print sheet is large (up to 3500 px), so its preview is drawn only when opened, and after the photo stops moving.
+let sheetTimer = 0;
+function sheetPreview() {
+  clearTimeout(sheetTimer);
+  const d = $('#pp-sheet-box');
+  if (!d || !d.open) return;
+  sheetTimer = setTimeout(() => { const { c } = sheet(photo()); c.toBlob(b => { const im = $('#pp-sheet'); if (!im || !b) return; if (im.dataset.url) URL.revokeObjectURL(im.dataset.url); im.src = im.dataset.url = URL.createObjectURL(b); }, 'image/jpeg', 0.7); }, 350);
+}
+function render() {
+  const p = P(), ph = photo(), n = sheetCount(ph);
   if (!$('#pp-stage')) {
     out.innerHTML = `<p class="kicker">Passport photo · drag to position</p>
       <div class="pp-wrap"><div class="pp-stage" id="pp-stage"><canvas id="pp-c"></canvas><div class="pp-guide" id="pp-guide"><i class="g-top"></i><i class="g-chin"></i><i class="g-oval"></i></div></div></div>
       <p class="sub" id="pp-info"></p>
       <div class="btns"><button type="button" class="btn big-btn" id="dl1">Download photo</button><button type="button" class="btn ghost" id="dl2">Download print sheet</button></div>
       <p class="note" id="pp-face">${faceNote}</p><p class="note" id="pp-sharp">${sharp}</p>
-      <details><summary>Print sheet preview</summary><img id="pp-sheet" alt="Print sheet" style="width:100%;border:1px solid var(--line);border-radius:6px;margin-top:8px"></details>
+      <details id="pp-sheet-box"><summary>Print sheet preview</summary><img id="pp-sheet" alt="Print sheet" style="width:100%;border:1px solid var(--line);border-radius:6px;margin-top:8px"></details>
       <p class="note">Keep the top of the head inside the upper band and the chin inside the lower band. Rules change and offices can be strict: check your government’s current photo requirements before printing.</p>`;
     const st = $('#pp-stage');
     st.addEventListener('pointerdown', e => { st.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, ox: view.ox, oy: view.oy }; });
     st.addEventListener('pointermove', e => { if (!drag) return; const r = st.getBoundingClientRect(); view.ox = drag.ox + (e.clientX - drag.x) / r.width; view.oy = drag.oy + (e.clientY - drag.y) / r.height; $('#ox').value = view.ox; $('#oy').value = view.oy; draw(); });
     ['pointerup', 'pointercancel'].forEach(ev => st.addEventListener(ev, () => { drag = null; }));
+    $('#pp-sheet-box').addEventListener('toggle', sheetPreview);
     st.addEventListener('wheel', e => { e.preventDefault(); view.zoom = Math.min(3, Math.max(0.3, view.zoom * (e.deltaY < 0 ? 1.03 : 0.97))); $('#zoom').value = view.zoom; draw(); }, { passive: false });
   }
   const c = $('#pp-c'); c.width = ph.width; c.height = ph.height; c.getContext('2d').drawImage(ph, 0, 0);
@@ -160,6 +181,6 @@ async function draw() {
   g.style.setProperty('--chin-b', `${(p[5] + p[4][1]) * 100}%`);
   $('#pp-info').textContent = `${p[1]}: ${p[2]}×${p[3]} mm · ${ph.width}×${ph.height} px at 300 dpi · ${n} copies on the print sheet`;
   $('#dl1').onclick = async () => download(await canvasBlob(ph, 'image/jpeg', 0.95), `${name}-${p[0]}-${p[2]}x${p[3]}mm.jpg`);
-  $('#dl2').onclick = async () => download(await canvasBlob(sh, 'image/jpeg', 0.95), `${name}-${p[0]}-sheet-${$('#sheet').value}.jpg`);
-  $('#pp-sheet').src = sh.toDataURL('image/jpeg', 0.7);
+  $('#dl2').onclick = async () => download(await canvasBlob(sheet(photo()).c, 'image/jpeg', 0.95), `${name}-${p[0]}-sheet-${$('#sheet').value}.jpg`);
+  sheetPreview();
 }

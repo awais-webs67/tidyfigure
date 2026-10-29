@@ -13,19 +13,15 @@ const AI = (() => {
       lib.env.allowLocalModels = false;
       // Pages sent with cross-origin isolation (see the AI speed setting in the admin panel) may use every CPU core.
       if (self.crossOriginIsolated) lib.env.backends.onnx.wasm.numThreads = Math.min(8, navigator.hardwareConcurrency || 4);
-      // On the CPU, run the AI in a background worker so the page stays responsive (progress bar, scrolling)
-      // while it works. With WebGPU the graphics chip does the work, and the worker mode doesn't support it.
-      gpu ??= (await device()) === 'webgpu';
-      lib.env.backends.onnx.wasm.proxy = !gpu;
+      // Run the AI in a background worker so the page never freezes (buttons, scrolling, the progress bar)
+      // while it works. (WebGPU would be faster on some PCs, but it can't run in the worker and its big model
+      // made the whole screen stutter on first use, so every device uses the CPU engine in the worker.)
+      lib.env.backends.onnx.wasm.proxy = true;
     }
     return lib;
   }
-  // WebGPU is much faster where available (recent Chrome/Edge). The GPU model uses 16-bit numbers, which some
-  // graphics chips can't do (no 'shader-f16'); those, and everything else, use WebAssembly on the CPU.
-  async function device() {
-    try { const a = navigator.gpu && await navigator.gpu.requestAdapter(); if (a && a.features.has('shader-f16')) return 'webgpu'; } catch (e) { /* no WebGPU */ }
-    return 'wasm';
-  }
+  // Kept for older callers: the AI always runs on the CPU engine (see load).
+  async function device() { return 'wasm'; }
   // Turns Transformers.js download events into one overall percentage.
   function progressTracker(onProgress) {
     const files = {};
@@ -38,19 +34,13 @@ const AI = (() => {
     };
   }
 
-  // hq on WebGPU: BiRefNet lite (MIT), the sharpest. hq without WebGPU: ISNet general (MIT), 8-bit so it runs well on CPU.
+  // hq: ISNet general (MIT), 8-bit so it runs well on the CPU.
   // fast: U-2-Netp (Apache 2.0), only 4.6 MB, so a first visit gets a result within seconds while hq loads.
   const MODELS = {
-    birefnet: { id: 'onnx-community/BiRefNet_lite-ONNX', dtype: 'fp16', size: 115 },
     isnet: { id: 'xrds/isnet-general-onnx-int8', dtype: 'q8', size: 44 },
     u2netp: { id: 'BritishWerewolf/U-2-Netp', dtype: 'fp32', size: 5, square: 320 },
   };
-  let gpu = null;
-  async function pick(quality) {
-    if (quality === 'fast') return 'u2netp';
-    gpu ??= (await device()) === 'webgpu';
-    return gpu ? 'birefnet' : 'isnet';
-  }
+  async function pick(quality) { return quality === 'fast' ? 'u2netp' : 'isnet'; }
   async function modelSize(quality) { return MODELS[await pick(quality)].size; }
 
   // A model loads once per page. The download can start early (preload, while the visitor is still choosing
@@ -62,7 +52,7 @@ const AI = (() => {
       st.promise = (async () => {
         const t = await load(), m = MODELS[key];
         return Promise.all([
-          t.AutoModel.from_pretrained(m.id, { dtype: m.dtype, device: key === 'birefnet' ? 'webgpu' : 'wasm', progress_callback: track }),
+          t.AutoModel.from_pretrained(m.id, { dtype: m.dtype, device: 'wasm', progress_callback: track }),
           m.square ? null : t.AutoProcessor.from_pretrained(m.id),
         ]);
       })().then(r => { st.ready = true; return r; }, e => { delete cache[key]; throw e; });
@@ -128,25 +118,39 @@ const AI = (() => {
     try { [model, processor] = await st.promise; } finally { st.subs.delete(onProgress); }
     const img = source instanceof HTMLCanvasElement ? source : await toCanvas(source);
     const S = MODELS[key].square;
-    const pixel_values = S ? squareInput(t, img, S) : (await processor(t.RawImage.fromCanvas(img))).pixel_values;
+    // The models look at about 1024 px, so a big photo is shrunk first (much less work for the page).
+    const pixel_values = S ? squareInput(t, img, S) : (await processor(t.RawImage.fromCanvas(shrink(img, 1280)))).pixel_values;
     const inputName = (model.sessions.model && model.sessions.model.inputNames[0]) || 'input';
     const outputs = await model({ [inputName]: pixel_values });
     let mt = Object.values(outputs)[0];
     if (S) mt = stretch(t, mt);
-    mt = mt.dims.length === 4 ? mt[0] : mt;
     // Some models give probabilities (0–1), others raw scores that need a sigmoid.
     const d0 = mt.data;
     let lo = Infinity, hi = -Infinity;
     for (let i = 0; i < d0.length; i += 97) { const v = d0[i]; if (v < lo) lo = v; if (v > hi) hi = v; }
     if (lo < -0.01 || hi > 1.01) mt = mt.sigmoid();
-    const mask = await t.RawImage.fromTensor(mt.mul(255).to('uint8')).resize(img.width, img.height);
+    // The mask at the model's own size, stretched over the photo by the browser's drawing engine.
+    const [mh, mw] = mt.dims.slice(-2), md = mt.data, m = document.createElement('canvas');
+    m.width = mw; m.height = mh;
+    const mx = m.getContext('2d'), id = mx.createImageData(mw, mh);
+    for (let i = 0; i < mw * mh; i++) id.data[i * 4 + 3] = md[i] * 255;
+    mx.putImageData(id, 0, 0);
     const c = document.createElement('canvas');
     c.width = img.width; c.height = img.height;
     const x = c.getContext('2d');
     x.drawImage(img, 0, 0);
-    const d = x.getImageData(0, 0, c.width, c.height);
-    for (let i = 0; i < mask.data.length; i++) d.data[i * 4 + 3] = mask.data[i];
-    x.putImageData(d, 0, 0);
+    x.globalCompositeOperation = 'destination-in';
+    x.imageSmoothingQuality = 'high';
+    x.drawImage(m, 0, 0, c.width, c.height);
+    x.globalCompositeOperation = 'source-over';
+    return c;
+  }
+  function shrink(img, max) {
+    const k = max / Math.max(img.width, img.height);
+    if (k >= 1) return img;
+    const c = document.createElement('canvas');
+    c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+    const x = c.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(img, 0, 0, c.width, c.height);
     return c;
   }
 

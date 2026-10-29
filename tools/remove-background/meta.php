@@ -39,11 +39,11 @@ EOT_TF,
 <tbody>
 <tr><td>Works on</td><td>Any subject: people, products, animals, cars, food</td><td>Any subject, with softer edges</td></tr>
 <tr><td>Edges</td><td>Very fine detail, including hair and fur</td><td>Clean outline; fine hair and fur less detailed</td></tr>
-<tr><td>Model download (once)</td><td>44 MB, or 115 MB with WebGPU</td><td>About 5 MB</td></tr>
+<tr><td>Model download (once)</td><td>About 44 MB</td><td>About 5 MB</td></tr>
 <tr><td>Speed</td><td>A few seconds on a computer; up to half a minute on older phones</td><td>About a second</td></tr>
-<tr><td>AI model</td><td>BiRefNet lite with WebGPU, otherwise ISNet (both MIT licence)</td><td>U-2-Netp (Apache 2.0 licence)</td></tr>
+<tr><td>AI model</td><td>ISNet (MIT licence)</td><td>U-2-Netp (Apache 2.0 licence)</td></tr>
 </tbody></table></div>
-<p>On computers with a recent Chrome or Edge, the tool uses your graphics card (WebGPU) and the larger BiRefNet model for the finest edges and extra speed.</p>
+<p>The AI works in the background of your browser, so the page stays smooth while it runs and you can keep scrolling or choosing options.</p>
 
 <h2>Getting the cleanest cut-out</h2>
 <ul>

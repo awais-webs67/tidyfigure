@@ -100,34 +100,81 @@ async function sharpen(id, asked = false) {
 out.addEventListener('click', e => { if (e.target.id === 'sharpen') sharpen(job, true); });
 function fail(e) { out.innerHTML = `<p class="kicker">Result</p><span class="verdict no">Couldn’t remove the background</span><p class="sub">${esc(e.message || String(e))}</p><p class="note">Check your connection (the AI downloads the first time) or try the Quick option.</p>`; }
 
-// Final image with the chosen background.
-function compose() {
+// The image with the chosen background. The preview is drawn at screen size, so changing the background
+// is instant even for a big photo; the full-size image is only drawn when it is downloaded.
+const PREVIEW = 1400;
+// Screen-size copies of the cut-out and the photo, made once per result and reused for every background.
+const small = new WeakMap();
+function smallOf(img, w, h) {
+  if (img.width <= w) return img;
+  let s = small.get(img);
+  if (!s || s.width !== w) { s = document.createElement('canvas'); s.width = w; s.height = h; const x = s.getContext('2d'); x.imageSmoothingQuality = 'high'; x.drawImage(img, 0, 0, w, h); small.set(img, s); }
+  return s;
+}
+function compose(full) {
+  const k = full ? 1 : Math.min(1, PREVIEW / Math.max(cut.width, cut.height));
   const c = document.createElement('canvas');
-  c.width = cut.width; c.height = cut.height;
+  c.width = Math.round(cut.width * k); c.height = Math.round(cut.height * k);
   const x = c.getContext('2d');
-  if (bg === 'blur') { x.filter = `blur(${Math.round(c.width / 600 * +$('#blur').value)}px)`; x.drawImage(src, 0, 0); x.filter = 'none'; }
+  x.imageSmoothingQuality = 'high';
+  if (bg === 'blur') blurred(x, c.width, c.height);
   else if (bg.startsWith('grad:')) {
     const g = GRADS[+bg.slice(5)];
     const gr = g[1] === 'radial' ? x.createRadialGradient(c.width / 2, c.height * 0.4, 0, c.width / 2, c.height * 0.4, Math.max(c.width, c.height) * 0.75) : x.createLinearGradient(0, 0, c.width, c.height);
     (g[1] === 'radial' ? ['#FFFFFF', '#BDBDBD'] : g[1]).forEach((col, i, a) => gr.addColorStop(i / (a.length - 1), col));
     x.fillStyle = gr; x.fillRect(0, 0, c.width, c.height);
   }
-  else if (bg === 'image' && bgImg) { const k = Math.max(c.width / bgImg.width, c.height / bgImg.height); x.drawImage(bgImg, (c.width - bgImg.width * k) / 2, (c.height - bgImg.height * k) / 2, bgImg.width * k, bgImg.height * k); }
+  else if (bg === 'image' && bgImg) { const s = Math.max(c.width / bgImg.width, c.height / bgImg.height); x.drawImage(bgImg, (c.width - bgImg.width * s) / 2, (c.height - bgImg.height * s) / 2, bgImg.width * s, bgImg.height * s); }
   else if (bg !== 'none') { x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height); }
-  x.drawImage(cut, 0, 0);
+  x.drawImage(full ? cut : smallOf(cut, c.width, c.height), 0, 0, c.width, c.height);
   return c;
 }
-async function show() {
-  const c = compose(), png = bg === 'none';
-  const blob = await canvasBlob(c, png ? 'image/png' : 'image/jpeg', 0.92);
-  out.innerHTML = `<p class="kicker">Result · drag to compare</p>
-    <div class="compare checker" id="cmp" style="aspect-ratio:${c.width}/${c.height}"><img src="${src.toDataURL('image/jpeg', 0.85)}" alt="Original"><div class="after checker"><img src="${URL.createObjectURL(blob)}" alt="Background removed"></div><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"><span class="handle"></span></div>
-    <p class="sub">${c.width}×${c.height} · ${bytes(blob.size)} · ${png ? 'PNG with transparency' : 'JPG'} · done in ${out.dataset.secs} s</p>
-    <p class="note" id="sharp">${sharp}</p>
-    <div class="btns"><button type="button" class="btn big-btn" id="dl">Download ${png ? 'PNG' : 'JPG'}</button>${png ? '<button type="button" class="btn ghost" id="dl-white">JPG on white</button>' : ''}</div>`;
-  const cmp = $('#cmp'), r = cmp.querySelector('input');
-  const upd = () => cmp.style.setProperty('--pos', r.value + '%');
-  r.addEventListener('input', upd); upd();
-  $('#dl').onclick = () => download(blob, `${name}-no-bg.${png ? 'png' : 'jpg'}`);
-  if (png) $('#dl-white').onclick = async () => { const keep = bg; bg = '#ffffff'; const w = compose(); bg = keep; download(await canvasBlob(w, 'image/jpeg', 0.92), `${name}-white-bg.jpg`); };
+// Blurred original behind the cut-out. Blurring a small copy and stretching it back up looks the same
+// as blurring the full photo, at a tiny fraction of the work. A little overscan keeps the edges from fading.
+function blurred(x, w, h) {
+  const r = Math.max(1, w / 600 * +$('#blur').value), f = Math.min(1, 6 / r);
+  const sw = Math.max(16, Math.round(w * f)), sh = Math.max(16, Math.round(h * f)), pad = Math.ceil(r * f * 2);
+  const t = document.createElement('canvas'); t.width = sw; t.height = sh;
+  const tx = t.getContext('2d');
+  tx.filter = `blur(${(r * f).toFixed(1)}px)`;
+  tx.drawImage(w < src.width ? smallOf(src, w, h) : src, -pad, -pad, sw + 2 * pad, sh + 2 * pad);
+  x.drawImage(t, 0, 0, w, h);
+}
+// Clicks and slider moves that come faster than the screen can draw are merged into one redraw.
+let drawing = false, again = false, shown = null;
+function show() {
+  if (drawing) { again = true; return; }
+  drawing = true;
+  requestAnimationFrame(() => {
+    try { render(); } finally { drawing = false; if (again) { again = false; show(); } }
+  });
+}
+function render() {
+  const c = compose(false), png = bg === 'none';
+  if (shown !== cut || !$('#cmp')) {
+    // New cut-out: build the comparison once; later background changes only swap the picture.
+    shown = cut;
+    const o = document.createElement('canvas');
+    o.width = c.width; o.height = c.height; o.getContext('2d').drawImage(smallOf(src, c.width, c.height), 0, 0);
+    out.innerHTML = `<p class="kicker">Result · drag to compare</p>
+      <div class="compare checker" id="cmp" style="aspect-ratio:${c.width}/${c.height}"><div class="after checker"></div><input type="range" min="0" max="100" value="50" aria-label="Compare before and after"><span class="handle"></span></div>
+      <p class="sub" id="info"></p>
+      <p class="note" id="sharp">${sharp}</p>
+      <div class="btns" id="dls"></div>`;
+    o.setAttribute('aria-label', 'Original'); $('#cmp').prepend(o);
+    const cmp = $('#cmp'), r = cmp.querySelector('input');
+    const upd = () => cmp.style.setProperty('--pos', r.value + '%');
+    r.addEventListener('input', upd); upd();
+  }
+  c.setAttribute('aria-label', 'Background removed');
+  $('#cmp .after').replaceChildren(c);
+  $('#info').textContent = `${cut.width}×${cut.height} · ${png ? 'PNG with transparency' : 'JPG'} · done in ${out.dataset.secs} s`;
+  $('#dls').innerHTML = `<button type="button" class="btn big-btn" id="dl">Download ${png ? 'PNG' : 'JPG'}</button>${png ? '<button type="button" class="btn ghost" id="dl-white">JPG on white</button>' : ''}`;
+  $('#dl').onclick = () => save(png ? 'image/png' : 'image/jpeg', `${name}-no-bg.${png ? 'png' : 'jpg'}`);
+  if (png) $('#dl-white').onclick = () => { const keep = bg; bg = '#ffffff'; save('image/jpeg', `${name}-white-bg.jpg`); bg = keep; };
+}
+// Download: the full-size image, drawn only now.
+function save(type, file) {
+  const c = compose(true);
+  canvasBlob(c, type, 0.92).then(b => download(b, file));
 }
