@@ -1,0 +1,17 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">It turns into Markdown straight away</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <label class="check"><input type="checkbox" id="breaks"> Mark page breaks (---)</label>
+    <label class="check"><input type="checkbox" id="keephf"> Keep headers, footers and page numbers</label>
+    <div class="btns"><button type="button" class="btn ghost" id="sample">Try with a sample PDF</button></div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Markdown</p>
+    <p class="empty">Choose a PDF to convert it.</p>
+  </div>
+</div>

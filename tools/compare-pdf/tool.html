@@ -1,0 +1,44 @@
+<style>
+  .cm-drops { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 560px) { .cm-drops { grid-template-columns: 1fr; } }
+  .cm-diff { white-space: pre-wrap; overflow-wrap: anywhere; font: 15px/1.7 var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px 16px; }
+  .cm-diff ins { background: #D7F5DD; color: #0B5D1E; text-decoration: none; border-radius: 3px; padding: 0 1px; }
+  .cm-diff del { background: #FDE1E1; color: #9B1C1C; text-decoration: line-through; border-radius: 3px; padding: 0 1px; }
+  :root[data-theme="dark"] .cm-diff ins { background: #12391D; color: #8EE2A5; }
+  :root[data-theme="dark"] .cm-diff del { background: #45161A; color: #FF9A9A; }
+  .cm-diff .gap { display: block; color: var(--muted); font-size: 13px; text-align: center; margin: 6px 0; }
+  .cm-diff .pg { display: block; margin: 12px 0 4px; font: 700 12px/1 var(--f-body); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .cm-pages { display: grid; gap: 14px; }
+  .cm-pages figure { margin: 0; }
+  .cm-pages canvas { width: 100%; height: auto; display: block; box-shadow: 0 2px 10px rgba(0, 0, 0, .15); background: #fff; }
+  .cm-pages figcaption { font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .cm-key { display: flex; gap: 14px; font-size: 13px; color: var(--muted); margin: 0 0 10px; }
+  .cm-key i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 4px; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="cm-drops">
+      <div class="drop" id="dropA" role="button" tabindex="0" aria-label="Choose the original PDF">
+        {{icon:file-up}}<strong>Original PDF</strong><span id="nameA">Drop or click to choose</span>
+        <input type="file" id="fileA" accept="application/pdf,.pdf">
+      </div>
+      <div class="drop" id="dropB" role="button" tabindex="0" aria-label="Choose the changed PDF">
+        {{icon:file-up}}<strong>Changed PDF</strong><span id="nameB">Drop or click to choose</span>
+        <input type="file" id="fileB" accept="application/pdf,.pdf">
+      </div>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="How to compare">
+      <label><input type="radio" name="mode" value="text" checked><span>Text changes</span></label>
+      <label><input type="radio" name="mode" value="visual"><span>Visual</span></label>
+    </div>
+    <label class="check"><input type="checkbox" id="only" checked> Only show changes (with a little text around them)</label>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:git-compare-arrows}}Compare</button>
+      <button type="button" class="btn ghost" id="sample">Try with two sample PDFs</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Differences</p>
+    <p class="empty">Choose two PDFs to compare.</p>
+  </div>
+</div>
