@@ -250,6 +250,34 @@ function tf_share_html(): string
         . '<button type="button" data-share="native" hidden aria-label="More sharing options"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12v7a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-7M16 6l-4-4-4 4M12 2v13"/></svg></button></div>';
 }
 
+// Gives each file picker in a tool's markup an accessible name, so it has one before any script runs (assistive tech,
+// AI agents, crawlers). The name is the visible text of the drop zone around it, the same rule app.js uses.
+// Pickers that already have a label, aria-label or are hidden are left alone.
+function tf_name_file_inputs(string $html): string
+{
+    return preg_replace_callback('~<input type="file"[^>]*>~', function ($m) use ($html) {
+        $tag = $m[0][0];
+        $pos = $m[0][1];
+        if (preg_match('~\s(aria-label|aria-labelledby|hidden)[\s=>]~', $tag)) return $tag;
+        if (preg_match('~\sid="([^"]+)"~', $tag, $id) && str_contains($html, 'for="' . $id[1] . '"')) return $tag;
+        $before = substr($html, 0, $pos);
+        if (strrpos($before, '<label') > (int) strrpos($before, '</label>')) return $tag; // wrapped in a <label>
+        $zone = strrpos($before, 'class="drop');
+        $name = '';
+        $seg = $zone !== false ? substr($before, $zone) : '';
+        // Only a drop zone that is still open around the picker counts (its <div> not yet closed).
+        if ($seg !== '' && substr_count($seg, '</div>') <= substr_count($seg, '<div')) {
+            if (preg_match('~<strong>(.*?)</strong>~s', $seg, $s)) $name = tf_strip($s[1]);
+            elseif (preg_match('~aria-label="([^"]+)"~', $seg, $a)) $name = html_entity_decode($a[1], ENT_QUOTES);
+        }
+        if ($name === '') {
+            $accept = preg_match('~accept="([^"]*)"~', $tag, $ac) ? $ac[1] : '';
+            $name = str_contains($accept, 'pdf') ? 'Choose a PDF' : (str_starts_with($accept, 'image/') ? 'Choose an image' : (str_starts_with($accept, 'audio/') || str_starts_with($accept, 'video/') ? 'Choose an audio or video file' : 'Choose a file'));
+        }
+        return substr($tag, 0, -1) . ' aria-label="' . h(mb_substr($name, 0, 100)) . '">';
+    }, $html, -1, $n, PREG_OFFSET_CAPTURE);
+}
+
 function tf_page_tool(array $t): string
 {
     $site = tf_site();
@@ -288,7 +316,7 @@ function tf_page_tool(array $t): string
 <p class="answer">' . $t['answer'] . '</p>' . (!empty($t['aka']) ? '
 <p class="aka">Also known as: ' . implode(' · ', array_map('h', $t['aka'])) . '</p>' : '') . '
 <section class="tool" aria-label="' . h($t['name']) . '">
-' . $t['html'] . '
+' . tf_name_file_inputs($t['html']) . '
 </section>
 <div class="under-tool"><p class="private">' . tf_icon('shield-check') . ($uploads ? 'What you add here is stored on our server so the QR code keeps working, and deleted automatically after ' . $days . ' days. You can delete it sooner from its manage page.' : ($files ? 'Your files are processed on your device and never uploaded.' : (!empty($t['server_note']) ? h($t['server_note']) : 'Everything runs in your browser. Nothing you type is sent anywhere.'))) . '</p>' . tf_share_html() . '</div>
 ' . ($t['category'] === 'health' ? '<p class="disclaimer">Results are estimates for general information, not medical advice. Talk to a doctor or other qualified professional about your health.</p>' : '')
