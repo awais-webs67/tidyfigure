@@ -2,8 +2,13 @@
 // Water Intake Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Water Intake Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'health',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['National Academies: Dietary Reference Intakes for Water, Potassium, Sodium, Chloride, and Sulfate', 'https://nap.nationalacademies.org/catalog/10925/dietary-reference-intakes-for-water-potassium-sodium-chloride-and-sulfate'],
+    ['NHS: Water, drinks and hydration', 'https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/water-drinks-nutrition/'],
+  ],
   'order' => 6,
   'icon' => 'glass-water',
   'appCategory' => 'HealthApplication',

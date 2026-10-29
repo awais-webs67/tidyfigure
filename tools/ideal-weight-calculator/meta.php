@@ -2,8 +2,12 @@
 // Ideal Weight Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Ideal Weight Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'health',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['Robinson JD et al. (1983). Determination of ideal body weight for drug dosage calculations. Am J Hosp Pharm.', 'https://pubmed.ncbi.nlm.nih.gov/6869387/'],
+  ],
   'order' => 5,
   'icon' => 'target',
   'appCategory' => 'HealthApplication',

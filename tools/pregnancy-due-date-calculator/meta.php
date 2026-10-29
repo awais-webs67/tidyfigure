@@ -2,8 +2,12 @@
 // Pregnancy Due Date Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Pregnancy Due Date Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'health',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['American College of Obstetricians and Gynecologists: Methods for Estimating the Due Date', 'https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date'],
+  ],
   'order' => 7,
   'icon' => 'baby',
   'popular' => true,

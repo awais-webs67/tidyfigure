@@ -2,8 +2,13 @@
 // Inflation Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Inflation Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'money',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['Bank of England: Inflation and the 2% target', 'https://www.bankofengland.co.uk/monetary-policy/inflation'],
+    ['Federal Reserve: Why does the Federal Reserve aim for inflation of 2 percent?', 'https://www.federalreserve.gov/faqs/economy_14400.htm'],
+  ],
   'order' => 5,
   'icon' => 'trending-down',
   'appCategory' => 'FinanceApplication',

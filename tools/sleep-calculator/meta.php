@@ -2,8 +2,12 @@
 // Sleep Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Sleep Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'health',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['Sleep Foundation: How much sleep do adults need?', 'https://www.sleepfoundation.org/how-sleep-works/how-much-sleep-do-we-really-need'],
+  ],
   'order' => 9,
   'icon' => 'moon',
   'popular' => true,

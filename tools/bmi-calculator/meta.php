@@ -2,8 +2,13 @@
 // BMI Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'BMI Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'health',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['World Health Organization: Obesity and overweight (BMI categories)', 'https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight'],
+    ['NHS: Calculate your body mass index (BMI) for adults', 'https://www.nhs.uk/health-assessment-tools/calculate-your-body-mass-index/calculate-bmi-for-adults'],
+  ],
   'order' => 2,
   'icon' => 'activity',
   'appCategory' => 'HealthApplication',

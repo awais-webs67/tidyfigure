@@ -2,8 +2,12 @@
 // Calories Burned Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Calories Burned Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'health',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['Compendium of Physical Activities (MET values)', 'https://pacompendium.com/'],
+  ],
   'order' => 10,
   'icon' => 'dumbbell',
   'appCategory' => 'HealthApplication',

@@ -2,8 +2,13 @@
 // Heart Rate Zone Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Heart Rate Zone Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'health',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['Tanaka H, Monahan KD, Seals DR (2001). Age-predicted maximal heart rate revisited. J Am Coll Cardiol.', 'https://pubmed.ncbi.nlm.nih.gov/11153730/'],
+    ['Karvonen MJ, Kentala E, Mustala O (1957). The effects of training on heart rate: a longitudinal study. Ann Med Exp Biol Fenn.', 'https://pubmed.ncbi.nlm.nih.gov/13470504/'],
+  ],
   'order' => 11,
   'icon' => 'heart-pulse',
   'appCategory' => 'HealthApplication',

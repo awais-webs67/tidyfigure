@@ -2,8 +2,12 @@
 // FIRE Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'FIRE Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'money',
+  // Published sources for the method on this page (shown as a Sources list).
+  'sources' => [
+    ['Cooley, Hubbard, Walz (1998). Retirement Savings: Choosing a Withdrawal Rate That Is Sustainable (the Trinity study). AAII Journal.', 'https://www.aaii.com/journal/article/retirement-savings-choosing-a-withdrawal-rate-that-is-sustainable'],
+  ],
   'order' => 15,
   'icon' => 'flame',
   'appCategory' => 'FinanceApplication',

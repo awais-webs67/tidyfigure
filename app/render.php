@@ -326,6 +326,7 @@ function tf_page_tool(array $t): string
 <div class="layout">
 <article class="prose">
 ' . tf_links($t['article']) . '
+' . (!empty($t['sources']) ? '<h2>Sources</h2><ul class="sources">' . implode('', array_map(fn($s) => '<li><a href="' . h($s[1]) . '" rel="noopener" target="_blank">' . h($s[0]) . '</a></li>', $t['sources'])) . '</ul>' : '') . '
 ' . tf_ad('article', $noads) . '
 <h2>Frequently asked questions</h2>
 ' . tf_faq_html($t['faqs']) . '
