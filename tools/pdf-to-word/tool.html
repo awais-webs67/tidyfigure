@@ -1,0 +1,32 @@
+<style>
+  .pw-doc { background: #fff; color: #1f2328; border: 1px solid var(--line); border-radius: 6px; padding: 26px 30px; box-shadow: 0 2px 12px rgba(0, 0, 0, .08); font: 14px/1.5 Calibri, Arial, sans-serif; max-height: none; }
+  .pw-doc h1, .pw-doc h2, .pw-doc h3 { font-family: inherit; color: #1f3864; margin: 14px 0 6px; line-height: 1.25; text-transform: none; letter-spacing: 0; }
+  .pw-doc h1 { font-size: 22px; } .pw-doc h2 { font-size: 18px; } .pw-doc h3 { font-size: 15px; }
+  .pw-doc p { margin: 0 0 8px; }
+  .pw-doc img { max-width: 100%; height: auto; display: block; margin: 6px 0; }
+  .pw-doc .pb { border-top: 1px dashed #c8ccd1; margin: 14px -30px; position: relative; }
+  .pw-doc .pb::after { content: "page break"; position: absolute; right: 30px; top: -9px; background: #fff; padding: 0 6px; font-size: 11px; color: #8b9198; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF to convert">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">You get an editable .docx file</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Kind of Word file">
+      <label><input type="radio" name="mode" value="edit" checked><span>Editable text</span></label>
+      <label><input type="radio" name="mode" value="look"><span>Exact look (pictures)</span></label>
+    </div>
+    <label class="check" id="pbwrap"><input type="checkbox" id="pb" checked> Start each PDF page on a new page</label>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:file-type}}Convert to Word</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Word document</p>
+    <p class="empty">Choose a PDF to convert it.</p>
+  </div>
+</div>

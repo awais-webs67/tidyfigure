@@ -1,0 +1,28 @@
+<style>
+  .pp-slides { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-top: 10px; }
+  .pp-slides figure { margin: 0; }
+  .pp-slides canvas { width: 100%; height: auto; display: block; box-shadow: 0 2px 8px rgba(0, 0, 0, .18); background: #fff; }
+  .pp-slides figcaption { font-size: 12px; color: var(--muted); margin-top: 3px; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PDF to convert">
+      {{icon:file-up}}
+      <strong>Drop a PDF here or click to choose</strong>
+      <span id="loaded">Each page becomes a slide</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Kind of slides">
+      <label><input type="radio" name="mode" value="edit" checked><span>Editable text</span></label>
+      <label><input type="radio" name="mode" value="look"><span>Exact look (pictures)</span></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:presentation}}Convert to PowerPoint</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample PDF</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Presentation</p>
+    <p class="empty">Choose a PDF to convert it.</p>
+  </div>
+</div>
