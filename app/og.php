@@ -131,12 +131,12 @@ function tf_icon_serve(int $size): void
     }
     $dir = TF_CACHE . '/og';
     if (!is_dir($dir)) @mkdir($dir, 0755, true);
-    $file = "$dir/icon-v1-$size.png";
+    $file = "$dir/icon-v2-$size.png";
     if (!is_file($file)) {
         // Drawn 4× larger and scaled down, for smooth edges. The mark sits in the middle 80%, the safe area for round icons.
         $S = $size * 4;
         $big = imagecreatetruecolor($S, $S);
-        imagefill($big, 0, 0, tf_og_color($big, '#0B7F5E'));
+        imagefill($big, 0, 0, tf_og_color($big, '#333F48')); // the site's slate, as in the header logo
         $white = tf_og_color($big, '#ffffff');
         $u = $S * 0.8 / 32;
         $o = $S * 0.1;
@@ -145,7 +145,7 @@ function tf_icon_serve(int $size): void
         imagefilledrectangle($big, $p(9), $p(9.5), $p(23), $p(12.5), $white);
         imagefilledrectangle($big, $p(14.5), $p(11), $p(17.5), $p(23), $white);
         foreach ([[9, 11], [23, 11], [16, 23]] as [$x, $y]) imagefilledellipse($big, $p($x), $p($y), (int) ($r * 2), (int) ($r * 2), $white);
-        imagefilledellipse($big, $p(23), $p(22), (int) (4.8 * $u), (int) (4.8 * $u), $white);
+        imagefilledellipse($big, $p(23), $p(22), (int) (5.2 * $u), (int) (5.2 * $u), tf_og_color($big, '#FF5B35'));
         $img = imagecreatetruecolor($size, $size);
         imagecopyresampled($img, $big, 0, 0, 0, 0, $size, $size, $S, $S);
         imagepng($img, $file);

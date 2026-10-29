@@ -172,7 +172,7 @@ $head
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><div class="wrap">
+<header class="site" data-nosnippet><div class="wrap">
 <a class="brand" href="{$g['tf_home']}" aria-label="$name home">$logo<span>$brand</span></a>
 <nav class="main-nav" id="main-nav" aria-label="Tool categories">{$nav}<a class="cta" href="{$g['tf_home']}#categories">All tools</a><button type="button" class="nav-install" data-install hidden>Install app</button></nav>
 <button type="button" class="hbtn search-btn" data-open-search aria-label="Search tools">$iconSearch<span>Search tools</span><kbd>Ctrl K</kbd></button>
@@ -184,7 +184,7 @@ $announce
 <div id="main">
 $body
 </div>
-<footer class="foot"><div class="wrap">
+<footer class="foot" data-nosnippet><div class="wrap">
 <div class="foot-brand"><a class="brand" href="{$g['tf_home']}">$logo<span>$brand</span></a><p>{$g['tf_count']} free online tools that run in your browser. Fast, private and free, with no sign-up.</p>$project<p class="foot-social">$social</p></div>
 $footer<div class="legal"><span>© $year $name.$legalBy Your files never leave your device.</span>
 <span><a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_contact']}">Contact</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_terms']}">Terms</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
@@ -363,7 +363,8 @@ function tf_page_home(): string
     $tools = tf_tools();
     $n = count($tools);
     $name = $site['site']['name'];
-    [$title, $desc] = tf_seo('index', "$name: $n Free Online Tools for PDF, Images, Video & More", "$n free online tools that run in your browser: merge PDFs, compress images, convert video to MP3, make QR codes, calculators and more. No sign-up.");
+    // No tool count in the title or description: the number changes, and search results would show an old one.
+    [$title, $desc] = tf_seo('index', "$name – Free Online PDF, Image & Video Tools", "Free online tools that run in your browser: merge and compress PDFs, remove image backgrounds, convert video to MP3, make QR codes and more. No sign-up.");
     $faqs = [
         ["Are $name tools really free?", "Yes. All $n tools are free to use with no sign-up, no watermark and no daily limit. The site is supported by advertising."],
         ['Are my files uploaded to a server?', 'No. Images, PDFs, videos and text are processed in your browser on your own device. The only exceptions are hosted QR codes, which you choose to save on the site.'],
