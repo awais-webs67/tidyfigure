@@ -1,0 +1,26 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a photo to upscale">
+      {{icon:image-up}}
+      <strong>Drop a photo here or click to choose</strong>
+      <span id="loaded">JPG, PNG or WebP</span>
+      <input type="file" id="file" accept="image/*">
+    </div>
+    <div class="seg" role="radiogroup" aria-label="How much bigger">
+      <label><input type="radio" name="scale" value="2" checked><span>2× larger</span></label>
+      <label><input type="radio" name="scale" value="4"><span>4× larger</span></label>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Save as</span><select id="fmt"><option value="auto">Automatic</option><option value="image/jpeg">JPG (smaller file)</option><option value="image/png">PNG (best quality)</option></select></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:scaling}}Upscale</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample photo</button>
+    </div>
+    <p class="note">The AI model (about 5 MB) downloads the first time, then runs on your device.</p>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Result</p>
+    <p class="empty">Choose a photo to make it bigger and sharper.</p>
+  </div>
+</div>
