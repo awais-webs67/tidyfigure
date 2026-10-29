@@ -26,7 +26,16 @@ if ($clean !== '' && !str_starts_with($clean, 'q/') && ($path !== '/' . $clean |
 $path = trim($path, '/');
 
 if ($path === 'sitemap.xml') {
+    // Last-Modified = the newest date in the sitemap, so search engines can ask "changed since?" and get a quick 304.
+    $newest = max(array_merge(array_map('tf_tool_date', tf_tools()), array_map('strtotime', TF_PAGE_DATES)));
+    $since = strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE'] ?? '') ?: 0;
     header('Content-Type: application/xml; charset=utf-8');
+    header('Cache-Control: public, max-age=3600');
+    header('Last-Modified: ' . gmdate('D, d M Y H:i:s', $newest) . ' GMT');
+    if ($since >= $newest) {
+        http_response_code(304);
+        exit;
+    }
     echo tf_sitemap();
     exit;
 }
@@ -106,7 +115,9 @@ if (preg_match('/^(.+)\.html$/', $path, $m) || $path === 'index' || $path === 'i
 
 tf_layout_globals();
 header('Content-Type: text/html; charset=utf-8');
-header('Cache-Control: public, max-age=300');
+// Browsers recheck pages after 5 minutes; the CDN may keep a copy for an hour and serve it while it refreshes in the
+// background, so most visitors get a page without waiting for PHP. After a big change, purge the CDN in hPanel.
+header('Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400');
 
 if ($path === '') {
     echo tf_page_home();
