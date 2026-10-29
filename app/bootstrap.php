@@ -85,6 +85,7 @@ function tf_setting_defaults(): array
         'head_code' => '', 'body_code' => '',
         'youtube_api_key' => '',
         'contact_email' => '',
+        'company_name' => '', 'company_url' => '', // the company the site belongs to ('' = the one in app/site.php)
         'schema_version' => '',
         // SEO
         'verify_google' => '', 'verify_bing' => '', 'verify_yandex' => '', 'verify_pinterest' => '',
@@ -259,6 +260,14 @@ function tf_tool_limit(string $slug): int
 }
 
 // Contact email: the admin setting, then site.php, then hello@ + the domain the site runs on.
+// The company behind the site, shown in the footer, on the About page and in Google's Organization data.
+function tf_company(): array
+{
+    $s = tf_settings(); $site = tf_site()['site'];
+    $url = trim($s['company_url']) ?: trim($site['by_url'] ?? '');
+    return ['name' => trim($s['company_name']) ?: trim($site['by'] ?? ''), 'url' => preg_match('~^https?://~', $url) ? $url : ''];
+}
+
 function tf_contact_email(): string
 {
     $set = trim(tf_settings()['contact_email']) ?: trim(tf_site()['site']['email']);

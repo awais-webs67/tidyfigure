@@ -209,19 +209,95 @@ function watchJobs(out) {
 document.querySelectorAll('.tool .out').forEach(watchJobs);
 
 // Phones: mark a result panel .live once it shows a real preview, so CSS can keep it on screen (see style.css).
-(function stickyResults() {
+// Phones: a tool's result shows at the top of the tool, in the normal page flow (one scroll, nothing scrolls
+// inside a box). When the visitor scrolls down to the options, a small floating copy of the result (like a
+// video's mini player) keeps it in view; tapping it goes back to the full result, × folds it into a small tab.
+// Panels: .tool-grid > .out (app.js adds .live when it shows a real picture, so CSS can put it first) and any
+// element with data-pip. data-pip="last" mirrors the last picture in the panel (e.g. the newest page).
+(function miniPreview() {
   const phone = matchMedia('(max-width: 860px)');
+  const panels = () => [...document.querySelectorAll('.tool-grid > .out:not([data-nosticky]), [data-pip]')];
+  const big = e => { const r = e.getBoundingClientRect(); return r.width >= 120 && r.height >= 90; };
+  // The picture a panel shows: the largest canvas, image, video or drawing (or the "after" side of a comparison).
+  function source(panel) {
+    const all = [...panel.querySelectorAll('canvas, img, video, svg, .compare')].filter(e => !e.closest('.compare') || e.matches('.compare')).filter(e => !(e.matches('svg') && e.closest('button, .btn, a')) && big(e));
+    if (!all.length) return null;
+    let e = panel.dataset.pip === 'last' ? all[all.length - 1] : all.reduce((a, b) => { const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return rb.width * rb.height > ra.width * ra.height ? b : a; });
+    if (e.matches('.compare')) e = e.querySelector('.after canvas, .after img') || e.querySelector('canvas, img') || e;
+    return e;
+  }
   document.querySelectorAll('.tool-grid > .out').forEach(out => {
     let t = 0;
-    const check = () => { clearTimeout(t); t = setTimeout(() => {
-      const live = phone.matches && [...out.querySelectorAll('canvas, video, img, .compare')].some(e => { const r = e.getBoundingClientRect(); return r.width >= 120 && r.height >= 90; });
-      out.classList.toggle('live', live);
-    }, 120); };
+    const check = () => { clearTimeout(t); t = setTimeout(() => out.classList.toggle('live', phone.matches && !!source(out)), 120); };
     new MutationObserver(check).observe(out, { childList: true, subtree: true, attributes: true, attributeFilter: ['width', 'height', 'src', 'hidden', 'style', 'class'] });
     phone.addEventListener?.('change', check);
     window.addEventListener('load', check);
     check();
   });
+  if (!panels().length) return;
+
+  const pip = document.createElement('div');
+  pip.className = 'pip'; pip.hidden = true;
+  pip.innerHTML = '<button type="button" class="pip-view checker" aria-label="Show the full result"><canvas aria-hidden="true"></canvas><div class="pip-svg" aria-hidden="true"></div></button><button type="button" class="pip-x" aria-label="Fold the preview away">×</button><button type="button" class="pip-tab" hidden>Preview</button>';
+  document.body.appendChild(pip);
+  const cv = pip.querySelector('canvas'), svgBox = pip.querySelector('.pip-svg'), view = pip.querySelector('.pip-view'), tab = pip.querySelector('.pip-tab');
+  let panel = null, src = null, folded = false, timer = 0, lastSvg = '';
+
+  function paint() {
+    if (!src || !src.isConnected) return;
+    const isSvg = src.matches('svg');
+    cv.hidden = isSvg; svgBox.hidden = !isSvg;
+    if (isSvg) {
+      const html = src.outerHTML;
+      if (html !== lastSvg) { lastSvg = html; svgBox.innerHTML = html; const s = svgBox.firstElementChild; s.removeAttribute('id'); s.querySelectorAll('[id]').forEach(n => n.removeAttribute('id')); }
+      return;
+    }
+    const w = src.videoWidth || src.naturalWidth || src.width, h = src.videoHeight || src.naturalHeight || src.height;
+    if (!w || !h) return;
+    const cssW = Math.min(190, innerWidth * 0.4), k = Math.min(cssW / w, innerHeight * 0.3 / h), dpr = Math.min(2, devicePixelRatio || 1);
+    const W = Math.max(1, Math.round(w * k * dpr)), H = Math.max(1, Math.round(h * k * dpr));
+    if (cv.width !== W || cv.height !== H) { cv.width = W; cv.height = H; cv.style.width = `${W / dpr}px`; cv.style.height = `${H / dpr}px`; }
+    const x = cv.getContext('2d');
+    x.clearRect(0, 0, W, H);
+    try { x.drawImage(src, 0, 0, W, H); } catch (e) { /* not ready yet */ }
+  }
+  function place() {
+    const vv = window.visualViewport;
+    pip.style.bottom = `${Math.max(10, vv ? innerHeight - vv.offsetTop - vv.height + 10 : 10)}px`;
+  }
+  function update() {
+    let show = false;
+    if (phone.matches) {
+      const hh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 60;
+      for (const p of panels()) {
+        const s = source(p);
+        if (!s) continue;
+        const area = p.closest('.tool-grid, .tool, main') || p.parentElement, ra = area.getBoundingClientRect();
+        if (ra.bottom < hh + 120 || ra.top > innerHeight) continue; // the visitor has scrolled away from the tool
+        const r = s.getBoundingClientRect(), seen = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, hh)) / Math.min(r.height, innerHeight - hh);
+        if (seen < 0.3) { show = true; if (panel !== p || src !== s) { panel = p; src = s; lastSvg = ''; } break; }
+      }
+    }
+    if (show === !pip.hidden) { if (show) paint(); return; }
+    pip.hidden = !show;
+    clearInterval(timer);
+    if (show) { place(); paint(); timer = setInterval(paint, 250); }
+  }
+  let raf = 0;
+  const soon = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; update(); }); };
+  addEventListener('scroll', soon, { passive: true });
+  addEventListener('resize', soon);
+  window.visualViewport?.addEventListener('resize', () => { place(); soon(); });
+  window.visualViewport?.addEventListener('scroll', place);
+  phone.addEventListener?.('change', soon);
+  setInterval(soon, 1000); // results that appear or change size without a scroll
+  function fold(v) { folded = v; pip.classList.toggle('folded', v); tab.hidden = !v; view.hidden = v; pip.querySelector('.pip-x').hidden = v; }
+  view.addEventListener('click', () => {
+    const r = src.getBoundingClientRect(), hh = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 60;
+    scrollTo({ top: scrollY + r.top - hh - 10, behavior: 'smooth' });
+  });
+  pip.querySelector('.pip-x').addEventListener('click', () => fold(true));
+  tab.addEventListener('click', () => fold(false));
 })();
 
 function loadImage(file) {

@@ -127,7 +127,7 @@ if ($action === 'save_settings') {
     $allowed = [
         'seo' => ['home_title' => 160, 'home_description' => 320, 'title_suffix' => 1, 'verify_google' => 300, 'verify_bing' => 300, 'verify_yandex' => 300, 'verify_pinterest' => 300, 'social_profiles' => 2000, 'robots_extra' => 2000],
         'ads' => ['analytics_id' => 30, 'adsense_client' => 40, 'ads_txt_extra' => 4000, 'limit_default' => 3, 'limit_mode' => 10, 'reward_unit' => 120, 'reward_uses' => 2, 'ad_top' => 10000, 'ad_article' => 10000, 'ad_side' => 10000, 'head_code' => 20000, 'body_code' => 20000, 'ai_isolate' => 1],
-        'settings' => ['announcement_text' => 200, 'announcement_link' => 300, 'contact_email' => 120, 'youtube_api_key' => 100, 'qr_enabled' => 1, 'qr_days' => 3, 'qr_max_mb' => 3, 'qr_per_hour' => 4, 'qr_blocked' => 5000],
+        'settings' => ['announcement_text' => 200, 'announcement_link' => 300, 'contact_email' => 120, 'company_name' => 80, 'company_url' => 200, 'youtube_api_key' => 100, 'qr_enabled' => 1, 'qr_days' => 3, 'qr_max_mb' => 3, 'qr_per_hour' => 4, 'qr_blocked' => 5000],
     ][$page] ?? [];
     $vals = [];
     foreach ($allowed as $k => $max) $vals[$k] = $clean($_POST[$k] ?? '', $max);

@@ -105,7 +105,10 @@ function tf_layout(array $o, string $body): string
         if ($links) $footer .= '<div><h2><a href="' . h(tf_url($c['slug'])) . '">' . h($c['name']) . '</a></h2><ul>' . $links . "</ul></div>\n";
     }
     $social = implode('', array_map(fn($u) => '<a href="' . h($u) . '" rel="noopener me">' . h(preg_replace('~^https?://(www\.)?([^/]+).*$~', '$2', $u)) . '</a>', tf_social_profiles()));
-    $by = '<a href="' . h($site['site']['by_url']) . '" rel="noopener">' . h($site['site']['by']) . '</a>';
+    $co = tf_company();
+    $by = $co['url'] !== '' ? '<a href="' . h($co['url']) . '" rel="noopener">' . h($co['name']) . '</a>' : h($co['name']);
+    $project = $co['name'] !== '' ? "<p class=\"foot-by\">$name is a project by <strong>$by</strong>.</p>" : '';
+    $legalBy = $co['name'] !== '' ? " A project by $by." : '';
     $schema = implode("\n", array_map('tf_ld', $o['schema'] ?? []));
     $t = h($o['title']);
     $d = h($o['description']);
@@ -163,8 +166,8 @@ $announce
 $body
 </div>
 <footer class="foot"><div class="wrap">
-<div class="foot-brand"><a class="brand" href="{$g['tf_home']}">$logo<span>$brand</span></a><p>{$g['tf_count']} free online tools that run in your browser. Fast, private and free, with no sign-up.</p><p class="foot-social">$social</p></div>
-$footer<div class="legal"><span>© $year $name. Built by $by. Your files never leave your device.</span>
+<div class="foot-brand"><a class="brand" href="{$g['tf_home']}">$logo<span>$brand</span></a><p>{$g['tf_count']} free online tools that run in your browser. Fast, private and free, with no sign-up.</p>$project<p class="foot-social">$social</p></div>
+$footer<div class="legal"><span>© $year $name.$legalBy Your files never leave your device.</span>
 <span><a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_contact']}">Contact</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_terms']}">Terms</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
 </div></footer>
 <script src="{$g['tf_sitejs']}" defer></script>
@@ -342,7 +345,7 @@ function tf_page_home(): string
     $schema = [
         // Site name for Google: the brand, plus the spaced spelling people may type.
         ['@context' => 'https://schema.org', '@type' => 'WebSite', '@id' => tf_abs() . '#website', 'name' => $name, 'alternateName' => [preg_replace('/(?<=[a-z])(?=[A-Z])/', ' ', $name), "$name Tools"], 'url' => tf_abs(), 'description' => $desc, 'inLanguage' => 'en', 'publisher' => ['@id' => tf_abs() . '#org']],
-        ['@context' => 'https://schema.org', '@type' => 'Organization', '@id' => tf_abs() . '#org', 'name' => $name, 'url' => tf_abs(), 'logo' => ['@type' => 'ImageObject', 'url' => tf_base_url() . '/icon-512.png', 'width' => 512, 'height' => 512], 'email' => tf_contact_email()] + (tf_social_profiles() ? ['sameAs' => tf_social_profiles()] : []),
+        ['@context' => 'https://schema.org', '@type' => 'Organization', '@id' => tf_abs() . '#org', 'name' => $name, 'url' => tf_abs(), 'logo' => ['@type' => 'ImageObject', 'url' => tf_base_url() . '/icon-512.png', 'width' => 512, 'height' => 512], 'email' => tf_contact_email()] + (tf_social_profiles() ? ['sameAs' => tf_social_profiles()] : []) + (tf_company()['name'] !== '' ? ['parentOrganization' => ['@type' => 'Organization', 'name' => tf_company()['name']] + (tf_company()['url'] !== '' ? ['url' => tf_company()['url']] : [])] : []),
         ['@context' => 'https://schema.org', '@type' => 'ItemList', 'name' => "$name tools", 'itemListElement' => array_values(array_map(function ($t) use (&$i) { return ['@type' => 'ListItem', 'position' => ++$i, 'url' => tf_abs($t['slug']), 'name' => $t['name']]; }, $tools))],
         tf_faq_schema($faqs),
     ];
@@ -418,11 +421,14 @@ function tf_page_simple(string $slug): ?string
     $email = h(tf_contact_email());
     $n = count(tf_tools());
     $updated = date('j F Y', (int) @filemtime(__FILE__) ?: time());
+    $co = tf_company();
+    $coName = $co['url'] !== '' ? '<a href="' . h($co['url']) . '" rel="noopener">' . h($co['name']) . '</a>' : h($co['name']);
+    $who = $co['name'] !== '' ? "<p>$name is a project by <strong>$coName</strong>, which designs, builds and looks after every tool on the site.</p>\n" : '';
     $pages = [
         'about' => ["About {$site['site']['name']}", "{$site['site']['name']} makes fast, free online tools for PDFs, images, video, text and everyday maths. Everything runs in your browser, so your files stay private.", "
 <h1>About $name</h1>
 <p>$name is a collection of $n free online tools for the small jobs that come up every day: shrinking a photo for an email, merging two PDFs, turning a video into an MP3, counting the words in an essay, making a QR code, or working out a loan payment.</p>
-<p>Every tool runs in your web browser. When you compress an image or merge a PDF, the file is processed on your own device and is never uploaded to a server. That makes the tools faster and keeps your files private.</p>
+$who<p>Every tool runs in your web browser. When you compress an image or merge a PDF, the file is processed on your own device and is never uploaded to a server. That makes the tools faster and keeps your files private.</p>
 <h2>How we build the tools</h2>
 <p>Each calculator explains the formula it uses and includes a worked example, so you can check the result yourself. Health, finance and legal topics use established, published methods (such as the WHO BMI categories or the standard loan amortisation formula). We update pages when methods or standards change.</p>
 <p>For medical, financial or legal decisions, please check with a qualified professional: our tools give estimates, not advice.</p>

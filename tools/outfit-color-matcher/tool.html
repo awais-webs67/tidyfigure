@@ -15,7 +15,6 @@
   .om-combos button i { flex: 1; }
   @media (max-width: 640px) {
     .om { grid-template-columns: 1fr; }
-    .om > div:first-child { position: sticky; top: var(--header-h); z-index: 6; background: var(--bg); padding: 6px 0; }
     .om-fig { height: 34vh; padding: 6px; display: flex; justify-content: center; }
     .om-fig svg { width: auto; height: 100%; }
     .om > div:first-child .fields { margin-top: 6px !important; gap: 6px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -23,7 +22,7 @@
   }
 </style>
 <div class="om">
-  <div>
+  <div data-pip>
     <div class="om-fig"><svg viewBox="0 0 200 410" id="fig" aria-label="Outfit preview">
       <path d="M100 13c-15 0-25 10-25 25v6c0 15 10 26 25 26s25-11 25-26v-6c0-15-10-25-25-25z" id="skin1"/>
       <path d="M74 36c0-17 12-27 26-27s27 9 27 26c-6-7-15-10-27-10s-20 4-26 11z" fill="#2B2420"/>

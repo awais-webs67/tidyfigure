@@ -3,6 +3,7 @@
 // Used by the background remover, passport photo maker and audio transcription tools.
 const AI = (() => {
   const LIB = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.5';
+  const HERE = (document.currentScript && document.currentScript.src) || '';
   const SAMPLES = 'https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/';
   let lib = null;
   const cache = {};
@@ -129,11 +130,46 @@ const AI = (() => {
     let lo = Infinity, hi = -Infinity;
     for (let i = 0; i < d0.length; i += 97) { const v = d0[i]; if (v < lo) lo = v; if (v > hi) hi = v; }
     if (lo < -0.01 || hi > 1.01) mt = mt.sigmoid();
-    // The mask at the model's own size, stretched over the photo by the browser's drawing engine.
-    const [mh, mw] = mt.dims.slice(-2), md = mt.data, m = document.createElement('canvas');
+    const [mh, mw] = mt.dims.slice(-2), md = mt.data, m8 = new Uint8ClampedArray(mw * mh);
+    for (let i = 0; i < m8.length; i++) m8[i] = md[i] * 255;
+    try { return await refine(img, { w: mw, h: mh, data: m8 }); } catch (e) { console.warn('Edge clean-up skipped:', e); return plainCut(img, m8, mw, mh); }
+  }
+  // Clean edges, worked out in a background worker (assets/matte.js): the mask is re-fitted to the photo's
+  // edges and the old background's colour is taken out of see-through edge pixels such as hair.
+  let matte = null, mseq = 0;
+  const waiting = new Map();
+  // The worker starts from a copy of its code in memory (a blob), so it is allowed on cross-origin isolated pages.
+  let matteCode = null;
+  async function matteWorker() {
+    if (!matte) {
+      const u = new URL('matte.js', HERE || location.href); if (HERE) u.search = new URL(HERE).search; // same version as ai.js
+      matteCode ??= fetch(u).then(r => { if (!r.ok) throw new Error('Edge clean-up code missing'); return r.blob(); }).catch(e => { matteCode = null; throw e; });
+      matte = new Worker(URL.createObjectURL(new Blob([await matteCode], { type: 'text/javascript' })));
+      matte.onmessage = e => { const p = waiting.get(e.data.id); if (!p) return; waiting.delete(e.data.id); e.data.error ? p.reject(new Error(e.data.error)) : p.resolve(e.data); };
+      matte.onerror = e => { waiting.forEach(p => p.reject(new Error('Edge clean-up failed: ' + (e.message || 'worker error')))); waiting.clear(); matte = null; };
+    }
+    return matte;
+  }
+  async function refine(img, mask) {
+    const w = await matteWorker(), id = ++mseq, msg = { id, mask }, move = []; // the mask is copied, so the fallback can still use it
+    if (typeof OffscreenCanvas !== 'undefined' && self.createImageBitmap) { msg.bitmap = await createImageBitmap(img); move.push(msg.bitmap); }
+    else {
+      const small = shrink(img, 1280), read = c => ({ w: c.width, h: c.height, data: c.getContext('2d').getImageData(0, 0, c.width, c.height).data });
+      msg.small = read(small); msg.full = small === img ? null : read(img);
+      move.push(msg.small.data.buffer); if (msg.full) move.push(msg.full.data.buffer);
+    }
+    const r = await new Promise((resolve, reject) => { waiting.set(id, { resolve, reject }); w.postMessage(msg, move); });
+    const c = document.createElement('canvas');
+    if (r.bitmap) { c.width = r.bitmap.width; c.height = r.bitmap.height; c.getContext('2d').drawImage(r.bitmap, 0, 0); r.bitmap.close(); }
+    else { c.width = r.w; c.height = r.h; c.getContext('2d').putImageData(new ImageData(r.data, r.w, r.h), 0, 0); }
+    return c;
+  }
+  // Fallback without the worker: the mask stretched over the photo by the browser's drawing engine.
+  function plainCut(img, m8, mw, mh) {
+    const m = document.createElement('canvas');
     m.width = mw; m.height = mh;
     const mx = m.getContext('2d'), id = mx.createImageData(mw, mh);
-    for (let i = 0; i < mw * mh; i++) id.data[i * 4 + 3] = md[i] * 255;
+    for (let i = 0; i < mw * mh; i++) id.data[i * 4 + 3] = m8[i];
     mx.putImageData(id, 0, 0);
     const c = document.createElement('canvas');
     c.width = img.width; c.height = img.height;

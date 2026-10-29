@@ -44,6 +44,7 @@ EOT_TF,
 <tr><td>AI model</td><td>ISNet (MIT licence)</td><td>U-2-Netp (Apache 2.0 licence)</td></tr>
 </tbody></table></div>
 <p>The AI works in the background of your browser, so the page stays smooth while it runs and you can keep scrolling or choosing options.</p>
+<p>After the AI finds the subject, an edge clean-up step fits the outline to the real edges of the photo and takes the old background's colour out of hair, fur and soft edges, so there's no coloured border when you put the cut-out on a new background.</p>
 
 <h2>Getting the cleanest cut-out</h2>
 <ul>

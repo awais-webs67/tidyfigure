@@ -25,8 +25,10 @@
   @media (max-width: 860px) {
     .hw-wrap { grid-template-columns: 1fr; }
     .hw-tb { position: static; }
-    .hw-prev { order: -1; position: sticky; top: calc(var(--header-h) + 6px); z-index: 6; max-height: 42vh; box-shadow: 0 8px 18px rgba(0, 0, 0, .14); }
-    .hw-ed { min-height: 200px; }
+    .hw-prev { position: static; max-height: none; overflow: visible; }
+    .hw-ed { min-height: 200px; max-height: none; }
+    .hw-fonts { grid-template-columns: none; grid-auto-flow: column; grid-template-rows: repeat(2, auto); grid-auto-columns: 132px; max-height: none; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x proximity; padding-bottom: 6px; }
+    .hw-fonts button { scroll-snap-align: start; }
   }
 </style>
 <div class="hw-wrap">
@@ -78,7 +80,7 @@
       <button type="button" class="btn ghost" id="vary">New variation</button>
     </div>
   </div>
-  <div class="out hw-prev" id="out">
+  <div class="out hw-prev" id="out" data-pip="last">
     <div class="btns" style="justify-content:space-between;align-items:center"><p class="kicker" id="count">Preview</p><div class="btns"><button type="button" class="btn" id="pdf">{{icon:download}}PDF</button><button type="button" class="btn ghost" id="all">All pages (JPG)</button></div></div>
     <div class="hw-pages" id="pages"></div>
   </div>
