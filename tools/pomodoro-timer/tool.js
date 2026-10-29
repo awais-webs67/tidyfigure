@@ -16,7 +16,9 @@ const mmss = s => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(Math.
 function draw() {
   const total = len(mode);
   $('#clock').textContent = mmss(Math.ceil(left));
-  $('#mode').textContent = mode === 'work' ? 'Focus' : mode === 'short' ? 'Short break' : 'Long break';
+  // Only when it changes: the label is a live region, so screen readers announce each new session once.
+  const label = mode === 'work' ? 'Focus' : mode === 'short' ? 'Short break' : 'Long break';
+  if ($('#mode').textContent !== label) $('#mode').textContent = label;
   $('#dial').classList.toggle('brk', mode !== 'work');
   $('#prog').style.width = `${(1 - left / total) * 100}%`;
   $('#cycle').textContent = `Session ${(done % S.every) + 1} of ${S.every}`;
