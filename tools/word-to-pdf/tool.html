@@ -1,0 +1,23 @@
+<style>
+  #stage { position: fixed; left: -30000px; top: 0; width: auto; background: #fff; }
+  #stage section.docx { margin: 0 0 20px; box-shadow: none; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a Word document">
+      {{icon:file-up}}
+      <strong>Drop a Word file (.docx) here or click to choose</strong>
+      <span id="loaded">It becomes a PDF with selectable text</span>
+      <input type="file" id="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:file-type}}Convert to PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample document</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">PDF</p>
+    <p class="empty">Choose a Word document to convert it.</p>
+  </div>
+</div>
+<div id="stage" aria-hidden="true"></div>

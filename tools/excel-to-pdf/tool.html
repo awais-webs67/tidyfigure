@@ -1,0 +1,36 @@
+<style>
+  #stage { position: fixed; left: -30000px; top: 0; }
+  #stage .xp-page { background: #fff; color: #111; box-sizing: border-box; margin-bottom: 20px; font-family: Calibri, sans-serif; }
+  #stage .xp-name { font-size: 11px; color: #666; margin: 0 0 6px; }
+  #stage table { border-collapse: collapse; table-layout: fixed; }
+  #stage td { border: 0.75px solid #b7b7b7; padding: 2px 4px; vertical-align: bottom; white-space: nowrap; overflow: hidden; line-height: 1.25; }
+  #stage.nogrid td { border-color: transparent; }
+  #stage td.n { text-align: right; }
+  .xp-sheets { display: grid; gap: 6px; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a spreadsheet">
+      {{icon:file-up}}
+      <strong>Drop a spreadsheet here or click to choose</strong>
+      <span id="loaded">.xlsx, .xls, .ods or .csv</span>
+      <input type="file" id="file" accept=".xlsx,.xlsm,.xls,.ods,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv">
+    </div>
+    <div class="fields">
+      <label class="f"><span>Paper</span><select id="paper"><option value="a4">A4</option><option value="letter">US Letter</option><option value="a3">A3</option></select></label>
+      <label class="f"><span>Orientation</span><select id="orient"><option value="auto">Automatic</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+    </div>
+    <label class="check"><input type="checkbox" id="fit" checked> Fit to page width</label>
+    <label class="check"><input type="checkbox" id="grid" checked> Show gridlines</label>
+    <div class="xp-sheets" id="sheets"></div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:file-spreadsheet}}Convert to PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample spreadsheet</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">PDF</p>
+    <p class="empty">Choose a spreadsheet to convert it.</p>
+  </div>
+</div>
+<div id="stage" aria-hidden="true"></div>
