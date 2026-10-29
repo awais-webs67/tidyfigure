@@ -1,0 +1,29 @@
+<style>
+  #stage { position: fixed; left: -30000px; top: 0; }
+  .hp-code { width: 100%; min-height: 220px; font: 13px/1.5 var(--f-num); padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); box-sizing: border-box; resize: vertical; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose an HTML file">
+      {{icon:file-up}}
+      <strong>Drop an .html file here or click to choose</strong>
+      <span id="loaded">Or paste HTML code below</span>
+      <input type="file" id="file" accept=".html,.htm,text/html">
+    </div>
+    <label class="f"><span>HTML code</span><textarea class="hp-code" id="code" spellcheck="false" placeholder="<h1>Hello</h1><p>Paste HTML here…</p>"></textarea></label>
+    <div class="fields">
+      <label class="f"><span>Paper</span><select id="paper"><option value="a4">A4</option><option value="letter">US Letter</option></select></label>
+      <label class="f"><span>Orientation</span><select id="orient"><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+      <label class="f"><span>Margins</span><select id="margin"><option value="72">Normal</option><option value="40">Narrow</option><option value="0">None</option></select></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go">{{icon:file-code}}Convert to PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with sample HTML</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">PDF</p>
+    <p class="empty">Paste HTML or choose an .html file.</p>
+  </div>
+</div>
+<div id="stage" aria-hidden="true"></div>
