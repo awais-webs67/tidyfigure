@@ -1,0 +1,24 @@
+<style>
+  #stage { position: fixed; left: -30000px; top: 0; }
+  #stage .pptx-preview-wrapper { height: auto !important; overflow: visible !important; background: none !important; }
+  #stage .pptx-preview-slide-wrapper { margin: 0 0 20px !important; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a PowerPoint file">
+      {{icon:file-up}}
+      <strong>Drop a PowerPoint file (.pptx) here or click to choose</strong>
+      <span id="loaded">Each slide becomes a PDF page</span>
+      <input type="file" id="file" accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation">
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:presentation}}Convert to PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample presentation</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">PDF</p>
+    <p class="empty">Choose a PowerPoint file to convert it.</p>
+  </div>
+</div>
+<div id="stage" aria-hidden="true"></div>

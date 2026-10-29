@@ -138,6 +138,9 @@ const DomPdf = (() => {
       const box = { x: r.left - ox, y: r.top - oy, w: r.width, h: r.height, zone };
       const bg = parseColor(cs.backgroundColor);
       if (bg && bg.a > 0.01 && e !== el) items.push({ kind: 'fill', ...box, color: bg });
+      // A background picture (slide backgrounds, page watermarks), stretched or cropped to the box like the browser.
+      const bgi = cs.backgroundImage && cs.backgroundImage.match(/url\(["']?([^"')]+)["']?\)/);
+      if (bgi) items.push({ kind: 'bgimg', ...box, url: bgi[1], cover: /cover/.test(cs.backgroundSize) });
       for (const [side, x0, y0, x1, y1] of [['Top', 0, 0, 1, 0], ['Right', 1, 0, 1, 1], ['Bottom', 0, 1, 1, 1], ['Left', 0, 0, 0, 1]]) {
         const w = parseFloat(cs[`border${side}Width`]), st = cs[`border${side}Style`], c = parseColor(cs[`border${side}Color`]);
         if (w > 0 && st !== 'none' && st !== 'hidden' && c && c.a > 0.01) {
@@ -252,6 +255,11 @@ const DomPdf = (() => {
       imgCache.set(node, emb);
       return emb;
     };
+    const urlCache = new Map();
+    const embedUrl = url => {
+      if (!urlCache.has(url)) urlCache.set(url, (async () => { const im = new Image(); im.crossOrigin = 'anonymous'; await new Promise(r => { im.onload = im.onerror = r; im.src = url; }); if (!im.naturalWidth) return null; return embedImg(im); })().catch(() => null));
+      return urlCache.get(url);
+    };
     let done = 0;
     for (const pg of pages) {
       const { el, w, h, pad, header, footer } = pg, origin = el.getBoundingClientRect();
@@ -285,6 +293,14 @@ const DomPdf = (() => {
             else if (it.zone === 'foot') { y1 = h - (fullH - y1); y2 = h - (fullH - y2); }
             if (Math.abs(y2 - y1) < 0.01 && Math.abs(it.x2 - it.x1) < 0.01) continue;
             page.drawLine({ start: { x: it.x1 * kpt, y: H - y1 * kpt }, end: { x: it.x2 * kpt, y: H - y2 * kpt }, thickness: it.width * kpt, color: rgb(it.color.r, it.color.g, it.color.b), opacity: it.color.a, dashArray: it.dash ? it.dash.map(v => v * kpt) : undefined, lineCap: LineCapStyle.Butt });
+          } else if (it.kind === 'bgimg') {
+            const im = await embedUrl(it.url);
+            if (!im) continue;
+            let [dw, dh] = [it.w, it.h];
+            if (it.cover) { const k2 = Math.max(it.w / im.width, it.h / im.height); dw = im.width * k2; dh = im.height * k2; }
+            const [y, hh] = clipY(map(it), it.h, it);
+            if (hh <= 0) continue;
+            page.drawImage(im, { x: (it.x + (it.w - dw) / 2) * kpt, y: H - (y + (it.h + dh) / 2) * kpt, width: dw * kpt, height: dh * kpt });
           } else if (it.kind === 'img' || it.kind === 'raster') {
             const im = await embedImg(it.img || it.node);
             if (im) page.drawImage(im, { x: it.x * kpt, y: H - (map(it) + it.h) * kpt, width: it.w * kpt, height: it.h * kpt });
