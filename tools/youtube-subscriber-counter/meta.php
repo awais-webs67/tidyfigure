@@ -2,8 +2,10 @@
 // YouTube Subscriber Counter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'YouTube Subscriber Counter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'social',
+  // Shown under the tool instead of "nothing is sent anywhere": this tool needs our server.
+  'server_note' => 'The channel name you enter is sent to our server, which asks YouTube for the public subscriber count. The public count is cached for a minute to save requests; nothing about you is kept.',
   'order' => 1,
   'icon' => 'youtube',
   'popular' => true,

@@ -186,7 +186,7 @@ $body
 </div>
 <footer class="foot" data-nosnippet><div class="wrap">
 <div class="foot-brand"><a class="brand" href="{$g['tf_home']}">$logo<span>$brand</span></a><p>{$g['tf_count']} free online tools that run in your browser. Fast, private and free, with no sign-up.</p>$project<p class="foot-social">$social</p></div>
-$footer<div class="legal"><span>© $year $name.$legalBy Your files never leave your device.</span>
+$footer<div class="legal"><span>© $year $name.$legalBy Files are processed on your device; only hosted QR codes are stored.</span>
 <span><a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_contact']}">Contact</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_terms']}">Terms</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
 </div></footer>
 <script src="{$g['tf_sitejs']}" defer></script>
@@ -284,13 +284,13 @@ function tf_page_tool(array $t): string
     $chk = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
     $body = '<main class="wrap tool-page" data-cat="' . h($t['category']) . '"' . ($files && !$uploads ? ' data-local' : '') . '>
 <nav class="crumbs" aria-label="Breadcrumb"><a href="' . h(tf_url()) . '">Home</a><span aria-hidden="true">/</span><a href="' . h(tf_url($cat['slug'])) . '">' . h($cat['name']) . '</a><span aria-hidden="true">/</span><span>' . h($t['name']) . '</span></nav>
-<div class="tool-head">' . tf_tile($t, 'lg') . '<div><h1>' . h($t['name']) . '</h1><ul class="trust"><li>' . $chk . '100% free</li><li>' . $chk . 'No sign-up</li><li>' . $chk . ($uploads ? 'Deleted after ' . $days . ' days' : ($files ? 'Files stay on your device' : 'Runs in your browser')) . '</li></ul></div></div>
+<div class="tool-head">' . tf_tile($t, 'lg') . '<div><h1>' . h($t['name']) . '</h1><ul class="trust"><li>' . $chk . '100% free</li><li>' . $chk . 'No sign-up</li><li>' . $chk . ($uploads ? 'Deleted after ' . $days . ' days' : ($files ? 'Files stay on your device' : (!empty($t['server_note']) ? 'Nothing to install' : 'Runs in your browser'))) . '</li></ul></div></div>
 <p class="answer">' . $t['answer'] . '</p>' . (!empty($t['aka']) ? '
 <p class="aka">Also known as: ' . implode(' · ', array_map('h', $t['aka'])) . '</p>' : '') . '
 <section class="tool" aria-label="' . h($t['name']) . '">
 ' . $t['html'] . '
 </section>
-<div class="under-tool"><p class="private">' . tf_icon('shield-check') . ($uploads ? 'What you add here is stored on our server so the QR code keeps working, and deleted automatically after ' . $days . ' days. You can delete it sooner from its manage page.' : ($files ? 'Your files are processed on your device and never uploaded.' : 'Everything runs in your browser. Nothing you type is sent anywhere.')) . '</p>' . tf_share_html() . '</div>
+<div class="under-tool"><p class="private">' . tf_icon('shield-check') . ($uploads ? 'What you add here is stored on our server so the QR code keeps working, and deleted automatically after ' . $days . ' days. You can delete it sooner from its manage page.' : ($files ? 'Your files are processed on your device and never uploaded.' : (!empty($t['server_note']) ? h($t['server_note']) : 'Everything runs in your browser. Nothing you type is sent anywhere.'))) . '</p>' . tf_share_html() . '</div>
 ' . ($t['category'] === 'health' ? '<p class="disclaimer">Results are estimates for general information, not medical advice. Talk to a doctor or other qualified professional about your health.</p>' : '')
   . ($t['category'] === 'money' ? '<p class="disclaimer">Results are estimates for general information, not financial advice. Check the figures with your lender, bank or a qualified adviser before deciding.</p>' : '') . '
 ' . tf_ad('top', $noads) . '
@@ -406,7 +406,7 @@ function tf_page_home(): string
 <div class="hero-main">
 <p class="eyebrow">' . $n . ' free tools · no sign-up</p>
 <h1>Free online tools that <em>just work</em>.</h1>
-<p class="lead">Fast, private tools for PDFs, images, video, QR codes, money, health and everyday life. No sign-up, no watermarks, and your files never leave your device.</p>
+<p class="lead">Fast, private tools for PDFs, images, video, QR codes, money, health and everyday life. No sign-up, no watermarks, and your files are processed on your own device.</p>
 <div class="search" role="search">' . tf_icon('search') . '<label class="sr-only" for="q">Search tools</label><input id="q" type="search" placeholder="Search ' . $n . ' tools, e.g. merge pdf, video to mp3" autocomplete="off"></div>
 <ul class="stats"><li>' . tf_icon('shield-check') . 'Files stay on your device</li><li>' . tf_icon('zap') . 'Instant results</li><li>' . tf_icon('smartphone') . 'Works on any phone</li><li>' . tf_icon('badge-check') . '100% free</li></ul>
 </div>
@@ -418,7 +418,7 @@ function tf_page_home(): string
 ' . $cats . '<p class="no-results" id="none" hidden>No tool matches that search yet.</p>
 </div>
 <section class="why" aria-labelledby="h-why"><h2 id="h-why" class="section-title">Why people use ' . h($name) . '</h2><ul>'
-        . $feat('shield-check', 'Private by design', 'Files are processed on your device. Nothing is uploaded, so even confidential documents are safe.')
+        . $feat('shield-check', 'Private by design', 'Files are processed on your device and never uploaded, so even confidential documents stay private. The only exception is a hosted QR code, which you choose to save.')
         . $feat('zap', 'Instant', 'No uploads and no waiting in queues. Results appear as you type or as soon as your file opens.')
         . $feat('badge-check', 'Free, no catches', 'No sign-up, no watermarks, no daily limits and no "premium" paywall halfway through.')
         . $feat('smartphone', 'Made for phones', 'Every tool is designed for small screens first and works on any device and browser.')
@@ -457,6 +457,7 @@ function tf_page_simple(string $slug): ?string
     $email = h(tf_contact_email());
     $n = count(tf_tools());
     $updated = date('j F Y', strtotime(TF_PAGE_DATES[$slug] ?? TF_SITE_UPDATED));
+    $priv = h(tf_url('privacy'));
     $co = tf_company();
     $coName = $co['url'] !== '' ? '<a href="' . h($co['url']) . '" rel="noopener">' . h($co['name']) . '</a>' : h($co['name']);
     $who = $co['name'] !== '' ? "<p>$name is a project by <strong>$coName</strong>, which designs, builds and looks after every tool on the site.</p>\n" : '';
@@ -465,12 +466,13 @@ function tf_page_simple(string $slug): ?string
 <h1>About $name</h1>
 <p>$name is a collection of $n free online tools for the small jobs that come up every day: shrinking a photo for an email, merging two PDFs, turning a video into an MP3, counting the words in an essay, making a QR code, or working out a loan payment.</p>
 $who<p>Every tool runs in your web browser. When you compress an image or merge a PDF, the file is processed on your own device and is never uploaded to a server. That makes the tools faster and keeps your files private.</p>
+<p>A few tools need our server because of what they do: hosted QR codes (dynamic, file and verification QR codes) store the link, file or details you enter so the code keeps working, and the YouTube Subscriber Counter sends the channel name to our server to fetch the public count. Those tools say so on the page, and our <a href=\"$priv\">privacy policy</a> explains what is kept and for how long.</p>
 <h2>How we build the tools</h2>
 <p>Each calculator explains the formula it uses and includes a worked example, so you can check the result yourself. Health, finance and legal topics use established, published methods (such as the WHO BMI categories or the standard loan amortisation formula). We update pages when methods or standards change.</p>
 <p>For medical, financial or legal decisions, please check with a qualified professional: our tools give estimates, not advice.</p>
 <h2>Contact</h2>
 <p>Found a bug or want a new tool? Email <strong>$email</strong>.</p>"],
-        'privacy' => ["Privacy Policy | {$site['site']['name']}", "How {$site['site']['name']} handles your data: files and text are processed in your browser and never uploaded. Cookies, advertising, analytics and your rights.", '
+        'privacy' => ["Privacy Policy | {$site['site']['name']}", "How {$site['site']['name']} handles your data: files and text are processed in your browser, except hosted QR codes you choose to save. Cookies, advertising, analytics and your rights.", '
 <h1>Privacy policy</h1>
 <p class="updated">Last updated ' . $updated . '</p>
 <p>This policy explains what information ' . $name . ' (“we”) handles when you use this website, and your choices. Contact us at <strong>' . $email . '</strong>.</p>
@@ -649,7 +651,7 @@ function tf_llms_txt(): string
     $site = tf_site();
     $tools = tf_tools();
     $ts = tf_tool_settings();
-    $out = '# ' . $site['site']['name'] . "\n\n> " . count($tools) . " free online tools that run in the browser: PDF, image, video and audio, QR codes, text, calculators and more. No sign-up; files are processed on the visitor's device and never uploaded.\n\n";
+    $out = '# ' . $site['site']['name'] . "\n\n> " . count($tools) . " free online tools that run in the browser: PDF, image, video and audio, QR codes, text, calculators and more. No sign-up. Files are processed on the visitor's device and never uploaded, except by the hosted QR code tools (dynamic, file and verification QR codes), which store what the visitor saves for a set time.\n\n";
     foreach ($site['categories'] as $c) {
         $in = array_filter($tools, fn($t) => $t['category'] === $c['id'] && empty($ts[$t['slug']]['noindex']));
         if (!$in) continue;
