@@ -1,18 +1,19 @@
 // PDF editor: pages are drawn by pdf.js; everything added sits in an HTML layer above each page,
 // measured in PDF points (1 unit = 1 pt at 100% zoom), and is written into the PDF with pdf-lib on save.
-const { PDFDocument, rgb, degrees, LineCapStyle, BlendMode } = PDFLib;
+const { PDFDocument, rgb, degrees, LineCapStyle, BlendMode, PDFHexString, PDFName, PDFString } = PDFLib;
 const LH = 1.25; // line height of text boxes, in ems
 const FONTS = {
   sans: { css: 'PeSans', file: 'inter', fallback: 'sans-serif' },
   serif: { css: 'PeSerif', file: 'merriweather', fallback: 'serif' },
   mono: { css: 'PeMono', file: 'roboto-mono', fallback: 'monospace' },
-  hand: { css: 'PeHand', file: 'caveat', fallback: 'cursive' },
+  hand: { css: 'PeHand', file: 'caveat', fallback: 'cursive', noItalic: true },
 };
-const fontFiles = {}; // 'sans-700' -> Promise<ArrayBuffer>
-function fontFile(fam, bold) {
-  const k = `${fam}-${bold ? 700 : 400}`;
-  fontFiles[k] ??= fontBytes(FONTS[fam].file, bold ? 700 : 400)
-    .then(buf => { const f = new FontFace(FONTS[fam].css, buf.slice(0), { weight: bold ? '700' : '400' }); document.fonts.add(f); return f.load().then(() => buf); })
+const fontFiles = {}; // 'sans-700-i' -> Promise<ArrayBuffer>
+function fontFile(fam, bold, italic) {
+  italic = !!italic && !FONTS[fam].noItalic;
+  const k = `${fam}-${bold ? 700 : 400}-${italic ? 'i' : 'n'}`, style = italic ? 'italic' : 'normal';
+  fontFiles[k] ??= fontBytes(FONTS[fam].file, bold ? 700 : 400, style)
+    .then(buf => { const f = new FontFace(FONTS[fam].css, buf.slice(0), { weight: bold ? '700' : '400', style }); document.fonts.add(f); return f.load().then(() => buf); })
     .catch(e => { delete fontFiles[k]; throw e; });
   return fontFiles[k];
 }
@@ -33,19 +34,21 @@ function baseOfCss(css, weight, style) {
   return { asc: (m.fontBoundingBoxAscent ?? 90) / 100, desc: (m.fontBoundingBoxDescent ?? 22) / 100 };
 }
 // Distance from the top of a text line to its baseline, in ems, as the browser lays it out.
-function baseOf(fam, bold) {
+function baseOf(fam, bold, italic) {
   const x = document.createElement('canvas').getContext('2d');
-  x.font = `${bold ? 700 : 400} 100px ${cssFont(fam)}`;
+  x.font = `${italic && !FONTS[fam].noItalic ? 'italic ' : ''}${bold ? 700 : 400} 100px ${cssFont(fam)}`;
   const m = x.measureText('Hg');
   const asc = (m.fontBoundingBoxAscent ?? 90) / 100, desc = (m.fontBoundingBoxDescent ?? 22) / 100;
   return (LH - asc - desc) / 2 + asc;
 }
 
 const app = $('#app'), pagesEl = $('#pages'), scroller = $('#scroll'), out = $('#out');
-let srcBytes = null, srcName = '', doc = null, P = [], objs = [], imgs = {}, sel = null, editing = null, eng = null, ie = null;
+let srcBytes = null, srcName = '', doc = null, P = [], srcPages = [], baseRots = [], objs = [], imgs = {}, sel = null, editing = null, eng = null, ie = null;
 let zoom = 1, tool = 'select', seq = 1, hist = [], future = [];
 const dflt = {
-  text: { font: 'sans', size: 16, bold: false, color: '#111827', opacity: 1 },
+  text: { font: 'sans', size: 16, bold: false, italic: false, underline: false, align: 'left', bg: '', color: '#111827', opacity: 1 },
+  markup: { color: '#dc2626', opacity: 1 },
+  note: { color: '#facc15', opacity: 1 },
   shape: { color: '#dc2626', width: 3, fill: false, opacity: 1 },
   pen: { color: '#1d4ed8', width: 3, opacity: 1 },
   mark: { color: '#16a34a', width: 3, opacity: 1 },
@@ -53,7 +56,7 @@ const dflt = {
   whiteout: { color: '#ffffff', opacity: 1 },
   image: { opacity: 1 },
 };
-const KIND = { text: 'text', rect: 'shape', ellipse: 'shape', line: 'shape', arrow: 'shape', pen: 'pen', check: 'mark', cross: 'mark', highlight: 'highlight', whiteout: 'whiteout', image: 'image' };
+const KIND = { text: 'text', rect: 'shape', ellipse: 'shape', line: 'shape', arrow: 'shape', pen: 'pen', check: 'mark', cross: 'mark', highlight: 'highlight', whiteout: 'whiteout', image: 'image', underline: 'markup', strike: 'markup', note: 'note' };
 const kindOf = t => KIND[t === 'date' || t === 'edit' ? 'text' : t];
 
 // ---------- Opening ----------
@@ -78,12 +81,12 @@ async function openFile(f) {
   try { eng = await PdfEngine.load(await PDFDocument.load(buf, { updateMetadata: false })); } catch (e) { eng = null; }
   // Stop watching the previous PDF's pages before showing the editor again.
   io?.disconnect(); io = null; pagesEl.innerHTML = '';
-  P = [];
+  P = []; srcPages = []; baseRots = [];
   $('#start').hidden = true; app.hidden = false; out.hidden = true;
   $('#fname').textContent = `${f.name} · ${doc.numPages} page${doc.numPages > 1 ? 's' : ''}`;
   for (let i = 1; i <= doc.numPages; i++) {
     const page = await doc.getPage(i);
-    P.push({ page, vp: page.getViewport({ scale: 1 }), drawn: 0 });
+    P.push(pageEntry(page, i - 1, 0, page.rotate || 0)); srcPages[i - 1] = page; baseRots[i - 1] = page.rotate || 0;
   }
   const widest = Math.max(...P.map(p => p.vp.width));
   zoom = Math.min(1.5, Math.max(0.3, (scroller.clientWidth - 32) / widest));
@@ -94,6 +97,17 @@ async function openFile(f) {
 }
 
 // ---------- Pages ----------
+// Each page on screen: the pdf.js page, its number in the original PDF (src, or null for an added blank page),
+// the turn added in the editor (rot) and the page's own turn (baseRot). vp maps screen points to PDF points.
+function pageEntry(page, src, rot, baseRot, blank) {
+  const p = { page, src, rot, baseRot, blank, drawn: 0 };
+  p.vp = viewAt(p, 1);
+  return p;
+}
+const viewAt = (p, scale) => p.page.getViewport({ scale, rotation: (p.baseRot + p.rot) % 360 });
+const EMPTY = { lines: [], objects: [], glyphs: [] };
+// The content engine counts pages of the original PDF; added blank pages have nothing to edit.
+const model = i => (P[i].src == null ? EMPTY : eng.model(P[i].src));
 let io = null;
 function build() {
   pagesEl.innerHTML = '';
@@ -121,7 +135,7 @@ async function paint(i) {
   if (!p || p.drawn === want) return;
   p.drawn = want;
   p.task?.cancel();
-  const vp = p.page.getViewport({ scale: want }), c = document.createElement('canvas');
+  const vp = viewAt(p, want), c = document.createElement('canvas');
   c.width = Math.round(vp.width); c.height = Math.round(vp.height);
   p.task = p.page.render({ canvasContext: c.getContext('2d'), viewport: vp });
   try { await p.task.promise; } catch (e) { return; }
@@ -144,11 +158,11 @@ scroller.addEventListener('wheel', e => { if (e.ctrlKey) { e.preventDefault(); s
 async function buildThumbs() {
   const nav = $('#thumbs');
   nav.innerHTML = P.map((p, i) => `<button type="button" data-i="${i}" aria-label="Page ${i + 1}"><span class="pe-tc"></span><small>${i + 1}</small></button>`).join('');
-  nav.onclick = e => { const b = e.target.closest('button'); if (b) P[+b.dataset.i].wrap.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+  nav.onclick = e => { const b = e.target.closest('button'); if (b) showPage(+b.dataset.i, true); };
   for (let i = 0; i < P.length; i++) await thumb(i);
 }
 async function thumb(i) {
-  const vp = P[i].page.getViewport({ scale: 96 / P[i].vp.width }), c = document.createElement('canvas');
+  const vp = viewAt(P[i], 96 / P[i].vp.width), c = document.createElement('canvas');
   c.width = Math.round(vp.width); c.height = Math.round(vp.height);
   const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
   await P[i].page.render({ canvasContext: x, viewport: vp }).promise;
@@ -157,11 +171,14 @@ async function thumb(i) {
 }
 // After the engine changes a page, show the new version of it.
 async function refreshPages(set) {
-  for (const i of set) {
-    const d = await openPdf(await eng.pagePdf(i));
-    P[i].page = await d.getPage(1);
-    P[i].drawn = 0; P[i].lines = null;
-    paint(i); guides(i); thumb(i);
+  for (const n of set) {
+    const page = await (await openPdf(await eng.pagePdf(n))).getPage(1);
+    srcPages[n] = page;
+    P.forEach((p, i) => {
+      if (p.src !== n) return;
+      p.page = page; p.drawn = 0; p.lines = null;
+      paint(i); guides(i); thumb(i);
+    });
   }
 }
 function currentPage() {
@@ -175,6 +192,58 @@ scroller.addEventListener('scroll', () => {
   $('#pageinfo').textContent = `Page ${i + 1} of ${P.length}`;
   $$('#thumbs button').forEach(b => b.classList.toggle('on', +b.dataset.i === i));
 }, { passive: true });
+
+// ---------- Page tools: turn, add a blank page, delete ----------
+// Scroll the editor's page area (not the whole website) to a page.
+function showPage(i, smooth) { const top = scroller.scrollTop + P[i].wrap.getBoundingClientRect().top - scroller.getBoundingClientRect().top - 12; scroller.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' }); }
+const blanks = {};
+async function blankPage(w, h) {
+  const k = `${w}x${h}`;
+  if (!blanks[k]) { const d = await PDFDocument.create(); d.addPage([w, h]); blanks[k] = (await openPdf(await d.save())).getPage(1); }
+  return blanks[k];
+}
+async function pageOp(op) {
+  if (ie) await finishLine(true);
+  stopEdit(); select(null);
+  const i = currentPage(), p = P[i];
+  if (op === 'cw' || op === 'ccw') {
+    // Turn the page; what was added stays where it was on the page (and upright, for text and pictures).
+    const old = p.vp;
+    p.rot = (p.rot + (op === 'cw' ? 90 : 270)) % 360; p.vp = viewAt(p, 1); p.drawn = 0; p.lines = null;
+    const map = (x, y) => p.vp.convertToViewportPoint(...old.convertToPdfPoint(x, y));
+    for (const o of objs.filter(o => o.page === i)) {
+      if (o.pts && ['pen', 'line', 'arrow'].includes(o.type)) { o.raw = o.pts.map(([fx, fy]) => map(o.x + fx * o.w, o.y + fy * o.h)); fromRaw(o); delete o.raw; }
+      else if (['rect', 'ellipse', 'highlight', 'whiteout', 'underline', 'strike'].includes(o.type)) { const a = map(o.x, o.y), b = map(o.x + o.w, o.y + o.h); o.x = Math.min(a[0], b[0]); o.y = Math.min(a[1], b[1]); o.w = Math.abs(a[0] - b[0]); o.h = Math.abs(a[1] - b[1]); }
+      else { const c = map(o.x + o.w / 2, o.y + o.h / 2); o.x = c[0] - o.w / 2; o.y = c[1] - o.h / 2; }
+    }
+    layout(); paint(i); thumb(i); guides(i);
+  } else if (op === 'blank') {
+    const [x0, y0, x1, y1] = p.page.view, sideways = (p.baseRot + p.rot) % 180 !== 0;
+    const w = Math.round(sideways ? y1 - y0 : x1 - x0), h = Math.round(sideways ? x1 - x0 : y1 - y0);
+    P.splice(i + 1, 0, pageEntry(await blankPage(w, h), null, 0, 0, [w, h]));
+    objs.forEach(o => { if (o.page > i) o.page++; });
+    build(); buildThumbs();
+    showPage(i + 1);
+  } else if (op === 'delete') {
+    if (P.length === 1) { flash('A PDF needs at least one page.'); return; }
+    objs = objs.filter(o => o.page !== i);
+    objs.forEach(o => { if (o.page > i) o.page--; });
+    P.splice(i, 1);
+    build(); buildThumbs();
+    showPage(Math.min(i, P.length - 1));
+  } else if (op === 'clear') {
+    if (!objs.length) { flash('Nothing added yet.'); return; }
+    if (!confirm('Remove everything you added (text, images, shapes and comments)? You can undo this.')) return;
+    objs = []; redrawAll();
+  }
+  commit();
+  scroller.dispatchEvent(new Event('scroll'));
+  flash({ cw: 'Page turned. Undo with Ctrl+Z.', ccw: 'Page turned. Undo with Ctrl+Z.', blank: 'Blank page added after this one.', delete: 'Page deleted. Undo with Ctrl+Z.', clear: 'Removed everything you added. Undo with Ctrl+Z.' }[op]);
+}
+const pmenu = $('#pmenu');
+$('#pagebtn').addEventListener('click', e => { e.stopPropagation(); pmenu.hidden = !pmenu.hidden; $('#pagebtn').setAttribute('aria-expanded', !pmenu.hidden); });
+pmenu.addEventListener('click', e => { const b = e.target.closest('[data-op]'); if (!b) return; pmenu.hidden = true; pageOp(b.dataset.op); });
+document.addEventListener('click', e => { if (!pmenu.hidden && !e.target.closest('#pmenu')) pmenu.hidden = true; });
 
 // ---------- Shapes as SVG paths (local coordinates, 0..w × 0..h) ----------
 function pathOf(o) {
@@ -201,6 +270,7 @@ function pathOf(o) {
       const z = p[p.length - 1];
       return d + `L${z[0].toFixed(2)} ${z[1].toFixed(2)}`;
     }
+    case 'underline': case 'strike': return `M0 ${(h / 2).toFixed(2)}H${w.toFixed(2)}`;
     case 'check': return `M${0.08 * w} ${0.55 * h}L${0.38 * w} ${0.85 * h}L${0.92 * w} ${0.15 * h}`;
     case 'cross': return `M${0.15 * w} ${0.15 * h}L${0.85 * w} ${0.85 * h}M${0.85 * w} ${0.15 * h}L${0.15 * w} ${0.85 * h}`;
   }
@@ -220,12 +290,26 @@ function draw(o) {
   if (o.type === 'text') {
     e.style.width = e.style.height = '';
     let t = e.querySelector('.pe-t');
-    if (!t) { t = document.createElement('div'); t.className = 'pe-t'; t.spellcheck = false; e.appendChild(t); }
+    if (!t) { t = document.createElement('div'); t.className = 'pe-t'; t.spellcheck = false; t.textContent = o.text; e.appendChild(t); }
     if (editing !== o.id && t.textContent !== o.text) t.textContent = o.text;
-    Object.assign(t.style, { fontFamily: cssFont(o.font), fontSize: `${o.size * zoom}px`, fontWeight: o.bold ? 700 : 400, color: o.color, lineHeight: LH });
+    Object.assign(t.style, { fontFamily: cssFont(o.font), fontSize: `${o.size * zoom}px`, fontWeight: o.bold ? 700 : 400, fontStyle: o.italic && !FONTS[o.font].noItalic ? 'italic' : 'normal', textDecoration: o.underline ? 'underline' : 'none', textAlign: o.align || 'left', background: o.bg || 'transparent', color: o.color, lineHeight: LH });
   } else {
     e.style.width = `${o.w * zoom}px`; e.style.height = `${o.h * zoom}px`;
-    if (o.type === 'image') {
+    if (o.type === 'note') {
+      // A comment: a note icon; when selected, a box to write in.
+      if (!e.querySelector('.pe-note')) e.innerHTML = `<span class="pe-note" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8Z"/><path d="M15 3v4a2 2 0 0 0 2 2h4" fill="none"/><path d="M7 10h7M7 14h9" fill="none"/></svg></span>`;
+      e.querySelector('.pe-note').style.setProperty('--c', o.color);
+      e.title = o.text || 'Comment';
+      let pop = e.querySelector('.pe-notepop');
+      if (sel === o.id && !pop) {
+        pop = document.createElement('div'); pop.className = 'pe-notepop';
+        pop.innerHTML = '<textarea rows="4" placeholder="Write a comment…" aria-label="Comment"></textarea>';
+        const ta = pop.firstChild; ta.value = o.text || '';
+        ta.oninput = () => { o.text = ta.value; e.title = o.text || 'Comment'; };
+        ta.onchange = () => { if (changed()) commit(); };
+        e.appendChild(pop);
+      } else if (sel !== o.id && pop) pop.remove();
+    } else if (o.type === 'image') {
       let im = e.querySelector('img');
       if (!im) { im = document.createElement('img'); im.alt = ''; im.draggable = false; e.appendChild(im); }
       if (im.src !== imgs[o.img].url) im.src = imgs[o.img].url;
@@ -255,11 +339,19 @@ const byId = id => objs.find(o => o.id === id);
 // Anything changed: items added on top, or the PDF's own text and images edited or deleted (those are in the undo history).
 const unsaved = () => objs.length > 0 || hist.length > 0 || !!ie;
 // A state is the added items plus the PDF's own content, so undo covers both.
-const state = () => ({ o: JSON.stringify(objs), e: eng ? eng.snapshot() : null, v: eng ? eng.version : 0 });
-const changed = () => !lastState || JSON.stringify(objs) !== lastState.o || (eng && eng.version !== lastState.v);
+const plan = () => JSON.stringify(P.map(p => [p.src, p.rot, p.blank || null]));
+const state = () => ({ o: JSON.stringify(objs), p: plan(), e: eng ? eng.snapshot() : null, v: eng ? eng.version : 0 });
+const changed = () => !lastState || JSON.stringify(objs) !== lastState.o || plan() !== lastState.p || (eng && eng.version !== lastState.v);
 function commit() { hist.push(lastState); lastState = state(); if (hist.length > 200) hist.shift(); future = []; updateUndo(); }
 let lastState = null;
 async function restore(s) {
+  if (s.p && s.p !== plan()) {
+    // Pages were added, deleted or turned: rebuild the list of pages.
+    const next = [];
+    for (const [src, rot, blank] of JSON.parse(s.p)) next.push(pageEntry(src == null ? await blankPage(...blank) : srcPages[src], src, rot, src == null ? 0 : baseRots[src], blank || undefined));
+    P = next;
+    build(); buildThumbs();
+  }
   objs = JSON.parse(s.o); sel = null; editing = null; redrawAll(); showProps();
   if (eng && s.e) await refreshPages(eng.restore(s.e));
   lastState = { ...s, v: eng ? eng.version : 0 };
@@ -278,7 +370,7 @@ function select(id) {
 }
 function showProps() {
   if (ie) {
-    $$('#props .pe-p').forEach(p => { p.hidden = !['text', 'color'].includes(p.dataset.for) || !!p.querySelector('#p-font, #p-bold'); });
+    $$('#props .pe-p').forEach(p => { p.hidden = !['text', 'color'].includes(p.dataset.for) || !!p.querySelector('#p-font, #p-bold, #p-italic, #p-underline, #p-align, #p-hasbg, #p-bg'); });
     $('#hint').hidden = true;
     $('#p-size').value = Math.round(ie.size * 10) / 10; $('#p-color').value = ie.color;
     $$('.pe-colors [data-c]').forEach(b => b.classList.toggle('on', b.dataset.c === ie.color));
@@ -287,7 +379,7 @@ function showProps() {
   const o = byId(sel), k = o ? KIND[o.type] : kindOf(tool), d = o || dflt[k] || {};
   const show = {
     text: k === 'text',
-    stroke: ['shape', 'pen', 'mark'].includes(k),
+    stroke: ['shape', 'pen', 'mark', 'markup'].includes(k),
     color: k !== 'image' && !!(o || dflt[k]),
     fill: o ? ['rect', 'ellipse'].includes(o.type) : ['rect', 'ellipse'].includes(tool),
     opacity: !!(o || dflt[k]),
@@ -298,6 +390,8 @@ function showProps() {
   if (d.font) $('#p-font').value = d.font;
   if (d.size) $('#p-size').value = Math.round(d.size * 10) / 10;
   $('#p-bold').checked = !!d.bold;
+  $('#p-italic').checked = !!d.italic; $('#p-underline').checked = !!d.underline; $('#p-align').value = d.align || 'left';
+  $('#p-hasbg').checked = !!d.bg; if (d.bg) $('#p-bg').value = d.bg;
   if (d.width) $('#p-width').value = d.width;
   $('#p-fill').checked = !!d.fill;
   $('#p-opacity').value = Math.round((d.opacity ?? 1) * 100);
@@ -320,9 +414,25 @@ function setProp(key, v) {
   if (dflt[k] && (key in dflt[k] || key === 'color')) dflt[k][key] = v;
   showProps();
 }
-$('#p-font').addEventListener('change', e => { fontFile(e.target.value, $('#p-bold').checked).then(() => { const o = byId(sel); if (o) { measure(o); draw(o); } }).catch(() => {}); setProp('font', e.target.value); });
+$('#p-font').addEventListener('change', e => { fontFile(e.target.value, $('#p-bold').checked, $('#p-italic').checked).then(() => { const o = byId(sel); if (o) { measure(o); draw(o); } }).catch(() => {}); setProp('font', e.target.value); });
 $('#p-size').addEventListener('input', e => { const v = +e.target.value; if (v >= 4 && v <= 200) setProp('size', v); });
-$('#p-bold').addEventListener('change', e => { fontFile($('#p-font').value, e.target.checked).then(() => { const o = byId(sel); if (o) { measure(o); draw(o); } }).catch(() => {}); setProp('bold', e.target.checked); });
+$('#p-bold').addEventListener('change', e => { fontFile($('#p-font').value, e.target.checked, $('#p-italic').checked).then(() => { const o = byId(sel); if (o) { measure(o); draw(o); } }).catch(() => {}); setProp('bold', e.target.checked); });
+$('#p-italic').addEventListener('change', e => { fontFile($('#p-font').value, $('#p-bold').checked, e.target.checked).then(() => { const o = byId(sel); if (o) { measure(o); draw(o); } }).catch(() => {}); setProp('italic', e.target.checked); });
+$('#p-underline').addEventListener('change', e => setProp('underline', e.target.checked));
+$('#p-align').addEventListener('change', e => setProp('align', e.target.value));
+$('#p-hasbg').addEventListener('change', e => setProp('bg', e.target.checked ? $('#p-bg').value : ''));
+$('#p-bg').addEventListener('input', e => { $('#p-hasbg').checked = true; setProp('bg', e.target.value); });
+$('#front').addEventListener('click', () => layer(1));
+$('#back').addEventListener('click', () => layer(-1));
+// Bring the selected item in front of everything else on its page, or send it behind.
+function layer(dir) {
+  const o = byId(sel);
+  if (!o) return;
+  stopEdit();
+  objs = objs.filter(x => x !== o);
+  if (dir > 0) objs.push(o); else objs.unshift(o);
+  redrawAll(); commit();
+}
 $('#p-width').addEventListener('input', e => { const v = +e.target.value; if (v >= 1 && v <= 40) setProp('width', v); });
 $('#p-fill').addEventListener('change', e => setProp('fill', e.target.checked));
 $('#p-opacity').addEventListener('input', e => setProp('opacity', +e.target.value / 100));
@@ -355,7 +465,7 @@ function setTool(t) {
   hover(null);
   P.forEach((p, i) => guides(i));
   if (t !== 'select') select(null); else showProps();
-  const tips = { select: 'Click an item to select it. Drag to move, use a corner to resize. Double-click text to change it.', text: 'Click where you want to type.', edit: 'Click any line of text to change it. It keeps the PDF’s own font where possible.', delete: 'Click text, an image or a shape to delete it, or drag a box to delete everything inside.', pen: 'Draw with your mouse or finger.', highlight: 'Drag over text to highlight it.', whiteout: 'Drag over anything to cover it in white.', rect: 'Drag to draw a box.', ellipse: 'Drag to draw a circle.', line: 'Drag to draw a line.', arrow: 'Drag to draw an arrow.', check: 'Click to add a tick.', cross: 'Click to add a cross.', date: 'Click to add today’s date.' };
+  const tips = { select: 'Click an item to select it. Drag to move, use a corner to resize. Double-click text to change it.', text: 'Click where you want to type.', edit: 'Click any line of text to change it. It keeps the PDF’s own font where possible.', delete: 'Click text, an image or a shape to delete it, or drag a box to delete everything inside.', pen: 'Draw with your mouse or finger.', highlight: 'Drag over text to highlight it, or click a line.', underline: 'Drag over text to underline it, or click a line.', strike: 'Drag over text to strike it through, or click a line.', note: 'Click where you want a comment. It shows as a note in PDF readers.', whiteout: 'Drag over anything to cover it in white.', rect: 'Drag to draw a box.', ellipse: 'Drag to draw a circle.', line: 'Drag to draw a line.', arrow: 'Drag to draw an arrow.', check: 'Click to add a tick.', cross: 'Click to add a cross.', date: 'Click to add today’s date.' };
   $('#hint').textContent = tips[t] || '';
   showProps();
 }
@@ -374,8 +484,8 @@ function addObj(o, keepTool) {
 }
 function addText(i, x, y, text, extra = {}) {
   const d = dflt.text;
-  const o = addObj({ type: 'text', page: i, x, y, text, font: d.font, size: d.size, bold: d.bold, color: d.color, opacity: d.opacity, ...extra });
-  fontFile(o.font, o.bold).then(() => { measure(o); draw(o); }).catch(() => {});
+  const o = addObj({ type: 'text', page: i, x, y, text, font: d.font, size: d.size, bold: d.bold, italic: d.italic, underline: d.underline, align: d.align, bg: d.bg, color: d.color, opacity: d.opacity, ...extra });
+  fontFile(o.font, o.bold, o.italic).then(() => { measure(o); draw(o); }).catch(() => {});
   return o;
 }
 
@@ -410,7 +520,7 @@ function stopEdit() {
 // ---------- Pointer handling ----------
 let drag = null;
 pagesEl.addEventListener('pointerdown', async e => {
-  if (e.target.closest('.pe-ie')) return;
+  if (e.target.closest('.pe-ie, .pe-notepop')) return;
   const layer = e.target.closest('.pe-layer');
   if (!layer || e.button > 0) return;
   const i = +layer.dataset.i, [x, y] = pagePoint(e, i);
@@ -440,6 +550,10 @@ pagesEl.addEventListener('pointerdown', async e => {
   if (tool === 'text') { const t = addText(i, x, y - dflt.text.size * 0.6, 'Type here'); startEdit(t, true); return; }
   if (tool === 'date') { addText(i, x, y - dflt.text.size * 0.6, new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })); commit(); return; }
   if (tool === 'edit') { editLine(i, x, y); return; }
+  if (tool === 'note') {
+    const n = addObj({ type: 'note', page: i, x: x - 11, y: y - 11, w: 22, h: 22, text: '', color: dflt.note.color, opacity: 1 });
+    commit(); setTimeout(() => el(n)?.querySelector('textarea')?.focus(), 30); return;
+  }
   if (tool === 'check' || tool === 'cross') { const s = 22, d = dflt.mark; addObj({ type: tool, page: i, x: x - s / 2, y: y - s / 2, w: s, h: s, color: d.color, width: d.width, opacity: d.opacity }, true); commit(); return; }
   const k = kindOf(tool), d = dflt[k];
   const o2 = { id: seq++, type: tool, page: i, x, y, w: 0, h: 0, color: d.color, opacity: d.opacity, width: d.width, fill: d.fill };
@@ -499,6 +613,11 @@ function endDrag() {
   drag = null;
   if (mode === 'erase') { d0.band.remove(); erase(d0); return; }
   if (mode === 'create') {
+    if (['highlight', 'underline', 'strike'].includes(o.type)) {
+      objs = objs.filter(x => x !== o); el(o)?.remove();
+      markText(o, d0, moved && (o.w >= 4 || o.h >= 4));
+      return;
+    }
     if (o.raw) {
       if (o.type === 'pen' && o.raw.length < 2) { o.raw.push([o.raw[0][0] + 0.5, o.raw[0][1] + 0.5]); }
       if (o.type !== 'pen' && !moved) { o.raw[1] = [o.raw[0][0] + 120, o.raw[0][1]]; }
@@ -515,6 +634,32 @@ function endDrag() {
     return;
   }
   if (moved) commit();
+}
+// Highlight, underline and strike-through snap to the lines of text dragged over (or the line clicked),
+// like selecting text: the first line from where the drag started, the last up to where it ended.
+async function markText(o, d, moved) {
+  const i = o.page, lines = (await textLines(i)).slice().sort((a, b) => a.base - b.base || a.x - b.x);
+  let sx = d.x0, sy = d.y0, ex = o.x === d.x0 ? o.x + o.w : o.x, ey = o.y === d.y0 ? o.y + o.h : o.y;
+  if (sy > ey) [sx, sy, ex, ey] = [ex, ey, sx, sy];
+  const top = l => l.base - l.size * 0.95, bot = l => l.base + l.size * 0.25;
+  let hits = moved ? lines.filter(l => bot(l) > Math.min(sy, ey) && top(l) < Math.max(sy, ey) && l.x < Math.max(sx, ex) && l.x + l.w > Math.min(sx, ex))
+    : lines.filter(l => sy >= top(l) && sy <= bot(l) && sx >= l.x - 2 && sx <= l.x + l.w + 2);
+  const parts = hits.map((l, n) => {
+    let a = l.x, b = l.x + l.w;
+    if (moved && hits.length === 1) { a = Math.max(a, Math.min(sx, ex)); b = Math.min(b, Math.max(sx, ex)); }
+    else if (moved) { if (n === 0) a = Math.max(a, sx); if (n === hits.length - 1) b = Math.min(b, ex); }
+    if (b - a < 2) return null;
+    if (o.type === 'highlight') return { ...o, id: seq++, x: a - 1, y: l.base - l.size * 0.92, w: b - a + 2, h: l.size * 1.18 };
+    const th = Math.max(0.8, l.size * 0.075), cy = o.type === 'underline' ? l.base + l.size * 0.13 : l.base - l.size * 0.3;
+    return { ...o, id: seq++, x: a, y: cy - th / 2, w: b - a, h: th, width: th };
+  }).filter(Boolean);
+  if (!parts.length) {
+    // No text there (a scan or an empty spot): mark the dragged area itself.
+    if (o.type === 'highlight') { if (!moved || (o.w < 4 && o.h < 4)) { o.x -= 70; o.y -= 9; o.w = 140; o.h = 18; } parts.push(o); }
+    else { const th = 1.5, w = Math.max(o.w, moved ? 4 : 120); parts.push({ ...o, x: moved ? o.x : o.x - w / 2, y: (o.type === 'underline' ? o.y + o.h : o.y + o.h / 2) - th / 2, w, h: th, width: th }); }
+  }
+  parts.forEach(p => addObj(p, true));
+  commit();
 }
 pagesEl.addEventListener('dblclick', e => {
   const oe = e.target.closest('.pe-o'), o = oe && byId(+oe.dataset.id);
@@ -539,7 +684,7 @@ document.addEventListener('keydown', e => {
   }
   if (e.key === 'Escape') { setTool('select'); select(null); return; }
   if (mod || e.altKey) return;
-  const keys = { x: 'delete', v: 'select', t: 'text', e: 'edit', d: 'pen', h: 'highlight', w: 'whiteout', r: 'rect', o: 'ellipse', l: 'line', a: 'arrow' };
+  const keys = { x: 'delete', v: 'select', t: 'text', e: 'edit', d: 'pen', h: 'highlight', u: 'underline', s: 'strike', c: 'note', w: 'whiteout', r: 'rect', o: 'ellipse', l: 'line', a: 'arrow' };
   if (keys[e.key.toLowerCase()]) setTool(keys[e.key.toLowerCase()]);
 });
 
@@ -554,12 +699,12 @@ function inPoly([x, y], poly) {
   return inside;
 }
 function hitLine(i, ux, uy) {
-  const m = eng.model(i);
+  const m = model(i);
   const hits = m.lines.filter(l => inPoly([ux, uy], l.poly));
   return hits.sort((a, b) => area(a.bbox) - area(b.bbox))[0] || null;
 }
 function hitObject(i, ux, uy) {
-  const m = eng.model(i), vb = P[i].vp.viewBox, page = area(vb);
+  const m = model(i), vb = P[i].vp.viewBox, page = area(vb);
   const hits = m.objects.filter(o => ux >= o.bbox[0] && ux <= o.bbox[2] && uy >= o.bbox[1] && uy <= o.bbox[3] && area(o.bbox) < page * 0.85);
   const rank = o => (o.type === 'image' ? 0 : o.type === 'path' ? 1 : 2);
   return hits.sort((a, b) => rank(a) - rank(b) || area(a.bbox) - area(b.bbox))[0] || null;
@@ -585,7 +730,7 @@ function guides(i) {
   g.innerHTML = '';
   if (tool !== 'edit' || !eng) return;
   let m;
-  try { m = eng.model(i); } catch (e) { return; }
+  try { m = model(i); } catch (e) { return; }
   g.innerHTML = m.lines.map(l => { const [x0, y0, x1, y1] = viewBox(i, l.bbox); return `<div class="pe-g" style="left:${x0 * zoom}px;top:${y0 * zoom}px;width:${(x1 - x0) * zoom}px;height:${(y1 - y0) * zoom}px"></div>`; }).join('');
 }
 const hex2 = v => Math.round(Math.max(0, Math.min(1, v)) * 255).toString(16).padStart(2, '0');
@@ -595,7 +740,7 @@ const hexRgb01 = h => [1, 3, 5].map(k => parseInt(h.slice(k, k + 2), 16) / 255);
 async function editLine(i, x, y) {
   if (!eng) { editExisting(i, x, y); return; }
   const [ux, uy] = P[i].vp.convertToPdfPoint(x, y);
-  const m = eng.model(i), line = hitLine(i, ux, uy);
+  const m = model(i), line = hitLine(i, ux, uy);
   if (!line) {
     // Scanned pages and unusual PDFs: fall back to covering the text.
     if (m.error || !m.lines.length) editExisting(i, x, y);
@@ -674,7 +819,7 @@ async function erase(d) {
   } else {
     const a = vp.convertToPdfPoint(d.x0, d.y0), b = vp.convertToPdfPoint(d.x1, d.y1);
     const r = [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[0], b[0]), Math.max(a[1], b[1])];
-    const m = eng.model(i), page = area(vp.viewBox);
+    const m = model(i), page = area(vp.viewBox);
     glyphs = m.glyphs.filter(g => { const cx = g.poly.reduce((s, p) => s + p[0], 0) / 4, cy = g.poly.reduce((s, p) => s + p[1], 0) / 4; return cx >= r[0] && cx <= r[2] && cy >= r[1] && cy <= r[3]; });
     objects = m.objects.filter(o => {
       const ov = area([Math.max(r[0], o.bbox[0]), Math.max(r[1], o.bbox[1]), Math.min(r[2], o.bbox[2]), Math.min(r[3], o.bbox[3])]), a0 = area(o.bbox) || 1;
@@ -751,7 +896,7 @@ async function editExisting(i, x, y) {
   const cover = { type: 'whiteout', page: i, x: l.x - 1.5, y: l.base - l.size * 0.98, w: l.w + 3, h: l.size * 1.3, color: bg, opacity: 1, id: seq++ };
   objs.push(cover); draw(cover);
   const size = Math.round(l.size * 10) / 10;
-  const t = addText(i, l.x, l.base - baseOf(l.font, l.bold) * size, l.str, { font: l.font, bold: l.bold, size, color: ink, opacity: 1 });
+  const t = addText(i, l.x, l.base - baseOf(l.font, l.bold) * size, l.str, { font: l.font, bold: l.bold, italic: false, underline: false, align: 'left', bg: '', size, color: ink, opacity: 1 });
   startEdit(t, false);
 }
 let flashT = null;
@@ -863,6 +1008,22 @@ dlg.addEventListener('close', async () => {
 });
 
 // ---------- Save ----------
+// A comment as a real PDF note (a "Text" annotation): readers show a note icon that opens the comment.
+// It carries its own drawing of the icon, so it looks the same in every reader.
+function addNote(pdf, page, o, at) {
+  const ctx = pdf.context, a = at(o.x, o.y + o.h), b = at(o.x + o.w, o.y);
+  const rect = [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[0], b[0]), Math.max(a[1], b[1])];
+  const w = rect[2] - rect[0], h = rect[3] - rect[1], [r, g, bl] = hexRgb01(o.color).map(v => v.toFixed(3));
+  const icon = `q ${r} ${g} ${bl} rg 0.25 0.25 0.25 RG 0.8 w 0.5 0.5 ${(w - 1).toFixed(2)} ${(h - 1).toFixed(2)} re B ` +
+    `0.6 w ${(w * 0.2).toFixed(2)} ${(h * 0.62).toFixed(2)} m ${(w * 0.8).toFixed(2)} ${(h * 0.62).toFixed(2)} l S ${(w * 0.2).toFixed(2)} ${(h * 0.42).toFixed(2)} m ${(w * 0.65).toFixed(2)} ${(h * 0.42).toFixed(2)} l S Q`;
+  const ap = ctx.flateStream(icon, { Type: 'XObject', Subtype: 'Form', BBox: [0, 0, w, h] });
+  const annot = ctx.obj({
+    Type: 'Annot', Subtype: 'Text', Rect: rect, Contents: PDFHexString.fromText(o.text || ''), Name: 'Comment',
+    C: hexRgb01(o.color), Open: false, F: 4 | 8 | 16, M: PDFString.fromDate(new Date()), T: PDFHexString.fromText('Comment'),
+    AP: { N: ctx.register(ap) },
+  });
+  page.node.addAnnot(ctx.register(annot));
+}
 const hexRgb = h => rgb(parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5), 16) / 255, parseInt(h.slice(5, 7), 16) / 255);
 $('#save').addEventListener('click', async () => {
   if (ie) await finishLine(true);
@@ -880,7 +1041,15 @@ $('#save').addEventListener('click', async () => {
     }
     const pdf = await PDFDocument.load(base, { updateMetadata: false });
     pdf.registerFontkit(fontkit);
+    // Deleted and added pages, then turned ones. Pages keep their order, so this is done in place
+    // (bookmarks, forms and links of the pages that stay are kept).
+    const count = pdf.getPageCount(), kept = new Set(P.map(p => p.src));
+    if (P.length !== count || P.some((p, i) => p.src !== i)) {
+      for (let k = count - 1; k >= 0; k--) if (!kept.has(k)) pdf.removePage(k);
+      P.forEach((p, i) => { if (p.src == null) pdf.insertPage(i, p.blank); });
+    }
     const pages = pdf.getPages(), fonts = {}, images = {};
+    P.forEach((p, i) => { if (p.rot) pages[i].setRotation(degrees((p.baseRot + p.rot) % 360)); });
     for (const o of objs) {
       const page = pages[o.page], vp = P[o.page].vp;
       const at = (vx, vy) => vp.convertToPdfPoint(vx, vy);
@@ -888,14 +1057,19 @@ $('#save').addEventListener('click', async () => {
       const rot = degrees(Math.atan2(uy - oy, ux - ox) * 180 / Math.PI);
       const opacity = o.opacity ?? 1;
       if (o.type === 'text') {
-        const k = `${o.font}-${o.bold ? 7 : 4}`;
-        fonts[k] ??= await pdf.embedFont(await fontFile(o.font, o.bold), { subset: true });
-        const base = baseOf(o.font, o.bold);
+        const it = o.italic && !FONTS[o.font].noItalic, k = `${o.font}-${o.bold ? 7 : 4}-${it ? 'i' : 'n'}`;
+        fonts[k] ??= await pdf.embedFont(await fontFile(o.font, o.bold, it), { subset: true });
+        const base = baseOf(o.font, o.bold, it), color = hexRgb(o.color);
+        if (o.bg) page.drawSvgPath(`M0 0H${o.w}V${o.h}H0Z`, { x: ox, y: oy, rotate: rot, color: hexRgb(o.bg), opacity });
         o.text.split('\n').forEach((line, n) => {
           if (!line) return;
-          const [bx, by] = at(o.x, o.y + (n * LH + base) * o.size);
-          page.drawText(line, { x: bx, y: by, size: o.size, font: fonts[k], color: hexRgb(o.color), opacity, rotate: rot });
+          const lw = fonts[k].widthOfTextAtSize(line, o.size), dx = o.align === 'center' ? (o.w - lw) / 2 : o.align === 'right' ? o.w - lw : 0;
+          const ly = o.y + (n * LH + base) * o.size, [bx, by] = at(o.x + dx, ly);
+          page.drawText(line, { x: bx, y: by, size: o.size, font: fonts[k], color, opacity, rotate: rot });
+          if (o.underline) { const [ux0, uy0] = at(o.x + dx, ly + o.size * 0.12); page.drawSvgPath(`M0 0H${lw.toFixed(2)}`, { x: ux0, y: uy0, rotate: rot, borderColor: color, borderWidth: Math.max(0.5, o.size * 0.06), borderOpacity: opacity }); }
         });
+      } else if (o.type === 'note') {
+        addNote(pdf, page, o, at);
       } else if (o.type === 'image') {
         const im = imgs[o.img];
         images[o.img] ??= im.kind === 'png' ? await pdf.embedPng(im.bytes) : await pdf.embedJpg(im.bytes);
@@ -904,7 +1078,7 @@ $('#save').addEventListener('click', async () => {
       } else {
         const opts = { x: ox, y: oy, rotate: rot };
         if (filled(o)) { opts.color = hexRgb(o.color); opts.opacity = opacity; }
-        if (stroked(o)) { opts.borderColor = hexRgb(o.color); opts.borderWidth = o.width; opts.borderOpacity = opacity; opts.borderLineCap = LineCapStyle.Round; }
+        if (stroked(o)) { opts.borderColor = hexRgb(o.color); opts.borderWidth = o.width; opts.borderOpacity = opacity; opts.borderLineCap = o.type === 'underline' || o.type === 'strike' ? LineCapStyle.Butt : LineCapStyle.Round; }
         if (o.type === 'highlight') opts.blendMode = BlendMode.Multiply;
         page.drawSvgPath(pathOf(o), opts);
       }

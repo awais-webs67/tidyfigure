@@ -379,8 +379,9 @@ document.addEventListener('click', e => {
 
 // Font files for PDFs: from this site first (assets/fonts), then the jsDelivr CDN.
 // name: inter, merriweather, roboto-mono or caveat; weight: 400 or 700.
-async function fontBytes(name, weight) {
-  const urls = [`${window.TF_BASE || ''}/assets/fonts/${name}-${weight}.ttf`, `https://cdn.jsdelivr.net/fontsource/fonts/${name}@5.1.0/latin-${weight}-normal.ttf`];
+async function fontBytes(name, weight, style = 'normal') {
+  const it = style === 'italic' ? '-italic' : '';
+  const urls = [`${window.TF_BASE || ''}/assets/fonts/${name}-${weight}${it}.ttf`, `https://cdn.jsdelivr.net/fontsource/fonts/${name}@5.1.0/latin-${weight}-${style}.ttf`];
   for (const u of urls) {
     try { const r = await fetch(u); if (r.ok) return await r.arrayBuffer(); } catch (e) { /* try the next source */ }
   }

@@ -19,7 +19,10 @@
         <button type="button" data-tool="sign" title="Add a signature" aria-label="Sign">{{icon:pen-line}}<span>Sign</span></button>
         <button type="button" data-tool="image" title="Add an image" aria-label="Add image">{{icon:image}}<span>Image</span></button>
         <button type="button" data-tool="pen" title="Draw (D)" aria-label="Draw">{{icon:pencil}}<span>Draw</span></button>
-        <button type="button" data-tool="highlight" title="Highlight (H)" aria-label="Highlight">{{icon:highlighter}}<span>Highlight</span></button>
+        <button type="button" data-tool="highlight" title="Highlight text (H)" aria-label="Highlight">{{icon:highlighter}}<span>Highlight</span></button>
+        <button type="button" data-tool="underline" title="Underline text (U)" aria-label="Underline text">{{icon:underline}}<span>Underline</span></button>
+        <button type="button" data-tool="strike" title="Strike through text (S)" aria-label="Strike through text">{{icon:strikethrough}}<span>Strike</span></button>
+        <button type="button" data-tool="note" title="Add a comment (C)" aria-label="Add a comment">{{icon:sticky-note}}<span>Comment</span></button>
         <button type="button" data-tool="whiteout" title="Whiteout: cover something up (W)" aria-label="Whiteout">{{icon:eraser}}<span>Whiteout</span></button>
         <button type="button" data-tool="rect" title="Rectangle (R)" aria-label="Rectangle">{{icon:square}}<span>Box</span></button>
         <button type="button" data-tool="ellipse" title="Circle (O)" aria-label="Circle">{{icon:circle}}<span>Circle</span></button>
@@ -32,6 +35,16 @@
       <div class="pe-actions">
         <button type="button" id="undo" title="Undo (Ctrl+Z)" aria-label="Undo" disabled>{{icon:undo-2}}</button>
         <button type="button" id="redo" title="Redo (Ctrl+Y)" aria-label="Redo" disabled>{{icon:redo-2}}</button>
+        <div class="pe-menu">
+          <button type="button" id="pagebtn" title="Page tools" aria-label="Page tools" aria-haspopup="true" aria-expanded="false">{{icon:file-plus}}</button>
+          <div class="pe-menu-list" id="pmenu" role="menu" hidden>
+            <button type="button" role="menuitem" data-op="cw">{{icon:rotate-cw}}Turn this page right</button>
+            <button type="button" role="menuitem" data-op="ccw">{{icon:rotate-ccw}}Turn this page left</button>
+            <button type="button" role="menuitem" data-op="blank">{{icon:file-plus}}Add a blank page after it</button>
+            <button type="button" role="menuitem" data-op="delete">{{icon:file-x}}Delete this page</button>
+            <button type="button" role="menuitem" data-op="clear">{{icon:eraser}}Remove everything I added</button>
+          </div>
+        </div>
         <button type="button" id="zout" title="Zoom out" aria-label="Zoom out">{{icon:zoom-out}}</button>
         <span id="zlabel" class="pe-zoom">100%</span>
         <button type="button" id="zin" title="Zoom in" aria-label="Zoom in">{{icon:zoom-in}}</button>
@@ -44,6 +57,10 @@
       <label class="pe-p" data-for="text"><span>Font</span><select id="p-font"><option value="sans">Sans</option><option value="serif">Serif</option><option value="mono">Mono</option><option value="hand">Handwriting</option></select></label>
       <label class="pe-p" data-for="text"><span>Size</span><input type="number" id="p-size" min="4" max="200" value="16"></label>
       <label class="pe-p pe-tog" data-for="text" title="Bold"><input type="checkbox" id="p-bold"><b>B</b></label>
+      <label class="pe-p pe-tog" data-for="text" title="Italic"><input type="checkbox" id="p-italic"><i style="font-family:Georgia,serif">I</i></label>
+      <label class="pe-p pe-tog" data-for="text" title="Underline"><input type="checkbox" id="p-underline"><u>U</u></label>
+      <label class="pe-p" data-for="text"><span>Align</span><select id="p-align"><option value="left">Left</option><option value="center">Centre</option><option value="right">Right</option></select></label>
+      <label class="pe-p pe-tog" data-for="text" title="Background behind the text"><input type="checkbox" id="p-hasbg"><span>Background</span><input type="color" id="p-bg" value="#fff59d" aria-label="Background colour"></label>
       <label class="pe-p" data-for="stroke"><span>Width</span><input type="number" id="p-width" min="1" max="40" value="3"></label>
       <div class="pe-p pe-colors" data-for="color" role="radiogroup" aria-label="Colour">
         <button type="button" data-c="#111827" style="--c:#111827" aria-label="Black"></button>
@@ -56,6 +73,8 @@
       </div>
       <label class="pe-p pe-tog" data-for="fill" title="Fill the shape"><input type="checkbox" id="p-fill"><span>Fill</span></label>
       <label class="pe-p" data-for="opacity"><span>Opacity</span><input type="range" id="p-opacity" min="10" max="100" value="100"></label>
+      <button type="button" class="pe-p pe-del" data-for="any" id="front" title="Bring to front" aria-label="Bring to front">{{icon:bring-to-front}}</button>
+      <button type="button" class="pe-p pe-del" data-for="any" id="back" title="Send to back" aria-label="Send to back">{{icon:send-to-back}}</button>
       <button type="button" class="pe-p pe-del" data-for="any" id="dup" title="Duplicate (Ctrl+D)">{{icon:copy}}<span>Duplicate</span></button>
       <button type="button" class="pe-p pe-del" data-for="any" id="del" title="Delete (Del)">{{icon:trash-2}}<span>Delete</span></button>
     </div>
