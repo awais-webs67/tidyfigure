@@ -1,6 +1,7 @@
 // Crop PDF: the crop box is kept as fractions of the page as shown (0–1 from the top-left), so it can be
 // applied to pages of any size. Saving sets each page's crop box (and media box, for printers).
-const { PDFDocument } = PDFLib;
+let { PDFDocument } = {};
+onLibs(() => ({ PDFDocument } = PDFLib));
 const out = $('#out'), MM = 72 / 25.4;
 let srcBytes = null, name = 'document', doc = null, cur = 1, box = { x0: 0, y0: 0, x1: 1, y1: 1 }, vp = null;
 

@@ -1,4 +1,5 @@
-const { PDFDocument, StandardFonts, rgb, degrees } = PDFLib;
+let { PDFDocument, StandardFonts, rgb, degrees } = {};
+onLibs(() => ({ PDFDocument, StandardFonts, rgb, degrees } = PDFLib));
 let file = null, srcBytes = null, result = null, t = null;
 const out = $('#out');
 const hex = h => [1, 3, 5].map(i => parseInt(h.slice(i, i + 2), 16) / 255);

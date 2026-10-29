@@ -98,9 +98,9 @@ function fileDrop(zone, input, onFiles) {
     if (!files.length) return;
     if (!files.some(f => accepts(input, f))) { toast('This tool can’t open that type of file. Please choose another file.', 'err'); return; }
     toast(addedMessage(files));
-    onFiles(files);
+    if (libsIn) onFiles(files); else libsReady().then(() => onFiles(files), () => {});
   };
-  input.dataset.drop = '1';
+  input.dataset.drop = '1'; zone.dataset.zone = '1';
   zone.addEventListener('click', e => { if (e.target !== input) input.click(); });
   zone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
   input.addEventListener('change', () => { const f = [...input.files]; input.value = ''; take(f); });
@@ -415,7 +415,7 @@ function pdfjs() {
   if (lib && !lib.GlobalWorkerOptions.workerSrc) lib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
   return lib;
 }
-const openPdf = bytesIn => pdfjs().getDocument({ data: bytesIn.slice(0) }).promise;
+const openPdf = async bytesIn => { await libsReady(); return pdfjs().getDocument({ data: bytesIn.slice(0) }).promise; };
 
 async function renderPdfPage(doc, n, scale = 1, background = '#fff') {
   const page = await doc.getPage(n);
@@ -432,7 +432,46 @@ async function renderPdfPage(doc, n, scale = 1, background = '#fff') {
 const PDFLIB_URL = 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js';
 const loadScript = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
 
+// ---------- Big libraries load on the first touch, not with the page ----------
+// The page lists them in window.TF_LIBS (pdf.js, pdf-lib…). They start downloading the moment the visitor touches,
+// clicks, types or drags anything, so the page itself opens fast. Until they're in, a click on a tool button or a
+// chosen file waits for them and then goes through as normal.
+let libsP = null, libsIn = !(window.TF_LIBS || []).length;
+const libsWaiters = [];
+// Run fn once the libraries are in (at once if they already are). Doesn't start loading them.
+function onLibs(fn) { if (libsIn) fn(); else libsWaiters.push(fn); }
+function libsReady() {
+  if (libsIn) return Promise.resolve();
+  return libsP || (libsP = Promise.all(window.TF_LIBS.map(src => new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = src; s.async = false; // download together, run in order
+    s.onload = res; s.onerror = () => rej(new Error('Part of this tool couldn’t load. Check your connection and reload the page.'));
+    document.head.appendChild(s);
+  }))).then(() => { libsIn = true; libsWaiters.splice(0).forEach(f => f()); }, e => { toast(e.message, 'err'); throw e; }));
+}
+if (!libsIn) {
+  const kick = () => { libsReady().catch(() => {}); ['pointerdown', 'keydown', 'touchstart', 'dragenter', 'focusin'].forEach(t => removeEventListener(t, kick, true)); };
+  ['pointerdown', 'keydown', 'touchstart', 'dragenter', 'focusin'].forEach(t => addEventListener(t, kick, { capture: true, passive: true }));
+  const wait = el => { el.setAttribute('aria-busy', 'true'); return libsReady().finally(() => el.removeAttribute('aria-busy')); };
+  // Tool buttons (Sample, Merge, Download…): hold the click, then replay it.
+  document.addEventListener('click', e => {
+    if (libsIn) return;
+    const b = e.target.closest && e.target.closest('button');
+    if (!b || !b.closest('.tool') || b.closest('[data-zone]')) return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    wait(b).then(() => b.click(), () => {});
+  }, true);
+  // Files chosen in a picker that isn't a drop zone: hold the change event, then replay it.
+  document.addEventListener('change', e => {
+    const i = e.target;
+    if (libsIn || !(i instanceof HTMLInputElement) || i.type !== 'file' || i.dataset.drop || !i.closest('.tool')) return;
+    e.stopImmediatePropagation();
+    wait(i).then(() => i.dispatchEvent(new Event('change', { bubbles: true })), () => {});
+  }, true);
+}
+
 async function samplePdf(pages = 4, title = 'Quarterly report', photo = false) {
+  await libsReady().catch(() => {});
   if (!window.PDFLib) await loadScript(PDFLIB_URL);
   const { PDFDocument, StandardFonts, rgb } = PDFLib;
   const pdf = await PDFDocument.create();

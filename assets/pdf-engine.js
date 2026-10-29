@@ -1,7 +1,9 @@
 'use strict';
 // PDF content engine: reads the drawing commands inside each page (text, images, shapes), so the editor can
 // change text in its original font and truly delete things, then writes the commands back. Needs pdf-lib.
-const PdfEngine = (() => {
+// Built once pdf-lib is in: on PDF pages the library loads on the visitor's first touch (onLibs in app.js).
+let PdfEngine = null;
+const makePdfEngine = () => {
   const L = typeof PDFLib !== 'undefined' ? PDFLib : require('pdf-lib');
   const { PDFName, PDFDict, PDFArray, PDFNumber, PDFRef, PDFRawStream, PDFHexString, PDFString, StandardFonts, decodePDFRawStream, StandardFontEmbedder } = L;
 
@@ -662,5 +664,7 @@ const PdfEngine = (() => {
   }
 
   return { load, lex, fontInfo };
-})();
+};
+if (typeof onLibs === 'function') onLibs(() => { PdfEngine = makePdfEngine(); });
+else PdfEngine = makePdfEngine();
 if (typeof module !== 'undefined') module.exports = PdfEngine;

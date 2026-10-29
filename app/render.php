@@ -3,7 +3,25 @@
 // the sitemap, robots.txt and the tool list used by the quick search.
 declare(strict_types=1);
 
-const TF_FONTS = 'https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap';
+// Web fonts are hosted with the site (assets/fonts/web, SIL Open Font License): no trip to Google before the page can
+// show, and the two fonts every page needs are preloaded. "Inter Fallback" is a local font stretched to Inter's size,
+// so text doesn't jump when Inter arrives.
+function tf_font_head(): string
+{
+    $u = fn($f) => TF_BASE . '/assets/fonts/web/' . $f . '.woff2';
+    $latin = 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD';
+    $ext = 'U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF';
+    $css = '';
+    foreach ([['Inter', 'inter', '400 700'], ['Bebas Neue', 'bebas-neue', '400'], ['JetBrains Mono', 'jetbrains-mono', '500 700']] as [$fam, $file, $w]) {
+        foreach (['latin' => $latin, 'latin-ext' => $ext] as $sub => $range) {
+            $css .= "@font-face{font-family:\"$fam\";font-style:normal;font-weight:$w;font-display:swap;src:url(" . $u("$file-$sub") . ") format(\"woff2\");unicode-range:$range}";
+        }
+    }
+    $css .= '@font-face{font-family:"Inter Fallback";src:local("Arial"),local("Helvetica"),local("Liberation Sans"),local("Roboto");size-adjust:107.12%;ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%}';
+    return '<link rel="preload" href="' . h($u('inter-latin')) . '" as="font" type="font/woff2" crossorigin>' . "\n"
+        . '<link rel="preload" href="' . h($u('bebas-neue-latin')) . '" as="font" type="font/woff2" crossorigin>' . "\n"
+        . "<style>$css</style>";
+}
 
 function tf_strip(string $html): string
 {
@@ -80,6 +98,8 @@ function tf_layout(array $o, string $body): string
     if (empty($o['noads']) && preg_match('/^ca-pub-\d+$/', $s['adsense_client'])) {
         $head .= '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' . $s['adsense_client'] . '" crossorigin="anonymous"></script>' . "\n";
     }
+    // Hosts the page will fetch from later (the tool's libraries): connect early, download nothing yet.
+    foreach (array_unique($o['preconnect'] ?? []) as $host) $head .= '<link rel="preconnect" href="' . h($host) . '">' . "\n";
     $head .= $s['head_code'];
 
     $announce = '';
@@ -144,9 +164,7 @@ function tf_layout(array $o, string $body): string
 <link rel="icon" href="{$g['tf_icon48']}" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="{$g['tf_touch']}">
 <link rel="manifest" href="{$g['tf_manifest']}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="{$g['tf_fonts']}">
+{$g['tf_fonts']}
 <link rel="stylesheet" href="{$g['tf_css']}">
 <script>window.TF_BASE=$base;window.TF_INSTALL=$install;try{var t=localStorage.getItem('tf-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 $schema
@@ -188,7 +206,7 @@ function tf_layout_globals(): void
     $GLOBALS['tf_manifest'] = h(tf_url('manifest.webmanifest'));
     $GLOBALS['tf_css'] = h(tf_asset('style.css'));
     $GLOBALS['tf_sitejs'] = h(tf_asset('site.js'));
-    $GLOBALS['tf_fonts'] = h(TF_FONTS);
+    $GLOBALS['tf_fonts'] = tf_font_head();
     $GLOBALS['tf_home'] = h(tf_url());
     $GLOBALS['tf_about'] = h(tf_url('about'));
     $GLOBALS['tf_privacy'] = h(tf_url('privacy'));
@@ -288,7 +306,15 @@ function tf_page_tool(array $t): string
 </main>';
     $scripts = '';
     // Libraries: full URLs load from a CDN; 'vendor/…' paths are copies hosted in assets/vendor.
-    foreach ($t['libs'] ?? [] as $src) $scripts .= '<script src="' . h(preg_match('~^https?://~', $src) ? $src : tf_asset($src)) . '"></script>' . "\n";
+    // Big ones (everything but the small QR and bcrypt libraries) load on the visitor's first touch (see libsReady in app.js),
+    // so the page opens fast; small ones load with the page because those tools draw straight away.
+    $lazy = [];
+    foreach ($t['libs'] ?? [] as $src) {
+        $url = preg_match('~^https?://~', $src) ? $src : tf_asset($src);
+        if (preg_match('~qrcode|bcrypt~', $src)) $scripts .= '<script src="' . h($url) . '"></script>' . "\n";
+        else $lazy[] = $url;
+    }
+    if ($lazy) $scripts .= '<script>window.TF_LIBS=' . json_encode($lazy, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) . ';</script>' . "\n";
     $limit = tf_tool_limit($t['slug']);
     if ($limit > 0) {
         $st = tf_settings();
@@ -296,9 +322,12 @@ function tf_page_tool(array $t): string
         $scripts .= '<script>window.TF_LIMIT=' . json_encode($cfg, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG) . ';</script>' . "\n";
     }
     $scripts .= '<script src="' . h(tf_asset('app.js')) . '"></script>' . "\n";
+    // ai.js starts its edge clean-up worker from matte.js: give it that file's own versioned address.
+    if (in_array('ai.js', $t['scripts'] ?? [], true)) $scripts .= '<script>window.TF_MATTE=' . json_encode(tf_asset('matte.js'), JSON_UNESCAPED_SLASHES) . ';</script>' . "\n";
     foreach ($t['scripts'] ?? [] as $f) $scripts .= '<script src="' . h(tf_asset($f)) . '"></script>' . "\n";
     $scripts .= "<script>\n(function () {\n" . $t['js'] . "\n})();\n</script>";
-    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $t['slug'], 'schema' => $schema, 'noindex' => $noindex, 'scripts' => $scripts, 'noads' => $noads], $body);
+    $pre = array_values(array_filter(array_map(fn($u) => preg_match('~^(https://[^/]+)/~', $u, $m) ? $m[1] : '', $lazy)));
+    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $t['slug'], 'schema' => $schema, 'noindex' => $noindex, 'scripts' => $scripts, 'noads' => $noads, 'preconnect' => $pre], $body);
 }
 
 function tf_page_category(array $c): string

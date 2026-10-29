@@ -1,6 +1,7 @@
 // PDF editor: pages are drawn by pdf.js; everything added sits in an HTML layer above each page,
 // measured in PDF points (1 unit = 1 pt at 100% zoom), and is written into the PDF with pdf-lib on save.
-const { PDFDocument, rgb, degrees, LineCapStyle, BlendMode, PDFHexString, PDFName, PDFString } = PDFLib;
+let { PDFDocument, rgb, degrees, LineCapStyle, BlendMode, PDFHexString, PDFName, PDFString } = {};
+onLibs(() => ({ PDFDocument, rgb, degrees, LineCapStyle, BlendMode, PDFHexString, PDFName, PDFString } = PDFLib));
 const LH = 1.25; // line height of text boxes, in ems
 const FONTS = {
   sans: { css: 'PeSans', file: 'inter', fallback: 'sans-serif' },

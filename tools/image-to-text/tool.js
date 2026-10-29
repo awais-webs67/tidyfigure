@@ -107,7 +107,7 @@ function prepare(src) {
 
 const chosenLangs = () => [$('#lang').value, $('#lang2').value].filter((v, i, a) => v && a.indexOf(v) === i).join('+');
 // Start loading the reader (about 4 MB the first time) as soon as the visitor heads for the drop zone.
-['pointerenter', 'focusin', 'dragenter', 'touchstart'].forEach(ev => $('#drop').addEventListener(ev, () => { if (window.Tesseract) getReader(chosenLangs()).catch(() => {}); }, { passive: true }));
+['pointerenter', 'focusin', 'dragenter', 'touchstart'].forEach(ev => $('#drop').addEventListener(ev, () => { libsReady().then(() => getReader(chosenLangs())).catch(() => {}); }, { passive: true }));
 
 // One reader per language choice, kept between files so it doesn't load again each time.
 // The promise is stored straight away, so two quick runs share one reader instead of starting two.

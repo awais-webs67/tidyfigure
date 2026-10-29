@@ -3,7 +3,11 @@
 // const sc = Scanner({ video, formats: 'qr' | 'all', onResult(text, format) });
 
 function Scanner({ video, formats = 'all', onResult, onError }) {
-  const Z = window.ZXing;
+  // ZXing loads on the visitor's first touch (libsReady in app.js), so the reader is made on first use.
+  let Z, reader, name;
+  const ready = async () => { if (reader) return; await libsReady(); make(); };
+  function make() {
+  Z = window.ZXing;
   const hints = new Map();
   const qrOnly = [Z.BarcodeFormat.QR_CODE];
   const all = [Z.BarcodeFormat.QR_CODE, Z.BarcodeFormat.EAN_13, Z.BarcodeFormat.EAN_8, Z.BarcodeFormat.UPC_A, Z.BarcodeFormat.UPC_E,
@@ -11,8 +15,9 @@ function Scanner({ video, formats = 'all', onResult, onError }) {
     Z.BarcodeFormat.DATA_MATRIX, Z.BarcodeFormat.PDF_417, Z.BarcodeFormat.AZTEC];
   hints.set(Z.DecodeHintType.POSSIBLE_FORMATS, formats === 'qr' ? qrOnly : all);
   hints.set(Z.DecodeHintType.TRY_HARDER, true);
-  const reader = new Z.BrowserMultiFormatReader(hints, 300);
-  const name = f => (Z.BarcodeFormat[f] || String(f)).replace(/_/g, '-');
+  reader = new Z.BrowserMultiFormatReader(hints, 300);
+  name = f => (Z.BarcodeFormat[f] || String(f)).replace(/_/g, '-');
+  }
   let last = '', running = false;
 
   return {
@@ -20,12 +25,14 @@ function Scanner({ video, formats = 'all', onResult, onError }) {
     async start() {
       if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) throw new Error('This browser can’t use the camera. Upload a photo of the code instead.');
       running = true;
+      await ready();
       await reader.decodeFromConstraints({ video: { facingMode: 'environment' } }, video, (res) => {
         if (res && res.getText() !== last) { last = res.getText(); if (navigator.vibrate) navigator.vibrate(60); onResult(res.getText(), name(res.getBarcodeFormat())); }
       });
     },
-    stop() { reader.reset(); running = false; last = ''; },
+    stop() { if (reader) reader.reset(); running = false; last = ''; },
     async file(f) {
+      await ready();
       const url = URL.createObjectURL(f);
       try { const res = await reader.decodeFromImageUrl(url); onResult(res.getText(), name(res.getBarcodeFormat())); }
       catch (e) { (onError || (() => {}))('No code found in that image. Try a sharper, closer photo with the whole code in frame.'); }

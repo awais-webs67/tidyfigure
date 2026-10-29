@@ -1,5 +1,6 @@
 // Fill PDF Form: lists the form's fields (pdf-lib), writes the answers into the PDF and shows the pages.
-const { PDFDocument, PDFTextField, PDFCheckBox, PDFRadioGroup, PDFDropdown, PDFOptionList, PDFName } = PDFLib;
+let { PDFDocument, PDFTextField, PDFCheckBox, PDFRadioGroup, PDFDropdown, PDFOptionList, PDFName } = {};
+onLibs(() => ({ PDFDocument, PDFTextField, PDFCheckBox, PDFRadioGroup, PDFDropdown, PDFOptionList, PDFName } = PDFLib));
 const out = $('#out');
 let srcBytes = null, name = 'form', fields = [], font = null, timer = 0;
 

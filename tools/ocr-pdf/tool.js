@@ -1,6 +1,7 @@
 // OCR PDF: each scanned page is drawn by pdf.js and read by Tesseract, which also writes a one-page PDF holding
 // only the invisible text; that page is laid over the original page with pdf-lib, so nothing visible changes.
-const { PDFDocument, degrees } = PDFLib;
+let { PDFDocument, degrees } = {};
+onLibs(() => ({ PDFDocument, degrees } = PDFLib));
 const out = $('#out');
 let src = null, name = 'scan';
 fileDrop($('#drop'), $('#file'), fs => { const f = fs.find(isPdf); if (f) open(f); });

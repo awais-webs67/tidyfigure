@@ -142,7 +142,8 @@ const AI = (() => {
   let matteCode = null;
   async function matteWorker() {
     if (!matte) {
-      const u = new URL('matte.js', HERE || location.href); if (HERE) u.search = new URL(HERE).search; // same version as ai.js
+      let u = new URL('matte.js', HERE || location.href); if (HERE) u.search = new URL(HERE).search; // same version as ai.js
+      if (window.TF_MATTE) u = new URL(window.TF_MATTE, location.href); // matte.js's own version, from the page
       matteCode ??= fetch(u).then(r => { if (!r.ok) throw new Error('Edge clean-up code missing'); return r.blob(); }).catch(e => { matteCode = null; throw e; });
       matte = new Worker(URL.createObjectURL(new Blob([await matteCode], { type: 'text/javascript' })));
       matte.onmessage = e => { const p = waiting.get(e.data.id); if (!p) return; waiting.delete(e.data.id); e.data.error ? p.reject(new Error(e.data.error)) : p.resolve(e.data); };

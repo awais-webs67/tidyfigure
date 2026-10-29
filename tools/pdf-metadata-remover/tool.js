@@ -1,4 +1,5 @@
-const { PDFDocument, PDFName } = PDFLib;
+let { PDFDocument, PDFName } = {};
+onLibs(() => ({ PDFDocument, PDFName } = PDFLib));
 const KEYS = ['title', 'author', 'subject', 'keywords', 'creator', 'producer'];
 let file = null, srcBytes = null;
 const out = $('#out');

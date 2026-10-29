@@ -1,4 +1,5 @@
-const { PDFDocument, degrees } = PDFLib;
+let { PDFDocument, degrees } = {};
+onLibs(() => ({ PDFDocument, degrees } = PDFLib));
 const pad = $('#pad'), px = pad.getContext('2d'), view = $('#view');
 let drawing = false, drawn = false, last = null;
 let file = null, srcBytes = null, doc = null, pageNo = 1, scale = 1, placed = [];

@@ -22,7 +22,7 @@
   --c-health: #1FAF55; --c-money: #0E7C86; --c-social: #E2457F; --c-qr: #333F48;
   --c-media: #C2185B; --c-study: #3F51B5; --c-dev: #2E7D32; --c-home: #8D5A2B; --c-device: #00838F;
   --f-display: "Bebas Neue", "Oswald", "Arial Narrow", Impact, sans-serif;
-  --f-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --f-body: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --f-num: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --r: 4px;
   --header-h: 68px;
@@ -730,3 +730,8 @@ main.home { padding-top: 0; }
 @media (max-width: 860px) {
   .nav-install:not([hidden]) { order: -1; display: block; width: 100%; margin: 14px 0 6px; padding: 12px 14px; border: 1px solid var(--accent); border-radius: 10px; background: var(--accent-soft); color: var(--accent-text, var(--accent)); font: 700 15px/1 var(--f-body); text-align: center; cursor: pointer; }
 }
+
+/* Speed: the browser skips laying out page sections that are off screen until they're scrolled near
+   (the homepage lists every tool). "auto" remembers each section's real height once it has been drawn. */
+.home .cat, .home .why, .home .home-faq, .cat-page .other-cats, .foot { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+.foot { contain-intrinsic-size: auto 1100px; }

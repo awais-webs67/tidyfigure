@@ -1,7 +1,8 @@
 // Repair PDF: 1) pdf-lib reads every object it can find and writes a new file with a correct index;
 // 2) if that fails, pdf.js (very forgiving) draws each page it can read, and the pages are rebuilt as images
 // with their text invisible on top, so it stays searchable.
-const { PDFDocument, StandardFonts } = PDFLib;
+let { PDFDocument, StandardFonts } = {};
+onLibs(() => ({ PDFDocument, StandardFonts } = PDFLib));
 const out = $('#out');
 fileDrop($('#drop'), $('#file'), fs => { if (fs[0]) repair(fs[0]); });
 $('#sample').addEventListener('click', async () => {

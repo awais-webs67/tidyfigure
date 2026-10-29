@@ -1,4 +1,5 @@
-const { PDFDocument } = PDFLib;
+let { PDFDocument } = {};
+onLibs(() => ({ PDFDocument } = PDFLib));
 const SIZES = { a4: [595.28, 841.89], letter: [612, 792] }; // in PDF points (1/72 inch)
 let imgs = []; // { file, url }
 const out = $('#out');

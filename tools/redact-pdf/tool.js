@@ -1,7 +1,8 @@
 // Redact PDF. Boxes are kept per page in PDF coordinates [x0, y0, x1, y1]. Saving deletes the letters under
 // them with the content engine (pdf-engine.js), draws black boxes, and turns pages into images where a box
 // covers part of a picture. The result is searched again to show nothing marked is left.
-const { PDFDocument, rgb } = PDFLib;
+let { PDFDocument, rgb } = {};
+onLibs(() => ({ PDFDocument, rgb } = PDFLib));
 const out = $('#out');
 let srcBytes = null, name = 'document', doc = null, eng = null, cur = 1, vp = null, boxes = {}, marked = new Set();
 

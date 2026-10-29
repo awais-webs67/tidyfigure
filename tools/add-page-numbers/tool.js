@@ -1,4 +1,5 @@
-const { PDFDocument, StandardFonts, rgb, degrees } = PDFLib;
+let { PDFDocument, StandardFonts, rgb, degrees } = {};
+onLibs(() => ({ PDFDocument, StandardFonts, rgb, degrees } = PDFLib));
 let file = null, srcBytes = null, result = null;
 const out = $('#out');
 

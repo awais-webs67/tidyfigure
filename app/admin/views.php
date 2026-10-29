@@ -7,7 +7,7 @@ function tf_admin_head(string $title): string
     return '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">'
         . '<title>' . h($title) . ' · ' . h(tf_site()['site']['name']) . ' admin</title>'
         . '<link rel="icon" href="' . h(tf_asset('favicon.svg')) . '" type="image/svg+xml">'
-        . '<link rel="stylesheet" href="' . h(TF_FONTS) . '"><link rel="stylesheet" href="' . h(tf_asset('style.css')) . '"><link rel="stylesheet" href="' . h(tf_asset('admin.css')) . '">'
+        . tf_font_head() . '<link rel="stylesheet" href="' . h(tf_asset('style.css')) . '"><link rel="stylesheet" href="' . h(tf_asset('admin.css')) . '">'
         . '<script>try{var t=localStorage.getItem("tf-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script></head>';
 }
 
