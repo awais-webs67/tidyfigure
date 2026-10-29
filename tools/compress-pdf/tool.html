@@ -11,7 +11,9 @@
       <label><input type="radio" name="lvl" id="lvl-strong" value="strong"><span>Strong</span></label>
       <label><input type="radio" name="lvl" id="lvl-rec" value="rec" checked><span>Recommended</span></label>
       <label><input type="radio" name="lvl" id="lvl-light" value="light"><span>Light</span></label>
+      <label><input type="radio" name="lvl" id="lvl-size" value="size"><span>Exact size</span></label>
     </div>
+    <label class="f" id="sizewrap" hidden><span>Make it smaller than (KB)</span><input type="number" id="kb" inputmode="numeric" min="10" step="10" value="500"></label>
     <label class="check"><input type="checkbox" id="gray">Convert to black &amp; white (smaller scans)</label>
     <p class="note">Pages are redrawn as compressed images, so text in the result can’t be selected or searched. Keep your original if you need that.</p>
     <div class="btns"><button type="button" class="btn big-btn" id="go" disabled>{{icon:minimize-2}}Compress PDF</button><button type="button" class="btn ghost" id="sample">Try with a sample PDF</button></div>

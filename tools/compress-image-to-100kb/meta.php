@@ -1,0 +1,66 @@
+<?php
+// Compress Image to 100 KB: page content and settings. tool.html is the tool's markup and tool.js its script.
+return [
+  'name' => 'Compress Image to 100 KB',
+  'category' => 'image',
+  'order' => 7,
+  'files' => true,
+  'use' => 'resize-image-to-kb',
+  'preset' => json_decode('{"max": 100, "min": "", "w": "", "h": ""}', true),
+  'icon' => 'image-down',
+  'keywords' => 'compress image to 100kb reduce photo size to 100 kb jpg under 100kb resize image 100kb online image under 100kb for upload email attachment',
+  'aka' => ['reduce image to 100KB', 'photo under 100 KB', 'JPG 100KB converter'], // other names people search for
+  'short' => 'Make any photo smaller than 100 KB in one step, as sharp as that size allows.',
+  'title' => 'Compress Image to 100 KB Online: JPG Under 100KB, Free',
+  'description' => <<<'EOT_TF'
+Reduce a photo to under 100 KB in one click: the sharpest JPG that fits, with exact pixels if your form needs them. Free, instant, nothing uploaded.
+EOT_TF,
+  'related' => ['resize-image-to-kb', 'image-compressor', 'photo-for-online-form'],
+  'answer' => <<<'EOT_TF'
+Choose your photo and it's saved as a JPG <strong>under 100 KB</strong> straight away. The tool tries different compression levels and picks the sharpest one that fits; a huge phone photo is also reduced in pixels so it stays clear. If your form gives exact pixels or a minimum size, type them in too.
+EOT_TF,
+  'article' => <<<'EOT_TF'
+<h2>How to compress an image to 100 KB</h2>
+<ol>
+<li>Choose or drop your photo. The maximum is already set to 100 KB.</li>
+<li>If the form asks for exact pixels (for example 200 × 230) or a minimum size, enter those as well.</li>
+<li>Check the size shown under the preview and download the JPG.</li>
+</ol>
+
+<h2>Where a 100 KB limit comes up</h2>
+<p>100 KB is a usual limit for uploading ID cards, certificates and photos to online forms, school portals and some visa applications, and a good size for images sent by email or chat.</p>
+<p>Most of these sites only accept JPG files. A photo straight from a phone is usually 2 to 5 MB, so it has to shrink a lot, and that's easiest when the pixels shrink too: a photo of about 846 by 1058 pixels can be stored in 100 KB at good quality, while squeezing all 12 megapixels into 100 KB would make it blotchy.</p>
+
+<h2>Sharpest result that fits</h2>
+<p>Instead of one fixed setting, the tool tries the compression quality step by step and keeps the highest one that stays under 100 KB. The size you see is the size of the file you download, measured exactly, so the upload won't be rejected for being a few bytes over.</p>
+
+<h2>Other sizes</h2>
+<p>Need a different limit, a minimum size, or a signature? Use <a href="/resize-image-to-kb">Resize Image to KB</a> to enter any numbers, or the <a href="/signature-resizer">Signature Resizer</a> for 10–20 KB signatures.</p>
+EOT_TF,
+  'faqs' => [
+    [
+      'How do I reduce a photo to 100 KB?',
+      <<<'EOT_TF'
+Choose the photo here. It is saved as a JPG under 100 KB automatically, at the best quality that fits. Download it and upload it to your form.
+EOT_TF,
+    ],
+    [
+      'Will my photo look bad at 100 KB?',
+      <<<'EOT_TF'
+The pixels are reduced to a sensible size first, so the photo stays clear. At 100 KB a face or document photo looks good on screen.
+EOT_TF,
+    ],
+    [
+      'Can I set exact pixels too?',
+      <<<'EOT_TF'
+Yes. Type the width and height the form asks for and the photo is cropped and resized to exactly that, then compressed under the limit.
+EOT_TF,
+    ],
+    [
+      'Is my photo uploaded?',
+      <<<'EOT_TF'
+No. The photo is compressed in your browser and never leaves your device.
+EOT_TF,
+    ],
+  ],
+];

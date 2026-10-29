@@ -1,0 +1,36 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a photo or signature">
+      {{icon:image-up}}
+      <strong>Drop a photo or signature here, or click to choose</strong>
+      <span id="loaded">JPG, PNG or WebP · a phone photo is fine</span>
+      <input type="file" id="file" accept="image/*">
+    </div>
+    <div class="chips" id="presets">
+      <button type="button" class="chip" data-p="photo">Photo 200×230 px · 20–50 KB</button>
+      <button type="button" class="chip" data-p="sign">Signature 140×60 px · 10–20 KB</button>
+      <button type="button" class="chip" data-p="passport">Passport 35×45 mm · under 100 KB</button>
+      <button type="button" class="chip" data-p="k20">Under 20 KB</button>
+      <button type="button" class="chip" data-p="k50">Under 50 KB</button>
+      <button type="button" class="chip" data-p="k100">Under 100 KB</button>
+      <button type="button" class="chip" data-p="k200">Under 200 KB</button>
+    </div>
+    <div class="fields">
+      <label class="f"><span>Width (px)</span><input type="number" id="w" inputmode="numeric" min="1" step="1" placeholder="Keep"></label>
+      <label class="f"><span>Height (px)</span><input type="number" id="h" inputmode="numeric" min="1" step="1" placeholder="Keep"></label>
+      <label class="f"><span>Minimum size (KB)</span><input type="number" id="min" inputmode="decimal" min="0" step="1" placeholder="None"></label>
+      <label class="f"><span>Maximum size (KB)</span><input type="number" id="max" inputmode="decimal" min="1" step="1" value="50"></label>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="When the shape is different">
+      <label><input type="radio" name="fit" value="crop" checked><span>Crop to fill</span></label>
+      <label><input type="radio" name="fit" value="pad"><span>Fit inside (white edges)</span></label>
+    </div>
+    <label class="check"><input type="checkbox" id="clean"> Clean signature (white paper, dark ink)</label>
+    <label class="check"><input type="checkbox" id="gray"> Black and white</label>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Result</p>
+    <p class="empty">Choose a photo or signature to resize it.</p>
+    <button type="button" class="btn ghost" id="sample">Try it with a sample photo</button>
+  </div>
+</div>
