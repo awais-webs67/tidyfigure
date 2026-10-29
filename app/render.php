@@ -655,11 +655,13 @@ function tf_llms_txt(): string
     foreach ($site['categories'] as $c) {
         $in = array_filter($tools, fn($t) => $t['category'] === $c['id'] && empty($ts[$t['slug']]['noindex']));
         if (!$in) continue;
-        $out .= '## ' . $c['name'] . "\n\n";
+        // Each section starts with its category page, which lists and compares the tools in it.
+        $out .= '## ' . $c['name'] . "\n\n- [All " . mb_strtolower($c['name']) . '](' . tf_abs($c['slug']) . '): ' . $c['blurb'] . "\n";
         foreach ($in as $t) $out .= '- [' . $t['name'] . '](' . tf_abs($t['slug']) . '): ' . ($t['short'] ?? '') . "\n";
         $out .= "\n";
     }
-    $out .= "## About\n\n- [About](" . tf_abs('about') . ")\n- [Privacy](" . tf_abs('privacy') . ")\n";
+    $out .= "## About\n\n";
+    foreach (['about' => 'About', 'contact' => 'Contact', 'privacy' => 'Privacy', 'terms' => 'Terms'] as $p => $label) $out .= "- [$label](" . tf_abs($p) . ")\n";
     return $out;
 }
 
