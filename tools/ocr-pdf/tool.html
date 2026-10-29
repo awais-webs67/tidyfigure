@@ -1,0 +1,28 @@
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="drop" id="drop" role="button" tabindex="0" aria-label="Choose a scanned PDF">
+      {{icon:file-up}}
+      <strong>Drop a scanned PDF here or click to choose</strong>
+      <span id="loaded">Its text becomes searchable</span>
+      <input type="file" id="file" accept="application/pdf,.pdf">
+    </div>
+    <div class="fields">
+      <label class="f"><span>Language of the text</span><select id="lang">
+        <option value="eng" selected>English</option><option value="urd">Urdu</option><option value="ara">Arabic</option><option value="hin">Hindi</option><option value="ben">Bengali</option>
+        <option value="spa">Spanish</option><option value="fra">French</option><option value="deu">German</option><option value="por">Portuguese</option><option value="ita">Italian</option>
+        <option value="nld">Dutch</option><option value="pol">Polish</option><option value="tur">Turkish</option><option value="rus">Russian</option><option value="ukr">Ukrainian</option>
+        <option value="ind">Indonesian</option><option value="vie">Vietnamese</option><option value="fas">Persian</option><option value="chi_sim">Chinese (simplified)</option><option value="jpn">Japanese</option><option value="kor">Korean</option>
+      </select></label>
+      <label class="f"><span>Second language (optional)</span><select id="lang2"><option value="">None</option><option value="eng">English</option><option value="urd">Urdu</option><option value="ara">Arabic</option><option value="hin">Hindi</option><option value="fra">French</option><option value="spa">Spanish</option><option value="deu">German</option></select></label>
+    </div>
+    <label class="check"><input type="checkbox" id="all"> Also read pages that already have text</label>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:scan-text}}Make searchable</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample scan</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Searchable PDF</p>
+    <p class="empty">Choose a scanned PDF.</p>
+  </div>
+</div>

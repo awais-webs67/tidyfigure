@@ -1,0 +1,36 @@
+<style>
+  .sc-pages { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 10px; }
+  .sc-pages figure { margin: 0; position: relative; border: 2px solid transparent; border-radius: 8px; padding: 4px; cursor: pointer; background: var(--surface); }
+  .sc-pages figure.on { border-color: var(--accent); }
+  .sc-pages canvas { width: 100%; height: auto; display: block; box-shadow: 0 1px 6px rgba(0, 0, 0, .2); background: #fff; }
+  .sc-pages figcaption { font-size: 12px; color: var(--muted); text-align: center; margin-top: 3px; }
+  .sc-edit { position: relative; touch-action: none; user-select: none; -webkit-user-select: none; margin: 0 auto; }
+  .sc-edit canvas { display: block; width: 100%; height: auto; }
+  .sc-edit svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .sc-edit i { position: absolute; width: 30px; height: 30px; margin: -15px 0 0 -15px; border-radius: 50%; border: 3px solid var(--accent); background: rgba(255, 255, 255, .55); cursor: grab; touch-action: none; }
+  .sc-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+  .sc-cam video { width: 100%; border-radius: 10px; background: #000; display: block; }
+</style>
+<div class="tool-grid">
+  <div class="inputs">
+    <div class="btns">
+      <label class="btn big-btn">{{icon:camera}}Take photo<input type="file" id="cam" accept="image/*" capture="environment" hidden></label>
+      <label class="btn ghost">{{icon:image}}Choose photos<input type="file" id="pics" accept="image/*" multiple hidden></label>
+      <button type="button" class="btn ghost" id="webcam">{{icon:webcam}}Use webcam</button>
+    </div>
+    <div class="sc-cam" id="camwrap" hidden><video id="video" playsinline muted></video><div class="btns" style="margin-top:8px"><button type="button" class="btn" id="snap">Capture page</button><button type="button" class="btn ghost" id="camclose">Close camera</button></div></div>
+    <div class="sc-pages" id="pages"></div>
+    <div class="fields">
+      <label class="f"><span>Paper size</span><select id="paper"><option value="a4">A4</option><option value="letter">US Letter</option><option value="fit">Same shape as the paper</option></select></label>
+      <label class="f"><span>File size</span><select id="q"><option value="0.82">Normal</option><option value="0.92">High quality</option><option value="0.65">Smaller</option></select></label>
+    </div>
+    <div class="btns">
+      <button type="button" class="btn big-btn" id="go" disabled>{{icon:file-scan}}Make PDF</button>
+      <button type="button" class="btn ghost" id="sample">Try with a sample photo</button>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Scanner</p>
+    <p class="empty">Take a photo of a document, or choose photos, to start.</p>
+  </div>
+</div>
