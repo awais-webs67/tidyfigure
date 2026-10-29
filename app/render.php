@@ -265,7 +265,7 @@ function tf_page_tool(array $t): string
 
     $schema = [
         [
-            '@context' => 'https://schema.org', '@type' => 'WebApplication', 'name' => $t['name'], 'url' => tf_abs($t['slug']),
+            '@context' => 'https://schema.org', '@type' => 'WebApplication', '@id' => tf_abs($t['slug']) . '#app', 'name' => $t['name'], 'url' => tf_abs($t['slug']), 'inLanguage' => 'en', 'isPartOf' => ['@id' => tf_abs() . '#website'],
         ] + (!empty($t['aka']) ? ['alternateName' => array_values($t['aka'])] : []) + [
             'description' => $desc, 'applicationCategory' => $t['appCategory'] ?? 'UtilitiesApplication', 'operatingSystem' => 'Any (runs in a web browser)',
             'browserRequirements' => 'Requires JavaScript', 'isAccessibleForFree' => true, 'offers' => ['@type' => 'Offer', 'price' => '0', 'priceCurrency' => 'USD'],
@@ -381,7 +381,7 @@ function tf_page_home(): string
     $schema = [
         // Site name for Google: the brand, plus the spaced spelling people may type.
         ['@context' => 'https://schema.org', '@type' => 'WebSite', '@id' => tf_abs() . '#website', 'name' => $name, 'alternateName' => [preg_replace('/(?<=[a-z])(?=[A-Z])/', ' ', $name), "$name Tools"], 'url' => tf_abs(), 'description' => $desc, 'inLanguage' => 'en', 'publisher' => ['@id' => tf_abs() . '#org']],
-        ['@context' => 'https://schema.org', '@type' => 'Organization', '@id' => tf_abs() . '#org', 'name' => $name, 'url' => tf_abs(), 'logo' => ['@type' => 'ImageObject', 'url' => tf_base_url() . '/icon-512.png', 'width' => 512, 'height' => 512], 'email' => tf_contact_email()] + (tf_social_profiles() ? ['sameAs' => tf_social_profiles()] : []) + (tf_company()['name'] !== '' ? ['parentOrganization' => ['@type' => 'Organization', 'name' => tf_company()['name']] + (tf_company()['url'] !== '' ? ['url' => tf_company()['url']] : [])] : []),
+        ['@context' => 'https://schema.org', '@type' => 'Organization', '@id' => tf_abs() . '#org', 'name' => $name, 'url' => tf_abs(), 'description' => 'Free online tools for PDFs, images, video, text and everyday calculations that run in the web browser.', 'logo' => ['@type' => 'ImageObject', 'url' => tf_base_url() . '/icon-512.png', 'width' => 512, 'height' => 512], 'email' => tf_contact_email()] + (tf_social_profiles() ? ['sameAs' => tf_social_profiles()] : []) + (tf_company()['name'] !== '' ? ['parentOrganization' => ['@type' => 'Organization', 'name' => tf_company()['name']] + (tf_company()['url'] !== '' ? ['url' => tf_company()['url']] : [])] : []),
         ['@context' => 'https://schema.org', '@type' => 'ItemList', 'name' => "$name tools", 'itemListElement' => array_values(array_map(function ($t) use (&$i) { return ['@type' => 'ListItem', 'position' => ++$i, 'url' => tf_abs($t['slug']), 'name' => $t['name']]; }, $tools))],
         tf_faq_schema($faqs),
     ];
