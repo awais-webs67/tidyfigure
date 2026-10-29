@@ -64,7 +64,7 @@ svg.i { width: 1.25em; height: 1.25em; flex: none; }
 .main-nav a:hover { color: var(--accent-text); border-bottom-color: var(--accent); }
 .main-nav a.cta { margin-left: 10px; color: var(--accent-ink); background: var(--accent); border: 0; border-radius: var(--r); padding: 12px 18px; }
 .main-nav a.cta:hover { background: var(--accent-hover); }
-.nav-toggle { display: none; align-items: center; gap: 6px; height: 42px; padding: 0 14px 0 11px; border: 1.5px solid #FFD6C8; background: var(--surface); color: var(--accent); border-radius: 999px; font: 600 13px/1 var(--f-body); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
+.nav-toggle { display: none; align-items: center; gap: 6px; height: 42px; padding: 0 14px 0 11px; border: 1.5px solid #FFD6C8; background: var(--surface); color: var(--accent-text); border-radius: 999px; font: 600 13px/1 var(--f-body); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; }
 .nav-toggle svg { width: 22px; height: 22px; }
 .nav-toggle .x { display: none; }
 .nav-open .nav-toggle { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
@@ -431,6 +431,7 @@ audio.player { background: transparent; max-height: none; }
 .share button b { display: none; position: absolute; bottom: 115%; left: 50%; transform: translateX(-50%); background: var(--ink); color: var(--bg); font: 600 12px/1 var(--f-body); padding: 5px 8px; border-radius: 6px; white-space: nowrap; }
 .share button.done b { display: block; }
 .updated { font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; margin-top: 28px; }
+.updated a { color: var(--accent-text); }
 .side-all { display: inline-block; margin-top: 8px; font-weight: 600; font-size: 14.5px; text-decoration: none; }
 
 /* Category pages */

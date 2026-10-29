@@ -101,6 +101,9 @@ function fileDrop(zone, input, onFiles) {
     if (libsIn) onFiles(files); else libsReady().then(() => onFiles(files), () => {});
   };
   input.dataset.drop = '1'; zone.dataset.zone = '1';
+  // Screen readers: the zone is named by its own visible text, and the hidden file input gets the same name.
+  if (zone.textContent.trim()) zone.removeAttribute('aria-label');
+  if (!input.labels?.length && !input.hasAttribute('aria-label')) input.setAttribute('aria-label', zone.textContent.trim().replace(/\s+/g, ' ').slice(0, 100) || 'Choose a file');
   zone.addEventListener('click', e => { if (e.target !== input) input.click(); });
   zone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); input.click(); } });
   input.addEventListener('change', () => { const f = [...input.files]; input.value = ''; take(f); });
