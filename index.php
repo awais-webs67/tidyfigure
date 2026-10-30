@@ -135,9 +135,9 @@ if (preg_match('/^(.+)\.html$/', $path, $m) || $path === 'index' || $path === 'i
 
 tf_layout_globals();
 header('Content-Type: text/html; charset=utf-8');
-// Browsers recheck pages after 5 minutes; the CDN may keep a copy for an hour and serve it while it refreshes in the
-// background, so most visitors get a page without waiting for PHP. After a big change, purge the CDN in hPanel.
-header('Cache-Control: public, max-age=300, s-maxage=3600, stale-while-revalidate=86400');
+// Browsers recheck pages after 2 minutes and a CDN may keep a copy for 10. Kept short on purpose: a page's HTML and
+// its scripts change together on a deploy, and an old page running new scripts can break a tool.
+header('Cache-Control: public, max-age=120, s-maxage=600');
 
 if ($path === '') {
     echo tf_page_home();

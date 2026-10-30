@@ -2,6 +2,10 @@
 const FIELDS = [['phone', 'Phone / WhatsApp', true], ['email', 'Email', false], ['instagram', 'Instagram username', false], ['tiktok', 'TikTok username', false], ['youtube', 'YouTube channel name', false], ['facebook', 'Facebook name', false], ['city', 'City', false]];
 const f = $('#gv'), out = $('#out'), root = $('#gv-root');
 let editing = null, image = null, removeImage = false, customs = 0;
+// Older copies of this page (still in a browser cache) built the colour swatches here: make sure they exist.
+if (!$('#themes').children.length) $('#themes').innerHTML = ['coral', 'violet', 'ocean', 'emerald', 'rose', 'midnight', 'sunset'].map((t, i) => `<label class="sh-t-${t}" title="${t}"><input type="radio" name="theme" value="${t}"${i ? '' : ' checked'}><span></span></label>`).join('');
+if (!$('#pv')) out.innerHTML = '<p class="kicker">Preview</p><div id="pv"></div><button type="button" class="sh-btn wide" id="go">Create giveaway</button><p class="note" id="pvnote"></p>';
+if (!$('#fields').children.length) $('#fields').innerHTML = FIELDS.map(([k, l, on]) => `<div class="row" data-k="${k}" style="grid-template-columns:1fr auto"><label class="check"><input type="checkbox" class="use"${on ? ' checked' : ''}> ${esc(l)}</label><label class="check" style="font-size:13.5px"><input type="checkbox" class="req"${on ? ' checked' : ''}> Required</label></div>`).join('');
 // The preview (#pv) is redrawn as the form changes; the button stays put (redrawing it mid-click would swallow the click).
 $('#go').onclick = () => create();
 const qRow = (label = '', req = false) => { customs++; return `<div class="row" data-k="q${customs}" style="grid-template-columns:1fr auto auto"><input type="text" class="lbl" maxlength="80" placeholder="Your question, e.g. Why do you love our shop?" value="${esc(label)}"><label class="check" style="font-size:13.5px"><input type="checkbox" class="req"${req ? ' checked' : ''}> Required</label><button type="button" class="sh-x" data-rm aria-label="Remove">${Share.ICON.trash}</button></div>`; };

@@ -3,12 +3,15 @@
 const EVENTS = { en: ['Mehndi', 'Mayun', 'Dholki', 'Baraat', 'Nikah', 'Rukhsati', 'Walima', 'Reception', 'Engagement'], ur: ['مہندی', 'مایوں', 'ڈھولکی', 'بارات', 'نکاح', 'رخصتی', 'ولیمہ', 'استقبالیہ', 'منگنی'] };
 const f = $('#wd'), cv = $('#cv'), W = window.WeddingCard;
 let editing = null;
+// Older copies of this page (still in a browser cache) built the design swatches and sample events here.
+if (!$('#tpls').children.length) $('#tpls').innerHTML = [['royal', 'Royal'], ['emerald', 'Emerald'], ['navy', 'Midnight'], ['mehndi', 'Mehndi'], ['blush', 'Blush'], ['ivory', 'Ivory']].map(([k, l], i) => `<label class="wd-t-${k}"><input type="radio" name="tpl" value="${k}"${i ? '' : ' checked'}><i></i>${l}</label>`).join('');
 const day = n => { const d = new Date(Date.now() + n * 864e5); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 const evRow = (e = {}) => `<div class="row"><div class="fields"><label class="f"><span>Event</span><input type="text" class="en" list="evlist" maxlength="40" value="${esc(e.name || '')}" placeholder="Baraat"></label>
   <label class="f"><span>Date</span><input type="date" class="ed" value="${esc(e.date || '')}"></label><label class="f"><span>Time</span><input type="time" class="et" value="${esc(e.time || '')}"></label></div>
   <div class="fields"><label class="f"><span>Venue</span><input type="text" class="ev" maxlength="120" value="${esc(e.venue || '')}" placeholder="Royal Palm Marquee"></label><label class="f"><span>Address</span><input type="text" class="ea" maxlength="220" value="${esc(e.address || '')}" placeholder="Canal Road, Lahore"></label></div>
   <div class="fields" style="grid-template-columns:1fr auto"><label class="f"><span>Google Maps link (optional)</span><input type="text" class="em" inputmode="url" autocapitalize="off" value="${esc(e.map || '')}" placeholder="https://maps.app.goo.gl/…"></label><button type="button" class="btn ghost" data-rm style="align-self:end">Remove</button></div></div>`;
 document.body.insertAdjacentHTML('beforeend', `<datalist id="evlist">${EVENTS.en.concat(EVENTS.ur).map(x => `<option value="${x}">`).join('')}</datalist>`);
+if (!$('#events').children.length) $('#events').innerHTML = evRow({ name: 'Baraat', time: '19:00', venue: 'Royal Palm Marquee', address: 'Canal Road, Lahore' }) + evRow({ name: 'Walima', time: '20:00', venue: 'Pearl Continental', address: 'Mall Road, Lahore' });
 // The two sample events are in the page's HTML (no jump while it loads); their dates are set here.
 $$('#events .ed').forEach((i, k) => { if (!i.value) i.value = day(45 + k); });
 $('#adde').onclick = () => { if ($$('#events .row').length < 6) { $('#events').insertAdjacentHTML('beforeend', evRow({ date: day(44) })); draw(); } };

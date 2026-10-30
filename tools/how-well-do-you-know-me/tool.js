@@ -40,6 +40,8 @@ const BANK = [
   ['How fast do you reply to messages?', 'How fast does {n} reply to messages?', ['⚡ Instantly', '🐢 Hours later', '👀 Seen, no reply', '📞 I just call']],
 ];
 const MAX = 20, MIN = 5;
+// Older copies of this page (still in a browser cache) built the colour swatches here: make sure they exist.
+if (!$('#themes').children.length) $('#themes').innerHTML = ['coral', 'violet', 'ocean', 'emerald', 'rose', 'midnight', 'sunset'].map((t, i) => `<label class="sh-t-${t}" title="${t}"><input type="radio" name="theme" value="${t}"${i ? '' : ' checked'}><span></span></label>`).join('');
 let qs = [], order = BANK.map((_, i) => i).sort(() => Math.random() - .5), pos = 0, editing = null;
 const root = $('#qb-root'), out = $('#out');
 const theme = () => $('input[name="theme"]:checked').value;
