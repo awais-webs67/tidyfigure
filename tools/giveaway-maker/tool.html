@@ -1,0 +1,40 @@
+<div class="tool-grid sh-t-coral" id="gv-root">
+  <form class="inputs" id="gv" novalidate>
+    <div class="qb-card">
+      <label class="f"><span>Giveaway title</span><input type="text" name="title" maxlength="120" placeholder="e.g. Win a brand new iPhone 16" required></label>
+      <label class="f"><span>Prize details</span><textarea name="prize" maxlength="400" rows="3" placeholder="What exactly the winner gets"></textarea></label>
+      <label class="f"><span>Hosted by</span><input type="text" name="host" maxlength="60" placeholder="Your name, page or shop"></label>
+      <div class="f"><span>Picture of the prize (optional)</span><input type="file" id="img" accept="image/jpeg,image/png,image/webp"><div id="imgprev"></div></div>
+    </div>
+    <div class="qb-card">
+      <div class="fields">
+        <label class="f"><span>Ends on</span><input type="date" name="d" required></label>
+        <label class="f"><span>At</span><input type="time" name="t" value="20:00" required></label>
+        <label class="f"><span>Winners</span><input type="number" name="winners" min="1" max="20" value="1"></label>
+      </div>
+      <div class="btns" id="quick"><button type="button" class="btn ghost" data-days="1">1 day</button><button type="button" class="btn ghost" data-days="3">3 days</button><button type="button" class="btn ghost" data-days="7">1 week</button><button type="button" class="btn ghost" data-days="14">2 weeks</button><button type="button" class="btn ghost" data-days="30">1 month</button></div>
+      <div class="seg" role="radiogroup" aria-label="Choosing winners">
+        <label><input type="radio" name="mode" value="auto" checked><span>Draw winners automatically at the end</span></label>
+        <label><input type="radio" name="mode" value="manual"><span>I’ll draw them myself</span></label>
+      </div>
+    </div>
+    <div class="qb-card">
+      <p class="kicker">What to ask people who enter</p>
+      <p class="note">Name is always asked. Tick anything else you need to contact the winner.</p>
+      <div id="fields" class="rows-list"></div>
+      <div class="btns"><button type="button" class="btn ghost" id="addq">Add my own question</button></div>
+    </div>
+    <div class="qb-card">
+      <p class="kicker">Steps to enter (optional)</p>
+      <div id="steps" class="rows-list"></div>
+      <div class="btns"><button type="button" class="btn ghost" id="adds">Add a step</button></div>
+    </div>
+    <div class="qb-card">
+      <label class="f"><span>Rules and details (optional)</span><textarea name="desc" maxlength="2000" rows="4" placeholder="Who can enter, how you’ll contact the winner, delivery…"></textarea></label>
+      <div class="f"><span>Colour</span><div class="sh-themes" id="themes"></div></div>
+      <label class="check"><input type="checkbox" name="count" checked> Show how many people have entered</label>
+    </div>
+  </form>
+  <div class="out" id="out" aria-live="polite"></div>
+</div>
+<div class="qb-card" id="mine" style="margin-top:18px"></div>

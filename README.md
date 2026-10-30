@@ -1,6 +1,6 @@
 # TidyFigure
 
-207 free online tools (PDF, image, video & audio, QR/barcode, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
+210 free online tools (PDF, image, video & audio, QR/barcode, create & share, text, device tests, health, finance & business, student, developer, home & DIY, social and more) in the AivraSol theme, with an admin panel.
 
 **Plain PHP + MySQL.** No Node, npm or build step: clone the repo into your web folder and it runs. Every tool runs in the visitor's browser, so files are never uploaded and there are no API costs.
 
@@ -62,9 +62,11 @@ cPanel → Git Version Control → Manage → **Pull or Deploy** → **Update fr
 - **Usage limits:** free downloads per tool per day (a default for all tools, or per tool under Tools → Edit SEO). When the limit is reached, visitors are asked to come back tomorrow, or offered a Google Ad Manager **rewarded ad** to unlock more. AdSense doesn’t allow rewarding people for viewing ordinary ads, so only use an Ad Manager rewarded ad unit.
 - **Site & API keys:** announcement bar, YouTube Data API key (kept on the server), contact email, and the company the site belongs to (AivraSol by default: shown in the footer and on the About page, and given to Google as the parent organisation).
 - **Install as an app:** phone visitors get an “Install app” offer (Android: the browser's install prompt; iPhone: Share → Add to Home Screen steps), also in the mobile menu. Switch it off under Settings. The service worker (`/sw.js`) always loads pages fresh from the server and only shows a small offline page when there is no connection.
+- **Share pages:** visitors can make a friendship quiz (`/how-well-do-you-know-me`), a giveaway (`/giveaway-maker`) or a wedding invitation (`/wedding-card-maker`) and share it as `/s/<code>`. No account: the maker gets a secret code (only its hash is stored) that opens `/s/<code>/manage` to see entries, draw giveaway winners, edit and delete. Pages are noindex, can be reported by visitors, and are deleted automatically (quizzes after 6 months, giveaways 30 days after they end, invitations 30 days after the last event). Admin → Share pages lists them (reported first) to block or delete; switch making new ones off, or change the hourly limit, in Settings.
+- **Resources:** write pages for links you share on social media (“Best free AI course, link below”) at `/r/<slug>`, with a picture, big link buttons and formatted details; published ones are listed at `/resources`, added to the sitemap and the footer, and sent to IndexNow.
 - **Account:** change your username and password.
 
-Everything is stored in MySQL: tables `tf_settings`, `tf_tools`, `tf_admins`, `tf_login_attempts` and `tf_yt_cache` (prefix chosen at install).
+Everything is stored in MySQL: tables `tf_settings`, `tf_tools`, `tf_admins`, `tf_login_attempts`, `tf_yt_cache`, `tf_qr_codes`, `tf_qr_scans`, `tf_shares`, `tf_share_entries` and `tf_resources` (prefix chosen at install). New tables are created automatically after an update (no need to install again). Expired QR codes and share pages are removed while people use the site; for exact daily cleanup add a cron job: `php /path/to/site/api/cron.php`.
 
 Security: hashed passwords, CSRF protection, session cookies limited to `/admin/`, lockout for 15 minutes after 5 wrong passwords, and changing the password signs out other sessions.
 

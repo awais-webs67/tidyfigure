@@ -1,0 +1,55 @@
+<div class="tool-grid" id="wd-root">
+  <form class="inputs" id="wd" novalidate>
+    <div class="qb-card">
+      <div class="f"><span>Design</span><div class="wd-tpls" id="tpls"></div></div>
+      <div class="seg" role="radiogroup" aria-label="Language">
+        <label><input type="radio" name="lang" value="en" checked><span>English</span></label>
+        <label><input type="radio" name="lang" value="ur"><span>اردو Urdu</span></label>
+      </div>
+      <label class="check"><input type="checkbox" name="bismillah" checked> Start with Bismillah (بسم اللہ)</label>
+      <div class="seg" role="radiogroup" aria-label="Card size">
+        <label><input type="radio" name="size" value="card" checked><span>Card (2 : 3)</span></label>
+        <label><input type="radio" name="size" value="story"><span>Phone story (9 : 16)</span></label>
+      </div>
+    </div>
+    <div class="qb-card">
+      <div class="fields">
+        <label class="f"><span>Groom’s name</span><input type="text" name="groom" maxlength="60" value="Ahmed"></label>
+        <label class="f"><span>Bride’s name</span><input type="text" name="bride" maxlength="60" value="Ayesha"></label>
+      </div>
+      <div class="fields">
+        <label class="f"><span>Groom’s father or parents (optional)</span><input type="text" name="gp" maxlength="120" placeholder="Mr Khalid Mehmood"></label>
+        <label class="f"><span>Bride’s father or parents (optional)</span><input type="text" name="bp" maxlength="120" placeholder="Mr Tariq Hussain"></label>
+      </div>
+      <label class="f"><span>Invited by (optional)</span><input type="text" name="hosts" maxlength="120" placeholder="Together with their families"></label>
+      <label class="f"><span>Message (optional)</span><textarea name="msg" maxlength="400" rows="2" placeholder="Your presence and prayers will make our day complete."></textarea></label>
+    </div>
+    <div class="qb-card">
+      <p class="kicker">Events</p>
+      <div id="events" class="rows-list"></div>
+      <div class="btns"><button type="button" class="btn ghost" id="adde">Add an event</button></div>
+    </div>
+    <div class="qb-card">
+      <p class="kicker">RSVP and contacts</p>
+      <label class="check"><input type="checkbox" name="rsvp" checked> Let guests reply online (RSVP)</label>
+      <label class="f"><span>Reply by (optional)</span><input type="date" name="rsvp_by"></label>
+      <div class="fields">
+        <label class="f"><span>Contact name</span><input type="text" name="c1n" maxlength="40" placeholder="Khalid"></label>
+        <label class="f"><span>Phone</span><input type="tel" name="c1p" maxlength="20" placeholder="0300 1234567"></label>
+      </div>
+      <div class="fields">
+        <label class="f"><span>Second contact</span><input type="text" name="c2n" maxlength="40"></label>
+        <label class="f"><span>Phone</span><input type="tel" name="c2p" maxlength="20"></label>
+      </div>
+    </div>
+  </form>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your card</p>
+    <canvas id="cv" class="wd-preview" width="1080" height="1620" aria-label="Wedding card preview"></canvas>
+    <div class="btns"><button type="button" class="btn" id="png">Download picture</button><button type="button" class="btn ghost" id="pdf">PDF</button></div>
+    <button type="button" class="sh-btn wide" id="go" style="--sh-a:#B8860B;--sh-b:#D4AF37">💌 Create online invitation</button>
+    <p class="note">One link for all your guests: the card in an opening envelope, a countdown, directions, add-to-calendar and RSVP.</p>
+    <div id="done"></div>
+  </div>
+</div>
+<div class="qb-card" id="mine" style="margin-top:18px"></div>

@@ -123,7 +123,8 @@
   }
   function showButtons() { document.querySelectorAll('[data-install]').forEach(function (b) { b.hidden = !(prompted || ios); }); }
   function offer() {
-    if (bar || hiddenUntil() > Date.now() || !phone) return;
+    // Not on share pages (a friend's quiz, an invitation): visitors came for that, not for the site.
+    if (bar || hiddenUntil() > Date.now() || !phone || document.querySelector('.sh-page')) return;
     if (document.querySelector('.pip:not([hidden])') || root.classList.contains('qs-open') || root.classList.contains('nav-open')) { setTimeout(offer, 8000); return; }
     if (ios) { iosHelp(); return; }
     bar = document.createElement('div');

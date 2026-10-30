@@ -152,6 +152,17 @@ return [
             ['Do the calculators work in feet and inches?', 'Yes. Each one has metric and imperial units.'],
         ],
     ],
+    'share' => [
+        'slug' => 'create-and-share',
+        'title' => 'Create & Share: Friendship Quiz, Giveaway, Wedding Invite',
+        'description' => 'Free create-and-share tools: a “How well do you know me?” quiz, an online giveaway with countdown and random winner, and a wedding invitation with RSVP.',
+        'intro' => '<p>Make something, send one link, and watch the replies come in. Build a <strong>friendship quiz</strong> and see which friend knows you best, run a <strong>giveaway</strong> with a live countdown and a fair random draw, or send an <strong>online wedding invitation</strong> with the card, venues, directions and RSVP. No sign-up: you get a secret code to see the results and make changes.</p>',
+        'faqs' => [
+            ['Do I need an account?', 'No. When you make something you get a secret code. Keep it: with it you can see the entries, edit and delete, from any device.'],
+            ['Who can see my page?', 'Only people you send the link to. The pages aren’t listed on the site or in search engines.'],
+            ['How long do the pages stay up?', 'Quizzes stay for six months, giveaways for 30 days after they end, and wedding invitations for 30 days after the last event. Then they’re deleted automatically.'],
+        ],
+    ],
     'social' => [
         'slug' => 'social-media-tools',
         'title' => 'Social Media Tools: YouTube, Thumbnails & Giveaways',

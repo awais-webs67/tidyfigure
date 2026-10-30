@@ -22,5 +22,7 @@ function tf_all_public_urls(): array
     $tools = tf_tools();
     foreach (tf_site()['categories'] as $c) if (array_filter($tools, fn($t) => $t['category'] === $c['id'])) $urls[] = tf_abs($c['slug']);
     foreach ($tools as $t) if (empty(tf_tool_settings()[$t['slug']]['noindex'])) $urls[] = tf_abs($t['slug']);
+    require_once TF_ROOT . '/app/resources.php';
+    foreach (tf_res_list() as $r) $urls[] = tf_abs('r/' . $r['slug']);
     return $urls;
 }

@@ -71,7 +71,7 @@ function tf_breadcrumbs(array $items): array
 }
 
 // The full HTML document around a page body.
-// $o: title, description, slug (for canonical/og), schema (JSON-LD objects), noindex, scripts (HTML before </body>), og (image URL)
+// $o: title, description, slug (for canonical/og), schema (JSON-LD objects), noindex, scripts (HTML before </body>), og (image URL), css (extra files in assets/)
 function tf_layout(array $o, string $body): string
 {
     $site = tf_site();
@@ -98,6 +98,8 @@ function tf_layout(array $o, string $body): string
     if (empty($o['noads']) && preg_match('/^ca-pub-\d+$/', $s['adsense_client'])) {
         $head .= '<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=' . $s['adsense_client'] . '" crossorigin="anonymous"></script>' . "\n";
     }
+    // Extra stylesheets for pages that need them (the share pages' share.css), so style.css stays small.
+    foreach ($o['css'] ?? [] as $f) $head .= '<link rel="stylesheet" href="' . h(tf_asset($f)) . '">' . "\n";
     // Hosts the page will fetch from later (the tool's libraries): connect early, download nothing yet.
     foreach (array_unique($o['preconnect'] ?? []) as $host) $head .= '<link rel="preconnect" href="' . h($host) . '">' . "\n";
     $head .= $s['head_code'];
@@ -133,6 +135,7 @@ function tf_layout(array $o, string $body): string
     $t = h($o['title']);
     $d = h($o['description']);
     $year = date('Y');
+    $resLink = !empty($GLOBALS['tf_has_resources']) ? '<a href="' . h(tf_url('resources')) . '">Free resources</a> · ' : '';
     $base = json_encode(TF_BASE);
     $install = ($s['app_install'] ?? '1') === '1' ? '1' : '0';
     $g = $GLOBALS;
@@ -187,8 +190,8 @@ $body
 </div>
 <footer class="foot" data-nosnippet><div class="wrap">
 <div class="foot-brand"><a class="brand" href="{$g['tf_home']}">$logo<span>$brand</span></a><p>{$g['tf_count']} free online tools that run in your browser. Fast, private and free, with no sign-up.</p>$project<p class="foot-social">$social</p></div>
-$footer<div class="legal"><span>© $year $name.$legalBy Files are processed on your device; only hosted QR codes are stored.</span>
-<span><a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_contact']}">Contact</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_terms']}">Terms</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
+$footer<div class="legal"><span>© $year $name.$legalBy Files are processed on your device; only hosted QR codes and share pages are stored.</span>
+<span>$resLink<a href="{$g['tf_about']}">About</a> · <a href="{$g['tf_contact']}">Contact</a> · <a href="{$g['tf_privacy']}">Privacy</a> · <a href="{$g['tf_terms']}">Terms</a> · <a href="{$g['tf_home']}#categories">All tools</a></span></div>
 </div></footer>
 <script src="{$g['tf_sitejs']}" defer></script>
 {$o['scripts']}
@@ -214,6 +217,11 @@ function tf_layout_globals(): void
     $GLOBALS['tf_contact'] = h(tf_url('contact'));
     $GLOBALS['tf_terms'] = h(tf_url('terms'));
     $GLOBALS['tf_count'] = count(tf_tools());
+    // "Free resources" in the footer once the admin has published one (one quick query; none without a database)
+    $GLOBALS['tf_has_resources'] = false;
+    if (tf_db()) {
+        try { $GLOBALS['tf_has_resources'] = (bool) tf_db()->query('SELECT 1 FROM ' . tf_table('resources') . " WHERE status = 'published' LIMIT 1")->fetchColumn(); } catch (Throwable $e) { /* table not created yet */ }
+    }
 }
 
 function tf_ad(string $slot, bool $off = false): string
@@ -239,10 +247,10 @@ function tf_card(array $t): string
     return '<li data-name="' . h(mb_strtolower($t['name'] . ' ' . $t['short'] . ' ' . ($t['keywords'] ?? ''))) . '"><a class="card" data-cat="' . h($t['category']) . '" href="' . h(tf_url($t['slug'])) . '">' . tf_tile($t) . '<div><strong>' . h($t['name']) . '</strong><span>' . h($t['short']) . '</span>' . (!empty($t['popular']) ? '<em class="badge">Popular</em>' : '') . '</div></a></li>';
 }
 
-function tf_share_html(): string
+function tf_share_html(string $label = 'Share this tool'): string
 {
     $i = fn($d) => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="' . $d . '"/></svg>';
-    return '<div class="share"><span>Share this tool</span>'
+    return '<div class="share"><span>' . h($label) . '</span>'
         . '<a data-share="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp">' . $i('M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.1-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.6 2 1.1 1 2 1.3 2.3 1.4.3.2.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l1.9.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3z') . '</a>'
         . '<a data-share="x" target="_blank" rel="noopener" aria-label="Share on X">' . $i('M17.8 3h3.1l-6.8 7.7 8 10.3h-6.3l-4.9-6.4L5.3 21H2.2l7.2-8.3L1.8 3h6.4l4.5 5.9L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z') . '</a>'
         . '<a data-share="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook">' . $i('M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2H7.6v3.3h2.7V22H14v-10.2h2.7l.4-3.3H14z') . '</a>'
@@ -362,7 +370,7 @@ function tf_page_tool(array $t): string
     foreach ($t['scripts'] ?? [] as $f) $scripts .= '<script src="' . h(tf_asset($f)) . '"></script>' . "\n";
     $scripts .= "<script>\n(function () {\n" . $t['js'] . "\n})();\n</script>";
     $pre = array_values(array_filter(array_map(fn($u) => preg_match('~^(https://[^/]+)/~', $u, $m) ? $m[1] : '', $lazy)));
-    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $t['slug'], 'schema' => $schema, 'noindex' => $noindex, 'scripts' => $scripts, 'noads' => $noads, 'preconnect' => $pre], $body);
+    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $t['slug'], 'schema' => $schema, 'noindex' => $noindex, 'scripts' => $scripts, 'noads' => $noads, 'preconnect' => $pre, 'css' => $t['css'] ?? []], $body);
 }
 
 function tf_page_category(array $c): string
@@ -404,7 +412,7 @@ function tf_page_home(): string
     [$title, $desc] = tf_seo('index', "$name – Free Online PDF, Image & Video Tools", "Free online tools that run in your browser: merge and compress PDFs, remove image backgrounds, convert video to MP3, make QR codes and more. No sign-up.");
     $faqs = [
         ["Are $name tools really free?", "Yes. All $n tools are free to use with no sign-up, no watermark and no daily limit. The site is supported by advertising."],
-        ['Are my files uploaded to a server?', 'No. Images, PDFs, videos and text are processed in your browser on your own device. The only exceptions are hosted QR codes, which you choose to save on the site.'],
+        ['Are my files uploaded to a server?', 'No. Images, PDFs, videos and text are processed in your browser on your own device. The only exceptions are hosted QR codes and share pages (quizzes, giveaways, invitations), which you choose to save on the site.'],
         ['Do the tools work on my phone?', 'Yes. Every tool is designed for phones first and also works on tablets and computers, in any modern browser.'],
         ['Do I need to install anything?', 'No. There is nothing to install and no account to create. Open a tool and use it straight away.'],
         ["How do I find the right tool?", 'Use the search box (or press Ctrl K on a computer), or browse the categories below.'],
@@ -450,7 +458,7 @@ function tf_page_home(): string
 ' . $cats . '<p class="no-results" id="none" hidden>No tool matches that search yet.</p>
 </div>
 <section class="why" aria-labelledby="h-why"><h2 id="h-why" class="section-title">Why people use ' . h($name) . '</h2><ul>'
-        . $feat('shield-check', 'Private by design', 'Files are processed on your device and never uploaded, so even confidential documents stay private. The only exception is a hosted QR code, which you choose to save.')
+        . $feat('shield-check', 'Private by design', 'Files are processed on your device and never uploaded, so even confidential documents stay private. The only exceptions are hosted QR codes and share pages, which you choose to save.')
         . $feat('zap', 'Instant', 'No uploads and no waiting in queues. Results appear as you type or as soon as your file opens.')
         . $feat('badge-check', 'Free, no catches', 'No sign-up, no watermarks, no daily limits and no "premium" paywall halfway through.')
         . $feat('smartphone', 'Made for phones', 'Every tool is designed for small screens first and works on any device and browser.')
@@ -504,7 +512,7 @@ $who<p>Every tool runs in your web browser. When you compress an image or merge 
 <p>For medical, financial or legal decisions, please check with a qualified professional: our tools give estimates, not advice.</p>
 <h2>Contact</h2>
 <p>Found a bug or want a new tool? Email <strong>$email</strong>.</p>"],
-        'privacy' => ["Privacy Policy | {$site['site']['name']}", "How {$site['site']['name']} handles your data: files and text are processed in your browser, except hosted QR codes you choose to save. Cookies, advertising, analytics and your rights.", '
+        'privacy' => ["Privacy Policy | {$site['site']['name']}", "How {$site['site']['name']} handles your data: tools run in your browser, except hosted QR codes and share pages you save. Cookies, ads, analytics and your rights.", '
 <h1>Privacy policy</h1>
 <p class="updated">Last updated ' . $updated . '</p>
 <p>This policy explains what information ' . $name . ' (“we”) handles when you use this website, and your choices. Contact us at <strong>' . $email . '</strong>.</p>
@@ -515,6 +523,7 @@ $who<p>Every tool runs in your web browser. When you compress an image or merge 
 <h2>Things you choose to save on our server</h2>
 <ul>
 <li><strong>Hosted QR codes</strong> (dynamic, file and verification QR codes): the link, file or details you enter are stored so the QR code works. They are deleted automatically after the period shown when you create them (30 days by default), or earlier if you delete them with your private manage link. We count scans (date and device type only).</li>
+<li><strong>Share pages</strong> (friendship quiz, giveaway, wedding invitation): what the maker enters, and the answers, entries and RSVPs that visitors send, are stored so the page works. For a giveaway this includes the contact details its host asks for, such as a phone number or email. Only the maker, with their secret code, sees those details; the public page shows winners’ names with their contact details partly hidden. Share pages are deleted automatically (quizzes after six months, giveaways 30 days after they end, invitations 30 days after the last event), or earlier when the maker deletes them. Contact the page’s maker to have your entry removed, or email us.</li>
 <li><strong>YouTube Subscriber Counter:</strong> the channel name you enter is sent to our server, which asks YouTube for the public count.</li>
 </ul>
 <h2>Cookies and advertising</h2>
@@ -544,7 +553,7 @@ $who<p>Every tool runs in your web browser. When you compress an image or merge 
 <li><strong>Advertising and partnerships:</strong> include your company name and website.</li>
 </ul>
 <p>We usually reply within two working days. Please don’t send files you need to keep private: our tools process files on your own device, so we never need them.</p>'],
-        'terms' => ["Terms of Use | {$site['site']['name']}", "The terms for using {$site['site']['name']}: free tools provided as they are, results to check before relying on them, acceptable use of hosted QR codes, and our liability.", '
+        'terms' => ["Terms of Use | {$site['site']['name']}", "The terms for using {$site['site']['name']}: free tools provided as they are, results to check before relying on them, acceptable use of hosted QR codes and share pages, and our liability.", '
 <h1>Terms of use</h1>
 <p class="updated">Last updated ' . $updated . '</p>
 <p>By using ' . $name . ' you agree to these terms. If you don’t agree, please don’t use the site.</p>
@@ -555,7 +564,8 @@ $who<p>Every tool runs in your web browser. When you compress an image or merge 
 <h2>Your content</h2>
 <p>Files and text you process stay on your device and remain yours. You are responsible for having the right to use the content you process and for how you use the results, for example letters, ID cards, signatures and certificates. Do not use the tools to create fake or misleading documents.</p>
 <h2>Hosted QR codes</h2>
-<p>When you save a hosted QR code, you must not link to or upload anything illegal, harmful, misleading, or that infringes other people’s rights. We may remove any hosted QR code and block abuse without notice.</p>
+<p>When you save a hosted QR code or make a share page (quiz, giveaway, invitation), you must not link to or upload anything illegal, harmful, misleading, or that infringes other people’s rights. We may remove any hosted QR code or share page and block abuse without notice.</p>
+<p>If you run a giveaway, you are responsible for its rules, for following the law and the rules of any platform you promote it on, for using entrants’ details only to run the giveaway, and for delivering the prize. We provide the page and the random draw only.</p>
 <h2>Acceptable use</h2>
 <p>Don’t attempt to disrupt the site, overload it with automated requests, get around its limits, or access parts of it that aren’t meant to be public.</p>
 <h2>Our content</h2>
@@ -610,7 +620,14 @@ function tf_sitemap(): string
         $in = array_filter($tools, fn($t) => $t['category'] === $c['id'] && empty($ts[$t['slug']]['noindex']));
         if ($in) $cats[] = ['/' . $c['slug'], max(array_map('tf_tool_date', $in))];
     }
-    $rows = array_merge([['/', $newest]], $cats, $rows, array_map(fn($p) => ['/' . $p, strtotime(TF_PAGE_DATES[$p])], array_keys(TF_PAGE_DATES)));
+    // Resource pages from the admin panel
+    $res = [];
+    if (tf_db()) {
+        require_once TF_ROOT . '/app/resources.php';
+        foreach (tf_res_list() as $r) $res[] = ['/r/' . $r['slug'], (int) $r['updated_at']];
+        if ($res) array_unshift($res, ['/resources', max(array_column($res, 1))]);
+    }
+    $rows = array_merge([['/', $newest]], $cats, $rows, $res, array_map(fn($p) => ['/' . $p, strtotime(TF_PAGE_DATES[$p])], array_keys(TF_PAGE_DATES)));
     $x = '<?xml version="1.0" encoding="UTF-8"?>' . "\n" . '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
     foreach ($rows as [$p, $m]) $x .= '  <url><loc>' . h($url . $p) . '</loc><lastmod>' . date('Y-m-d', $m) . "</lastmod></url>\n";
     return $x . "</urlset>\n";

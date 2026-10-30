@@ -1,0 +1,24 @@
+<div class="tool-grid sh-t-coral" id="qb-root">
+  <div class="inputs">
+    <div class="qb-card">
+      <label class="f"><span>Your name</span><input type="text" id="nm" maxlength="40" placeholder="e.g. Aman" autocomplete="given-name"></label>
+      <div class="f"><span>Colour</span><div class="sh-themes" id="themes"></div></div>
+    </div>
+    <div class="qb-card" id="qcard" aria-live="polite"></div>
+    <div class="qb-card">
+      <p class="kicker">Your quiz · <span id="qcount">0</span> questions <small id="qhint"></small></p>
+      <ol class="qb-list" id="qlist"></ol>
+      <div class="btns"><button type="button" class="btn ghost" id="own">Write my own question</button></div>
+      <form id="ownform" class="inputs" hidden>
+        <label class="f"><span>Question (as your friends will see it)</span><input type="text" id="oq" maxlength="160" placeholder="e.g. What is Aman’s dream car?"></label>
+        <div class="f"><span>Answers: tick the right one</span><div id="oopts" class="rows-list"></div></div>
+        <div class="btns"><button type="button" class="btn ghost" id="oadd">Another answer</button><button class="btn">Add question</button><button type="button" class="btn ghost" id="ocancel">Cancel</button></div>
+      </form>
+    </div>
+  </div>
+  <div class="out" id="out" aria-live="polite">
+    <p class="kicker">Your friendship quiz</p>
+    <p class="empty">Answer at least <b>5</b> questions about yourself (10 is perfect), then create your quiz and share the link.</p>
+  </div>
+</div>
+<div class="qb-card" id="mine" style="margin-top:18px"></div>

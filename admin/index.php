@@ -1,5 +1,5 @@
 <?php
-// Admin panel controller: sign-in, then pages for the dashboard, tools, SEO, hosted QR codes, ads, settings and account.
+// Admin panel controller: sign-in, then pages for the dashboard, tools, SEO, hosted QR codes, share pages, resources, ads, settings and account.
 // Pages are drawn by app/admin/views.php. Everything is stored in MySQL (see app/schema.sql).
 declare(strict_types=1);
 define('TF_BASE', rtrim(str_replace('\\', '/', dirname(dirname($_SERVER['SCRIPT_NAME'] ?? '/'))), '/'));
@@ -127,12 +127,12 @@ if ($action === 'save_settings') {
     $allowed = [
         'seo' => ['home_title' => 160, 'home_description' => 320, 'title_suffix' => 1, 'verify_google' => 300, 'verify_bing' => 300, 'verify_yandex' => 300, 'verify_pinterest' => 300, 'social_profiles' => 2000, 'robots_extra' => 2000],
         'ads' => ['analytics_id' => 30, 'adsense_client' => 40, 'ads_txt_extra' => 4000, 'limit_default' => 3, 'limit_mode' => 10, 'reward_unit' => 120, 'reward_uses' => 2, 'ad_top' => 10000, 'ad_article' => 10000, 'ad_side' => 10000, 'head_code' => 20000, 'body_code' => 20000, 'ai_isolate' => 1],
-        'settings' => ['announcement_text' => 200, 'announcement_link' => 300, 'contact_email' => 120, 'company_name' => 80, 'company_url' => 200, 'app_install' => 1, 'youtube_api_key' => 100, 'qr_enabled' => 1, 'qr_days' => 3, 'qr_max_mb' => 3, 'qr_per_hour' => 4, 'qr_blocked' => 5000],
+        'settings' => ['announcement_text' => 200, 'announcement_link' => 300, 'contact_email' => 120, 'company_name' => 80, 'company_url' => 200, 'app_install' => 1, 'share_enabled' => 1, 'share_per_hour' => 4, 'youtube_api_key' => 100, 'qr_enabled' => 1, 'qr_days' => 3, 'qr_max_mb' => 3, 'qr_per_hour' => 4, 'qr_blocked' => 5000],
     ][$page] ?? [];
     $vals = [];
     foreach ($allowed as $k => $max) $vals[$k] = $clean($_POST[$k] ?? '', $max);
     if (isset($vals['analytics_id'])) $vals['analytics_id'] = strtoupper($vals['analytics_id']);
-    foreach (['title_suffix', 'qr_enabled', 'ai_isolate', 'app_install'] as $b) if (isset($vals[$b])) $vals[$b] = empty($_POST[$b]) ? '0' : '1';
+    foreach (['title_suffix', 'qr_enabled', 'ai_isolate', 'app_install', 'share_enabled'] as $b) if (isset($vals[$b])) $vals[$b] = empty($_POST[$b]) ? '0' : '1';
     if (isset($vals['limit_default'])) $vals['limit_default'] = $vals['limit_default'] === '' ? '' : (string) max(0, min(999, (int) $vals['limit_default']));
     if (isset($vals['limit_mode'])) $vals['limit_mode'] = $vals['limit_mode'] === 'reward' ? 'reward' : 'wait';
     if (isset($vals['reward_unit']) && !preg_match('~^/\d+(/[\w.\-]+)+$~', $vals['reward_unit'])) $vals['reward_unit'] = '';
@@ -140,6 +140,7 @@ if ($action === 'save_settings') {
     if (isset($vals['qr_days'])) $vals['qr_days'] = (string) max(1, min(365, (int) $vals['qr_days']));
     if (isset($vals['qr_max_mb'])) $vals['qr_max_mb'] = (string) max(1, min(100, (int) $vals['qr_max_mb']));
     if (isset($vals['qr_per_hour'])) $vals['qr_per_hour'] = (string) max(1, min(1000, (int) $vals['qr_per_hour']));
+    if (isset($vals['share_per_hour'])) $vals['share_per_hour'] = (string) max(1, min(1000, (int) $vals['share_per_hour']));
     if ($vals) tf_save_settings($vals);
     go($page, 'Saved. Changes are live now.');
 }
@@ -166,6 +167,56 @@ if ($action === 'qr_cleanup') {
     require __DIR__ . '/../app/qr.php';
     $n = tf_qr_cleanup(true);
     go('qr', "Removed $n expired QR code" . ($n === 1 ? '' : 's') . '.');
+}
+if (in_array($action, ['share_block', 'share_unblock', 'share_delete'], true)) {
+    require __DIR__ . '/../app/share.php';
+    $id = (int) ($_POST['id'] ?? 0);
+    if ($action === 'share_delete') tf_share_delete($id);
+    else $db->prepare('UPDATE ' . tf_table('shares') . ' SET status = ? WHERE id = ?')->execute([$action === 'share_block' ? 'blocked' : 'active', $id]);
+    go('shares', ['share_block' => 'Page blocked: visitors now see “not available”.', 'share_unblock' => 'Page unblocked.', 'share_delete' => 'Page and its entries deleted.'][$action], true, array_intersect_key($_GET, ['f' => 1, 'q' => 1]));
+}
+if ($action === 'share_cleanup') {
+    require __DIR__ . '/../app/share.php';
+    $n = tf_share_cleanup(true);
+    go('shares', "Removed $n expired page" . ($n === 1 ? '' : 's') . '.');
+}
+if ($action === 'res_save' || $action === 'res_delete') {
+    require_once __DIR__ . '/../app/resources.php';
+    $t = tf_table('resources');
+    $id = (int) ($_POST['id'] ?? 0);
+    $old = $id ? ($db->query("SELECT * FROM $t WHERE id = $id")->fetch() ?: null) : null;
+    if ($action === 'res_delete') {
+        if ($old) { tf_res_delete_image((string) $old['image']); $db->prepare("DELETE FROM $t WHERE id = ?")->execute([$id]); }
+        go('resources', 'Resource deleted.');
+    }
+    $title = $clean($_POST['title'] ?? '', 200);
+    $slug = strtolower(preg_replace('/[^a-z0-9-]+/i', '-', $clean($_POST['slug'] ?? '', 80)));
+    $slug = trim($slug, '-') ?: tf_res_slug($title);
+    $links = [];
+    foreach ((array) ($_POST['ll'] ?? []) as $i => $label) {
+        $label = $clean($label, 120);
+        $url = trim((string) (($_POST['lu'] ?? [])[$i] ?? ''));
+        if ($label === '' || !preg_match('~^https?://~i', $url) || !filter_var($url, FILTER_VALIDATE_URL)) continue;
+        $links[] = ['label' => $label, 'url' => mb_substr($url, 0, 1000), 'note' => $clean((($_POST['ln'] ?? [])[$i] ?? ''), 160)];
+    }
+    $image = (string) ($old['image'] ?? '');
+    if (!empty($_POST['remove_image'])) { tf_res_delete_image($image); $image = ''; }
+    if (!empty($_FILES['image']['name'])) {
+        $new = tf_res_store_image($_FILES['image']);
+        if (str_contains($new, ' ')) go('resources', $new, false, $id ? ['id' => $id] : ['new' => 1]);
+        tf_res_delete_image($image);
+        $image = $new;
+    }
+    if ($title === '') go('resources', 'Write a title.', false, $id ? ['id' => $id] : ['new' => 1]);
+    $taken = $db->prepare("SELECT id FROM $t WHERE slug = ? AND id <> ?");
+    $taken->execute([$slug, $id]);
+    if ($taken->fetchColumn()) $slug .= '-' . substr(bin2hex(random_bytes(2)), 0, 3);
+    $vals = [$slug, $title, $clean($_POST['summary'] ?? '', 320), (string) ($_POST['body'] ?? ''), json_encode($links, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES), $image, empty($_POST['published']) ? 'draft' : 'published', time()];
+    if ($old) $db->prepare("UPDATE $t SET slug = ?, title = ?, summary = ?, body = ?, links = ?, image = ?, status = ?, updated_at = ? WHERE id = ?")->execute(array_merge($vals, [$id]));
+    else { $db->prepare("INSERT INTO $t (slug, title, summary, body, links, image, status, updated_at, created_at) VALUES (?,?,?,?,?,?,?,?,?)")->execute(array_merge($vals, [time()])); $id = (int) $db->lastInsertId(); }
+    // Tell search engines straight away (when IndexNow is set up in SEO)
+    if (empty($_POST['published']) === false && tf_settings()['indexnow_key'] !== '') tf_indexnow_submit([tf_abs('r/' . $slug), tf_abs('resources')]);
+    go('resources', 'Saved. Link: ' . tf_abs('r/' . $slug), true, ['id' => $id]);
 }
 if ($action === 'account') {
     $p = $_POST;

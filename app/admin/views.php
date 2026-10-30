@@ -38,6 +38,7 @@ function tf_admin_nav(string $page): string
 {
     $items = [
         'dashboard' => ['layout-dashboard', 'Dashboard'], 'tools' => ['wrench', 'Tools'], 'seo' => ['search-check', 'SEO'], 'qr' => ['qr-code', 'Hosted QR codes'],
+        'shares' => ['gift', 'Share pages'], 'resources' => ['book-open', 'Resources'],
         'ads' => ['megaphone', 'Ads & analytics'], 'settings' => ['settings', 'Settings'], 'account' => ['user-round', 'Account'],
     ];
     $h = '';
@@ -47,7 +48,7 @@ function tf_admin_nav(string $page): string
 
 function tf_admin_page(string $page, array $admin, ?array $flash): string
 {
-    $views = ['dashboard' => 'tf_admin_dashboard', 'tools' => 'tf_admin_tools', 'seo' => 'tf_admin_seo', 'qr' => 'tf_admin_qr', 'ads' => 'tf_admin_ads', 'settings' => 'tf_admin_settings', 'account' => 'tf_admin_account'];
+    $views = ['dashboard' => 'tf_admin_dashboard', 'tools' => 'tf_admin_tools', 'seo' => 'tf_admin_seo', 'qr' => 'tf_admin_qr', 'shares' => 'tf_admin_shares', 'resources' => 'tf_admin_resources', 'ads' => 'tf_admin_ads', 'settings' => 'tf_admin_settings', 'account' => 'tf_admin_account'];
     if (!isset($views[$page])) $page = 'dashboard';
     [$title, $sub, $body] = $views[$page]($admin);
     $site = tf_site()['site']['name'];
@@ -382,6 +383,9 @@ function tf_admin_settings(array $admin): array
 <label class="f"><span>Max new codes per visitor per hour</span><input type="number" name="qr_per_hour" min="1" max="1000" value="' . h($s['qr_per_hour']) . '"></label></div>
 <label class="f"><span>Blocked domains for dynamic links (one per line). Links to these sites are refused.</span><textarea name="qr_blocked" class="mono" style="min-height:90px" placeholder="bad-site.example">' . h($s['qr_blocked']) . '</textarea></label>
 <p class="a-muted">Your hosting’s PHP upload limit (upload_max_filesize) is ' . h((string) ini_get('upload_max_filesize')) . '; files bigger than that can’t be uploaded even if the limit above is higher.</p>
+<h2>Share pages (friendship quiz, giveaway, wedding invitation)</h2>
+<label class="check"><input type="checkbox" name="share_enabled" value="1"' . ($s['share_enabled'] === '1' ? ' checked' : '') . '>Allow visitors to make new quizzes, giveaways and wedding invitations</label>
+<label class="f"><span>Max new pages per visitor per hour</span><input type="number" name="share_per_hour" min="1" max="1000" value="' . h($s['share_per_hour']) . '"></label>
 <h2>YouTube Data API key</h2>
 <label class="f"><span>Used by the YouTube Subscriber Counter. Kept on the server, never shown to visitors.</span><input type="text" name="youtube_api_key" value="' . h($s['youtube_api_key']) . '" placeholder="AIza…" autocomplete="off"></label>
 <p class="a-muted">Get a free key: Google Cloud Console → APIs &amp; Services → enable “YouTube Data API v3” → Credentials → Create API key.</p>
@@ -399,4 +403,86 @@ function tf_admin_account(array $admin): array
 <p class="a-muted">Last sign-in: ' . ($admin['last_login'] ? h(date('j M Y, H:i', (int) $admin['last_login'])) : 'now') . '. Changing the password signs out every other session.</p>
 <div class="a-save"><button class="btn big-btn">Save account</button></div></form>';
     return ['Account', '', $body];
+}
+
+// ---------- share pages (moderation) ----------
+
+function tf_admin_shares(array $admin): array
+{
+    require_once TF_ROOT . '/app/share.php';
+    $db = tf_db();
+    $f = preg_replace('/[^a-z]/', '', (string) ($_GET['f'] ?? ''));
+    $q = trim((string) ($_GET['q'] ?? ''));
+    $where = ['1=1'];
+    $args = [];
+    if ($f === 'reported') $where[] = 'reports > 0';
+    if ($f === 'blocked') $where[] = "status = 'blocked'";
+    if (isset(TF_SHARE_TYPES[$f])) { $where[] = 'type = ?'; $args[] = $f; }
+    if ($q !== '') { $where[] = '(code = ? OR title LIKE ?)'; array_push($args, $q, "%$q%"); }
+    $st = $db->prepare('SELECT * FROM ' . tf_table('shares') . ' WHERE ' . implode(' AND ', $where) . ' ORDER BY reports DESC, id DESC LIMIT 200');
+    $st->execute($args);
+    $counts = array_column($db->query('SELECT type, COUNT(*) n, SUM(entries) e, SUM(views) v FROM ' . tf_table('shares') . ' GROUP BY type')->fetchAll(), null, 'type');
+    $names = ['quiz' => 'Friendship quiz', 'giveaway' => 'Giveaway', 'wedding' => 'Wedding invitation'];
+    $tr = '';
+    foreach ($st->fetchAll() as $r) {
+        $status = $r['status'] === 'blocked' ? '<span class="a-pill bad">Blocked</span>' : '<span class="a-pill good">Active</span>';
+        if ($r['reports']) $status .= ' <span class="a-pill warn">' . (int) $r['reports'] . ' report' . ($r['reports'] > 1 ? 's' : '') . '</span>';
+        $act = tf_admin_csrf() . '<input type="hidden" name="id" value="' . (int) $r['id'] . '">'
+            . ($r['status'] === 'blocked' ? '<button class="btn ghost sm" name="action" value="share_unblock">Unblock</button>' : '<button class="btn ghost sm" name="action" value="share_block">' . tf_icon('ban') . 'Block</button>')
+            . '<button class="btn ghost sm danger" name="action" value="share_delete" data-confirm="Delete this page and all its entries? It can’t be undone.">' . tf_icon('trash-2') . '</button>';
+        $tr .= '<tr><td><a href="' . h(tf_url('s/' . $r['code'])) . '" target="_blank" rel="noopener" class="mono">' . h($r['code']) . '</a></td><td>' . h($names[$r['type']] ?? $r['type']) . '</td><td>' . h(mb_strimwidth($r['title'], 0, 70, '…')) . '</td><td class="n">' . (int) $r['entries'] . '</td><td class="n">' . (int) $r['views'] . '</td><td class="n">' . date('j M Y', (int) $r['created_at']) . '<br><small class="a-muted">deleted ' . date('j M Y', (int) $r['expires_at']) . '</small></td><td>' . $status . '</td><td class="n"><form method="post" class="a-row-actions">' . $act . '</form></td></tr>';
+    }
+    $chip = fn($k, $label) => '<a href="' . h(admin_url('shares', $k ? ['f' => $k] : [])) . '" class="chip' . ($f === $k ? ' on' : '') . '">' . $label . '</a>';
+    $body = '<div class="a-stats">'
+        . tf_admin_stat('heart', (string) ($counts['quiz']['n'] ?? 0), 'quizzes · ' . (int) ($counts['quiz']['e'] ?? 0) . ' plays')
+        . tf_admin_stat('gift', (string) ($counts['giveaway']['n'] ?? 0), 'giveaways · ' . (int) ($counts['giveaway']['e'] ?? 0) . ' entries')
+        . tf_admin_stat('gem', (string) ($counts['wedding']['n'] ?? 0), 'invitations · ' . (int) ($counts['wedding']['e'] ?? 0) . ' RSVPs')
+        . tf_admin_stat('eye', number_format(array_sum(array_column($counts, 'v'))), 'visits to share pages')
+        . '</div>
+<section class="a-card"><div class="a-toolbar"><form method="get" class="a-search"><input type="hidden" name="p" value="shares"><input type="search" name="q" value="' . h($q) . '" placeholder="Search code or title…"></form>
+<div class="chips">' . $chip('', 'All') . $chip('reported', 'Reported') . $chip('blocked', 'Blocked') . $chip('quiz', 'Quizzes') . $chip('giveaway', 'Giveaways') . $chip('wedding', 'Invitations') . '</div></div>
+<p class="a-muted">Pages visitors made with the friendship quiz, giveaway and wedding card tools. They are only reachable by their link and are deleted automatically. Reported pages are listed first: block anything misleading or harmful.</p>
+' . ($tr ? '<div class="scroll"><table class="tbl a-table"><thead><tr><th>Code</th><th>Type</th><th>Title</th><th class="n">Entries</th><th class="n">Visits</th><th class="n">Made</th><th>Status</th><th></th></tr></thead><tbody>' . $tr . '</tbody></table></div>' : '<p class="empty">No pages here yet.</p>') . '
+<form method="post" class="a-inline">' . tf_admin_csrf() . '<button class="btn ghost" name="action" value="share_cleanup">Delete expired pages now</button></form></section>';
+    return ['Share pages', 'Quizzes, giveaways and wedding invitations people have made on your site.', $body];
+}
+
+// ---------- resources ----------
+
+function tf_admin_resources(array $admin): array
+{
+    require_once TF_ROOT . '/app/resources.php';
+    $edit = isset($_GET['id']) || isset($_GET['new']);
+    if ($edit) {
+        $r = isset($_GET['id']) ? (tf_db()->query('SELECT * FROM ' . tf_table('resources') . ' WHERE id = ' . (int) $_GET['id'])->fetch() ?: null) : null;
+        $links = $r ? (json_decode((string) $r['links'], true) ?: []) : [];
+        while (count($links) < 5) $links[] = ['label' => '', 'url' => '', 'note' => ''];
+        $img = $r && $r['image'] !== '' ? tf_res_image_url($r) : '';
+        $rows = '';
+        foreach ($links as $i => $l) {
+            $rows .= '<div class="fields" style="grid-template-columns:1fr 1.4fr 1fr"><label class="f"><span>Button text ' . ($i + 1) . '</span><input type="text" name="ll[]" maxlength="120" value="' . h($l['label']) . '" placeholder="Enrol in the course"></label>'
+                . '<label class="f"><span>Link</span><input type="url" name="lu[]" maxlength="1000" value="' . h($l['url']) . '" placeholder="https://"></label>'
+                . '<label class="f"><span>Small note (optional)</span><input type="text" name="ln[]" maxlength="160" value="' . h($l['note']) . '" placeholder="Free · 6 hours"></label></div>';
+        }
+        $body = '<form method="post" enctype="multipart/form-data" class="a-card">' . tf_admin_csrf() . '<input type="hidden" name="action" value="res_save"><input type="hidden" name="id" value="' . (int) ($r['id'] ?? 0) . '">
+<label class="f"><span>Title</span><input type="text" name="title" maxlength="200" required value="' . h($r['title'] ?? '') . '" placeholder="Best free AI course for beginners (2026)"></label>
+<label class="f"><span>Web address: ' . h(tf_abs('r/')) . '<b>…</b> (letters, numbers and dashes; leave empty to make it from the title)</span><input type="text" name="slug" maxlength="80" pattern="[a-z0-9-]*" value="' . h($r['slug'] ?? '') . '" placeholder="free-ai-course"></label>
+<label class="f"><span>Summary: shown under the title and in Google (up to 160 characters)</span><input type="text" name="summary" maxlength="320" data-max="160" value="' . h($r['summary'] ?? '') . '" placeholder="A free 6-hour AI course from Google: what you’ll learn, who it’s for and how to enrol."><small class="count"></small></label>
+<div class="f"><span>Picture (optional, shown at the top and when the link is shared)</span>' . ($img ? '<img src="' . h($img) . '" alt="" style="max-width:240px;border-radius:10px">' . '<label class="check"><input type="checkbox" name="remove_image" value="1"> Remove this picture</label>' : '') . '<input type="file" name="image" accept="image/jpeg,image/png,image/webp"></div>
+<h2>Links (big buttons at the top)</h2>' . $rows . '
+<label class="f"><span>Details. Leave an empty line between paragraphs. Use ## for a heading, - for a list, **bold**, [text](https://link).</span><textarea name="body" rows="14" style="min-height:280px" placeholder="## What you’ll learn&#10;- How AI models work&#10;- Writing good prompts&#10;&#10;**Who it’s for:** complete beginners.">' . h($r['body'] ?? '') . '</textarea></label>
+<label class="check"><input type="checkbox" name="published" value="1"' . (($r['status'] ?? 'published') === 'published' ? ' checked' : '') . '> Published (visible on the site, in the sitemap and to search engines)</label>
+<div class="a-save"><button class="btn big-btn">Save</button> <a class="btn ghost" href="' . h(admin_url('resources')) . '">Cancel</a>' . ($r ? ' <a class="btn ghost" href="' . h(tf_url('r/' . $r['slug'])) . '" target="_blank" rel="noopener">View</a>' : '') . '</div></form>';
+        return [$r ? 'Edit resource' : 'New resource', 'A page with the full details for a link you share on social media.', $body];
+    }
+    $tr = '';
+    foreach (tf_res_list(false) as $r) {
+        $url = tf_abs('r/' . $r['slug']);
+        $tr .= '<tr><td><a href="' . h(admin_url('resources', ['id' => $r['id']])) . '"><b>' . h($r['title']) . '</b></a><br><small class="a-muted mono">' . h($url) . '</small></td><td>' . ($r['status'] === 'published' ? '<span class="a-pill good">Published</span>' : '<span class="a-pill">Draft</span>') . '</td><td class="n">' . (int) $r['views'] . '</td><td class="n">' . date('j M Y', (int) $r['updated_at']) . '</td>'
+            . '<td class="n"><form method="post" class="a-row-actions">' . tf_admin_csrf() . '<input type="hidden" name="id" value="' . (int) $r['id'] . '"><button type="button" class="btn ghost sm" onclick="navigator.clipboard.writeText(' . h(json_encode($url)) . ');this.textContent=\'Copied\'">Copy link</button><a class="btn ghost sm" href="' . h($url) . '" target="_blank" rel="noopener">View</a><button class="btn ghost sm danger" name="action" value="res_delete" data-confirm="Delete this resource page?">' . tf_icon('trash-2') . '</button></form></td></tr>';
+    }
+    $body = '<section class="a-card"><div class="a-toolbar"><a class="btn" href="' . h(admin_url('resources', ['new' => 1])) . '">' . tf_icon('plus') . ' New resource</a></div>
+<p class="a-muted">Post “Best free AI course, link below” on your channel, and put the link to a resource page here: visitors land on your site with all the details, the buttons to the course, and your tools. Published pages are in the sitemap and listed at <a href="' . h(tf_url('resources')) . '" target="_blank" rel="noopener">' . h(tf_abs('resources')) . '</a>.</p>
+' . ($tr ? '<div class="scroll"><table class="tbl a-table"><thead><tr><th>Resource</th><th>Status</th><th class="n">Visits</th><th class="n">Updated</th><th></th></tr></thead><tbody>' . $tr . '</tbody></table></div>' : '<p class="empty">No resource pages yet. Make your first one.</p>') . '</section>';
+    return ['Resources', 'Pages with the full details for links you share on your channels.', $body];
 }

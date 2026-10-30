@@ -18,7 +18,7 @@ $path = rawurldecode((string) parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_
 if (TF_BASE !== '' && str_starts_with($path, TF_BASE)) $path = substr($path, strlen(TF_BASE));
 // One address per page: /merge-pdf/ and /Merge-PDF go to /merge-pdf (hosted QR codes keep their case).
 $clean = strtolower(trim($path, '/'));
-if ($clean !== '' && !str_starts_with($clean, 'q/') && ($path !== '/' . $clean || preg_match('/[A-Z]/', $path)) && !str_contains($clean, '.')) {
+if ($clean !== '' && !str_starts_with($clean, 'q/') && !str_starts_with($clean, 's/') && ($path !== '/' . $clean || preg_match('/[A-Z]/', $path)) && !str_contains($clean, '.')) {
     $qs = (string) parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_QUERY);
     header('Location: ' . tf_url($clean) . ($qs !== '' ? "?$qs" : ''), true, 301);
     exit;
@@ -105,6 +105,26 @@ if (preg_match('~^q/([A-Za-z0-9]{4,12})(?:/(file|manage))?$~', $path, $m)) {
     require __DIR__ . '/app/qr.php';
     tf_qr_route($m[1], $m[2] ?? '');
     exit;
+}
+// Share pages people make (friendship quiz, giveaway, wedding invitation): /s/<code>
+if (preg_match('~^s/([A-Za-z0-9]{4,12})(?:/(manage|image))?$~', $path, $m)) {
+    require __DIR__ . '/app/share.php';
+    tf_share_route($m[1], $m[2] ?? '');
+    exit;
+}
+// Resource pages written in the admin panel: /resources and /r/<slug>
+if ($path === 'resources' || preg_match('~^r/([a-z0-9-]{1,120})(?:/(image))?$~', $path, $m)) {
+    require __DIR__ . '/app/resources.php';
+    tf_layout_globals();
+    if ($path === 'resources') {
+        header('Content-Type: text/html; charset=utf-8');
+        header('Cache-Control: public, max-age=300');
+        echo tf_res_index();
+        exit;
+    }
+    header('Content-Type: text/html; charset=utf-8');
+    header('Cache-Control: public, max-age=300');
+    if (tf_res_route($m[1], $m[2] ?? '')) exit;
 }
 // Old or alternative addresses → the clean URL
 if (preg_match('/^(.+)\.html$/', $path, $m) || $path === 'index' || $path === 'index.php') {

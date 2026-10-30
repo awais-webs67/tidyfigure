@@ -48,7 +48,7 @@ function tf_connect(array $db): PDO
 }
 
 // Creates any tables added in newer versions (safe to run repeatedly). Runs when the schema version changes.
-const TF_SCHEMA_VERSION = '2';
+const TF_SCHEMA_VERSION = '3';
 function tf_migrate(): void
 {
     $db = tf_db();
@@ -95,6 +95,8 @@ function tf_setting_defaults(): array
         'title_suffix' => '0',     // '1' adds " | Site name" to tool titles that are short enough
         // Hosted QR codes
         'qr_enabled' => '1', 'qr_days' => '30', 'qr_max_mb' => '10', 'qr_per_hour' => '20', 'qr_blocked' => '',
+        // Share pages (friendship quiz, giveaway, wedding invitation)
+        'share_enabled' => '1', 'share_per_hour' => '10',
         // '1' lets AI tools (meta 'isolate') use every CPU core; ads can't show on those pages while it's on
         'ai_isolate' => '1',
         // '1' offers phone visitors an "Install app" button (adds the site to their home screen)
@@ -316,7 +318,7 @@ function tf_tool_date(array $t): int
 }
 
 // Dates the About, Contact, Privacy and Terms texts last changed. Change a date when you change that page's text.
-const TF_PAGE_DATES = ['about' => '2026-10-29', 'contact' => '2026-10-28', 'privacy' => '2026-10-28', 'terms' => '2026-10-28'];
+const TF_PAGE_DATES = ['about' => '2026-10-29', 'contact' => '2026-10-28', 'privacy' => '2026-10-30', 'terms' => '2026-10-30'];
 const TF_SITE_UPDATED = '2026-10-29';
 
 function tf_asset(string $file): string
