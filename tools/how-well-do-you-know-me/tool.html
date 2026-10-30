@@ -2,9 +2,9 @@
   <div class="inputs">
     <div class="qb-card">
       <label class="f"><span>Your name</span><input type="text" id="nm" maxlength="40" placeholder="e.g. Aman" autocomplete="given-name"></label>
-      <div class="f"><span>Colour</span><div class="sh-themes" id="themes"></div></div>
+      <div class="f"><span>Colour</span><div class="sh-themes" id="themes"><label class="sh-t-coral" title="coral"><input type="radio" name="theme" value="coral" checked><span></span></label><label class="sh-t-violet" title="violet"><input type="radio" name="theme" value="violet"><span></span></label><label class="sh-t-ocean" title="ocean"><input type="radio" name="theme" value="ocean"><span></span></label><label class="sh-t-emerald" title="emerald"><input type="radio" name="theme" value="emerald"><span></span></label><label class="sh-t-rose" title="rose"><input type="radio" name="theme" value="rose"><span></span></label><label class="sh-t-midnight" title="midnight"><input type="radio" name="theme" value="midnight"><span></span></label><label class="sh-t-sunset" title="sunset"><input type="radio" name="theme" value="sunset"><span></span></label></div></div>
     </div>
-    <div class="qb-card" id="qcard" aria-live="polite"></div>
+    <div class="qb-card qb-q" id="qcard" aria-live="polite"></div>
     <div class="qb-card">
       <p class="kicker">Your quiz · <span id="qcount">0</span> questions <small id="qhint"></small></p>
       <ol class="qb-list" id="qlist"></ol>

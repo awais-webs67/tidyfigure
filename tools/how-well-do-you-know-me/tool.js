@@ -39,11 +39,9 @@ const BANK = [
   ['Where would you love to go?', 'Where would {n} love to go?', ['🗼 Paris', '🕋 Makkah', '🗽 New York', '🏯 Japan', '🏝️ Maldives', '🏔️ Switzerland']],
   ['How fast do you reply to messages?', 'How fast does {n} reply to messages?', ['⚡ Instantly', '🐢 Hours later', '👀 Seen, no reply', '📞 I just call']],
 ];
-const THEMES = ['coral', 'violet', 'ocean', 'emerald', 'rose', 'midnight', 'sunset'];
 const MAX = 20, MIN = 5;
 let qs = [], order = BANK.map((_, i) => i).sort(() => Math.random() - .5), pos = 0, editing = null;
 const root = $('#qb-root'), out = $('#out');
-$('#themes').innerHTML = THEMES.map((t, i) => `<label class="sh-t-${t}" title="${t}"><input type="radio" name="theme" value="${t}"${i ? '' : ' checked'}><span></span></label>`).join('');
 const theme = () => $('input[name="theme"]:checked').value;
 onAny('input[name="theme"]', () => { root.className = 'tool-grid sh-t-' + theme(); });
 const name = () => $('#nm').value.trim() || 'your friend';

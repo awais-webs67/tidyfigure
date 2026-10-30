@@ -1,18 +1,13 @@
 // Giveaway maker: the form here becomes a public page at /s/<code> (app/share.php) with a countdown and entry form.
-const THEMES = ['coral', 'violet', 'ocean', 'emerald', 'rose', 'midnight', 'sunset'];
 const FIELDS = [['phone', 'Phone / WhatsApp', true], ['email', 'Email', false], ['instagram', 'Instagram username', false], ['tiktok', 'TikTok username', false], ['youtube', 'YouTube channel name', false], ['facebook', 'Facebook name', false], ['city', 'City', false]];
 const f = $('#gv'), out = $('#out'), root = $('#gv-root');
 let editing = null, image = null, removeImage = false, customs = 0;
-// The preview is redrawn as the form changes; the button stays put (redrawing it mid-click would swallow the click).
-out.innerHTML = `<p class="kicker">Preview</p><div id="pv"></div><button type="button" class="sh-btn wide" id="go">Create giveaway</button><p class="note" id="pvnote"></p>`;
+// The preview (#pv) is redrawn as the form changes; the button stays put (redrawing it mid-click would swallow the click).
 $('#go').onclick = () => create();
-$('#themes').innerHTML = THEMES.map((t, i) => `<label class="sh-t-${t}" title="${t}"><input type="radio" name="theme" value="${t}"${i ? '' : ' checked'}><span></span></label>`).join('');
-$('#fields').innerHTML = FIELDS.map(([k, l, on]) => `<div class="row" data-k="${k}" style="grid-template-columns:1fr auto"><label class="check"><input type="checkbox" class="use"${on ? ' checked' : ''}> ${esc(l)}</label><label class="check" style="font-size:13.5px"><input type="checkbox" class="req"${on ? ' checked' : ''}> Required</label></div>`).join('');
 const qRow = (label = '', req = false) => { customs++; return `<div class="row" data-k="q${customs}" style="grid-template-columns:1fr auto auto"><input type="text" class="lbl" maxlength="80" placeholder="Your question, e.g. Why do you love our shop?" value="${esc(label)}"><label class="check" style="font-size:13.5px"><input type="checkbox" class="req"${req ? ' checked' : ''}> Required</label><button type="button" class="sh-x" data-rm aria-label="Remove">${Share.ICON.trash}</button></div>`; };
 const sRow = (t = '', url = '') => `<div class="row" style="grid-template-columns:1fr 1fr auto"><input type="text" class="st" maxlength="140" placeholder="e.g. Follow us on Instagram" value="${esc(t)}"><input type="text" class="su" inputmode="url" autocapitalize="off" placeholder="Link (optional)" value="${esc(url)}"><button type="button" class="sh-x" data-rm aria-label="Remove">${Share.ICON.trash}</button></div>`;
 $('#addq').onclick = () => { if ($$('#fields [data-k^="q"]').length < 3) { $('#fields').insertAdjacentHTML('beforeend', qRow()); preview(); } else toast('Up to 3 questions of your own.'); };
 $('#adds').onclick = () => { if ($$('#steps .row').length < 8) { $('#steps').insertAdjacentHTML('beforeend', sRow()); preview(); } };
-$('#steps').insertAdjacentHTML('beforeend', sRow('Follow us on Instagram') + sRow('Tag 2 friends in the comments'));
 document.addEventListener('click', e => { const b = e.target.closest('[data-rm]'); if (b && b.closest('#gv')) { b.closest('.row').remove(); preview(); } });
 
 // End time: default one week from now

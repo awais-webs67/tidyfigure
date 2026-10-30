@@ -1,7 +1,7 @@
 <div class="tool-grid" id="wd-root">
   <form class="inputs" id="wd" novalidate>
     <div class="qb-card">
-      <div class="f"><span>Design</span><div class="wd-tpls" id="tpls"></div></div>
+      <div class="f"><span>Design</span><div class="wd-tpls" id="tpls"><label class="wd-t-royal"><input type="radio" name="tpl" value="royal" checked><i></i>Royal</label><label class="wd-t-emerald"><input type="radio" name="tpl" value="emerald"><i></i>Emerald</label><label class="wd-t-navy"><input type="radio" name="tpl" value="navy"><i></i>Midnight</label><label class="wd-t-mehndi"><input type="radio" name="tpl" value="mehndi"><i></i>Mehndi</label><label class="wd-t-blush"><input type="radio" name="tpl" value="blush"><i></i>Blush</label><label class="wd-t-ivory"><input type="radio" name="tpl" value="ivory"><i></i>Ivory</label></div></div>
       <div class="seg" role="radiogroup" aria-label="Language">
         <label><input type="radio" name="lang" value="en" checked><span>English</span></label>
         <label><input type="radio" name="lang" value="ur"><span>اردو Urdu</span></label>
@@ -26,7 +26,7 @@
     </div>
     <div class="qb-card">
       <p class="kicker">Events</p>
-      <div id="events" class="rows-list"></div>
+      <div id="events" class="rows-list"><div class="row"><div class="fields"><label class="f"><span>Event</span><input type="text" class="en" list="evlist" maxlength="40" value="Baraat" placeholder="Baraat"></label><label class="f"><span>Date</span><input type="date" class="ed" value=""></label><label class="f"><span>Time</span><input type="time" class="et" value="19:00"></label></div><div class="fields"><label class="f"><span>Venue</span><input type="text" class="ev" maxlength="120" value="Royal Palm Marquee" placeholder="Royal Palm Marquee"></label><label class="f"><span>Address</span><input type="text" class="ea" maxlength="220" value="Canal Road, Lahore" placeholder="Canal Road, Lahore"></label></div><div class="fields" style="grid-template-columns:1fr auto"><label class="f"><span>Google Maps link (optional)</span><input type="text" class="em" inputmode="url" autocapitalize="off" value="" placeholder="https://maps.app.goo.gl/…"></label><button type="button" class="btn ghost" data-rm style="align-self:end">Remove</button></div></div><div class="row"><div class="fields"><label class="f"><span>Event</span><input type="text" class="en" list="evlist" maxlength="40" value="Walima" placeholder="Baraat"></label><label class="f"><span>Date</span><input type="date" class="ed" value=""></label><label class="f"><span>Time</span><input type="time" class="et" value="20:00"></label></div><div class="fields"><label class="f"><span>Venue</span><input type="text" class="ev" maxlength="120" value="Pearl Continental" placeholder="Royal Palm Marquee"></label><label class="f"><span>Address</span><input type="text" class="ea" maxlength="220" value="Mall Road, Lahore" placeholder="Canal Road, Lahore"></label></div><div class="fields" style="grid-template-columns:1fr auto"><label class="f"><span>Google Maps link (optional)</span><input type="text" class="em" inputmode="url" autocapitalize="off" value="" placeholder="https://maps.app.goo.gl/…"></label><button type="button" class="btn ghost" data-rm style="align-self:end">Remove</button></div></div></div>
       <div class="btns"><button type="button" class="btn ghost" id="adde">Add an event</button></div>
     </div>
     <div class="qb-card">

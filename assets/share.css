@@ -259,3 +259,6 @@
 .res-tools a { display: flex; gap: 12px; align-items: center; padding: 12px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface); text-decoration: none; color: var(--ink); }
 .res-tools a span { display: flex; flex-direction: column; min-width: 0; }
 .res-tools small { color: var(--muted); font-size: 13px; }
+/* The quiz builder's question card is filled by script: keep its room so the page doesn't jump while loading. */
+.qb-q { min-height: 380px; }
+@media (max-width: 700px) { .qb-q { min-height: 470px; } }
