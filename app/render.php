@@ -12,9 +12,11 @@ function tf_font_head(): string
     $latin = 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD';
     $ext = 'U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF';
     $css = '';
-    foreach ([['Inter', 'inter', '400 700'], ['Bebas Neue', 'bebas-neue', '400'], ['JetBrains Mono', 'jetbrains-mono', '500 700']] as [$fam, $file, $w]) {
+    // Bebas Neue (headings) is "optional": it's preloaded so it's nearly always in time, and if it isn't, the heading keeps
+    // the fallback font on that page instead of jumping when Bebas arrives (its letters are much narrower).
+    foreach ([['Inter', 'inter', '400 700', 'swap'], ['Bebas Neue', 'bebas-neue', '400', 'optional'], ['JetBrains Mono', 'jetbrains-mono', '500 700', 'swap']] as [$fam, $file, $w, $disp]) {
         foreach (['latin' => $latin, 'latin-ext' => $ext] as $sub => $range) {
-            $css .= "@font-face{font-family:\"$fam\";font-style:normal;font-weight:$w;font-display:swap;src:url(" . $u("$file-$sub") . ") format(\"woff2\");unicode-range:$range}";
+            $css .= "@font-face{font-family:\"$fam\";font-style:normal;font-weight:$w;font-display:$disp;src:url(" . $u("$file-$sub") . ") format(\"woff2\");unicode-range:$range}";
         }
     }
     $css .= '@font-face{font-family:"Inter Fallback";src:local("Arial"),local("Helvetica"),local("Liberation Sans"),local("Roboto");size-adjust:107.12%;ascent-override:90.44%;descent-override:22.52%;line-gap-override:0%}';
