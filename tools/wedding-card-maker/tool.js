@@ -4,7 +4,7 @@ const EVENTS = { en: ['Mehndi', 'Mayun', 'Dholki', 'Baraat', 'Nikah', 'Rukhsati'
 const f = $('#wd'), cv = $('#cv'), W = window.WeddingCard;
 let editing = null;
 // Older copies of this page (still in a browser cache) built the design swatches and sample events here.
-if (!$('#tpls').children.length) $('#tpls').innerHTML = [['royal', 'Royal'], ['emerald', 'Emerald'], ['navy', 'Midnight'], ['mehndi', 'Mehndi'], ['blush', 'Blush'], ['ivory', 'Ivory']].map(([k, l], i) => `<label class="wd-t-${k}"><input type="radio" name="tpl" value="${k}"${i ? '' : ' checked'}><i></i>${l}</label>`).join('');
+if (!$('#tpls').children.length) $('#tpls').innerHTML = [['royal', 'Royal'], ['emerald', 'Emerald'], ['blush', 'Blush'], ['ivory', 'Classic'], ['navy', 'Art deco'], ['mehndi', 'Mehndi'], ['sage', 'Sage']].map(([k, l], i) => `<label class="wd-t-${k}"><input type="radio" name="tpl" value="${k}"${i ? '' : ' checked'}><i></i>${l}</label>`).join('');
 const day = n => { const d = new Date(Date.now() + n * 864e5); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 const evRow = (e = {}) => `<div class="row"><div class="fields"><label class="f"><span>Event</span><input type="text" class="en" list="evlist" maxlength="40" value="${esc(e.name || '')}" placeholder="Baraat"></label>
   <label class="f"><span>Date</span><input type="date" class="ed" value="${esc(e.date || '')}"></label><label class="f"><span>Time</span><input type="time" class="et" value="${esc(e.time || '')}"></label></div>
@@ -39,7 +39,19 @@ async function draw() {
   if (id !== pending) return;
   cv.width = c.width; cv.height = c.height; cv.getContext('2d').drawImage(c, 0, 0);
 }
-f.addEventListener('input', () => { clearTimeout(draw.t); draw.t = setTimeout(draw, 150); });
+f.addEventListener('input', () => { clearTimeout(draw.t); draw.t = setTimeout(draw, 150); clearTimeout(thumbs.t); thumbs.t = setTimeout(thumbs, 1500); });
+// Each design's swatch shows a small picture of the real card with these names (redrawn a moment after typing stops).
+async function thumbs() {
+  const d = data(); if (!d.groom) d.groom = 'Groom'; if (!d.bride) d.bride = 'Bride';
+  for (const lab of $$('#tpls label')) {
+    const tpl = lab.querySelector('input').value, c = document.createElement('canvas');
+    await W.draw(c, { ...d, tpl });
+    const s = document.createElement('canvas'); s.width = 180; s.height = 270;
+    s.getContext('2d').drawImage(c, 0, 0, 180, 270);
+    const i = lab.querySelector('i'); i.style.backgroundImage = `url(${s.toDataURL('image/jpeg', 0.8)})`; i.classList.add('shot');
+    await new Promise(r => setTimeout(r, 30)); // let the page breathe between designs
+  }
+}
 f.addEventListener('change', draw);
 
 const fname = ext => `wedding-card-${(f.groom.value + '-' + f.bride.value).trim().replace(/[^\p{L}\p{N}]+/gu, '-').toLowerCase() || 'card'}.${ext}`;
@@ -85,4 +97,5 @@ $('#go').onclick = async () => {
     $('#go').textContent = 'Save changes';
   }
   draw();
+  setTimeout(thumbs, 600);
 })();

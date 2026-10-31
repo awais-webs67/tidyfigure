@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 const TF_SHARE_TYPES = ['quiz' => 'how-well-do-you-know-me', 'giveaway' => 'giveaway-maker', 'wedding' => 'wedding-card-maker'];
 const TF_SHARE_THEMES = ['coral', 'violet', 'ocean', 'emerald', 'rose', 'midnight', 'sunset'];
-const TF_WEDDING_TPLS = ['royal', 'emerald', 'blush', 'ivory', 'navy', 'mehndi'];
+const TF_WEDDING_TPLS = ['royal', 'emerald', 'blush', 'ivory', 'navy', 'mehndi', 'sage'];
 const TF_SHARE_UPLOADS = TF_ROOT . '/storage/uploads/share';
 
 // ---------- small helpers ----------
