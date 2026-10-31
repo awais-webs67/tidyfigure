@@ -170,6 +170,15 @@
 .wd-t-blush { --wd-bg1: #FFF4F2; --wd-bg2: #F6D6DE; --wd-ink: #5A2A3A; --wd-acc: #B76E79; --wd-card: rgba(255, 255, 255, .6); }
 .wd-t-ivory { --wd-bg1: #FFFDF8; --wd-bg2: #EFE3CC; --wd-ink: #3B2F2A; --wd-acc: #9A7537; --wd-card: rgba(255, 255, 255, .65); }
 .wd-t-sage { --wd-bg1: #FBFAF4; --wd-bg2: #DDE6D6; --wd-ink: #2F3B2E; --wd-acc: #5E7D56; --wd-card: rgba(255, 255, 255, .7); }
+.wd-t-nikah { --wd-bg1: #0F4A4F; --wd-bg2: #062A2E; --wd-ink: #F4EEDD; --wd-acc: #D2AE62; --wd-card: rgba(255, 245, 220, .06); }
+.wd-t-truckart { --wd-bg1: #B0154F; --wd-bg2: #5E0A2F; --wd-ink: #FFF4DC; --wd-acc: #FFD54F; --wd-card: rgba(255, 240, 210, .08); }
+.wd-t-garden { --wd-bg1: #FFFBF8; --wd-bg2: #F7E4E2; --wd-ink: #4A3A44; --wd-acc: #A9566F; --wd-card: rgba(255, 255, 255, .7); }
+.wd-t-editorial { --wd-bg1: #F7F4EE; --wd-bg2: #ECE5DA; --wd-ink: #1C1B1A; --wd-acc: #9C4A2F; --wd-card: rgba(255, 255, 255, .7); }
+.wd-t-monogram { --wd-bg1: #1A3F37; --wd-bg2: #0D241F; --wd-ink: #F3EBDD; --wd-acc: #D9BD7C; --wd-card: rgba(255, 245, 220, .06); }
+.wd-t-noir { --wd-bg1: #1B1B1B; --wd-bg2: #050505; --wd-ink: #ECE4D2; --wd-acc: #D4AF37; --wd-card: rgba(255, 240, 200, .05); }
+.wd-t-savedate { --wd-bg1: #F6F1EA; --wd-bg2: #E6DACB; --wd-ink: #2E2A26; --wd-acc: #8E5F43; --wd-card: rgba(255, 255, 255, .65); }
+.wd-t-photo { --wd-bg1: #F7F1EA; --wd-bg2: #E6D8C6; --wd-ink: #3B302A; --wd-acc: #9C774C; --wd-card: rgba(255, 255, 255, .65); }
+.wd-t-cover { --wd-bg1: #3A1F2B; --wd-bg2: #140B10; --wd-ink: #F4EADF; --wd-acc: #E0BF7A; --wd-card: rgba(255, 240, 220, .06); }
 .sh-wedding.sh-page { background: radial-gradient(120% 80% at 50% 0%, var(--wd-bg1), var(--wd-bg2)); color: var(--wd-ink); --sh-a: var(--wd-acc); --sh-b: var(--wd-acc); --sh-ink: var(--wd-acc); }
 .sh-wedding .sh-wrap { max-width: 720px; }
 .sh-wedding .sh-wide { max-width: 980px; }
@@ -224,6 +233,9 @@
 @media (prefers-reduced-motion: reduce) { .wd-env, .wd-env * { transition: none !important; animation: none !important; } }
 
 /* wedding maker: template swatches and the live preview */
+.wd-cats { margin: 2px 0 10px; }
+.wd-cats .chip { padding: 7px 11px; font-size: 13px; }
+.wd-tpls label[hidden] { display: none; }
 .wd-tpls { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; }
 .wd-tpls label { cursor: pointer; text-align: center; font-size: 12.5px; font-weight: 600; color: var(--muted); display: flex; flex-direction: column; gap: 5px; }
 .wd-tpls input { position: absolute; opacity: 0; width: 1px; height: 1px; }

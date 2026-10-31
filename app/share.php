@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 const TF_SHARE_TYPES = ['quiz' => 'how-well-do-you-know-me', 'giveaway' => 'giveaway-maker', 'wedding' => 'wedding-card-maker'];
 const TF_SHARE_THEMES = ['coral', 'violet', 'ocean', 'emerald', 'rose', 'midnight', 'sunset'];
-const TF_WEDDING_TPLS = ['royal', 'emerald', 'blush', 'ivory', 'navy', 'mehndi', 'sage'];
+const TF_WEDDING_TPLS = ['royal', 'nikah', 'emerald', 'mehndi', 'truckart', 'blush', 'garden', 'sage', 'editorial', 'ivory', 'monogram', 'noir', 'navy', 'savedate', 'photo', 'cover'];
 const TF_SHARE_UPLOADS = TF_ROOT . '/storage/uploads/share';
 
 // ---------- small helpers ----------
@@ -444,7 +444,7 @@ function tf_share_manage(array $r, string $key): void
     tf_share_page($r, 'Manage: ' . $r['title'], 'Your private manage page.', '<div class="sh-wrap sh-wide" id="sh-app"><section class="sh-card"><p class="sh-kicker">Loading your page…</p></section></div>', $pub, true);
 }
 
-// ---------- images (giveaway) ----------
+// ---------- images (giveaway prize, wedding couple photo) ----------
 
 // Stores an uploaded picture. Returns the stored path or an error message.
 function tf_share_store_image(array $f)

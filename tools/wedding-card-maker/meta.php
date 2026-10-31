@@ -2,7 +2,7 @@
 // Wedding Card Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Wedding Card Maker',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-31', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'share',
   'order' => 3,
   'popular' => true,
@@ -23,12 +23,22 @@ EOT_TF,
   'article' => <<<'EOT_TF'
 <h2>How to make your wedding card</h2>
 <ol>
-<li>Choose one of six designs: Royal maroon, Emerald, Midnight navy, Mehndi, Blush or Ivory.</li>
-<li>Choose English or Urdu, and whether to start with Bismillah.</li>
+<li>Choose from 16 designs in eight groups: Nikah &amp; Islamic, Royal, Mehndi &amp; Dholki, Floral, Modern, Luxury, Save the date and photo cards.</li>
+<li>Choose English or Urdu, and whether to start with Bismillah. For a photo design, add a picture of the couple.</li>
 <li>Write the groom’s and bride’s names, their parents’ names if you like, and a short message.</li>
 <li>Add each function with its date, time, venue and address. Paste a Google Maps link so guests can find it.</li>
 <li>Download the card as a picture (for WhatsApp) or a PDF (for printing).</li>
 </ol>
+
+<h2>Designs for every function</h2>
+<ul>
+<li><strong>Nikah &amp; Islamic:</strong> a cream mihrab arch on an eight-point star pattern, the Mughal jharokha, and an emerald mandala.</li>
+<li><strong>Mehndi &amp; Dholki:</strong> a marigold toran with paisleys, or bright Pakistani truck art.</li>
+<li><strong>Floral:</strong> watercolour peonies, a rose wreath with your initials, or soft eucalyptus.</li>
+<li><strong>Modern and luxury:</strong> an editorial layout, a two-tone monogram crest, black marble with gold foil, and art deco.</li>
+<li><strong>Save the date:</strong> the date set large, so it’s the first thing guests see.</li>
+<li><strong>With photo:</strong> your photo in an arch, or full-width like a magazine cover.</li>
+</ul>
 
 <h2>An online invitation guests will love</h2>
 <p>Press <strong>Create online invitation</strong> and you get one link to send to everyone. Guests open an envelope that unfolds to show your card, then see a countdown to the big day, every event with <strong>directions</strong> and an <strong>add to calendar</strong> button, and a form to tell you whether they’re coming and with how many guests.</p>

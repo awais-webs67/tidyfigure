@@ -384,8 +384,8 @@
       ${d.contacts.length ? `<section class="sh-card"><h2 class="wd-sub" style="font-size:18px">${esc(L.contact)}</h2><div class="sh-row" style="justify-content:center">${d.contacts.map(c => `<a class="sh-btn soft" href="tel:${esc(c.phone.replace(/\s/g, ''))}">${esc(c.name || c.phone)}${c.name && c.phone ? ' · ' + esc(c.phone) : ''}</a>`).join('')}</div></section>` : ''}`;
     if (upcoming) countdown($('#wd-clock'), upcoming[1].getTime(), 0, null, L.units);
     const cv = $('#wd-cv');
-    W.draw(cv, d).catch(() => {});
-    $('#wd-save').onclick = async () => { await W.draw(cv, d); cv.toBlob(b => download(b, `wedding-${d.groom}-${d.bride}.png`.replace(/\s+/g, '-').toLowerCase()), 'image/png'); };
+    W.draw(cv, d, { photo: S.image }).catch(() => {});
+    $('#wd-save').onclick = async () => { await W.draw(cv, d, { photo: S.image }); cv.toBlob(b => download(b, `wedding-${d.groom}-${d.bride}.png`.replace(/\s+/g, '-').toLowerCase()), 'image/png'); };
     app.querySelectorAll('[data-ics]').forEach(b => b.onclick = () => download(new Blob([ics(d.events[+b.dataset.ics], d)], { type: 'text/calendar' }), 'wedding-event.ics'));
     const ch = $('#wd-change');
     if (ch) ch.onclick = () => { $('#wd-rsvp').innerHTML = rsvpForm(done); wireRsvp(); };

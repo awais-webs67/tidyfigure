@@ -2,9 +2,36 @@
 // invitation at /s/<code> (app/share.php) with countdown, directions and RSVP.
 const EVENTS = { en: ['Mehndi', 'Mayun', 'Dholki', 'Baraat', 'Nikah', 'Rukhsati', 'Walima', 'Reception', 'Engagement'], ur: ['مہندی', 'مایوں', 'ڈھولکی', 'بارات', 'نکاح', 'رخصتی', 'ولیمہ', 'استقبالیہ', 'منگنی'] };
 const f = $('#wd'), cv = $('#cv'), W = window.WeddingCard;
-let editing = null;
+let editing = null, photo = null, photoImg = null, removePhoto = false;
 // Older copies of this page (still in a browser cache) built the design swatches and sample events here.
-if (!$('#tpls').children.length) $('#tpls').innerHTML = [['royal', 'Royal'], ['emerald', 'Emerald'], ['blush', 'Blush'], ['ivory', 'Classic'], ['navy', 'Art deco'], ['mehndi', 'Mehndi'], ['sage', 'Sage']].map(([k, l], i) => `<label class="wd-t-${k}"><input type="radio" name="tpl" value="${k}"${i ? '' : ' checked'}><i></i>${l}</label>`).join('');
+if (!$('#tpls').children.length) $('#tpls').innerHTML = Object.entries(W.TPL).map(([k, t], i) => `<label class="wd-t-${k}" data-cat="${t.cat}"><input type="radio" name="tpl" value="${k}"${i ? '' : ' checked'}><i></i>${esc(t.name)}</label>`).join('');
+// Design groups: show only the designs in the chosen group.
+$('#cats')?.addEventListener('click', e => {
+  const b = e.target.closest('[data-cat]'); if (!b) return;
+  $$('#cats .chip').forEach(c => { c.classList.toggle('on', c === b); c.setAttribute('aria-pressed', c === b); });
+  $$('#tpls label').forEach(l => { l.hidden = b.dataset.cat !== 'all' && !(l.dataset.cat || '').split(' ').includes(b.dataset.cat); });
+});
+const photoDesign = () => ['photo', 'cover'].includes(f.tpl.value);
+// The couple's photo: made smaller here (max 1400 px JPEG) so it uploads fast. Choosing one switches to a photo design.
+$('#photo')?.addEventListener('change', async () => {
+  const file = $('#photo').files[0];
+  if (!file) return;
+  try {
+    const im = await loadImage(file), k = Math.min(1, 1400 / Math.max(im.width, im.height)), c = document.createElement('canvas');
+    c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+    c.getContext('2d').drawImage(im, 0, 0, c.width, c.height);
+    photo = await new Promise(r => c.toBlob(r, 'image/jpeg', .86));
+    photoImg = c; removePhoto = false;
+    showPhoto(URL.createObjectURL(photo));
+    if (!photoDesign()) $('input[name="tpl"][value="photo"]').checked = true;
+    draw(); thumbs();
+  } catch (e) { toast('That picture couldn’t be opened.', 'err'); }
+});
+function showPhoto(src) {
+  $('#photoprev').innerHTML = src ? `<div class="btns" style="align-items:center"><img src="${esc(src)}" alt="" style="height:70px;border-radius:10px"><button type="button" class="btn ghost" id="photox">Remove</button></div>` : '';
+  if (src) $('#photox').onclick = () => { photo = photoImg = null; removePhoto = true; $('#photo').value = ''; showPhoto(''); draw(); thumbs(); };
+}
+const photoOpt = () => photoImg || (editing && editing.image && !removePhoto ? editing.image : null);
 const day = n => { const d = new Date(Date.now() + n * 864e5); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
 const evRow = (e = {}) => `<div class="row"><div class="fields"><label class="f"><span>Event</span><input type="text" class="en" list="evlist" maxlength="40" value="${esc(e.name || '')}" placeholder="Baraat"></label>
   <label class="f"><span>Date</span><input type="date" class="ed" value="${esc(e.date || '')}"></label><label class="f"><span>Time</span><input type="time" class="et" value="${esc(e.time || '')}"></label></div>
@@ -35,7 +62,7 @@ async function draw() {
   const id = ++pending, d = data();
   if (!d.groom) d.groom = 'Groom'; if (!d.bride) d.bride = 'Bride';
   const c = document.createElement('canvas');
-  await W.draw(c, d, { story: f.size.value === 'story' });
+  await W.draw(c, d, { story: f.size.value === 'story', photo: photoOpt() });
   if (id !== pending) return;
   cv.width = c.width; cv.height = c.height; cv.getContext('2d').drawImage(c, 0, 0);
 }
@@ -45,7 +72,7 @@ async function thumbs() {
   const d = data(); if (!d.groom) d.groom = 'Groom'; if (!d.bride) d.bride = 'Bride';
   for (const lab of $$('#tpls label')) {
     const tpl = lab.querySelector('input').value, c = document.createElement('canvas');
-    await W.draw(c, { ...d, tpl });
+    await W.draw(c, { ...d, tpl }, { photo: photoOpt() });
     const s = document.createElement('canvas'); s.width = 180; s.height = 270;
     s.getContext('2d').drawImage(c, 0, 0, 180, 270);
     const i = lab.querySelector('i'); i.style.backgroundImage = `url(${s.toDataURL('image/jpeg', 0.8)})`; i.classList.add('shot');
@@ -72,11 +99,11 @@ $('#go').onclick = async () => {
   btn.disabled = true; btn.textContent = editing ? 'Saving…' : 'Creating…';
   try {
     if (editing) {
-      await Share.post({ action: 'update', code: editing.code, k: editing.key, data: d });
+      await Share.post({ action: 'update', code: editing.code, k: editing.key, data: d, remove_image: removePhoto ? 1 : '' }, photo);
       location.href = Share.manageUrl(editing.code, editing.key);
       return;
     }
-    const res = await Share.post({ action: 'create', type: 'wedding', data: d });
+    const res = await Share.post({ action: 'create', type: 'wedding', data: d }, photo);
     Share.donePanel($('#done'), res, { type: 'wedding', heading: 'Your invitation is ready! 💌', text: `💍 You’re invited to the wedding of ${d.groom} & ${d.bride}. Open your invitation 👇`, can: 'see every RSVP, edit the invitation and delete it' });
     Share.mineBox($('#mine'), 'wedding', 'invitation');
     btn.hidden = true;
@@ -94,6 +121,7 @@ $('#go').onclick = async () => {
     $(`input[name="tpl"][value="${d.tpl}"]`).checked = true; $(`input[name="lang"][value="${d.lang}"]`).checked = true;
     $('#events').innerHTML = d.events.map(evRow).join('');
     (d.contacts || []).forEach((c, i) => { if (i < 2) { f['c' + (i + 1) + 'n'].value = c.name; f['c' + (i + 1) + 'p'].value = c.phone; } });
+    if (ed.image) showPhoto(ed.image);
     $('#go').textContent = 'Save changes';
   }
   draw();

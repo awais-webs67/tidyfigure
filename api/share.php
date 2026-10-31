@@ -41,7 +41,7 @@ if ($action === 'create') {
     if (is_string($c)) out(['error' => $c], 400);
     [$data, $title, $expires] = $c;
     $image = '';
-    if ($type === 'giveaway' && !empty($_FILES['image']['name'])) {
+    if (in_array($type, ['giveaway', 'wedding'], true) && !empty($_FILES['image']['name'])) {
         $image = tf_share_store_image($_FILES['image']);
         if (!str_contains($image, '/')) out(['error' => $image], 400);
     }
@@ -136,13 +136,13 @@ if ($action === 'update') {
     if (is_string($c)) out(['error' => $c], 400);
     [$data, $title, $expires] = $c;
     $image = $r['image'];
-    if ($r['type'] === 'giveaway' && !empty($_FILES['image']['name'])) {
+    if (in_array($r['type'], ['giveaway', 'wedding'], true) && !empty($_FILES['image']['name'])) {
         $new = tf_share_store_image($_FILES['image']);
         if (!str_contains($new, '/')) out(['error' => $new], 400);
         if ($image !== '' && is_file(TF_SHARE_UPLOADS . '/' . $image)) @unlink(TF_SHARE_UPLOADS . '/' . $image);
         $image = $new;
     }
-    if ($r['type'] === 'giveaway' && !empty($_POST['remove_image']) && $image !== '') {
+    if (in_array($r['type'], ['giveaway', 'wedding'], true) && !empty($_POST['remove_image']) && $image !== '') {
         if (is_file(TF_SHARE_UPLOADS . '/' . $image)) @unlink(TF_SHARE_UPLOADS . '/' . $image);
         $image = '';
     }
