@@ -93,12 +93,57 @@ function addedMessage(files) {
   return `${what} added: ${shortName(f.name)}`;
 }
 
+// ---------- "Opening your PDF…" ----------
+// A visible card while a chosen file is being opened, so nobody thinks the upload failed. It goes away when the tool
+// shows the file (the first change inside the tool after the PDF has been read), when the tool's own work finishes,
+// or after a minute at most. Busy.step() changes the line under the title; tools can also call Busy.done().
+const Busy = (() => {
+  let el = null, obs = null, timer = 0, shownAt = 0;
+  const api = { pending: 0 };
+  function ensure() {
+    if (el) return;
+    el = document.createElement('div');
+    el.className = 'busy'; el.hidden = true; el.setAttribute('role', 'status'); el.setAttribute('aria-live', 'polite');
+    el.innerHTML = '<div class="busy-card"><span class="busy-spin" aria-hidden="true"></span><b></b><span class="busy-step"></span><small></small></div>';
+    document.body.appendChild(el);
+  }
+  api.show = (title, sub, watch) => {
+    ensure();
+    el.querySelector('b').textContent = title;
+    el.querySelector('small').textContent = sub || '';
+    el.querySelector('.busy-step').textContent = '';
+    el.hidden = false; shownAt = performance.now();
+    clearTimeout(timer); timer = setTimeout(api.hide, 60000);
+    if (obs) obs.disconnect();
+    if (watch) {
+      obs = new MutationObserver(muts => {
+        if (api.pending || performance.now() - shownAt < 300 || !muts.some(m => !el.contains(m.target))) return;
+        setTimeout(() => { if (!api.pending) api.done(); }, 150);
+      });
+      obs.observe(watch, { childList: true, subtree: true, characterData: true });
+    }
+  };
+  api.step = text => { if (el && !el.hidden) el.querySelector('.busy-step').textContent = text; };
+  api.hide = () => { if (el) el.hidden = true; clearTimeout(timer); if (obs) { obs.disconnect(); obs = null; } };
+  api.done = () => { if (!el || el.hidden) return; el.classList.add('out'); setTimeout(() => { el.classList.remove('out'); api.hide(); }, 180); };
+  return api;
+})();
+
 function fileDrop(zone, input, onFiles) {
   const take = files => {
     if (!files.length) return;
     if (!files.some(f => accepts(input, f))) { toast('This tool can’t open that type of file. Please choose another file.', 'err'); return; }
     toast(addedMessage(files));
-    if (libsIn) onFiles(files); else libsReady().then(() => onFiles(files), () => {});
+    // A PDF can take a few seconds to open (the PDF tools load, then the file is read): show that it's on its way.
+    const pdf = files.find(f => f && (f.type === 'application/pdf' || /\.pdf$/i.test(f.name)));
+    if (pdf) Busy.show('Opening your PDF…', `${pdf.name} · ${bytes(pdf.size)}`, zone.closest('.tool') || document.body);
+    const run = () => {
+      let r;
+      try { r = onFiles(files); } catch (e) { Busy.hide(); throw e; }
+      if (pdf && r && typeof r.then === 'function') r.then(Busy.done, Busy.done);
+    };
+    if (libsIn) run();
+    else { if (pdf) Busy.step('Getting the PDF tools ready…'); libsReady().then(run, () => Busy.hide()); }
   };
   input.dataset.drop = '1'; zone.dataset.zone = '1';
   // Screen readers: the zone is named by its own visible text, and the hidden file input gets the same name.
@@ -418,7 +463,12 @@ function pdfjs() {
   if (lib && !lib.GlobalWorkerOptions.workerSrc) lib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER;
   return lib;
 }
-const openPdf = async bytesIn => { await libsReady(); return pdfjs().getDocument({ data: bytesIn.slice(0) }).promise; };
+const openPdf = async bytesIn => {
+  await libsReady();
+  Busy.step('Reading your PDF…');
+  Busy.pending++;
+  try { return await pdfjs().getDocument({ data: bytesIn.slice(0) }).promise; } finally { Busy.pending--; }
+};
 
 async function renderPdfPage(doc, n, scale = 1, background = '#fff') {
   const page = await doc.getPage(n);

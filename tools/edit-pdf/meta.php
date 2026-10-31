@@ -2,7 +2,7 @@
 // PDF editor: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
   'name' => 'Edit PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
+  'updated' => '2026-10-31', // date the tool or its text last really changed (shown on the page and in the sitemap)
   'category' => 'pdf',
   'order' => 1,
   'icon' => 'file-pen-line',
@@ -30,7 +30,8 @@ EOT_TF,
 <ol>
 <li>Drop your PDF in the box, or try the sample. The pages open in the editor, with thumbnails on the left to jump between pages.</li>
 <li>Choose a tool from the toolbar and click or drag on the page.</li>
-<li>Use <strong>Select</strong> to move anything you added, drag a corner to resize it, and change its colour, size or font in the style bar.</li>
+<li>Use <strong>Select</strong> to move anything you added, drag a corner to resize it, and change its colour, size or font in the style bar. Click the PDF's own text to select the <strong>whole paragraph</strong>, or click a picture or shape: drag it somewhere else, press <strong>Edit text</strong>, or <strong>Delete</strong> it.</li>
+<li>While typing, select some words and press <strong>B</strong>, <strong>I</strong>, <strong>U</strong> or a colour to style just those words (or Ctrl+B, Ctrl+I, Ctrl+U). With nothing selected, the whole box changes.</li>
 <li>Press <strong>Preview &amp; download</strong>. You see every page of the finished PDF before you download it.</li>
 </ol>
 
@@ -57,6 +58,7 @@ EOT_TF,
 <h2>Turn, add and delete pages</h2>
 <p>The <strong>page menu</strong> in the toolbar turns the page you're looking at left or right, adds a blank page after it (handy for extra notes or a signature page) or deletes it. Anything you've added stays in place when a page is turned. The same menu can remove everything you've added in one go. Every step can be undone. To reorder pages or combine files, use <a href="/organize-pdf">Organize PDF</a> or <a href="/merge-pdf">Merge PDF</a>.</p>
 <p>When items overlap, select one and use <strong>Front</strong> or <strong>Back</strong> to change which one sits on top.</p>
+<p>On a phone the editor opens full screen, like an app: the tools are at the top, swipe them sideways for more, and pinch or use the zoom buttons to get close. The button next to Save leaves full screen.</p>
 
 <h2>Keyboard shortcuts</h2>
 <p>Ctrl+Z undoes and Ctrl+Y redoes, including text edits and deletions. Delete removes the selected item, Ctrl+D duplicates it and the arrow keys nudge it (hold Shift to move faster). Letters choose tools: V select, T text, E edit text, X delete, D draw, H highlight, U underline, S strike-through, C comment, W whiteout, R box, O circle, L line and A arrow. Hold Ctrl and scroll to zoom.</p>

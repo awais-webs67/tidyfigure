@@ -35,12 +35,102 @@ function baseOfCss(css, weight, style) {
   return { asc: (m.fontBoundingBoxAscent ?? 90) / 100, desc: (m.fontBoundingBoxDescent ?? 22) / 100 };
 }
 // Distance from the top of a text line to its baseline, in ems, as the browser lays it out.
-function baseOf(fam, bold, italic) {
+function baseOf(fam, bold, italic, lh = LH) {
   const x = document.createElement('canvas').getContext('2d');
   x.font = `${italic && !FONTS[fam].noItalic ? 'italic ' : ''}${bold ? 700 : 400} 100px ${cssFont(fam)}`;
   const m = x.measureText('Hg');
   const asc = (m.fontBoundingBoxAscent ?? 90) / 100, desc = (m.fontBoundingBoxDescent ?? 22) / 100;
-  return (LH - asc - desc) / 2 + asc;
+  return (lh - asc - desc) / 2 + asc;
+}
+
+// ---------- Rich text: parts of a text box can be bold, italic, underlined or another colour ----------
+// o.spans (optional) = [{ t, b, i, u, c }] in order, covering o.text. A missing b/i/u/c means "as the whole box".
+const SK = ['b', 'i', 'u', 'c'];
+const BOXKEY = { b: 'bold', i: 'italic', u: 'underline', c: 'color' };
+const spansOf = o => (o.spans && o.spans.length ? o.spans : [{ t: o.text || '' }]);
+const look = (o, s) => ({ b: s.b ?? !!o.bold, i: (s.i ?? !!o.italic) && !FONTS[o.font].noItalic, u: s.u ?? !!o.underline, c: s.c ?? o.color });
+// Joins neighbours that look the same, drops overrides equal to the box's own style, and keeps o.text in step.
+function normSpans(o) {
+  const out = [];
+  for (const s0 of o.spans || []) {
+    const s = { t: s0.t };
+    SK.forEach(k => { if (s0[k] !== undefined && s0[k] !== (k === 'c' ? o.color : !!o[BOXKEY[k]])) s[k] = s0[k]; });
+    if (!s.t) continue;
+    const last = out[out.length - 1];
+    if (last && SK.every(k => last[k] === s[k])) last.t += s.t; else out.push(s);
+  }
+  if (o.spans) o.text = out.map(s => s.t).join('');
+  if (!out.length || out.every(s => SK.every(k => s[k] === undefined))) delete o.spans; else o.spans = out;
+}
+function spanHtml(o) {
+  return spansOf(o).map(s => {
+    const e = look(o, s), data = SK.filter(k => s[k] !== undefined).map(k => ` data-${k}="${esc(String(s[k]))}"`).join('');
+    return `<span data-s${data} style="font-weight:${e.b ? 700 : 400};font-style:${e.i ? 'italic' : 'normal'};text-decoration:${e.u ? 'underline' : 'none'};color:${e.c}">${esc(s.t)}</span>`;
+  }).join('');
+}
+// The text being typed, read back from the page with each part's style (also works for <br> and <div> lines).
+function readSpans(root) {
+  const out = [];
+  const walk = (n, st) => {
+    for (const c of n.childNodes) {
+      if (c.nodeType === 3) { if (c.data) out.push({ ...st, t: c.data }); continue; }
+      if (c.nodeType !== 1) continue;
+      if (c.nodeName === 'BR') { out.push({ ...st, t: '\n' }); continue; }
+      const s2 = { ...st };
+      if (c.dataset && 's' in c.dataset) SK.forEach(k => { if (c.dataset[k] !== undefined) s2[k] = k === 'c' ? c.dataset[k] : c.dataset[k] === 'true'; });
+      if (/^(DIV|P)$/.test(c.nodeName) && out.length && !out[out.length - 1].t.endsWith('\n')) out.push({ ...st, t: '\n' });
+      walk(c, s2);
+    }
+  };
+  walk(root, {});
+  return out;
+}
+function takeSpans(o, t) {
+  const sp = readSpans(t);
+  const last = sp[sp.length - 1];
+  if (last && last.t.endsWith('\n')) last.t = last.t.slice(0, -1); // the browser's extra line at the end
+  o.spans = sp; normSpans(o);
+  if (!o.spans) o.text = sp.map(x => x.t).join('');
+}
+// Character offset of a point inside the text, and the reverse (for keeping a selection while restyling).
+function offsetAt(t, node, off) {
+  const r = document.createRange(); r.setStart(t, 0); r.setEnd(node, off);
+  const f = document.createElement('div'); f.appendChild(r.cloneContents());
+  return readSpans(f).reduce((n, x) => n + x.t.length, 0);
+}
+function pointAt(t, n) {
+  const w = document.createTreeWalker(t, NodeFilter.SHOW_TEXT);
+  let node, last = null;
+  while ((node = w.nextNode())) { last = node; if (n <= node.data.length) return [node, n]; n -= node.data.length; }
+  return last ? [last, last.data.length] : [t, 0];
+}
+// Styles the characters a..b (one key: b, i, u or c).
+function styleRange(o, a, b, k, v) {
+  const res = [];
+  let pos = 0;
+  for (const s of spansOf(o)) {
+    const s0 = pos, s1 = pos + s.t.length;
+    pos = s1;
+    const cut = [s0, Math.max(s0, Math.min(a, s1)), Math.max(s0, Math.min(b, s1)), s1];
+    for (let j = 0; j < 3; j++) {
+      if (cut[j + 1] <= cut[j]) continue;
+      const piece = { ...s, t: s.t.slice(cut[j] - s0, cut[j + 1] - s0) };
+      if (j === 1) piece[k] = v;
+      res.push(piece);
+    }
+  }
+  o.spans = res; normSpans(o);
+}
+// Is every character in a..b already styled that way?
+function rangeHas(o, a, b, k) {
+  let pos = 0, all = true, any = false;
+  for (const s of spansOf(o)) {
+    const s0 = pos, s1 = pos + s.t.length; pos = s1;
+    if (s1 <= a || s0 >= b) continue;
+    any = true;
+    if (!look(o, s)[k]) all = false;
+  }
+  return any && all;
 }
 
 const app = $('#app'), pagesEl = $('#pages'), scroller = $('#scroll'), out = $('#out');
@@ -65,10 +155,28 @@ fileDrop($('#drop'), $('#file'), files => { const f = files.find(isPdf); if (f) 
 $('#sample').addEventListener('click', async () => openFile(await samplePdf(3, 'Rental agreement')));
 $('#newfile').addEventListener('click', () => {
   if (unsaved() && !confirm('Close this PDF? Your edits will be lost.')) return;
-  app.hidden = true; out.hidden = true; $('#start').hidden = false; $('#file').value = '';
+  full(false); app.hidden = true; out.hidden = true; $('#start').hidden = false; $('#file').value = '';
 });
+// Full-screen editing (automatic on phones; the button switches it on and off anywhere).
+function full(on, quiet) {
+  app.classList.toggle('pe-full', on);
+  document.documentElement.classList.toggle('pe-lock', on);
+  $('#full').setAttribute('aria-pressed', on);
+  $('#full').title = on ? 'Leave full screen' : 'Full screen';
+  if (!quiet && P.length) {
+    // Fit the page to the new width.
+    const widest = Math.max(...P.map(p => p.vp.width));
+    requestAnimationFrame(() => setZoom(Math.min(1.5, Math.max(0.3, (scroller.clientWidth - 32) / widest))));
+  }
+}
+$('#full').addEventListener('click', () => full(!app.classList.contains('pe-full')));
 
+// The "Opening your PDF…" card (Busy in app.js) stays up until the pages are ready.
 async function openFile(f) {
+  Busy.pending++;
+  try { await openFile2(f); } finally { Busy.pending--; Busy.done(); }
+}
+async function openFile2(f) {
   const buf = new Uint8Array(await f.arrayBuffer());
   const box = $('#drop span');
   try {
@@ -76,6 +184,7 @@ async function openFile(f) {
     if (probe.isEncrypted) { box.innerHTML = `This PDF is password-protected. Remove the password first with <a href="${(window.TF_BASE || '') + '/unlock-pdf'}">Unlock PDF</a>, then edit it here.`; return; }
     doc = await openPdf(buf);
   } catch (e) { box.textContent = 'That file can’t be opened. It may be damaged.'; return; }
+  Busy.step('Preparing the editor…');
   srcBytes = buf; srcName = f.name;
   objs = []; imgs = {}; hist = []; future = []; sel = null; editing = null; ie = null;
   // The content engine lets text be edited in its own font and things be truly deleted.
@@ -89,6 +198,8 @@ async function openFile(f) {
     const page = await doc.getPage(i);
     P.push(pageEntry(page, i - 1, 0, page.rotate || 0)); srcPages[i - 1] = page; baseRots[i - 1] = page.rotate || 0;
   }
+  // Phones: the editor takes the whole screen, like an app (no page scrolling around it, no site header over it).
+  full(matchMedia('(max-width: 760px)').matches, true);
   const widest = Math.max(...P.map(p => p.vp.width));
   zoom = Math.min(1.5, Math.max(0.3, (scroller.clientWidth - 32) / widest));
   build(); buildThumbs(); setTool('select'); lastState = state(); updateUndo();
@@ -126,6 +237,7 @@ function build() {
   layout();
 }
 function layout() {
+  clearPick();
   P.forEach(p => { p.wrap.style.width = `${p.vp.width * zoom}px`; p.wrap.style.height = `${p.vp.height * zoom}px`; });
   $('#zlabel').textContent = `${Math.round(zoom * 100)}%`;
   redrawAll();
@@ -291,9 +403,11 @@ function draw(o) {
   if (o.type === 'text') {
     e.style.width = e.style.height = '';
     let t = e.querySelector('.pe-t');
-    if (!t) { t = document.createElement('div'); t.className = 'pe-t'; t.spellcheck = false; t.textContent = o.text; e.appendChild(t); }
-    if (editing !== o.id && t.textContent !== o.text) t.textContent = o.text;
-    Object.assign(t.style, { fontFamily: cssFont(o.font), fontSize: `${o.size * zoom}px`, fontWeight: o.bold ? 700 : 400, fontStyle: o.italic && !FONTS[o.font].noItalic ? 'italic' : 'normal', textDecoration: o.underline ? 'underline' : 'none', textAlign: o.align || 'left', background: o.bg || 'transparent', color: o.color, lineHeight: LH });
+    if (!t) { t = document.createElement('div'); t.className = 'pe-t'; t.spellcheck = false; e.appendChild(t); }
+    if (editing !== o.id) { const h = spanHtml(o); if (t.dataset.h !== h) { t.innerHTML = h; t.dataset.h = h; } }
+    Object.assign(t.style, { fontFamily: cssFont(o.font), fontSize: `${o.size * zoom}px`, fontWeight: o.bold ? 700 : 400, fontStyle: o.italic && !FONTS[o.font].noItalic ? 'italic' : 'normal', textDecoration: 'none', textAlign: o.align || 'left', background: o.bg || 'transparent', color: o.color, lineHeight: o.lh || LH });
+    // Load the bold / italic versions any part uses, then measure again.
+    new Set(spansOf(o).map(x => { const l = look(o, x); return `${+l.b}${+l.i}`; })).forEach(k => fontFile(o.font, k[0] === '1', k[1] === '1').then(() => measure(o)).catch(() => {}));
   } else {
     e.style.width = `${o.w * zoom}px`; e.style.height = `${o.h * zoom}px`;
     if (o.type === 'note') {
@@ -371,9 +485,13 @@ function select(id) {
 }
 function showProps() {
   if (ie) {
-    $$('#props .pe-p').forEach(p => { p.hidden = !['text', 'color'].includes(p.dataset.for) || !!p.querySelector('#p-font, #p-bold, #p-italic, #p-underline, #p-align, #p-hasbg, #p-bg'); });
+    // Editing the PDF's own line: every text style is offered. Size and colour keep the PDF's font; the others
+    // turn the line into a normal text box (same words, same place) so any font and style can be used.
+    $$('#props .pe-p').forEach(p => { p.hidden = !['text', 'color'].includes(p.dataset.for); });
     $('#hint').hidden = true;
+    $('#p-font').value = FONTS[ie.fam] ? ie.fam : 'sans';
     $('#p-size').value = Math.round(ie.size * 10) / 10; $('#p-color').value = ie.color;
+    $('#p-bold').checked = !!ie.bold; $('#p-italic').checked = !!ie.italic; $('#p-underline').checked = false; $('#p-align').value = 'left'; $('#p-hasbg').checked = false;
     $$('.pe-colors [data-c]').forEach(b => b.classList.toggle('on', b.dataset.c === ie.color));
     return;
   }
@@ -392,6 +510,8 @@ function showProps() {
   if (d.size) $('#p-size').value = Math.round(d.size * 10) / 10;
   $('#p-bold').checked = !!d.bold;
   $('#p-italic').checked = !!d.italic; $('#p-underline').checked = !!d.underline; $('#p-align').value = d.align || 'left';
+  // Typing in a box with words selected: the B / I / U boxes show the selected words' style.
+  if (o && editing === o.id && editRange) { $('#p-bold').checked = rangeHas(o, ...editRange, 'b'); $('#p-italic').checked = rangeHas(o, ...editRange, 'i'); $('#p-underline').checked = rangeHas(o, ...editRange, 'u'); }
   $('#p-hasbg').checked = !!d.bg; if (d.bg) $('#p-bg').value = d.bg;
   if (d.width) $('#p-width').value = d.width;
   $('#p-fill').checked = !!d.fill;
@@ -402,10 +522,33 @@ let propTimer = null;
 function setProp(key, v) {
   if (ie) {
     if (key === 'size') { ie.size = v; ie.sizeChanged = true; }
-    if (key === 'color') { ie.color = v; ie.colorChanged = true; }
+    else if (key === 'color') { ie.color = v; ie.colorChanged = true; }
+    else { ieToBox(key, v); return; }
     placeIe(); showProps(); ie.t.focus(); return;
   }
   const o = byId(sel);
+  // Bold, italic, underline and colour while typing: the selected words only, or the whole box (and every part of it).
+  const sk = { bold: 'b', italic: 'i', underline: 'u', color: 'c' }[key];
+  if (o && editing === o.id && sk) {
+    const t = el(o).querySelector('.pe-t');
+    takeSpans(o, t);
+    const range = editRange && !(editRange[0] === 0 && editRange[1] >= o.text.length) ? editRange : null;
+    if (range) styleRange(o, range[0], range[1], sk, v);
+    else { o[key] = v; if (o.spans) { o.spans.forEach(x => delete x[sk]); normSpans(o); } }
+    t.innerHTML = spanHtml(o);
+    t.style.fontWeight = o.bold ? 700 : 400; t.style.fontStyle = o.italic && !FONTS[o.font].noItalic ? 'italic' : 'normal'; t.style.color = o.color;
+    t.focus();
+    const sl = getSelection(), r = document.createRange();
+    const [n0, f0] = pointAt(t, range ? range[0] : o.text.length), [n1, f1] = pointAt(t, range ? range[1] : o.text.length);
+    r.setStart(n0, f0); r.setEnd(n1, f1); sl.removeAllRanges(); sl.addRange(r);
+    editRange = range;
+    measure(o);
+    new Set(spansOf(o).map(x => { const l = look(o, x); return `${+l.b}${+l.i}`; })).forEach(k2 => fontFile(o.font, k2[0] === '1', k2[1] === '1').then(() => measure(o)).catch(() => {}));
+    if (!range && dflt.text && key in dflt.text) dflt.text[key] = v;
+    clearTimeout(propTimer); propTimer = setTimeout(commit, 400);
+    showProps();
+    return;
+  }
   if (o) {
     o[key] = v;
     draw(o); measure(o);
@@ -423,6 +566,9 @@ $('#p-underline').addEventListener('change', e => setProp('underline', e.target.
 $('#p-align').addEventListener('change', e => setProp('align', e.target.value));
 $('#p-hasbg').addEventListener('change', e => setProp('bg', e.target.checked ? $('#p-bg').value : ''));
 $('#p-bg').addEventListener('input', e => { $('#p-hasbg').checked = true; setProp('bg', e.target.value); });
+// Colour dots and the item buttons don't take the focus, so the words selected in a text box stay selected.
+// (B / I / U are checkboxes: they take it, and setProp puts the focus and the selection back.)
+$('#props').addEventListener('mousedown', e => { if (e.target.closest('.pe-colors button, .pe-del')) e.preventDefault(); });
 $('#front').addEventListener('click', () => layer(1));
 $('#back').addEventListener('click', () => layer(-1));
 // Bring the selected item in front of everything else on its page, or send it behind.
@@ -457,6 +603,7 @@ function duplicate() {
 // ---------- Tools ----------
 function setTool(t) {
   if (ie) finishLine(true);
+  clearPick();
   if (t === 'image') { $('#imgfile').click(); return; }
   if (t === 'sign') { openSign(); return; }
   stopEdit();
@@ -466,7 +613,7 @@ function setTool(t) {
   hover(null);
   P.forEach((p, i) => guides(i));
   if (t !== 'select') select(null); else showProps();
-  const tips = { select: 'Click an item to select it. Drag to move, use a corner to resize. Double-click text to change it.', text: 'Click where you want to type.', edit: 'Click any line of text to change it. It keeps the PDF’s own font where possible.', delete: 'Click text, an image or a shape to delete it, or drag a box to delete everything inside.', pen: 'Draw with your mouse or finger.', highlight: 'Drag over text to highlight it, or click a line.', underline: 'Drag over text to underline it, or click a line.', strike: 'Drag over text to strike it through, or click a line.', note: 'Click where you want a comment. It shows as a note in PDF readers.', whiteout: 'Drag over anything to cover it in white.', rect: 'Drag to draw a box.', ellipse: 'Drag to draw a circle.', line: 'Drag to draw a line.', arrow: 'Drag to draw an arrow.', check: 'Click to add a tick.', cross: 'Click to add a cross.', date: 'Click to add today’s date.' };
+  const tips = { select: 'Click anything to select it: your items, or the PDF’s own text (a whole paragraph) and pictures. Drag to move, use a corner to resize. Double-click text to change it.', text: 'Click where you want to type.', edit: 'Click any line of text to change it. It keeps the PDF’s own font where possible.', delete: 'Click text, an image or a shape to delete it, or drag a box to delete everything inside.', pen: 'Draw with your mouse or finger.', highlight: 'Drag over text to highlight it, or click a line.', underline: 'Drag over text to underline it, or click a line.', strike: 'Drag over text to strike it through, or click a line.', note: 'Click where you want a comment. It shows as a note in PDF readers.', whiteout: 'Drag over anything to cover it in white.', rect: 'Drag to draw a box.', ellipse: 'Drag to draw a circle.', line: 'Drag to draw a line.', arrow: 'Drag to draw an arrow.', check: 'Click to add a tick.', cross: 'Click to add a cross.', date: 'Click to add today’s date.' };
   $('#hint').textContent = tips[t] || '';
   showProps();
 }
@@ -503,15 +650,33 @@ function startEdit(o, selectAll) {
   const r = document.createRange(); r.selectNodeContents(t);
   if (!selectAll) r.collapse(false);
   const s = getSelection(); s.removeAllRanges(); s.addRange(r);
-  t.oninput = () => { o.text = t.innerText.replace(/\n$/, ''); measure(o); };
-  t.onkeydown = ev => { if (ev.key === 'Escape') { ev.preventDefault(); stopEdit(); } };
+  t.oninput = () => { takeSpans(o, t); measure(o); };
+  t.onkeydown = ev => {
+    if (ev.key === 'Escape') { ev.preventDefault(); stopEdit(); return; }
+    // Ctrl+B / Ctrl+I / Ctrl+U style the selected words (or the whole box when nothing is selected).
+    const mod = ev.ctrlKey || ev.metaKey, key = ev.key.toLowerCase();
+    if (mod && ['b', 'i', 'u'].includes(key)) { ev.preventDefault(); const id = { b: '#p-bold', i: '#p-italic', u: '#p-underline' }[key]; $(id).checked = !$(id).checked; $(id).dispatchEvent(new Event('change')); }
+  };
+  editRange = null;
 }
+// The words selected in the box being edited, kept while the style bar is used (it takes the focus).
+let editRange = null;
+document.addEventListener('selectionchange', () => {
+  const o = byId(editing), t = o && el(o)?.querySelector('.pe-t');
+  if (!t || document.activeElement !== t) return;
+  const sl = getSelection();
+  if (!sl.rangeCount || !t.contains(sl.anchorNode)) return;
+  const r = sl.getRangeAt(0), a = offsetAt(t, r.startContainer, r.startOffset), b = offsetAt(t, r.endContainer, r.endOffset);
+  editRange = a === b ? null : [Math.min(a, b), Math.max(a, b)];
+  showProps();
+});
 function stopEdit() {
   const o = byId(editing);
   editing = null;
   if (!o) return;
   const e = el(o), t = e && e.querySelector('.pe-t');
-  if (t) { t.contentEditable = 'false'; t.oninput = t.onkeydown = null; o.text = t.innerText.replace(/\n$/, ''); }
+  if (t) { t.contentEditable = 'false'; t.oninput = t.onkeydown = null; takeSpans(o, t); delete t.dataset.h; }
+  editRange = null;
   if (!o.text.trim()) { e?.remove(); objs = objs.filter(x => x !== o); if (sel === o.id) sel = null; }
   else { draw(o); measure(o); }
   showProps();
@@ -546,7 +711,21 @@ pagesEl.addEventListener('pointerdown', async e => {
     return;
   }
   stopEdit();
-  if (tool === 'select') { select(null); return; }
+  if (tool === 'select') {
+    if (e.target.closest('.pe-pickbar')) return; // its own buttons
+    e.preventDefault();
+    const again = pick && e.target.closest('.pe-pick');
+    if (!again) {
+      select(null); clearPick();
+      if (eng && P[i].src != null) {
+        const [ux, uy] = P[i].vp.convertToPdfPoint(x, y), l = hitLine(i, ux, uy), ob = l ? null : hitObject(i, ux, uy);
+        if (l) showPick(i, 'text', blockOf(i, l)); else if (ob) showPick(i, 'obj', ob);
+      }
+    }
+    // Press and drag moves it straight away (it becomes an item of its own as soon as it moves).
+    if (pick) { drag = { mode: 'pick', i, x0: x, y0: y, pk: pick, moved: false, dx: 0, dy: 0 }; layer.setPointerCapture(e.pointerId); }
+    return;
+  }
   e.preventDefault();
   if (tool === 'text') { const t = addText(i, x, y - dflt.text.size * 0.6, 'Type here'); startEdit(t, true); return; }
   if (tool === 'date') { addText(i, x, y - dflt.text.size * 0.6, new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' })); commit(); return; }
@@ -566,6 +745,15 @@ pagesEl.addEventListener('pointerdown', async e => {
 });
 pagesEl.addEventListener('pointermove', e => {
   if (!drag) {
+    if (tool === 'select' && eng) {
+      const layer = e.target.closest('.pe-layer');
+      if (!layer || e.target.closest('.pe-o, .pe-pick')) { hover(null); return; }
+      const i = +layer.dataset.i;
+      if (P[i].src == null) return;
+      const [x, y] = pagePoint(e, i), [ux, uy] = P[i].vp.convertToPdfPoint(x, y);
+      hover(i, hitLine(i, ux, uy) || hitObject(i, ux, uy));
+      return;
+    }
     if ((tool === 'edit' || tool === 'delete') && eng && !ie) {
       const layer = e.target.closest('.pe-layer');
       if (!layer || e.target.closest('.pe-o')) { hover(null); return; }
@@ -577,6 +765,21 @@ pagesEl.addEventListener('pointermove', e => {
   const [x, y] = pagePoint(e, drag.i), o = drag.o, s = drag.start;
   let dx = x - drag.x0, dy = y - drag.y0;
   if (Math.abs(dx) + Math.abs(dy) > 1) drag.moved = true;
+  if (drag.mode === 'pick') {
+    drag.dx = dx; drag.dy = dy;
+    if (!drag.moved && Math.abs(dx) + Math.abs(dy) < 5) return;
+    drag.moved = true;
+    if (drag.pk.el) drag.pk.el.style.transform = `translate(${dx * zoom}px, ${dy * zoom}px)`;
+    if (!drag.conv) {
+      const d = drag;
+      d.conv = pickToItem(d.pk).then(o2 => {
+        if (!o2) return;
+        if (drag === d) { d.mode = 'move'; d.o = o2; d.start = { ...o2 }; o2.x += d.dx; o2.y += d.dy; draw(o2); }
+        else { o2.x += d.dx; o2.y += d.dy; draw(o2); commit(); }
+      });
+    }
+    return;
+  }
   if (drag.mode === 'erase') {
     Object.assign(drag.band.style, { left: `${Math.min(x, drag.x0) * zoom}px`, top: `${Math.min(y, drag.y0) * zoom}px`, width: `${Math.abs(dx) * zoom}px`, height: `${Math.abs(dy) * zoom}px` });
     drag.x1 = x; drag.y1 = y;
@@ -613,6 +816,7 @@ function endDrag() {
   const d0 = drag;
   drag = null;
   if (mode === 'erase') { d0.band.remove(); erase(d0); return; }
+  if (mode === 'pick') return; // a click selects; a drag finishes when its item is ready (see pointermove)
   if (mode === 'create') {
     if (['highlight', 'underline', 'strike'].includes(o.type)) {
       objs = objs.filter(x => x !== o); el(o)?.remove();
@@ -663,6 +867,7 @@ async function markText(o, d, moved) {
   commit();
 }
 pagesEl.addEventListener('dblclick', e => {
+  if (pick && pick.kind === 'text' && e.target.closest('.pe-pick')) { pickEdit(pick); return; }
   const oe = e.target.closest('.pe-o'), o = oe && byId(+oe.dataset.id);
   if (o && o.type === 'text') startEdit(o, false);
 });
@@ -674,6 +879,9 @@ document.addEventListener('keydown', e => {
   if (mod && e.key.toLowerCase() === 'z') { e.preventDefault(); $(e.shiftKey ? '#redo' : '#undo').click(); return; }
   if (mod && e.key.toLowerCase() === 'y') { e.preventDefault(); $('#redo').click(); return; }
   if (mod && e.key.toLowerCase() === 'd') { e.preventDefault(); duplicate(); return; }
+  if (pick && (e.key === 'Delete' || e.key === 'Backspace')) { e.preventDefault(); pickDelete(pick); return; }
+  if (pick && e.key === 'Enter' && pick.kind === 'text') { e.preventDefault(); pickEdit(pick); return; }
+  if (pick && e.key === 'Escape') { clearPick(); return; }
   const o = byId(sel);
   if (o && (e.key === 'Delete' || e.key === 'Backspace')) { e.preventDefault(); removeSel(); return; }
   if (o && e.key === 'Enter' && o.type === 'text') { e.preventDefault(); startEdit(o, false); return; }
@@ -781,6 +989,25 @@ function placeIe() {
   Object.assign(box.style, { left: `${x0 * zoom}px`, top: `${(y0 - base * ie.size) * zoom}px`, transform: `rotate(${ang}rad)`, transformOrigin: `0 ${base * ie.size * zoom}px` });
   Object.assign(t.style, { font: `${style} ${weight} ${ie.size * zoom}px/${LHi} ${css}, ${fb}`, color: ie.color });
 }
+// Font, bold, italic, underline, alignment or background for the PDF's own line: it becomes a normal text box with
+// the same words in the same place (its letters are already lifted out of the PDF while editing), styled as asked.
+function ieToBox(key, v) {
+  const s = ie;
+  if (!s) return;
+  ie = null;
+  const text = s.t.innerText.replace(/\s*\n\s*/g, ' ').trim() || s.line.text;
+  s.box.remove();
+  const vp = P[s.i].vp, [x0, y0] = vp.convertToViewportPoint(s.line.first.Trm[4], s.line.first.Trm[5]);
+  const o = { type: 'text', page: s.i, text, font: FONTS[s.fam] ? s.fam : 'sans', size: s.size, bold: !!s.bold, italic: !!s.italic, underline: false, align: 'left', bg: '', color: s.color, opacity: 1 };
+  if (key === 'bg') o.bg = v; else o[key] = v;
+  o.x = x0; o.y = y0 - baseOf(o.font, o.bold, o.italic) * o.size;
+  hist.push(s.before); future = [];
+  o.id = seq++; objs.push(o); draw(o); measure(o);
+  setTool('select'); select(o.id);
+  lastState = state(); updateUndo();
+  fontFile(o.font, o.bold, o.italic).then(() => { measure(o); draw(o); }).catch(() => {});
+  startEdit(o, false);
+}
 async function finishLine(save) {
   const s = ie;
   if (!s) return;
@@ -836,6 +1063,96 @@ async function erase(d) {
   if (glyphs.length) parts.push(`${glyphs.filter(g => !g.space).length} letters`);
   if (objects.length) parts.push(`${objects.length} image${objects.length > 1 ? 's' : ''} or shape${objects.length > 1 ? 's' : ''}`);
   flash(`Deleted ${parts.join(' and ')} from the PDF. Undo with Ctrl+Z.`);
+}
+
+// ---------- The PDF's own text and pictures with the Select tool ----------
+// A click selects a whole paragraph of the PDF's text, or a picture or shape. It can then be deleted, edited
+// (the paragraph becomes a text box with the same words, font, size and colour), or dragged somewhere else
+// (it becomes an item of its own: a text box, or a picture of the image or shape).
+let pick = null; // { i, kind: 'text' | 'obj', lines | obj, bbox (PDF space), el }
+function blockOf(i, line) {
+  const all = model(i).lines, set = new Set([line]);
+  const like = (a, b) => { const r = a.size / b.size; return r > 0.7 && r < 1.45 && Math.min(a.bbox[2], b.bbox[2]) - Math.max(a.bbox[0], b.bbox[0]) > -Math.max(a.size, b.size) * 1.5; };
+  const gap = (a, b) => Math.max(a.bbox[1] - b.bbox[3], b.bbox[1] - a.bbox[3]);
+  // The paragraph's own line spacing: the gap to the clicked line's nearest neighbour above or below.
+  // Lines spaced like that belong together; a bigger gap starts another paragraph.
+  const g0 = Math.min(Infinity, ...all.filter(l => l !== line && like(l, line)).map(l => gap(l, line)).filter(g => g >= -line.size * 0.3));
+  const limit = g0 < line.size * 2.4 ? Math.max(line.size * 0.6, g0 * 1.3) : line.size * 0.6;
+  const near = (a, b) => like(a, b) && gap(a, b) <= limit;
+  for (let grew = true; grew && set.size < 300;) {
+    grew = false;
+    for (const l of all) if (!set.has(l) && [...set].some(m => near(l, m))) { set.add(l); grew = true; }
+  }
+  const lines = [...set].sort((a, b) => b.first.Trm[5] - a.first.Trm[5] || a.first.Trm[4] - b.first.Trm[4]);
+  const bbox = [Math.min(...lines.map(l => l.bbox[0])), Math.min(...lines.map(l => l.bbox[1])), Math.max(...lines.map(l => l.bbox[2])), Math.max(...lines.map(l => l.bbox[3]))];
+  return { lines, bbox };
+}
+function showPick(i, kind, item) {
+  hover(null);
+  const bb = kind === 'text' ? item.bbox : item.bbox, [x0, y0, x1, y1] = viewBox(i, bb);
+  const e = document.createElement('div');
+  e.className = 'pe-pick';
+  Object.assign(e.style, { left: `${(x0 - 3) * zoom}px`, top: `${(y0 - 3) * zoom}px`, width: `${(x1 - x0 + 6) * zoom}px`, height: `${(y1 - y0 + 6) * zoom}px` });
+  const label = kind === 'text' ? `${item.lines.length} line${item.lines.length > 1 ? 's' : ''} of text` : item.type === 'image' ? 'Picture' : 'Shape';
+  e.innerHTML = `<div class="pe-pickbar" role="toolbar" aria-label="${label}"><span>${label}</span>${kind === 'text' ? '<button type="button" data-pk="edit">Edit text</button>' : ''}<button type="button" data-pk="del" class="danger">Delete</button></div>`;
+  e.querySelector('[data-pk="del"]').onclick = () => pickDelete(pick);
+  e.querySelector('[data-pk="edit"]')?.addEventListener('click', () => pickEdit(pick));
+  P[i].layer.appendChild(e);
+  pick = { i, kind, ...(kind === 'text' ? { lines: item.lines } : { obj: item }), bbox: bb, el: e };
+  $('#hint').hidden = false;
+  $('#hint').textContent = kind === 'text' ? 'Drag to move this text, Edit to change it, or Delete. Double-click to edit.' : 'Drag to move it, or Delete to remove it from the PDF.';
+}
+function clearPick() { pick?.el?.remove(); pick = null; }
+async function pickDelete(pk) {
+  if (!pk || pk.busy) return;
+  pk.busy = true;
+  pk.el.classList.add('working');
+  pk.el.querySelector('.pe-pickbar').innerHTML = '<span>Deleting…</span>';
+  const before = state();
+  await refreshPages(pk.kind === 'text' ? eng.removeGlyphs(pk.lines.flatMap(l => l.glyphs)) : eng.remove([], [pk.obj]));
+  if (pick === pk) clearPick(); else pk.el?.remove();
+  hist.push(before); lastState = state(); future = []; updateUndo();
+  flash('Deleted from the PDF. Undo with Ctrl+Z.');
+}
+async function pickEdit(pk) { const o = await pickToItem(pk); if (o) { select(o.id); startEdit(o, false); } }
+// Lifts the picked paragraph or picture out of the PDF and puts it back as an item of its own, in the same place.
+async function pickToItem(pk) {
+  if (!pk || pk.busy) return null;
+  pk.busy = true;
+  const i = pk.i, vp = P[i].vp, before = state();
+  let o;
+  if (pk.kind === 'text') {
+    const L = pk.lines, first = L[0], f = first.style.font;
+    const sizes = L.map(l => l.size).sort((a, b) => a - b), size = sizes[Math.floor(sizes.length / 2)];
+    const font = FONTS[f.family] ? f.family : 'sans';
+    const pts = L.map(l => vp.convertToViewportPoint(l.first.Trm[4], l.first.Trm[5]));
+    const gaps = pts.slice(1).map((p2, k) => p2[1] - pts[k][1]).filter(g => g > 0);
+    const lh = gaps.length ? Math.max(1, Math.min(3, gaps.reduce((a, b) => a + b, 0) / gaps.length / size)) : LH;
+    const boxes = L.map(l => viewBox(i, l.bbox)), lefts = boxes.map(b => b[0]), rights = boxes.map(b => b[2]), mids = boxes.map(b => (b[0] + b[2]) / 2);
+    const spread = a => Math.max(...a) - Math.min(...a);
+    const align = L.length > 1 && spread(lefts) > size * 0.6 ? (spread(mids) < size * 0.6 ? 'center' : spread(rights) < size * 0.6 ? 'right' : 'left') : 'left';
+    o = { type: 'text', page: i, text: L.map(l => l.text).join('\n'), font, size, bold: !!f.bold, italic: !!f.italic, underline: false, align, bg: '', color: rgbHex(first.style.rgb), opacity: 1, lh };
+    o.x = Math.min(...lefts); o.y = pts[0][1] - baseOf(font, o.bold, o.italic, lh) * size;
+  } else {
+    // A picture of the image or shape, cut from the page drawn at 3× (so it stays sharp), then removed from the PDF.
+    const [x0, y0, x1, y1] = viewBox(i, pk.obj.bbox), k = 3, c = document.createElement('canvas'), v3 = viewAt(P[i], k);
+    c.width = Math.ceil(v3.width); c.height = Math.ceil(v3.height);
+    await P[i].page.render({ canvasContext: c.getContext('2d'), viewport: v3 }).promise;
+    const cut = document.createElement('canvas');
+    cut.width = Math.max(1, Math.round((x1 - x0) * k)); cut.height = Math.max(1, Math.round((y1 - y0) * k));
+    cut.getContext('2d').drawImage(c, x0 * k, y0 * k, cut.width, cut.height, 0, 0, cut.width, cut.height);
+    const key = await imageFromBlob(await canvasBlob(cut, 'image/png'));
+    o = { type: 'image', page: i, img: key, x: x0, y: y0, w: x1 - x0, h: y1 - y0, opacity: 1 };
+  }
+  // The new item is shown first, then the original is taken out of the PDF (redrawing the page can take a moment
+  // on big files): nothing ever disappears from the screen.
+  if (pick === pk) clearPick(); else pk.el?.remove();
+  o.id = seq++; objs.push(o); draw(o); measure(o);
+  if (o.type === 'text') fontFile(o.font, o.bold, o.italic).then(() => { measure(o); draw(o); }).catch(() => {});
+  select(o.id);
+  await refreshPages(pk.kind === 'text' ? eng.removeGlyphs(pk.lines.flatMap(l => l.glyphs)) : eng.remove([], [pk.obj]));
+  hist.push(before); future = []; lastState = state(); updateUndo();
+  return o;
 }
 
 // ---------- Edit existing text (fallback: covers the old text) ----------
@@ -1029,6 +1346,7 @@ const hexRgb = h => rgb(parseInt(h.slice(1, 3), 16) / 255, parseInt(h.slice(3, 5
 $('#save').addEventListener('click', async () => {
   if (ie) await finishLine(true);
   stopEdit(); select(null);
+  if (app.classList.contains('pe-full')) full(false);
   const btn = $('#save');
   btn.disabled = true;
   out.hidden = false;
@@ -1058,17 +1376,28 @@ $('#save').addEventListener('click', async () => {
       const rot = degrees(Math.atan2(uy - oy, ux - ox) * 180 / Math.PI);
       const opacity = o.opacity ?? 1;
       if (o.type === 'text') {
-        const it = o.italic && !FONTS[o.font].noItalic, k = `${o.font}-${o.bold ? 7 : 4}-${it ? 'i' : 'n'}`;
-        fonts[k] ??= await pdf.embedFont(await fontFile(o.font, o.bold, it), { subset: true });
-        const base = baseOf(o.font, o.bold, it), color = hexRgb(o.color);
+        // Each line is drawn part by part: a bold word uses the bold font, a red word is red, and so on.
+        const fontFor = async (b, it) => { const k = `${o.font}-${b ? 7 : 4}-${it ? 'i' : 'n'}`; fonts[k] ??= await pdf.embedFont(await fontFile(o.font, b, it), { subset: true }); return fonts[k]; };
+        const lh = o.lh || LH, base = baseOf(o.font, o.bold, o.italic && !FONTS[o.font].noItalic, lh);
         if (o.bg) page.drawSvgPath(`M0 0H${o.w}V${o.h}H0Z`, { x: ox, y: oy, rotate: rot, color: hexRgb(o.bg), opacity });
-        o.text.split('\n').forEach((line, n) => {
-          if (!line) return;
-          const lw = fonts[k].widthOfTextAtSize(line, o.size), dx = o.align === 'center' ? (o.w - lw) / 2 : o.align === 'right' ? o.w - lw : 0;
-          const ly = o.y + (n * LH + base) * o.size, [bx, by] = at(o.x + dx, ly);
-          page.drawText(line, { x: bx, y: by, size: o.size, font: fonts[k], color, opacity, rotate: rot });
-          if (o.underline) { const [ux0, uy0] = at(o.x + dx, ly + o.size * 0.12); page.drawSvgPath(`M0 0H${lw.toFixed(2)}`, { x: ux0, y: uy0, rotate: rot, borderColor: color, borderWidth: Math.max(0.5, o.size * 0.06), borderOpacity: opacity }); }
-        });
+        const lines = [[]];
+        for (const sp of spansOf(o)) {
+          const e = look(o, sp);
+          sp.t.split('\n').forEach((part, n) => { if (n) lines.push([]); if (part) lines[lines.length - 1].push({ t: part, ...e }); });
+        }
+        for (let n = 0; n < lines.length; n++) {
+          const runs = lines[n];
+          if (!runs.length) continue;
+          for (const r of runs) { r.f = await fontFor(r.b, r.i); r.w = r.f.widthOfTextAtSize(r.t, o.size); }
+          const lw = runs.reduce((a, r) => a + r.w, 0), ly = o.y + (n * lh + base) * o.size;
+          let dx = o.align === 'center' ? (o.w - lw) / 2 : o.align === 'right' ? o.w - lw : 0;
+          for (const r of runs) {
+            const color = hexRgb(r.c), [bx, by] = at(o.x + dx, ly);
+            page.drawText(r.t, { x: bx, y: by, size: o.size, font: r.f, color, opacity, rotate: rot });
+            if (r.u) { const [ux0, uy0] = at(o.x + dx, ly + o.size * 0.12); page.drawSvgPath(`M0 0H${r.w.toFixed(2)}`, { x: ux0, y: uy0, rotate: rot, borderColor: color, borderWidth: Math.max(0.5, o.size * 0.06), borderOpacity: opacity }); }
+            dx += r.w;
+          }
+        }
       } else if (o.type === 'note') {
         addNote(pdf, page, o, at);
       } else if (o.type === 'image') {
