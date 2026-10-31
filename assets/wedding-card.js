@@ -6,25 +6,47 @@
 window.WeddingCard = (() => {
   // names: how the couple's names are written. script = handwriting, caps = serif capitals, deco = Cinzel capitals,
   // serif = large italic serif. head: 'sans' writes the small headings in Montserrat. cat: the groups it shows in.
+  // New designs (2026 look): type-led, lots of space, paper textures. type = the fonts and sizes they use.
+  const TY = {
+    serif: { name: 'instrument', nameSize: 150, nameLh: 0.98, amp: 'instrumentI', ampSize: 96, ampGap: 76, inlineSize: 112, nameGap: 12 },
+    bodoni: { name: 'bodoni', nameSize: 148, nameLh: 1.0, amp: 'bodoniI', ampSize: 92, ampGap: 76, inlineSize: 104, nameGap: 18 },
+    ballet: { name: 'ballet', nameSize: 128, nameLh: 1.3, amp: 'instrumentI', ampSize: 80, ampGap: 78, inlineSize: 108, nameGap: 34 },
+    fraunces: { name: 'fraunces', nameSize: 128, nameLh: 1.02, amp: 'fraunces', ampSize: 84, ampGap: 74, inlineSize: 100, nameGap: 10 },
+  };
+  // names: how older designs write the couple's names. script = handwriting, caps = serif capitals, deco = Cinzel capitals,
+  // serif = large italic serif. head: 'sans' writes the small headings in Montserrat. cat: the groups it shows in.
   const TPL = {
-    royal: { name: 'Royal', cat: 'royal islamic', bg: ['#7A1A2B', '#3A0712'], ink: '#F7E7C1', acc: '#D9B25F', alt: '#F0D18A', dark: true, names: 'script' },
-    nikah: { name: 'Nikah', cat: 'islamic', bg: ['#0F4A4F', '#062A2E'], ink: '#203538', acc: '#AE8838', alt: '#AE8838', names: 'script', nameCol: '#0F5E63' },
-    emerald: { name: 'Emerald', cat: 'royal islamic', bg: ['#12684F', '#052A20'], ink: '#F3EBD3', acc: '#D4AF37', alt: '#EBD07A', dark: true, names: 'script' },
-    mehndi: { name: 'Mehndi', cat: 'mehndi', bg: ['#3F7A2A', '#173214'], ink: '#FFF6D6', acc: '#F2C94C', alt: '#F79A3E', dark: true, names: 'script' },
-    truckart: { name: 'Dholki', cat: 'mehndi', bg: ['#D81B60', '#7A0C3B'], ink: '#3D0F2C', acc: '#C2185B', alt: '#00897B', names: 'script' },
-    blush: { name: 'Blush', cat: 'floral', bg: ['#FFF8F6', '#F4D7DE'], ink: '#5A2A3A', acc: '#B76E79', alt: '#E5A3B3', dark: false, names: 'script' },
-    garden: { name: 'Garden', cat: 'floral', bg: ['#FFFDFA', '#FBF3EE'], ink: '#4A3A44', acc: '#A9566F', alt: '#C9906E', names: 'script' },
-    sage: { name: 'Sage', cat: 'floral modern', bg: ['#FBFAF4', '#E9EEE3'], ink: '#2F3B2E', acc: '#6E8B65', alt: '#A9BFA0', dark: false, names: 'script' },
-    editorial: { name: 'Modern', cat: 'modern', bg: ['#F5F1EA', '#EFE9DF'], ink: '#1C1B1A', acc: '#9C4A2F', alt: '#9C4A2F', names: 'serif', head: 'sans' },
-    ivory: { name: 'Classic', cat: 'modern', bg: ['#FFFEFB', '#F3EDE2'], ink: '#2B2622', acc: '#A8843F', alt: '#C9A96A', dark: false, names: 'caps' },
-    monogram: { name: 'Monogram', cat: 'luxury modern', bg: ['#1A3F37', '#0D241F'], ink: '#26302D', acc: '#A8863F', alt: '#E6D19F', names: 'deco' },
-    noir: { name: 'Noir gold', cat: 'luxury', bg: ['#171717', '#050505'], ink: '#ECE4D2', acc: '#D4AF37', alt: '#F1DA9A', dark: true, names: 'deco' },
-    navy: { name: 'Art deco', cat: 'luxury', bg: ['#1B3366', '#070F24'], ink: '#F2E8CF', acc: '#D4B062', alt: '#E9CF8A', dark: true, names: 'deco' },
-    savedate: { name: 'Save the date', cat: 'savedate modern', bg: ['#F3EDE5', '#E6DBCD'], ink: '#2E2A26', acc: '#8E5F43', alt: '#C8A27C', names: 'script', head: 'sans' },
+    archway: { name: 'Arch & seal', cat: 'modern floral', bg: ['#B65D3E', '#9C4A2F'], ink: '#3A2A22', acc: '#A0502F', alt: '#A0502F', nameCol: '#7E3B22', type: TY.ballet },
+    atelier: { name: 'Editorial', cat: 'modern', bg: ['#F2EDE4', '#F2EDE4'], ink: '#1A1917', acc: '#1A1917', alt: '#1A1917', nameCol: '#1A1917', type: TY.serif },
+    palace: { name: 'Mughal pastel', cat: 'islamic floral', bg: ['#FBE6DA', '#E6DAF0'], ink: '#4B2E3E', acc: '#A2714F', alt: '#A2714F', nameCol: '#7A3E5E', type: TY.ballet },
+    nikahline: { name: 'Nikah jaali', cat: 'islamic', bg: ['#FBF8F1', '#FBF8F1'], ink: '#2C3A36', acc: '#AE8A48', alt: '#AE8A48', nameCol: '#1F4D45', type: TY.serif },
+    bordeaux: { name: 'Bordeaux', cat: 'luxury modern', bg: ['#6A1F29', '#4A121A'], ink: '#F6EDE3', acc: '#F6EDE3', alt: '#E8C9A8', nameCol: '#F6EDE3', type: TY.serif },
+    stone: { name: 'Quiet luxury', cat: 'luxury modern', bg: ['#D6CEC1', '#CFC6B8'], ink: '#3B3631', acc: '#76845F', alt: '#76845F', nameCol: '#3B3631', type: { ...TY.bodoni, nameSize: 84, nameLh: 1.2, caps: true, nameSp: 9, inlineSize: 70, ampSize: 70, ampGap: 62 } },
+    goldline: { name: 'Gold line', cat: 'floral luxury', bg: ['#FBF7F0', '#FBF7F0'], ink: '#3F3A34', acc: '#A88444', alt: '#A88444', foil: true, type: TY.ballet },
+    wildflower: { name: 'Wildflower', cat: 'floral', bg: ['#FDFBF6', '#FDFBF6'], ink: '#2F3A2C', acc: '#5E7550', alt: '#C2683F', nameCol: '#2F4A2A', type: { ...TY.serif, name: 'instrumentI' } },
+    noirink: { name: 'Black tie', cat: 'luxury modern', bg: ['#141414', '#0C0C0C'], ink: '#F1EEE8', acc: '#F1EEE8', alt: '#BDB6AA', nameCol: '#F1EEE8', type: TY.bodoni },
+    mehndipop: { name: 'Mehndi night', cat: 'mehndi', bg: ['#D81E6A', '#9A1048'], ink: '#FFF4E6', acc: '#FFD54F', alt: '#FFD54F', nameCol: '#FFF4E6', type: { ...TY.fraunces, inlineSize: 84 } },
+    retro: { name: 'Groovy', cat: 'mehndi modern', bg: ['#F6E9D6', '#F6E9D6'], ink: '#4A2C1D', acc: '#C8643B', alt: '#C8643B', nameCol: '#B5502B', type: TY.fraunces },
+    magazine: { name: 'Magazine', cat: 'photo modern', bg: ['#2B2F38', '#14161B'], ink: '#FFFFFF', acc: '#FFFFFF', alt: '#F1E2C8', nameCol: '#FFFFFF', dark: true, type: TY.bodoni },
     photo: { name: 'Photo arch', cat: 'photo floral', bg: ['#F6F0E8', '#E9DED0'], ink: '#3B302A', acc: '#9C774C', alt: '#C9A98A', names: 'script' },
     cover: { name: 'Photo cover', cat: 'photo luxury', bg: ['#3A1F2B', '#140B10'], ink: '#F4EADF', acc: '#E0BF7A', alt: '#F2D9A6', dark: true, names: 'script' },
+    // Traditional designs
+    royal: { name: 'Royal', cat: 'classic islamic', bg: ['#7A1A2B', '#3A0712'], ink: '#F7E7C1', acc: '#D9B25F', alt: '#F0D18A', dark: true, names: 'script' },
+    nikah: { name: 'Nikah arch', cat: 'classic islamic', bg: ['#0F4A4F', '#062A2E'], ink: '#203538', acc: '#AE8838', alt: '#AE8838', names: 'script', nameCol: '#0F5E63' },
+    emerald: { name: 'Emerald', cat: 'classic', bg: ['#12684F', '#052A20'], ink: '#F3EBD3', acc: '#D4AF37', alt: '#EBD07A', dark: true, names: 'script' },
+    mehndi: { name: 'Mehndi', cat: 'classic mehndi', bg: ['#3F7A2A', '#173214'], ink: '#FFF6D6', acc: '#F2C94C', alt: '#F79A3E', dark: true, names: 'script' },
+    truckart: { name: 'Truck art', cat: 'classic mehndi', bg: ['#D81B60', '#7A0C3B'], ink: '#3D0F2C', acc: '#C2185B', alt: '#00897B', names: 'script' },
+    blush: { name: 'Blush', cat: 'classic', bg: ['#FFF8F6', '#F4D7DE'], ink: '#5A2A3A', acc: '#B76E79', alt: '#E5A3B3', dark: false, names: 'script' },
+    garden: { name: 'Garden', cat: 'classic', bg: ['#FFFDFA', '#FBF3EE'], ink: '#4A3A44', acc: '#A9566F', alt: '#C9906E', names: 'script' },
+    sage: { name: 'Sage', cat: 'classic', bg: ['#FBFAF4', '#E9EEE3'], ink: '#2F3B2E', acc: '#6E8B65', alt: '#A9BFA0', dark: false, names: 'script' },
+    editorial: { name: 'Side date', cat: 'classic', bg: ['#F5F1EA', '#EFE9DF'], ink: '#1C1B1A', acc: '#9C4A2F', alt: '#9C4A2F', names: 'serif', head: 'sans' },
+    ivory: { name: 'Classic', cat: 'classic', bg: ['#FFFEFB', '#F3EDE2'], ink: '#2B2622', acc: '#A8843F', alt: '#C9A96A', dark: false, names: 'caps' },
+    monogram: { name: 'Monogram', cat: 'classic', bg: ['#1A3F37', '#0D241F'], ink: '#26302D', acc: '#A8863F', alt: '#E6D19F', names: 'deco' },
+    noir: { name: 'Noir gold', cat: 'classic', bg: ['#171717', '#050505'], ink: '#ECE4D2', acc: '#D4AF37', alt: '#F1DA9A', dark: true, names: 'deco' },
+    navy: { name: 'Art deco', cat: 'classic', bg: ['#1B3366', '#070F24'], ink: '#F2E8CF', acc: '#D4B062', alt: '#E9CF8A', dark: true, names: 'deco' },
+    savedate: { name: 'Save the date', cat: 'classic', bg: ['#F3EDE5', '#E6DBCD'], ink: '#2E2A26', acc: '#8E5F43', alt: '#C8A27C', names: 'script', head: 'sans' },
   };
-  const CATS = [['all', 'All'], ['islamic', 'Nikah & Islamic'], ['royal', 'Royal'], ['mehndi', 'Mehndi & Dholki'], ['floral', 'Floral'], ['modern', 'Modern'], ['luxury', 'Luxury'], ['savedate', 'Save the date'], ['photo', 'With photo']];
+  const CATS = [['new', 'New 2026'], ['islamic', 'Nikah'], ['mehndi', 'Mehndi'], ['floral', 'Floral'], ['modern', 'Modern'], ['luxury', 'Luxury'], ['photo', 'With photo'], ['classic', 'Traditional'], ['all', 'All']];
   const L = {
     en: { together: 'Together with their families', request: 'request the pleasure of your company at the wedding of', son: 'son of', daughter: 'daughter of', invite: 'Wedding invitation', tap: 'Tap to open',
       save: 'Save the card', share: 'Share', countdown: 'Counting down to', thanks: 'Thank you for celebrating with us', events: 'Celebrations', directions: 'Directions', calendar: 'Add to calendar',
@@ -52,13 +74,14 @@ window.WeddingCard = (() => {
       if (!l) {
         l = document.createElement('link');
         l.rel = 'stylesheet'; l.dataset.wdFonts = '1';
-        l.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Montserrat:wght@500;600&family=Playfair+Display:ital,wght@1,500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap';
+        l.href = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Great+Vibes&family=Montserrat:wght@500;600&family=Playfair+Display:ital,wght@1,500&family=Instrument+Serif:ital@0;1&family=Bodoni+Moda:ital,wght@0,400;1,400&family=Ballet&family=Fraunces:ital,wght@1,600&family=Jost:wght@400;500&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap';
         document.head.appendChild(l);
       }
       l.addEventListener('load', res); l.addEventListener('error', res);
     });
     const want = ['118px "Great Vibes"', '600 30px "Cinzel"', '500 30px "Cinzel"', '500 30px "Cormorant Garamond"', 'italic 500 30px "Cormorant Garamond"', '600 30px "Cormorant Garamond"',
-      'italic 500 30px "Playfair Display"', '600 30px "Montserrat"', '400 30px "Noto Nastaliq Urdu"', '700 30px "Noto Nastaliq Urdu"'];
+      'italic 500 30px "Playfair Display"', '600 30px "Montserrat"', '400 30px "Instrument Serif"', 'italic 400 30px "Instrument Serif"',
+      '400 30px "Bodoni Moda"', 'italic 400 30px "Bodoni Moda"', '400 30px "Ballet"', 'italic 600 30px "Fraunces"', '400 30px "Jost"', '500 30px "Jost"', '400 30px "Noto Nastaliq Urdu"', '700 30px "Noto Nastaliq Urdu"'];
     fontsP = Promise.race([sheet.then(() => Promise.all(want.map(f => document.fonts.load(f, 'Aa&1ابپ').catch(() => {})))), new Promise(r => setTimeout(r, 6000))]);
     return fontsP;
   }
@@ -229,16 +252,368 @@ window.WeddingCard = (() => {
   }
   function frame(x, W, H, t, a, b) { x.save(); x.strokeStyle = t.acc; x.lineWidth = 4; x.strokeRect(a, a, W - a * 2, H - a * 2); if (b) { x.lineWidth = 1.5; x.strokeRect(b, b, W - b * 2, H - b * 2); } x.restore(); }
   // Gold foil: a shimmering gradient used instead of a flat gold.
-  function foil(x, W, H) {
+  function foil(x, W, H, onLight) { // onLight: a deeper gold that still reads on cream paper
     const g = x.createLinearGradient(0, 0, W, H * 0.55);
-    [['0', '#9E7A35'], ['.16', '#F3DE9C'], ['.33', '#B48A3C'], ['.5', '#FFF0C0'], ['.68', '#A9802F'], ['.84', '#EED488'], ['1', '#8E6A2B']].forEach(([o, c]) => g.addColorStop(+o, c));
+    (onLight ? [['0', '#7E5E26'], ['.16', '#C29B4E'], ['.33', '#8E6A2B'], ['.5', '#CDA75A'], ['.68', '#8A6427'], ['.84', '#B88F45'], ['1', '#765722']]
+      : [['0', '#9E7A35'], ['.16', '#F3DE9C'], ['.33', '#B48A3C'], ['.5', '#FFF0C0'], ['.68', '#A9802F'], ['.84', '#EED488'], ['1', '#8E6A2B']]).forEach(([o, c]) => g.addColorStop(+o, c));
     return g;
+  }
+
+  // ---------- paper, seals and other details for the new designs ----------
+  let noiseC = null;
+  function noise(x, W, H, a) { // fine paper grain
+    if (!noiseC) {
+      noiseC = document.createElement('canvas'); noiseC.width = noiseC.height = 256;
+      const g = noiseC.getContext('2d'), im = g.createImageData(256, 256), R = rng(11);
+      for (let i = 0; i < im.data.length; i += 4) { const v = R() * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = v; im.data[i + 3] = 255; }
+      g.putImageData(im, 0, 0);
+    }
+    x.save(); x.globalAlpha = a; x.globalCompositeOperation = 'overlay'; x.fillStyle = x.createPattern(noiseC, 'repeat'); x.fillRect(0, 0, W, H); x.restore();
+  }
+  function shade(hex, k) { // lighter (k > 0) or darker (k < 0) version of a colour
+    const n = parseInt(hex.slice(1), 16), f = v => Math.round(k > 0 ? v + (255 - v) * k : v * (1 + k));
+    return `rgb(${f(n >> 16)},${f((n >> 8) & 255)},${f(n & 255)})`;
+  }
+  // A paper card with soft, torn (deckled) edges.
+  function deckle(x, l, t, r, b, amp, seed) {
+    const R = rng(seed), pts = [];
+    for (let xx = l; xx < r; xx += 7) pts.push([xx, t + (R() - 0.5) * amp]);
+    for (let yy = t; yy < b; yy += 7) pts.push([r + (R() - 0.5) * amp, yy]);
+    for (let xx = r; xx > l; xx -= 7) pts.push([xx, b + (R() - 0.5) * amp]);
+    for (let yy = b; yy > t; yy -= 7) pts.push([l + (R() - 0.5) * amp, yy]);
+    x.beginPath(); pts.forEach(([px, py], i) => (i ? x.lineTo(px, py) : x.moveTo(px, py))); x.closePath();
+  }
+  // A wax seal pressed with the couple's initials.
+  function seal(x, cx, cy, r, col, txt) {
+    const R = rng(23);
+    x.save(); x.shadowColor = 'rgba(0,0,0,.35)'; x.shadowBlur = 16; x.shadowOffsetY = 6;
+    x.beginPath();
+    for (let i = 0; i <= 48; i++) { const a = i / 48 * Math.PI * 2, rr = r * (1 + (R() - 0.5) * 0.07 + 0.045 * Math.sin(a * 6 + 1)); x.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr); }
+    x.closePath();
+    const g = x.createRadialGradient(cx - r * 0.35, cy - r * 0.4, r * 0.1, cx, cy, r * 1.1);
+    g.addColorStop(0, shade(col, 0.28)); g.addColorStop(0.55, col); g.addColorStop(1, shade(col, -0.35));
+    x.fillStyle = g; x.fill(); x.restore();
+    x.save();
+    const g2 = x.createRadialGradient(cx + r * 0.2, cy + r * 0.25, r * 0.1, cx, cy, r * 0.7);
+    g2.addColorStop(0, shade(col, 0.08)); g2.addColorStop(1, shade(col, -0.22));
+    x.fillStyle = g2; x.beginPath(); x.arc(cx, cy, r * 0.7, 0, 7); x.fill();
+    x.lineWidth = 2; x.strokeStyle = 'rgba(0,0,0,.28)'; x.beginPath(); x.arc(cx, cy + 1, r * 0.7, 0, 7); x.stroke();
+    x.strokeStyle = 'rgba(255,255,255,.22)'; x.beginPath(); x.arc(cx, cy - 1, r * 0.7, 0, 7); x.stroke();
+    x.fillStyle = 'rgba(0,0,0,.18)'; for (let i = 0; i < 24; i++) { const a = i * Math.PI / 12; x.beginPath(); x.arc(cx + Math.cos(a) * r * 0.58, cy + Math.sin(a) * r * 0.58, r * 0.025, 0, 7); x.fill(); }
+    x.textAlign = 'center'; x.textBaseline = 'middle'; x.direction = rtl(txt) ? 'rtl' : 'ltr';
+    x.font = rtl(txt) ? `700 ${Math.round(r * 0.42)}px "Noto Nastaliq Urdu", serif` : `italic 400 ${Math.round(r * 0.62)}px "Instrument Serif", Georgia, serif`;
+    x.fillStyle = 'rgba(255,255,255,.25)'; x.fillText(txt, cx - 1, cy - 1 + (rtl(txt) ? r * 0.1 : 0));
+    x.fillStyle = shade(col, -0.45); x.fillText(txt, cx + 1, cy + 1 + (rtl(txt) ? r * 0.1 : 0));
+    x.restore(); x.textBaseline = 'alphabetic';
+  }
+  // Writes text along the top of a circle, letter by letter (made smaller until it fits the angle).
+  function arcText(x, str, f, size, sp, cx, cy, rad, maxAng, col) {
+    let s = size, w = 0;
+    for (; s > 14; s -= 1) { setFont(x, f, s, sp); w = x.measureText(str).width; if (w / rad <= maxAng) break; }
+    x.save(); x.fillStyle = col; x.textAlign = 'center'; x.direction = 'ltr';
+    let a = -Math.PI / 2 - w / rad / 2;
+    for (const ch of str) {
+      const cw = x.measureText(ch).width, m = a + cw / rad / 2;
+      x.save(); x.translate(cx + Math.cos(m) * rad, cy + Math.sin(m) * rad); x.rotate(m + Math.PI / 2); x.fillText(ch, 0, 0); x.restore();
+      a += cw / rad;
+    }
+    x.restore();
+  }
+  function sparkle(x, cx, cy, r, col) { // four-point star
+    x.save(); x.fillStyle = col; x.beginPath(); x.moveTo(cx, cy - r); x.quadraticCurveTo(cx, cy, cx + r, cy); x.quadraticCurveTo(cx, cy, cx, cy + r); x.quadraticCurveTo(cx, cy, cx - r, cy); x.quadraticCurveTo(cx, cy, cx, cy - r); x.fill(); x.restore();
+  }
+  // Line-art peony (outlines only), for foil designs.
+  function linePeony(x, cx, cy, r, rot) {
+    x.save(); x.translate(cx, cy); x.rotate(rot); x.lineCap = 'round'; x.lineJoin = 'round';
+    const pol = (rr, a) => [Math.cos(a) * rr, Math.sin(a) * rr];
+    [[1, 7, 0], [0.74, 6, 0.35], [0.5, 5, 0.1]].forEach(([k, n, off]) => {
+      for (let i = 0; i < n; i++) {
+        const a0 = off + i * Math.PI * 2 / n, a1 = a0 + Math.PI * 2 / n * 1.08, rr = r * k;
+        const p0 = pol(rr * 0.45, a0), c1 = pol(rr * 1.12, a0 - 0.06), c2 = pol(rr * 1.12, a1 + 0.06), p1 = pol(rr * 0.45, a1);
+        x.lineWidth = k === 1 ? 2.4 : 2; x.beginPath(); x.moveTo(...p0); x.bezierCurveTo(...c1, ...c2, ...p1); x.stroke();
+        const mid = pol(rr * 0.98, (a0 + a1) / 2), mid2 = pol(rr * 0.82, (a0 + a1) / 2 + 0.12);
+        x.lineWidth = 1.2; x.beginPath(); x.moveTo(...mid); x.quadraticCurveTo(...pol(rr * 0.9, (a0 + a1) / 2 - 0.1), ...mid2); x.stroke();
+      }
+    });
+    x.lineWidth = 1.6; for (let i = 0; i < 6; i++) { const a = i * 1.05; x.beginPath(); x.arc(Math.cos(a) * r * 0.1, Math.sin(a) * r * 0.1, r * 0.07, a, a + 3.6); x.stroke(); }
+    x.restore();
+  }
+  function lineLeaf(x, cx, cy, len, dir) {
+    x.save(); x.translate(cx, cy); x.rotate(dir + Math.PI / 2); x.lineWidth = 2; x.lineCap = 'round';
+    x.beginPath(); x.moveTo(0, 0); x.quadraticCurveTo(len * 0.38, -len * 0.5, 0, -len); x.quadraticCurveTo(-len * 0.38, -len * 0.5, 0, 0); x.stroke();
+    x.lineWidth = 1.2; x.beginPath(); x.moveTo(0, -4); x.lineTo(0, -len * 0.85); x.stroke();
+    for (let k = 1; k < 5; k++) { const yy = -len * k / 5.5; x.beginPath(); x.moveTo(0, yy); x.lineTo(len * 0.15, yy - len * 0.1); x.moveTo(0, yy); x.lineTo(-len * 0.15, yy - len * 0.1); x.stroke(); }
+    x.restore();
+  }
+  // A bouquet of line-art peonies and leaves spreading from a corner towards angle a0.
+  function lineBouquet(x, cx, cy, a0, sc) {
+    const P = (d, a) => [cx + Math.cos(a0 + a) * d * sc, cy + Math.sin(a0 + a) * d * sc];
+    x.save(); x.lineWidth = 1.8;
+    [[300, -0.5], [330, 0.15], [280, 0.7], [220, -0.15], [240, 0.45]].forEach(([d, a]) => { const [px, py] = P(d * 0.55, a); lineLeaf(x, px, py, d * 0.5 * sc, a0 + a); });
+    for (const [d, a] of [[260, -0.35], [250, 0.55]]) { const [ex, ey] = P(d, a); x.beginPath(); x.moveTo(cx, cy); x.quadraticCurveTo(...P(d * 0.5, a + 0.2), ex, ey); x.stroke(); }
+    linePeony(x, ...P(150, 0.12), 105 * sc, 0.3);
+    linePeony(x, ...P(285, -0.32), 62 * sc, 1.2);
+    linePeony(x, ...P(270, 0.6), 55 * sc, 2.1);
+    x.restore();
+  }
+  // A meadow of painted wildflowers along the bottom of the card.
+  function meadow(x, W, H, top, R) {
+    const greens = ['#6F8B5E', '#86A070', '#5B7650', '#9DB284'];
+    const kinds = ['daisy', 'poppy', 'lavender', 'breath', 'cornflower', 'daisy', 'bud'];
+    for (let layer = 0; layer < 2; layer++) for (let i = 0; i < 46; i++) {
+      const sx = R() * (W + 80) - 40, h = (H - top) * (0.35 + R() * 0.65) * (layer ? 0.75 : 1), ex = sx + (R() - 0.5) * 90, ey = H + 10 - h;
+      x.save(); x.globalAlpha = layer ? 0.95 : 0.55;
+      x.strokeStyle = greens[i % 4]; x.lineWidth = 1.6 + R() * 1.4; x.beginPath(); x.moveTo(sx, H + 10); x.quadraticCurveTo(sx + (R() - 0.5) * 60, H - h / 2, ex, ey); x.stroke();
+      if (R() > 0.4) leafG(x, (sx + ex) / 2, H - h * 0.4, 30 + R() * 30, -Math.PI / 2 + (R() - 0.5) * 1.6, greens[(i + 1) % 4], '#C8D8B4');
+      const k = kinds[Math.floor(R() * kinds.length)];
+      if (k === 'daisy') { x.fillStyle = '#FFFFFF'; for (let p = 0; p < 12; p++) petal(x, ex, ey, 22, 6, p * Math.PI / 6); x.strokeStyle = 'rgba(0,0,0,.08)'; x.fillStyle = '#E8B33A'; x.beginPath(); x.arc(ex, ey, 6, 0, 7); x.fill(); }
+      else if (k === 'poppy') { x.fillStyle = R() > 0.5 ? '#E06A4E' : '#EE9A7A'; for (let p = 0; p < 5; p++) { const a = p * 1.26; x.beginPath(); x.arc(ex + Math.cos(a) * 11, ey + Math.sin(a) * 11, 13, 0, 7); x.fill(); } x.fillStyle = '#3B2A2A'; x.beginPath(); x.arc(ex, ey, 5, 0, 7); x.fill(); }
+      else if (k === 'lavender') { x.fillStyle = '#9C88C9'; for (let p = 0; p < 9; p++) { x.beginPath(); x.ellipse(ex + (p % 2 ? 4 : -4), ey + p * 7, 4, 6, 0, 0, 7); x.fill(); } }
+      else if (k === 'breath') { x.fillStyle = '#FFFFFF'; x.strokeStyle = '#B9C7A8'; x.lineWidth = 0.8; for (let p = 0; p < 9; p++) { const a = R() * 7, dd = R() * 22; x.beginPath(); x.arc(ex + Math.cos(a) * dd, ey + Math.sin(a) * dd, 3.2, 0, 7); x.fill(); x.stroke(); } }
+      else if (k === 'cornflower') { x.fillStyle = '#5E7FC4'; for (let p = 0; p < 10; p++) petal(x, ex, ey, 15, 5, p * Math.PI / 5); x.fillStyle = '#34497A'; x.beginPath(); x.arc(ex, ey, 4, 0, 7); x.fill(); }
+      else { x.fillStyle = '#F2B8B0'; x.beginPath(); x.ellipse(ex, ey, 7, 11, 0, 0, 7); x.fill(); }
+      x.restore();
+    }
+  }
+  // A Mughal palace (dome, minarets, arches), drawn from the ground line gy upwards.
+  function palaceArt(x, cx, gy, s, wall, line, shadowCol) {
+    x.save(); x.translate(cx, gy); x.scale(s, s); x.lineWidth = 2 / s * 1.2; x.strokeStyle = line; x.fillStyle = wall;
+    const shape = fn => { x.beginPath(); fn(); x.fill(); x.stroke(); };
+    const onion = (dx, by, w, h) => shape(() => { x.moveTo(dx - w, by); x.bezierCurveTo(dx - w * 1.35, by - h * 0.55, dx - w * 0.25, by - h * 0.7, dx, by - h); x.bezierCurveTo(dx + w * 0.25, by - h * 0.7, dx + w * 1.35, by - h * 0.55, dx + w, by); x.closePath(); });
+    const finial = (dx, by, h) => { x.beginPath(); x.moveTo(dx, by); x.lineTo(dx, by - h); x.stroke(); x.beginPath(); x.arc(dx, by - h * 0.55, 4, 0, 7); x.fill(); x.stroke(); };
+    const arch = (dx, by, w, h, col) => { x.save(); x.fillStyle = col; x.beginPath(); x.moveTo(dx - w / 2, by); x.lineTo(dx - w / 2, by - h * 0.62); x.quadraticCurveTo(dx - w / 2, by - h * 0.95, dx, by - h); x.quadraticCurveTo(dx + w / 2, by - h * 0.95, dx + w / 2, by - h * 0.62); x.lineTo(dx + w / 2, by); x.closePath(); x.fill(); x.stroke(); x.restore(); };
+    for (const k of [-1, 1]) { // minarets
+      const mx = k * 380;
+      shape(() => x.rect(mx - 17, -360, 34, 360));
+      shape(() => x.rect(mx - 26, -250, 52, 12)); shape(() => x.rect(mx - 26, -360, 52, 12));
+      onion(mx, -372, 22, 60); finial(mx, -430, 30);
+    }
+    shape(() => x.rect(-300, -230, 600, 230)); // main hall
+    shape(() => x.rect(-120, -270, 240, 40)); // drum
+    onion(0, -270, 125, 200); finial(0, -468, 52);
+    for (const k of [-1, 1]) { shape(() => x.rect(k * 220 - 42, -280, 84, 50)); onion(k * 220, -280, 46, 74); finial(k * 220, -352, 26); }
+    arch(0, 0, 150, 200, shadowCol);
+    for (const k of [-1, 1]) { arch(k * 165, -30, 66, 120, shadowCol); arch(k * 250, -30, 50, 100, shadowCol); arch(k * 165, -160, 50, 50, shadowCol); arch(k * 250, -150, 40, 46, shadowCol); }
+    shape(() => x.rect(-330, -6, 660, 12));
+    x.restore();
+  }
+  function marigold(x, cx, cy, r, c1, c2) {
+    x.save(); x.fillStyle = c1; x.beginPath(); x.arc(cx, cy, r, 0, 7); x.fill();
+    x.fillStyle = c2; for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; x.beginPath(); x.arc(cx + Math.cos(a) * r * 0.62, cy + Math.sin(a) * r * 0.62, r * 0.36, 0, 7); x.fill(); }
+    x.fillStyle = c1; for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3 + 0.3; x.beginPath(); x.arc(cx + Math.cos(a) * r * 0.28, cy + Math.sin(a) * r * 0.28, r * 0.28, 0, 7); x.fill(); }
+    x.fillStyle = 'rgba(0,0,0,.12)'; x.beginPath(); x.arc(cx + r * 0.25, cy + r * 0.3, r * 0.75, 0, 7); x.fill();
+    x.restore();
   }
 
   // Each design draws its background and ornaments, and says where the text goes and how it is laid out:
   // { top, bottom, maxW, cx, align, ev ('grid' | 'table' | 'list'), divider, mono, names ('stack' | 'inline'), seq, colours… }
   // or { parts: [ …the same, once for each area of the card… ] }.
   const DESIGNS = {
+    // Arch & seal: a cream arch-shaped card lying on terracotta, closed with a wax seal.
+    archway(x, W, H, t, d) {
+      x.fillStyle = t.bg[0]; x.fillRect(0, 0, W, H);
+      const v = x.createRadialGradient(W / 2, H / 2, 200, W / 2, H / 2, H * 0.8); v.addColorStop(0, 'rgba(0,0,0,0)'); v.addColorStop(1, 'rgba(0,0,0,.25)'); x.fillStyle = v; x.fillRect(0, 0, W, H);
+      noise(x, W, H, 0.1);
+      const l = 104, r = W - 104, top = 96, bot = H - 104, rad = (r - l) / 2;
+      const arch = k => { x.beginPath(); x.moveTo(l + k, bot - k); x.lineTo(l + k, top + rad); x.arc(W / 2, top + rad, rad - k, Math.PI, 0); x.lineTo(r - k, bot - k); x.closePath(); };
+      x.save(); x.shadowColor = 'rgba(40,10,0,.45)'; x.shadowBlur = 40; x.shadowOffsetY = 18; arch(0); x.fillStyle = '#FAF5EE'; x.fill(); x.restore();
+      x.save(); arch(0); x.clip(); noise(x, W, H, 0.06); x.restore();
+      x.save(); x.strokeStyle = t.acc; x.globalAlpha = 0.45; x.lineWidth = 1.4; arch(24); x.stroke(); x.restore();
+      const [a, b] = initials(d);
+      seal(x, W / 2, bot, 74, '#8F2F25', rtl(a + b) ? `${a}${b}` : `${a}${b}`);
+      return { top: 360, bottom: H - 250, maxW: W - 340, mono: 'thin', divider: 'dots' };
+    },
+
+    // Editorial: the date set huge across the top like a magazine masthead, everything else left-aligned.
+    atelier(x, W, H, t, d) {
+      const ur = d.lang === 'ur', m = 92;
+      x.fillStyle = t.bg[0]; x.fillRect(0, 0, W, H); noise(x, W, H, 0.07);
+      const p = d.events[0] && dateParts(d.events[0].date, d.lang);
+      x.save(); x.fillStyle = t.ink;
+      if (p) {
+        const big = `${p.dd}.${p.mm}.${p.yr.slice(2)}`, f = '400 {s}px "Bodoni Moda", Didot, Georgia, serif';
+        let s = 330; setFont(x, f, s); s = Math.min(s, s * (W - 2 * m) / x.measureText(big).width); setFont(x, f, s);
+        x.textAlign = 'center'; x.direction = 'ltr'; x.fillText(big, W / 2, 110 + s * 0.72);
+        const yy = 140 + s * 0.72;
+        x.fillRect(m, yy, W - 2 * m, 2);
+        const tm = fmtTime(d.events[0].time, d.lang), F = ur ? '700 {s}px "Noto Nastaliq Urdu", serif' : '500 {s}px "Jost", Arial, sans-serif';
+        setFont(x, F, ur ? 24 : 22, ur ? 0 : 8);
+        x.textAlign = 'left'; x.direction = rtl(p.wd) ? 'rtl' : 'ltr'; x.fillText(ur ? p.wd : p.wd.toUpperCase(), m, yy + (ur ? 60 : 44));
+        x.textAlign = 'right'; x.direction = 'ltr'; x.fillText(ur ? tm : tm.toUpperCase(), W - m, yy + (ur ? 60 : 44));
+        if ('letterSpacing' in x) x.letterSpacing = '0px';
+      }
+      x.fillRect(m, H - 118, W - 2 * m, 1.2);
+      x.restore();
+      return { top: 600, bottom: H - 150, maxW: W - 2 * m, cx: ur ? W - m : m, align: ur ? 'right' : 'left', seq: ['bism', 'hosts', 'names', 'msg', 'divider', 'events'], ev: 'cols', divider: 'line', mono: 'none' };
+    },
+
+    // Mughal pastel: a dreamy sunset sky over a palace and its reflecting pool, painted in soft pastels with gold lines.
+    palace(x, W, H, t) {
+      const sky = x.createLinearGradient(0, 0, 0, H); sky.addColorStop(0, '#FDF1E8'); sky.addColorStop(0.45, '#FBE1D6'); sky.addColorStop(0.75, '#F3D3DA'); sky.addColorStop(1, '#E3D6EE');
+      x.fillStyle = sky; x.fillRect(0, 0, W, H);
+      const gy = H - 210, R = rng(31);
+      const sun = x.createRadialGradient(W / 2, gy - 300, 20, W / 2, gy - 300, 420); sun.addColorStop(0, 'rgba(255,214,170,.9)'); sun.addColorStop(1, 'rgba(255,214,170,0)'); x.fillStyle = sun; x.fillRect(0, 0, W, H);
+      wash(x, 180, 260, 300, '#FFFFFF', R); wash(x, W - 200, 180, 320, '#FFFFFF', R); wash(x, W - 140, gy - 380, 260, '#F7C6CF', R); wash(x, 140, gy - 300, 260, '#E7CDEB', R);
+      x.save(); x.strokeStyle = 'rgba(122,62,94,.55)'; x.lineWidth = 2; x.lineCap = 'round';
+      for (const [bx, by, s] of [[230, 520, 1], [280, 490, 0.8], [W - 260, 430, 1], [W - 210, 470, 0.7]]) { x.beginPath(); x.moveTo(bx - 14 * s, by - 6 * s); x.quadraticCurveTo(bx - 6 * s, by - 10 * s, bx, by); x.quadraticCurveTo(bx + 6 * s, by - 10 * s, bx + 14 * s, by - 6 * s); x.stroke(); }
+      x.restore();
+      const s = 0.74;
+      x.save(); x.globalAlpha = 0.95; palaceArt(x, W / 2, gy, s, '#FFF7F2', '#B88A5E', '#F2CFC6'); x.restore();
+      const pool = x.createLinearGradient(0, gy, 0, H); pool.addColorStop(0, '#EBC9CF'); pool.addColorStop(1, '#D9C6E6');
+      x.fillStyle = pool; x.fillRect(0, gy + 6, W, H - gy);
+      x.save(); x.beginPath(); x.rect(0, gy + 6, W, H - gy); x.clip(); x.globalAlpha = 0.28; x.translate(0, 2 * gy + 12); x.scale(1, -1); palaceArt(x, W / 2, gy, s, '#FFF7F2', '#B88A5E', '#F2CFC6'); x.restore();
+      x.save(); x.strokeStyle = 'rgba(255,255,255,.6)'; x.lineWidth = 2; for (let k = 0; k < 8; k++) { const yy = gy + 40 + k * 26, w = 120 + R() * 220, xx = R() * (W - w); x.beginPath(); x.moveTo(xx, yy); x.lineTo(xx + w, yy); x.stroke(); } x.restore();
+      x.save(); x.strokeStyle = t.acc; x.lineWidth = 1.4; x.globalAlpha = 0.7; x.strokeRect(40, 40, W - 80, H - 80); x.restore();
+      return { top: 190, bottom: gy - 470 * s - 40, maxW: W - 240, names: 'inline', seq: ['bism', 'hosts', 'request', 'names', 'pline', 'msg', 'divider', 'events'], mono: 'thin', divider: 'thin' };
+    },
+
+    // Nikah jaali: a fine gold arch, its crown filled with a fading lattice of eight-point stars.
+    nikahline(x, W, H, t) {
+      x.fillStyle = t.bg[0]; x.fillRect(0, 0, W, H); noise(x, W, H, 0.05);
+      const l = 120, r = W - 120, top = 104, bot = H - 104, rad = (r - l) / 2;
+      const arch = k => { x.beginPath(); x.moveTo(l + k, bot - k); x.lineTo(l + k, top + rad); x.arc(W / 2, top + rad, rad - k, Math.PI, 0); x.lineTo(r - k, bot - k); x.closePath(); };
+      x.save(); arch(0); x.clip();
+      x.strokeStyle = t.acc; x.lineWidth = 1.3; x.globalAlpha = 0.7;
+      const sz = 78;
+      for (let yy = top; yy < top + rad + 40; yy += sz) for (let xx = W / 2 - sz * 6; xx <= W / 2 + sz * 6; xx += sz) {
+        star8(x, xx, yy, sz * 0.42); x.stroke();
+        x.save(); x.translate(xx + sz / 2, yy + sz / 2); x.rotate(Math.PI / 4); x.strokeRect(-sz * 0.12, -sz * 0.12, sz * 0.24, sz * 0.24); x.restore();
+      }
+      x.globalAlpha = 1;
+      const fade = x.createLinearGradient(0, top + 60, 0, top + 330); fade.addColorStop(0, 'rgba(251,248,241,0)'); fade.addColorStop(1, 'rgba(251,248,241,1)');
+      x.fillStyle = fade; x.fillRect(0, top, W, H);
+      x.restore();
+      x.save(); x.strokeStyle = t.acc; x.lineWidth = 2.2; arch(0); x.stroke(); x.lineWidth = 1; arch(14); x.stroke(); x.restore();
+      x.save(); x.fillStyle = t.acc; star8(x, W / 2, top - 30, 13); x.fill(); x.restore();
+      return { top: 450, bottom: H - 170, maxW: W - 400, mono: 'star', divider: 'thin' };
+    },
+
+    // Bordeaux: deep wine card in white ink, the families' line curving over the top.
+    bordeaux(x, W, H, t, d) {
+      const ur = d.lang === 'ur';
+      const g = x.createRadialGradient(W / 2, H * 0.35, 80, W / 2, H * 0.5, H * 0.8); g.addColorStop(0, t.bg[0]); g.addColorStop(1, t.bg[1]);
+      x.fillStyle = g; x.fillRect(0, 0, W, H); noise(x, W, H, 0.09);
+      x.save(); x.strokeStyle = t.ink; x.globalAlpha = 0.4; x.lineWidth = 1; x.strokeRect(44, 44, W - 88, H - 88); x.restore();
+      const host = d.hosts || L[ur ? 'ur' : 'en'].together;
+      if (ur || rtl(host)) { x.save(); x.fillStyle = t.ink; x.textAlign = 'center'; x.direction = 'rtl'; const fl = fitLines(x, host, '700 {s}px "Noto Nastaliq Urdu", serif', 40, W - 300, 1); setFont(x, '700 {s}px "Noto Nastaliq Urdu", serif', fl.size); x.fillText(fl.lines[0] || '', W / 2, 300); x.restore(); }
+      else arcText(x, host.toUpperCase(), '500 {s}px "Jost", Arial, sans-serif', 40, 9, W / 2, 610, 380, 2.05, t.ink);
+      if ('letterSpacing' in x) x.letterSpacing = '0px';
+      sparkle(x, W / 2, 330, 16, t.alt); sparkle(x, 170, 170, 9, t.alt); sparkle(x, W - 170, 170, 9, t.alt);
+      if (d.bismillah) { x.save(); x.fillStyle = t.alt; x.textAlign = 'center'; x.direction = 'rtl'; x.font = '700 32px "Noto Nastaliq Urdu", serif'; x.fillText(L.ur.bismillah, W / 2, 130); x.restore(); }
+      return { top: ur ? 420 : 500, bottom: H - 130, maxW: W - 260, seq: ['request', 'names', 'msg', 'divider', 'events'], ev: 'cols', divider: 'thin', mono: 'none' };
+    },
+
+    // Quiet luxury: a soft stone card with torn edges on linen, a small monogram and spaced capitals.
+    stone(x, W, H, t, d) {
+      x.fillStyle = t.bg[0]; x.fillRect(0, 0, W, H); noise(x, W, H, 0.12);
+      x.save(); x.shadowColor = 'rgba(60,50,40,.35)'; x.shadowBlur = 30; x.shadowOffsetY = 12; deckle(x, 70, 70, W - 70, H - 70, 5, 3); x.fillStyle = '#F6F2EA'; x.fill(); x.restore();
+      x.save(); deckle(x, 70, 70, W - 70, H - 70, 5, 3); x.clip(); noise(x, W, H, 0.07); x.restore();
+      const [a, b] = initials(d), u = rtl(a + b);
+      x.save(); x.strokeStyle = t.acc; x.lineWidth = 1.2; x.beginPath(); x.arc(W / 2, 230, 66, 0, 7); x.stroke(); x.beginPath(); x.arc(W / 2, 230, 74, 0, 7); x.globalAlpha = 0.4; x.stroke(); x.globalAlpha = 1;
+      x.fillStyle = t.ink; x.textAlign = 'center'; x.direction = u ? 'rtl' : 'ltr';
+      x.font = u ? '700 40px "Noto Nastaliq Urdu", serif' : 'italic 400 54px "Instrument Serif", Georgia, serif'; x.fillText(u ? `${a} و ${b}` : `${a}&${b}`, W / 2, 230 + (u ? 14 : 17)); x.restore();
+      return { top: 400, bottom: H - 150, maxW: W - 340, mono: 'none', divider: 'thin' };
+    },
+
+    // Gold line: gold-foil line drawings of peonies growing in from two corners; handwritten names in foil.
+    goldline(x, W, H, t) {
+      x.fillStyle = t.bg[0]; x.fillRect(0, 0, W, H); noise(x, W, H, 0.05);
+      const g = foil(x, W, H, true);
+      x.save(); x.strokeStyle = g; lineBouquet(x, W + 10, -10, Math.PI * 0.75, 1.05); lineBouquet(x, -10, H + 10, -Math.PI * 0.25, 0.9); x.restore();
+      x.save(); x.strokeStyle = g; x.lineWidth = 1.2; x.strokeRect(48, 48, W - 96, H - 96); x.restore();
+      return { top: 390, bottom: H - 230, maxW: W - 340, acc: g, alt: g, nameCol: g, ampCol: g, mono: 'thin', divider: 'dots' };
+    },
+
+    // Wildflower: a white card with a painted meadow of daisies, poppies and lavender along the bottom.
+    wildflower(x, W, H, t) {
+      x.fillStyle = t.bg[0]; x.fillRect(0, 0, W, H); noise(x, W, H, 0.05);
+      const R = rng(77), top = H - 440;
+      wash(x, 160, H - 120, 320, '#F2B8A8', R); wash(x, W - 180, H - 100, 340, '#C9D9B8', R); wash(x, W / 2, H - 60, 300, '#E9DDF5', R);
+      meadow(x, W, H, top, R);
+      return { top: 210, bottom: top - 10, maxW: W - 260, mono: 'thin', divider: 'thin' };
+    },
+
+    // Black tie: matte black with crisp white type, fashion-magazine contrast.
+    noirink(x, W, H, t, d) {
+      x.fillStyle = t.bg[0]; x.fillRect(0, 0, W, H); noise(x, W, H, 0.08);
+      x.save(); x.strokeStyle = t.ink; x.globalAlpha = 0.3; x.lineWidth = 1; x.strokeRect(40, 40, W - 80, H - 80); x.restore();
+      const p = d.events[0] && dateParts(d.events[0].date, 'en');
+      if (p) {
+        x.save(); x.fillStyle = t.ink; x.strokeStyle = t.ink; setFont(x, '500 {s}px "Jost", Arial, sans-serif', 24, 12); x.textAlign = 'center'; x.direction = 'ltr';
+        const s = `${p.dd} · ${p.mm} · ${p.yr}`, w = x.measureText(s).width; x.fillText(s, W / 2, 170);
+        x.lineWidth = 1; x.globalAlpha = 0.6; x.beginPath(); x.moveTo(W / 2 - w / 2 - 30, 162); x.lineTo(110, 162); x.moveTo(W / 2 + w / 2 + 30, 162); x.lineTo(W - 110, 162); x.stroke();
+        x.restore(); if ('letterSpacing' in x) x.letterSpacing = '0px';
+      }
+      return { top: 290, bottom: H - 130, maxW: W - 260, ev: 'cols', mono: 'none', divider: 'thin' };
+    },
+
+    // Mehndi night: hot pink with strings of marigolds hanging from the top and little diyas glowing at the bottom.
+    mehndipop(x, W, H, t) {
+      const g = x.createRadialGradient(W / 2, H * 0.45, 100, W / 2, H * 0.5, H * 0.8); g.addColorStop(0, t.bg[0]); g.addColorStop(1, t.bg[1]);
+      x.fillStyle = g; x.fillRect(0, 0, W, H); noise(x, W, H, 0.08);
+      const R = rng(5);
+      for (let i = 0; i < 90; i++) { x.save(); x.globalAlpha = 0.25 + R() * 0.35; x.fillStyle = R() > 0.5 ? '#FFD54F' : '#FFFFFF'; x.beginPath(); x.arc(R() * W, 380 + R() * (H - 560), 1.5 + R() * 2.5, 0, 7); x.fill(); x.restore(); }
+      const n = 13;
+      for (let k = 0; k < n; k++) {
+        const gx = 40 + k * (W - 80) / (n - 1), len = 3 + Math.round(Math.abs(k - (n - 1) / 2) * 0.95);
+        x.save(); x.strokeStyle = '#7A0B3A'; x.lineWidth = 2; x.beginPath(); x.moveTo(gx, 0); x.lineTo(gx, 20 + len * 32); x.stroke(); x.restore();
+        leaf(x, gx - 8, 18, 34, -2.5, '#2E7D32'); leaf(x, gx + 8, 18, 34, 2.5, '#43A047');
+        for (let j = 0; j < len; j++) marigold(x, gx, 34 + j * 32, 17, j % 3 === 1 ? '#FFB300' : '#F57C00', j % 3 === 1 ? '#FFD54F' : '#FFA726');
+        const ty = 34 + len * 32;
+        x.save(); x.fillStyle = '#FFD54F'; x.beginPath(); x.moveTo(gx - 9, ty - 4); x.quadraticCurveTo(gx, ty - 22, gx + 9, ty - 4); x.lineTo(gx + 11, ty + 6); x.lineTo(gx - 11, ty + 6); x.closePath(); x.fill(); x.beginPath(); x.arc(gx, ty + 9, 3.5, 0, 7); x.fill(); x.restore();
+      }
+      for (let k = 0; k < 7; k++) {
+        const dx = 120 + k * (W - 240) / 6, dy = H - 92;
+        const glow = x.createRadialGradient(dx, dy - 34, 2, dx, dy - 34, 70); glow.addColorStop(0, 'rgba(255,214,120,.7)'); glow.addColorStop(1, 'rgba(255,214,120,0)'); x.fillStyle = glow; x.fillRect(dx - 70, dy - 104, 140, 140);
+        x.save(); x.fillStyle = '#FFB300'; x.beginPath(); x.moveTo(dx, dy - 62); x.quadraticCurveTo(dx + 12, dy - 34, dx, dy - 22); x.quadraticCurveTo(dx - 12, dy - 34, dx, dy - 62); x.fill();
+        x.fillStyle = '#FFF3C4'; x.beginPath(); x.moveTo(dx, dy - 48); x.quadraticCurveTo(dx + 5, dy - 33, dx, dy - 26); x.quadraticCurveTo(dx - 5, dy - 33, dx, dy - 48); x.fill();
+        x.fillStyle = '#B5502B'; x.beginPath(); x.moveTo(dx - 34, dy - 20); x.quadraticCurveTo(dx, dy + 22, dx + 34, dy - 20); x.closePath(); x.fill();
+        x.fillStyle = '#E07B39'; x.fillRect(dx - 34, dy - 22, 68, 5); x.restore();
+      }
+      return { top: 400, bottom: H - 190, maxW: W - 260, seq: ['bism', 'hosts', 'hero', 'names', 'pline', 'msg', 'divider', 'events'], names: 'inline', mono: 'none', divider: 'dots' };
+    },
+
+    // Groovy: 70s rainbows and daisies on a scalloped cream card.
+    retro(x, W, H, t) {
+      x.fillStyle = '#C8643B'; x.fillRect(0, 0, W, H);
+      const a = 54, step = 36, rr = 15;
+      const card = () => {
+        x.beginPath(); x.rect(a, a, W - 2 * a, H - 2 * a);
+        for (let xx = a; xx <= W - a + 1; xx += step) { x.moveTo(xx + rr, a); x.arc(xx, a, rr, 0, 7); x.moveTo(xx + rr, H - a); x.arc(xx, H - a, rr, 0, 7); }
+        for (let yy = a; yy <= H - a + 1; yy += step) { x.moveTo(a + rr, yy); x.arc(a, yy, rr, 0, 7); x.moveTo(W - a + rr, yy); x.arc(W - a, yy, rr, 0, 7); }
+      };
+      card(); x.fillStyle = t.bg[0]; x.fill('nonzero'); noise(x, W, H, 0.08);
+      x.save(); x.beginPath(); x.rect(a, a, W - 2 * a, H - 2 * a); x.clip();
+      const bands = ['#C8643B', '#E3A83B', '#E8A1A8', '#8FA37E'];
+      for (const [cx, cy, a0] of [[a, H - a, -Math.PI / 2], [W - a, a, Math.PI / 2]]) bands.forEach((c, k) => { x.strokeStyle = c; x.lineWidth = 40; x.beginPath(); x.arc(cx, cy, 300 - k * 40, a0, a0 + Math.PI / 2); x.stroke(); });
+      x.restore();
+      const daisy = (cx, cy, r) => { x.save(); x.fillStyle = '#FFFFFF'; for (let p = 0; p < 10; p++) petal(x, cx, cy, r, r * 0.42, p * Math.PI / 5); x.fillStyle = '#E3A83B'; x.beginPath(); x.arc(cx, cy, r * 0.3, 0, 7); x.fill(); x.restore(); };
+      daisy(W - 150, H - 170, 34); daisy(W - 230, H - 110, 22); daisy(150, 170, 30); daisy(240, 120, 18);
+      return { top: 380, bottom: H - 330, maxW: W - 320, mono: 'flower', divider: 'dots' };
+    },
+
+    // Magazine: the photo fills the card; the names sit over it in large white type, like a fashion cover.
+    magazine(x, W, H, t, d, img) {
+      x.fillStyle = t.bg[1]; x.fillRect(0, 0, W, H);
+      if (img) coverImg(x, img, 0, 0, W, H, 0.25);
+      else {
+        const pg = x.createLinearGradient(0, 0, W, H); pg.addColorStop(0, '#C9A28A'); pg.addColorStop(0.5, '#6E6A7A'); pg.addColorStop(1, '#232733'); x.fillStyle = pg; x.fillRect(0, 0, W, H);
+        const [a, b] = initials(d), u = rtl(a + b);
+        x.save(); x.fillStyle = 'rgba(255,255,255,.1)'; x.textAlign = 'center'; x.direction = u ? 'rtl' : 'ltr'; x.font = u ? '700 260px "Noto Nastaliq Urdu", serif' : '400 520px "Bodoni Moda", Didot, serif'; x.fillText(u ? `${a}${b}` : `${a}${b}`, W / 2, H * 0.48); x.restore();
+        noise(x, W, H, 0.1);
+      }
+      const top = x.createLinearGradient(0, 0, 0, 260); top.addColorStop(0, 'rgba(0,0,0,.5)'); top.addColorStop(1, 'rgba(0,0,0,0)'); x.fillStyle = top; x.fillRect(0, 0, W, 260);
+      const bot = x.createLinearGradient(0, H * 0.36, 0, H); bot.addColorStop(0, 'rgba(10,10,14,0)'); bot.addColorStop(0.35, 'rgba(10,10,14,.6)'); bot.addColorStop(1, 'rgba(10,10,14,.92)'); x.fillStyle = bot; x.fillRect(0, H * 0.36, W, H * 0.64);
+      const p = d.events[0] && dateParts(d.events[0].date, 'en');
+      x.save(); x.fillStyle = '#fff'; setFont(x, '500 {s}px "Jost", Arial, sans-serif', 22, 9); x.direction = 'ltr';
+      x.textAlign = 'left'; x.fillText(d.lang === 'ur' ? '' : 'THE WEDDING', 70, 96);
+      if (p) { x.textAlign = 'right'; x.fillText(`${p.dd} · ${p.mm} · ${p.yr}`, W - 70, 96); }
+      x.fillRect(70, 116, W - 140, 1.2); x.restore(); if ('letterSpacing' in x) x.letterSpacing = '0px';
+      if (d.bismillah) { x.save(); x.fillStyle = '#fff'; x.textAlign = 'center'; x.direction = 'rtl'; x.font = '700 30px "Noto Nastaliq Urdu", serif'; x.fillText(L.ur.bismillah, W / 2, 190); x.restore(); }
+      const ur = d.lang === 'ur';
+      return { top: Math.round(H * 0.5), bottom: H - 90, maxW: W - 160, cx: ur ? W - 80 : 80, align: ur ? 'right' : 'left', seq: ['names', 'pline', 'msg', 'divider', 'events'], noParents: true, ev: 'cols', mono: 'none', divider: 'none' };
+    },
+
     // Mughal jharokha: an arch with an onion dome, two pillars with little domes, a lattice and lanterns.
     royal(x, W, H, t) {
       bgFill(x, W, H, t);
@@ -628,8 +1003,24 @@ window.WeddingCard = (() => {
 
   // ---------- writing the text ----------
   const SEQ = ['bism', 'hosts', 'request', 'names', 'msg', 'divider', 'events'];
+  const FK = {
+    instrument: '400 {s}px "Instrument Serif", Georgia, serif', instrumentI: 'italic 400 {s}px "Instrument Serif", Georgia, serif',
+    bodoni: '400 {s}px "Bodoni Moda", Didot, Georgia, serif', bodoniI: 'italic 400 {s}px "Bodoni Moda", Didot, Georgia, serif',
+    ballet: '400 {s}px "Ballet", cursive', fraunces: 'italic 600 {s}px "Fraunces", Georgia, serif',
+    jost: '500 {s}px "Jost", Arial, sans-serif', jostL: '400 {s}px "Jost", Arial, sans-serif',
+  };
   function fontsFor(t, ur) {
-    const NAST = w => `${w} {s}px "Noto Nastaliq Urdu", serif`, sans = t.head === 'sans';
+    const NAST = w => `${w} {s}px "Noto Nastaliq Urdu", serif`, sans = t.head === 'sans', ty = t.type;
+    if (ty) {
+      return {
+        NAST, hk: ur ? 1 : 0.78, hsp: ur ? 0 : 8,
+        head: ur ? NAST(700) : FK.jost, body: ur ? NAST(400) : FK.instrumentI, bodyUp: ur ? NAST(400) : FK.instrument, bold: ur ? NAST(700) : FK.instrument,
+        name: n => rtl(n) ? NAST(700) : FK[ty.name], amp: ur ? NAST(700) : FK[ty.amp], hero: FK[ty.name],
+        nameSize: n => (rtl(n) ? 92 : ty.nameSize), nameLh: n => (rtl(n) ? 1.7 : ty.nameLh), keep: !ty.caps, nameSp: ty.nameSp || 0, nameGap: ur ? 0 : ty.nameGap || 0,
+        ampSize: ur ? 60 : ty.ampSize, ampGap: ur ? 66 : ty.ampGap, inlineSize: n => (rtl(n) ? 84 : ty.inlineSize),
+      };
+    }
+    const keep = t.names === 'script' || t.names === 'serif';
     return {
       NAST, hk: ur ? 1 : sans ? 0.8 : 1, hsp: ur ? 0 : sans ? 7 : 5,
       head: ur ? NAST(700) : sans ? '600 {s}px "Montserrat", Arial, sans-serif' : '600 {s}px "Cinzel", Georgia, serif',
@@ -638,6 +1029,10 @@ window.WeddingCard = (() => {
       bold: ur ? NAST(700) : '600 {s}px "Cormorant Garamond", Georgia, serif',
       name: n => rtl(n) ? NAST(700) : { caps: '600 {s}px "Cormorant Garamond", Georgia, serif', deco: '500 {s}px "Cinzel", Georgia, serif', serif: 'italic 500 {s}px "Playfair Display", Georgia, serif' }[t.names] || '{s}px "Great Vibes", cursive',
       amp: ur ? NAST(700) : t.names === 'script' ? '{s}px "Great Vibes", cursive' : 'italic 500 {s}px "Playfair Display", Georgia, serif',
+      nameSize: n => (rtl(n) ? 92 : { script: 150, caps: 92, deco: 88, serif: 124 }[t.names]),
+      nameLh: n => (rtl(n) ? 1.7 : { script: 0.95, serif: 1.05 }[t.names] || 1.08), keep, nameSp: keep ? 0 : 7,
+      ampSize: ur ? 60 : t.names === 'script' ? 100 : 64, ampGap: ur ? 66 : t.names === 'script' ? 78 : 66,
+      inlineSize: n => (rtl(n) ? 84 : { script: 128, serif: 104 }[t.names] || 76),
     };
   }
 
@@ -646,10 +1041,7 @@ window.WeddingCard = (() => {
   function stack(x, d, o, F, t, L0) {
     const ur = d.lang === 'ur', A = o.align, ax = o.ax, maxW = o.maxW, hk = F.hk, hsp = F.hsp;
     const caps = s => (ur || rtl(s) ? s : s.toUpperCase());
-    const keepCase = t.names === 'script' || t.names === 'serif';
-    const nameSize = n => (rtl(n) ? 92 : { script: 150, caps: 92, deco: 88, serif: 124 }[t.names]);
-    const nameLh = n => (rtl(n) ? 1.7 : { script: 0.95, serif: 1.05 }[t.names] || 1.08);
-    const nameSp = keepCase ? 0 : 7;
+    const keepCase = F.keep, nameSize = F.nameSize, nameLh = F.nameLh, nameSp = F.nameSp;
     const ev = d.events.slice(0, 6);
     const fn = (paint, fs, gap) => {
       const S = v => v * fs;
@@ -666,6 +1058,7 @@ window.WeddingCard = (() => {
         if (kind === 'rule') rule(x, ax, yy, 120, o.acc);
         else if (kind === 'star') { x.save(); x.fillStyle = o.acc; star8(x, ax, yy, 20); x.fill(); x.fillStyle = '#FBF6EA'; x.beginPath(); x.arc(ax, yy, 6, 0, 7); x.fill(); x.restore(); }
         else if (kind === 'flower') flower(x, ax, yy, 24, t.alt, o.acc, 8);
+        else if (kind === 'thin') { x.save(); x.strokeStyle = o.acc; x.lineWidth = 1.2; x.beginPath(); x.moveTo(ax - 50, yy); x.lineTo(ax + 50, yy); x.stroke(); x.restore(); }
         else if (kind === 'line') { x.save(); x.strokeStyle = o.acc; x.lineWidth = 3; x.beginPath(); x.moveTo(ax, yy); x.lineTo(ax + (A === 'right' ? -90 : 90), yy); x.stroke(); x.restore(); }
         else mandala(x, ax, yy, 26, t);
       };
@@ -674,7 +1067,7 @@ window.WeddingCard = (() => {
         const lh = fl.size * nameLh(who);
         y += lh * (rtl(who) ? 0.75 : 0.82);
         if (paint) { x.fillStyle = o.nameCol; drawLines(x, fl, F.name(who), ax, y, lh, nameSp, A); }
-        y += (fl.lines.length - 1) * lh + S(rtl(who) ? 34 : 20);
+        y += (fl.lines.length - 1) * lh + S(rtl(who) ? 34 : 20 + (F.nameGap || 0));
         if (parent) {
           const pl = fitLines(x, `${label} ${parent}`, F.body, S(ur ? 26 : 31), maxW, 2);
           y += S(ur ? 44 : 30);
@@ -697,7 +1090,7 @@ window.WeddingCard = (() => {
             const fl = fitLines(x, L0.bismillah, F.NAST(700), S(42), maxW);
             if (paint) { x.fillStyle = o.acc; drawLines(x, fl, F.NAST(700), ax, y, 0, 0, A); }
             y += S(74);
-          } else if (o.mono !== 'none') { if (paint) ornament(o.mono, y - (o.mono === 'rule' || o.mono === 'line' ? 14 : 20)); y += S(50); }
+          } else if (o.mono !== 'none') { if (paint) ornament(o.mono, y - (['rule', 'line', 'thin'].includes(o.mono) ? 14 : 20)); y += S(50); }
         },
         label() { put(caps(L0.weddingOf), F.head, S((ur ? 30 : 24) * hk), S(ur ? 60 : 40), o.ink, ur ? 0 : 9, 1); y += S(6); },
         hosts() {
@@ -706,23 +1099,32 @@ window.WeddingCard = (() => {
         },
         request() { put(L0.request, F.body, S(ur ? 28 : 34), S(ur ? 62 : 44), o.ink); G(0.8); },
         invite2() { y += S(ur ? 50 : 46); put(L0.invite2, F.body, S(ur ? 28 : 34), S(ur ? 62 : 44), o.ink); y -= S(ur ? 40 : 26); },
+        hero() { // the first event's name, very large (Mehndi night)
+          const e0 = d.events[0];
+          if (!e0) return;
+          const hf = rtl(e0.name) ? F.NAST(700) : F.hero, hs = S(rtl(e0.name) ? 96 : 190);
+          y += hs * (rtl(e0.name) ? 0.9 : 0.78);
+          const fl = fitLines(x, e0.name, hf, hs, maxW, 1, 0, 0.5);
+          if (paint) { x.fillStyle = o.alt; drawLines(x, fl, hf, ax, y, 0, 0, A); }
+          y += S(rtl(e0.name) ? 40 : 30);
+        },
         married() { y += S(ur ? 50 : 48); put(L0.married, F.body, S(ur ? 30 : 38), S(ur ? 62 : 46), o.ink); y -= S(ur ? 40 : 28); },
         std() { if (ur && d.bismillah) y += S(26); put(caps(L0.std), F.head, S(ur ? 52 : 58 * hk), S(ur ? 96 : 80), o.acc, ur ? 0 : 12, 1); y += S(10); G(0.5); },
         names() {
           if (o.names !== 'inline') {
-            person(d.groom, d.gp, L0.son);
-            y += S(ur ? 66 : t.names === 'script' ? 78 : 66);
-            if (paint) { x.fillStyle = o.ampCol; setFont(x, F.amp, S(ur ? 60 : t.names === 'script' ? 100 : 64)); x.direction = ur ? 'rtl' : 'ltr'; x.textAlign = A; x.fillText(ur ? 'و' : '&', ax, y); x.textAlign = 'center'; }
+            person(d.groom, o.noParents ? '' : d.gp, L0.son);
+            y += S(F.ampGap);
+            if (paint) { x.fillStyle = o.ampCol; setFont(x, F.amp, S(F.ampSize)); x.direction = ur ? 'rtl' : 'ltr'; x.textAlign = A; x.fillText(ur ? 'و' : '&', ax, y); x.textAlign = 'center'; }
             y += S(10);
-            person(d.bride, d.bp, L0.daughter);
+            person(d.bride, o.noParents ? '' : d.bp, L0.daughter);
             return;
           }
           const both = rtl(d.groom + d.bride) || ur ? `${d.groom} و ${d.bride}` : `${d.groom} & ${d.bride}`, f = F.name(both);
-          const size = rtl(both) ? 84 : { script: 128, serif: 104 }[t.names] || 76;
+          const size = F.inlineSize(both);
           const fl = fitLines(x, keepCase ? both : caps(both), f, S(size), maxW, 3, nameSp, 0.6), lh = fl.size * nameLh(both);
           y += lh * (rtl(both) ? 0.72 : 0.8);
           if (paint) { x.fillStyle = o.nameCol; drawLines(x, fl, f, ax, y, lh, nameSp, A); }
-          y += (fl.lines.length - 1) * lh + S(rtl(both) ? 30 : 18);
+          y += (fl.lines.length - 1) * lh + S(rtl(both) ? 30 : 18 + (F.nameGap || 0));
         },
         pline() {
           const ps = [d.gp && `${L0.son} ${d.gp}`, d.bp && `${L0.daughter} ${d.bp}`].filter(Boolean);
@@ -758,7 +1160,9 @@ window.WeddingCard = (() => {
           if (paint) {
             if (o.divider === 'rule') rule(x, ax, y, 300, o.acc);
             else if (o.divider === 'line') { x.save(); x.strokeStyle = o.acc; x.lineWidth = 1.5; x.beginPath(); x.moveTo(ax, y); x.lineTo(ax + (A === 'right' ? -200 : 200), y); x.stroke(); x.restore(); }
-            else flourish(x, ax, y, 440, o.acc);
+            else if (o.divider === 'thin') { x.save(); x.strokeStyle = o.acc; x.globalAlpha = 0.6; x.lineWidth = 1.2; x.beginPath(); x.moveTo(ax - 70, y); x.lineTo(ax + 70, y); x.stroke(); x.restore(); }
+            else if (o.divider === 'dots') { x.save(); x.fillStyle = o.acc; [-26, 0, 26].forEach(k => { x.beginPath(); x.arc(ax + k, y, k ? 3.5 : 5, 0, 7); x.fill(); }); x.restore(); }
+            else if (o.divider !== 'none') flourish(x, ax, y, 440, o.acc);
           }
           y += S(ur ? 76 : 70); G(0.5);
         },
@@ -804,6 +1208,32 @@ window.WeddingCard = (() => {
         },
         events() {
           if (o.ev === 'list') { evList(ev, 0); y -= gap; units -= 1; return; }
+          if (o.ev === 'cols') { // up to three events side by side
+            const n = Math.min(3, ev.length), gutter = S(44), colW = (maxW - (n - 1) * gutter) / n, rows = Math.ceil(ev.length / n);
+            for (let r = 0; r < rows; r++) {
+              const y0 = y, inRow = Math.min(n, ev.length - r * n);
+              let end = y;
+              for (let c = 0; c < inRow; c++) {
+                const e = ev[r * n + c];
+                let cx0, al = A;
+                if (A === 'left') cx0 = ax + c * (colW + gutter);
+                else if (A === 'right') cx0 = ax - c * (colW + gutter);
+                else { const rowW = inRow * colW + (inRow - 1) * gutter; cx0 = ax - rowW / 2 + colW / 2 + (ur ? inRow - 1 - c : c) * (colW + gutter); }
+                y = y0;
+                put(caps(e.name), F.head, S((ur ? 30 : 30 * hk)), S(ur ? 58 : 40), o.acc, hsp, 2, colW, cx0, al);
+                y += S(4);
+                put(fmtDate(e.date, d.lang), F.bold, S(ur ? 25 : 30), S(ur ? 52 : 36), o.ink, 0, 2, colW, cx0, al);
+                const tvp = [fmtTime(e.time, d.lang), e.venue].filter(Boolean);
+                tvp.forEach(v => put(v, F.bodyUp, S(ur ? 23 : 27), S(ur ? 50 : 33), o.ink, 0, 2, colW, cx0, al));
+                if (e.address) { if (paint) x.globalAlpha = 0.75; put(e.address, F.body, S(ur ? 21 : 24), S(ur ? 46 : 30), o.ink, 0, 2, colW, cx0, al); x.globalAlpha = 1; }
+                end = Math.max(end, y);
+                if (paint && A === 'center' && c > 0) { x.save(); x.strokeStyle = o.acc; x.globalAlpha = 0.35; x.lineWidth = 1; const lx = cx0 - (ur ? -1 : 1) * (colW / 2 + gutter / 2); x.beginPath(); x.moveTo(lx, y0 - S(30)); x.lineTo(lx, end - S(26)); x.stroke(); x.restore(); }
+              }
+              y = end;
+              if (r < rows - 1) { y += S(30); G(1); }
+            }
+            return;
+          }
           if (o.ev === 'table') {
             const left = ax - maxW / 2, right = ax + maxW / 2, colL = maxW * 0.36;
             ev.forEach((e, k) => {
@@ -873,7 +1303,7 @@ window.WeddingCard = (() => {
     const parts = (box.parts || [box]).map(p => {
       const o = { align: 'center', ax: p.cx ?? W / 2, ink: t.ink, acc: t.acc, alt: t.alt, nameCol: t.nameCol || (t.names === 'caps' ? t.ink : t.acc), ampCol: t.names === 'caps' ? t.acc : t.alt,
         seq: SEQ, names: 'stack', ev: 'grid', divider: 'flourish', mono: p.divider === 'rule' ? 'rule' : 'mandala', ...p };
-      if (o.align !== 'center') o.ev = 'list';
+      if (o.align !== 'center' && o.ev !== 'cols') o.ev = 'list';
       if (ur && o.ev === 'table') o.ev = 'grid';
       return o;
     });

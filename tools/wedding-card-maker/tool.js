@@ -4,13 +4,15 @@ const EVENTS = { en: ['Mehndi', 'Mayun', 'Dholki', 'Baraat', 'Nikah', 'Rukhsati'
 const f = $('#wd'), cv = $('#cv'), W = window.WeddingCard;
 let editing = null, photo = null, photoImg = null, removePhoto = false;
 // Older copies of this page (still in a browser cache) built the design swatches and sample events here.
-if (!$('#tpls').children.length) $('#tpls').innerHTML = Object.entries(W.TPL).map(([k, t], i) => `<label class="wd-t-${k}" data-cat="${t.cat}"><input type="radio" name="tpl" value="${k}"${i ? '' : ' checked'}><i></i>${esc(t.name)}</label>`).join('');
-// Design groups: show only the designs in the chosen group.
-$('#cats')?.addEventListener('click', e => {
-  const b = e.target.closest('[data-cat]'); if (!b) return;
-  $$('#cats .chip').forEach(c => { c.classList.toggle('on', c === b); c.setAttribute('aria-pressed', c === b); });
-  $$('#tpls label').forEach(l => { l.hidden = b.dataset.cat !== 'all' && !(l.dataset.cat || '').split(' ').includes(b.dataset.cat); });
-});
+if (!$('#tpls').children.length) $('#tpls').innerHTML = Object.entries(W.TPL).map(([k, t], i) => `<label class="wd-t-${k}" data-cat="${t.cat}"${t.cat.includes('classic') ? ' hidden' : ''}><input type="radio" name="tpl" value="${k}"${i ? '' : ' checked'}><i></i>${esc(t.name)}</label>`).join('');
+// Design groups: show only the designs in the chosen group ("New 2026" = everything but the traditional ones).
+const inCat = (l, c) => { const cs = (l.dataset.cat || '').split(' '); return c === 'all' || (c === 'new' ? !cs.includes('classic') : cs.includes(c)); };
+function showCat(c) {
+  $$('#cats .chip').forEach(b => { b.classList.toggle('on', b.dataset.cat === c); b.setAttribute('aria-pressed', b.dataset.cat === c); });
+  $$('#tpls label').forEach(l => { l.hidden = !inCat(l, c); });
+  clearTimeout(thumbs.t); thumbs.t = setTimeout(thumbs, 50);
+}
+$('#cats')?.addEventListener('click', e => { const b = e.target.closest('[data-cat]'); if (b) showCat(b.dataset.cat); });
 const photoDesign = () => ['photo', 'cover'].includes(f.tpl.value);
 // The couple's photo: made smaller here (max 1400 px JPEG) so it uploads fast. Choosing one switches to a photo design.
 $('#photo')?.addEventListener('change', async () => {
@@ -24,12 +26,12 @@ $('#photo')?.addEventListener('change', async () => {
     photoImg = c; removePhoto = false;
     showPhoto(URL.createObjectURL(photo));
     if (!photoDesign()) $('input[name="tpl"][value="photo"]').checked = true;
-    draw(); thumbs();
+    thumbs.dirty = true; draw(); thumbs();
   } catch (e) { toast('That picture couldn’t be opened.', 'err'); }
 });
 function showPhoto(src) {
   $('#photoprev').innerHTML = src ? `<div class="btns" style="align-items:center"><img src="${esc(src)}" alt="" style="height:70px;border-radius:10px"><button type="button" class="btn ghost" id="photox">Remove</button></div>` : '';
-  if (src) $('#photox').onclick = () => { photo = photoImg = null; removePhoto = true; $('#photo').value = ''; showPhoto(''); draw(); thumbs(); };
+  if (src) $('#photox').onclick = () => { photo = photoImg = null; removePhoto = true; $('#photo').value = ''; showPhoto(''); thumbs.dirty = true; draw(); thumbs(); };
 }
 const photoOpt = () => photoImg || (editing && editing.image && !removePhoto ? editing.image : null);
 const day = n => { const d = new Date(Date.now() + n * 864e5); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
@@ -68,9 +70,15 @@ async function draw() {
 }
 f.addEventListener('input', () => { clearTimeout(draw.t); draw.t = setTimeout(draw, 150); clearTimeout(thumbs.t); thumbs.t = setTimeout(thumbs, 1500); });
 // Each design's swatch shows a small picture of the real card with these names (redrawn a moment after typing stops).
+// Only the designs on show are drawn; the others are drawn when their group is opened.
 async function thumbs() {
   const d = data(); if (!d.groom) d.groom = 'Groom'; if (!d.bride) d.bride = 'Bride';
+  const sig = JSON.stringify(d) + (photoImg ? 'p' : '') + (thumbs.n = (thumbs.n || 0) + (thumbs.dirty ? 1 : 0)), run = thumbs.run = (thumbs.run || 0) + 1;
+  thumbs.dirty = false;
   for (const lab of $$('#tpls label')) {
+    if (lab.hidden || lab.dataset.sig === sig) continue;
+    if (run !== thumbs.run) return;
+    lab.dataset.sig = sig;
     const tpl = lab.querySelector('input').value, c = document.createElement('canvas');
     await W.draw(c, { ...d, tpl }, { photo: photoOpt() });
     const s = document.createElement('canvas'); s.width = 180; s.height = 270;
@@ -118,7 +126,8 @@ $('#go').onclick = async () => {
     const d = ed.d;
     ['groom', 'bride', 'gp', 'bp', 'hosts', 'msg', 'rsvp_by'].forEach(k => { f[k].value = d[k] || ''; });
     f.bismillah.checked = !!d.bismillah; f.rsvp.checked = !!d.rsvp;
-    $(`input[name="tpl"][value="${d.tpl}"]`).checked = true; $(`input[name="lang"][value="${d.lang}"]`).checked = true;
+    const tl = $(`input[name="tpl"][value="${d.tpl}"]`);
+    if (tl) { tl.checked = true; if (tl.closest('label').hidden) showCat('all'); } $(`input[name="lang"][value="${d.lang}"]`).checked = true;
     $('#events').innerHTML = d.events.map(evRow).join('');
     (d.contacts || []).forEach((c, i) => { if (i < 2) { f['c' + (i + 1) + 'n'].value = c.name; f['c' + (i + 1) + 'p'].value = c.phone; } });
     if (ed.image) showPhoto(ed.image);

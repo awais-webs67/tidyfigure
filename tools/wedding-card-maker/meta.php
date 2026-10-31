@@ -23,7 +23,7 @@ EOT_TF,
   'article' => <<<'EOT_TF'
 <h2>How to make your wedding card</h2>
 <ol>
-<li>Choose from 16 designs in eight groups: Nikah &amp; Islamic, Royal, Mehndi &amp; Dholki, Floral, Modern, Luxury, Save the date and photo cards.</li>
+<li>Pick a design: 12 new 2026 designs (arch card with wax seal, editorial, Mughal pastel, Nikah jaali, Bordeaux, gold line, wildflower, black tie, Mehndi night and more) or one of the traditional ones.</li>
 <li>Choose English or Urdu, and whether to start with Bismillah. For a photo design, add a picture of the couple.</li>
 <li>Write the groom’s and bride’s names, their parents’ names if you like, and a short message.</li>
 <li>Add each function with its date, time, venue and address. Paste a Google Maps link so guests can find it.</li>
@@ -32,12 +32,13 @@ EOT_TF,
 
 <h2>Designs for every function</h2>
 <ul>
-<li><strong>Nikah &amp; Islamic:</strong> a cream mihrab arch on an eight-point star pattern, the Mughal jharokha, and an emerald mandala.</li>
-<li><strong>Mehndi &amp; Dholki:</strong> a marigold toran with paisleys, or bright Pakistani truck art.</li>
-<li><strong>Floral:</strong> watercolour peonies, a rose wreath with your initials, or soft eucalyptus.</li>
-<li><strong>Modern and luxury:</strong> an editorial layout, a two-tone monogram crest, black marble with gold foil, and art deco.</li>
-<li><strong>Save the date:</strong> the date set large, so it’s the first thing guests see.</li>
-<li><strong>With photo:</strong> your photo in an arch, or full-width like a magazine cover.</li>
+<li><strong>Nikah:</strong> a fine gold arch filled with a jaali of eight-point stars, or a pastel Mughal palace at sunset.</li>
+<li><strong>Mehndi:</strong> hot pink with hanging marigold strings and glowing diyas, or a fun 70s rainbow card.</li>
+<li><strong>Modern:</strong> an editorial card with the date set huge across the top, or an arch-shaped card closed with a wax seal.</li>
+<li><strong>Luxury:</strong> deep Bordeaux with curved lettering, black tie, or quiet stone paper with torn edges.</li>
+<li><strong>Floral:</strong> gold line-drawn peonies, or a painted meadow of wildflowers.</li>
+<li><strong>With photo:</strong> your photo full-size like a magazine cover, in an arch, or above the details.</li>
+<li><strong>Traditional:</strong> Royal Mughal, truck art, mandala, art deco and more.</li>
 </ul>
 
 <h2>An online invitation guests will love</h2>

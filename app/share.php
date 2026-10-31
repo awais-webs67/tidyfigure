@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 const TF_SHARE_TYPES = ['quiz' => 'how-well-do-you-know-me', 'giveaway' => 'giveaway-maker', 'wedding' => 'wedding-card-maker'];
 const TF_SHARE_THEMES = ['coral', 'violet', 'ocean', 'emerald', 'rose', 'midnight', 'sunset'];
-const TF_WEDDING_TPLS = ['royal', 'nikah', 'emerald', 'mehndi', 'truckart', 'blush', 'garden', 'sage', 'editorial', 'ivory', 'monogram', 'noir', 'navy', 'savedate', 'photo', 'cover'];
+const TF_WEDDING_TPLS = ['archway', 'atelier', 'palace', 'nikahline', 'bordeaux', 'stone', 'goldline', 'wildflower', 'noirink', 'mehndipop', 'retro', 'magazine', 'photo', 'cover', 'royal', 'nikah', 'emerald', 'mehndi', 'truckart', 'blush', 'garden', 'sage', 'editorial', 'ivory', 'monogram', 'noir', 'navy', 'savedate'];
 const TF_SHARE_UPLOADS = TF_ROOT . '/storage/uploads/share';
 
 // ---------- small helpers ----------
@@ -200,7 +200,7 @@ function tf_share_clean(string $type, array $in, ?array $old = null)
             $p = mb_substr((string) preg_replace('/[^\d+ ]/', '', (string) ($c['phone'] ?? '')), 0, 20);
             if ($n !== '' || $p !== '') $contacts[] = ['name' => $n, 'phone' => trim($p)];
         }
-        $d = ['tpl' => in_array($in['tpl'] ?? '', TF_WEDDING_TPLS, true) ? $in['tpl'] : 'royal', 'lang' => ($in['lang'] ?? '') === 'ur' ? 'ur' : 'en',
+        $d = ['tpl' => in_array($in['tpl'] ?? '', TF_WEDDING_TPLS, true) ? $in['tpl'] : 'archway', 'lang' => ($in['lang'] ?? '') === 'ur' ? 'ur' : 'en',
             'bismillah' => !empty($in['bismillah']), 'groom' => $groom, 'bride' => $bride, 'gp' => tf_share_txt($in['gp'] ?? '', 120), 'bp' => tf_share_txt($in['bp'] ?? '', 120),
             'msg' => tf_share_para($in['msg'] ?? '', 400), 'events' => $events, 'rsvp' => !empty($in['rsvp']),
             'rsvp_by' => preg_match('/^\d{4}-\d{2}-\d{2}$/', (string) ($in['rsvp_by'] ?? '')) ? (string) $in['rsvp_by'] : '', 'contacts' => $contacts,

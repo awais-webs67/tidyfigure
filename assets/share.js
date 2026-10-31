@@ -358,6 +358,7 @@
     document.body.classList.add('wd-t-' + d.tpl);
     $('#sh').classList.add('wd-t-' + d.tpl);
     if (ur) app.classList.add('wd-ur');
+    if ((W.TPL[d.tpl] || {}).type) app.classList.add('wd-new'); // new designs: modern serif and sans instead of script and Cinzel
     W.loadFonts();
     const initials = (d.groom.slice(0, 1) + d.bride.slice(0, 1)).toUpperCase();
     const env = document.createElement('div');
