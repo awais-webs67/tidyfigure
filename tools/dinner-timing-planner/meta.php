@@ -1,13 +1,14 @@
 <?php
 return [
-    'name' => 'Dinner Timing Planner',
-    'updated' => '2026-11-15',
+    'name' => 'Roast & Dinner Cooking Time Planner',
+    'updated' => '2026-11-16',
+    'keywords' => 'roast dinner timing calculator, oven cooking schedule planner, dinner timing planner, coordinate multiple dishes serving time',
     'category' => 'life',
     'order' => 6,
     'icon' => 'chef-hat',
     'short' => 'Get every dish ready at the same time. Works backwards from when you serve.',
-    'title' => 'Dinner Timing Planner – Sync Multi-Dish Meals',
-    'description' => 'Schedule roasts, sides and sauces backwards from serving time so every dish hits the table hot together on one clear step-by-step timeline.',
+    'title' => 'Roast & Dinner Timing Calculator – Sync Every Dish',
+    'description' => 'Work backwards from serving time to schedule oven roasts, sides and sauces so every dish finishes hot together on one clear step-by-step timeline.',
     'related' => ['recipe-scaler', 'baking-pan-converter', 'pizza-size-calculator'],
     'answer' => 'To have every dish ready together, <strong>work backwards from the time you want to eat</strong>. For each dish, subtract its resting time, then its cooking time, then its prep time. The dish with the longest total starts first. This planner does the subtraction for every dish and gives you a single timeline to follow.',
     'article' => <<<'EOT_TF'
@@ -53,5 +54,5 @@ EOT_TF,
         ['Does this work for dinners that go past midnight?', 'Yes. Times are worked out on a 24-hour clock, so a late-night meal or an early-morning bake schedules correctly.'],
     ],
     'keywords' => 'dinner timing planner, meal prep countdown timeline, roast dinner schedule, coordinate cooking dishes',
-    'aka' => ['Roast Dinner Timeline Maker', 'Meal Timing Calculator'],
+    'aka' => ['Dinner Timing Planner', 'Roast Dinner Timeline Maker', 'Multi-Dish Cooking Calculator'],
 ];

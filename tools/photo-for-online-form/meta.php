@@ -1,7 +1,7 @@
 <?php
 return [
-    'name' => 'Photo for Online Form',
-    'updated' => '2026-11-15',
+    'name' => 'Exam & Form Photo Resizer (20–50 KB)',
+    'updated' => '2026-11-16',
     'category' => 'image',
     'order' => 9,
     'files' => true,
@@ -14,11 +14,11 @@ return [
         'clean' => false,
     ],
     'icon' => 'user-round',
-    'keywords' => 'photo for online form, resize passport photo 200x230 20kb 50kb, exam portal photo converter, job application photo',
-    'aka' => ['Exam & Admission Form Photo Tool', '200x230px Portal Photo Resizer'],
+    'keywords' => 'exam form photo resizer, photo for online form 200x230, passport photo 20kb 50kb converter, job application photo maker',
+    'aka' => ['Photo for Online Form', 'Admission & Job Portal Photo Resizer', '200x230px 20-50KB Photo Tool'],
     'short' => 'Resize your photo to the size online application forms ask for, like 200×230 px and 20–50 KB.',
-    'title' => 'Photo for Online Form – 200×230 px, 20–50 KB',
-    'description' => 'Prepare exam, job and admission passport photos at exact portal pixels (like 200×230 or 213×213) and strict 20–50 KB JPG limits cleanly locally.',
+    'title' => 'Exam & Job Form Photo Resizer – 200×230 px, 20–50KB',
+    'description' => 'Resize passport and exam application photos to exact portal specs (200×230 px, 213×213 px, 20–50 KB JPG) in your browser with zero file uploads.',
     'related' => ['signature-resizer', 'passport-photo-maker', 'resize-image-to-kb'],
     'answer' => 'Choose a clear photo of your face and it\'s <strong>cropped and resized to 200 × 230 pixels</strong> and saved as a JPG <strong>between 20 and 50 KB</strong>, a size many application forms use. If your form gives other numbers, type them in. Then download the photo and upload it.',
     'article' => <<<'EOT_TF'

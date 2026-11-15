@@ -1,13 +1,14 @@
 <?php
 return [
-    'name' => 'Will It Fit? Furniture Door Calculator',
-    'updated' => '2026-11-15',
+    'name' => 'Sofa & Furniture Door Fit Calculator',
+    'updated' => '2026-11-16',
+    'keywords' => 'will sofa fit through door calculator, couch door clearance calculator, furniture fit calculator, hallway corner turn calculator',
     'category' => 'life',
     'order' => 5,
     'icon' => 'sofa',
     'short' => 'Check if a sofa, bed or wardrobe fits through a door and around a hallway corner.',
-    'title' => 'Furniture Fit Calculator – Will Sofa Fit Door?',
-    'description' => 'Check whether a sofa, wardrobe, fridge or mattress clears doorways and tight L-shaped hallway turns before delivery using exact 3D tilt math.',
+    'title' => 'Will Sofa Fit Through Door? – Furniture Calculator',
+    'description' => 'Check whether your sofa, bed, fridge or wardrobe fits through doorways and around L-shaped hallway turns before moving day with exact 3D tilt math.',
     'related' => ['decision-matrix', 'rent-split-calculator', 'baking-pan-converter'],
     'answer' => 'A piece of furniture fits through a door if <strong>two of its three measurements fit inside the door opening</strong>; the third one simply goes through. A sofa is usually carried on its side or end so its depth and height face the doorway. Hallway corners are harder: the turn limits how long the piece can be, which this calculator works out for you.',
     'article' => <<<'EOT_TF'
@@ -52,5 +53,5 @@ EOT_TF,
         ['Can I use this for beds, fridges and wardrobes?', 'Yes. It works for any box-shaped item. For a fridge or wardrobe, standing it upright and turning it on its side are both checked.'],
     ],
     'keywords' => 'furniture fit calculator, will sofa fit through door, hallway corner clearance calculator, moving doorway check',
-    'aka' => ['Doorway & Hallway Clearance Checker', 'Sofa Move Calculator'],
+    'aka' => ['Will It Fit? Furniture Calculator', 'Doorway & Hallway Clearance Checker', 'Couch Fit Calculator'],
 ];

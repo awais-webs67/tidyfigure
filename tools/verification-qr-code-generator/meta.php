@@ -1,7 +1,7 @@
 <?php
 return [
-    'name' => 'Verification QR Code Generator',
-    'updated' => '2026-11-15',
+    'name' => 'Certificate & Document QR Verifier',
+    'updated' => '2026-11-16',
     'uploads' => true,
     'category' => 'qr',
     'order' => 4,
@@ -10,10 +10,10 @@ return [
     'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'],
     'scripts' => ['hosted-qr.js'],
     'appCategory' => 'BusinessApplication',
-    'keywords' => 'verification qr code generator, certificate verification qr, document authenticity qr, badge check qr',
+    'keywords' => 'certificate verification qr code generator, document authenticity qr maker, verification qr code, badge check qr code',
     'short' => 'Put a QR code on certificates, ID cards and products that opens a verification page.',
-    'title' => 'Verification QR Generator – Document Check',
-    'description' => 'Publish tamper-resistant verification QR codes for certificates, ID badges, offer letters or products showing holder details and status online.',
+    'title' => 'Certificate Verification QR Code Generator – Free',
+    'description' => 'Generate tamper-resistant QR codes for certificates, ID badges, offer letters and products linking to an instant online verification page.',
     'related' => ['dynamic-qr-code-generator', 'pdf-to-qr-code', 'invoice-generator'],
     'answer' => 'A verification QR code lets anyone check a document is genuine by scanning it. Fill in the details (who it was issued to, by whom, dates and reference number), check the <strong>live preview</strong>, and press Create. Print the code on the certificate, ID card or product. Scanning it opens a page on this site showing the record and its status: <strong>Valid, Expired or Revoked</strong>.',
     'article' => <<<'EOT_TF'
@@ -52,5 +52,5 @@ EOT_TF,
         ['How long does the verification page stay online?', 'For 30 days by default, then it is deleted automatically.'],
         ['Does the site check that my information is true?', 'No. The page shows what the issuer entered and says so clearly. Only create records for documents you issued.'],
     ],
-    'aka' => ['Certificate Verification QR', 'Authenticity QR Page'],
+    'aka' => ['Verification QR Code Generator', 'Certificate Authenticity QR', 'Document Check QR Page'],
 ];

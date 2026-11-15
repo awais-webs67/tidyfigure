@@ -1,16 +1,16 @@
 <?php
 return [
-    'name' => 'Outfit Color Matcher',
-    'updated' => '2026-11-15',
+    'name' => 'Shirt & Pant Color Combination Matcher',
+    'updated' => '2026-11-16',
     'category' => 'life',
     'order' => 20,
     'popular' => true,
     'scripts' => ['color.js'],
     'icon' => 'shirt',
-    'keywords' => 'outfit color matcher, shirt pants color combination, suit tie matching tool, wardrobe color wheel',
+    'keywords' => 'shirt and pant color combination, outfit color matcher, clothes color matching tool, suit tie shirt pairing checker',
     'short' => 'Try shirt, trouser, jacket and shoe colours and see if they match.',
-    'title' => 'Outfit Color Matcher – Shirt, Pant & Suit Pairs',
-    'description' => 'Preview shirt, trouser, blazer, tie and shoe colour combinations live with harmony score, styling tips and 16 proven classic palettes.',
+    'title' => 'Shirt & Pant Color Matcher – Outfit Pairing Tool',
+    'description' => 'Test shirt, trouser, blazer, tie and shoe color combinations live with instant harmony scores, styling notes and 16 proven menswear & casual palettes.',
     'related' => ['color-combination-checker', 'camera-color-picker', 'color-converter', 'decision-matrix'],
     'answer' => 'Pick a colour for each piece (jacket, shirt or top, trousers, shoes and a tie or scarf) and the model updates instantly. The matcher gives a <strong>score out of 10</strong> with tips, based on colour theory and classic menswear and womenswear rules, and suggests colours that go with your top. Tap a <strong>classic combination</strong> to start from a proven look.',
     'article' => <<<'EOT_TF'
@@ -55,5 +55,5 @@ EOT_TF,
         ['How is the outfit score calculated?', 'From colour theory and common style rules: how many neutrals and bright colours you use, top-to-bottom contrast, colour harmony, and known clashes such as navy with black.'],
         ['What shoe and belt shade works across almost any smart-casual outfit?', 'Medium walnut brown leather pairs effortlessly with navy, charcoal, olive, cream and mid-grey trousers, while crisp white trainers fit casual chinos.'],
     ],
-    'aka' => ['Clothes Colour Combination Tester', 'Suit & Shirt Matcher'],
+    'aka' => ['Outfit Color Matcher', 'Clothes Colour Combination Finder', 'Shirt Trouser Colour Tester'],
 ];

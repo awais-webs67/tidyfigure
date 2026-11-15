@@ -1,15 +1,15 @@
 <?php
 return [
-    'name' => 'Text Compare',
-    'updated' => '2026-11-15',
+    'name' => 'Text Compare & Diff Checker',
+    'updated' => '2026-11-16',
     'category' => 'text',
     'order' => 21,
     'icon' => 'file-diff',
     'popular' => true,
-    'keywords' => 'text compare, online diff checker, compare two drafts side by side, find text differences free',
+    'keywords' => 'diff checker online, text compare tool, compare two texts side by side, find text differences free, code diff viewer',
     'short' => 'Compare two texts and see every added and removed word, highlighted.',
-    'title' => 'Text Compare – Highlight Line & Word Diffs',
-    'description' => 'Compare two texts or code snippets side by side to highlight added, deleted and edited words or lines with ignore-case and whitespace options.',
+    'title' => 'Text Compare & Diff Checker – Highlight Diffs Free',
+    'description' => 'Compare two blocks of text or code side by side and highlight every added, removed and changed word or line cleanly in your browser—no uploads.',
     'related' => ['word-counter', 'remove-duplicate-lines', 'readability-checker'],
     'answer' => 'Paste the original text on the left and the new version on the right. Every change is highlighted: <ins>added words in green</ins> and <del>removed words struck through in red</del>, with a count of words added and removed and a similarity score. Compare by words, whole lines or single characters.',
     'article' => <<<'EOT_TF'
@@ -54,5 +54,5 @@ EOT_TF,
         ['Can it ignore case and spacing?', 'Yes. Tick Ignore upper/lower case or Ignore extra spaces to hide those differences.'],
         ['Is my text uploaded?', 'No. The comparison runs in your browser, so your text never leaves your device.'],
     ],
-    'aka' => ['Side-by-Side Text Diff Checker', 'Document Version Comparer'],
+    'aka' => ['Text Compare', 'Online Diff Checker', 'Compare Two Drafts Tool'],
 ];

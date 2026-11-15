@@ -1,15 +1,15 @@
 <?php
 return [
-    'name' => 'Symbols Copy and Paste',
-    'updated' => '2026-11-15',
+    'name' => 'Cool Symbols Copy & Paste',
+    'updated' => '2026-11-16',
     'category' => 'text',
     'order' => 7,
     'popular' => true,
     'icon' => 'omega',
-    'keywords' => 'symbols copy paste, checkmark symbol copy, arrow degree unicode, html symbol entity finder',
+    'keywords' => 'cool symbols copy and paste, special symbols copy paste, checkmark arrow unicode, html entity symbol finder',
     'short' => 'Copy and paste ✓ ★ → ♥ ° € and hundreds more with one click.',
-    'title' => 'Copy & Paste Symbols – Checkmarks, Arrows, Math',
-    'description' => 'Search and copy 500+ Unicode symbols—checkmarks, arrows, stars, currency, degrees and maths operators—with Windows Alt codes and HTML entities.',
+    'title' => 'Cool Symbols Copy & Paste – Checkmarks, Arrows',
+    'description' => 'Browse and copy 500+ Unicode symbols—checkmarks, stars, arrows, hearts, currency, degrees and maths signs—with Windows Alt codes and HTML entities.',
     'related' => ['fancy-text-generator', 'character-counter', 'online-notepad', 'case-converter'],
     'answer' => 'Click any symbol to <strong>copy it</strong>, then paste it anywhere with Ctrl+V (⌘+V on a Mac). Search by name, such as “check”, “heart”, “arrow” or “degree”. Each symbol shows its name, Unicode code, HTML code and, where one exists, the <strong>Alt code</strong> for Windows and the shortcut for Mac. Your recent symbols stay at the top.',
     'article' => <<<'EOT_TF'
@@ -54,5 +54,5 @@ EOT_TF,
         ['Why do some copied symbols turn into empty squares on older phones?', 'That device lacks a font glyph covering newer Unicode blocks; stick to standard geometric arrows, stars and math symbols for universal rendering.'],
         ['How do Windows Alt codes work for common degree and check symbols?', 'Hold Left Alt and type the numeric code on a full number pad (such as Alt+0176 for the degree ° sign), or copy straight from our table.'],
     ],
-    'aka' => ['Unicode Symbol Picker', 'Checkmark & Arrow Copy Tool'],
+    'aka' => ['Symbols Copy and Paste', 'Unicode Symbol Picker', 'Special Text Characters'],
 ];

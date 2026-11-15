@@ -1,14 +1,14 @@
 <?php
 return [
-    'name' => 'Roll a Dice',
-    'updated' => '2026-11-15',
+    'name' => 'Roll a Dice (Online Dice Roller)',
+    'updated' => '2026-11-16',
     'category' => 'random',
     'order' => 6,
     'icon' => 'dice-5',
-    'keywords' => 'roll a dice, virtual dice roller, d20 dice roller, 2d6 online, polyhedral dice simulator, tabletop dice',
+    'keywords' => 'roll a dice, online dice roller, roll a die virtual, d20 dice roller, 2d6 simulator, tabletop dice',
     'short' => 'Roll 1–10 virtual dice: d4, d6, d8, d10, d12, d20 or d100.',
-    'title' => 'Roll a Dice Online – d4, d6, d8, d10, d12, d20',
-    'description' => 'Roll 1 to 10 virtual polyhedral dice (d4, d6, d8, d10, d12, d20, d100) with cryptographic randomness, totals and roll history for tabletop games.',
+    'title' => 'Roll a Dice – Virtual d6 & d20 Dice Roller Free',
+    'description' => 'Roll 1 to 10 virtual dice (d4, d6, d8, d10, d12, d20 and d100) using cryptographic randomness with instant sums and roll history for board & RPG games.',
     'related' => ['flip-a-coin', 'spin-the-wheel', 'random-number-generator'],
     'answer' => 'Choose how many dice and how many sides, then press Roll (or the space bar). Each die lands on every face with <strong>exactly equal chance</strong>, and the total is added up for you. Standard six-sided dice show real pips; role-playing dice (d4 to d100) show the number.',
     'article' => <<<'EOT_TF'
@@ -60,5 +60,5 @@ EOT_TF,
         ['Can I roll several dice at once?', 'Yes, up to 10 dice. The total is added up for you.'],
         ['Is there a keyboard shortcut?', 'Yes. Press the space bar to roll again.'],
     ],
-    'aka' => ['Virtual Dice Roller', 'D&D Polyhedral Dice'],
+    'aka' => ['Dice Roller', 'Roll a Die Online', 'D&D Polyhedral Dice'],
 ];

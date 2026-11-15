@@ -1,7 +1,7 @@
 <?php
 return [
-    'name' => 'Auto Subtitle Generator',
-    'updated' => '2026-11-15',
+    'name' => 'Auto Subtitle & Captions Generator',
+    'updated' => '2026-11-16',
     'category' => 'media',
     'order' => 3,
     'popular' => true,
@@ -9,11 +9,11 @@ return [
     'isolate' => true,
     'scripts' => ['ai.js'],
     'icon' => 'captions',
-    'keywords' => 'video subtitle generator, auto caption generator free, video to srt, burn subtitles into mp4 online',
-    'aka' => ['AI Caption Generator', 'Auto SRT Subtitle Maker'],
+    'keywords' => 'auto caption generator free, video subtitle generator, add subtitles to video online, video to srt converter, ai captions',
+    'aka' => ['Auto Subtitle Generator', 'Free AI Captions Generator', 'Video to SRT Subtitle Maker'],
     'short' => 'Add automatic subtitles to any video: AI writes the captions, you edit and style them, then download SRT or the video with subtitles.',
-    'title' => 'Video Subtitle Generator – Auto AI Captions',
-    'description' => 'Auto-generate editable captions in 20+ languages from video speech, export clean SRT or VTT files, or burn open subtitles straight onto MP4.',
+    'title' => 'Auto Captions & Subtitle Generator – Free Video AI',
+    'description' => 'Auto-generate accurate subtitles and captions in 20+ languages from video speech, download SRT or VTT files, or burn text directly onto MP4.',
     'related' => ['audio-to-text', 'video-cutter', 'video-compressor'],
     'answer' => 'Drop a video and press <strong>Make subtitles</strong>. An AI (Whisper) listens to it and writes <strong>timed captions</strong>, split into short, easy-to-read lines. Fix any word, pick a caption style, and download an <strong>SRT or VTT</strong> file for YouTube, or the <strong>video with the subtitles burned in</strong> for TikTok, Reels and WhatsApp.',
     'article' => <<<'EOT_TF'

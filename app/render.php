@@ -475,7 +475,7 @@ function tf_page_home(string $initialQuery = ''): string
 <p class="eyebrow">Private · runs in your browser · no sign-up</p>
 <h1>Free PDF, Image &amp; <em>Video Tools</em>.</h1>
 <p class="lead">Fast, private online tools for PDFs, images, video to MP3, QR codes, money, health and everyday maths. No uploads, no watermarks and zero sign-up.</p>
-<div class="search" role="search">' . tf_icon('search') . '<label class="sr-only" for="q">Search tools</label><input id="q" type="search" value="' . $qVal . '" placeholder="Search tools (e.g. merge pdf, compress)…" aria-label="Search tools" autocomplete="off"></div>
+<div class="search" role="search">' . tf_icon('search') . '<label class="sr-only" for="q">Search tools</label><input id="q" type="search" value="' . $qVal . '" placeholder="Search tools (e.g. merge pdf)…" aria-label="Search tools" autocomplete="off"></div>
 <ul class="stats"><li>' . tf_icon('shield-check') . 'Files stay on your device</li><li>' . tf_icon('zap') . 'Instant results</li><li>' . tf_icon('smartphone') . 'Works on any phone</li><li>' . tf_icon('badge-check') . '100% free</li></ul>
 </div>
 <aside class="hero-pop" aria-label="Popular tools"><p class="kicker">Popular right now</p><ul>' . $pop . '</ul></aside>

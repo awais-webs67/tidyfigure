@@ -1,15 +1,15 @@
 <?php
 return [
-    'name' => 'Debt Payoff Planner',
-    'updated' => '2026-11-15',
+    'name' => 'Debt Payoff Calculator (Snowball/Avalanche)',
+    'updated' => '2026-11-16',
     'category' => 'money',
     'order' => 16,
     'icon' => 'trending-down',
     'appCategory' => 'FinanceApplication',
-    'keywords' => 'debt payoff planner, debt snowball vs avalanche calculator, multiple debt payoff timeline, fastest debt free plan',
+    'keywords' => 'debt payoff calculator, debt snowball vs avalanche calculator, debt payoff planner, credit card debt payoff schedule',
     'short' => 'Snowball or avalanche: your debt-free date, pay-off order and interest saved.',
-    'title' => 'Debt Payoff Planner – Snowball vs Avalanche',
-    'description' => 'Compare Snowball (smallest balance first) against Avalanche (highest APR first) payoff timelines, rollover order and exact interest dollars saved.',
+    'title' => 'Debt Payoff Calculator – Snowball vs Avalanche',
+    'description' => 'Calculate your debt-free date and total interest saved by comparing Debt Snowball (smallest balance first) against Debt Avalanche (highest APR first).',
     'related' => ['credit-card-payoff-calculator', 'budget-planner', 'loan-calculator'],
     'answer' => 'Pay the minimum on every debt, then put every spare penny on one target debt. The <strong>avalanche</strong> method targets the highest interest rate first and saves the most money; the <strong>snowball</strong> method targets the smallest balance first for quick wins. In the example, avalanche clears 14,500 of debt in 25 months with 1,485 of interest, against 82 months and 5,339 paying minimums only.',
     'sources' => [
@@ -71,5 +71,5 @@ EOT_TF,
         ['How can I pay off debt faster?', 'Add an extra monthly payment, even a small one, and keep your total payment the same as debts are cleared, rolling freed-up minimums into the next debt.'],
         ['Does this include mortgages?', 'You can add any fixed-rate debt, but most plans leave the mortgage out and focus on higher-interest debts first.'],
     ],
-    'aka' => ['Debt Snowball & Avalanche Calculator', 'Multi-Debt Payoff Schedule'],
+    'aka' => ['Debt Payoff Planner', 'Debt Snowball & Avalanche Calculator', 'Multi-Debt Payoff Estimator'],
 ];

@@ -1,15 +1,15 @@
 <?php
 return [
-    'name' => 'Wish Maker',
-    'updated' => '2026-11-15',
+    'name' => 'Birthday & Eid Wish Link Maker',
+    'updated' => '2026-11-16',
     'category' => 'social',
     'order' => 5,
     'icon' => 'party-popper',
     'popular' => true,
-    'keywords' => 'wish maker, personalized birthday wish link, eid mubarak greeting link, online wish card, animated confetti message',
+    'keywords' => 'birthday wish link maker, eid mubarak greeting link, online wish card generator, custom greeting page, confetti wish maker',
     'short' => 'Make a personalised greeting page with confetti and share the link.',
-    'title' => 'Wish Maker – Custom Birthday & Eid Link',
-    'description' => 'Create personalised greeting pages with confetti for birthdays, Eid, Diwali, New Year and anniversaries—share one festive link without login.',
+    'title' => 'Birthday & Eid Greeting Link Maker – Free Wish Page',
+    'description' => 'Create personalized online birthday, Eid, Ramadan, Diwali and anniversary wish pages with falling confetti—share one festive link without login.',
     'related' => ['birthday-card-maker', 'fancy-text-generator', 'meme-generator'],
     'answer' => 'Choose the occasion, type their name, yours and a message, and you get a <strong>personal link</strong>. When they open it, a full-screen greeting appears with their name and falling confetti. Share it on WhatsApp or anywhere you can paste a link. Works for <strong>birthdays, anniversaries, Eid, Ramadan, Diwali, Christmas, New Year</strong> and more.',
     'article' => <<<'EOT_TF'
@@ -53,5 +53,5 @@ EOT_TF,
         ['Can I edit the wish after sending?', 'No. Make a new link with the changes and send that instead.'],
         ['Can I create Eid, Diwali, graduation or anniversary links here too?', 'Yes. Pick any preset occasion theme or type your own celebration title, custom message and sender name before copying your private link.'],
     ],
-    'aka' => ['Personalised Greeting Link', 'Birthday & Eid Wish Creator'],
+    'aka' => ['Wish Maker', 'Online Birthday Wish Card', 'Eid & Anniversary Greeting Link'],
 ];

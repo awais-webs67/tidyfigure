@@ -1,15 +1,15 @@
 <?php
 return [
-    'name' => 'Online Notepad',
-    'updated' => '2026-11-15',
+    'name' => 'Online Notepad (Auto-Save Text Pad)',
+    'updated' => '2026-11-16',
     'category' => 'text',
     'order' => 2,
     'popular' => true,
     'icon' => 'notebook-pen',
-    'keywords' => 'online notepad, browser scratchpad autosave, plain text note maker no login, download txt notes',
+    'keywords' => 'online notepad free, browser text pad autosave, free online notes no login, scratchpad txt editor',
     'short' => 'Write notes that save automatically in your browser. No login.',
-    'title' => 'Online Notepad – Auto-Save Browser Scratchpad',
-    'description' => 'Write and save plain-text notes automatically inside local browser storage across multiple tabs with live word count and TXT export—no login.',
+    'title' => 'Online Notepad – Free Auto-Save Browser Text Pad',
+    'description' => 'Write plain-text notes that auto-save locally inside your browser across multiple tabs with live word count and .TXT export—zero login or uploads.',
     'related' => ['word-counter', 'remove-line-breaks', 'case-converter', 'pomodoro-timer'],
     'answer' => 'Just start typing: every note <strong>saves automatically</strong> in your browser as you write, so it’s still there when you come back, even after closing the tab. Create as many notes as you like, see the word and character count, open a .txt file, or download a note to keep it. No sign-up and nothing is uploaded.',
     'article' => <<<'EOT_TF'
@@ -51,5 +51,5 @@ EOT_TF,
         ['Does it work offline?', 'Once the page has loaded, yes. Typing and saving happen entirely in your browser.'],
         ['Are my notes synced across my phone and laptop?', 'No. Everything stays stored privately in the single browser you type in unless you export a TXT file.'],
     ],
-    'aka' => ['Browser Text Pad', 'Private Auto-Save Notes'],
+    'aka' => ['Browser Scratchpad', 'Free Online Text Pad', 'Auto-Save Notes Tool'],
 ];

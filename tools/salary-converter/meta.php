@@ -1,15 +1,15 @@
 <?php
 return [
-    'name' => 'Salary Converter',
-    'updated' => '2026-11-15',
+    'name' => 'Hourly to Salary Calculator',
+    'updated' => '2026-11-16',
     'category' => 'money',
     'order' => 7,
     'icon' => 'banknote',
     'appCategory' => 'FinanceApplication',
-    'keywords' => 'salary converter, hourly to annual salary calculator, monthly wage from hourly rate, 40 hour week salary',
+    'keywords' => 'hourly to salary calculator, hourly wage to annual pay, salary converter monthly yearly, 40 hour week paycheck estimator',
     'short' => 'Convert pay between hourly, daily, weekly, monthly and yearly.',
-    'title' => 'Salary Converter – Hourly to Annual & Monthly',
-    'description' => 'Translate hourly wage, day rate, weekly, biweekly, monthly and annual gross salary instantly with customizable hours per week and paid weeks.',
+    'title' => 'Hourly to Salary Calculator – Annual & Monthly Pay',
+    'description' => 'Convert pay cleanly between hourly wage, daily rate, weekly, biweekly, monthly and annual gross salary with custom hours per week and paid weeks.',
     'related' => ['percentage-calculator', 'inflation-calculator', 'vat-calculator'],
     'answer' => 'For a full-time job of 40 hours a week and 52 paid weeks, <strong>yearly salary = hourly rate × 2,080</strong>. So 25 an hour is 52,000 a year, about 4,333 a month. Enter your own hours, working days and paid weeks for an exact conversion in any direction.',
     'sources' => [
@@ -60,5 +60,5 @@ EOT_TF,
         ['How do I convert yearly salary to monthly?', 'Divide the yearly salary by 12.'],
         ['Is this before or after tax?', 'Before tax. Take-home pay depends on your country’s tax and deductions.'],
     ],
-    'aka' => ['Hourly to Salary Converter', 'Annual Wage Breakdown Tool'],
+    'aka' => ['Salary Converter', 'Hourly to Annual Wage Calculator', 'Paycheck Breakdown Tool'],
 ];

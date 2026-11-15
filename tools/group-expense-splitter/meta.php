@@ -1,13 +1,14 @@
 <?php
 return [
-    'name' => 'Group Expense Splitter',
-    'updated' => '2026-11-15',
+    'name' => 'Split Bills With Friends Calculator',
+    'updated' => '2026-11-16',
+    'keywords' => 'split bills with friends calculator, group expense splitter, splitwise alternative no signup, trip expense settlement calculator',
     'category' => 'life',
     'order' => 4,
     'icon' => 'users',
     'short' => 'Who owes whom after a trip or dinner? Settle up in the fewest payments.',
-    'title' => 'Group Expense Splitter – Fewest IOUs Settled',
-    'description' => 'Track shared trip, flatshare or dinner receipts with custom shares and calculate who pays whom in the fewest possible transfers without signup.',
+    'title' => 'Split Group Bills Calculator – Trip & Dinner IOUs',
+    'description' => 'Split trip, flatmate and dinner expenses fairly with custom shares and calculate who owes whom in the fewest transfers—no app install or signup.',
     'related' => ['road-trip-cost-splitter', 'rent-split-calculator', 'unit-price-calculator'],
     'answer' => 'Add up everything the group spent, work out each person\'s fair share, and subtract it from what they actually paid. People with a positive balance get money back; people with a negative balance pay. This calculator then pairs them up so the group settles in <strong>at most one payment fewer than the number of people</strong>.',
     'article' => <<<'EOT_TF'
@@ -54,5 +55,5 @@ EOT_TF,
         ['Can I use this for different currencies?', 'Convert everything to one currency first, then enter the totals. The calculator works with any currency because it only uses the numbers.'],
     ],
     'keywords' => 'group expense splitter, split group bills fewest payments, splitwise alternative no signup, trip expense calculator',
-    'aka' => ['Shared Bill Settler', 'Trip Expense Settlement Tool'],
+    'aka' => ['Group Expense Splitter', 'Trip Bill Settler', 'Shared Expense Calculator'],
 ];

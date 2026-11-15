@@ -1,7 +1,7 @@
 <?php
 return [
-    'name' => 'Magic Eraser',
-    'updated' => '2026-11-15',
+    'name' => 'Photo Object Remover (Magic Eraser)',
+    'updated' => '2026-11-16',
     'category' => 'image',
     'order' => 2,
     'popular' => true,
@@ -9,11 +9,11 @@ return [
     'isolate' => true,
     'libs' => ['https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js'],
     'icon' => 'eraser',
-    'keywords' => 'magic eraser online, remove object person from photo free, erase watermark text ai, photo blemish cleaner',
-    'aka' => ['AI Photo Object Remover', 'Clean Up Image Brush'],
+    'keywords' => 'remove object from photo free, object remover online, magic eraser ai, erase person from picture, photo blemish cleaner',
+    'aka' => ['Magic Eraser', 'AI Photo Object Remover', 'Erase Objects From Photo'],
     'short' => 'Paint over anything you don’t want in a photo (people, text, objects, blemishes) and AI fills the space in naturally.',
-    'title' => 'Magic Eraser – Remove Objects From Photos',
-    'description' => 'Brush over bystanders, power lines, date stamps, text or blemishes in any picture and watch local AI fill the background cleanly in HD.',
+    'title' => 'Remove Objects From Photos Free – AI Object Eraser',
+    'description' => 'Erase people, text, power lines, watermarks and unwanted objects from photos cleanly in your browser using private local AI—no uploads.',
     'related' => ['remove-background', 'image-upscaler', 'photo-editor'],
     'answer' => 'Choose a photo, <strong>paint over what you want to remove</strong> with the brush, and press <strong>Erase</strong>. An AI model (MI-GAN) fills the painted area with what would naturally be behind it, such as sky, grass, wall or floor. Erase more parts the same way, undo any step, then download the photo at full size.',
     'article' => <<<'EOT_TF'
