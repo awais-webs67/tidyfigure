@@ -799,9 +799,13 @@ function tf_llms_txt(): string
 function tf_robots(): string
 {
     $b = TF_BASE;
-    $rules = "Allow: /\nDisallow: $b/admin/\nDisallow: $b/install/\nDisallow: $b/api/\nDisallow: $b/q/\n";
+    $signal = "Content-Signal: search=yes, ai-input=yes, ai-train=no\n";
+    $rules = "Allow: /\nDisallow: $b/admin/\nDisallow: $b/install/\nDisallow: $b/api/\nDisallow: $b/q/\n$signal";
     $searchAgents = ['Googlebot', 'Bingbot', 'Applebot', 'OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User'];
-    $out = implode('', array_map(fn($ua) => "User-agent: $ua\n", $searchAgents)) . "$rules\nUser-agent: *\n$rules";
+    $trainAgents = ['GPTBot', 'ClaudeBot', 'CCBot', 'Bytespider', 'Google-Extended', 'Applebot-Extended'];
+    $out = implode('', array_map(fn($ua) => "User-agent: $ua\n", $searchAgents)) . "$rules\n"
+        . implode('', array_map(fn($ua) => "User-agent: $ua\n", $trainAgents)) . "Disallow: /\n$signal\n"
+        . "User-agent: *\n$rules";
     $extra = trim(str_replace("\r", '', tf_settings()['robots_extra']));
     if ($extra !== '') $out .= "\n$extra\n";
     return $out . "\nSitemap: " . tf_base_url() . "/sitemap.xml\n";
