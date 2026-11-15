@@ -96,10 +96,9 @@ function tf_og_serve(string $slug): void
     $colors = ['image' => '#0A66C2', 'pdf' => '#E00000', 'text' => '#6A47DB', 'random' => '#B86F00', 'time' => '#D62976', 'calc' => '#1E7A4C', 'convert' => '#1769FF', 'life' => '#FF5B35',
         'health' => '#1FAF55', 'money' => '#0E7C86', 'social' => '#E2457F', 'qr' => '#333F48', 'media' => '#C2185B', 'study' => '#3F51B5', 'dev' => '#2E7D32', 'home' => '#8D5A2B', 'device' => '#00838F'];
     $site = tf_site()['site']['name'];
-    $n = count(tf_tools());
     $file = null;
     if ($slug === 'home') {
-        $file = tf_og_file('Free online tools that just work', "$n free tools", 'PDF, image, video, QR code, finance, health and everyday tools that run in your browser.', '#FF5B35');
+        $file = tf_og_file('Free PDF, Image & Video Tools', 'Private · In-Browser', 'Fast browser-based PDF, image, video, QR code, finance, health and everyday tools. Zero uploads.', '#FF5B35');
     } elseif ($c = tf_category($slug)) {
         $file = tf_og_file($c['name'], 'Free · ' . $site, $c['description'], $colors[$c['id']] ?? '#FF5B35');
     } elseif (tf_tool_on($slug) && ($t = tf_tools_all()[$slug] ?? null)) {

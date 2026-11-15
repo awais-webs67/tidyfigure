@@ -69,6 +69,7 @@ if ($path === 'ads.txt') {
 if ($path === 'manifest.webmanifest') {
     header('Content-Type: application/manifest+json; charset=utf-8');
     header('Cache-Control: public, max-age=86400');
+    header('X-Robots-Tag: noindex, nofollow');
     echo tf_manifest();
     exit;
 }
@@ -76,6 +77,7 @@ if ($path === 'sw.js') {
     // Service worker: lets phones install the site as an app and shows a friendly page when offline.
     header('Content-Type: application/javascript; charset=utf-8');
     header('Cache-Control: no-cache');
+    header('X-Robots-Tag: noindex, nofollow');
     echo tf_service_worker();
     exit;
 }
@@ -86,6 +88,7 @@ if (preg_match('~^icon-(48|180|192|512)\.png$~', $path, $m) || $path === 'favico
 if ($path === 'tools.json') {
     header('Content-Type: application/json; charset=utf-8');
     header('Cache-Control: public, max-age=600');
+    header('X-Robots-Tag: noindex, nofollow');
     echo tf_tools_json();
     exit;
 }
@@ -97,6 +100,7 @@ if (preg_match('~^og/([a-z0-9-]+)\.png$~', $path, $m)) {
 $key = tf_settings()['indexnow_key'];
 if ($key !== '' && $path === $key . '.txt') {
     header('Content-Type: text/plain; charset=utf-8');
+    header('X-Robots-Tag: noindex, nofollow');
     echo $key;
     exit;
 }
@@ -116,6 +120,7 @@ if (preg_match('~^s/([A-Za-z0-9]{4,12})(?:/(manage|image))?$~', $path, $m)) {
 if ($path === 'resources' || preg_match('~^r/([a-z0-9-]{1,120})(?:/(image))?$~', $path, $m)) {
     require __DIR__ . '/app/resources.php';
     tf_layout_globals();
+    header('X-Robots-Tag: noindex, follow');
     if ($path === 'resources') {
         header('Content-Type: text/html; charset=utf-8');
         header('Cache-Control: public, max-age=300');
@@ -140,7 +145,9 @@ header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: public, max-age=120, s-maxage=600');
 
 if ($path === '') {
-    echo tf_page_home(trim((string) ($_GET['q'] ?? '')));
+    $q = trim((string) ($_GET['q'] ?? ''));
+    if ($q !== '') header('X-Robots-Tag: noindex, follow');
+    echo tf_page_home($q);
     exit;
 }
 if ($html = tf_page_simple($path)) {
@@ -162,4 +169,5 @@ if ($tool) {
 }
 http_response_code(404);
 header('Cache-Control: no-store');
+header('X-Robots-Tag: noindex');
 echo tf_page_404();

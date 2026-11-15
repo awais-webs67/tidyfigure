@@ -324,9 +324,9 @@ function tf_page_tool(array $t): string
         [
             '@context' => 'https://schema.org', '@type' => 'WebApplication', '@id' => tf_abs($t['slug']) . '#app', 'name' => $t['name'], 'url' => tf_abs($t['slug']), 'inLanguage' => 'en', 'isPartOf' => ['@id' => tf_abs() . '#website'],
         ] + (!empty($t['aka']) ? ['alternateName' => array_values($t['aka'])] : []) + [
-            'description' => $desc, 'applicationCategory' => $t['appCategory'] ?? 'UtilitiesApplication', 'operatingSystem' => 'Any (runs in a web browser)',
+            'description' => $desc, 'applicationCategory' => $t['appCategory'] ?? 'UtilitiesApplication', 'applicationSubCategory' => $cat['name'], 'operatingSystem' => 'Any (runs in a web browser)',
             'browserRequirements' => 'Requires JavaScript', 'isAccessibleForFree' => true, 'offers' => ['@type' => 'Offer', 'price' => '0', 'priceCurrency' => 'USD'],
-            'dateModified' => date('Y-m-d', $updated), 'image' => tf_base_url() . '/og/' . $t['slug'] . '.png',
+            'datePublished' => $t['published'] ?? '2026-10-29', 'dateModified' => date('Y-m-d', $updated), 'image' => tf_base_url() . '/og/' . $t['slug'] . '.png',
             // The same organisation as the homepage's (#org), named here too because the homepage's entry isn't on this page.
             'publisher' => ['@type' => 'Organization', '@id' => tf_abs() . '#org', 'name' => $site['site']['name'], 'url' => tf_abs()],
         ],
@@ -358,7 +358,7 @@ function tf_page_tool(array $t): string
 ' . tf_ad('article', $noads) . '
 <h2>Frequently asked questions</h2>
 ' . tf_faq_html($t['faqs']) . '
-<p class="updated">Last updated ' . date('F Y', $updated) . ' · <a href="' . h(tf_url($cat['slug'])) . '">More ' . h(mb_strtolower($cat['name'])) . '</a></p>
+<p class="updated">Last updated ' . date('F Y', $updated) . ' · <a href="' . h(tf_url('about')) . '#methodology">Editorial &amp; accuracy standards</a> · <a href="' . h(tf_url($cat['slug'])) . '">More ' . h(mb_strtolower($cat['name'])) . '</a></p>
 </article>
 <aside class="side">
 ' . tf_ad('side', $noads) . '
@@ -399,7 +399,7 @@ function tf_page_category(array $c): string
     $tools = array_filter(tf_tools(), fn($t) => $t['category'] === $c['id']);
     $i = 0;
     $schema = [
-        ['@context' => 'https://schema.org', '@type' => 'CollectionPage', 'name' => $c['name'], 'url' => tf_abs($c['slug']), 'description' => $c['description'],
+        ['@context' => 'https://schema.org', '@type' => 'CollectionPage', '@id' => tf_abs($c['slug']) . '#webpage', 'name' => $c['name'], 'url' => tf_abs($c['slug']), 'description' => $c['description'], 'inLanguage' => 'en', 'isPartOf' => ['@id' => tf_abs() . '#website'],
             'mainEntity' => ['@type' => 'ItemList', 'numberOfItems' => count($tools), 'itemListElement' => array_values(array_map(function ($t) use (&$i) { return ['@type' => 'ListItem', 'position' => ++$i, 'url' => tf_abs($t['slug']), 'name' => $t['name']]; }, $tools))]],
         tf_breadcrumbs([['Home', tf_abs()], [$c['name'], tf_abs($c['slug'])]]),
     ];
@@ -475,7 +475,7 @@ function tf_page_home(string $initialQuery = ''): string
 <p class="eyebrow">Private · runs in your browser · no sign-up</p>
 <h1>Free PDF, Image &amp; <em>Video Tools</em>.</h1>
 <p class="lead">Fast, private online tools for PDFs, images, video to MP3, QR codes, money, health and everyday maths. No uploads, no watermarks and zero sign-up.</p>
-<div class="search" role="search">' . tf_icon('search') . '<label class="sr-only" for="q">Search tools</label><input id="q" type="search" value="' . $qVal . '" placeholder="Search tools (e.g. merge pdf, compress)…" autocomplete="off"></div>
+<div class="search" role="search">' . tf_icon('search') . '<label class="sr-only" for="q">Search tools</label><input id="q" type="search" value="' . $qVal . '" placeholder="Search tools (e.g. merge pdf, compress)…" aria-label="Search tools" autocomplete="off"></div>
 <ul class="stats"><li>' . tf_icon('shield-check') . 'Files stay on your device</li><li>' . tf_icon('zap') . 'Instant results</li><li>' . tf_icon('smartphone') . 'Works on any phone</li><li>' . tf_icon('badge-check') . '100% free</li></ul>
 </div>
 <aside class="hero-pop" aria-label="Popular tools"><p class="kicker">Popular right now</p><ul>' . $pop . '</ul></aside>
@@ -588,7 +588,7 @@ function tf_page_simple(string $slug): ?string
 <p>$name is a browser-based utility suite built for the everyday jobs that come up at work, school and home: compressing an image, merging PDFs, converting video to MP3, counting words, making a QR code, or calculating a loan payment.</p>
 $who<p>Every file tool runs in your web browser. When you compress an image or merge a PDF, the file is processed locally on your own device and is never uploaded to a server. That makes the tools faster and keeps confidential files private.</p>
 <p>A few tools need our server because of what they do: hosted QR codes (dynamic, file and verification QR codes) store the link, file or details you enter so the code keeps working, and the YouTube Subscriber Counter sends the channel name to our server to fetch the public count. Those tools say so on the page, and our <a href=\"$priv\">privacy policy</a> explains what is kept and for how long.</p>
-<h2>How we verify accuracy, formulas &amp; privacy</h2>
+<h2 id=\"methodology\">How we verify accuracy, formulas &amp; privacy</h2>
 <p>Every calculator states the exact mathematical or clinical equation it uses and walks through a worked example so you can verify every figure independently.</p>
 <ul>
 <li><strong>Health &amp; nutrition tools:</strong> Built around established reference equations such as the Mifflin-St Jeor basal metabolic rate formula, WHO BMI classifications, the U.S. Navy body-fat formula and standard clinical pregnancy dating rules, citing primary health bodies directly on each page.</li>
@@ -665,7 +665,11 @@ $who<p>Every file tool runs in your web browser. When you compress an image or m
     ];
     if (!isset($pages[$slug])) return null;
     [$title, $desc, $inner] = $pages[$slug];
-    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $slug, 'schema' => [['@context' => 'https://schema.org', '@type' => ['about' => 'AboutPage', 'contact' => 'ContactPage'][$slug] ?? 'WebPage', 'name' => $title, 'url' => tf_abs($slug)]], 'scripts' => ''], '<main class="wrap"><article class="prose page">' . $inner . '</article></main>');
+    $labels = ['about' => 'About', 'privacy' => 'Privacy Policy', 'contact' => 'Contact', 'terms' => 'Terms of Use'];
+    $pageNode = ['@context' => 'https://schema.org', '@type' => ['about' => 'AboutPage', 'contact' => 'ContactPage'][$slug] ?? 'WebPage', '@id' => tf_abs($slug) . '#webpage', 'name' => $title, 'description' => $desc, 'url' => tf_abs($slug), 'inLanguage' => 'en', 'dateModified' => TF_PAGE_DATES[$slug] ?? TF_SITE_UPDATED, 'isPartOf' => ['@id' => tf_abs() . '#website']];
+    if (in_array($slug, ['about', 'contact'], true)) $pageNode['mainEntity'] = ['@id' => tf_abs() . '#org'];
+    $schema = [$pageNode, tf_breadcrumbs([['Home', tf_abs()], [$labels[$slug] ?? ucfirst($slug), tf_abs($slug)]])];
+    return tf_layout(['title' => $title, 'description' => $desc, 'slug' => $slug, 'schema' => $schema, 'scripts' => ''], '<main class="wrap"><article class="prose page">' . $inner . '</article></main>');
 }
 
 function tf_page_404(): string
@@ -795,6 +799,10 @@ function tf_llms_txt(): string
 function tf_robots(): string
 {
     $b = TF_BASE;
+    $rules = "Allow: /\nDisallow: $b/admin/\nDisallow: $b/install/\nDisallow: $b/api/\nDisallow: $b/q/\n";
+    $searchAgents = ['Googlebot', 'Bingbot', 'Applebot', 'OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User'];
+    $out = implode('', array_map(fn($ua) => "User-agent: $ua\n", $searchAgents)) . "$rules\nUser-agent: *\n$rules";
     $extra = trim(str_replace("\r", '', tf_settings()['robots_extra']));
-    return "User-agent: *\nAllow: /\nDisallow: $b/admin/\nDisallow: $b/install/\nDisallow: $b/api/\nDisallow: $b/q/\n" . ($extra !== '' ? $extra . "\n" : '') . "\nSitemap: " . tf_base_url() . "/sitemap.xml\n";
+    if ($extra !== '') $out .= "\n$extra\n";
+    return $out . "\nSitemap: " . tf_base_url() . "/sitemap.xml\n";
 }
