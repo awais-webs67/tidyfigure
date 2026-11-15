@@ -99,7 +99,7 @@
         <label><input type="radio" name="smode" value="upload"><span>Upload</span></label>
       </div>
       <div data-smode="draw"><canvas id="pad" width="900" height="300" aria-label="Draw your signature here"></canvas><button type="button" class="linkish" id="padclear">Clear</button></div>
-      <div data-smode="type" hidden><input type="text" id="signname" value="" placeholder="Type your name" autocomplete="name"><p class="pe-signprev" id="signprev">Your name</p></div>
+      <div data-smode="type" hidden><input type="text" id="signname" value="" placeholder="Type your name" aria-label="Type your signature name" autocomplete="name"><p class="pe-signprev" id="signprev">Your name</p></div>
       <div data-smode="upload" hidden><input type="file" id="signfile" accept="image/*"><p class="note">A photo of your signature on white paper works best: the white background is removed.</p></div>
       <div class="pe-inks"><span>Ink</span><button type="button" data-ink="#111827" class="on" style="--c:#111827" aria-label="Black"></button><button type="button" data-ink="#1d3fbf" style="--c:#1d3fbf" aria-label="Blue"></button><button type="button" data-ink="#b91c1c" style="--c:#b91c1c" aria-label="Red"></button></div>
       <div class="btns"><button value="cancel" class="btn ghost">Cancel</button><button value="ok" class="btn" id="signok">Place signature</button></div>
