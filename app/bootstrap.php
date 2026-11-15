@@ -318,8 +318,8 @@ function tf_tool_date(array $t): int
 }
 
 // Dates the About, Contact, Privacy and Terms texts last changed. Change a date when you change that page's text.
-const TF_PAGE_DATES = ['about' => '2026-10-29', 'contact' => '2026-10-28', 'privacy' => '2026-10-30', 'terms' => '2026-10-30'];
-const TF_SITE_UPDATED = '2026-10-29';
+const TF_PAGE_DATES = ['about' => '2026-11-15', 'contact' => '2026-10-28', 'privacy' => '2026-10-30', 'terms' => '2026-10-30'];
+const TF_SITE_UPDATED = '2026-11-15';
 
 function tf_asset(string $file): string
 {
