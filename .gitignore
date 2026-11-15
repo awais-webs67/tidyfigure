@@ -5,3 +5,5 @@
 !/storage/cache/.gitignore
 !/storage/cache/index.php
 .DS_Store
+# Local SEO audit workspace output (do not deploy publicly)
+/tidyfigure.com-audit/

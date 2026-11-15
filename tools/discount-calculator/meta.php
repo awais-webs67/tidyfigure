@@ -1,23 +1,17 @@
 <?php
-// Discount Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Discount Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'calc',
-  'order' => 4,
-  'icon' => 'badge-percent',
-  'keywords' => 'sale price percent off calculator how much will i save double discount',
-  'short' => 'Sale price after % off, stacked discounts and tax, and how much you save.',
-  'title' => 'Discount Calculator: Sale Price After % Off & Savings',
-  'description' => <<<'EOT_TF'
-Calculate the sale price after a percentage discount, extra stacked discounts and sales tax or VAT. See exactly how much you save. Free and instant.
-EOT_TF,
-  'related' => ['percentage-calculator', 'unit-price-calculator', 'loan-calculator'],
-  'answer' => <<<'EOT_TF'
-To find a sale price, multiply the original price by <strong>(1 − discount ÷ 100)</strong>. 25% off 120 is 120 × 0.75 = <strong>90</strong>. Stacked discounts multiply rather than add: 25% off and then an extra 10% off is 120 × 0.75 × 0.9 = 81, a total of <strong>32.5% off</strong>, not 35%.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Discount Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'calc',
+    'order' => 4,
+    'icon' => 'badge-percent',
+    'keywords' => 'discount calculator, percent off calculator, sale price calculator, double discount, calculate savings, price after discount',
+    'short' => 'Sale price after % off, stacked discounts and tax, and how much you save.',
+    'title' => 'Discount Calculator – Sale Price & % Off Savings',
+    'description' => 'Find exact sale price after percentage off, stacked extra discounts and sales tax or VAT. Instant savings breakdown in your browser with no sign-up.',
+    'related' => ['percentage-calculator', 'unit-price-calculator', 'loan-calculator'],
+    'answer' => 'To find a sale price, multiply the original price by <strong>(1 − discount ÷ 100)</strong>. 25% off 120 is 120 × 0.75 = <strong>90</strong>. Stacked discounts multiply rather than add: 25% off and then an extra 10% off is 120 × 0.75 × 0.9 = 81, a total of <strong>32.5% off</strong>, not 35%.',
+    'article' => <<<'EOT_TF'
 <h2>How to calculate a discount</h2>
 <div class="formula">Amount saved = price × discount ÷ 100
 Sale price   = price × (1 − discount ÷ 100)
@@ -64,26 +58,17 @@ Sale price   = price × (1 − discount ÷ 100)
 <li><strong>Stacked discounts don't add up:</strong> 20% off and then another 10% off is 28% in total, not 30%.</li>
 <li><strong>Count delivery and returns</strong> before deciding that an online discount beats a local shop.</li>
 </ul>
+
+<h2>Real-World Shopping Examples</h2>
+<p>Suppose a jacket priced at $120 is marked 30% off, and you have an extra 15% loyalty voucher applied at checkout. First subtract 30% ($36) to reach $84, then apply 15% to $84 ($12.60) for a pre-tax total of <strong>$71.40</strong> — an effective discount of 40.5%, not 45%. Add local sales tax (for example 8%) last on the $71.40 subtotal ($77.11 final price).</p>
+<p>To check a "was/now" markdown, take the saving divided by the original ticket price and multiply by 100. That way you can tell in seconds whether a bundle, seasonal clearance or coupon code actually lowers your unit price compared with buying individual items.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate 20% off a price?',
-      'Multiply the price by 0.8. For example, 20% off 75 is 75 × 0.8 = 60, a saving of 15.',
+    'faqs' => [
+        ['How do I calculate 20% off a price?', 'Multiply the price by 0.8. For example, 20% off 75 is 75 × 0.8 = 60, a saving of 15.'],
+        ['Is 20% off plus an extra 10% the same as 30% off?', 'No. The extra 10% applies to the reduced price, so the total is 1 − 0.8 × 0.9 = 28% off.'],
+        ['How do I find the original price before a discount?', 'Divide the sale price by (1 − discount ÷ 100). If the sale price is 63 after 30% off, the original was 63 ÷ 0.7 = 90.'],
+        ['Is sales tax calculated before or after the discount?', 'Usually after. Tax is charged on the price you actually pay, which is the discounted price.'],
+        ['What does 50% off then 50% off equal?', '75% off in total, not 100%: 1 − 0.5 × 0.5 = 0.75.'],
     ],
-    [
-      'Is 20% off plus an extra 10% the same as 30% off?',
-      'No. The extra 10% applies to the reduced price, so the total is 1 − 0.8 × 0.9 = 28% off.',
-    ],
-    [
-      'How do I find the original price before a discount?',
-      <<<'EOT_TF'
-Divide the sale price by (1 − discount ÷ 100). If the sale price is 63 after 30% off, the original was 63 ÷ 0.7 = 90.
-EOT_TF,
-    ],
-    [
-      'Is sales tax calculated before or after the discount?',
-      'Usually after. Tax is charged on the price you actually pay, which is the discounted price.',
-    ],
-    ['What does 50% off then 50% off equal?', '75% off in total, not 100%: 1 − 0.5 × 0.5 = 0.75.'],
-  ],
+    'aka' => ['Sale Price Calculator', 'Percent Off Calculator', 'Double Discount Calculator'],
 ];

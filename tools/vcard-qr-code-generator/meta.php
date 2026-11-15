@@ -1,25 +1,19 @@
 <?php
-// vCard QR Code Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'vCard QR Code Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'qr',
-  'order' => 4,
-  'icon' => 'contact',
-  'use' => 'qr-code-generator',
-  'preset' => 'vcard',
-  'keywords' => 'contact qr code business card qr save contact vcard',
-  'short' => 'Put your contact details in a QR code. One scan saves you to their phone.',
-  'title' => 'vCard QR Code Generator: Contact Details in a QR Code',
-  'description' => <<<'EOT_TF'
-Make a contact (vCard) QR code with your name, phone, email, company and website. One scan adds you to someone’s contacts. Ideal for business cards. Free.
-EOT_TF,
-  'related' => ['qr-code-generator', 'whatsapp-qr-code-generator', 'barcode-generator'],
-  'answer' => <<<'EOT_TF'
-Fill in your name, phone, email, company and website, and download the QR code. When someone scans it, their phone offers to <strong>save you as a new contact</strong> with every field filled in, with no typing and no spelling mistakes. Print it on business cards, name badges, email signatures or your office door.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'vCard QR Code Generator',
+    'updated' => '2026-11-15',
+    'category' => 'qr',
+    'order' => 4,
+    'icon' => 'contact',
+    'use' => 'qr-code-generator',
+    'preset' => 'vcard',
+    'keywords' => 'vcard qr code generator, contact qr code, business card qr maker, add to contacts qr code',
+    'short' => 'Put your contact details in a QR code. One scan saves you to their phone.',
+    'title' => 'vCard QR Code Generator – Business Card QR',
+    'description' => 'Build a scannable vCard contact QR code holding your full name, phone, email, job title and website—works natively on iPhone and Android.',
+    'related' => ['qr-code-generator', 'whatsapp-qr-code-generator', 'barcode-generator'],
+    'answer' => 'Fill in your name, phone, email, company and website, and download the QR code. When someone scans it, their phone offers to <strong>save you as a new contact</strong> with every field filled in, with no typing and no spelling mistakes. Print it on business cards, name badges, email signatures or your office door.',
+    'article' => <<<'EOT_TF'
 <h2>What is a vCard?</h2>
 <p>A vCard is the standard file format phones and email programs use to exchange contact details. The QR code contains a vCard (version 3.0, the most widely supported) like this:</p>
 <div class="formula">BEGIN:VCARD
@@ -53,29 +47,19 @@ END:VCARD</div>
 
 <h2>Privacy</h2>
 <p>Your details are only processed in your browser while you create the code. Nothing is uploaded or stored.</p>
+
+<h2>Inside the Standard vCard 3.0 Payload</h2>
+<p>Both Apple iOS and Android Cameras recognise standard <code>BEGIN:VCARD / VERSION:3.0</code> text blocks natively without any third-party app. Keeping fields concise—avoiding long biographies or embedded photos inside static codes—keeps the QR module grid coarse so even compact 2 cm × 2 cm business cards scan instantaneously.</p>
+
+<h2>Static vCard vs Hosted Digital Profiles</h2>
+<p>A printed static vCard code works forever even without mobile data because every detail sits inside the QR pixels; choose a dynamic QR only when you swap numbers regularly.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a QR code for my contact details?',
-      'Fill in the contact fields, check the preview, and download the code as PNG or SVG.',
+    'faqs' => [
+        ['How do I make a QR code for my contact details?', 'Fill in the contact fields, check the preview, and download the code as PNG or SVG.'],
+        ['Will a vCard QR code work on iPhone?', 'Yes. The iPhone Camera app recognises contact QR codes and offers to add the contact.'],
+        ['How much information can I put in a contact QR code?', 'Several hundred characters, but shorter is better. Name, phone, email and website keep the code easy to scan.'],
+        ['Can I add my photo to the contact?', 'Photos make the code far too large. Add a logo in the middle of the QR code instead.'],
+        ['Does it expire?', 'No. The details are stored in the code, so it works forever.'],
     ],
-    [
-      'Will a vCard QR code work on iPhone?',
-      'Yes. The iPhone Camera app recognises contact QR codes and offers to add the contact.',
-    ],
-    [
-      'How much information can I put in a contact QR code?',
-      <<<'EOT_TF'
-Several hundred characters, but shorter is better. Name, phone, email and website keep the code easy to scan.
-EOT_TF,
-    ],
-    [
-      'Can I add my photo to the contact?',
-      'Photos make the code far too large. Add a logo in the middle of the QR code instead.',
-    ],
-    [
-      'Does it expire?',
-      'No. The details are stored in the code, so it works forever.',
-    ],
-  ],
+    'aka' => ['Contact vCard QR Maker', 'Digital Business Card QR'],
 ];

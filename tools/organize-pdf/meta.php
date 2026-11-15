@@ -1,29 +1,23 @@
 <?php
-// Organize PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Organize PDF',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 6,
-  'icon' => 'layout-grid',
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'scripts' => ['pdf-pages.js'],
-  'keywords' => 'reorder pdf pages rearrange pdf sort pages move pages',
-  'short' => 'Reorder, rotate and remove PDF pages with drag and drop.',
-  'title' => 'Organize PDF: Reorder, Rotate & Delete PDF Pages Free',
-  'description' => <<<'EOT_TF'
-Rearrange PDF pages with drag and drop, rotate sideways pages and remove the ones you don’t need, all in one step. Free, private, works on phone and desktop.
-EOT_TF,
-  'related' => ['delete-pdf-pages', 'rotate-pdf', 'merge-pdf'],
-  'answer' => <<<'EOT_TF'
-To rearrange a PDF, open it and <strong>drag the page thumbnails</strong> into the order you want (or use the ← → arrows on a phone). You can also rotate and remove pages in the same view. When it looks right, save: the new PDF downloads with every page exactly as you arranged it.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Organize PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 6,
+    'icon' => 'layout-grid',
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'scripts' => ['pdf-pages.js'],
+    'keywords' => 'organize pdf pages, rearrange pdf page order free, rotate delete reorder pdf, sort scanned pdf pages',
+    'short' => 'Reorder, rotate and remove PDF pages with drag and drop.',
+    'title' => 'Organize PDF Pages – Reorder, Rotate, Delete',
+    'description' => 'Drag and drop page thumbnails to fix sequence, rotate sideways scans 90° and remove stray sheets inside one clean visual workspace locally.',
+    'related' => ['delete-pdf-pages', 'rotate-pdf', 'merge-pdf'],
+    'answer' => 'To rearrange a PDF, open it and <strong>drag the page thumbnails</strong> into the order you want (or use the ← → arrows on a phone). You can also rotate and remove pages in the same view. When it looks right, save: the new PDF downloads with every page exactly as you arranged it.',
+    'article' => <<<'EOT_TF'
 <h2>Everything in one view</h2>
 <p>Organize PDF shows every page as a thumbnail with four controls:</p>
 <ul>
@@ -54,23 +48,20 @@ EOT_TF,
 
 <h2>Private and free</h2>
 <p>All editing happens in your browser, so your documents are never uploaded. There's no watermark, account or page limit.</p>
+
+<h2>Fixing Double-Sided Duplex Scanner Mix-Ups Quickly</h2>
+<p>When a home duplex feeder scans even pages upside-down or skips an insert, opening the full thumbnail grid lets you drag loose pages home and spin odd rotated leaves upright in one lossless pass before exporting.</p>
+
+<h2>Combining Chapters, Invoices &amp; Exhibits Into Clean Reading Order</h2>
+<p>Reorder mixed portrait and landscape sheets visually, spin upside-down appendices 180° and drop duplicate blank backs cleanly before exporting one crisp PDF file.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I rearrange pages in a PDF?',
-      <<<'EOT_TF'
-Open the PDF, then drag thumbnails into the new order or use the ← and → arrows under each page. Press Save to download the reordered PDF.
-EOT_TF,
+    'faqs' => [
+        ['How do I rearrange pages in a PDF?', 'Open the PDF, then drag thumbnails into the new order or use the ← and → arrows under each page. Press Save to download the reordered PDF.'],
+        ['Can I reorder PDF pages on my phone?', 'Yes. Use the arrow buttons under each page to move it earlier or later.'],
+        ['Can I rotate and delete pages at the same time?', 'Yes. Organize PDF lets you reorder, rotate and remove pages, then save everything in one step.'],
+        ['Will the quality change?', 'No. Pages are copied without re-compression.'],
+        ['Is it safe for confidential documents?', 'Yes. The PDF never leaves your browser.'],
+        ['Can I rotate single crooked pages inside a multi-page PDF without touching others?', 'Yes. Click rotate controls directly on any individual thumbnail while leaving clean upright pages untouched.'],
     ],
-    [
-      'Can I reorder PDF pages on my phone?',
-      'Yes. Use the arrow buttons under each page to move it earlier or later.',
-    ],
-    [
-      'Can I rotate and delete pages at the same time?',
-      'Yes. Organize PDF lets you reorder, rotate and remove pages, then save everything in one step.',
-    ],
-    ['Will the quality change?', 'No. Pages are copied without re-compression.'],
-    ['Is it safe for confidential documents?', 'Yes. The PDF never leaves your browser.'],
-  ],
+    'aka' => ['PDF Page Organizer', 'Reorder & Rotate PDF Workspace'],
 ];

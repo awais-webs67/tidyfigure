@@ -1,25 +1,17 @@
 <?php
-// Hashtag Generator & Counter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Hashtag Generator & Counter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 23,
-  'icon' => 'hash',
-  'keywords' => <<<'EOT_TF'
-hashtag generator hashtag counter instagram hashtags tiktok hashtags camelcase hashtag maker count hashtags caption
-EOT_TF,
-  'short' => 'Turn keywords into clean hashtags, or count and tidy the hashtags in a caption.',
-  'title' => 'Hashtag Generator & Counter for Instagram, TikTok & X',
-  'description' => <<<'EOT_TF'
-Turn your keywords into clean, readable #CamelCase hashtags, or paste a caption to count its hashtags, find duplicates and broken tags. Free, no sign-up.
-EOT_TF,
-  'related' => ['character-counter', 'fancy-text-generator', 'case-converter'],
-  'answer' => <<<'EOT_TF'
-Type the keywords that describe your post, one per line, and copy them as hashtags: "home workout" becomes <strong>#HomeWorkout</strong>. Or switch to <strong>Check a caption</strong> to count its hashtags, spot duplicates and find tags broken by punctuation. A few specific, relevant hashtags (often 3–5) generally work better than a long list.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Hashtag Generator & Counter',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 23,
+    'icon' => 'hash',
+    'keywords' => 'hashtag generator, camelcase hashtag formatter, count hashtags in caption, duplicate hashtag checker',
+    'short' => 'Turn keywords into clean hashtags, or count and tidy the hashtags in a caption.',
+    'title' => 'Hashtag Generator & Checker – CamelCase Tags',
+    'description' => 'Convert topic keywords into clean CamelCase hashtags, inspect caption tag counts and strip broken punctuation or duplicate Instagram/TikTok tags.',
+    'related' => ['character-counter', 'fancy-text-generator', 'case-converter'],
+    'answer' => 'Type the keywords that describe your post, one per line, and copy them as hashtags: "home workout" becomes <strong>#HomeWorkout</strong>. Or switch to <strong>Check a caption</strong> to count its hashtags, spot duplicates and find tags broken by punctuation. A few specific, relevant hashtags (often 3–5) generally work better than a long list.',
+    'article' => <<<'EOT_TF'
 <h2>How to make good hashtags</h2>
 <ul>
 <li><strong>Be specific.</strong> #HomeWorkout reaches people looking for exactly that; #fitness is so broad your post is lost among millions.</li>
@@ -56,34 +48,12 @@ EOT_TF,
 <h2>Finding the right keywords</h2>
 <p>This tool formats and checks hashtags; it doesn't track which ones are trending. To find good keywords, search the platform itself: type a word into its search bar and look at the suggested tags and how many posts each has. Look at the hashtags used by accounts in your niche whose posts do well, and keep a note of the ones that bring you real engagement.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a hashtag?',
-      <<<'EOT_TF'
-Remove spaces and punctuation and put # in front: "home workout" becomes #HomeWorkout. The generator does this for each keyword you type.
-EOT_TF,
+    'faqs' => [
+        ['How do I make a hashtag?', 'Remove spaces and punctuation and put # in front: "home workout" becomes #HomeWorkout. The generator does this for each keyword you type.'],
+        ['Should hashtags be CamelCase?', 'For multi-word hashtags, yes. #HomeWorkout is easier to read and screen readers pronounce each word.'],
+        ['How many hashtags should I use on Instagram?', 'A few highly relevant ones, typically 3–5. Instagram limits how many you can add, and the limit can change, so check the app.'],
+        ['Why isn’t my hashtag working?', 'It may contain a space, apostrophe, hyphen or emoji, or be made only of numbers. Paste your caption into Check a caption to find broken tags.'],
+        ['Does this show trending hashtags?', 'No. It formats and checks hashtags. To find popular ones, use the search in each app and see what accounts in your niche use.'],
     ],
-    [
-      'Should hashtags be CamelCase?',
-      'For multi-word hashtags, yes. #HomeWorkout is easier to read and screen readers pronounce each word.',
-    ],
-    [
-      'How many hashtags should I use on Instagram?',
-      <<<'EOT_TF'
-A few highly relevant ones, typically 3–5. Instagram limits how many you can add, and the limit can change, so check the app.
-EOT_TF,
-    ],
-    [
-      'Why isn’t my hashtag working?',
-      <<<'EOT_TF'
-It may contain a space, apostrophe, hyphen or emoji, or be made only of numbers. Paste your caption into Check a caption to find broken tags.
-EOT_TF,
-    ],
-    [
-      'Does this show trending hashtags?',
-      <<<'EOT_TF'
-No. It formats and checks hashtags. To find popular ones, use the search in each app and see what accounts in your niche use.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Hashtag Formatter & Counter', 'Instagram Tag Cleaner'],
 ];

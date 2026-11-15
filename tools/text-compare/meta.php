@@ -1,26 +1,18 @@
 <?php
-// Text Compare: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Text Compare',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 21,
-  'icon' => 'file-diff',
-  'popular' => true,
-  'keywords' => <<<'EOT_TF'
-text compare diff checker compare two texts find differences online diff word compare document changes
-EOT_TF,
-  'short' => 'Compare two texts and see every added and removed word, highlighted.',
-  'title' => 'Text Compare: Find the Differences Between Two Texts',
-  'description' => <<<'EOT_TF'
-Paste two versions of a text to highlight exactly what changed: added and removed words, lines or characters. Ignore case or spaces. Free diff checker.
-EOT_TF,
-  'related' => ['word-counter', 'remove-duplicate-lines', 'readability-checker'],
-  'answer' => <<<'EOT_TF'
-Paste the original text on the left and the new version on the right. Every change is highlighted: <ins>added words in green</ins> and <del>removed words struck through in red</del>, with a count of words added and removed and a similarity score. Compare by words, whole lines or single characters.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Text Compare',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 21,
+    'icon' => 'file-diff',
+    'popular' => true,
+    'keywords' => 'text compare, online diff checker, compare two drafts side by side, find text differences free',
+    'short' => 'Compare two texts and see every added and removed word, highlighted.',
+    'title' => 'Text Compare – Highlight Line & Word Diffs',
+    'description' => 'Compare two texts or code snippets side by side to highlight added, deleted and edited words or lines with ignore-case and whitespace options.',
+    'related' => ['word-counter', 'remove-duplicate-lines', 'readability-checker'],
+    'answer' => 'Paste the original text on the left and the new version on the right. Every change is highlighted: <ins>added words in green</ins> and <del>removed words struck through in red</del>, with a count of words added and removed and a similarity score. Compare by words, whole lines or single characters.',
+    'article' => <<<'EOT_TF'
 <h2>How to compare two texts</h2>
 <ol>
 <li>Paste the <strong>original</strong> in the first box and the <strong>changed</strong> version in the second.</li>
@@ -55,30 +47,12 @@ EOT_TF,
 <li>The comparison runs in your browser and nothing is uploaded, so it's safe for confidential documents.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I compare two texts for differences?',
-      <<<'EOT_TF'
-Paste the original in the first box and the new version in the second. Added words are highlighted green and removed words red.
-EOT_TF,
+    'faqs' => [
+        ['How do I compare two texts for differences?', 'Paste the original in the first box and the new version in the second. Added words are highlighted green and removed words red.'],
+        ['Can I compare two documents?', 'Yes. Copy the text from each document (Word, PDF or Google Docs) and paste it into the two boxes.'],
+        ['What is the difference between word and line mode?', 'Word mode shows changed words within sentences. Line mode marks whole changed lines, which suits code and lists.'],
+        ['Can it ignore case and spacing?', 'Yes. Tick Ignore upper/lower case or Ignore extra spaces to hide those differences.'],
+        ['Is my text uploaded?', 'No. The comparison runs in your browser, so your text never leaves your device.'],
     ],
-    [
-      'Can I compare two documents?',
-      'Yes. Copy the text from each document (Word, PDF or Google Docs) and paste it into the two boxes.',
-    ],
-    [
-      'What is the difference between word and line mode?',
-      <<<'EOT_TF'
-Word mode shows changed words within sentences. Line mode marks whole changed lines, which suits code and lists.
-EOT_TF,
-    ],
-    [
-      'Can it ignore case and spacing?',
-      'Yes. Tick Ignore upper/lower case or Ignore extra spaces to hide those differences.',
-    ],
-    [
-      'Is my text uploaded?',
-      'No. The comparison runs in your browser, so your text never leaves your device.',
-    ],
-  ],
+    'aka' => ['Side-by-Side Text Diff Checker', 'Document Version Comparer'],
 ];

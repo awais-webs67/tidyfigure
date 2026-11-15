@@ -1,26 +1,21 @@
 <?php
-// Giveaway Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Giveaway Maker',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'share',
-  'order' => 2,
-  'popular' => true,
-  'scripts' => ['share.js'],
-  'css' => ['share.css'], // extra stylesheets in assets/
-  'icon' => 'gift',
-  'keywords' => 'giveaway maker create online giveaway free giveaway generator giveaway page with countdown random winner instagram giveaway entry form contest maker sweepstakes',
-  'aka' => ['Online giveaway creator', 'Contest maker', 'Giveaway page', 'Lucky draw online'], // other names people search for
-  'short' => 'Host a giveaway with a countdown, an entry form and a fair random winner, shared with one link.',
-  'title' => 'Giveaway Maker: Online Giveaway With Countdown & Winner',
-  'description' => <<<'EOT_TF'
-Create an online giveaway page in minutes: prize, countdown, your own entry form and a fair random winner drawn automatically. Free, no sign-up, shared by link.
-EOT_TF,
-  'related' => ['giveaway-picker', 'how-well-do-you-know-me', 'spin-the-wheel'],
-  'answer' => <<<'EOT_TF'
-Write the prize, add a picture, set when the giveaway ends and choose what to ask people (name, phone, email, Instagram…). Press <strong>Create giveaway</strong> and share the link. Visitors see a <strong>live countdown</strong> and enter with a form. When time runs out, <strong>winners are drawn at random automatically</strong>, or you draw them yourself with your secret code.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Giveaway Maker',
+    'updated' => '2026-11-15',
+    'category' => 'share',
+    'order' => 2,
+    'popular' => true,
+    'scripts' => ['share.js'],
+    'css' => ['share.css'],
+    'icon' => 'gift',
+    'keywords' => 'giveaway maker, online giveaway page, contest creator, lucky draw page, giveaway with countdown',
+    'aka' => ['Online Giveaway Creator', 'Contest Page Builder', 'Lucky Draw Maker'],
+    'short' => 'Host a giveaway with a countdown, an entry form and a fair random winner, shared with one link.',
+    'title' => 'Giveaway Maker – Entry Page, Timer & Draw',
+    'description' => 'Create a hosted online giveaway page with prize details, live countdown, custom entry fields and automatic fair random winner selection.',
+    'related' => ['giveaway-picker', 'how-well-do-you-know-me', 'spin-the-wheel'],
+    'answer' => 'Write the prize, add a picture, set when the giveaway ends and choose what to ask people (name, phone, email, Instagram…). Press <strong>Create giveaway</strong> and share the link. Visitors see a <strong>live countdown</strong> and enter with a form. When time runs out, <strong>winners are drawn at random automatically</strong>, or you draw them yourself with your secret code.',
+    'article' => <<<'EOT_TF'
 <h2>How to run a giveaway</h2>
 <ol>
 <li>Write a title and the prize, and add a picture of it.</li>
@@ -45,37 +40,15 @@ EOT_TF,
 <li>Follow the rules of the platform you promote it on. Instagram, for example, asks that giveaways say they aren’t sponsored by Instagram.</li>
 <li>Announce the winner publicly by sharing the giveaway page after it ends.</li>
 </ul>
+
+<h2>Designing Clear Giveaway Rules That Build Trust</h2>
+<p>High-converting giveaways state the exact prize, geographic eligibility, closing date with timezone and how winners will be notified upfront. Keep your entry fields minimal (name plus one contact handle or email) so legitimate entrants complete the form quickly without friction.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Is the giveaway maker free?',
-      <<<'EOT_TF'
-Yes. Making a giveaway, entering and drawing winners are all free, with no sign-up.
-EOT_TF,
+    'faqs' => [
+        ['Is the giveaway maker free?', 'Yes. Making a giveaway, entering and drawing winners are all free, with no sign-up.'],
+        ['How is the winner picked?', 'At random on the server when the countdown ends (or when you press Draw), using a secure random number generator. Every entry has the same chance.'],
+        ['Can people enter more than once?', 'No. The same email, phone number or username can only enter once.'],
+        ['Who sees the entrants’ phone numbers and emails?', 'Only you, on your private page. The public page shows winners’ names with their contact details partly hidden.'],
+        ['Can I pick a new winner if someone doesn’t reply?', 'Yes. Press Draw again on your private page. People who already won are left out of the new draw.'],
     ],
-    [
-      'How is the winner picked?',
-      <<<'EOT_TF'
-At random on the server when the countdown ends (or when you press Draw), using a secure random number generator. Every entry has the same chance.
-EOT_TF,
-    ],
-    [
-      'Can people enter more than once?',
-      <<<'EOT_TF'
-No. The same email, phone number or username can only enter once.
-EOT_TF,
-    ],
-    [
-      'Who sees the entrants’ phone numbers and emails?',
-      <<<'EOT_TF'
-Only you, on your private page. The public page shows winners’ names with their contact details partly hidden.
-EOT_TF,
-    ],
-    [
-      'Can I pick a new winner if someone doesn’t reply?',
-      <<<'EOT_TF'
-Yes. Press Draw again on your private page. People who already won are left out of the new draw.
-EOT_TF,
-    ],
-  ],
 ];

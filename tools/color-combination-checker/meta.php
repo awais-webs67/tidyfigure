@@ -1,24 +1,19 @@
 <?php
-// Color Combination Checker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Color Combination Checker',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'convert',
-  'order' => 24,
-  'popular' => true,
-  'scripts' => ['color.js'],
-  'icon' => 'swatch-book',
-  'keywords' => 'color combination checker colour combination do these colors go together color harmony checker color palette checker contrast checker color blind test palette generator',
-  'short' => 'Check if colours go together: harmony, contrast and colour blindness.',
-  'title' => 'Color Combination Checker: Do These Colors Match?',
-  'description' => <<<'EOT_TF'
-Check if your colours go together: see their harmony, WCAG text contrast for every pair, how they look to colour-blind people, and matching palette ideas.
-EOT_TF,
-  'related' => ['outfit-color-matcher', 'color-converter', 'image-color-picker', 'css-gradient-generator'],
-  'answer' => <<<'EOT_TF'
-Pick two to five colours. The checker names their <strong>harmony</strong> (complementary, analogous, triadic and more), rates how well they work together, shows the <strong>WCAG contrast</strong> of every pair for readable text, and previews them as people with colour blindness see them. Click a suggested palette to try it.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Color Combination Checker',
+    'updated' => '2026-11-15',
+    'category' => 'convert',
+    'order' => 24,
+    'popular' => true,
+    'scripts' => ['color.js'],
+    'icon' => 'swatch-book',
+    'keywords' => 'color combination checker, color harmony checker, wcag contrast checker, palette accessibility, matching colors test',
+    'short' => 'Check if colours go together: harmony, contrast and colour blindness.',
+    'title' => 'Color Combination Checker – Harmony & WCAG Test',
+    'description' => 'Test two or more HEX colours for colour-wheel harmony, WCAG AA/AAA text contrast ratios and colour-blindness legibility before designing.',
+    'related' => ['outfit-color-matcher', 'color-converter', 'image-color-picker', 'css-gradient-generator'],
+    'answer' => 'Pick two to five colours. The checker names their <strong>harmony</strong> (complementary, analogous, triadic and more), rates how well they work together, shows the <strong>WCAG contrast</strong> of every pair for readable text, and previews them as people with colour blindness see them. Click a suggested palette to try it.',
+    'article' => <<<'EOT_TF'
 <h2>What makes colours go together?</h2>
 <p>Colour harmony comes from the relationship between hues on the colour wheel and from balancing how bright and saturated each colour is. Designers rely on a few proven patterns:</p>
 <ul>
@@ -43,37 +38,17 @@ EOT_TF,
 
 <h2>Clashing colours</h2>
 <p>Two very saturated colours of similar brightness that are neither close nor opposite (for example bright red and bright purple) can seem to vibrate against each other. Soften one, darken it, or separate them with a neutral.</p>
+
+<h2>Choosing Reliable Brand &amp; UI Pairs</h2>
+<p>Accessible digital interfaces rely on two layers of verification: aesthetic harmony (complementary, analogous or triadic spacing on the HSL wheel) and functional luminance contrast. Even two pleasing pastel shades fail readability if their luminance ratio falls below WCAG AA (<code>4.5:1</code> for body copy and <code>3:1</code> for large headings or UI icons).</p>
+<p>As a practical rule, lock one dark neutral for text, one light neutral for backgrounds, and keep bright accent colours limited to buttons, links and active badges after verifying them under protanopia and deuteranopia filters.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I know if two colours go together?',
-      <<<'EOT_TF'
-Check their relationship on the colour wheel (complementary, analogous, triadic) and their contrast. This checker does both and gives a rating with tips.
-EOT_TF,
+    'faqs' => [
+        ['How do I know if two colours go together?', 'Check their relationship on the colour wheel (complementary, analogous, triadic) and their contrast. This checker does both and gives a rating with tips.'],
+        ['What is a good contrast ratio for text?', 'At least 4.5:1 for normal text and 3:1 for large text to meet WCAG AA. Aim for 7:1 for the best readability.'],
+        ['What colours go with everything?', 'Neutrals: white, black, grey, navy and beige. They pair with almost any colour and calm down bright ones.'],
+        ['Why do some colour combinations look bad?', 'Highly saturated colours of similar lightness that aren’t related on the colour wheel compete for attention and can appear to vibrate.'],
+        ['Can I check colours for colour-blind users?', 'Yes. The simulation shows your palette as seen with protanopia, deuteranopia and tritanopia, so you can spot colours that become hard to tell apart.'],
     ],
-    [
-      'What is a good contrast ratio for text?',
-      <<<'EOT_TF'
-At least 4.5:1 for normal text and 3:1 for large text to meet WCAG AA. Aim for 7:1 for the best readability.
-EOT_TF,
-    ],
-    [
-      'What colours go with everything?',
-      <<<'EOT_TF'
-Neutrals: white, black, grey, navy and beige. They pair with almost any colour and calm down bright ones.
-EOT_TF,
-    ],
-    [
-      'Why do some colour combinations look bad?',
-      <<<'EOT_TF'
-Highly saturated colours of similar lightness that aren’t related on the colour wheel compete for attention and can appear to vibrate.
-EOT_TF,
-    ],
-    [
-      'Can I check colours for colour-blind users?',
-      <<<'EOT_TF'
-Yes. The simulation shows your palette as seen with protanopia, deuteranopia and tritanopia, so you can spot colours that become hard to tell apart.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Color Harmony Checker', 'Palette Contrast Tester', 'Colour Matching Checker'],
 ];

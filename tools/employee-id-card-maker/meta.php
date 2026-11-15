@@ -1,25 +1,25 @@
 <?php
-// Employee ID Card Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Employee ID Card Maker',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 40,
-  'files' => true,
-  'use' => 'student-id-card-maker',
-  'preset' => json_decode('{"type": "employee"}', true),
-  'icon' => 'contact-round',
-  'keywords' => 'employee id card maker company id card generator staff id badge maker employee badge template office id card online free',
-  'short' => 'Make a staff ID badge with photo, logo and QR code, ready to print.',
-  'title' => 'Employee ID Card Maker: Free Staff Badge With Photo',
-  'description' => <<<'EOT_TF'
-Make employee ID cards online: add a photo and company logo, pick a design and colour, add a QR code, and download a print-ready PDF or PNG. Free, no sign-up.
-EOT_TF,
-  'related' => ['student-id-card-maker', 'experience-letter-maker', 'email-signature-generator', 'invoice-generator'],
-  'answer' => <<<'EOT_TF'
-Upload the employee’s <strong>photo</strong> and your <strong>company logo</strong>, enter the name, job title, employee ID and department, then pick a landscape or portrait (lanyard) layout and your brand colour. The badge’s front and back update as you type. Download a <strong>print-ready PDF</strong> with crop marks, or PNG files for a card printer.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Employee ID Card Maker',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 40,
+    'files' => true,
+    'use' => 'student-id-card-maker',
+    'preset' => [
+        'type' => 'employee',
+    ],
+    'icon' => 'contact-round',
+    'keywords' => 'employee id card maker, staff badge template pdf, company id card generator qr, printable work badge',
+    'short' => 'Make a staff ID badge with photo, logo and QR code, ready to print.',
+    'title' => 'Employee ID Card Maker – Staff Badge PDF/PNG',
+    'description' => 'Design company employee, contractor or visitor photo badges with corporate logo, department role, expiry date and QR code as print-ready PDF/PNG.',
+    'related' => ['student-id-card-maker', 'experience-letter-maker', 'email-signature-generator', 'invoice-generator'],
+    'answer' => 'Upload the employee’s <strong>photo</strong> and your <strong>company logo</strong>, enter the name, job title, employee ID and department, then pick a landscape or portrait (lanyard) layout and your brand colour. The badge’s front and back update as you type. Download a <strong>print-ready PDF</strong> with crop marks, or PNG files for a card printer.',
+    'sources' => [
+        ['ISO/IEC 7810 – Identification Cards Physical Characteristics (ID-1 / CR80)', 'https://www.iso.org/standard/70483.html'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How to make an employee ID card</h2>
 <ol>
 <li>Upload the employee’s photo and your company logo.</li>
@@ -43,37 +43,20 @@ EOT_TF,
 
 <h2>Private</h2>
 <p>Photos and employee details never leave your device: the card is drawn in your browser.</p>
+
+<h2>Adding Department Codes &amp; Lanyard Slot Margins</h2>
+<p>When prepping corporate badges for vertical pouch holders or hole-punched PVC cards, keep logo graphics and holder portraits at least <code>8 mm</code> clear of the top edge so punch holes never clip company marks or magnetic orientation strips.</p>
+
+<h2>Verify Employee Role &amp; Access Scopes Clearly</h2>
+<p>Include bold high-contrast role labels (Staff, Visitor or Contractor) alongside valid-until expiry dates so reception desks spot access levels at a single glance.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make an employee ID card online?',
-      <<<'EOT_TF'
-Add the photo and logo, fill in the details, choose a design and colour, then download the print-ready PDF or PNG images. It’s free and nothing is uploaded.
-EOT_TF,
+    'faqs' => [
+        ['How do I make an employee ID card online?', 'Add the photo and logo, fill in the details, choose a design and colour, then download the print-ready PDF or PNG images. It’s free and nothing is uploaded.'],
+        ['What size is an ID card?', 'The standard ID card size is 85.6 × 54 mm (3.375 × 2.125 in), called CR80, the same as a bank card. This tool makes cards at that size at 300 dpi.'],
+        ['Can I print the card at home?', 'Yes. Print the PDF at 100% (actual size) on thick card or photo paper, cut along the crop marks and laminate it.'],
+        ['Can I add a QR code?', 'Yes. The back of the card includes a QR code with the name, ID number and organisation. Untick it if you don’t want one.'],
+        ['Are my photos and details uploaded?', 'No. Everything is drawn in your browser and saved only on your device.'],
+        ['Can small teams print employee ID badges without special card printers?', 'Yes. Export crisp high-DPI PDFs, print on glossy 300 gsm card paper and cut cleanly around guides before hot-laminating.'],
     ],
-    [
-      'What size is an ID card?',
-      <<<'EOT_TF'
-The standard ID card size is 85.6 × 54 mm (3.375 × 2.125 in), called CR80, the same as a bank card. This tool makes cards at that size at 300 dpi.
-EOT_TF,
-    ],
-    [
-      'Can I print the card at home?',
-      <<<'EOT_TF'
-Yes. Print the PDF at 100% (actual size) on thick card or photo paper, cut along the crop marks and laminate it.
-EOT_TF,
-    ],
-    [
-      'Can I add a QR code?',
-      <<<'EOT_TF'
-Yes. The back of the card includes a QR code with the name, ID number and organisation. Untick it if you don’t want one.
-EOT_TF,
-    ],
-    [
-      'Are my photos and details uploaded?',
-      <<<'EOT_TF'
-No. Everything is drawn in your browser and saved only on your device.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Company Staff Badge Maker', 'Office ID Card Generator'],
 ];

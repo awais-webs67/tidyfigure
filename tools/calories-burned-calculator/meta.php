@@ -1,28 +1,21 @@
 <?php
-// Calories Burned Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Calories Burned Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['Compendium of Physical Activities (MET values)', 'https://pacompendium.com/'],
-  ],
-  'order' => 10,
-  'icon' => 'dumbbell',
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'calories burned walking running cycling exercise calorie calculator met',
-  'short' => 'Calories burned walking, running, cycling, swimming and 25+ activities.',
-  'title' => 'Calories Burned Calculator: Walking, Running & 30 Activities',
-  'description' => <<<'EOT_TF'
-Estimate calories burned during walking, running, cycling, swimming, yoga, weights and 25+ other activities, based on your weight and time. Uses MET values.
-EOT_TF,
-  'related' => ['calorie-calculator', 'heart-rate-zone-calculator', 'macro-calculator'],
-  'answer' => <<<'EOT_TF'
-Calories burned depend mainly on <strong>your weight</strong>, <strong>how long</strong> you exercise and <strong>how intense</strong> the activity is. A 70 kg person burns roughly 130 kcal in 30 minutes of easy walking and about 360 kcal in 30 minutes of running at 10 km/h. Choose an activity to see your own estimate.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Calories Burned Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 10,
+    'icon' => 'dumbbell',
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'calories burned calculator, exercise calorie calculator, walking calories burned, running calories calculator, met calculator',
+    'short' => 'Calories burned walking, running, cycling, swimming and 25+ activities.',
+    'title' => 'Calories Burned Calculator – Exercise & Steps',
+    'description' => 'Estimate calories burned across 30+ activities—walking, running, cycling, swimming, weights and yoga—from your body weight, duration and MET score.',
+    'related' => ['calorie-calculator', 'heart-rate-zone-calculator', 'macro-calculator'],
+    'answer' => 'Calories burned depend mainly on <strong>your weight</strong>, <strong>how long</strong> you exercise and <strong>how intense</strong> the activity is. A 70 kg person burns roughly 130 kcal in 30 minutes of easy walking and about 360 kcal in 30 minutes of running at 10 km/h. Choose an activity to see your own estimate.',
+    'sources' => [
+        ['Compendium of Physical Activities (MET values)', 'https://pacompendium.com/'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How it's calculated: METs</h2>
 <p>Every activity has a MET value (metabolic equivalent of task): how much energy it uses compared with sitting still. Sitting is about 1 MET; running at 10 km/h is about 9.8 METs, nearly ten times as much. The values here come from the Compendium of Physical Activities, the standard reference used in exercise research.</p>
 <div class="formula">Calories burned = MET × 3.5 × weight (kg) ÷ 200 × minutes
@@ -52,31 +45,16 @@ Example: running at 10 km/h (MET 9.8), 70 kg, 30 minutes
 
 <h2>Getting a more accurate number</h2>
 <p>The MET values are averages from research on adults. Your real burn depends on fitness, terrain, wind and how hard you actually work. A heart rate monitor gives a better personal estimate. When you use these numbers to plan eating, remember that fitness trackers and gym machines often overestimate, so many people eat back only half of the calories they burn while trying to lose weight.</p>
+
+<h2>Gross vs Net Exercise Calories</h2>
+<p>Standard MET tables report <strong>gross calories burned</strong>, which include the resting 1.0 MET you would burn just sitting on the sofa during that hour. When logging exercise alongside a daily calorie tracker that already counts your resting day, subtracting 1.0 MET (<code>MET − 1</code>) gives your extra <em>net</em> burn and prevents double-counting resting expenditure.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How many calories does walking burn?',
-      'About 3.5 METs at 5 km/h: roughly 130 kcal per 30 minutes for a 70 kg person.',
+    'faqs' => [
+        ['How many calories does walking burn?', 'About 3.5 METs at 5 km/h: roughly 130 kcal per 30 minutes for a 70 kg person.'],
+        ['How many calories does running burn?', 'Running at 10 km/h burns about 360 kcal per 30 minutes for a 70 kg person.'],
+        ['What is a MET?', 'A metabolic equivalent: the energy cost of an activity compared with sitting still (1 MET).'],
+        ['Are fitness tracker calorie numbers accurate?', 'They’re rough estimates and often overestimate calories burned, especially for activities other than walking and running.'],
+        ['Which exercise burns the most calories?', 'Vigorous activities such as running, jump rope, fast cycling and swimming laps burn the most per minute.'],
     ],
-    [
-      'How many calories does running burn?',
-      'Running at 10 km/h burns about 360 kcal per 30 minutes for a 70 kg person.',
-    ],
-    [
-      'What is a MET?',
-      'A metabolic equivalent: the energy cost of an activity compared with sitting still (1 MET).',
-    ],
-    [
-      'Are fitness tracker calorie numbers accurate?',
-      <<<'EOT_TF'
-They’re rough estimates and often overestimate calories burned, especially for activities other than walking and running.
-EOT_TF,
-    ],
-    [
-      'Which exercise burns the most calories?',
-      <<<'EOT_TF'
-Vigorous activities such as running, jump rope, fast cycling and swimming laps burn the most per minute.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Exercise Calorie Burn Calculator', 'Activity MET Calculator'],
 ];

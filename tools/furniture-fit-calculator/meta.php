@@ -1,22 +1,16 @@
 <?php
-// Will It Fit? Furniture Door Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Will It Fit? Furniture Door Calculator',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'life',
-  'order' => 5,
-  'icon' => 'sofa',
-  'short' => 'Check if a sofa, bed or wardrobe fits through a door and around a hallway corner.',
-  'title' => 'Will It Fit Through the Door? Furniture Fit Calculator',
-  'description' => <<<'EOT_TF'
-Check if a sofa, bed, wardrobe or fridge will fit through a door and around a hallway corner before you buy. Shows which way to carry it. Free.
-EOT_TF,
-  'related' => ['decision-matrix', 'rent-split-calculator', 'baking-pan-converter'],
-  'answer' => <<<'EOT_TF'
-A piece of furniture fits through a door if <strong>two of its three measurements fit inside the door opening</strong>; the third one simply goes through. A sofa is usually carried on its side or end so its depth and height face the doorway. Hallway corners are harder: the turn limits how long the piece can be, which this calculator works out for you.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Will It Fit? Furniture Door Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'life',
+    'order' => 5,
+    'icon' => 'sofa',
+    'short' => 'Check if a sofa, bed or wardrobe fits through a door and around a hallway corner.',
+    'title' => 'Furniture Fit Calculator – Will Sofa Fit Door?',
+    'description' => 'Check whether a sofa, wardrobe, fridge or mattress clears doorways and tight L-shaped hallway turns before delivery using exact 3D tilt math.',
+    'related' => ['decision-matrix', 'rent-split-calculator', 'baking-pan-converter'],
+    'answer' => 'A piece of furniture fits through a door if <strong>two of its three measurements fit inside the door opening</strong>; the third one simply goes through. A sofa is usually carried on its side or end so its depth and height face the doorway. Hallway corners are harder: the turn limits how long the piece can be, which this calculator works out for you.',
+    'article' => <<<'EOT_TF'
 <h2>How to tell if furniture will fit through a door</h2>
 <p>Every piece of furniture has three measurements: width, depth and height. When you carry it through a doorway, one of those measurements goes <em>through</em> the door, and the other two have to fit <em>inside</em> the opening. So the question is never "is the sofa narrower than the door?" but "is there a way to turn it so its two smaller sides fit the door's width and height?"</p>
 <p>The calculator tries all three ways of carrying the piece and picks the one with the most room to spare. If nothing fits straight on, it checks whether tilting the piece diagonally inside the frame would work, which uses the door's diagonal like a removal crew does.</p>
@@ -50,36 +44,13 @@ EOT_TF,
 </ul>
 <p>The calculator treats furniture as a box, which is a little cautious: a sofa with sloping arms or a curved back can sometimes be wiggled through gaps a box couldn't. If the result says "tight", measure again carefully before delivery day.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Will a 36-inch-deep sofa fit through a 32-inch door?',
-      <<<'EOT_TF'
-Often yes. Depth is not the only measurement that matters. If the sofa’s height is under 32 inches, you can turn it on its back or side so the height goes across the doorway and the depth goes up the door’s height. Enter all three measurements to check.
-EOT_TF,
+    'faqs' => [
+        ['Will a 36-inch-deep sofa fit through a 32-inch door?', 'Often yes. Depth is not the only measurement that matters. If the sofa’s height is under 32 inches, you can turn it on its back or side so the height goes across the doorway and the depth goes up the door’s height. Enter all three measurements to check.'],
+        ['How do you measure a sofa’s diagonal depth?', 'Diagonal depth is used for sofas with tall backs. This calculator doesn’t need it, because it checks every orientation and also tests tilting the piece diagonally through the frame.'],
+        ['How wide is a standard door?', 'Interior doors are commonly 28–32 inches (about 70–80 cm) wide, and front doors 32–36 inches (about 80–90 cm). Always measure your own door with it fully open.'],
+        ['Will a sofa fit around a corner in my hallway?', 'It depends on the width of both hallways and the size of the sofa’s footprint. The calculator finds the longest piece that can turn the corner in each carrying position and compares it with your furniture.'],
+        ['Can I use this for beds, fridges and wardrobes?', 'Yes. It works for any box-shaped item. For a fridge or wardrobe, standing it upright and turning it on its side are both checked.'],
     ],
-    [
-      'How do you measure a sofa’s diagonal depth?',
-      <<<'EOT_TF'
-Diagonal depth is used for sofas with tall backs. This calculator doesn’t need it, because it checks every orientation and also tests tilting the piece diagonally through the frame.
-EOT_TF,
-    ],
-    [
-      'How wide is a standard door?',
-      <<<'EOT_TF'
-Interior doors are commonly 28–32 inches (about 70–80 cm) wide, and front doors 32–36 inches (about 80–90 cm). Always measure your own door with it fully open.
-EOT_TF,
-    ],
-    [
-      'Will a sofa fit around a corner in my hallway?',
-      <<<'EOT_TF'
-It depends on the width of both hallways and the size of the sofa’s footprint. The calculator finds the longest piece that can turn the corner in each carrying position and compares it with your furniture.
-EOT_TF,
-    ],
-    [
-      'Can I use this for beds, fridges and wardrobes?',
-      <<<'EOT_TF'
-Yes. It works for any box-shaped item. For a fridge or wardrobe, standing it upright and turning it on its side are both checked.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'furniture fit calculator, will sofa fit through door, hallway corner clearance calculator, moving doorway check',
+    'aka' => ['Doorway & Hallway Clearance Checker', 'Sofa Move Calculator'],
 ];

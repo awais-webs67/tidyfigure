@@ -1,24 +1,22 @@
 <?php
-// Mortgage Affordability Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Mortgage Affordability Calculator',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 14,
-  'icon' => 'house',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'how much house can i afford mortgage affordability home price income 28/36 rule dti borrow',
-  'short' => 'How much house can you afford? Uses your income, debts, deposit and rate.',
-  'title' => 'Mortgage Affordability Calculator: How Much Can I Afford?',
-  'description' => <<<'EOT_TF'
-Find the home price you can afford from your income, monthly debts, down payment and interest rate, using the 28/36 rule lenders use, with tax and insurance.
-EOT_TF,
-  'related' => ['loan-calculator', 'budget-planner', 'net-worth-calculator'],
-  'answer' => <<<'EOT_TF'
-Lenders commonly use the <strong>28/36 rule</strong>: housing costs up to 28% of gross monthly income, and all debt payments up to 36%. On a 90,000 income with 400 a month of other debts and 60,000 down, at 6.5% over 30 years, that allows about <strong>2,100 a month</strong> for housing, or a home of about <strong>327,500</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Mortgage Affordability Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 14,
+    'icon' => 'house',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'mortgage affordability calculator, how much house can i afford, 28 36 dti rule calculator, home loan budget',
+    'short' => 'How much house can you afford? Uses your income, debts, deposit and rate.',
+    'title' => 'Mortgage Affordability Calculator – Home Budget',
+    'description' => 'Estimate maximum home purchase price from gross household income, monthly debts, down payment, property tax, insurance and the 28/36 DTI rule.',
+    'related' => ['loan-calculator', 'budget-planner', 'net-worth-calculator'],
+    'answer' => 'Lenders commonly use the <strong>28/36 rule</strong>: housing costs up to 28% of gross monthly income, and all debt payments up to 36%. On a 90,000 income with 400 a month of other debts and 60,000 down, at 6.5% over 30 years, that allows about <strong>2,100 a month</strong> for housing, or a home of about <strong>327,500</strong>.',
+    'sources' => [
+        ['CFPB – How Much Mortgage Can You Afford?', 'https://www.consumerfinance.gov/owning-a-home/explore/how-much-you-can-afford/'],
+        ['Fannie Mae – Debt-to-Income (DTI) Selling Guide Basics', 'https://selling-guide.fanniemae.com/'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How lenders decide what you can afford</h2>
 <p>Lenders look at your <strong>debt-to-income ratio (DTI)</strong>: the share of your gross (before-tax) monthly income that goes on debt payments. There are two limits:</p>
 <ul>
@@ -61,36 +59,12 @@ Mortgage payment 1,690.65 + tax & insurance 409.35 = 2,100.00</div>
 <p>A bigger deposit lowers the loan and the monthly payment. In many countries, a deposit under 20% means the lender adds mortgage insurance (PMI in the US) or charges a higher rate. Rules differ by country and lender, so treat this calculator's figure as a starting point for a conversation with a lender or broker.</p>
 <p><em>This is an estimate. Lenders also look at your credit history, job stability and the property itself.</em></p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How much house can I afford on my salary?',
-      <<<'EOT_TF'
-Under the 28/36 rule, your housing costs can be up to 28% of your gross monthly income. Enter your income, debts, deposit and rate above to turn that into a home price.
-EOT_TF,
+    'faqs' => [
+        ['How much house can I afford on my salary?', 'Under the 28/36 rule, your housing costs can be up to 28% of your gross monthly income. Enter your income, debts, deposit and rate above to turn that into a home price.'],
+        ['What is the 28/36 rule?', 'Housing costs should be at most 28% of gross monthly income, and all debt payments together at most 36%.'],
+        ['Does the calculator include property tax and insurance?', 'Yes. Enter them as a yearly percentage of the price (1–2% is common). Add any HOA or service charge separately.'],
+        ['How does the interest rate affect affordability?', 'A higher rate means more of each payment is interest, so the same payment supports a smaller loan. One percentage point often changes the affordable price by about 7–8%.'],
+        ['Should I borrow the maximum I can afford?', 'Not necessarily. Leave room for maintenance, savings and rate rises. Check the payment against your real monthly budget.'],
     ],
-    [
-      'What is the 28/36 rule?',
-      <<<'EOT_TF'
-Housing costs should be at most 28% of gross monthly income, and all debt payments together at most 36%.
-EOT_TF,
-    ],
-    [
-      'Does the calculator include property tax and insurance?',
-      <<<'EOT_TF'
-Yes. Enter them as a yearly percentage of the price (1–2% is common). Add any HOA or service charge separately.
-EOT_TF,
-    ],
-    [
-      'How does the interest rate affect affordability?',
-      <<<'EOT_TF'
-A higher rate means more of each payment is interest, so the same payment supports a smaller loan. One percentage point often changes the affordable price by about 7–8%.
-EOT_TF,
-    ],
-    [
-      'Should I borrow the maximum I can afford?',
-      <<<'EOT_TF'
-Not necessarily. Leave room for maintenance, savings and rate rises. Check the payment against your real monthly budget.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Home Affordability Estimator', '28/36 DTI Mortgage Calculator'],
 ];

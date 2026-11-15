@@ -1,26 +1,25 @@
 <?php
-// Experience Letter Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Experience Letter Maker',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 41,
-  'popular' => true,
-  'files' => true,
-  'icon' => 'file-badge',
-  'keywords' => 'experience letter format experience certificate maker experience letter template work experience letter relieving letter generator employment certificate',
-  'aka' => ['experience certificate generator', 'experience letter format', 'relieving letter maker'], // other names people search for
-  'short' => 'Write a professional experience letter and download it as a PDF.',
-  'title' => 'Experience Letter Maker: Free Template and PDF',
-  'description' => <<<'EOT_TF'
-Create a professional experience letter or certificate: fill in the employee’s details, duties and conduct, add your logo, edit the text and download a PDF.
-EOT_TF,
-  'related' => ['employee-id-card-maker', 'cover-letter-generator', 'resume-builder', 'invoice-generator'],
-  'answer' => <<<'EOT_TF'
-Fill in the company and employee details, the dates, the main duties and a conduct rating. The tool writes a complete <strong>experience letter</strong> on your letterhead, works out the length of service, and lets you choose a standard, detailed or short version, or a <strong>relieving letter</strong>. Click the letter to edit any word, then download a PDF.
-EOT_TF,
-  'article' => <<<'EOT_TF'
- <h2>What is an experience letter?</h2>
+    'name' => 'Experience Letter Maker',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 41,
+    'popular' => true,
+    'files' => true,
+    'icon' => 'file-badge',
+    'keywords' => 'experience letter maker, work experience certificate pdf, hr relieving letter format free, employment verification template',
+    'aka' => ['Work Experience Certificate Generator', 'HR Experience Letter Builder'],
+    'short' => 'Write a professional experience letter and download it as a PDF.',
+    'title' => 'Experience Letter Maker – Work Certificate PDF',
+    'description' => 'Create formal work experience and relieving letters with company letterhead, tenure dates, role duties and conduct wording—download as clean PDF.',
+    'related' => ['employee-id-card-maker', 'cover-letter-generator', 'resume-builder', 'invoice-generator'],
+    'answer' => 'Fill in the company and employee details, the dates, the main duties and a conduct rating. The tool writes a complete <strong>experience letter</strong> on your letterhead, works out the length of service, and lets you choose a standard, detailed or short version, or a <strong>relieving letter</strong>. Click the letter to edit any word, then download a PDF.',
+    'sources' => [
+        ['ACAS (UK) – Providing a Job Reference & Work History', 'https://www.acas.org.uk/providing-a-job-reference'],
+        ['SHRM – Employment Verification Best Practices', 'https://www.shrm.org/topics-tools/tools/hr-answers'],
+    ],
+    'article' => <<<'EOT_TF'
+<h2>What is an experience letter?</h2>
  <p>An experience letter (also called an experience certificate or work experience letter) is written by an employer to confirm that someone worked for them: their job title, dates of employment and responsibilities, often with a few words on their performance. New employers, visa offices and universities commonly ask for one.</p>
 
  <h2>What to include</h2>
@@ -54,36 +53,11 @@ We wish her every success in her future career.</pre>
  <li>Keep a copy in the employee’s file.</li>
  </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is the format of an experience letter?',
-      <<<'EOT_TF'
-Company letterhead, date, a heading, a paragraph confirming the job title and dates, a list of duties, a comment on conduct, a closing wish, and the signature of an authorised person.
-EOT_TF,
+    'faqs' => [
+        ['What is the format of an experience letter?', 'Company letterhead, date, a heading, a paragraph confirming the job title and dates, a list of duties, a comment on conduct, a closing wish, and the signature of an authorised person.'],
+        ['Who signs an experience letter?', 'Usually someone from HR, the employee’s manager or a company director, with their name and job title, and the company stamp if used.'],
+        ['What is the difference between an experience letter and a relieving letter?', 'An experience letter describes the work done; a relieving letter confirms the employee was formally released from duty on their last day. You can create either here.'],
+        ['Can I edit the letter text?', 'Yes. Click anywhere in the letter to change the wording before downloading the PDF.'],
+        ['Is the information uploaded?', 'No. The letter is written and the PDF is made in your browser. Nothing is sent to a server.'],
     ],
-    [
-      'Who signs an experience letter?',
-      <<<'EOT_TF'
-Usually someone from HR, the employee’s manager or a company director, with their name and job title, and the company stamp if used.
-EOT_TF,
-    ],
-    [
-      'What is the difference between an experience letter and a relieving letter?',
-      <<<'EOT_TF'
-An experience letter describes the work done; a relieving letter confirms the employee was formally released from duty on their last day. You can create either here.
-EOT_TF,
-    ],
-    [
-      'Can I edit the letter text?',
-      <<<'EOT_TF'
-Yes. Click anywhere in the letter to change the wording before downloading the PDF.
-EOT_TF,
-    ],
-    [
-      'Is the information uploaded?',
-      <<<'EOT_TF'
-No. The letter is written and the PDF is made in your browser. Nothing is sent to a server.
-EOT_TF,
-    ],
-  ],
 ];

@@ -1,24 +1,22 @@
 <?php
-// Net Worth Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Net Worth Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 18,
-  'icon' => 'piggy-bank',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'net worth calculator assets liabilities how much am i worth personal balance sheet wealth',
-  'short' => 'Add up what you own and what you owe to find your net worth.',
-  'title' => 'Net Worth Calculator: Assets Minus Liabilities, Free',
-  'description' => <<<'EOT_TF'
-Calculate your personal net worth: list your savings, investments, pension, home and car, minus your mortgage, loans and cards. See your debt-to-asset ratio.
-EOT_TF,
-  'related' => ['budget-planner', 'fire-calculator', 'retirement-calculator'],
-  'answer' => <<<'EOT_TF'
-Your <strong>net worth</strong> is everything you own minus everything you owe: <strong>assets − liabilities</strong>. In the example, 355,000 of assets (savings, pension, home, car) minus 227,800 of debts (mortgage, car loan, cards, student loan) gives a net worth of <strong>127,200</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Net Worth Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 18,
+    'icon' => 'piggy-bank',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'net worth calculator, assets minus liabilities tracker, personal balance sheet calculator, debt to asset ratio',
+    'short' => 'Add up what you own and what you owe to find your net worth.',
+    'title' => 'Net Worth Calculator – Assets Minus Debts',
+    'description' => 'Tally bank balances, investments, retirement pots and property minus mortgages, student loans and cards locally to track debt-to-asset ratio.',
+    'related' => ['budget-planner', 'fire-calculator', 'retirement-calculator'],
+    'answer' => 'Your <strong>net worth</strong> is everything you own minus everything you owe: <strong>assets − liabilities</strong>. In the example, 355,000 of assets (savings, pension, home, car) minus 227,800 of debts (mortgage, car loan, cards, student loan) gives a net worth of <strong>127,200</strong>.',
+    'sources' => [
+        ['Federal Reserve – Survey of Consumer Finances (Net Worth Benchmarks)', 'https://www.federalreserve.gov/econres/scfindex.htm'],
+        ['SEC Investor.gov – Assessing Your Net Worth', 'https://www.investor.gov/additional-resources/specialized-resources/youth/teachers-classroom-resources/net-worth'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The net worth formula</h2>
 <div class="formula">Net worth = total assets − total liabilities
 
@@ -59,30 +57,12 @@ Net worth = 355,000 − 227,800 = 127,200</div>
 </ul>
 <p>Your figures stay in your browser and are never sent anywhere.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate my net worth?',
-      <<<'EOT_TF'
-Add up the value of everything you own, then subtract everything you owe. The result is your net worth.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate my net worth?', 'Add up the value of everything you own, then subtract everything you owe. The result is your net worth.'],
+        ['Should I include my house in net worth?', 'Yes, at its current market value, and include the remaining mortgage as a debt. Some people also track a figure without their home, since they need somewhere to live.'],
+        ['Should I include my pension?', 'Yes. Pensions and retirement accounts are assets, even though you can’t spend them yet.'],
+        ['Is negative net worth bad?', 'It’s common when you’re young, especially with student loans. Focus on making it rise each year.'],
+        ['How often should I check my net worth?', 'Every 3 to 6 months is enough to see the trend without worrying about short-term market moves.'],
     ],
-    [
-      'Should I include my house in net worth?',
-      <<<'EOT_TF'
-Yes, at its current market value, and include the remaining mortgage as a debt. Some people also track a figure without their home, since they need somewhere to live.
-EOT_TF,
-    ],
-    [
-      'Should I include my pension?',
-      'Yes. Pensions and retirement accounts are assets, even though you can’t spend them yet.',
-    ],
-    [
-      'Is negative net worth bad?',
-      'It’s common when you’re young, especially with student loans. Focus on making it rise each year.',
-    ],
-    [
-      'How often should I check my net worth?',
-      'Every 3 to 6 months is enough to see the trend without worrying about short-term market moves.',
-    ],
-  ],
+    'aka' => ['Personal Balance Sheet Tool', 'Assets & Liabilities Calculator'],
 ];

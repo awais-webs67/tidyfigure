@@ -1,22 +1,18 @@
 <?php
-// Cover Letter Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Cover Letter Generator',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'study',
-  'order' => 0,
-  'icon' => 'mail',
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'cover letter generator free cover letter template job application letter example cover letter maker pdf',
-  'short' => 'Write a tailored cover letter in minutes, in three tones. Edit and download as PDF.',
-  'title' => 'Free Cover Letter Generator: Tailored Letter in Minutes, PDF',
-  'description' => 'Create a tailored cover letter from your achievements, skills and the job you want. Pick a professional, enthusiastic or short tone, edit it, download a PDF.',
-  'related' => ['resume-builder', 'readability-checker', 'word-counter'],
-  'answer' => <<<'EOT_TF'
-Enter the job, the company, your strongest achievements and the skills they ask for, then choose a tone. A complete cover letter appears instantly: opening, achievements, skills, why this company and a closing. <strong>Click the letter to edit it</strong>, press “Try different wording” for another version, and copy it or download a PDF.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Cover Letter Generator',
+    'updated' => '2026-11-15',
+    'category' => 'study',
+    'order' => 0,
+    'icon' => 'mail',
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'cover letter generator, free cover letter maker pdf, job application letter builder, ai free cover letter template',
+    'short' => 'Write a tailored cover letter in minutes, in three tones. Edit and download as PDF.',
+    'title' => 'Cover Letter Generator – Custom PDF in Minutes',
+    'description' => 'Draft tailored cover letters matched to your role, key skills and tone (formal, warm or concise), edit cleanly and export a crisp text PDF.',
+    'related' => ['resume-builder', 'readability-checker', 'word-counter'],
+    'answer' => 'Enter the job, the company, your strongest achievements and the skills they ask for, then choose a tone. A complete cover letter appears instantly: opening, achievements, skills, why this company and a closing. <strong>Click the letter to edit it</strong>, press “Try different wording” for another version, and copy it or download a PDF.',
+    'article' => <<<'EOT_TF'
 <h2>The structure of a strong cover letter</h2>
 <ol>
 <li><strong>Opening:</strong> the job you're applying for, where you saw it, and one line on why you're a good fit.</li>
@@ -53,11 +49,12 @@ Strong: Grew Instagram followers from 3,000 to 41,000 in a year,
 <p>A name is better: check the advert, the company website or LinkedIn for the recruiter or team leader. If you use a name, British English closes with "Yours sincerely"; if you write "Dear Hiring Manager", the traditional British close is "Yours faithfully". The generator picks the right one. In American English, "Sincerely" works for both.</p>
 <p>Pair your letter with a matching CV from the <a href="/resume-builder">resume builder</a>. Everything stays in your browser.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I write a cover letter quickly?', 'Fill in the job, company, your top achievements and matching skills, choose a tone, and the generator writes a complete letter you can edit and download.'],
-    ['How long should a cover letter be?', 'Between 250 and 400 words, about three-quarters of a page.'],
-    ['Is it okay to use a cover letter generator?', 'Yes, as a starting point. Always personalise it with a detail about the company and your own voice before sending.'],
-    ['Can I download the cover letter as a PDF?', 'Yes. Press Download PDF after making your edits. You can also copy it or save it as a text file.'],
-    ['Should I write Yours sincerely or Yours faithfully?', 'In British English, use Yours sincerely when you know the person’s name and Yours faithfully with Dear Hiring Manager. The generator chooses for you.'],
-  ],
+    'faqs' => [
+        ['How do I write a cover letter quickly?', 'Fill in the job, company, your top achievements and matching skills, choose a tone, and the generator writes a complete letter you can edit and download.'],
+        ['How long should a cover letter be?', 'Between 250 and 400 words, about three-quarters of a page.'],
+        ['Is it okay to use a cover letter generator?', 'Yes, as a starting point. Always personalise it with a detail about the company and your own voice before sending.'],
+        ['Can I download the cover letter as a PDF?', 'Yes. Press Download PDF after making your edits. You can also copy it or save it as a text file.'],
+        ['Should I write Yours sincerely or Yours faithfully?', 'In British English, use Yours sincerely when you know the person’s name and Yours faithfully with Dear Hiring Manager. The generator chooses for you.'],
+    ],
+    'aka' => ['Online Cover Letter Builder', 'Job Cover Letter Maker'],
 ];

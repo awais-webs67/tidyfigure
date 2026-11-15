@@ -1,26 +1,21 @@
 <?php
-// How Well Do You Know Me? Quiz Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'How Well Do You Know Me? Quiz Maker',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'share',
-  'order' => 1,
-  'popular' => true,
-  'scripts' => ['share.js'],
-  'css' => ['share.css'], // extra stylesheets in assets/
-  'icon' => 'heart-handshake',
-  'keywords' => 'how well do you know me quiz maker friendship quiz best friend quiz create quiz about yourself buddy quiz friends test quiz link whatsapp',
-  'aka' => ['Friendship quiz', 'Best friend quiz', 'BFF test', 'Friend dare quiz'], // other names people search for
-  'short' => 'Make a quiz about yourself, share the link, and see which friend knows you best.',
-  'title' => 'How Well Do You Know Me? Make a Friendship Quiz Free',
-  'description' => <<<'EOT_TF'
-Make a “How well do you know me?” quiz in a minute: answer fun questions about yourself, share the link and see your friends’ scores on a scoreboard.
-EOT_TF,
-  'related' => ['giveaway-maker', 'wedding-card-maker', 'birthday-card-maker'],
-  'answer' => <<<'EOT_TF'
-Write your name, then answer questions about yourself (favourite food, dream car, pet or no pet…), or write your own. Press <strong>Create my quiz</strong> and send the link to your friends on WhatsApp, Instagram or anywhere. They answer, get a <strong>score and a friendship rating</strong>, and land on a <strong>scoreboard</strong>, so you see who knows you best.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'How Well Do You Know Me? Quiz Maker',
+    'updated' => '2026-11-15',
+    'category' => 'share',
+    'order' => 1,
+    'popular' => true,
+    'scripts' => ['share.js'],
+    'css' => ['share.css'],
+    'icon' => 'heart-handshake',
+    'keywords' => 'how well do you know me quiz, friendship quiz maker, bff quiz link, best friend test online, whatsapp friendship quiz',
+    'aka' => ['Friendship Quiz Maker', 'Best Friend Test', 'BFF Dare Quiz'],
+    'short' => 'Make a quiz about yourself, share the link, and see which friend knows you best.',
+    'title' => 'How Well Do You Know Me? – Friendship Quiz',
+    'description' => 'Build a personal friendship quiz link in under a minute, pick fun questions and share via WhatsApp or Instagram to see friends’ live scores.',
+    'related' => ['giveaway-maker', 'wedding-card-maker', 'birthday-card-maker'],
+    'answer' => 'Write your name, then answer questions about yourself (favourite food, dream car, pet or no pet…), or write your own. Press <strong>Create my quiz</strong> and send the link to your friends on WhatsApp, Instagram or anywhere. They answer, get a <strong>score and a friendship rating</strong>, and land on a <strong>scoreboard</strong>, so you see who knows you best.',
+    'article' => <<<'EOT_TF'
 <h2>How to make your friendship quiz</h2>
 <ol>
 <li>Write your name and pick a colour.</li>
@@ -41,37 +36,16 @@ EOT_TF,
 <li>Write a question only your closest friends would know, like the name of your first school or your secret talent.</li>
 <li>Ten questions is the sweet spot: long enough to separate best friends from everyone else, short enough to finish.</li>
 </ul>
+
+<h2>Why Friends Enjoy Scoring Quizzes</h2>
+<p>A mix of light favourites (comfort food, midnight snacks, dream destination) and memorable inside jokes sparks real group-chat banter. Because every friend enters a display name before submitting, your private dashboard shows who scored highest alongside individual question breakdowns.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Is the friendship quiz free?',
-      <<<'EOT_TF'
-Yes. Making and playing quizzes is free, with no sign-up for you or your friends.
-EOT_TF,
+    'faqs' => [
+        ['Is the friendship quiz free?', 'Yes. Making and playing quizzes is free, with no sign-up for you or your friends.'],
+        ['Can my friends see my answers?', 'Not before they play. Answers stay on the server, so friends can’t peek. After playing, each friend sees which questions they got right.'],
+        ['How do I see who played?', 'Open your private page with the secret code you got when you made the quiz. It shows everyone’s score and their answer to every question.'],
+        ['Can I change my quiz after sharing it?', 'Yes. Open your private page and press Edit to change questions or answers. The link stays the same.'],
+        ['How long does my quiz stay online?', 'Six months. After that it’s deleted automatically, together with the scores.'],
+        ['Can friends edit their score after submitting?', 'Once submitted, an attempt is locked on the scoreboard to keep comparisons fair, though your friends can still view the leaderboard link.'],
     ],
-    [
-      'Can my friends see my answers?',
-      <<<'EOT_TF'
-Not before they play. Answers stay on the server, so friends can’t peek. After playing, each friend sees which questions they got right.
-EOT_TF,
-    ],
-    [
-      'How do I see who played?',
-      <<<'EOT_TF'
-Open your private page with the secret code you got when you made the quiz. It shows everyone’s score and their answer to every question.
-EOT_TF,
-    ],
-    [
-      'Can I change my quiz after sharing it?',
-      <<<'EOT_TF'
-Yes. Open your private page and press Edit to change questions or answers. The link stays the same.
-EOT_TF,
-    ],
-    [
-      'How long does my quiz stay online?',
-      <<<'EOT_TF'
-Six months. After that it’s deleted automatically, together with the scores.
-EOT_TF,
-    ],
-  ],
 ];

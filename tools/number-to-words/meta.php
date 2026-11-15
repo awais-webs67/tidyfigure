@@ -1,23 +1,18 @@
 <?php
-// Number to Words: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Number to Words',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'convert',
-  'order' => 22,
-  'popular' => true,
-  'icon' => 'spell-check',
-  'keywords' => 'number to words numbers in words write check amount in words cheque words amount in words converter spell number lakh crore ordinal',
-  'short' => 'Spell out any number in words, for cheques, invoices and homework.',
-  'title' => 'Number to Words Converter: Spell Out Any Number',
-  'description' => <<<'EOT_TF'
-Turn any number into words, with cheque and currency formats, US or UK style, ordinals and the lakh and crore system. Copy the result in one click.
-EOT_TF,
-  'related' => ['roman-numeral-converter', 'invoice-generator', 'receipt-maker', 'percentage-calculator'],
-  'answer' => <<<'EOT_TF'
-Type a number to see it written out in words straight away. Choose <strong>Words</strong> for plain English (US or UK style, with “and”), <strong>Cheque / currency</strong> for amounts such as “One thousand two hundred dollars and fifty cents only”, <strong>Ordinal</strong> for “twenty-first”, or switch to the <strong>Indian system</strong> for lakh and crore.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Number to Words',
+    'updated' => '2026-11-15',
+    'category' => 'convert',
+    'order' => 22,
+    'popular' => true,
+    'icon' => 'spell-check',
+    'keywords' => 'number to words, numbers in words converter, amount in words cheque, lakh crore converter, spell out numbers, ordinal number words',
+    'short' => 'Spell out any number in words, for cheques, invoices and homework.',
+    'title' => 'Number to Words Converter – Cheque, US & Lakh',
+    'description' => 'Spell any integer or decimal in English words with US/UK styles, cheque currency formatting, ordinal suffixes and Indian/Pakistani lakh-crore grouping.',
+    'related' => ['roman-numeral-converter', 'invoice-generator', 'receipt-maker', 'percentage-calculator'],
+    'answer' => 'Type a number to see it written out in words straight away. Choose <strong>Words</strong> for plain English (US or UK style, with “and”), <strong>Cheque / currency</strong> for amounts such as “One thousand two hundred dollars and fifty cents only”, <strong>Ordinal</strong> for “twenty-first”, or switch to the <strong>Indian system</strong> for lakh and crore.',
+    'article' => <<<'EOT_TF'
 <h2>Writing a cheque amount in words</h2>
 <p>Cheques ask for the amount in words to prevent fraud and mistakes. A common format is:</p>
 <pre class="copybox">One thousand two hundred thirty-four dollars and 56/100 only</pre>
@@ -44,37 +39,21 @@ EOT_TF,
 
 <h2>Ordinal numbers</h2>
 <p>Ordinals give position: first, second, third, twenty-first, one hundredth. Choose <strong>Ordinal</strong> to see both the words and the short form (21st).</p>
+
+<h2>Short Scale vs South Asian Numbering</h2>
+<p>In North America, the UK and global finance (short scale), groupings step by thousands: thousand (10³), million (10⁶), billion (10⁹) and trillion (10¹²). In India, Pakistan, Bangladesh and Nepal, amounts above ten thousand follow 2-2-3 comma grouping into <strong>lakhs</strong> (1,00,000 = one hundred thousand) and <strong>crores</strong> (1,00,00,000 = ten million).</p>
+<p>When writing legal contracts or bank cheques, spelling amounts out in full with "only" or cents expressed as <code>XX/100</code> removes ambiguity and prevents digit tampering.</p>
+
+<h2>Formatting Hyphens &amp; Decimals Clearly</h2>
+<p>Standard English style hyphenates compound tens from <code>twenty-one</code> through <code>ninety-nine</code>, inserts "and" after hundreds in British usage ("two hundred and forty"), and reads decimal fractional digits individually unless formatted as currency cents.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I write 1,500 in words?',
-      <<<'EOT_TF'
-One thousand five hundred. Some people also say fifteen hundred, especially for years and prices.
-EOT_TF,
+    'faqs' => [
+        ['How do I write 1,500 in words?', 'One thousand five hundred. Some people also say fifteen hundred, especially for years and prices.'],
+        ['How do I write a cheque amount in words?', 'Choose Cheque / currency and your currency. For 1,234.56 dollars it gives: One thousand two hundred thirty-four dollars and 56/100 only.'],
+        ['Is it one hundred and five or one hundred five?', 'Both are correct. British English uses and (one hundred and five); American English usually leaves it out.'],
+        ['How do you write 1 lakh and 1 crore in numbers?', 'One lakh is 1,00,000 (one hundred thousand). One crore is 1,00,00,000 (ten million).'],
+        ['Can it convert decimals?', 'Yes. In Words mode, decimals are read digit by digit (3.14 is three point one four). In currency mode, they become cents, pence or paise.'],
+        ['How should you write zero cents on a business or personal cheque?', 'Write \'zero cents\', \'no/100\', or \'00/100\' right after \'Dollars\' or \'Only\' and draw a crisp horizontal line across unused box space.'],
     ],
-    [
-      'How do I write a cheque amount in words?',
-      <<<'EOT_TF'
-Choose Cheque / currency and your currency. For 1,234.56 dollars it gives: One thousand two hundred thirty-four dollars and 56/100 only.
-EOT_TF,
-    ],
-    [
-      'Is it one hundred and five or one hundred five?',
-      <<<'EOT_TF'
-Both are correct. British English uses and (one hundred and five); American English usually leaves it out.
-EOT_TF,
-    ],
-    [
-      'How do you write 1 lakh and 1 crore in numbers?',
-      <<<'EOT_TF'
-One lakh is 1,00,000 (one hundred thousand). One crore is 1,00,00,000 (ten million).
-EOT_TF,
-    ],
-    [
-      'Can it convert decimals?',
-      <<<'EOT_TF'
-Yes. In Words mode, decimals are read digit by digit (3.14 is three point one four). In currency mode, they become cents, pence or paise.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Amount in Words Converter', 'Cheque Words Formatter', 'Lakh Crore Word Converter'],
 ];

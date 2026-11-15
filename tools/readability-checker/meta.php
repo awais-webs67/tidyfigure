@@ -1,25 +1,17 @@
 <?php
-// Readability Checker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Readability Checker',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 20,
-  'icon' => 'book-open',
-  'keywords' => <<<'EOT_TF'
-readability checker flesch reading ease flesch kincaid grade level gunning fog smog readability score text
-EOT_TF,
-  'short' => 'Flesch reading ease, grade level and long sentences to fix, for any text.',
-  'title' => 'Readability Checker: Flesch Score & Grade Level, Free',
-  'description' => <<<'EOT_TF'
-Check how easy your writing is to read: Flesch reading ease, Flesch-Kincaid grade, Gunning fog, SMOG and more, plus long sentences highlighted to fix.
-EOT_TF,
-  'related' => ['word-counter', 'text-compare', 'case-converter'],
-  'answer' => <<<'EOT_TF'
-Paste your text to get its <strong>Flesch reading ease</strong> score (0–100, higher is easier) and grade levels. For websites and general audiences, aim for a score of <strong>60 or more</strong>, about the level of an 8th–9th grader. The checker also lists sentences over 25 words, the quickest thing to fix.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Readability Checker',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 20,
+    'icon' => 'book-open',
+    'keywords' => 'readability checker, flesch reading ease calculator, flesch kincaid grade level, simplify long sentences',
+    'short' => 'Flesch reading ease, grade level and long sentences to fix, for any text.',
+    'title' => 'Readability Checker – Flesch Score & Fog Index',
+    'description' => 'Score text with Flesch Reading Ease, Flesch-Kincaid Grade Level, Gunning Fog and SMOG indices while highlighting dense sentences to simplify.',
+    'related' => ['word-counter', 'text-compare', 'case-converter'],
+    'answer' => 'Paste your text to get its <strong>Flesch reading ease</strong> score (0–100, higher is easier) and grade levels. For websites and general audiences, aim for a score of <strong>60 or more</strong>, about the level of an 8th–9th grader. The checker also lists sentences over 25 words, the quickest thing to fix.',
+    'article' => <<<'EOT_TF'
 <h2>How the Flesch reading ease score works</h2>
 <div class="formula">Reading ease = 206.835 − 1.015 × (words ÷ sentences) − 84.6 × (syllables ÷ words)
 Grade level  = 0.39 × (words ÷ sentences) + 11.8 × (syllables ÷ words) − 15.59</div>
@@ -60,36 +52,12 @@ Grade level  = 0.39 × (words ÷ sentences) + 11.8 × (syllables ÷ words) − 1
 <h2>When a low score is fine</h2>
 <p>Readability formulas measure surface features, not meaning. Technical, legal or academic writing for expert readers can score low and still be clear to them. And short words don't guarantee clarity: a text can score well and still be confusing. Use the score as a guide, and read your text aloud as a final check. Count words with the <a href="/word-counter">word counter</a>, or compare two drafts with <a href="/text-compare">text compare</a>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is a good Flesch reading ease score?',
-      <<<'EOT_TF'
-60 or above is plain English that most adults read easily. Aim for 60–70 for websites and general audiences.
-EOT_TF,
+    'faqs' => [
+        ['What is a good Flesch reading ease score?', '60 or above is plain English that most adults read easily. Aim for 60–70 for websites and general audiences.'],
+        ['What is the Flesch-Kincaid grade level?', 'An estimate of the US school grade needed to understand the text. Grade 8 means an average 13–14-year-old could read it.'],
+        ['How do I improve my readability score?', 'Use shorter sentences and shorter, everyday words. Splitting sentences over 25 words has the biggest effect.'],
+        ['Why do readability tools give different scores?', 'They use different formulas and count syllables in slightly different ways, so expect differences of a few points.'],
+        ['Does readability affect SEO?', 'Not directly as a ranking factor, but clear writing keeps readers on the page and helps them find answers, which search engines value.'],
     ],
-    [
-      'What is the Flesch-Kincaid grade level?',
-      <<<'EOT_TF'
-An estimate of the US school grade needed to understand the text. Grade 8 means an average 13–14-year-old could read it.
-EOT_TF,
-    ],
-    [
-      'How do I improve my readability score?',
-      <<<'EOT_TF'
-Use shorter sentences and shorter, everyday words. Splitting sentences over 25 words has the biggest effect.
-EOT_TF,
-    ],
-    [
-      'Why do readability tools give different scores?',
-      <<<'EOT_TF'
-They use different formulas and count syllables in slightly different ways, so expect differences of a few points.
-EOT_TF,
-    ],
-    [
-      'Does readability affect SEO?',
-      <<<'EOT_TF'
-Not directly as a ranking factor, but clear writing keeps readers on the page and helps them find answers, which search engines value.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Flesch-Kincaid Score Checker', 'Plain English Analyzer'],
 ];

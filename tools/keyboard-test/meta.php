@@ -1,23 +1,18 @@
 <?php
-// Keyboard Test: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Keyboard Test',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'device',
-  'order' => 3,
-  'popular' => true,
-  'icon' => 'keyboard',
-  'keywords' => 'keyboard test keyboard tester online key test check keys dead key stuck key rollover ghosting key code',
-  'short' => 'Press keys to check each one works, with key codes and rollover.',
-  'title' => 'Keyboard Test: Check Every Key Online, Free',
-  'description' => <<<'EOT_TF'
-Test your keyboard online: every key lights up when pressed, so dead or stuck keys stand out. Shows key codes and how many keys work at once (rollover).
-EOT_TF,
-  'related' => ['cps-test', 'typing-speed-test', 'what-is-my-screen-resolution', 'mic-test'],
-  'answer' => <<<'EOT_TF'
-Press each key on your keyboard. Keys turn <strong>orange</strong> while held and <strong>green</strong> once they’ve worked, so a key that stays grey is dead or not recognised. The panel shows each key’s name and code, and how many keys you can hold down at once (rollover), which matters for gaming.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Keyboard Test',
+    'updated' => '2026-11-15',
+    'category' => 'device',
+    'order' => 3,
+    'popular' => true,
+    'icon' => 'keyboard',
+    'keywords' => 'keyboard test, online key tester, n key rollover test, check stuck key, mechanical switch tester, keycode checker',
+    'short' => 'Press keys to check each one works, with key codes and rollover.',
+    'title' => 'Keyboard Test – Online Key & Rollover Checker',
+    'description' => 'Verify every physical laptop or mechanical key in your browser, catch ghosting or stuck switches and check N-key rollover without installing drivers.',
+    'related' => ['cps-test', 'typing-speed-test', 'what-is-my-screen-resolution', 'mic-test'],
+    'answer' => 'Press each key on your keyboard. Keys turn <strong>orange</strong> while held and <strong>green</strong> once they’ve worked, so a key that stays grey is dead or not recognised. The panel shows each key’s name and code, and how many keys you can hold down at once (rollover), which matters for gaming.',
+    'article' => <<<'EOT_TF'
 <h2>How to test your keyboard</h2>
 <ol>
 <li>Press every key, one at a time. Each key turns green after it works.</li>
@@ -41,36 +36,12 @@ EOT_TF,
 <h2>Some keys never show up</h2>
 <p>A few keys are handled by the computer before the browser sees them: the <strong>Fn</strong> key, media and brightness keys, and some laptop shortcut keys. Print Screen and the Windows key may also be caught by the system. That doesn’t mean they’re broken.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I test if all my keyboard keys work?',
-      <<<'EOT_TF'
-Press each key on this page. Keys turn green once they work; any key that stays grey isn’t registering.
-EOT_TF,
+    'faqs' => [
+        ['How do I test if all my keyboard keys work?', 'Press each key on this page. Keys turn green once they work; any key that stays grey isn’t registering.'],
+        ['Why doesn’t the Fn key light up?', 'The Fn key is handled inside the keyboard itself and is never sent to the computer, so no website can detect it. Media and brightness keys are often the same.'],
+        ['What is keyboard rollover?', 'Rollover is how many keys a keyboard can register at the same time. Hold several keys down and the Held now number shows how many your keyboard reports.'],
+        ['Does it work with laptop and non-US keyboards?', 'Yes. Keys are matched by their physical position, so laptop keyboards and UK, German, French or other layouts all work.'],
+        ['Can I test a keyboard on a phone?', 'You need a physical keyboard. On a tablet or phone, connect a Bluetooth or USB keyboard and the test works the same way.'],
     ],
-    [
-      'Why doesn’t the Fn key light up?',
-      <<<'EOT_TF'
-The Fn key is handled inside the keyboard itself and is never sent to the computer, so no website can detect it. Media and brightness keys are often the same.
-EOT_TF,
-    ],
-    [
-      'What is keyboard rollover?',
-      <<<'EOT_TF'
-Rollover is how many keys a keyboard can register at the same time. Hold several keys down and the Held now number shows how many your keyboard reports.
-EOT_TF,
-    ],
-    [
-      'Does it work with laptop and non-US keyboards?',
-      <<<'EOT_TF'
-Yes. Keys are matched by their physical position, so laptop keyboards and UK, German, French or other layouts all work.
-EOT_TF,
-    ],
-    [
-      'Can I test a keyboard on a phone?',
-      <<<'EOT_TF'
-You need a physical keyboard. On a tablet or phone, connect a Bluetooth or USB keyboard and the test works the same way.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Online Key Tester', 'Keyboard Rollover Checker'],
 ];

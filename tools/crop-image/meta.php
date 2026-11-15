@@ -1,25 +1,19 @@
 <?php
-// Crop Image: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Crop Image',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 4,
-  'icon' => 'crop',
-  'popular' => true,
-  'files' => true,
-  'keywords' => 'crop photo online cut picture square crop instagram crop',
-  'short' => 'Crop photos freely or to 1:1, 4:5, 16:9 and other social media sizes.',
-  'title' => 'Crop Image Online: Free Photo Cropper With Aspect Ratios',
-  'description' => <<<'EOT_TF'
-Crop images online for free. Drag to select, or lock to 1:1, 4:5, 16:9, 9:16 and more for Instagram, YouTube and stories. Private: no upload, no watermark.
-EOT_TF,
-  'related' => ['image-resizer', 'rotate-image', 'image-compressor'],
-  'answer' => <<<'EOT_TF'
-Open a photo, choose a shape (or "Free"), and drag the box over the part you want to keep. Drag a corner to resize it; the rule-of-thirds grid helps you frame the subject. Press <strong>Crop &amp; download</strong> to save at full resolution, with no quality loss beyond the normal save.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Crop Image',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 4,
+    'icon' => 'crop',
+    'popular' => true,
+    'files' => true,
+    'keywords' => 'crop image online, photo cropper 16 9 4 5 1 1, instagram story portrait crop, trim png edge no upload',
+    'short' => 'Crop photos freely or to 1:1, 4:5, 16:9 and other social media sizes.',
+    'title' => 'Crop Image Online – Free Aspect Ratio Cropper',
+    'description' => 'Crop JPG, PNG and WebP photos freely or lock exact 1:1, 4:5, 16:9 and 9:16 social frames locally in your browser without uploads or watermarks.',
+    'related' => ['image-resizer', 'rotate-image', 'image-compressor'],
+    'answer' => 'Open a photo, choose a shape (or "Free"), and drag the box over the part you want to keep. Drag a corner to resize it; the rule-of-thirds grid helps you frame the subject. Press <strong>Crop &amp; download</strong> to save at full resolution, with no quality loss beyond the normal save.',
+    'article' => <<<'EOT_TF'
 <h2>How to crop a picture</h2>
 <ol>
 <li><strong>Open the image.</strong> JPG, PNG and WebP all work.</li>
@@ -54,21 +48,21 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>The image is cropped in your browser and never uploaded, which matters for personal photos and screenshots with private information.</p>
+
+<h2>Social Platform Safe Crop Ratios at a Glance</h2>
+<p>Use <code>1:1</code> or <code>4:5</code> vertical frames for Instagram feeds so posts claim maximum phone screen height, <code>9:16</code> for Stories/Reels/Shorts, and crisp <code>16:9</code> (1280×720 or 1920×1080) for YouTube thumbnails and presentation slides.</p>
+
+<h2>Straightening &amp; Framing Rule of Thirds Composition</h2>
+<p>Aligning portraits along eye-line thirds while trimming distracting doorway edges turns cluttered phone snaps into balanced hero banners effortlessly.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I crop a photo to a square?',
-      'Choose 1:1 Square, move the box over the part you want, and press Crop & download.',
+    'faqs' => [
+        ['How do I crop a photo to a square?', 'Choose 1:1 Square, move the box over the part you want, and press Crop & download.'],
+        ['Does cropping reduce image quality?', 'No. Cropping keeps the original pixels in the area you choose. The image is simply smaller in size.'],
+        ['How do I crop for Instagram?', 'Use 1:1 for square posts, 4:5 for portrait posts, or 9:16 for stories and Reels.'],
+        ['Can I crop on my phone?', 'Yes. Drag the box and its corners with your finger.'],
+        ['Is my photo uploaded?', 'No. Cropping happens in your browser.'],
+        ['Does cropping shrink file resolution permanently?', 'Yes, cropping keeps only pixels inside the selected box, which naturally trims wasted megabytes too without blurring kept details.'],
+        ['How do I straighten or rotate an image after cropping?', 'Save your clean aspect crop and open our browser Rotate Image tool to adjust 90° angles, mirror flip or straighten tilted horizons losslessly.'],
     ],
-    [
-      'Does cropping reduce image quality?',
-      'No. Cropping keeps the original pixels in the area you choose. The image is simply smaller in size.',
-    ],
-    [
-      'How do I crop for Instagram?',
-      'Use 1:1 for square posts, 4:5 for portrait posts, or 9:16 for stories and Reels.',
-    ],
-    ['Can I crop on my phone?', 'Yes. Drag the box and its corners with your finger.'],
-    ['Is my photo uploaded?', 'No. Cropping happens in your browser.'],
-  ],
+    'aka' => ['Online Photo Cropper', 'Aspect Ratio Image Cutter'],
 ];

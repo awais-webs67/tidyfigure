@@ -1,24 +1,19 @@
 <?php
-// Webcam Test: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Webcam Test',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'device',
-  'order' => 2,
-  'popular' => true,
-  'icon' => 'webcam',
-  'keywords' => 'webcam test camera test online check my camera is my webcam working camera resolution fps test',
-  'aka' => ['camera test', 'webcam checker', 'test my camera'], // other names people search for
-  'short' => 'See your camera live and check its resolution and frame rate.',
-  'title' => 'Webcam Test: Check Your Camera Online, Free',
-  'description' => <<<'EOT_TF'
-Check your webcam before a call: live preview, real resolution and frame rate, the best quality it supports, and a snapshot to save. Nothing is uploaded.
-EOT_TF,
-  'related' => ['mic-test', 'online-mirror', 'camera-color-picker', 'screen-recorder'],
-  'answer' => <<<'EOT_TF'
-Click <strong>Start webcam test</strong> and allow camera access. If you see yourself, the camera works. The tool shows the real resolution and frames per second your camera delivers, tests the highest quality it supports (HD, Full HD, 4K) and lets you save a snapshot. The video never leaves your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Webcam Test',
+    'updated' => '2026-11-15',
+    'category' => 'device',
+    'order' => 2,
+    'popular' => true,
+    'icon' => 'webcam',
+    'keywords' => 'webcam test, check my camera online, test laptop webcam fps, 1080p camera checker, video call camera test',
+    'aka' => ['Online Camera Test', 'Webcam FPS & Resolution Check'],
+    'short' => 'See your camera live and check its resolution and frame rate.',
+    'title' => 'Webcam Test – Check Camera Video & FPS Live',
+    'description' => 'Preview your webcam live, verify actual resolution (720p/1080p), frame rate and mic pair, and snap test photos safely without uploading anything.',
+    'related' => ['mic-test', 'online-mirror', 'camera-color-picker', 'screen-recorder'],
+    'answer' => 'Click <strong>Start webcam test</strong> and allow camera access. If you see yourself, the camera works. The tool shows the real resolution and frames per second your camera delivers, tests the highest quality it supports (HD, Full HD, 4K) and lets you save a snapshot. The video never leaves your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to test your webcam</h2>
 <ol>
 <li>Click <strong>Start webcam test</strong> and choose <strong>Allow</strong> when the browser asks to use the camera.</li>
@@ -48,36 +43,11 @@ EOT_TF,
 <h2>Private by design</h2>
 <p>The video is shown only on your screen. It isn’t recorded or sent anywhere, and the camera turns off as soon as you click Stop or leave the page. Snapshots are saved straight to your device.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How can I check if my webcam is working?',
-      <<<'EOT_TF'
-Click Start webcam test and allow the camera. If you see a live picture of yourself, the webcam works. The tool also shows its resolution and frame rate.
-EOT_TF,
+    'faqs' => [
+        ['How can I check if my webcam is working?', 'Click Start webcam test and allow the camera. If you see a live picture of yourself, the webcam works. The tool also shows its resolution and frame rate.'],
+        ['What resolution is my webcam?', 'The tool shows the resolution your camera is sending right now. Click Find the best quality to test HD, Full HD and 4K and see the highest one it supports.'],
+        ['Why does my webcam look dark or choppy?', 'Most webcams lower the frame rate in dim light. Turn on a lamp in front of you (not behind you) and the picture usually becomes brighter and smoother.'],
+        ['Is the video recorded or uploaded?', 'No. The picture is only shown in your browser. Nothing is recorded or sent to a server, and the camera turns off when you stop the test or close the page.'],
+        ['Why does it say my camera is busy?', 'Another app or tab is using the camera. Close video-call apps such as Zoom, Teams or Skype and any other tabs that use the camera, then try again.'],
     ],
-    [
-      'What resolution is my webcam?',
-      <<<'EOT_TF'
-The tool shows the resolution your camera is sending right now. Click Find the best quality to test HD, Full HD and 4K and see the highest one it supports.
-EOT_TF,
-    ],
-    [
-      'Why does my webcam look dark or choppy?',
-      <<<'EOT_TF'
-Most webcams lower the frame rate in dim light. Turn on a lamp in front of you (not behind you) and the picture usually becomes brighter and smoother.
-EOT_TF,
-    ],
-    [
-      'Is the video recorded or uploaded?',
-      <<<'EOT_TF'
-No. The picture is only shown in your browser. Nothing is recorded or sent to a server, and the camera turns off when you stop the test or close the page.
-EOT_TF,
-    ],
-    [
-      'Why does it say my camera is busy?',
-      <<<'EOT_TF'
-Another app or tab is using the camera. Close video-call apps such as Zoom, Teams or Skype and any other tabs that use the camera, then try again.
-EOT_TF,
-    ],
-  ],
 ];

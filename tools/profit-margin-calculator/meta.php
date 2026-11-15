@@ -1,24 +1,22 @@
 <?php
-// Profit Margin Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Profit Margin Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 8,
-  'icon' => 'chart-no-axes-combined',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'profit margin calculator markup calculator gross margin selling price from cost',
-  'short' => 'Margin, markup and profit from cost and price, or the price for a target margin.',
-  'title' => 'Profit Margin Calculator: Margin, Markup & Selling Price',
-  'description' => <<<'EOT_TF'
-Calculate gross profit margin and markup from cost and selling price, or find the price that gives a target margin or markup. Explains margin vs markup. Free.
-EOT_TF,
-  'related' => ['vat-calculator', 'discount-calculator', 'roi-calculator'],
-  'answer' => <<<'EOT_TF'
-<strong>Margin</strong> is profit divided by the selling price; <strong>markup</strong> is profit divided by the cost. Something that costs 40 and sells for 65 makes 25 profit: a <strong>38.5% margin</strong> but a <strong>62.5% markup</strong>. To hit a target margin, price = cost ÷ (1 − margin), so a 35% margin on a 40 cost needs a price of 61.54.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Profit Margin Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 8,
+    'icon' => 'chart-no-axes-combined',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'profit margin calculator, margin vs markup calculator, retail selling price calculator, gross margin percentage',
+    'short' => 'Margin, markup and profit from cost and price, or the price for a target margin.',
+    'title' => 'Profit Margin Calculator – Margin vs Markup',
+    'description' => 'Compute gross profit margin, markup percentage and recommended selling price from wholesale item cost—clears up margin versus markup mistakes.',
+    'related' => ['vat-calculator', 'discount-calculator', 'roi-calculator'],
+    'answer' => '<strong>Margin</strong> is profit divided by the selling price; <strong>markup</strong> is profit divided by the cost. Something that costs 40 and sells for 65 makes 25 profit: a <strong>38.5% margin</strong> but a <strong>62.5% markup</strong>. To hit a target margin, price = cost ÷ (1 − margin), so a 35% margin on a 40 cost needs a price of 61.54.',
+    'sources' => [
+        ['U.S. Small Business Administration – Pricing Your Product', 'https://www.sba.gov/business-guide/manage-your-business/manage-your-finances'],
+        ['Shopify / Accountancy Standard – Gross Margin vs Markup', 'https://www.sba.gov/business-guide/plan-your-business/write-your-business-plan'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>Formulas</h2>
 <div class="formula">Profit          = price − cost
 Margin (%)      = profit ÷ price × 100
@@ -54,21 +52,17 @@ Price for markup = cost × (1 + markup)</div>
 <li><strong>Discounting without checking:</strong> a 20% discount on a product with a 30% margin removes two-thirds of the profit on each sale.</li>
 <li><strong>Ignoring overheads:</strong> gross margin must also pay for rent, software and your time before there is any real profit.</li>
 </ul>
+
+<h2>Quick Markup-to-Margin Conversion Reference</h2>
+<p>A <strong>50% markup</strong> on a $40 cost produces a $60 price and only a <strong>33.3% gross margin</strong> (<code>$20 / $60</code>). To achieve a true 50% gross margin, you must double cost—a <strong>100% markup</strong>—making this distinction crucial before offering 20% seasonal discounts.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate profit margin?',
-      'Subtract the cost from the selling price, divide by the selling price and multiply by 100.',
+    'faqs' => [
+        ['How do I calculate profit margin?', 'Subtract the cost from the selling price, divide by the selling price and multiply by 100.'],
+        ['What is the difference between margin and markup?', 'Margin is profit as a percentage of the selling price; markup is profit as a percentage of the cost.'],
+        ['How do I price a product for a 40% margin?', 'Divide the cost by 0.6. A cost of 30 needs a price of 50.'],
+        ['Is a 50% markup a 50% margin?', 'No. A 50% markup gives a 33.3% margin. A 100% markup gives a 50% margin.'],
+        ['Should I include tax in margin calculations?', 'No. Use prices excluding VAT or sales tax.'],
+        ['How do I add payment processor fees into gross margin planning?', 'Subtract Stripe or PayPal percentages (roughly 2.9% + $0.30) and shipping subsidies directly as variable costs before locking your final retail margin.'],
     ],
-    [
-      'What is the difference between margin and markup?',
-      'Margin is profit as a percentage of the selling price; markup is profit as a percentage of the cost.',
-    ],
-    ['How do I price a product for a 40% margin?', 'Divide the cost by 0.6. A cost of 30 needs a price of 50.'],
-    [
-      'Is a 50% markup a 50% margin?',
-      'No. A 50% markup gives a 33.3% margin. A 100% markup gives a 50% margin.',
-    ],
-    ['Should I include tax in margin calculations?', 'No. Use prices excluding VAT or sales tax.'],
-  ],
+    'aka' => ['Gross Margin & Markup Calculator', 'Retail Pricing Estimator'],
 ];

@@ -254,8 +254,8 @@ function tf_admin_seo(array $admin): array
 <form method="post" class="a-card">' . tf_admin_csrf() . '<input type="hidden" name="action" value="save_settings">
 <h2>Homepage</h2>
 <div class="a-edit-grid" data-serp><div>
-<label class="f"><span>Homepage title</span><input type="text" name="home_title" value="' . h($s['home_title']) . '" placeholder="' . h(tf_site()['site']['name'] . ': ' . count(tf_tools()) . ' Free Online Tools for PDF, Images, Video & More') . '" data-max="65" data-min="30"><span class="count"></span></label>
-<label class="f"><span>Homepage description</span><textarea name="home_description" placeholder="' . h(count(tf_tools()) . ' free online tools that run in your browser: merge PDFs, compress images, convert video to MP3, make QR codes, calculators and more. No sign-up.') . '" data-max="160" data-min="110">' . h($s['home_description']) . '</textarea><span class="count"></span></label>
+<label class="f"><span>Homepage title</span><input type="text" name="home_title" value="' . h($s['home_title']) . '" placeholder="' . h(tf_site()['site']['name'] . ': Free Online PDF, Image, Video & Calculator Tools') . '" data-max="65" data-min="30"><span class="count"></span></label>
+<label class="f"><span>Homepage description</span><textarea name="home_description" placeholder="Free browser-based online tools for PDF, images, video to MP3, QR codes, calculators and text. Instant results with no uploads, watermarks or sign-up." data-max="160" data-min="110">' . h($s['home_description']) . '</textarea><span class="count"></span></label>
 <label class="check"><input type="checkbox" name="title_suffix" value="1"' . ($s['title_suffix'] === '1' ? ' checked' : '') . '>Add “| ' . h(tf_site()['site']['name']) . '” to tool titles when they are short enough</label>
 </div><div class="serp" aria-label="Google preview"><small>' . h(parse_url(tf_base_url(), PHP_URL_HOST)) . '</small><b data-serp-title></b><p data-serp-desc></p></div></div>
 <h2>Search engines</h2>

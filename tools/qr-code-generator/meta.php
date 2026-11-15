@@ -1,28 +1,20 @@
 <?php
-// QR Code Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'QR Code Generator',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'qr',
-  'order' => 1,
-  'icon' => 'qr-code',
-  'popular' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
-  ],
-  'keywords' => 'qr code maker link wifi qr code free no expiry download png svg',
-  'aka' => ['QR code maker', 'QR generator', 'create QR code', 'free QR code'], // other names people search for
-  'short' => 'Free QR codes for links, Wi-Fi, WhatsApp, contacts and more, with your logo.',
-  'title' => 'QR Code Generator: Free QR Codes That Never Expire',
-  'description' => <<<'EOT_TF'
-Create QR codes for links, Wi-Fi, WhatsApp, contact cards, SMS and email. Add your logo, pick colours, download PNG or SVG. Free, no sign-up, never expires.
-EOT_TF,
-  'related' => ['qr-code-scanner', 'wifi-qr-code-generator', 'bulk-qr-code-generator'],
-  'answer' => <<<'EOT_TF'
-Choose what the QR code should do (open a link, join Wi-Fi, show text, write an email or call a number), type the details, and download it as <strong>PNG</strong> or <strong>SVG</strong>. These are <strong>static QR codes</strong>: the information is stored inside the code itself, so they work forever, offline, with no tracking and no subscription.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'QR Code Generator',
+    'updated' => '2026-11-15',
+    'category' => 'qr',
+    'order' => 1,
+    'icon' => 'qr-code',
+    'popular' => true,
+    'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'],
+    'keywords' => 'qr code generator, free qr code maker, permanent qr code png svg, custom logo qr generator',
+    'aka' => ['Static QR Code Maker', 'Logo QR Generator'],
+    'short' => 'Free QR codes for links, Wi-Fi, WhatsApp, contacts and more, with your logo.',
+    'title' => 'QR Code Generator – Free Permanent PNG & SVG',
+    'description' => 'Generate permanent QR codes for URLs, Wi-Fi, WhatsApp, vCard contacts, SMS and email with custom colours and centred logo—no expiry or login.',
+    'related' => ['qr-code-scanner', 'wifi-qr-code-generator', 'bulk-qr-code-generator'],
+    'answer' => 'Choose what the QR code should do (open a link, join Wi-Fi, show text, write an email or call a number), type the details, and download it as <strong>PNG</strong> or <strong>SVG</strong>. These are <strong>static QR codes</strong>: the information is stored inside the code itself, so they work forever, offline, with no tracking and no subscription.',
+    'article' => <<<'EOT_TF'
 <h2>Static QR codes never expire</h2>
 <p>Many "free" QR code sites create <em>dynamic</em> codes. The code points to their server, which then redirects to your link. When the free trial ends, the code stops working, often after you've printed it on menus, flyers or packaging. This generator makes <strong>static</strong> codes: your link or text is encoded directly in the black and white squares. No server is involved, so the code can't be switched off and nobody tracks who scans it.</p>
 <p>The trade-off is that a static code can't be edited after printing. If you might change the destination later, point the code at a page on your own website that you control.</p>
@@ -60,34 +52,11 @@ EOT_TF,
 <li><strong>Test before printing:</strong> scan it with two different phones.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'Do these QR codes expire?',
-      <<<'EOT_TF'
-No. They are static codes with your information stored inside the code, so they keep working forever and don’t depend on any website.
-EOT_TF,
+    'faqs' => [
+        ['Do these QR codes expire?', 'No. They are static codes with your information stored inside the code, so they keep working forever and don’t depend on any website.'],
+        ['How do I make a QR code for Wi-Fi?', 'Choose Wi-Fi, enter the network name and password, and pick the security type (usually WPA). Guests can scan it with their phone camera to join.'],
+        ['Can I use these QR codes commercially?', 'Yes. They are free for any use, including menus, packaging, business cards and advertising.'],
+        ['What is the best format for printing a QR code?', 'SVG, because it stays sharp at any size. Use PNG at 2048 px if your printer or software doesn’t accept SVG.'],
+        ['Can I track how many people scan my QR code?', 'Not with a static code. To count scans, link the code to a page on your own website and use your website analytics.'],
     ],
-    [
-      'How do I make a QR code for Wi-Fi?',
-      <<<'EOT_TF'
-Choose Wi-Fi, enter the network name and password, and pick the security type (usually WPA). Guests can scan it with their phone camera to join.
-EOT_TF,
-    ],
-    [
-      'Can I use these QR codes commercially?',
-      'Yes. They are free for any use, including menus, packaging, business cards and advertising.',
-    ],
-    [
-      'What is the best format for printing a QR code?',
-      <<<'EOT_TF'
-SVG, because it stays sharp at any size. Use PNG at 2048 px if your printer or software doesn’t accept SVG.
-EOT_TF,
-    ],
-    [
-      'Can I track how many people scan my QR code?',
-      <<<'EOT_TF'
-Not with a static code. To count scans, link the code to a page on your own website and use your website analytics.
-EOT_TF,
-    ],
-  ],
 ];

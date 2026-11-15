@@ -1,25 +1,23 @@
 <?php
-// VAT & Sales Tax Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'VAT & Sales Tax Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 9,
-  'icon' => 'receipt',
-  'popular' => true,
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'vat calculator gst calculator sales tax calculator add vat remove vat reverse',
-  'short' => 'Add or remove VAT, GST or sales tax at any rate, with the tax amount.',
-  'title' => 'VAT Calculator: Add or Remove VAT, GST & Sales Tax',
-  'description' => <<<'EOT_TF'
-Add VAT, GST or sales tax to a price, or remove it from a total, at any rate. Shows net, tax and gross amounts with the correct reverse-tax formula. Free.
-EOT_TF,
-  'related' => ['profit-margin-calculator', 'discount-calculator', 'percentage-calculator'],
-  'answer' => <<<'EOT_TF'
-To <strong>add tax</strong>, multiply the net price by (1 + rate): 100 + 20% VAT = 120. To <strong>remove tax</strong> from a total, divide by (1 + rate): 120 ÷ 1.2 = 100. A common mistake is taking 20% off the total, which gives 96 instead of 100. Works for VAT, GST and sales tax at any rate.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'VAT & Sales Tax Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 9,
+    'icon' => 'receipt',
+    'popular' => true,
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'vat calculator, remove vat from gross price, gst tax extractor, add sales tax formula',
+    'short' => 'Add or remove VAT, GST or sales tax at any rate, with the tax amount.',
+    'title' => 'VAT Calculator – Add or Extract VAT/GST/Tax',
+    'description' => 'Add standard/reduced VAT, GST or sales tax rates or extract inclusive tax cleanly from gross totals without the common 20%-off mistake.',
+    'related' => ['profit-margin-calculator', 'discount-calculator', 'percentage-calculator'],
+    'answer' => 'To <strong>add tax</strong>, multiply the net price by (1 + rate): 100 + 20% VAT = 120. To <strong>remove tax</strong> from a total, divide by (1 + rate): 120 ÷ 1.2 = 100. A common mistake is taking 20% off the total, which gives 96 instead of 100. Works for VAT, GST and sales tax at any rate.',
+    'sources' => [
+        ['GOV.UK – UK VAT Rates & Calculations', 'https://www.gov.uk/vat-rates'],
+        ['European Commission – VAT Rules & Standard Rates', 'https://taxation-customs.ec.europa.eu/taxation/vat_en'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>Formulas</h2>
 <div class="formula">Add tax:     gross = net × (1 + rate)
              tax   = net × rate
@@ -49,24 +47,16 @@ Example at 20%:  100 → 120     120 → 100 (tax 20)</div>
 
 <h2>Common VAT mistakes</h2>
 <p>The most frequent mistake is taking the tax rate as a percentage of the gross price to find the tax inside it. At 20%, the tax in a 120 price is 20, not 24. Another is mixing up prices that include tax (common for consumers) with prices that exclude it (common between businesses), so always label quotes and invoices clearly as "inc. VAT" or "ex. VAT". If you are registered for VAT or GST, keep a record of the tax on every sale and purchase for your returns.</p>
+
+<h2>Why Dividing by 1 + Rate Works for Every Tax Region</h2>
+<p>Whether working with 20% UK VAT (divide by <code>1.20</code>), 18% GST (divide by <code>1.18</code>), 10% Australian GST (divide by <code>1.10</code>) or 5% UAE VAT (divide by <code>1.05</code>), dividing the gross receipt by <code>1 + taxRate</code> isolates true net revenue down to the penny.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I add VAT to a price?',
-      'Multiply the price by 1 + the VAT rate. At 20%, multiply by 1.2: 100 becomes 120.',
+    'faqs' => [
+        ['How do I add VAT to a price?', 'Multiply the price by 1 + the VAT rate. At 20%, multiply by 1.2: 100 becomes 120.'],
+        ['How do I remove VAT from a total?', 'Divide by 1 + the rate. At 20%, divide by 1.2: 120 becomes 100, so the VAT was 20.'],
+        ['Why is the VAT not 20% of the total?', 'Because 20% applies to the net price. Within a gross total, 20% VAT is one sixth of the total.'],
+        ['Does this work for GST and sales tax?', 'Yes. Enter your rate; the calculation is the same.'],
+        ['What VAT rate should I use?', 'It depends on your country and product. Check your tax authority’s website for the current rate.'],
     ],
-    [
-      'How do I remove VAT from a total?',
-      'Divide by 1 + the rate. At 20%, divide by 1.2: 120 becomes 100, so the VAT was 20.',
-    ],
-    [
-      'Why is the VAT not 20% of the total?',
-      'Because 20% applies to the net price. Within a gross total, 20% VAT is one sixth of the total.',
-    ],
-    ['Does this work for GST and sales tax?', 'Yes. Enter your rate; the calculation is the same.'],
-    [
-      'What VAT rate should I use?',
-      'It depends on your country and product. Check your tax authority’s website for the current rate.',
-    ],
-  ],
+    'aka' => ['GST & Sales Tax Calculator', 'Reverse VAT Extractor'],
 ];

@@ -1,26 +1,20 @@
 <?php
-// Image Compressor: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Image Compressor',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 1,
-  'icon' => 'image-down',
-  'popular' => true,
-  'files' => true,
-  'keywords' => 'compress jpg png webp reduce photo size kb',
-  'aka' => ['compress image', 'reduce image size', 'photo compressor', 'image size reducer', 'compress JPEG'], // other names people search for
-  'short' => 'Shrink JPG, PNG and WebP photos by up to 80% without visible quality loss.',
-  'title' => 'Image Compressor: Reduce JPG, PNG & WebP File Size Free',
-  'description' => <<<'EOT_TF'
-Compress JPG, PNG and WebP images by up to 80% in your browser. Batch compress, set quality and max width, no upload, no sign-up, no watermark.
-EOT_TF,
-  'related' => ['image-resizer', 'image-converter', 'jpg-to-pdf'],
-  'answer' => <<<'EOT_TF'
-To reduce an image's file size, re-save it at a lower quality and, if it's larger than you need, a smaller width. A quality of <strong>70–80%</strong> usually looks the same as the original but makes JPG photos <strong>60–80% smaller</strong>. Drop your images into the tool below: they are compressed on your device and never uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Image Compressor',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 1,
+    'icon' => 'image-down',
+    'popular' => true,
+    'files' => true,
+    'keywords' => 'image compressor, compress jpg png webp online, reduce photo mb size batch, shrink images for web',
+    'aka' => ['Batch Photo Compressor', 'JPG & PNG Size Reducer'],
+    'short' => 'Shrink JPG, PNG and WebP photos by up to 80% without visible quality loss.',
+    'title' => 'Image Compressor – Shrink JPG, PNG & WebP',
+    'description' => 'Reduce JPG, PNG and WebP file weights by up to 80% in batches with visual quality slider and max width caps locally—zero uploads or limits.',
+    'related' => ['image-resizer', 'image-converter', 'jpg-to-pdf'],
+    'answer' => 'To reduce an image\'s file size, re-save it at a lower quality and, if it\'s larger than you need, a smaller width. A quality of <strong>70–80%</strong> usually looks the same as the original but makes JPG photos <strong>60–80% smaller</strong>. Drop your images into the tool below: they are compressed on your device and never uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>How image compression works</h2>
 <p>Photos from phones and cameras are saved at very high quality, often 3–8 MB each. Most of that detail is invisible on a screen. Compression throws away information your eyes are unlikely to notice, such as tiny colour variations in a blue sky, and stores the rest more efficiently.</p>
 <p>This compressor redraws each image in your browser and saves it again at the quality you choose. Nothing is uploaded to a server, so it works with private photos and documents, and it's fast even on large batches.</p>
@@ -52,36 +46,11 @@ EOT_TF,
 <li>If a result isn't smaller, the image is already well compressed, and the tool keeps your original instead.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How can I reduce the size of a photo to under 100 KB?',
-      <<<'EOT_TF'
-Set the max width to about 1000 pixels and the quality to 60%. Most phone photos then come out between 60 and 120 KB. If it is still too large, lower the quality or the width a little more.
-EOT_TF,
+    'faqs' => [
+        ['How can I reduce the size of a photo to under 100 KB?', 'Set the max width to about 1000 pixels and the quality to 60%. Most phone photos then come out between 60 and 120 KB. If it is still too large, lower the quality or the width a little more.'],
+        ['Does compressing an image reduce its quality?', 'JPG and WebP compression removes some detail, but at 70–80% quality the difference is very hard to see on a screen. Below about 50%, you may notice blur and blocky areas.'],
+        ['Are my images uploaded to a server?', 'No. The compressor runs entirely in your browser. Your images are processed on your device and never leave it.'],
+        ['Why is my compressed PNG not smaller?', 'PNG is a lossless format, so re-saving it as PNG barely changes the size. Keep the output on Auto (or choose WebP or JPG) to make it much smaller.'],
+        ['Can I compress many images at once?', 'Yes. Drop as many images as you like. Each one is compressed with the same settings, and you can download them one by one or all together.'],
     ],
-    [
-      'Does compressing an image reduce its quality?',
-      <<<'EOT_TF'
-JPG and WebP compression removes some detail, but at 70–80% quality the difference is very hard to see on a screen. Below about 50%, you may notice blur and blocky areas.
-EOT_TF,
-    ],
-    [
-      'Are my images uploaded to a server?',
-      <<<'EOT_TF'
-No. The compressor runs entirely in your browser. Your images are processed on your device and never leave it.
-EOT_TF,
-    ],
-    [
-      'Why is my compressed PNG not smaller?',
-      <<<'EOT_TF'
-PNG is a lossless format, so re-saving it as PNG barely changes the size. Keep the output on Auto (or choose WebP or JPG) to make it much smaller.
-EOT_TF,
-    ],
-    [
-      'Can I compress many images at once?',
-      <<<'EOT_TF'
-Yes. Drop as many images as you like. Each one is compressed with the same settings, and you can download them one by one or all together.
-EOT_TF,
-    ],
-  ],
 ];

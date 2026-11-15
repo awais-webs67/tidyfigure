@@ -1,29 +1,22 @@
 <?php
-// Inflation Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Inflation Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['Bank of England: Inflation and the 2% target', 'https://www.bankofengland.co.uk/monetary-policy/inflation'],
-    ['Federal Reserve: Why does the Federal Reserve aim for inflation of 2 percent?', 'https://www.federalreserve.gov/faqs/economy_14400.htm'],
-  ],
-  'order' => 5,
-  'icon' => 'trending-down',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'inflation calculator future value of money purchasing power cost of living',
-  'short' => 'Future prices and how much buying power your money loses to inflation.',
-  'title' => 'Inflation Calculator: Future Prices & Buying Power',
-  'description' => <<<'EOT_TF'
-See how inflation raises prices and shrinks the buying power of your money over time, at any inflation rate. Includes how long prices take to double. Free.
-EOT_TF,
-  'related' => ['compound-interest-calculator', 'retirement-calculator', 'salary-converter'],
-  'answer' => <<<'EOT_TF'
-Inflation compounds just like interest, in reverse. At <strong>3% a year</strong>, something costing 1,000 today will cost about <strong>1,344 in 10 years</strong>, and 1,000 kept as cash will only buy what 744 buys today. Prices double in roughly 72 ÷ inflation rate years: about 23 years at 3%, about 14 years at 5%.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Inflation Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 5,
+    'icon' => 'trending-down',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'inflation calculator, purchasing power erosion, future value inflation, real return after inflation',
+    'short' => 'Future prices and how much buying power your money loses to inflation.',
+    'title' => 'Inflation Calculator – Future Cost & Buying',
+    'description' => 'Model how annual inflation erodes purchasing power and doubles living expenses over 5 to 40 years with CPI context and real-return math.',
+    'related' => ['compound-interest-calculator', 'retirement-calculator', 'salary-converter'],
+    'answer' => 'Inflation compounds just like interest, in reverse. At <strong>3% a year</strong>, something costing 1,000 today will cost about <strong>1,344 in 10 years</strong>, and 1,000 kept as cash will only buy what 744 buys today. Prices double in roughly 72 ÷ inflation rate years: about 23 years at 3%, about 14 years at 5%.',
+    'sources' => [
+        ['Bank of England: Inflation and the 2% target', 'https://www.bankofengland.co.uk/monetary-policy/inflation'],
+        ['Federal Reserve: Why does the Federal Reserve aim for inflation of 2 percent?', 'https://www.federalreserve.gov/faqs/economy_14400.htm'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The inflation formulas</h2>
 <div class="formula">Future price   = today's price × (1 + rate)^years
 Buying power   = amount ÷ (1 + rate)^years
@@ -53,26 +46,16 @@ Doubling time  ≈ 72 ÷ rate (%)</div>
 
 <h2>Protecting savings from inflation</h2>
 <p>Cash in an account that pays less than inflation loses buying power every year. To keep up, compare the interest rate on your savings with the current inflation rate, and consider longer-term options such as index funds or inflation-linked government bonds for money you won't need for several years. For short-term goals and emergency funds, safety matters more than beating inflation.</p>
+
+<h2>Nominal Return vs Inflation-Adjusted Real Return (Fisher)</h2>
+<p>Using the exact Fisher equation (<code>(1 + r_nominal) / (1 + i) − 1</code>), a portfolio earning 7% during 3% annual inflation delivers a real compounding gain of roughly <code>3.88%</code>—not simply subtracting percentages on volatile multi-decade projections.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate inflation over several years?',
-      'Multiply the price by (1 + inflation rate) for each year: price × (1 + rate)^years.',
+    'faqs' => [
+        ['How do I calculate inflation over several years?', 'Multiply the price by (1 + inflation rate) for each year: price × (1 + rate)^years.'],
+        ['How much will 1,000 be worth in 10 years?', 'At 3% inflation, it will buy what about 744 buys today.'],
+        ['How long does it take for prices to double?', 'About 72 divided by the inflation rate: roughly 23–24 years at 3%, 35–36 years at 2%.'],
+        ['What is a normal inflation rate?', 'Most central banks aim for about 2% a year, but actual rates vary by country and year.'],
+        ['Where can I find my country’s inflation rate?', 'Your national statistics office publishes the consumer price index (CPI) and the annual inflation rate.'],
     ],
-    ['How much will 1,000 be worth in 10 years?', 'At 3% inflation, it will buy what about 744 buys today.'],
-    [
-      'How long does it take for prices to double?',
-      'About 72 divided by the inflation rate: roughly 23–24 years at 3%, 35–36 years at 2%.',
-    ],
-    [
-      'What is a normal inflation rate?',
-      'Most central banks aim for about 2% a year, but actual rates vary by country and year.',
-    ],
-    [
-      'Where can I find my country’s inflation rate?',
-      <<<'EOT_TF'
-Your national statistics office publishes the consumer price index (CPI) and the annual inflation rate.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Purchasing Power Calculator', 'Future Cost Estimator'],
 ];

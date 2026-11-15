@@ -1,22 +1,16 @@
 <?php
-// Road Trip Cost Splitter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Road Trip Cost Splitter',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'life',
-  'order' => 10,
-  'icon' => 'car',
-  'short' => 'Split fuel fairly when people ride different distances, plus tolls and parking.',
-  'title' => 'Road Trip Cost Splitter: Split Fuel Cost by Distance',
-  'description' => <<<'EOT_TF'
-Split car trip fuel costs fairly when passengers ride different distances. Works in km or miles, US or UK mpg, with tolls and parking. Free, instant.
-EOT_TF,
-  'related' => ['group-expense-splitter', 'rent-split-calculator', 'unit-price-calculator'],
-  'answer' => <<<'EOT_TF'
-The fairest way to split fuel on a shared car trip is <strong>by stretch of road</strong>: each part of the journey is split equally between the people in the car for that part. Someone who gets out halfway pays nothing for the second half. Tolls and parking are usually split evenly between everyone.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Road Trip Cost Splitter',
+    'updated' => '2026-11-15',
+    'category' => 'life',
+    'order' => 10,
+    'icon' => 'car',
+    'short' => 'Split fuel fairly when people ride different distances, plus tolls and parking.',
+    'title' => 'Road Trip Cost Splitter – Fuel, MPG & Tolls',
+    'description' => 'Calculate petrol/diesel cost per passenger by leg distance, fuel economy (km/L or US/UK mpg), tolls and parking across multi-stop car trips.',
+    'related' => ['group-expense-splitter', 'rent-split-calculator', 'unit-price-calculator'],
+    'answer' => 'The fairest way to split fuel on a shared car trip is <strong>by stretch of road</strong>: each part of the journey is split equally between the people in the car for that part. Someone who gets out halfway pays nothing for the second half. Tolls and parking are usually split evenly between everyone.',
+    'article' => <<<'EOT_TF'
 <h2>Why splitting fuel evenly isn't always fair</h2>
 <p>When everyone rides the whole way, dividing the fuel bill equally is fair and simple. But road trips, carpools and lifts home rarely work like that. One friend gets dropped off after an hour, another joins at a service station, and the driver goes the whole way. Splitting evenly makes the person who rode 50 km pay the same as the person who rode 400.</p>
 <p>Charging each person "their distance × cost per km" doesn't work either, because the car burns the same fuel whether it carries one person or four. The cost of each stretch has to be <em>shared</em> by the people in the car for it.</p>
@@ -54,36 +48,13 @@ Each rider pays = stretch cost ÷ people in the car</div>
 <li>A UK gallon (4.546 L) is about 20% bigger than a US gallon (3.785 L), so the same car shows a higher mpg in the UK.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do you split gas money fairly on a road trip?',
-      <<<'EOT_TF'
-Split each stretch of road between the people in the car for that stretch. If everyone rides the whole way, that is simply the total fuel cost divided by the number of people.
-EOT_TF,
+    'faqs' => [
+        ['How do you split gas money fairly on a road trip?', 'Split each stretch of road between the people in the car for that stretch. If everyone rides the whole way, that is simply the total fuel cost divided by the number of people.'],
+        ['How do I calculate the fuel cost of a trip?', 'In metric, multiply the distance by L/100 km, divide by 100 and multiply by the price per litre. In the US, divide miles by mpg and multiply by the price per gallon.'],
+        ['Should the driver pay for gas?', 'It’s up to the group. Many split it equally including the driver; others let the driver ride free as thanks. The calculator can do either.'],
+        ['What about wear and tear on the car?', 'Fuel is only part of the cost of driving. If you want to include wear, tyres and insurance, add a per-km or per-mile amount to the fuel price, or add a fixed amount to tolls & parking.'],
+        ['What if someone joins partway through the trip?', 'The calculator assumes everyone starts together and people get out along the way. For a trip where people join and leave at different points, split it into legs, run each leg separately and add up each person’s shares.'],
     ],
-    [
-      'How do I calculate the fuel cost of a trip?',
-      <<<'EOT_TF'
-In metric, multiply the distance by L/100 km, divide by 100 and multiply by the price per litre. In the US, divide miles by mpg and multiply by the price per gallon.
-EOT_TF,
-    ],
-    [
-      'Should the driver pay for gas?',
-      <<<'EOT_TF'
-It’s up to the group. Many split it equally including the driver; others let the driver ride free as thanks. The calculator can do either.
-EOT_TF,
-    ],
-    [
-      'What about wear and tear on the car?',
-      <<<'EOT_TF'
-Fuel is only part of the cost of driving. If you want to include wear, tyres and insurance, add a per-km or per-mile amount to the fuel price, or add a fixed amount to tolls & parking.
-EOT_TF,
-    ],
-    [
-      'What if someone joins partway through the trip?',
-      <<<'EOT_TF'
-The calculator assumes everyone starts together and people get out along the way. For a trip where people join and leave at different points, split it into legs, run each leg separately and add up each person’s shares.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'road trip cost splitter, split gas money calculator, fuel cost per passenger, mpg trip fuel estimator',
+    'aka' => ['Car Fuel Splitter', 'Gas Cost Calculator Per Person'],
 ];

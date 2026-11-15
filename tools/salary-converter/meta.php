@@ -1,24 +1,22 @@
 <?php
-// Salary Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Salary Converter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 7,
-  'icon' => 'banknote',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'hourly to salary calculator annual salary to hourly wage monthly salary weekly pay',
-  'short' => 'Convert pay between hourly, daily, weekly, monthly and yearly.',
-  'title' => 'Salary Converter: Hourly to Annual Salary and Back',
-  'description' => <<<'EOT_TF'
-Convert pay between hourly, daily, weekly, biweekly, monthly and yearly, with your own hours and paid weeks. Hourly to salary and salary to hourly. Free.
-EOT_TF,
-  'related' => ['percentage-calculator', 'inflation-calculator', 'vat-calculator'],
-  'answer' => <<<'EOT_TF'
-For a full-time job of 40 hours a week and 52 paid weeks, <strong>yearly salary = hourly rate × 2,080</strong>. So 25 an hour is 52,000 a year, about 4,333 a month. Enter your own hours, working days and paid weeks for an exact conversion in any direction.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Salary Converter',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 7,
+    'icon' => 'banknote',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'salary converter, hourly to annual salary calculator, monthly wage from hourly rate, 40 hour week salary',
+    'short' => 'Convert pay between hourly, daily, weekly, monthly and yearly.',
+    'title' => 'Salary Converter – Hourly to Annual & Monthly',
+    'description' => 'Translate hourly wage, day rate, weekly, biweekly, monthly and annual gross salary instantly with customizable hours per week and paid weeks.',
+    'related' => ['percentage-calculator', 'inflation-calculator', 'vat-calculator'],
+    'answer' => 'For a full-time job of 40 hours a week and 52 paid weeks, <strong>yearly salary = hourly rate × 2,080</strong>. So 25 an hour is 52,000 a year, about 4,333 a month. Enter your own hours, working days and paid weeks for an exact conversion in any direction.',
+    'sources' => [
+        ['U.S. Department of Labor – Wages & Workweek Basics', 'https://www.dol.gov/agencies/whd/flsa'],
+        ['GOV.UK – National Minimum Wage & Pay Calculations', 'https://www.gov.uk/national-minimum-wage'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The conversion formulas</h2>
 <div class="formula">Yearly  = hourly × hours per week × paid weeks per year
 Monthly = yearly ÷ 12
@@ -51,23 +49,16 @@ Hourly  = yearly ÷ (hours per week × paid weeks)</div>
 
 <h2>Comparing job offers</h2>
 <p>When you compare two jobs, convert both to the same period and the same hours. A higher hourly rate can still earn less per year if it comes with fewer guaranteed hours or unpaid holidays. Also look beyond pay: pension contributions, health insurance, bonuses, overtime rates, commuting costs and remote-work days can be worth thousands a year.</p>
+
+<h2>Remember Paid Time Off When Comparing Contractor Rates</h2>
+<p>An employee on $60,000/year receives paid holidays and sick days inside 52 paid weeks, whereas a self-employed contractor billing 46 active work weeks loses six weeks of revenue—requiring ~13% higher billed hourly rates just to match gross pay.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I convert hourly pay to a yearly salary?',
-      <<<'EOT_TF'
-Multiply the hourly rate by your hours per week and paid weeks per year. At 40 hours and 52 weeks, multiply by 2,080.
-EOT_TF,
+    'faqs' => [
+        ['How do I convert hourly pay to a yearly salary?', 'Multiply the hourly rate by your hours per week and paid weeks per year. At 40 hours and 52 weeks, multiply by 2,080.'],
+        ['What is 50,000 a year per hour?', 'About 24.04 an hour for a 40-hour week with 52 paid weeks.'],
+        ['How many working hours are in a year?', 'About 2,080 for a 40-hour week, or 1,950 for a 37.5-hour week, with 52 paid weeks.'],
+        ['How do I convert yearly salary to monthly?', 'Divide the yearly salary by 12.'],
+        ['Is this before or after tax?', 'Before tax. Take-home pay depends on your country’s tax and deductions.'],
     ],
-    ['What is 50,000 a year per hour?', 'About 24.04 an hour for a 40-hour week with 52 paid weeks.'],
-    [
-      'How many working hours are in a year?',
-      'About 2,080 for a 40-hour week, or 1,950 for a 37.5-hour week, with 52 paid weeks.',
-    ],
-    ['How do I convert yearly salary to monthly?', 'Divide the yearly salary by 12.'],
-    [
-      'Is this before or after tax?',
-      'Before tax. Take-home pay depends on your country’s tax and deductions.',
-    ],
-  ],
+    'aka' => ['Hourly to Salary Converter', 'Annual Wage Breakdown Tool'],
 ];

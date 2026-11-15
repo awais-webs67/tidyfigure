@@ -1,22 +1,16 @@
 <?php
-// Recipe Scaler: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Recipe Scaler',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'life',
-  'order' => 8,
-  'icon' => 'cooking-pot',
-  'short' => 'Paste a recipe, change the servings, and get tidy cup and spoon amounts back.',
-  'title' => 'Recipe Scaler: Resize Any Recipe With Easy Kitchen Measures',
-  'description' => <<<'EOT_TF'
-Paste any recipe and scale it up or down by servings. Handles fractions like 1 1/2 and ¾, converts awkward amounts to easier spoons and cups. Free.
-EOT_TF,
-  'related' => ['baking-pan-converter', 'dinner-timing-planner', 'unit-price-calculator'],
-  'answer' => <<<'EOT_TF'
-To scale a recipe, divide the servings you want by the servings the recipe makes, and multiply every ingredient by that number. Going from 4 to 6 servings means multiplying by <strong>1.5</strong>. Paste your ingredient list and this scaler does it line by line, rounds to amounts you can actually measure, and swaps awkward amounts like "0.375 cups" for spoons.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Recipe Scaler',
+    'updated' => '2026-11-15',
+    'category' => 'life',
+    'order' => 8,
+    'icon' => 'cooking-pot',
+    'short' => 'Paste a recipe, change the servings, and get tidy cup and spoon amounts back.',
+    'title' => 'Recipe Scaler – Multiply & Convert Kitchen Cups',
+    'description' => 'Paste ingredient lists with mixed fractions to halve, double or scale servings cleanly and convert awkward decimals into real spoons and cups.',
+    'related' => ['baking-pan-converter', 'dinner-timing-planner', 'unit-price-calculator'],
+    'answer' => 'To scale a recipe, divide the servings you want by the servings the recipe makes, and multiply every ingredient by that number. Going from 4 to 6 servings means multiplying by <strong>1.5</strong>. Paste your ingredient list and this scaler does it line by line, rounds to amounts you can actually measure, and swaps awkward amounts like "0.375 cups" for spoons.',
+    'article' => <<<'EOT_TF'
 <h2>How recipe scaling works</h2>
 <p>Every recipe has a scaling factor: the number of servings you want divided by the number it was written for. Multiply every quantity by that factor and the proportions stay the same, so the dish tastes the same.</p>
 <div class="formula">Scaling factor = servings you want ÷ servings in the recipe
@@ -54,34 +48,13 @@ New amount     = original amount × scaling factor</div>
 <li><strong>Pan size:</strong> doubling a recipe in the same pan changes depth and baking time.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I scale a recipe from 4 to 6 servings?',
-      <<<'EOT_TF'
-Divide 6 by 4 to get 1.5, then multiply every ingredient by 1.5. For example, 2 cups of flour becomes 3 cups and 1 teaspoon of salt becomes 1½ teaspoons.
-EOT_TF,
+    'faqs' => [
+        ['How do I scale a recipe from 4 to 6 servings?', 'Divide 6 by 4 to get 1.5, then multiply every ingredient by 1.5. For example, 2 cups of flour becomes 3 cups and 1 teaspoon of salt becomes 1½ teaspoons.'],
+        ['How do I halve a recipe with 1 egg?', 'Beat the egg and use half of it, about 25 g or 1½ tablespoons. The scaler suggests this automatically when an egg amount isn’t a whole number.'],
+        ['How many tablespoons are in a cup?', 'There are 16 tablespoons in a US cup and 3 teaspoons in a tablespoon, so 48 teaspoons make a cup.'],
+        ['Can I paste a recipe from a website?', 'Yes. Paste the ingredient list with one ingredient per line. Lines that start with a number are scaled; other lines, like "salt to taste", are left as they are.'],
+        ['Does the scaler work with metric recipes?', 'Yes. Grams, kilograms, millilitres and litres are scaled and rounded to sensible precision, and imperial units like ounces and pounds work too.'],
     ],
-    [
-      'How do I halve a recipe with 1 egg?',
-      <<<'EOT_TF'
-Beat the egg and use half of it, about 25 g or 1½ tablespoons. The scaler suggests this automatically when an egg amount isn’t a whole number.
-EOT_TF,
-    ],
-    [
-      'How many tablespoons are in a cup?',
-      'There are 16 tablespoons in a US cup and 3 teaspoons in a tablespoon, so 48 teaspoons make a cup.',
-    ],
-    [
-      'Can I paste a recipe from a website?',
-      <<<'EOT_TF'
-Yes. Paste the ingredient list with one ingredient per line. Lines that start with a number are scaled; other lines, like "salt to taste", are left as they are.
-EOT_TF,
-    ],
-    [
-      'Does the scaler work with metric recipes?',
-      <<<'EOT_TF'
-Yes. Grams, kilograms, millilitres and litres are scaled and rounded to sensible precision, and imperial units like ounces and pounds work too.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'recipe scaler, multiply recipe servings, halve recipe calculator, convert ingredient fractions',
+    'aka' => ['Serving Size Multiplier', 'Ingredient Fraction Scaler'],
 ];

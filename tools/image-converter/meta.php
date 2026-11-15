@@ -1,24 +1,18 @@
 <?php
-// Image Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Image Converter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 3,
-  'icon' => 'image-play',
-  'files' => true,
-  'keywords' => 'png to jpg jpg to png webp to jpg webp to png convert format',
-  'short' => 'Convert between JPG, PNG and WebP: PNG to JPG, WebP to PNG and more.',
-  'title' => 'Image Converter: PNG to JPG, WebP to JPG, JPG to PNG Free',
-  'description' => <<<'EOT_TF'
-Convert images between JPG, PNG and WebP in your browser. PNG to JPG, WebP to PNG, JPG to WebP and more. Batch convert, no upload, no watermark.
-EOT_TF,
-  'related' => ['image-compressor', 'image-resizer', 'jpg-to-pdf'],
-  'answer' => <<<'EOT_TF'
-To convert an image, open it and save it again in the new format. Use <strong>JPG</strong> for photos you want to share anywhere, <strong>PNG</strong> for screenshots, logos and anything with transparency, and <strong>WebP</strong> for the smallest files on websites. Drop images into the tool below to convert them on your device in seconds.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Image Converter',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 3,
+    'icon' => 'image-play',
+    'files' => true,
+    'keywords' => 'image converter, png to jpg, webp to jpg converter, jpg to webp online, batch format converter',
+    'short' => 'Convert between JPG, PNG and WebP: PNG to JPG, WebP to PNG and more.',
+    'title' => 'Image Converter – PNG, JPG, WebP in Batch',
+    'description' => 'Convert PNG, JPG, WebP and GIF photos between formats locally in batches with transparent-fill options and quality control—no file limits.',
+    'related' => ['image-compressor', 'image-resizer', 'jpg-to-pdf'],
+    'answer' => 'To convert an image, open it and save it again in the new format. Use <strong>JPG</strong> for photos you want to share anywhere, <strong>PNG</strong> for screenshots, logos and anything with transparency, and <strong>WebP</strong> for the smallest files on websites. Drop images into the tool below to convert them on your device in seconds.',
+    'article' => <<<'EOT_TF'
 <h2>Which format should you choose?</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>Format</th><th>Best for</th><th>Transparency</th><th>File size</th></tr></thead>
@@ -47,32 +41,12 @@ EOT_TF,
 <h2>HEIC photos from iPhone</h2>
 <p>iPhones save photos as HEIC by default. Only Safari can open HEIC files directly, so on other browsers you may see an error. On the iPhone, go to Settings → Camera → Formats and choose "Most Compatible" to save new photos as JPG.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I convert PNG to JPG?',
-      <<<'EOT_TF'
-Drop your PNG files into the tool, choose JPG, and download. Transparent parts are filled with white unless you pick another background colour.
-EOT_TF,
+    'faqs' => [
+        ['How do I convert PNG to JPG?', 'Drop your PNG files into the tool, choose JPG, and download. Transparent parts are filled with white unless you pick another background colour.'],
+        ['How do I convert WebP to JPG?', 'Drop the WebP image, choose JPG and download the result. It opens in every app and upload form that accepts JPG.'],
+        ['Does converting an image reduce quality?', 'Converting to PNG doesn’t lose any more quality. Converting to JPG or WebP at 90% quality loses a tiny amount of detail that is very hard to see.'],
+        ['Can I convert several images at once?', 'Yes. Drop as many images as you like and they will all be converted to the format you choose.'],
+        ['Is it safe to convert private photos here?', 'Yes. Conversion happens in your browser and the files are never uploaded to a server.'],
     ],
-    [
-      'How do I convert WebP to JPG?',
-      <<<'EOT_TF'
-Drop the WebP image, choose JPG and download the result. It opens in every app and upload form that accepts JPG.
-EOT_TF,
-    ],
-    [
-      'Does converting an image reduce quality?',
-      <<<'EOT_TF'
-Converting to PNG doesn’t lose any more quality. Converting to JPG or WebP at 90% quality loses a tiny amount of detail that is very hard to see.
-EOT_TF,
-    ],
-    [
-      'Can I convert several images at once?',
-      'Yes. Drop as many images as you like and they will all be converted to the format you choose.',
-    ],
-    [
-      'Is it safe to convert private photos here?',
-      'Yes. Conversion happens in your browser and the files are never uploaded to a server.',
-    ],
-  ],
+    'aka' => ['PNG JPG WebP Converter', 'Batch Image Format Tool'],
 ];

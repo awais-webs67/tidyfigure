@@ -1,24 +1,22 @@
 <?php
-// Savings Goal Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Savings Goal Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 3,
-  'icon' => 'target',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'savings goal calculator how much to save each month to reach goal save for house car wedding',
-  'short' => 'How much to save each month to reach a goal, or how long it will take.',
-  'title' => 'Savings Goal Calculator: How Much to Save Each Month',
-  'description' => <<<'EOT_TF'
-Work out how much to save each month to reach a savings goal by a target date, or how long it will take at your current rate, including interest. Free.
-EOT_TF,
-  'related' => ['compound-interest-calculator', 'sip-calculator', 'inflation-calculator'],
-  'answer' => <<<'EOT_TF'
-Divide what you still need by the number of months, then let interest do some of the work. To save <strong>20,000 in 3 years</strong> starting from 2,000, at 4% interest, you need to put away about <strong>465 a month</strong>. Or enter what you can afford monthly to see when you'll hit your goal.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Savings Goal Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 3,
+    'icon' => 'target',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'savings goal calculator, monthly savings needed for target, emergency fund planner, deposit timeline',
+    'short' => 'How much to save each month to reach a goal, or how long it will take.',
+    'title' => 'Savings Goal Calculator – Monthly Plan & Time',
+    'description' => 'Find how much to set aside monthly to hit a house deposit, car or emergency fund target by your deadline—or months needed at your current saving pace.',
+    'related' => ['compound-interest-calculator', 'sip-calculator', 'inflation-calculator'],
+    'answer' => 'Divide what you still need by the number of months, then let interest do some of the work. To save <strong>20,000 in 3 years</strong> starting from 2,000, at 4% interest, you need to put away about <strong>465 a month</strong>. Or enter what you can afford monthly to see when you\'ll hit your goal.',
+    'sources' => [
+        ['CFPB – Building an Emergency Savings Fund', 'https://www.consumerfinance.gov/an-essential-guide-to-building-an-emergency-fund/'],
+        ['MoneyHelper – Savings Calculator & Goal Setting', 'https://www.moneyhelper.org.uk/en/savings'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>Two ways to plan</h2>
 <ul>
 <li><strong>"I want to reach it by…"</strong> tells you the monthly amount needed to hit your goal by a deadline: a wedding, a house deposit, a car.</li>
@@ -55,33 +53,17 @@ i = yearly rate ÷ 12, n = number of months</div>
 <li><strong>Add windfalls:</strong> tax refunds, bonuses and gifts can cut months off the target.</li>
 <li><strong>Round up:</strong> rounding the monthly amount up to the next 10 or 50 makes a noticeable difference over a year.</li>
 </ul>
+
+<h2>Short-Term Goals: Liquidity Matters More Than Chasing Yield</h2>
+<p>For deposits needed inside 12–36 months, holding savings in FDIC/FSCS-insured high-yield savings or Treasury bills protects principal from stock market swings even if yields run slightly lower than equities.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How much should I save each month to reach my goal?',
-      <<<'EOT_TF'
-Subtract what you have from your goal and divide by the months left, then reduce slightly for interest. The calculator does this exactly.
-EOT_TF,
+    'faqs' => [
+        ['How much should I save each month to reach my goal?', 'Subtract what you have from your goal and divide by the months left, then reduce slightly for interest. The calculator does this exactly.'],
+        ['How long will it take to save 10,000?', 'Saving 300 a month from zero at 4% interest takes about 2 years 8 months. Enter your own amount to check.'],
+        ['Does interest make a big difference?', 'For short goals, not much. Over five or more years it can cover a meaningful part of the goal.'],
+        ['Should I save or pay off debt first?', 'Build a small emergency fund first, then usually pay off high-interest debt before saving for other goals.'],
+        ['Where should I keep my savings?', 'Short-term goals belong in safe, easy-access savings; long-term goals may suit investing.'],
+        ['Does earning interest matter much on a one-year goal?', 'On a 12-month emergency fund target, consistent monthly deposits drive over 95% of your total—high-yield interest helps noticeably over three to ten years.'],
     ],
-    [
-      'How long will it take to save 10,000?',
-      <<<'EOT_TF'
-Saving 300 a month from zero at 4% interest takes about 2 years 8 months. Enter your own amount to check.
-EOT_TF,
-    ],
-    [
-      'Does interest make a big difference?',
-      'For short goals, not much. Over five or more years it can cover a meaningful part of the goal.',
-    ],
-    [
-      'Should I save or pay off debt first?',
-      <<<'EOT_TF'
-Build a small emergency fund first, then usually pay off high-interest debt before saving for other goals.
-EOT_TF,
-    ],
-    [
-      'Where should I keep my savings?',
-      'Short-term goals belong in safe, easy-access savings; long-term goals may suit investing.',
-    ],
-  ],
+    'aka' => ['Target Savings Planner', 'Deposit & Emergency Fund Tool'],
 ];

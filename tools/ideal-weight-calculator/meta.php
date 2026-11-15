@@ -1,28 +1,21 @@
 <?php
-// Ideal Weight Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Ideal Weight Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['Robinson JD et al. (1983). Determination of ideal body weight for drug dosage calculations. Am J Hosp Pharm.', 'https://pubmed.ncbi.nlm.nih.gov/6869387/'],
-  ],
-  'order' => 5,
-  'icon' => 'target',
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'ideal body weight calculator healthy weight for my height devine robinson',
-  'short' => 'Ideal weight for your height from four formulas, plus the healthy BMI range.',
-  'title' => 'Ideal Weight Calculator: Healthy Weight for Your Height',
-  'description' => <<<'EOT_TF'
-Find your ideal body weight for your height and sex using the Robinson, Miller, Devine and Hamwi formulas, alongside the healthy BMI weight range. kg or lb.
-EOT_TF,
-  'related' => ['bmi-calculator', 'body-fat-calculator', 'calorie-calculator'],
-  'answer' => <<<'EOT_TF'
-There's no single perfect weight, but formulas give a useful reference. For your height and sex this calculator averages the four best-known <strong>ideal body weight</strong> formulas and shows the <strong>healthy BMI range</strong> (BMI 18.5–24.9), which is the range most health services use as a target.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Ideal Weight Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 5,
+    'icon' => 'target',
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'ideal weight calculator, healthy weight for my height, ideal body weight formula, devine formula, robinson formula',
+    'short' => 'Ideal weight for your height from four formulas, plus the healthy BMI range.',
+    'title' => 'Ideal Weight Calculator – Healthy Height Range',
+    'description' => 'Compare ideal body weight across Robinson, Miller, Devine and Hamwi clinical formulas alongside the healthy BMI weight band in kg or pounds.',
+    'related' => ['bmi-calculator', 'body-fat-calculator', 'calorie-calculator'],
+    'answer' => 'There\'s no single perfect weight, but formulas give a useful reference. For your height and sex this calculator averages the four best-known <strong>ideal body weight</strong> formulas and shows the <strong>healthy BMI range</strong> (BMI 18.5–24.9), which is the range most health services use as a target.',
+    'sources' => [
+        ['Robinson JD et al. (1983). Determination of ideal body weight for drug dosage calculations. Am J Hosp Pharm.', 'https://pubmed.ncbi.nlm.nih.gov/6869387/'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The ideal weight formulas</h2>
 <p>Each formula starts from a base weight at 5 feet (152.4 cm) and adds a fixed amount for every inch above that:</p>
 <div class="formula">               Men                    Women
@@ -45,33 +38,16 @@ Hamwi      48 kg + 2.7 kg/inch      45.5 kg + 2.2 kg/inch</div>
 
 <h2>Better questions than "what should I weigh?"</h2>
 <p>Waist size (ideally less than half your height), fitness, strength, blood pressure and blood sugar tell you more about health than the scale. Use the Body Fat Calculator to see how much of your weight is fat, and talk to a doctor if you want a personalised target.</p>
+
+<h2>Clinical History Behind the Four Equations</h2>
+<p>Originally published in the 1960s–1980s for pharmacokinetic drug dosing rather than aesthetics, the Hamwi, Devine, Robinson and Miller equations calculate a baseline weight at 5 feet (60 inches) plus fixed increments per extra inch. Because frame size and lean muscle vary widely, viewing all four formulas beside the 18.5–24.9 BMI band gives a more realistic healthy window.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is my ideal weight for my height?',
-      <<<'EOT_TF'
-Enter your height and sex to see the average of four ideal body weight formulas and the healthy BMI range for your height.
-EOT_TF,
+    'faqs' => [
+        ['What is my ideal weight for my height?', 'Enter your height and sex to see the average of four ideal body weight formulas and the healthy BMI range for your height.'],
+        ['Which ideal weight formula is best?', 'None is clearly best. Devine is most used medically; Robinson and Miller tend to give more realistic results for many people.'],
+        ['Is the ideal weight the same for men and women?', 'No. At the same height, the formulas give women a lower ideal weight than men.'],
+        ['Do ideal weight formulas work for short people?', 'They were designed for heights above 5 feet (152 cm). Below that, use the healthy BMI range instead.'],
+        ['Should I aim for my exact ideal weight?', 'No. Anywhere in the healthy BMI range is generally fine. Fitness and waist size matter as much as weight.'],
     ],
-    [
-      'Which ideal weight formula is best?',
-      <<<'EOT_TF'
-None is clearly best. Devine is most used medically; Robinson and Miller tend to give more realistic results for many people.
-EOT_TF,
-    ],
-    [
-      'Is the ideal weight the same for men and women?',
-      'No. At the same height, the formulas give women a lower ideal weight than men.',
-    ],
-    [
-      'Do ideal weight formulas work for short people?',
-      'They were designed for heights above 5 feet (152 cm). Below that, use the healthy BMI range instead.',
-    ],
-    [
-      'Should I aim for my exact ideal weight?',
-      <<<'EOT_TF'
-No. Anywhere in the healthy BMI range is generally fine. Fitness and waist size matter as much as weight.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Ideal Body Weight Calculator', 'Healthy Weight Range Finder'],
 ];

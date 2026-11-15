@@ -1,25 +1,24 @@
 <?php
-// Protect PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Protect PDF with Password',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 14,
-  'icon' => 'file-lock',
-  'popular' => true,
-  'files' => true,
-  'libs' => ['vendor/cantoo-pdf-lib-2.9.2.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
-  'appCategory' => 'UtilitiesApplication',
-  'keywords' => 'protect pdf with password add password to pdf encrypt pdf lock pdf secure pdf aes 256 restrict printing copying',
-  'short' => 'Add a password to a PDF with AES-256 encryption, and limit printing or copying.',
-  'title' => 'Protect PDF with Password: Encrypt PDF Free, AES-256',
-  'description' => 'Add a password to any PDF with AES-256 encryption and choose whether people can print, copy or edit it. Works in your browser: the PDF is never uploaded.',
-  'related' => ['unlock-pdf', 'compress-pdf', 'pdf-metadata-remover'],
-  'answer' => <<<'EOT_TF'
-To password-protect a PDF, choose the file, type a password twice and press <strong>Protect PDF</strong>. The PDF is encrypted with <strong>AES-256</strong>, the standard used by Adobe Acrobat, so it won’t open without the password in any PDF reader. You can also stop people printing, copying text or editing it. Encryption happens on your device; the PDF is never uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Protect PDF with Password',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 14,
+    'icon' => 'file-lock',
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'vendor/cantoo-pdf-lib-2.9.2.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+    ],
+    'appCategory' => 'UtilitiesApplication',
+    'keywords' => 'protect pdf with password, encrypt pdf aes 256 online, lock pdf copy print permissions free',
+    'short' => 'Add a password to a PDF with AES-256 encryption, and limit printing or copying.',
+    'title' => 'Protect PDF With Password – AES-256 Encrypt',
+    'description' => 'Lock confidential PDF files locally using strong AES-256 open passwords and optional print, copy or edit permission restrictions—zero uploads.',
+    'related' => ['unlock-pdf', 'compress-pdf', 'pdf-metadata-remover'],
+    'answer' => 'To password-protect a PDF, choose the file, type a password twice and press <strong>Protect PDF</strong>. The PDF is encrypted with <strong>AES-256</strong>, the standard used by Adobe Acrobat, so it won’t open without the password in any PDF reader. You can also stop people printing, copying text or editing it. Encryption happens on your device; the PDF is never uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>How to add a password to a PDF</h2>
 <ol>
 <li>Drop your PDF in the box. A preview of the first page appears.</li>
@@ -52,11 +51,13 @@ EOT_TF,
 </ul>
 <p>To remove a password later from a PDF you can open, use <a href="/unlock-pdf">Unlock PDF</a>.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I put a password on a PDF?', 'Choose the PDF, type a password twice and press Protect PDF. Download the encrypted file.'],
-    ['Is it secure?', 'Yes. The PDF is encrypted with AES-256, the strongest PDF encryption. Security then depends on choosing a strong password.'],
-    ['Is my PDF uploaded?', 'No. Encryption happens in your browser, on your device.'],
-    ['Can I stop people printing or copying my PDF?', 'Yes. Untick Print or Copy text. Most PDF readers respect these settings, but they are not a guarantee.'],
-    ['What if I forget the password?', 'The file cannot be opened or recovered without it, so store the password safely.'],
-  ],
+    'faqs' => [
+        ['How do I put a password on a PDF?', 'Choose the PDF, type a password twice and press Protect PDF. Download the encrypted file.'],
+        ['Is it secure?', 'Yes. The PDF is encrypted with AES-256, the strongest PDF encryption. Security then depends on choosing a strong password.'],
+        ['Is my PDF uploaded?', 'No. Encryption happens in your browser, on your device.'],
+        ['Can I stop people printing or copying my PDF?', 'Yes. Untick Print or Copy text. Most PDF readers respect these settings, but they are not a guarantee.'],
+        ['What if I forget the password?', 'The file cannot be opened or recovered without it, so store the password safely.'],
+        ['Can I recover a forgotten PDF open password later?', 'No. AES-256 encryption mathematically protects files with zero backdoors—always save passwords securely in a manager before locking originals.'],
+    ],
+    'aka' => ['PDF Password Encryptor', 'AES-256 PDF Locker'],
 ];

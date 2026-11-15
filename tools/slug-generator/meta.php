@@ -1,23 +1,17 @@
 <?php
-// Slug Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Slug Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 22,
-  'icon' => 'link-2',
-  'keywords' => 'slug generator url slug seo friendly url permalink title to slug convert text to url bulk',
-  'short' => 'Turn titles into clean, SEO-friendly URL slugs, one at a time or in bulk.',
-  'title' => 'Slug Generator: Turn Titles into SEO-Friendly URLs',
-  'description' => <<<'EOT_TF'
-Convert page titles into clean URL slugs: lowercase, hyphens, accents removed, optional filler-word removal and a length limit. Works in bulk, one per line.
-EOT_TF,
-  'related' => ['case-converter', 'url-encoder-decoder', 'character-counter'],
-  'answer' => <<<'EOT_TF'
-A <strong>slug</strong> is the readable part of a web address that identifies a page, like <code>/save-money-tips</code>. To make one, lowercase the title, replace spaces and punctuation with hyphens, and remove accents: "Crème Brûlée: The Perfect French Dessert" becomes <code>creme-brulee-the-perfect-french-dessert</code>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Slug Generator',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 22,
+    'icon' => 'link-2',
+    'keywords' => 'slug generator, url slug converter, seo friendly url maker, bulk title to slug online',
+    'short' => 'Turn titles into clean, SEO-friendly URL slugs, one at a time or in bulk.',
+    'title' => 'URL Slug Generator – Clean SEO Slugs in Bulk',
+    'description' => 'Turn article headlines into clean lowercase hyphenated URLs by stripping accents, punctuation and stop-words—supports bulk line-by-line conversion.',
+    'related' => ['case-converter', 'url-encoder-decoder', 'character-counter'],
+    'answer' => 'A <strong>slug</strong> is the readable part of a web address that identifies a page, like <code>/save-money-tips</code>. To make one, lowercase the title, replace spaces and punctuation with hyphens, and remove accents: "Crème Brûlée: The Perfect French Dessert" becomes <code>creme-brulee-the-perfect-french-dessert</code>.',
+    'article' => <<<'EOT_TF'
 <h2>What makes a good slug</h2>
 <ul>
 <li><strong>Short and descriptive:</strong> 3–6 meaningful words that say what the page is about. <code>/best-student-laptops</code> beats <code>/whats-the-best-laptop-for-students-in-2026-our-complete-guide</code>.</li>
@@ -50,30 +44,12 @@ With filler words removed and numbers removed:
 <p>Paste a list of titles, one per line, to get a slug for each, ready to copy into a spreadsheet or CMS import. The length limit trims at a word boundary so slugs never end with half a word.</p>
 <p>Non-Latin scripts (Cyrillic, Arabic, Devanagari, Chinese) are kept as they are, since modern browsers display them in the address bar; they're percent-encoded behind the scenes. If you need a Latin-only slug for those, transliterate the title first. Need to change the case of your titles? Use the <a href="/case-converter">case converter</a>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is a URL slug?',
-      <<<'EOT_TF'
-The part of a web address after the domain that identifies a specific page, such as save-money-tips in example.com/blog/save-money-tips.
-EOT_TF,
+    'faqs' => [
+        ['What is a URL slug?', 'The part of a web address after the domain that identifies a specific page, such as save-money-tips in example.com/blog/save-money-tips.'],
+        ['Should slugs use hyphens or underscores?', 'Hyphens. Google treats hyphens as word separators, while underscores join words together.'],
+        ['How long should a URL slug be?', 'Keep it short: 3–6 meaningful words, usually under 60 characters.'],
+        ['Do slugs affect SEO?', 'A little. A short, descriptive slug with your main keyword helps users and search engines understand the page and makes links more clickable.'],
+        ['Can I change a slug after publishing?', 'Yes, but add a 301 redirect from the old URL so existing links and rankings carry over.'],
     ],
-    [
-      'Should slugs use hyphens or underscores?',
-      'Hyphens. Google treats hyphens as word separators, while underscores join words together.',
-    ],
-    [
-      'How long should a URL slug be?',
-      'Keep it short: 3–6 meaningful words, usually under 60 characters.',
-    ],
-    [
-      'Do slugs affect SEO?',
-      <<<'EOT_TF'
-A little. A short, descriptive slug with your main keyword helps users and search engines understand the page and makes links more clickable.
-EOT_TF,
-    ],
-    [
-      'Can I change a slug after publishing?',
-      'Yes, but add a 301 redirect from the old URL so existing links and rankings carry over.',
-    ],
-  ],
+    'aka' => ['SEO URL Slug Maker', 'Bulk Permalink Formatter'],
 ];

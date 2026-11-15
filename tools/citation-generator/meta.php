@@ -1,27 +1,19 @@
 <?php
-// Citation Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Citation Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'study',
-  'order' => 3,
-  'icon' => 'quote',
-  'popular' => true,
-  'appCategory' => 'EducationalApplication',
-  'keywords' => <<<'EOT_TF'
-citation generator apa 7 mla 9 harvard chicago reference generator cite website book journal article bibliography in-text
-EOT_TF,
-  'short' => 'Cite websites, books and journal articles in APA, MLA, Harvard or Chicago style.',
-  'title' => 'Citation Generator: APA 7, MLA 9, Harvard & Chicago, Free',
-  'description' => <<<'EOT_TF'
-Create references and in-text citations for websites, books and journal articles in APA 7, MLA 9, Harvard and Chicago style. Copy with italics. Free, no ads.
-EOT_TF,
-  'related' => ['word-counter', 'grade-calculator', 'case-converter'],
-  'answer' => <<<'EOT_TF'
-Choose your style (APA, MLA, Harvard or Chicago) and the type of source, fill in the author, title, date and other details, and copy the formatted <strong>reference</strong> and <strong>in-text citation</strong>. Italics are kept when you paste into Word or Google Docs. For example, in APA 7 a website looks like: Doe, J. A., &amp; Chen, M. (2024, March 15). <i>Title of the page</i>. Site Name. URL
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Citation Generator',
+    'updated' => '2026-11-15',
+    'category' => 'study',
+    'order' => 3,
+    'icon' => 'quote',
+    'popular' => true,
+    'appCategory' => 'EducationalApplication',
+    'keywords' => 'citation generator, apa 7 citation maker, mla 9 generator, harvard referencing tool, chicago bibliography free',
+    'short' => 'Cite websites, books and journal articles in APA, MLA, Harvard or Chicago style.',
+    'title' => 'Citation Generator – APA 7, MLA 9, Harvard',
+    'description' => 'Format accurate bibliographies and in-text citations for websites, books and journals in APA 7th, MLA 9th, Harvard and Chicago 18th with italics.',
+    'related' => ['word-counter', 'grade-calculator', 'case-converter'],
+    'answer' => 'Choose your style (APA, MLA, Harvard or Chicago) and the type of source, fill in the author, title, date and other details, and copy the formatted <strong>reference</strong> and <strong>in-text citation</strong>. Italics are kept when you paste into Word or Google Docs. For example, in APA 7 a website looks like: Doe, J. A., &amp; Chen, M. (2024, March 15). <i>Title of the page</i>. Site Name. URL',
+    'article' => <<<'EOT_TF'
 <h2>Citation formats at a glance</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>Style</th><th>Used mostly in</th><th>In-text</th></tr></thead>
@@ -65,32 +57,12 @@ Chicago: Doe, Jane A., and Michael Chen. "Title of the Article." Journal of Slee
 <h2>Avoiding plagiarism</h2>
 <p>Every quotation, statistic, image or idea you take from someone else needs an in-text citation <em>and</em> a full reference in your reference list or bibliography. Put direct quotes in quotation marks and add the page number. Paraphrasing still needs a citation. Building your references as you research saves a lot of time at the end. Check your <a href="/word-counter">word count</a>: in most courses, the reference list doesn't count towards it.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I cite a website in APA 7?',
-      <<<'EOT_TF'
-Author, A. A. (Year, Month Day). Title of page (in italics). Site Name. URL. If there is no author, start with the title.
-EOT_TF,
+    'faqs' => [
+        ['How do I cite a website in APA 7?', 'Author, A. A. (Year, Month Day). Title of page (in italics). Site Name. URL. If there is no author, start with the title.'],
+        ['How do I cite a book in MLA 9?', 'Last name, First name. Title of Book (in italics). Publisher, Year.'],
+        ['What is the difference between a reference and an in-text citation?', 'The in-text citation is the short note in your sentence, like (Doe, 2024). The reference is the full entry in the list at the end.'],
+        ['What if a source has no date?', 'APA uses (n.d.). Harvard uses (no date). MLA leaves the date out and adds the date you accessed it.'],
+        ['Will the italics be kept when I paste?', 'Yes. Copy reference puts formatted text on the clipboard, so italics stay when you paste into Word, Google Docs or Pages.'],
     ],
-    [
-      'How do I cite a book in MLA 9?',
-      'Last name, First name. Title of Book (in italics). Publisher, Year.',
-    ],
-    [
-      'What is the difference between a reference and an in-text citation?',
-      <<<'EOT_TF'
-The in-text citation is the short note in your sentence, like (Doe, 2024). The reference is the full entry in the list at the end.
-EOT_TF,
-    ],
-    [
-      'What if a source has no date?',
-      'APA uses (n.d.). Harvard uses (no date). MLA leaves the date out and adds the date you accessed it.',
-    ],
-    [
-      'Will the italics be kept when I paste?',
-      <<<'EOT_TF'
-Yes. Copy reference puts formatted text on the clipboard, so italics stay when you paste into Word, Google Docs or Pages.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['APA & MLA Citation Maker', 'Free Bibliography Generator'],
 ];

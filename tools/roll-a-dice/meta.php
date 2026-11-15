@@ -1,23 +1,17 @@
 <?php
-// Roll a Dice: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Roll a Dice',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'random',
-  'order' => 6,
-  'icon' => 'dice-5',
-  'keywords' => 'dice roller virtual dice d20 d6 roll dice online',
-  'short' => 'Roll 1–10 virtual dice: d4, d6, d8, d10, d12, d20 or d100.',
-  'title' => 'Roll a Dice: Online Dice Roller for d6, d20 and More',
-  'description' => <<<'EOT_TF'
-Roll virtual dice online: 1 to 10 dice with 4, 6, 8, 10, 12, 20 or 100 sides. Fair, instant rolls with totals and history. Great for board games and D&D.
-EOT_TF,
-  'related' => ['flip-a-coin', 'spin-the-wheel', 'random-number-generator'],
-  'answer' => <<<'EOT_TF'
-Choose how many dice and how many sides, then press Roll (or the space bar). Each die lands on every face with <strong>exactly equal chance</strong>, and the total is added up for you. Standard six-sided dice show real pips; role-playing dice (d4 to d100) show the number.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Roll a Dice',
+    'updated' => '2026-11-15',
+    'category' => 'random',
+    'order' => 6,
+    'icon' => 'dice-5',
+    'keywords' => 'roll a dice, virtual dice roller, d20 dice roller, 2d6 online, polyhedral dice simulator, tabletop dice',
+    'short' => 'Roll 1–10 virtual dice: d4, d6, d8, d10, d12, d20 or d100.',
+    'title' => 'Roll a Dice Online – d4, d6, d8, d10, d12, d20',
+    'description' => 'Roll 1 to 10 virtual polyhedral dice (d4, d6, d8, d10, d12, d20, d100) with cryptographic randomness, totals and roll history for tabletop games.',
+    'related' => ['flip-a-coin', 'spin-the-wheel', 'random-number-generator'],
+    'answer' => 'Choose how many dice and how many sides, then press Roll (or the space bar). Each die lands on every face with <strong>exactly equal chance</strong>, and the total is added up for you. Standard six-sided dice show real pips; role-playing dice (d4 to d100) show the number.',
+    'article' => <<<'EOT_TF'
 <h2>A dice roller for every game</h2>
 <ul>
 <li><strong>Board games</strong> like Monopoly, Ludo, Backgammon and Snakes and Ladders use one or two six-sided dice (2d6).</li>
@@ -55,20 +49,16 @@ EOT_TF,
 <li>The <strong>history</strong> shows your last 20 rolls, so nobody can argue about what was rolled.</li>
 <li>Changing the number of dice or sides rolls straight away.</li>
 </ul>
+
+<h2>Sum Distributions for Multiple Dice</h2>
+<p>Rolling a single <code>1d20</code> produces a flat uniform spread (5% per number from 1 to 20). By contrast, summing two six-sided dice (<code>2d6</code>) forms a triangular bell curve centred on 7 (16.7% chance) while extremes like 2 or 12 happen only 2.78% of the time—fundamental probability across board games.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Is this online dice roller fair?',
-      <<<'EOT_TF'
-Yes. Every roll uses a secure random number, so each face has exactly the same chance, and every roll is independent.
-EOT_TF,
+    'faqs' => [
+        ['Is this online dice roller fair?', 'Yes. Every roll uses a secure random number, so each face has exactly the same chance, and every roll is independent.'],
+        ['What is the most common roll with two dice?', '7. It can be made 6 different ways out of 36, a 16.7% chance.'],
+        ['How do I roll a d20?', 'Set Sides to d20 and Number of dice to 1, then press Roll.'],
+        ['Can I roll several dice at once?', 'Yes, up to 10 dice. The total is added up for you.'],
+        ['Is there a keyboard shortcut?', 'Yes. Press the space bar to roll again.'],
     ],
-    [
-      'What is the most common roll with two dice?',
-      '7. It can be made 6 different ways out of 36, a 16.7% chance.',
-    ],
-    ['How do I roll a d20?', 'Set Sides to d20 and Number of dice to 1, then press Roll.'],
-    ['Can I roll several dice at once?', 'Yes, up to 10 dice. The total is added up for you.'],
-    ['Is there a keyboard shortcut?', 'Yes. Press the space bar to roll again.'],
-  ],
+    'aka' => ['Virtual Dice Roller', 'D&D Polyhedral Dice'],
 ];

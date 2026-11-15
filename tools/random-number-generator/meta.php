@@ -1,23 +1,17 @@
 <?php
-// Random Number Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Random Number Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'random',
-  'order' => 3,
-  'icon' => 'shuffle',
-  'keywords' => 'rng pick a number lottery numbers random picker 1-10 1-100',
-  'short' => 'Pick random numbers in any range, with or without repeats.',
-  'title' => 'Random Number Generator: Pick a Number 1–100 or Any Range',
-  'description' => <<<'EOT_TF'
-Generate random numbers in any range: 1–10, 1–100 or your own. Pick one or thousands, with or without repeats. Lottery and PIN presets. Truly fair.
-EOT_TF,
-  'related' => ['spin-the-wheel', 'roll-a-dice', 'flip-a-coin'],
-  'answer' => <<<'EOT_TF'
-Set a minimum and maximum, choose how many numbers you need, and press Generate. Every whole number in the range has <strong>exactly the same chance</strong> of being picked. Tick "no repeats" to draw numbers like a raffle or lottery, where each number can only come up once.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Random Number Generator',
+    'updated' => '2026-11-15',
+    'category' => 'random',
+    'order' => 3,
+    'icon' => 'shuffle',
+    'keywords' => 'random number generator, rng online, pick a number 1 to 100, random integer picker, no repeat random numbers',
+    'short' => 'Pick random numbers in any range, with or without repeats.',
+    'title' => 'Random Number Generator – 1 to 100 & Any Range',
+    'description' => 'Pick unbiased random integers in any min-max range—1–10, 1–100, lottery lines or bulk lists with no-repeat toggles—using Web Crypto randomness.',
+    'related' => ['spin-the-wheel', 'roll-a-dice', 'flip-a-coin'],
+    'answer' => 'Set a minimum and maximum, choose how many numbers you need, and press Generate. Every whole number in the range has <strong>exactly the same chance</strong> of being picked. Tick "no repeats" to draw numbers like a raffle or lottery, where each number can only come up once.',
+    'article' => <<<'EOT_TF'
 <h2>How the numbers are picked</h2>
 <p>The generator uses your browser's cryptographically secure random source (<code>crypto.getRandomValues</code>), which is designed for encryption and is unpredictable in practice. Each number is drawn independently, and every whole number from the minimum to the maximum, including both ends, is equally likely.</p>
 <div class="formula">Chance of any one number = 1 ÷ (maximum − minimum + 1)
@@ -43,35 +37,16 @@ Picking 1 from 1–100: 1 in 100 = 1%</div>
 
 <h2>Common questions about ranges</h2>
 <p>Negative numbers work: −50 to 50 is a range of 101 numbers. If you enter the maximum first by mistake, the tool swaps them for you. Decimals are rounded inwards to whole numbers, so 0.5 to 10.5 becomes 1 to 10.</p>
+
+<h2>Sampling With vs Without Replacement</h2>
+<p>Turn <strong>repeats off</strong> whenever assigning raffle tickets, classroom seat order or shuffled tournament brackets so each value appears at most once (sampling without replacement). Leave repeats on to simulate independent rolls, PIN codes or Monte Carlo draws where past outcomes must not restrict future picks.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I pick a random number between 1 and 100?',
-      <<<'EOT_TF'
-Set the minimum to 1 and the maximum to 100, or click the 1–100 preset, then press Generate. Each number has a 1% chance.
-EOT_TF,
+    'faqs' => [
+        ['How do I pick a random number between 1 and 100?', 'Set the minimum to 1 and the maximum to 100, or click the 1–100 preset, then press Generate. Each number has a 1% chance.'],
+        ['Is this random number generator fair?', 'Yes. It uses the browser’s cryptographically secure random generator, and every number in the range is equally likely.'],
+        ['How do I generate numbers without repeats?', 'Tick “No repeats”. Each number in the range can then be picked at most once, like drawing raffle tickets.'],
+        ['Can I generate random lottery numbers?', 'Yes. Click “Lottery 6 of 49”, or set your lottery’s range and how many numbers it draws, with no repeats.'],
+        ['Can I use it to pick a giveaway winner?', 'Yes. Number your entries, set the range from 1 to the number of entries, and generate one number.'],
     ],
-    [
-      'Is this random number generator fair?',
-      <<<'EOT_TF'
-Yes. It uses the browser’s cryptographically secure random generator, and every number in the range is equally likely.
-EOT_TF,
-    ],
-    [
-      'How do I generate numbers without repeats?',
-      <<<'EOT_TF'
-Tick “No repeats”. Each number in the range can then be picked at most once, like drawing raffle tickets.
-EOT_TF,
-    ],
-    [
-      'Can I generate random lottery numbers?',
-      <<<'EOT_TF'
-Yes. Click “Lottery 6 of 49”, or set your lottery’s range and how many numbers it draws, with no repeats.
-EOT_TF,
-    ],
-    [
-      'Can I use it to pick a giveaway winner?',
-      'Yes. Number your entries, set the range from 1 to the number of entries, and generate one number.',
-    ],
-  ],
+    'aka' => ['RNG Picker', 'Number Picker 1–100', 'Unbiased Integer Generator'],
 ];

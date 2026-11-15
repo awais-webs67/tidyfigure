@@ -1,25 +1,19 @@
 <?php
-// Wi-Fi QR Code Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Wi-Fi QR Code Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'qr',
-  'order' => 2,
-  'icon' => 'wifi',
-  'use' => 'qr-code-generator',
-  'preset' => 'wifi',
-  'keywords' => 'wifi qr code share wifi password guest wifi qr',
-  'short' => 'Let guests join your Wi-Fi by scanning a code. No password typing.',
-  'title' => 'Wi-Fi QR Code Generator: Share Your Wi-Fi Password Easily',
-  'description' => <<<'EOT_TF'
-Create a QR code that connects phones to your Wi-Fi in one scan. Works with iPhone and Android cameras. Print it for home, café, office or Airbnb. Free.
-EOT_TF,
-  'related' => ['qr-code-generator', 'password-generator', 'qr-code-scanner'],
-  'answer' => <<<'EOT_TF'
-Enter your network name (SSID) and password, choose the security type (almost always <strong>WPA/WPA2</strong>), and download the QR code. Guests point their phone camera at it and tap the notification to join, with no typing. It works with the built-in camera on iPhone (iOS 11 and later) and Android (10 and later).
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Wi-Fi QR Code Generator',
+    'updated' => '2026-11-15',
+    'category' => 'qr',
+    'order' => 2,
+    'icon' => 'wifi',
+    'use' => 'qr-code-generator',
+    'preset' => 'wifi',
+    'keywords' => 'wifi qr code generator, share wifi password qr, guest wifi qr maker, android iphone wifi qr code',
+    'short' => 'Let guests join your Wi-Fi by scanning a code. No password typing.',
+    'title' => 'Wi-Fi QR Code Generator – One-Scan Join',
+    'description' => 'Make a printable Wi-Fi QR code so guests join your router automatically without typing passwords—compatible with iPhone and Android cameras.',
+    'related' => ['qr-code-generator', 'password-generator', 'qr-code-scanner'],
+    'answer' => 'Enter your network name (SSID) and password, choose the security type (almost always <strong>WPA/WPA2</strong>), and download the QR code. Guests point their phone camera at it and tap the notification to join, with no typing. It works with the built-in camera on iPhone (iOS 11 and later) and Android (10 and later).',
+    'article' => <<<'EOT_TF'
 <h2>How a Wi-Fi QR code works</h2>
 <p>The code contains your network details in a standard format that phones understand:</p>
 <div class="formula">WIFI:T:WPA;S:Home WiFi;P:your-password;;</div>
@@ -50,25 +44,16 @@ EOT_TF,
 
 <h2>Printing</h2>
 <p>Download the SVG for the sharpest print, or PNG at 1024 px. Make the code at least 3 cm wide and add a line of text like "Scan to join our Wi-Fi" so people know what it is.</p>
+
+<h2>Supported Encryption Types (WPA/WPA2, WEP &amp; Open)</h2>
+<p>The standard Wi-Fi string follows <code>WIFI:T:WPA;S:NetworkName;P:Password;;</code> where <code>T:WPA</code> works seamlessly for modern WPA2 and WPA3 Personal routers too. Notice network names (SSIDs) and passwords are strictly case-sensitive—printing a crisp vector SVG card for Airbnbs, cafés or home guest rooms prevents repeated typos.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I share my Wi-Fi with a QR code?',
-      <<<'EOT_TF'
-Enter your network name and password, download the QR code and print it. Guests scan it with their phone camera to join.
-EOT_TF,
+    'faqs' => [
+        ['How do I share my Wi-Fi with a QR code?', 'Enter your network name and password, download the QR code and print it. Guests scan it with their phone camera to join.'],
+        ['Do Wi-Fi QR codes work on iPhone?', 'Yes. The built-in Camera app on iOS 11 and later recognises Wi-Fi QR codes.'],
+        ['Is a Wi-Fi QR code safe?', 'Anyone who scans it can join your network. Use a guest network for public places. Your password isn’t uploaded when you create the code here.'],
+        ['Does a Wi-Fi QR code expire?', 'No. It works until you change your Wi-Fi name or password.'],
+        ['What security type should I choose?', 'WPA/WPA2/WPA3 for almost all modern routers.'],
     ],
-    [
-      'Do Wi-Fi QR codes work on iPhone?',
-      'Yes. The built-in Camera app on iOS 11 and later recognises Wi-Fi QR codes.',
-    ],
-    [
-      'Is a Wi-Fi QR code safe?',
-      <<<'EOT_TF'
-Anyone who scans it can join your network. Use a guest network for public places. Your password isn’t uploaded when you create the code here.
-EOT_TF,
-    ],
-    ['Does a Wi-Fi QR code expire?', 'No. It works until you change your Wi-Fi name or password.'],
-    ['What security type should I choose?', 'WPA/WPA2/WPA3 for almost all modern routers.'],
-  ],
+    'aka' => ['Guest Wi-Fi QR Maker', 'Router Password QR Code'],
 ];

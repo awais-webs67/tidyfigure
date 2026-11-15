@@ -1,27 +1,22 @@
 <?php
-// AI Image Upscaler: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'AI Image Upscaler',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 3,
-  'popular' => true,
-  'files' => true,
-  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
-  'libs' => ['https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js'],
-  'icon' => 'scaling',
-  'keywords' => 'ai image upscaler online free upscale image enhance photo quality increase image resolution make blurry photo clear 4x upscale 2x enlarge image without losing quality',
-  'aka' => ['photo enhancer', 'increase image resolution', 'make picture clearer', 'upscale image 4x'], // other names people search for
-  'short' => 'Enlarge photos 2× or 4× with AI that adds real detail, so small or blurry pictures become sharp and clear.',
-  'title' => 'AI Image Upscaler: Enhance & Enlarge Photos 2x/4x Free',
-  'description' => <<<'EOT_TF'
-Upscale images 2× or 4× with AI: blurry, small or old photos become sharper and larger without pixelation. Free, no sign-up, and the photo stays on your device.
-EOT_TF,
-  'related' => ['image-resizer', 'remove-background', 'photo-editor'],
-  'answer' => <<<'EOT_TF'
-Choose a photo and pick <strong>2×</strong> or <strong>4×</strong>. An AI model (Real-ESRGAN) redraws the picture at the larger size, <strong>sharpening edges and removing blur and JPG blockiness</strong> instead of just stretching the pixels. Drag the slider to compare with ordinary enlarging, then download the result.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'AI Image Upscaler',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 3,
+    'popular' => true,
+    'files' => true,
+    'isolate' => true,
+    'libs' => ['https://cdn.jsdelivr.net/npm/onnxruntime-web@1.20.1/dist/ort.min.js'],
+    'icon' => 'scaling',
+    'keywords' => 'ai image upscaler, upscale photo 2x 4x free, sharpen blurry small picture online, enhance resolution',
+    'aka' => ['AI Photo Enhancer 4x', 'Browser Super-Resolution Upscaler'],
+    'short' => 'Enlarge photos 2× or 4× with AI that adds real detail, so small or blurry pictures become sharp and clear.',
+    'title' => 'AI Image Upscaler – Enlarge Photos 2× & 4×',
+    'description' => 'Enhance blurry, small or older photos cleanly by 2× or 4× using local neural super-resolution inside your browser—zero cloud waiting or login.',
+    'related' => ['image-resizer', 'remove-background', 'photo-editor'],
+    'answer' => 'Choose a photo and pick <strong>2×</strong> or <strong>4×</strong>. An AI model (Real-ESRGAN) redraws the picture at the larger size, <strong>sharpening edges and removing blur and JPG blockiness</strong> instead of just stretching the pixels. Drag the slider to compare with ordinary enlarging, then download the result.',
+    'article' => <<<'EOT_TF'
 <h2>How to upscale an image</h2>
 <ol>
 <li>Choose or drop a photo (JPG, PNG or WebP), or try the sample.</li>
@@ -45,31 +40,15 @@ EOT_TF,
 <h2>Speed and limits</h2>
 <p>The AI runs on your own device, so it takes from a few seconds on a computer to a minute or two on an older phone, and the model (about 5 MB) downloads only the first time. To keep it quick, very large pictures are reduced first: there's little to gain from upscaling a photo that's already big. The AI can't recover detail that isn't there at all, such as a face that's only a few pixels wide, and it may smooth very fine textures.</p>
 <p>Your photo is never uploaded: everything happens in your browser.</p>
+
+<h2>Best Inputs for Crisp 2× vs 4× Neural Upscaling</h2>
+<p>Moderate 2× upscaling preserves authentic skin and texture cleanly on compressed social downloads, whereas 4× shines on tiny crisp illustrations, product badges or scanned vintage portraits before printing.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a blurry photo clear for free?',
-      <<<'EOT_TF'
-Choose the photo here and pick 2× or 4×. The AI sharpens edges and removes blur and compression blocks while enlarging it. Download the result; it is free with no sign-up.
-EOT_TF,
+    'faqs' => [
+        ['How do I make a blurry photo clear for free?', 'Choose the photo here and pick 2× or 4×. The AI sharpens edges and removes blur and compression blocks while enlarging it. Download the result; it is free with no sign-up.'],
+        ['What is the difference between 2× and 4×?', '2× doubles the width and height (four times the pixels); 4× makes it four times as wide and tall. Use 4× for very small pictures and 2× for photos that are just a bit small.'],
+        ['Does it work on phones?', 'Yes. It runs in your browser on phones, tablets and computers. Phones take longer, so start with 2×.'],
+        ['Is my photo uploaded?', 'No. The AI runs on your device and the photo never leaves it.'],
+        ['Will 4x upscaling recover legible text from a severely pixelated screenshot?', 'AI reconstruction sharpens fuzzy lines and smooths jagged compression blocks effectively, though completely illegible 4-pixel-tall text cannot be invented accurately.'],
     ],
-    [
-      'What is the difference between 2× and 4×?',
-      <<<'EOT_TF'
-2× doubles the width and height (four times the pixels); 4× makes it four times as wide and tall. Use 4× for very small pictures and 2× for photos that are just a bit small.
-EOT_TF,
-    ],
-    [
-      'Does it work on phones?',
-      <<<'EOT_TF'
-Yes. It runs in your browser on phones, tablets and computers. Phones take longer, so start with 2×.
-EOT_TF,
-    ],
-    [
-      'Is my photo uploaded?',
-      <<<'EOT_TF'
-No. The AI runs on your device and the photo never leaves it.
-EOT_TF,
-    ],
-  ],
 ];

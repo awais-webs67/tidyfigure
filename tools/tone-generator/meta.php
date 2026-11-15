@@ -1,22 +1,17 @@
 <?php
-// Tone Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Tone Generator',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 30,
-  'icon' => 'audio-waveform',
-  'keywords' => 'tone generator frequency generator online hz test sound sine wave generator 440 hz hearing test speaker test test tone',
-  'short' => 'Play a pure tone at any frequency, from 1 Hz to 22,000 Hz.',
-  'title' => 'Tone Generator: Play Any Frequency Online, Free',
-  'description' => <<<'EOT_TF'
-Play a pure tone at any frequency from 1 to 22,000 Hz in sine, square, triangle or sawtooth. Sweep the range to test your speakers or your hearing.
-EOT_TF,
-  'related' => ['mic-test', 'audio-cutter', 'morse-code-translator', 'voice-recorder'],
-  'answer' => <<<'EOT_TF'
-Press <strong>Play</strong> and drag the slider, or type an exact frequency in hertz. Choose the wave shape, volume and left/right balance, use the presets (such as 440 Hz for tuning) and step up or down by semitones. <strong>Sweep</strong> glides from low to high so you can test speakers or find your hearing range.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Tone Generator',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 30,
+    'icon' => 'audio-waveform',
+    'keywords' => 'tone generator, online frequency generator, hertz sound test, 440hz tone, subwoofer bass frequency sweep',
+    'short' => 'Play a pure tone at any frequency, from 1 Hz to 22,000 Hz.',
+    'title' => 'Tone Generator – Pure Hz Audio & Frequency Sweep',
+    'description' => 'Play continuous sine, square, triangle or sawtooth tones from 1 Hz to 22,000 Hz or sweep across bands to test speakers, subwoofers and ears.',
+    'related' => ['mic-test', 'audio-cutter', 'morse-code-translator', 'voice-recorder'],
+    'answer' => 'Press <strong>Play</strong> and drag the slider, or type an exact frequency in hertz. Choose the wave shape, volume and left/right balance, use the presets (such as 440 Hz for tuning) and step up or down by semitones. <strong>Sweep</strong> glides from low to high so you can test speakers or find your hearing range.',
+    'article' => <<<'EOT_TF'
 <h2>Uses for a tone generator</h2>
 <ul>
 <li><strong>Tuning:</strong> 440 Hz is the A above middle C (A4), the standard tuning pitch.</li>
@@ -45,37 +40,20 @@ EOT_TF,
 
 <h2>Protect your hearing and speakers</h2>
 <p>Start with the volume low, especially with headphones: pure tones can sound much louder than music at the same setting. Very low and very high frequencies at high volume can also damage small speakers. Your device and speakers limit the range you’ll hear; many laptop speakers produce little below 150 Hz.</p>
+
+<h2>Safe Reference Levels for Speaker &amp; Headphone Checks</h2>
+<p>Low sub-bass frequencies under 40 Hz and high-pitched sine waves above 10 kHz strain tweeters and ear hair cells far faster than music at the same dial setting. Always drop device output below 25% before hitting play, especially when stepping into square or sawtooth waveforms that pack dense harmonic overtones.</p>
+
+<h2>Checking Stereo Channel Balance &amp; Room Modes</h2>
+<p>Stepping upward through 60 Hz, 120 Hz and 250 Hz reveals room standing-wave resonances or rattling speaker grilles quickly, helping producers place studio monitors evenly.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What frequency can humans hear?',
-      <<<'EOT_TF'
-Roughly 20 Hz to 20,000 Hz for young people. The upper limit falls with age, often to 12,000–15,000 Hz by middle age.
-EOT_TF,
+    'faqs' => [
+        ['What frequency can humans hear?', 'Roughly 20 Hz to 20,000 Hz for young people. The upper limit falls with age, often to 12,000–15,000 Hz by middle age.'],
+        ['What is 440 Hz?', 'It’s the note A above middle C (A4), the standard pitch orchestras and instruments tune to.'],
+        ['Why can’t I hear very low or high tones?', 'Small speakers and laptop speakers can’t reproduce very low bass, and high tones may be beyond your hearing or your headphones’ range.'],
+        ['Can I test left and right speakers?', 'Yes. Move the balance slider fully left or right to play the tone through one channel only.'],
+        ['Is it safe to listen to test tones?', 'Yes at a sensible volume. Start low and turn it up slowly, especially with headphones, as pure tones can be surprisingly loud.'],
+        ['Which frequency cleans water from a phone speaker?', 'Many users pulse a mid-low tone around 165 Hz to 250 Hz at moderate volume to vibrate droplets off speaker mesh safely.'],
     ],
-    [
-      'What is 440 Hz?',
-      <<<'EOT_TF'
-It’s the note A above middle C (A4), the standard pitch orchestras and instruments tune to.
-EOT_TF,
-    ],
-    [
-      'Why can’t I hear very low or high tones?',
-      <<<'EOT_TF'
-Small speakers and laptop speakers can’t reproduce very low bass, and high tones may be beyond your hearing or your headphones’ range.
-EOT_TF,
-    ],
-    [
-      'Can I test left and right speakers?',
-      <<<'EOT_TF'
-Yes. Move the balance slider fully left or right to play the tone through one channel only.
-EOT_TF,
-    ],
-    [
-      'Is it safe to listen to test tones?',
-      <<<'EOT_TF'
-Yes at a sensible volume. Start low and turn it up slowly, especially with headphones, as pure tones can be surprisingly loud.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Online Frequency Generator', 'Hz Sine Wave Tester'],
 ];

@@ -1,26 +1,20 @@
 <?php
-// Audio Cutter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Audio Cutter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 5,
-  'icon' => 'audio-lines',
-  'files' => true,
-  'scripts' => ['media.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'mp3 cutter trim audio cut song ringtone maker wav m4a fade in fade out online',
-  'short' => 'Trim a song or recording, add a fade and save it as MP3 or WAV. Makes ringtones too.',
-  'title' => 'Audio Cutter: Trim MP3 Songs & Make Ringtones Online, Free',
-  'description' => <<<'EOT_TF'
-Cut MP3, M4A, WAV and other audio files in your browser. Drag on the waveform, add fade in and out, and save as MP3 or WAV. Makes ringtones. No upload.
-EOT_TF,
-  'related' => ['video-to-mp3', 'voice-recorder', 'video-cutter'],
-  'answer' => <<<'EOT_TF'
-To cut an audio file, choose it below and drag across the waveform to select the part you want, or type the start and end times. Add a short fade so it doesn't start or stop abruptly, then press <strong>Cut audio</strong> and download the MP3 or WAV. The file stays on your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Audio Cutter',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 5,
+    'icon' => 'audio-lines',
+    'files' => true,
+    'scripts' => ['media.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'audio cutter, mp3 cutter online, trim mp3, ringtone maker browser, cut audio file no upload',
+    'short' => 'Trim a song or recording, add a fade and save it as MP3 or WAV. Makes ringtones too.',
+    'title' => 'Audio Cutter Online – Trim MP3 & Make Ringtone',
+    'description' => 'Cut MP3, WAV, M4A and OGG tracks directly on an interactive waveform with smooth fade-in and fade-out, exporting ringtones cleanly on your device.',
+    'related' => ['video-to-mp3', 'voice-recorder', 'video-cutter'],
+    'answer' => 'To cut an audio file, choose it below and drag across the waveform to select the part you want, or type the start and end times. Add a short fade so it doesn\'t start or stop abruptly, then press <strong>Cut audio</strong> and download the MP3 or WAV. The file stays on your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to cut an MP3</h2>
 <ol>
 <li>Drop a song, voice note or recording into the box. MP3, M4A (iPhone voice memos), WAV, OGG, FLAC and the sound of video files all work.</li>
@@ -58,34 +52,12 @@ EOT_TF,
 <h2>Private and unlimited</h2>
 <p>The audio is decoded and cut by your browser, on your device. Nothing is uploaded, there's no account, and there's no limit on how many files you cut.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I cut part of an MP3?',
-      <<<'EOT_TF'
-Choose the MP3, drag across the waveform to select the part you want, press Cut audio and download the new MP3.
-EOT_TF,
+    'faqs' => [
+        ['How do I cut part of an MP3?', 'Choose the MP3, drag across the waveform to select the part you want, press Cut audio and download the new MP3.'],
+        ['Can I make a ringtone with this?', 'Yes. Set the start point and press Ringtone (first 30 s). It selects 30 seconds with a fade out, ready to save as MP3.'],
+        ['Does it lower the quality?', 'Choose WAV for no loss at all. MP3 at 192 or 320 kbps sounds the same as the original for most listeners.'],
+        ['Which audio formats can I open?', 'MP3, M4A, AAC, WAV, OGG, Opus and FLAC, plus the sound track of MP4, MOV and WebM videos. Support depends a little on your browser.'],
+        ['Is my file uploaded?', 'No. Everything happens in your browser and the audio never leaves your device.'],
     ],
-    [
-      'Can I make a ringtone with this?',
-      <<<'EOT_TF'
-Yes. Set the start point and press Ringtone (first 30 s). It selects 30 seconds with a fade out, ready to save as MP3.
-EOT_TF,
-    ],
-    [
-      'Does it lower the quality?',
-      <<<'EOT_TF'
-Choose WAV for no loss at all. MP3 at 192 or 320 kbps sounds the same as the original for most listeners.
-EOT_TF,
-    ],
-    [
-      'Which audio formats can I open?',
-      <<<'EOT_TF'
-MP3, M4A, AAC, WAV, OGG, Opus and FLAC, plus the sound track of MP4, MOV and WebM videos. Support depends a little on your browser.
-EOT_TF,
-    ],
-    [
-      'Is my file uploaded?',
-      'No. Everything happens in your browser and the audio never leaves your device.',
-    ],
-  ],
+    'aka' => ['MP3 Cutter', 'Online Ringtone Trimmer'],
 ];

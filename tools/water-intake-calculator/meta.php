@@ -1,29 +1,22 @@
 <?php
-// Water Intake Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Water Intake Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['National Academies: Dietary Reference Intakes for Water, Potassium, Sodium, Chloride, and Sulfate', 'https://nap.nationalacademies.org/catalog/10925/dietary-reference-intakes-for-water-potassium-sodium-chloride-and-sulfate'],
-    ['NHS: Water, drinks and hydration', 'https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/water-drinks-nutrition/'],
-  ],
-  'order' => 6,
-  'icon' => 'glass-water',
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'how much water should i drink a day daily water intake hydration calculator',
-  'short' => 'How much water to drink a day for your weight, exercise and climate.',
-  'title' => 'Water Intake Calculator: How Much Water Should I Drink?',
-  'description' => <<<'EOT_TF'
-Estimate how much water to drink a day from your weight, exercise and climate, with adjustments for pregnancy and breastfeeding. Litres, ounces and glasses.
-EOT_TF,
-  'related' => ['calorie-calculator', 'macro-calculator', 'sleep-calculator'],
-  'answer' => <<<'EOT_TF'
-A practical rule is about <strong>35 ml of fluid per kg of body weight</strong> a day (roughly half an ounce per pound), plus extra for exercise and hot weather. For most adults that's <strong>1.5–2.5 litres</strong> from drinks, with food supplying the rest. Pale yellow urine is the easiest sign you're getting enough.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Water Intake Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 6,
+    'icon' => 'glass-water',
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'water intake calculator, how much water should i drink, daily hydration calculator, water per day weight',
+    'short' => 'How much water to drink a day for your weight, exercise and climate.',
+    'title' => 'Water Intake Calculator – Daily Hydration Goal',
+    'description' => 'Estimate daily hydration needs in litres, ounces and glasses based on body weight, exercise minutes and climate with National Academies context.',
+    'related' => ['calorie-calculator', 'macro-calculator', 'sleep-calculator'],
+    'answer' => 'A practical rule is about <strong>35 ml of fluid per kg of body weight</strong> a day (roughly half an ounce per pound), plus extra for exercise and hot weather. For most adults that\'s <strong>1.5–2.5 litres</strong> from drinks, with food supplying the rest. Pale yellow urine is the easiest sign you\'re getting enough.',
+    'sources' => [
+        ['National Academies: Dietary Reference Intakes for Water, Potassium, Sodium, Chloride, and Sulfate', 'https://nap.nationalacademies.org/catalog/10925/dietary-reference-intakes-for-water-potassium-sodium-chloride-and-sulfate'],
+        ['NHS: Water, drinks and hydration', 'https://www.nhs.uk/live-well/eat-well/food-guidelines-and-food-labels/water-drinks-nutrition/'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How the estimate is calculated</h2>
 <div class="formula">Drinks per day ≈ weight (kg) × 35 ml
               + exercise minutes × 12 ml
@@ -53,31 +46,20 @@ EOT_TF,
 
 <h2>Can you drink too much?</h2>
 <p>Yes, though it's rare. Drinking several litres in a short time, for example during endurance events, can dilute the blood's sodium (hyponatraemia), which is dangerous. Spread intake through the day and, during long exercise, use drinks with electrolytes. People with heart, kidney or liver conditions may have fluid limits set by their doctor.</p>
+
+<h2>Fluid From Food vs Beverages</h2>
+<p>Roughly 20% of total daily water intake typically comes from water-rich foods such as fruits, vegetables, soups and cooked grains, while plain water, milk, tea and coffee supply the remainder. Pale straw-coloured urine throughout the afternoon is a quick practical sign of adequate hydration alongside your numeric daily target.</p>
+
+<h2>Electrolytes During Heat or Long Endurance Workouts</h2>
+<p>During heavy sweating lasting over an hour, plain water alone dilutes sodium balance—pairing fluid with electrolytes or lightly salted meals improves actual cellular hydration.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How much water should I drink a day?',
-      <<<'EOT_TF'
-Roughly 35 ml per kg of body weight from drinks, which is 1.5–2.5 litres for most adults, plus more for exercise and hot weather.
-EOT_TF,
+    'faqs' => [
+        ['How much water should I drink a day?', 'Roughly 35 ml per kg of body weight from drinks, which is 1.5–2.5 litres for most adults, plus more for exercise and hot weather.'],
+        ['Do tea and coffee count towards water intake?', 'Yes. They count towards your fluid intake, although water is the best everyday choice.'],
+        ['How much water should I drink when exercising?', 'About 350–400 ml extra for every 30 minutes of exercise, more in heat or if you sweat heavily.'],
+        ['Is 8 glasses of water a day right?', 'It’s a reasonable rule of thumb (about 2 litres), but needs vary with body size, activity and climate.'],
+        ['How can I tell if I’m drinking enough?', 'Pale straw-coloured urine and rarely feeling thirsty are good signs.'],
+        ['Do tea and coffee count toward daily water?', 'Yes. Moderate caffeinated drinks contribute net hydration toward daily fluid totals, though plain water keeps extra calories and caffeine out.'],
     ],
-    [
-      'Do tea and coffee count towards water intake?',
-      'Yes. They count towards your fluid intake, although water is the best everyday choice.',
-    ],
-    [
-      'How much water should I drink when exercising?',
-      'About 350–400 ml extra for every 30 minutes of exercise, more in heat or if you sweat heavily.',
-    ],
-    [
-      'Is 8 glasses of water a day right?',
-      <<<'EOT_TF'
-It’s a reasonable rule of thumb (about 2 litres), but needs vary with body size, activity and climate.
-EOT_TF,
-    ],
-    [
-      'How can I tell if I’m drinking enough?',
-      'Pale straw-coloured urine and rarely feeling thirsty are good signs.',
-    ],
-  ],
+    'aka' => ['Daily Water Calculator', 'Hydration Needs Estimator'],
 ];

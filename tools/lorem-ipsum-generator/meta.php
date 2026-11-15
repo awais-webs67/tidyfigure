@@ -1,23 +1,17 @@
 <?php
-// Lorem Ipsum Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Lorem Ipsum Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 6,
-  'icon' => 'pilcrow',
-  'keywords' => 'placeholder text dummy text filler text generator',
-  'short' => 'Generate placeholder text by paragraphs, sentences, words or list items.',
-  'title' => 'Lorem Ipsum Generator: Placeholder Text for Designs',
-  'description' => <<<'EOT_TF'
-Generate lorem ipsum placeholder text by paragraphs, sentences, words or list items, as plain text or HTML. Copy in one click. Free dummy text generator.
-EOT_TF,
-  'related' => ['word-counter', 'character-counter', 'case-converter'],
-  'answer' => <<<'EOT_TF'
-Lorem ipsum is placeholder text used in design and publishing to fill a layout before the real words are ready. Choose how many <strong>paragraphs, sentences, words or list items</strong> you need, decide whether to start with the classic "Lorem ipsum dolor sit amet…", and copy it as plain text or ready-made HTML.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Lorem Ipsum Generator',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 6,
+    'icon' => 'pilcrow',
+    'keywords' => 'lorem ipsum generator, dummy text generator html, wireframe placeholder copy, generate random paragraphs',
+    'short' => 'Generate placeholder text by paragraphs, sentences, words or list items.',
+    'title' => 'Lorem Ipsum Generator – Paragraphs, HTML & Lists',
+    'description' => 'Generate customizable Latin placeholder copy by paragraphs, sentences, words or HTML bullet lists for wireframes and layout mockups in one click.',
+    'related' => ['word-counter', 'character-counter', 'case-converter'],
+    'answer' => 'Lorem ipsum is placeholder text used in design and publishing to fill a layout before the real words are ready. Choose how many <strong>paragraphs, sentences, words or list items</strong> you need, decide whether to start with the classic "Lorem ipsum dolor sit amet…", and copy it as plain text or ready-made HTML.',
+    'article' => <<<'EOT_TF'
 <h2>What is lorem ipsum?</h2>
 <p>Lorem ipsum is scrambled Latin that printers and designers have used as dummy text since at least the 1500s. It comes from <em>De finibus bonorum et malorum</em>, a book on ethics written by Cicero in 45 BC, with words cut short and rearranged so it doesn't read as real sentences. "Lorem" itself is the end of the word "dolorem" (pain).</p>
 <p>The point is that it looks like ordinary text, with a natural mix of short and long words, but it's meaningless, so people reviewing a design look at the layout and typography instead of reading the copy.</p>
@@ -46,30 +40,12 @@ EOT_TF,
 <h2>The classic opening</h2>
 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." This sentence is so familiar that clients instantly recognise it as placeholder text, which is exactly what you want in a draft. Untick the option if you'd rather the text look less obviously fake.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What does lorem ipsum mean?',
-      <<<'EOT_TF'
-It doesn’t mean anything as written. It is scrambled Latin from a text by Cicero, chosen because it looks like ordinary writing without being readable.
-EOT_TF,
+    'faqs' => [
+        ['What does lorem ipsum mean?', 'It doesn’t mean anything as written. It is scrambled Latin from a text by Cicero, chosen because it looks like ordinary writing without being readable.'],
+        ['Why do designers use lorem ipsum?', 'It fills a layout with realistic-looking text so people focus on the design rather than reading the words.'],
+        ['How do I get lorem ipsum in HTML?', 'Tick “Wrap in HTML tags”. Paragraphs are wrapped in <p> tags and list items in a <ul> list.'],
+        ['How many words are in a paragraph of lorem ipsum?', 'Each generated paragraph has about 50 to 100 words, similar to a typical paragraph of web copy.'],
+        ['Is lorem ipsum free to use?', 'Yes. It is in the public domain and can be used in any project.'],
     ],
-    [
-      'Why do designers use lorem ipsum?',
-      <<<'EOT_TF'
-It fills a layout with realistic-looking text so people focus on the design rather than reading the words.
-EOT_TF,
-    ],
-    [
-      'How do I get lorem ipsum in HTML?',
-      'Tick “Wrap in HTML tags”. Paragraphs are wrapped in <p> tags and list items in a <ul> list.',
-    ],
-    [
-      'How many words are in a paragraph of lorem ipsum?',
-      'Each generated paragraph has about 50 to 100 words, similar to a typical paragraph of web copy.',
-    ],
-    [
-      'Is lorem ipsum free to use?',
-      'Yes. It is in the public domain and can be used in any project.',
-    ],
-  ],
+    'aka' => ['Dummy Placeholder Text Maker', 'HTML Lorem Ipsum Tool'],
 ];

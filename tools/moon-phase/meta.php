@@ -1,23 +1,18 @@
 <?php
-// Moon Phase Today: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Moon Phase Today',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'time',
-  'order' => 4,
-  'popular' => true,
-  'icon' => 'moon',
-  'keywords' => 'moon phase today moon tonight full moon next full moon new moon moon calendar lunar phase moon illumination',
-  'short' => 'Tonight’s moon phase, the next full and new moon, and a moon calendar.',
-  'title' => 'Moon Phase Today: Tonight’s Moon and Calendar',
-  'description' => <<<'EOT_TF'
-See today’s moon phase, how much of the moon is lit and its age, plus the next full moon, new moon and quarters and a monthly moon calendar.
-EOT_TF,
-  'related' => ['countdown', 'time-zone-converter', 'what-week-is-it', 'days-between-dates'],
-  'answer' => <<<'EOT_TF'
-The picture shows how the moon looks tonight, with the <strong>phase name</strong>, the <strong>percentage lit</strong> and its age in days since the last new moon. Below are the exact dates and times of the next <strong>full moon</strong>, <strong>new moon</strong> and quarters in your time zone, and a calendar for the whole month. Pick any date to see its moon.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Moon Phase Today',
+    'updated' => '2026-11-15',
+    'category' => 'time',
+    'order' => 4,
+    'popular' => true,
+    'icon' => 'moon',
+    'keywords' => 'moon phase today, tonight moon illumination, next full moon date, lunar calendar monthly phases',
+    'short' => 'Tonight’s moon phase, the next full and new moon, and a moon calendar.',
+    'title' => 'Moon Phase Today – Lunar Illumination & Dates',
+    'description' => 'Check tonight’s moon phase name, exact illumination percentage, lunar age in days and upcoming full moon, new moon and quarter calendar dates.',
+    'related' => ['countdown', 'time-zone-converter', 'what-week-is-it', 'days-between-dates'],
+    'answer' => 'The picture shows how the moon looks tonight, with the <strong>phase name</strong>, the <strong>percentage lit</strong> and its age in days since the last new moon. Below are the exact dates and times of the next <strong>full moon</strong>, <strong>new moon</strong> and quarters in your time zone, and a calendar for the whole month. Pick any date to see its moon.',
+    'article' => <<<'EOT_TF'
 <h2>The eight phases of the moon</h2>
 <div class="scroll"><table class="tbl"><thead><tr><th>Phase</th><th>What you see</th><th>Age (days)</th></tr></thead><tbody>
 <tr><td>New moon</td><td>Dark, between Earth and Sun</td><td>0</td></tr>
@@ -44,37 +39,16 @@ EOT_TF,
 <li><strong>Gardening:</strong> some gardeners plant by the moon’s phase.</li>
 <li><strong>Religious calendars:</strong> Islamic months begin with the new crescent, and Easter and many festivals follow the full moon.</li>
 </ul>
+
+<h2>Northern vs Southern Hemisphere Moon Orientation</h2>
+<p>While the illuminated percentage on any night matches worldwide, observers in the Southern Hemisphere see the lit crescent mirrored horizontally compared with viewers in North America or Europe.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is the moon phase tonight?',
-      <<<'EOT_TF'
-It’s shown at the top of this page, worked out for today in your time zone, with the percentage of the moon that is lit.
-EOT_TF,
+    'faqs' => [
+        ['What is the moon phase tonight?', 'It’s shown at the top of this page, worked out for today in your time zone, with the percentage of the moon that is lit.'],
+        ['When is the next full moon?', 'The next full moon’s date and time, in your time zone, is listed under the moon picture along with the next new moon and quarters.'],
+        ['How long is a lunar cycle?', 'About 29.53 days from one new moon to the next. That’s why most months have one full moon and occasionally two.'],
+        ['What is a blue moon?', 'Usually, the second full moon in a single calendar month. It happens roughly every two to three years.'],
+        ['Why is the moon picture reversed in Australia?', 'From the southern hemisphere you see the moon upside down compared with the north, so the lit side is on the other side. Switch the hemisphere to match your view.'],
     ],
-    [
-      'When is the next full moon?',
-      <<<'EOT_TF'
-The next full moon’s date and time, in your time zone, is listed under the moon picture along with the next new moon and quarters.
-EOT_TF,
-    ],
-    [
-      'How long is a lunar cycle?',
-      <<<'EOT_TF'
-About 29.53 days from one new moon to the next. That’s why most months have one full moon and occasionally two.
-EOT_TF,
-    ],
-    [
-      'What is a blue moon?',
-      <<<'EOT_TF'
-Usually, the second full moon in a single calendar month. It happens roughly every two to three years.
-EOT_TF,
-    ],
-    [
-      'Why is the moon picture reversed in Australia?',
-      <<<'EOT_TF'
-From the southern hemisphere you see the moon upside down compared with the north, so the lit side is on the other side. Switch the hemisphere to match your view.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Lunar Phase Calendar', 'Tonight\'s Moon Tracker'],
 ];

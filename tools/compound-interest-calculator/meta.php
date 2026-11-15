@@ -1,25 +1,23 @@
 <?php
-// Compound Interest Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Compound Interest Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 1,
-  'icon' => 'trending-up',
-  'popular' => true,
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'compound interest calculator savings growth investment calculator monthly contributions',
-  'short' => 'See how savings and investments grow with interest and monthly deposits.',
-  'title' => 'Compound Interest Calculator With Monthly Contributions',
-  'description' => <<<'EOT_TF'
-See how money grows with compound interest and regular monthly contributions. Yearly, monthly or daily compounding, year-by-year table and growth chart. Free.
-EOT_TF,
-  'related' => ['sip-calculator', 'savings-goal-calculator', 'retirement-calculator'],
-  'answer' => <<<'EOT_TF'
-Compound interest means you earn interest on your interest. 10,000 invested at 7% a year with 200 added every month grows to about <strong>144,600 after 20 years</strong> (compounded monthly), of which only 58,000 is money you put in. Enter your own numbers to see the year-by-year growth.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Compound Interest Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 1,
+    'icon' => 'trending-up',
+    'popular' => true,
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'compound interest calculator, monthly deposit interest calculator, savings growth chart, apy compounding calculator',
+    'short' => 'See how savings and investments grow with interest and monthly deposits.',
+    'title' => 'Compound Interest Calculator – Growth & Chart',
+    'description' => 'Project savings or investment growth with starting balance, monthly deposits and daily, monthly or annual compounding—year-by-year table inside.',
+    'related' => ['sip-calculator', 'savings-goal-calculator', 'retirement-calculator'],
+    'answer' => 'Compound interest means you earn interest on your interest. 10,000 invested at 7% a year with 200 added every month grows to about <strong>144,600 after 20 years</strong> (compounded monthly), of which only 58,000 is money you put in. Enter your own numbers to see the year-by-year growth.',
+    'sources' => [
+        ['SEC Investor.gov – Compound Interest Formula & Calculator', 'https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator'],
+        ['Federal Reserve – Interest Rate & Savings Basics', 'https://www.federalreserve.gov/consumerscommunities.htm'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The compound interest formula</h2>
 <div class="formula">Lump sum:   A = P × (1 + r/n)^(n × t)
 
@@ -45,33 +43,17 @@ n = times compounded per year, t = years</div>
 <p>More frequent compounding earns slightly more: 7% compounded monthly is equivalent to 7.23% a year. The difference between monthly and daily is tiny. Banks show this as the AER or APY.</p>
 
 <p><em>This calculator is for illustration. Investments can fall as well as rise; consider taxes and fees, and get advice for important decisions.</em></p>
+
+<h2>Nominal APR vs Effective Annual Yield (APY)</h2>
+<p>Banks advertise a nominal annual rate alongside compounding frequency: a 6.00% nominal rate compounded monthly yields <code>(1 + 0.06/12)^12 − 1 = 6.17%</code> APY, earning more interest each year than annual compounding alone because interest earns interest eleven months sooner.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate compound interest?',
-      <<<'EOT_TF'
-A = P × (1 + r/n)^(n × t), where P is the starting amount, r the yearly rate, n the compounding periods per year and t the years.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate compound interest?', 'A = P × (1 + r/n)^(n × t), where P is the starting amount, r the yearly rate, n the compounding periods per year and t the years.'],
+        ['How much will 10,000 grow in 20 years?', 'At 7% a year compounded monthly, 10,000 grows to about 40,400 with no extra deposits (38,700 compounded yearly). With 200 a month added, it reaches about 144,600.'],
+        ['What is the rule of 72?', 'Divide 72 by the interest rate to estimate how many years it takes money to double. At 8%, about 9 years.'],
+        ['Is monthly or yearly compounding better?', 'Monthly is slightly better: 7% compounded monthly equals 7.23% compounded yearly.'],
+        ['Does this include inflation?', 'No. Subtract expected inflation from the rate to see growth in today’s money.'],
+        ['How does daily compounding compare against monthly compounding?', 'Over 10 years at 6%, daily compounding earns only fractionally more than monthly compounding because both compound continuously enough to dwarf annual payouts.'],
     ],
-    [
-      'How much will 10,000 grow in 20 years?',
-      <<<'EOT_TF'
-At 7% a year compounded monthly, 10,000 grows to about 40,400 with no extra deposits (38,700 compounded yearly). With 200 a month added, it reaches about 144,600.
-EOT_TF,
-    ],
-    [
-      'What is the rule of 72?',
-      <<<'EOT_TF'
-Divide 72 by the interest rate to estimate how many years it takes money to double. At 8%, about 9 years.
-EOT_TF,
-    ],
-    [
-      'Is monthly or yearly compounding better?',
-      'Monthly is slightly better: 7% compounded monthly equals 7.23% compounded yearly.',
-    ],
-    [
-      'Does this include inflation?',
-      'No. Subtract expected inflation from the rate to see growth in today’s money.',
-    ],
-  ],
+    'aka' => ['Savings Compound Growth Calculator', 'Monthly Contribution Interest Tool'],
 ];

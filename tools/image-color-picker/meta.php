@@ -1,23 +1,17 @@
 <?php
-// Image Color Picker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Image Color Picker',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 10,
-  'icon' => 'pipette',
-  'keywords' => 'color picker from image get hex code from picture eyedropper palette extractor',
-  'short' => 'Pick any colour from a photo and get its HEX, RGB and a colour palette.',
-  'title' => 'Image Color Picker: Get HEX & RGB Codes From a Photo',
-  'description' => <<<'EOT_TF'
-Pick colours from any image to get HEX, RGB and HSL codes, with a pixel magnifier. Also extracts the main colour palette from the picture. Free, no upload.
-EOT_TF,
-  'related' => ['color-converter', 'photo-editor', 'favicon-generator'],
-  'answer' => <<<'EOT_TF'
-Open an image and move over it (or tap on a phone) to read the exact colour under the cursor as <strong>HEX, RGB and HSL</strong>, with a zoomed view to hit the right pixel. Click to lock a colour and copy its code. The tool also pulls out the <strong>main colours</strong> of the image as a ready-made palette.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Image Color Picker',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 10,
+    'icon' => 'pipette',
+    'keywords' => 'image color picker, get hex from image, eyedropper photo pixel color, extract palette from picture',
+    'short' => 'Pick any colour from a photo and get its HEX, RGB and a colour palette.',
+    'title' => 'Image Color Picker – HEX, RGB, HSL & Palette',
+    'description' => 'Zoom pixel-by-pixel over any uploaded picture to sample exact HEX, RGB and HSL codes plus auto-extract dominant palette swatches privately.',
+    'related' => ['color-converter', 'photo-editor', 'favicon-generator'],
+    'answer' => 'Open an image and move over it (or tap on a phone) to read the exact colour under the cursor as <strong>HEX, RGB and HSL</strong>, with a zoomed view to hit the right pixel. Click to lock a colour and copy its code. The tool also pulls out the <strong>main colours</strong> of the image as a ready-made palette.',
+    'article' => <<<'EOT_TF'
 <h2>Why pick colours from an image?</h2>
 <ul>
 <li><strong>Match a brand:</strong> find the exact colour of a logo when you don't have the brand guidelines.</li>
@@ -49,21 +43,17 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>The image is read in your browser and never uploaded.</p>
+
+<h2>Why JPEG Compression Shifts Individual Pixel Shades Slightly</h2>
+<p>Tiny 8×8 JPEG chroma blocks subtly blend neighbour shades around sharp edges, meaning two clicks one pixel apart can read slightly different RGB numbers. Sample near clean flat midtones or compare the extracted dominant palette swatch for truer brand values.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I get the HEX code of a colour in an image?',
-      'Open the image, click the colour you want, and copy the HEX value shown.',
+    'faqs' => [
+        ['How do I get the HEX code of a colour in an image?', 'Open the image, click the colour you want, and copy the HEX value shown.'],
+        ['Can I pick colours from a screenshot?', 'Yes. Screenshots give the most accurate colours for logos, websites and apps.'],
+        ['How do I find the main colours of a picture?', 'Open it here. Up to eight distinct main colours appear under “Main colours”; tap one to copy it.'],
+        ['Does it work on phones?', 'Yes. Tap on the image to pick a colour.'],
+        ['Is my image uploaded?', 'No. Everything happens in your browser.'],
+        ['Which colour code format should I copy for CSS or Figma?', 'Standard 6-digit HEX codes (#FF5B35) paste directly into Figma, Canva, Tailwind and CSS stylesheets identically.'],
     ],
-    [
-      'Can I pick colours from a screenshot?',
-      'Yes. Screenshots give the most accurate colours for logos, websites and apps.',
-    ],
-    [
-      'How do I find the main colours of a picture?',
-      'Open it here. Up to eight distinct main colours appear under “Main colours”; tap one to copy it.',
-    ],
-    ['Does it work on phones?', 'Yes. Tap on the image to pick a colour.'],
-    ['Is my image uploaded?', 'No. Everything happens in your browser.'],
-  ],
+    'aka' => ['Photo Eyedropper HEX Finder', 'Image Palette Extractor'],
 ];

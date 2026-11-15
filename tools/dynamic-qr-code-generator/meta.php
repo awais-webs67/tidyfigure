@@ -1,26 +1,22 @@
 <?php
-// Dynamic QR Code Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Dynamic QR Code Generator',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'uploads' => true, // saves what the visitor gives it on the server (hosted QR codes), so no "stays on your device" claims
-  'category' => 'qr',
-  'order' => 2,
-  'icon' => 'qr-code',
-  'popular' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'],
-  'scripts' => ['hosted-qr.js'],
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'dynamic qr code generator free editable qr code trackable qr code scan tracking change qr link after printing',
-  'short' => 'An editable QR code with scan tracking: change the link any time, free.',
-  'title' => 'Free Dynamic QR Code Generator: Edit Links, Track Scans',
-  'description' => 'Make a free dynamic QR code: change where it points after printing and see how many people scan it, by day and device. No sign-up. Download PNG or SVG.',
-  'related' => ['qr-code-generator', 'pdf-to-qr-code', 'verification-qr-code-generator'],
-  'answer' => <<<'EOT_TF'
-A <strong>dynamic QR code</strong> points to a short link on this site that forwards people to your page, so you can <strong>change the destination after printing</strong> and <strong>count scans</strong>. Paste your link below, press Create, and download the code. Save the private manage link to edit it or see statistics. Most sites charge a monthly fee for this; here it’s free.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Dynamic QR Code Generator',
+    'updated' => '2026-11-15',
+    'uploads' => true,
+    'category' => 'qr',
+    'order' => 2,
+    'icon' => 'qr-code',
+    'popular' => true,
+    'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js'],
+    'scripts' => ['hosted-qr.js'],
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'dynamic qr code generator, editable qr code free, track qr scans, updatable link qr code',
+    'short' => 'An editable QR code with scan tracking: change the link any time, free.',
+    'title' => 'Dynamic QR Code Generator – Edit Link & Stats',
+    'description' => 'Create editable dynamic QR codes whose destination URL can be updated after printing, complete with daily scan counts and PNG/SVG download.',
+    'related' => ['qr-code-generator', 'pdf-to-qr-code', 'verification-qr-code-generator'],
+    'answer' => 'A <strong>dynamic QR code</strong> points to a short link on this site that forwards people to your page, so you can <strong>change the destination after printing</strong> and <strong>count scans</strong>. Paste your link below, press Create, and download the code. Save the private manage link to edit it or see statistics. Most sites charge a monthly fee for this; here it’s free.',
+    'article' => <<<'EOT_TF'
 <h2>Static vs dynamic QR codes</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th></th><th>Static QR code</th><th>Dynamic QR code</th></tr></thead>
@@ -58,11 +54,12 @@ EOT_TF,
 <h2>How long does a dynamic QR code last?</h2>
 <p>Codes made here are hosted for 30 days by default and then deleted automatically, which keeps the service free. That's ideal for events, campaigns and promotions. For a code that must work for years, use a static QR code that contains your link directly.</p>
 EOT_TF,
-  'faqs' => [
-    ['What is a dynamic QR code?', 'A QR code that contains a short link to this site, which forwards people to your page. Because the forwarding happens on the server, you can change the destination and count scans without changing the printed code.'],
-    ['Can I change the link after printing?', 'Yes. Open your private manage link, enter the new destination and save. Everyone who scans from then on goes to the new page.'],
-    ['Is it really free?', 'Yes. No sign-up and no subscription. Codes are hosted for 30 days, then deleted automatically.'],
-    ['How do I see how many people scanned it?', 'Open your manage link. It shows total scans, a 30-day chart, and phone versus computer scans.'],
-    ['I lost my manage link. Can I get it back?', 'No. For privacy it is shown only once and is not stored in a readable form. Make a new code if you need to change the destination.'],
-  ],
+    'faqs' => [
+        ['What is a dynamic QR code?', 'A QR code that contains a short link to this site, which forwards people to your page. Because the forwarding happens on the server, you can change the destination and count scans without changing the printed code.'],
+        ['Can I change the link after printing?', 'Yes. Open your private manage link, enter the new destination and save. Everyone who scans from then on goes to the new page.'],
+        ['Is it really free?', 'Yes. No sign-up and no subscription. Codes are hosted for 30 days, then deleted automatically.'],
+        ['How do I see how many people scanned it?', 'Open your manage link. It shows total scans, a 30-day chart, and phone versus computer scans.'],
+        ['I lost my manage link. Can I get it back?', 'No. For privacy it is shown only once and is not stored in a readable form. Make a new code if you need to change the destination.'],
+    ],
+    'aka' => ['Editable QR Code Maker', 'Trackable Dynamic QR'],
 ];

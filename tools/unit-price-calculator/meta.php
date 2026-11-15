@@ -1,22 +1,16 @@
 <?php
-// Unit Price Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Unit Price Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'calc',
-  'order' => 2,
-  'icon' => 'tag',
-  'short' => 'Which pack is really cheaper? Compare price per 100 g, per litre or per item.',
-  'title' => 'Unit Price Calculator: Which Pack Size Is Really Cheaper?',
-  'description' => <<<'EOT_TF'
-Compare grocery prices per 100 g, kg, oz, litre or item, including multipacks. See which pack is cheapest and how much you save. Free, no sign-up.
-EOT_TF,
-  'related' => ['pizza-size-calculator', 'group-expense-splitter', 'road-trip-cost-splitter'],
-  'answer' => <<<'EOT_TF'
-To find the cheaper pack, divide each price by its total size to get the <strong>unit price</strong> (for example, price per 100 g). The lowest unit price wins. Bigger packs are often cheaper per unit, but not always: shops regularly price "family size" packs higher per gram than the regular size.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Unit Price Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'calc',
+    'order' => 2,
+    'icon' => 'tag',
+    'short' => 'Which pack is really cheaper? Compare price per 100 g, per litre or per item.',
+    'title' => 'Unit Price Calculator – Compare Cost Per kg, oz',
+    'description' => 'Compare grocery and bulk packs per 100 g, kg, oz, lb, litre or item to see which size truly costs less before you buy. Instant metric and US units.',
+    'related' => ['pizza-size-calculator', 'group-expense-splitter', 'road-trip-cost-splitter'],
+    'answer' => 'To find the cheaper pack, divide each price by its total size to get the <strong>unit price</strong> (for example, price per 100 g). The lowest unit price wins. Bigger packs are often cheaper per unit, but not always: shops regularly price "family size" packs higher per gram than the regular size.',
+    'article' => <<<'EOT_TF'
 <h2>How to compare unit prices</h2>
 <p>Shelf prices tell you what a pack costs, not what the food inside costs. The unit price fixes that by putting every product on the same scale: price per 100 grams, per litre or per item. Once everything is on one scale, the cheapest option is simply the smallest number.</p>
 <p>Many countries require shops to print a unit price on the shelf label, but labels often use different units for neighbouring products (per kg on one, per 100 g on the next), leave out multipacks, or don't cover online orders. This calculator converts everything for you, including ounces and pounds.</p>
@@ -52,36 +46,13 @@ Saving (%)  = (1 − cheaper unit price ÷ dearer unit price) × 100</div>
 <li><strong>Watch for shrinkflation.</strong> When a pack gets smaller at the same price, the unit price shows the real increase.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do you calculate unit price?',
-      <<<'EOT_TF'
-Divide the price by the quantity. For a 750 g pack costing 4.50, the unit price is 4.50 ÷ 750 = 0.006 per gram, or 0.60 per 100 g.
-EOT_TF,
+    'faqs' => [
+        ['How do you calculate unit price?', 'Divide the price by the quantity. For a 750 g pack costing 4.50, the unit price is 4.50 ÷ 750 = 0.006 per gram, or 0.60 per 100 g.'],
+        ['Is buying in bulk always cheaper?', 'No. Larger packs are often cheaper per unit, but supermarkets sometimes price big packs higher per gram than smaller ones, especially when the small size is on promotion. Always compare unit prices.'],
+        ['How do I compare a multipack with a single pack?', 'Enter the number of packs and the size of each one. A 6 × 330 ml multipack is 1,980 ml in total, and the calculator divides the price by that total.'],
+        ['Can I compare products in ounces with products in grams?', 'Yes. The calculator converts ounces, pounds, grams and kilograms to the same base before comparing, and shows the result per 100 g and per kg.'],
+        ['Why can’t I compare litres with kilograms?', 'A litre of one product doesn’t weigh the same as a litre of another. Without the density, a volume price and a weight price can’t be compared fairly, so the calculator keeps them separate.'],
     ],
-    [
-      'Is buying in bulk always cheaper?',
-      <<<'EOT_TF'
-No. Larger packs are often cheaper per unit, but supermarkets sometimes price big packs higher per gram than smaller ones, especially when the small size is on promotion. Always compare unit prices.
-EOT_TF,
-    ],
-    [
-      'How do I compare a multipack with a single pack?',
-      <<<'EOT_TF'
-Enter the number of packs and the size of each one. A 6 × 330 ml multipack is 1,980 ml in total, and the calculator divides the price by that total.
-EOT_TF,
-    ],
-    [
-      'Can I compare products in ounces with products in grams?',
-      <<<'EOT_TF'
-Yes. The calculator converts ounces, pounds, grams and kilograms to the same base before comparing, and shows the result per 100 g and per kg.
-EOT_TF,
-    ],
-    [
-      'Why can’t I compare litres with kilograms?',
-      <<<'EOT_TF'
-A litre of one product doesn’t weigh the same as a litre of another. Without the density, a volume price and a weight price can’t be compared fairly, so the calculator keeps them separate.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'unit price calculator, price per ounce calculator, cost per 100g, compare bulk sizes, price per unit grocery',
+    'aka' => ['Price Per Ounce Calculator', 'Cost Per Unit Comparator', 'Grocery Savings Calculator'],
 ];

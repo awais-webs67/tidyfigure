@@ -1,30 +1,21 @@
 <?php
-// FIRE Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'FIRE Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['Cooley, Hubbard, Walz (1998). Retirement Savings: Choosing a Withdrawal Rate That Is Sustainable (the Trinity study). AAII Journal.', 'https://www.aaii.com/journal/article/retirement-savings-choosing-a-withdrawal-rate-that-is-sustainable'],
-  ],
-  'order' => 15,
-  'icon' => 'flame',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => <<<'EOT_TF'
-fire calculator financial independence retire early 4% rule fire number coast fire lean fire when can i retire
-EOT_TF,
-  'short' => 'Your FIRE number and how many years until you’re financially independent.',
-  'title' => 'FIRE Calculator: Financial Independence & Early Retirement',
-  'description' => <<<'EOT_TF'
-Work out your FIRE number with the 4% rule, how many years until financial independence, the age you reach it, plus your Lean FIRE and Coast FIRE numbers.
-EOT_TF,
-  'related' => ['retirement-calculator', 'compound-interest-calculator', 'savings-goal-calculator'],
-  'answer' => <<<'EOT_TF'
-Your <strong>FIRE number</strong> is the amount invested that lets you live off your portfolio: yearly spending × 25, using the 4% rule. Spending 40,000 a year means a target of <strong>1,000,000</strong>. Starting from 100,000 and investing 30,000 a year at a 5% real return, you'd reach it in about <strong>17 years</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'FIRE Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 15,
+    'icon' => 'flame',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'fire calculator, financial independence retire early, 4 percent rule calculator, coast fire number',
+    'short' => 'Your FIRE number and how many years until you’re financially independent.',
+    'title' => 'FIRE Calculator – Early Retirement & 4% Rule',
+    'description' => 'Calculate your Financial Independence number, Lean FIRE and Coast FIRE milestones plus exact years to retire based on savings rate and return.',
+    'related' => ['retirement-calculator', 'compound-interest-calculator', 'savings-goal-calculator'],
+    'answer' => 'Your <strong>FIRE number</strong> is the amount invested that lets you live off your portfolio: yearly spending × 25, using the 4% rule. Spending 40,000 a year means a target of <strong>1,000,000</strong>. Starting from 100,000 and investing 30,000 a year at a 5% real return, you\'d reach it in about <strong>17 years</strong>.',
+    'sources' => [
+        ['Cooley, Hubbard, Walz (1998). Retirement Savings: Choosing a Withdrawal Rate That Is Sustainable (the Trinity study). AAII Journal.', 'https://www.aaii.com/journal/article/retirement-savings-choosing-a-withdrawal-rate-that-is-sustainable'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>What FIRE means</h2>
 <p><strong>FIRE</strong> stands for <em>Financial Independence, Retire Early</em>. You're financially independent when your investments can pay for your living costs indefinitely, so work becomes optional. People pursuing FIRE save a large share of their income, often 30–70%, and invest it, usually in low-cost index funds.</p>
 
@@ -72,36 +63,12 @@ Year 2: 135,000 × 1.05 + 30,000 = 171,750
 </ul>
 <p>For a traditional retirement plan, use the <a href="/retirement-calculator">retirement calculator</a>. <em>This calculator is for education, not financial advice.</em></p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is my FIRE number?',
-      <<<'EOT_TF'
-Your yearly spending divided by your safe withdrawal rate. With the 4% rule, that is 25 times your yearly spending.
-EOT_TF,
+    'faqs' => [
+        ['What is my FIRE number?', 'Your yearly spending divided by your safe withdrawal rate. With the 4% rule, that is 25 times your yearly spending.'],
+        ['Is the 4% rule safe for early retirement?', 'It was tested for 30-year retirements. For 40 years or more, many people use 3–3.5% for extra safety.'],
+        ['What is Coast FIRE?', 'The amount you need invested now so that growth alone reaches your FIRE number by retirement age, with no more saving.'],
+        ['What return should I use?', 'Use a return after inflation. 4–6% is a common long-term assumption for a stock-heavy portfolio, but real returns vary and are not guaranteed.'],
+        ['How can I reach FIRE faster?', 'Raise your savings rate. Spending less helps twice: you invest more, and you need a smaller FIRE number.'],
     ],
-    [
-      'Is the 4% rule safe for early retirement?',
-      <<<'EOT_TF'
-It was tested for 30-year retirements. For 40 years or more, many people use 3–3.5% for extra safety.
-EOT_TF,
-    ],
-    [
-      'What is Coast FIRE?',
-      <<<'EOT_TF'
-The amount you need invested now so that growth alone reaches your FIRE number by retirement age, with no more saving.
-EOT_TF,
-    ],
-    [
-      'What return should I use?',
-      <<<'EOT_TF'
-Use a return after inflation. 4–6% is a common long-term assumption for a stock-heavy portfolio, but real returns vary and are not guaranteed.
-EOT_TF,
-    ],
-    [
-      'How can I reach FIRE faster?',
-      <<<'EOT_TF'
-Raise your savings rate. Spending less helps twice: you invest more, and you need a smaller FIRE number.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Early Retirement FIRE Planner', '4% Safe Withdrawal Calculator'],
 ];

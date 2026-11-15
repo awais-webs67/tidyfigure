@@ -1,27 +1,26 @@
 <?php
-// File to QR Code (PDF, image, audio): page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'PDF to QR Code',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'uploads' => true, // saves what the visitor gives it on the server (hosted QR codes), so no "stays on your device" claims
-  'category' => 'qr',
-  'order' => 3,
-  'icon' => 'file-up',
-  'popular' => true,
-  'files' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
-  'scripts' => ['hosted-qr.js'],
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'pdf to qr code file to qr code menu qr code upload pdf qr image to qr code mp3 qr code document qr',
-  'short' => 'Upload a PDF, image or audio file and get a QR code that opens it.',
-  'title' => 'PDF to QR Code: Turn a PDF, Image or MP3 into a QR Code',
-  'description' => 'Upload a PDF, image, MP3 or MP4 and get a QR code that opens it on any phone: menus, brochures, manuals and flyers. Preview first, no sign-up, free.',
-  'related' => ['dynamic-qr-code-generator', 'qr-code-generator', 'compress-pdf'],
-  'answer' => <<<'EOT_TF'
-To turn a PDF into a QR code, choose the file below, check the preview, and press <strong>Upload and create QR code</strong>. The file is stored on this site and the QR code opens it on any phone, with no app needed. It works for <strong>PDFs, images, MP3s and MP4 videos</strong>, and each code shows scan counts on its private manage page.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'PDF to QR Code',
+    'updated' => '2026-11-15',
+    'uploads' => true,
+    'category' => 'qr',
+    'order' => 3,
+    'icon' => 'file-up',
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+    ],
+    'scripts' => ['hosted-qr.js'],
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'pdf to qr code, convert pdf to qr, menu qr code generator, file to qr code free',
+    'short' => 'Upload a PDF, image or audio file and get a QR code that opens it.',
+    'title' => 'PDF to QR Code Generator – Menu & File QR',
+    'description' => 'Turn any PDF menu, brochure, manual, image or MP3 into a scannable hosted QR code link that opens cleanly on iOS and Android phones.',
+    'related' => ['dynamic-qr-code-generator', 'qr-code-generator', 'compress-pdf'],
+    'answer' => 'To turn a PDF into a QR code, choose the file below, check the preview, and press <strong>Upload and create QR code</strong>. The file is stored on this site and the QR code opens it on any phone, with no app needed. It works for <strong>PDFs, images, MP3s and MP4 videos</strong>, and each code shows scan counts on its private manage page.',
+    'article' => <<<'EOT_TF'
 <h2>What people use file QR codes for</h2>
 <ul>
 <li><strong>Restaurant and café menus:</strong> a code on each table opens the PDF menu.</li>
@@ -54,11 +53,12 @@ EOT_TF,
 <h2>Need a code that never expires?</h2>
 <p>If your file is already online (for example on your website or a cloud drive with a public link), make a <a href="/qr-code-generator">static QR code</a> of that link instead. It contains the link itself and works forever.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I create a QR code for a PDF?', 'Choose the PDF, check the preview, and press Upload and create QR code. Download the QR code and print or share it.'],
-    ['Which file types can I use?', 'PDF, JPG, PNG, WebP, GIF, MP3 and MP4, up to the size shown on the upload box (10 MB by default).'],
-    ['Do people need an app to open it?', 'No. Any phone camera can scan the code, and the file opens in the browser.'],
-    ['How long is the file available?', 'For 30 days by default. After that the file and the code are deleted automatically.'],
-    ['Can I replace the file later?', 'Not for file codes. Delete the code from the manage page and make a new one, or use a dynamic QR code pointing to a link you control.'],
-  ],
+    'faqs' => [
+        ['How do I create a QR code for a PDF?', 'Choose the PDF, check the preview, and press Upload and create QR code. Download the QR code and print or share it.'],
+        ['Which file types can I use?', 'PDF, JPG, PNG, WebP, GIF, MP3 and MP4, up to the size shown on the upload box (10 MB by default).'],
+        ['Do people need an app to open it?', 'No. Any phone camera can scan the code, and the file opens in the browser.'],
+        ['How long is the file available?', 'For 30 days by default. After that the file and the code are deleted automatically.'],
+        ['Can I replace the file later?', 'Not for file codes. Delete the code from the manage page and make a new one, or use a dynamic QR code pointing to a link you control.'],
+    ],
+    'aka' => ['File to QR Code', 'Menu PDF QR Generator'],
 ];

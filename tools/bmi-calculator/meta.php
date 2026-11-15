@@ -1,29 +1,22 @@
 <?php
-// BMI Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'BMI Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['World Health Organization: Obesity and overweight (BMI categories)', 'https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight'],
-    ['NHS: Calculate your body mass index (BMI) for adults', 'https://www.nhs.uk/health-assessment-tools/calculate-your-body-mass-index/calculate-bmi-for-adults'],
-  ],
-  'order' => 2,
-  'icon' => 'activity',
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'body mass index healthy weight bmi chart kg lb',
-  'short' => 'Body mass index in kg/cm or lb/ft, with your healthy weight range.',
-  'title' => 'BMI Calculator: Body Mass Index & Healthy Weight Range',
-  'description' => <<<'EOT_TF'
-Calculate your BMI (body mass index) in metric or imperial units, see your WHO weight category, and find the healthy weight range for your height.
-EOT_TF,
-  'related' => ['percentage-calculator', 'age-calculator', 'unit-converter'],
-  'answer' => <<<'EOT_TF'
-BMI is your <strong>weight in kilograms divided by your height in metres squared</strong>. For adults, a BMI of <strong>18.5 to 24.9</strong> is considered a healthy weight, 25 to 29.9 overweight, and 30 or more obese. Enter your height and weight to see your BMI and the healthy weight range for your height.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'BMI Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 2,
+    'icon' => 'activity',
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'bmi calculator, body mass index calculator, healthy weight range, who bmi chart, metric bmi calculator',
+    'short' => 'Body mass index in kg/cm or lb/ft, with your healthy weight range.',
+    'title' => 'BMI Calculator – Body Mass Index & Weight Chart',
+    'description' => 'Compute Body Mass Index in kg/cm or lbs/ft-in, view WHO adult weight categories and check your healthy target weight range locally.',
+    'related' => ['percentage-calculator', 'age-calculator', 'unit-converter'],
+    'answer' => 'BMI is your <strong>weight in kilograms divided by your height in metres squared</strong>. For adults, a BMI of <strong>18.5 to 24.9</strong> is considered a healthy weight, 25 to 29.9 overweight, and 30 or more obese. Enter your height and weight to see your BMI and the healthy weight range for your height.',
+    'sources' => [
+        ['World Health Organization: Obesity and overweight (BMI categories)', 'https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight'],
+        ['NHS: Calculate your body mass index (BMI) for adults', 'https://www.nhs.uk/health-assessment-tools/calculate-your-body-mass-index/calculate-bmi-for-adults'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How BMI is calculated</h2>
 <div class="formula">Metric:   BMI = weight (kg) ÷ height (m)²
 Imperial: BMI = 703 × weight (lb) ÷ height (in)²
@@ -53,35 +46,16 @@ Example: 72 kg, 1.75 m → 72 ÷ (1.75 × 1.75) = 72 ÷ 3.0625 = 23.5</div>
 <div class="formula">Lowest healthy weight  = 18.5 × height (m)²
 Highest healthy weight = 24.9 × height (m)²</div>
 <p>At 1.75 m, that's about 56.7 kg to 76.3 kg (125 to 168 lb). If you're outside your range, a doctor or dietitian can help you set a realistic goal. Even a 5–10% change in weight can make a meaningful difference to health.</p>
+
+<h2>BMI Reference Formula &amp; Ethnic Context</h2>
+<p>In metric units, BMI equals weight in kilograms divided by height in metres squared (<code>kg / m²</code>). For US customary measures, multiply weight in pounds by <code>703</code> and divide by height in inches squared. While the standard WHO healthy range is <code>18.5–24.9</code>, public-health guidelines from the WHO and NICE note lower risk cut-offs (such as overweight starting at 23.0) for many South Asian and East Asian adult populations.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is a healthy BMI?',
-      'For most adults, a BMI from 18.5 to 24.9 is considered a healthy weight.',
+    'faqs' => [
+        ['What is a healthy BMI?', 'For most adults, a BMI from 18.5 to 24.9 is considered a healthy weight.'],
+        ['How do I calculate BMI by hand?', 'Divide your weight in kilograms by your height in metres squared. In pounds and inches, multiply weight by 703 and divide by height in inches squared.'],
+        ['Is BMI accurate for muscular people?', 'Not always. BMI can’t tell muscle from fat, so very muscular people may get a high BMI without excess fat.'],
+        ['Can I use this BMI calculator for children?', 'No. Children and teenagers need BMI-for-age percentiles, which a doctor or child growth chart provides.'],
+        ['What is the healthy weight for my height?', 'Enter your height and weight. The calculator shows the weight range that gives a BMI of 18.5 to 24.9 for your height.'],
     ],
-    [
-      'How do I calculate BMI by hand?',
-      <<<'EOT_TF'
-Divide your weight in kilograms by your height in metres squared. In pounds and inches, multiply weight by 703 and divide by height in inches squared.
-EOT_TF,
-    ],
-    [
-      'Is BMI accurate for muscular people?',
-      <<<'EOT_TF'
-Not always. BMI can’t tell muscle from fat, so very muscular people may get a high BMI without excess fat.
-EOT_TF,
-    ],
-    [
-      'Can I use this BMI calculator for children?',
-      <<<'EOT_TF'
-No. Children and teenagers need BMI-for-age percentiles, which a doctor or child growth chart provides.
-EOT_TF,
-    ],
-    [
-      'What is the healthy weight for my height?',
-      <<<'EOT_TF'
-Enter your height and weight. The calculator shows the weight range that gives a BMI of 18.5 to 24.9 for your height.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Body Mass Index Calculator', 'Adult BMI Checker'],
 ];

@@ -1,29 +1,22 @@
 <?php
-// Pregnancy Due Date Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Pregnancy Due Date Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['American College of Obstetricians and Gynecologists: Methods for Estimating the Due Date', 'https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date'],
-  ],
-  'order' => 7,
-  'icon' => 'baby',
-  'popular' => true,
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'due date calculator pregnancy weeks how far along am i conception date ivf due date',
-  'short' => 'Due date, how many weeks pregnant you are, and key milestones.',
-  'title' => 'Due Date Calculator: When Is My Baby Due?',
-  'description' => <<<'EOT_TF'
-Calculate your due date from your last period, conception date or IVF transfer. See how many weeks pregnant you are, your trimester and key milestones.
-EOT_TF,
-  'related' => ['ovulation-calculator', 'days-between-dates', 'water-intake-calculator'],
-  'answer' => <<<'EOT_TF'
-Your estimated due date is <strong>280 days (40 weeks) after the first day of your last period</strong>, adjusted if your cycle is longer or shorter than 28 days. You can also calculate from a known conception date (266 days later) or an IVF transfer. The result shows how far along you are today and the key dates ahead.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Pregnancy Due Date Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 7,
+    'icon' => 'baby',
+    'popular' => true,
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'pregnancy due date calculator, due date calculator, how many weeks pregnant am i, ivf due date, conception due date',
+    'short' => 'Due date, how many weeks pregnant you are, and key milestones.',
+    'title' => 'Pregnancy Due Date Calculator – Weeks & Milestones',
+    'description' => 'Calculate estimated delivery date from last menstrual period, conception date or IVF embryo transfer with gestational week, trimester and milestones.',
+    'related' => ['ovulation-calculator', 'days-between-dates', 'water-intake-calculator'],
+    'answer' => 'Your estimated due date is <strong>280 days (40 weeks) after the first day of your last period</strong>, adjusted if your cycle is longer or shorter than 28 days. You can also calculate from a known conception date (266 days later) or an IVF transfer. The result shows how far along you are today and the key dates ahead.',
+    'sources' => [
+        ['American College of Obstetricians and Gynecologists: Methods for Estimating the Due Date', 'https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2017/05/methods-for-estimating-the-due-date'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How due dates are calculated</h2>
 <p>Pregnancy is counted from the first day of your last menstrual period (LMP), about two weeks before conception actually happens. This is called Naegele's rule:</p>
 <div class="formula">Due date = first day of last period + 280 days (40 weeks)
@@ -48,33 +41,16 @@ IVF day-3 transfer: transfer date + 263 days</div>
 
 <h2>Next steps</h2>
 <p>If you think you're pregnant, contact your doctor or midwife to arrange antenatal care, and start taking folic acid if you haven't already. This calculator gives general information and isn't a substitute for professional care.</p>
+
+<h2>Why Ultrasound Dating May Adjust Your Due Date</h2>
+<p>Naegele’s rule assumes ovulation on day 14 of a 28-day cycle (40 weeks or 280 days from LMP). If your cycles regularly run 32–35 days or ovulation occurred late, a first-trimester dating ultrasound between 8 and 13 weeks (measuring crown-rump length) provides the most accurate clinical adjustment—especially since only around 4–5% of babies arrive on the exact predicted date.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How is my due date calculated?',
-      'By adding 280 days (40 weeks) to the first day of your last period, adjusted for your cycle length.',
+    'faqs' => [
+        ['How is my due date calculated?', 'By adding 280 days (40 weeks) to the first day of your last period, adjusted for your cycle length.'],
+        ['How many weeks pregnant am I?', 'Enter the first day of your last period. The calculator shows how many weeks and days pregnant you are today.'],
+        ['Can I calculate my due date from conception?', 'Yes. Choose “Conception date”. The due date is 266 days after conception.'],
+        ['How do I calculate an IVF due date?', 'Choose the IVF option and enter the transfer date: add 261 days for a day-5 transfer or 263 days for a day-3 transfer.'],
+        ['Is my due date accurate?', 'It’s an estimate. Most babies are born between 38 and 42 weeks, and an early ultrasound gives the most accurate date.'],
     ],
-    [
-      'How many weeks pregnant am I?',
-      <<<'EOT_TF'
-Enter the first day of your last period. The calculator shows how many weeks and days pregnant you are today.
-EOT_TF,
-    ],
-    [
-      'Can I calculate my due date from conception?',
-      'Yes. Choose “Conception date”. The due date is 266 days after conception.',
-    ],
-    [
-      'How do I calculate an IVF due date?',
-      <<<'EOT_TF'
-Choose the IVF option and enter the transfer date: add 261 days for a day-5 transfer or 263 days for a day-3 transfer.
-EOT_TF,
-    ],
-    [
-      'Is my due date accurate?',
-      <<<'EOT_TF'
-It’s an estimate. Most babies are born between 38 and 42 weeks, and an early ultrasound gives the most accurate date.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Estimated Due Date Calculator', 'Gestational Age Calculator'],
 ];

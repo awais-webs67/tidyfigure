@@ -1,27 +1,26 @@
 <?php
-// Image to Text (OCR): page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Image to Text (OCR)',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 0,
-  'icon' => 'scan-line',
-  'popular' => true,
-  'files' => true,
-  'libs' => ['https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
-  'scripts' => ['ai.js'],
-  'appCategory' => 'UtilitiesApplication',
-  'keywords' => 'image to text converter ocr online free extract text from image photo to text screenshot to text scanned pdf to text urdu ocr arabic ocr',
-  'aka' => ['OCR online', 'picture to text', 'extract text from image', 'photo to text converter'], // other names people search for
-  'short' => 'Copy the text out of photos, screenshots and scanned PDFs, in 20 languages.',
-  'title' => 'Image to Text Converter: Free OCR for Photos & PDFs',
-  'description' => 'Extract text from images, screenshots and scanned PDFs with free OCR. 20 languages including Urdu, Arabic and Hindi. Edit, copy or save as .txt. No upload.',
-  'related' => ['pdf-to-text', 'word-counter', 'case-converter'],
-  'answer' => <<<'EOT_TF'
-To convert an image to text, drop a photo, screenshot or scanned PDF below (or paste a screenshot with <strong>Ctrl+V</strong>), choose the language, and the text appears in an editable box ready to copy. It uses <strong>OCR</strong> (optical character recognition) that runs on your device, so documents stay private. It reads 20 languages, including Urdu, Arabic, Hindi and Chinese.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Image to Text (OCR)',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 0,
+    'icon' => 'scan-line',
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+    ],
+    'scripts' => ['ai.js'],
+    'appCategory' => 'UtilitiesApplication',
+    'keywords' => 'image to text ocr, extract text from screenshot, picture to txt free, urdu arabic english ocr online',
+    'aka' => ['Free Photo OCR Tool', 'Screenshot to Editable Text'],
+    'short' => 'Copy the text out of photos, screenshots and scanned PDFs, in 20 languages.',
+    'title' => 'Image to Text OCR – Extract Text From Photos',
+    'description' => 'Extract editable text from screenshots, photos and scanned documents across 20 languages (including Urdu, Arabic, Hindi) via local AI OCR.',
+    'related' => ['pdf-to-text', 'word-counter', 'case-converter'],
+    'answer' => 'To convert an image to text, drop a photo, screenshot or scanned PDF below (or paste a screenshot with <strong>Ctrl+V</strong>), choose the language, and the text appears in an editable box ready to copy. It uses <strong>OCR</strong> (optical character recognition) that runs on your device, so documents stay private. It reads 20 languages, including Urdu, Arabic, Hindi and Chinese.',
+    'article' => <<<'EOT_TF'
 <h2>How to extract text from an image</h2>
 <ol>
 <li>Drop an image or a scanned PDF into the box, tap to take or choose a photo on your phone, or copy a screenshot and press <strong>Ctrl+V</strong> (Cmd+V on a Mac).</li>
@@ -56,11 +55,11 @@ EOT_TF,
 <h2>Private by design</h2>
 <p>Most online OCR services upload your document to their servers. Here, recognition runs inside your browser using Tesseract, an open-source OCR engine originally developed at HP and later by Google. Your images and PDFs never leave your device.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I copy text from an image?', 'Drop the image into the tool, choose its language, and copy the extracted text from the box. You can also download it as a .txt file.'],
-    ['Does it work with Urdu and Arabic?', 'Yes. Choose Urdu, Arabic or Persian as the language. Right-to-left text is supported.'],
-    ['Can it read scanned PDFs?', 'Yes. Drop a scanned PDF and up to 30 pages are read, one after another.'],
-    ['Is my document uploaded?', 'No. The OCR runs in your browser. Only the language data is downloaded, once.'],
-    ['Can it read handwriting?', 'Neat handwriting sometimes works, but the tool is designed for printed text, so expect some errors.'],
-  ],
+    'faqs' => [
+        ['How do I copy text from an image?', 'Drop the image into the tool, choose its language, and copy the extracted text from the box. You can also download it as a .txt file.'],
+        ['Does it work with Urdu and Arabic?', 'Yes. Choose Urdu, Arabic or Persian as the language. Right-to-left text is supported.'],
+        ['Can it read scanned PDFs?', 'Yes. Drop a scanned PDF and up to 30 pages are read, one after another.'],
+        ['Is my document uploaded?', 'No. The OCR runs in your browser. Only the language data is downloaded, once.'],
+        ['Can it read handwriting?', 'Neat handwriting sometimes works, but the tool is designed for printed text, so expect some errors.'],
+    ],
 ];

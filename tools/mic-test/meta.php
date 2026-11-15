@@ -1,24 +1,19 @@
 <?php
-// Mic Test: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Mic Test',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'device',
-  'order' => 1,
-  'popular' => true,
-  'icon' => 'mic',
-  'keywords' => 'mic test microphone test online check my mic is my microphone working mic check record and play back',
-  'aka' => ['microphone test', 'mic checker', 'test my mic'], // other names people search for
-  'short' => 'Check your microphone with a live sound meter and a test recording.',
-  'title' => 'Mic Test: Check Your Microphone Online, Free',
-  'description' => <<<'EOT_TF'
-Test your microphone in seconds: see a live sound level and waveform, record a short clip and play it back. Fixes for Windows, Mac and phones. Private.
-EOT_TF,
-  'related' => ['webcam-test', 'voice-recorder', 'keyboard-test', 'tone-generator'],
-  'answer' => <<<'EOT_TF'
-Click <strong>Start mic test</strong> and allow microphone access, then speak. If the green meter jumps when you talk, your microphone works. Record a 5-second clip to hear exactly how you sound, and pick another microphone from the list if you have more than one. Nothing is uploaded: the sound stays on your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Mic Test',
+    'updated' => '2026-11-15',
+    'category' => 'device',
+    'order' => 1,
+    'popular' => true,
+    'icon' => 'mic',
+    'keywords' => 'mic test, microphone test online, check my mic, mic volume waveform, headset microphone tester',
+    'aka' => ['Microphone Tester', 'Online Mic Check'],
+    'short' => 'Check your microphone with a live sound meter and a test recording.',
+    'title' => 'Mic Test – Check Your Microphone Sound Live',
+    'description' => 'Test headset, laptop or USB microphone volume, live waveform clarity and playback quality right in your browser before Zoom, Discord or calls.',
+    'related' => ['webcam-test', 'voice-recorder', 'keyboard-test', 'tone-generator'],
+    'answer' => 'Click <strong>Start mic test</strong> and allow microphone access, then speak. If the green meter jumps when you talk, your microphone works. Record a 5-second clip to hear exactly how you sound, and pick another microphone from the list if you have more than one. Nothing is uploaded: the sound stays on your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to test your microphone</h2>
 <ol>
 <li>Click <strong>Start mic test</strong>. Your browser asks for permission: choose <strong>Allow</strong>.</li>
@@ -47,36 +42,11 @@ EOT_TF,
 <h2>Your privacy</h2>
 <p>The sound is analysed in your browser to draw the meter and waveform. The test recording is kept in your browser’s memory so you can play it back and is deleted when you leave the page. Nothing is sent to a server.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I know if my mic is working?',
-      <<<'EOT_TF'
-Start the test and speak. If the level meter and waveform move with your voice, the microphone works. Record a short clip to check how it sounds.
-EOT_TF,
+    'faqs' => [
+        ['How do I know if my mic is working?', 'Start the test and speak. If the level meter and waveform move with your voice, the microphone works. Record a short clip to check how it sounds.'],
+        ['Why is my microphone not detected?', 'Usually access is blocked for the browser, or the mic is turned off in system privacy settings. Allow it next to the web address and in Windows or Mac privacy settings, then reload the page.'],
+        ['Is my voice recorded or uploaded?', 'No. The sound is only analysed in your browser. The optional test clip stays in your browser’s memory and is deleted when you close the page.'],
+        ['Why does my mic sound quiet?', 'Move closer to the microphone and raise the input volume in your system sound settings. Some headsets also have a volume wheel or mute switch on the cable.'],
+        ['Can I test a mic on my phone?', 'Yes. The test works in mobile browsers. Allow the microphone when asked, and check your browser has microphone permission in the phone’s settings.'],
     ],
-    [
-      'Why is my microphone not detected?',
-      <<<'EOT_TF'
-Usually access is blocked for the browser, or the mic is turned off in system privacy settings. Allow it next to the web address and in Windows or Mac privacy settings, then reload the page.
-EOT_TF,
-    ],
-    [
-      'Is my voice recorded or uploaded?',
-      <<<'EOT_TF'
-No. The sound is only analysed in your browser. The optional test clip stays in your browser’s memory and is deleted when you close the page.
-EOT_TF,
-    ],
-    [
-      'Why does my mic sound quiet?',
-      <<<'EOT_TF'
-Move closer to the microphone and raise the input volume in your system sound settings. Some headsets also have a volume wheel or mute switch on the cable.
-EOT_TF,
-    ],
-    [
-      'Can I test a mic on my phone?',
-      <<<'EOT_TF'
-Yes. The test works in mobile browsers. Allow the microphone when asked, and check your browser has microphone permission in the phone’s settings.
-EOT_TF,
-    ],
-  ],
 ];

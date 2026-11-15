@@ -1,24 +1,18 @@
 <?php
-// YouTube Thumbnail Downloader: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'YouTube Thumbnail Downloader',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'social',
-  'order' => 2,
-  'icon' => 'image-play',
-  'keywords' => 'youtube thumbnail downloader get thumbnail from youtube video hd thumbnail save',
-  'aka' => ['YouTube thumbnail grabber', 'download YouTube thumbnail', 'YT thumbnail saver'], // other names people search for
-  'short' => 'Get any YouTube video’s thumbnail in HD (1280×720) and smaller sizes.',
-  'title' => 'YouTube Thumbnail Downloader: Save HD Thumbnails',
-  'description' => <<<'EOT_TF'
-Get the thumbnail of any YouTube video or Short in Full HD (1280×720), 640×480, 480×360 and smaller. Paste a link and download. Free, no sign-up.
-EOT_TF,
-  'related' => ['youtube-subscriber-counter', 'image-resizer', 'image-compressor'],
-  'answer' => <<<'EOT_TF'
-Paste a YouTube video link (normal videos, Shorts and live streams all work) and you'll see its thumbnail in every size YouTube provides, up to <strong>1280 × 720 (Full HD)</strong>. Click Download to save the one you need. Older or low-resolution videos may not have the Full HD version, in which case it's simply not shown.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'YouTube Thumbnail Downloader',
+    'updated' => '2026-11-15',
+    'category' => 'social',
+    'order' => 2,
+    'icon' => 'image-play',
+    'keywords' => 'youtube thumbnail downloader, save youtube thumbnail hd, get thumbnail from youtube url, yt thumbnail grabber',
+    'aka' => ['YouTube Thumbnail Grabber', 'HD Thumbnail Saver'],
+    'short' => 'Get any YouTube video’s thumbnail in HD (1280×720) and smaller sizes.',
+    'title' => 'YouTube Thumbnail Downloader – Save HD & MaxRes',
+    'description' => 'Download any YouTube video or Shorts thumbnail in HD (1280×720), SD (640×480) and standard sizes by pasting a video link. Instant browser tool.',
+    'related' => ['youtube-subscriber-counter', 'image-resizer', 'image-compressor'],
+    'answer' => 'Paste a YouTube video link (normal videos, Shorts and live streams all work) and you\'ll see its thumbnail in every size YouTube provides, up to <strong>1280 × 720 (Full HD)</strong>. Click Download to save the one you need. Older or low-resolution videos may not have the Full HD version, in which case it\'s simply not shown.',
+    'article' => <<<'EOT_TF'
 <h2>Thumbnail sizes YouTube provides</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>Name</th><th class="n">Size</th><th>Notes</th></tr></thead>
@@ -56,23 +50,15 @@ EOT_TF,
 
 <h2>Using thumbnails fairly</h2>
 <p>Thumbnails are created by the channel owner and are usually protected by copyright. It's fine to save one to look at, to reference in a review or commentary with credit, or to download your own channel's thumbnails as a backup. Don't reuse someone else's thumbnail as your own video's cover. If you want ideas for your own thumbnails, study what successful ones in your niche have in common: a clear face, a few large words and strong contrast.</p>
+
+<h2>Checking Available Resolution Tiers</h2>
+<p>YouTube automatically generates four or five static JPEG endpoints per upload: <code>maxresdefault.jpg</code> (1280×720), <code>sddefault.jpg</code> (640×480), <code>hqdefault.jpg</code> (480×360) and <code>mqdefault.jpg</code> (320×180). Very old videos or 480p uploads may lack a 1280×720 file, in which case 640×480 offers the sharpest clean preview.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I download a YouTube thumbnail?',
-      'Paste the video link, press Get thumbnails, and click Download under the size you want.',
+    'faqs' => [
+        ['How do I download a YouTube thumbnail?', 'Paste the video link, press Get thumbnails, and click Download under the size you want.'],
+        ['Can I get the thumbnail of a YouTube Short?', 'Yes. Paste the Shorts link; it works the same way.'],
+        ['Why is there no HD thumbnail?', 'Some older or low-resolution videos don’t have a 1280 × 720 thumbnail. Use the next largest size.'],
+        ['Is it legal to download YouTube thumbnails?', 'Saving for reference is generally fine. Republishing them may need the creator’s permission; always credit the creator.'],
+        ['What size should a YouTube thumbnail be?', '1280 × 720 pixels (16:9), under 2 MB, in JPG or PNG.'],
     ],
-    ['Can I get the thumbnail of a YouTube Short?', 'Yes. Paste the Shorts link; it works the same way.'],
-    [
-      'Why is there no HD thumbnail?',
-      'Some older or low-resolution videos don’t have a 1280 × 720 thumbnail. Use the next largest size.',
-    ],
-    [
-      'Is it legal to download YouTube thumbnails?',
-      <<<'EOT_TF'
-Saving for reference is generally fine. Republishing them may need the creator’s permission; always credit the creator.
-EOT_TF,
-    ],
-    ['What size should a YouTube thumbnail be?', '1280 × 720 pixels (16:9), under 2 MB, in JPG or PNG.'],
-  ],
 ];

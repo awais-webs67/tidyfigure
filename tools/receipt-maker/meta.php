@@ -1,56 +1,50 @@
 <?php
-// Receipt Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Receipt Maker',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 22,
-  'icon' => 'receipt',
-  'use' => 'invoice-generator',
-  'preset' => [
-    'toText' => <<<'EOT_TF'
-Maria Lopez
-22 Park Road, Leeds LS6 2AB
-EOT_TF,
-    'doc' => 'Receipt',
-    'num' => 'RCPT-000123',
-    'to' => 'Received from',
-    'due' => 'Paid on',
-    'dueLabel' => 'Payment date',
-    'days' => 0,
-    'grand' => 'Amount paid',
-    'notes' => <<<'EOT_TF'
-Paid in full by card. Thank you!
-Keep this receipt for your records. Returns accepted within 30 days with this receipt.
-EOT_TF,
-    'items' => [
-      [
-        'desc' => 'Yoga class pass (10 sessions)',
-        'qty' => 1,
-        'price' => 90,
-        'tax' => 0,
-      ],
-      [
-        'desc' => 'Yoga mat',
-        'qty' => 1,
-        'price' => 25,
-        'tax' => 0,
-      ],
+    'name' => 'Receipt Maker',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 22,
+    'icon' => 'receipt',
+    'use' => 'invoice-generator',
+    'preset' => [
+        'toText' => 'Maria Lopez
+22 Park Road, Leeds LS6 2AB',
+        'doc' => 'Receipt',
+        'num' => 'RCPT-000123',
+        'to' => 'Received from',
+        'due' => 'Paid on',
+        'dueLabel' => 'Payment date',
+        'days' => 0,
+        'grand' => 'Amount paid',
+        'notes' => 'Paid in full by card. Thank you!
+Keep this receipt for your records. Returns accepted within 30 days with this receipt.',
+        'items' => [
+            [
+                'desc' => 'Yoga class pass (10 sessions)',
+                'qty' => 1,
+                'price' => 90,
+                'tax' => 0,
+            ],
+            [
+                'desc' => 'Yoga mat',
+                'qty' => 1,
+                'price' => 25,
+                'tax' => 0,
+            ],
+        ],
     ],
-  ],
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'receipt maker payment receipt template cash receipt generator rent receipt pdf small business',
-  'short' => 'Make a payment receipt for a customer, with items, tax and payment details, as a PDF.',
-  'title' => 'Free Receipt Maker: Create Payment Receipts as PDF or PNG',
-  'description' => <<<'EOT_TF'
-Create a clean payment receipt for your customers: your logo, items, tax, payment date and method. Download as PDF or PNG. Free, no sign-up, no watermark.
-EOT_TF,
-  'related' => ['invoice-generator', 'quotation-maker', 'vat-calculator'],
-  'answer' => <<<'EOT_TF'
-A receipt is proof that a customer has paid. Enter your business details, who paid, what they paid for and the payment date and method, then download the receipt as a <strong>PDF or PNG</strong> to email, print or send in a chat. Your business details can be remembered on this device for next time.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'free receipt maker, payment receipt generator pdf, cash transfer receipt template, small business receipt png',
+    'short' => 'Make a payment receipt for a customer, with items, tax and payment details, as a PDF.',
+    'title' => 'Free Receipt Maker – Payment Receipt PDF/PNG',
+    'description' => 'Issue clean paid payment receipts with merchant logo, payment method, transaction date, paid-in-full stamp and item breakdown as PDF or PNG.',
+    'related' => ['invoice-generator', 'quotation-maker', 'vat-calculator'],
+    'answer' => 'A receipt is proof that a customer has paid. Enter your business details, who paid, what they paid for and the payment date and method, then download the receipt as a <strong>PDF or PNG</strong> to email, print or send in a chat. Your business details can be remembered on this device for next time.',
+    'sources' => [
+        ['IRS – Business Recordkeeping & Payment Receipts', 'https://www.irs.gov/businesses/small-businesses-self-employed/what-kind-of-records-should-i-keep'],
+        ['GOV.UK – Keeping Business Payment Records', 'https://www.gov.uk/keeping-your-pay-and-tax-records'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>What a receipt should include</h2>
 <ul>
 <li><strong>Your business name and contact details</strong>, and your tax number if you charge VAT, GST or sales tax.</li>
@@ -88,32 +82,12 @@ Example: 1 × 90 + 1 × 25 = 115.00 paid</div>
 <p>Only make receipts for payments you actually received. Making a receipt for a payment that didn't happen, for example to claim expenses or a refund, is fraud.</p>
 <p>Your details are processed on your device and never uploaded.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a receipt?',
-      <<<'EOT_TF'
-Enter your business details and who paid, add the items with prices, set the payment date, write the payment method in the notes and download the receipt as a PDF or PNG.
-EOT_TF,
+    'faqs' => [
+        ['How do I make a receipt?', 'Enter your business details and who paid, add the items with prices, set the payment date, write the payment method in the notes and download the receipt as a PDF or PNG.'],
+        ['What must a receipt include?', 'Your business name, a receipt number, the payment date, what was paid for, the amount, any tax, and how it was paid.'],
+        ['Can I make a cash receipt or rent receipt?', 'Yes. Write "Paid in cash" in the notes, or describe the item as rent for a given month.'],
+        ['Is there a watermark?', 'No. The receipt is free, has no watermark and needs no sign-up.'],
+        ['Are my details stored online?', 'No. Your business details can be remembered in this browser on this device only, and you can turn that off.'],
     ],
-    [
-      'What must a receipt include?',
-      <<<'EOT_TF'
-Your business name, a receipt number, the payment date, what was paid for, the amount, any tax, and how it was paid.
-EOT_TF,
-    ],
-    [
-      'Can I make a cash receipt or rent receipt?',
-      'Yes. Write "Paid in cash" in the notes, or describe the item as rent for a given month.',
-    ],
-    [
-      'Is there a watermark?',
-      'No. The receipt is free, has no watermark and needs no sign-up.',
-    ],
-    [
-      'Are my details stored online?',
-      <<<'EOT_TF'
-No. Your business details can be remembered in this browser on this device only, and you can turn that off.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Payment Receipt PDF Generator', 'Paid Receipt Maker'],
 ];

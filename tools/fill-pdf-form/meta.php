@@ -1,25 +1,24 @@
 <?php
-// Fill PDF Form: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Fill PDF Form',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 18,
-  'files' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js', 'vendor/fontkit-1.1.1.min.js'],
-  'icon' => 'list-checks',
-  'keywords' => 'fill pdf form online free fillable pdf fill in pdf form complete pdf form flatten pdf form type in pdf form fields',
-  'aka' => ['PDF forms', 'fillable PDF', 'flatten PDF form'], // other names people search for
-  'short' => 'Type into the fields of a fillable PDF form, tick the boxes, then save it or lock the answers in.',
-  'title' => 'Fill PDF Form Online Free: Type Into Fillable PDFs',
-  'description' => <<<'EOT_TF'
-Fill in PDF forms online: type in every field, tick boxes and pick options, then download or flatten it so answers can’t change. Free and private, no upload.
-EOT_TF,
-  'related' => ['edit-pdf', 'sign-pdf', 'protect-pdf'],
-  'answer' => <<<'EOT_TF'
-To fill a PDF form, open it and <strong>type your answers in the boxes</strong> on the left: every text field, tick box, choice and list in the form is listed in order, and the preview shows the filled pages. Tick <strong>Lock the answers</strong> to flatten the form so nobody can change it, then download.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Fill PDF Form',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 18,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+        'vendor/fontkit-1.1.1.min.js',
+    ],
+    'icon' => 'list-checks',
+    'keywords' => 'fill pdf form online free, type into fillable pdf, flatten pdf form fields browser, fill sign pdf no upload',
+    'aka' => ['Fillable PDF Form Filler', 'AcroForm PDF Flatten Tool'],
+    'short' => 'Type into the fields of a fillable PDF form, tick the boxes, then save it or lock the answers in.',
+    'title' => 'Fill PDF Form Online – Type, Tick & Flatten',
+    'description' => 'Complete AcroForm text inputs, checkboxes, radio buttons and dropdowns inside your browser, with optional flattening so entries stay tamper-safe.',
+    'related' => ['edit-pdf', 'sign-pdf', 'protect-pdf'],
+    'answer' => 'To fill a PDF form, open it and <strong>type your answers in the boxes</strong> on the left: every text field, tick box, choice and list in the form is listed in order, and the preview shows the filled pages. Tick <strong>Lock the answers</strong> to flatten the form so nobody can change it, then download.',
+    'article' => <<<'EOT_TF'
 <h2>How to fill in a PDF form</h2>
 <ol>
 <li>Drop your fillable PDF in the box, or try the sample form.</li>
@@ -40,37 +39,15 @@ EOT_TF,
 
 <h2>Private, free and with no watermark</h2>
 <p>Forms often ask for your address, date of birth, tax or bank details. Here the form is filled in your browser and never uploaded, so your answers stay on your device. To add a signature, open the result in <a href="/sign-pdf">Sign PDF</a>.</p>
+
+<h2>Flattening Answers Before Emailing Contracts or Visas</h2>
+<p>Sending an unflattened fillable form lets recipients accidentally erase fields or trigger missing-font boxes in older macOS Preview readers. Flattening renders typed answers directly onto page geometry so every court clerk and HR portal sees identical numbers.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I fill in a PDF form for free?',
-      <<<'EOT_TF'
-Open the PDF here, type your answers in the list of fields, check the preview and download. It is free with no sign-up or watermark.
-EOT_TF,
+    'faqs' => [
+        ['How do I fill in a PDF form for free?', 'Open the PDF here, type your answers in the list of fields, check the preview and download. It is free with no sign-up or watermark.'],
+        ['Why does my PDF have no fields?', 'The form is flat, for example a scan or a PDF printed from Word. Use Edit PDF to type anywhere on the page.'],
+        ['What does flattening a PDF form mean?', 'It turns the answers into normal page content, so they look the same in every app and can no longer be changed.'],
+        ['Can I sign the form too?', 'Yes. Download the filled form and open it in Sign PDF to draw, type or upload your signature.'],
+        ['Is my form uploaded?', 'No. The form is filled in your browser and never leaves your device.'],
     ],
-    [
-      'Why does my PDF have no fields?',
-      <<<'EOT_TF'
-The form is flat, for example a scan or a PDF printed from Word. Use Edit PDF to type anywhere on the page.
-EOT_TF,
-    ],
-    [
-      'What does flattening a PDF form mean?',
-      <<<'EOT_TF'
-It turns the answers into normal page content, so they look the same in every app and can no longer be changed.
-EOT_TF,
-    ],
-    [
-      'Can I sign the form too?',
-      <<<'EOT_TF'
-Yes. Download the filled form and open it in Sign PDF to draw, type or upload your signature.
-EOT_TF,
-    ],
-    [
-      'Is my form uploaded?',
-      <<<'EOT_TF'
-No. The form is filled in your browser and never leaves your device.
-EOT_TF,
-    ],
-  ],
 ];

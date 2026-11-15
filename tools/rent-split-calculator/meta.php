@@ -1,22 +1,16 @@
 <?php
-// Fair Rent Split Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Fair Rent Split Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'life',
-  'order' => 3,
-  'icon' => 'house',
-  'short' => 'Split rent by bedroom size, private bathrooms and couples sharing a room.',
-  'title' => 'Fair Rent Split Calculator: Split Rent by Room Size',
-  'description' => <<<'EOT_TF'
-Split rent fairly between roommates by bedroom size, private bathrooms and couples sharing a room. Shared space split equally. Free, instant, no sign-up.
-EOT_TF,
-  'related' => ['group-expense-splitter', 'road-trip-cost-splitter', 'decision-matrix'],
-  'answer' => <<<'EOT_TF'
-The fairest common way to split rent is in two parts: split the <strong>shared space</strong> (kitchen, living room, hallway) equally per person, and split the <strong>rest by bedroom size</strong>, giving extra weight to rooms with a private bathroom. Couples sharing a room pay for one room but two shares of the common space.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Fair Rent Split Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'life',
+    'order' => 3,
+    'icon' => 'house',
+    'short' => 'Split rent by bedroom size, private bathrooms and couples sharing a room.',
+    'title' => 'Rent Split Calculator – Fair Share by Room Size',
+    'description' => 'Divide house or apartment rent fairly among roommates by bedroom square footage, private en-suites, balconies and shared couple rooms.',
+    'related' => ['group-expense-splitter', 'road-trip-cost-splitter', 'decision-matrix'],
+    'answer' => 'The fairest common way to split rent is in two parts: split the <strong>shared space</strong> (kitchen, living room, hallway) equally per person, and split the <strong>rest by bedroom size</strong>, giving extra weight to rooms with a private bathroom. Couples sharing a room pay for one room but two shares of the common space.',
+    'article' => <<<'EOT_TF'
 <h2>Why an even split often feels unfair</h2>
 <p>Splitting rent evenly works when bedrooms are the same. Most homes aren't like that. One person gets the big room with an en-suite, another gets the box room next to the front door. If everyone pays the same, the person in the small room is subsidising the person in the big one, and that resentment tends to grow over a year-long lease.</p>
 <p>Splitting purely by square footage goes too far the other way. Everyone uses the kitchen, the living room and the hallway equally, so the person in the small room ends up paying almost nothing for space they use as much as anyone.</p>
@@ -53,34 +47,13 @@ Room pays              = shared part + private part</div>
 <li><strong>Bills:</strong> utilities are usually split evenly per person, not by room size. Use the group expense splitter for those.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is the fairest way to split rent with roommates?',
-      <<<'EOT_TF'
-Split the shared areas equally per person, and split the rest by bedroom size. This avoids people in small rooms subsidising large rooms, while still charging everyone for the kitchen and living room they all use.
-EOT_TF,
+    'faqs' => [
+        ['What is the fairest way to split rent with roommates?', 'Split the shared areas equally per person, and split the rest by bedroom size. This avoids people in small rooms subsidising large rooms, while still charging everyone for the kitchen and living room they all use.'],
+        ['How much more should someone with a private bathroom pay?', 'Many households count an en-suite bathroom as 10–20% extra room size. This calculator uses 15% by default, and you can change it.'],
+        ['How should a couple sharing a room split rent?', 'A couple uses one bedroom, so they pay one room’s private share. They use the shared spaces twice as much as a single person, so they pay two shares of the common space. The calculator does this when you set people to 2.'],
+        ['Do I use square metres or square feet?', 'Either. Only the ratio between rooms matters, so use the same unit for every room.'],
+        ['What percentage of rent is for shared space?', 'Usually 30–50%. Work it out by comparing the area of common rooms with the total floor area, or agree on a number together. The default is 40%.'],
     ],
-    [
-      'How much more should someone with a private bathroom pay?',
-      <<<'EOT_TF'
-Many households count an en-suite bathroom as 10–20% extra room size. This calculator uses 15% by default, and you can change it.
-EOT_TF,
-    ],
-    [
-      'How should a couple sharing a room split rent?',
-      <<<'EOT_TF'
-A couple uses one bedroom, so they pay one room’s private share. They use the shared spaces twice as much as a single person, so they pay two shares of the common space. The calculator does this when you set people to 2.
-EOT_TF,
-    ],
-    [
-      'Do I use square metres or square feet?',
-      'Either. Only the ratio between rooms matters, so use the same unit for every room.',
-    ],
-    [
-      'What percentage of rent is for shared space?',
-      <<<'EOT_TF'
-Usually 30–50%. Work it out by comparing the area of common rooms with the total floor area, or agree on a number together. The default is 40%.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'rent split calculator, split rent fairly by room size, roommate rent calculator, shared apartment split',
+    'aka' => ['Roommate Rent Splitter', 'Bedroom Size Rent Calculator'],
 ];

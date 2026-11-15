@@ -1,29 +1,22 @@
 <?php
-// Calorie Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Calorie Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['Mifflin MD, St Jeor ST et al. (1990). A new predictive equation for resting energy expenditure in healthy individuals. Am J Clin Nutr.', 'https://pubmed.ncbi.nlm.nih.gov/2305711/'],
-  ],
-  'order' => 1,
-  'icon' => 'flame',
-  'popular' => true,
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'calories per day tdee calculator maintenance calories weight loss calories deficit',
-  'short' => 'How many calories you need a day to lose, maintain or gain weight.',
-  'title' => 'Calorie Calculator: How Many Calories Do I Need a Day?',
-  'description' => <<<'EOT_TF'
-Work out your daily calorie needs (TDEE) to lose, maintain or gain weight, using the Mifflin-St Jeor equation and your activity level. Metric or US units. Free.
-EOT_TF,
-  'related' => ['macro-calculator', 'bmr-calculator', 'bmi-calculator'],
-  'answer' => <<<'EOT_TF'
-Your daily calorie need is your <strong>resting metabolism (BMR)</strong> multiplied by an <strong>activity factor</strong>; this is your maintenance level, or TDEE. To lose about 0.5 kg (1 lb) a week, eat roughly <strong>550 kcal a day below</strong> maintenance. Enter your details to get a personal number for every goal.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Calorie Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 1,
+    'icon' => 'flame',
+    'popular' => true,
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'calorie calculator, daily calorie needs, tdee calculator, calorie deficit calculator, weight loss calories per day',
+    'short' => 'How many calories you need a day to lose, maintain or gain weight.',
+    'title' => 'Calorie Calculator – Daily TDEE & Weight Loss',
+    'description' => 'Calculate daily maintenance calories (TDEE), gentle fat-loss deficit and muscle-gain targets with Mifflin-St Jeor and activity multipliers.',
+    'related' => ['macro-calculator', 'bmr-calculator', 'bmi-calculator'],
+    'answer' => 'Your daily calorie need is your <strong>resting metabolism (BMR)</strong> multiplied by an <strong>activity factor</strong>; this is your maintenance level, or TDEE. To lose about 0.5 kg (1 lb) a week, eat roughly <strong>550 kcal a day below</strong> maintenance. Enter your details to get a personal number for every goal.',
+    'sources' => [
+        ['Mifflin MD, St Jeor ST et al. (1990). A new predictive equation for resting energy expenditure in healthy individuals. Am J Clin Nutr.', 'https://pubmed.ncbi.nlm.nih.gov/2305711/'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How the calculation works</h2>
 <p>The calculator uses the <strong>Mifflin-St Jeor equation</strong>, which studies have found to be the most accurate simple formula for estimating resting energy use in adults:</p>
 <div class="formula">Men:    BMR = 10 × weight(kg) + 6.25 × height(cm) − 5 × age + 5
@@ -54,33 +47,16 @@ TDEE (maintenance) = BMR × activity factor</div>
 
 <h2>Calories aren't everything</h2>
 <p>For health, what you eat matters as well as how much. Plenty of protein helps you keep muscle while losing weight; fibre from vegetables, fruit and whole grains keeps you full. Use the Macro Calculator to split your calories into protein, carbs and fat.</p>
+
+<h2>Choosing a Safe Deficit &amp; Adjusting Over Time</h2>
+<p>One pound (~0.45 kg) of adipose tissue holds roughly 3,500 kcal of stored energy, so a consistent 500 kcal daily deficit produces around 0.45 kg of fat loss per week on average, though adaptive thermogenesis and water shifts smooth out week-to-week scale weight. Avoid dropping below 1,200 kcal/day (women) or 1,500 kcal/day (men) without clinical supervision, and recalculate your TDEE after every 5 kg change.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How many calories should I eat a day?',
-      <<<'EOT_TF'
-It depends on your sex, age, height, weight and activity. Most adult women need roughly 1,800–2,400 kcal and men 2,200–3,000 kcal to maintain weight. Enter your details for a personal estimate.
-EOT_TF,
+    'faqs' => [
+        ['How many calories should I eat a day?', 'It depends on your sex, age, height, weight and activity. Most adult women need roughly 1,800–2,400 kcal and men 2,200–3,000 kcal to maintain weight. Enter your details for a personal estimate.'],
+        ['How many calories should I eat to lose weight?', 'About 500–550 kcal a day below your maintenance level to lose roughly 0.5 kg (1 lb) a week.'],
+        ['What is TDEE?', 'Total daily energy expenditure: the calories you burn in a day, including resting metabolism, daily activity, exercise and digestion.'],
+        ['Which formula does this calculator use?', 'The Mifflin-St Jeor equation, multiplied by a standard activity factor.'],
+        ['Is a 1,200 calorie diet safe?', '1,200 kcal is generally the lowest level recommended for women without medical supervision. Many people need more to stay healthy.'],
     ],
-    [
-      'How many calories should I eat to lose weight?',
-      'About 500–550 kcal a day below your maintenance level to lose roughly 0.5 kg (1 lb) a week.',
-    ],
-    [
-      'What is TDEE?',
-      <<<'EOT_TF'
-Total daily energy expenditure: the calories you burn in a day, including resting metabolism, daily activity, exercise and digestion.
-EOT_TF,
-    ],
-    [
-      'Which formula does this calculator use?',
-      'The Mifflin-St Jeor equation, multiplied by a standard activity factor.',
-    ],
-    [
-      'Is a 1,200 calorie diet safe?',
-      <<<'EOT_TF'
-1,200 kcal is generally the lowest level recommended for women without medical supervision. Many people need more to stay healthy.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Daily Calorie Calculator', 'TDEE & Deficit Calculator'],
 ];

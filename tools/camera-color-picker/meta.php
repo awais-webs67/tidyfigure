@@ -1,23 +1,18 @@
 <?php
-// Camera Color Picker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Camera Color Picker',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'device',
-  'order' => 7,
-  'scripts' => ['color.js'],
-  'icon' => 'aperture',
-  'keywords' => 'camera color picker color identifier identify color from camera what color is this color finder app hex from camera paint match',
-  'short' => 'Point your camera at anything to get its colour name and HEX code.',
-  'title' => 'Camera Color Picker: Identify Any Color Live',
-  'description' => <<<'EOT_TF'
-Point your phone or webcam at anything to see its colour name, HEX, RGB and HSL codes live. Tap to pick a spot, save colours to a palette. Private.
-EOT_TF,
-  'related' => ['image-color-picker', 'color-converter', 'color-combination-checker', 'outfit-color-matcher'],
-  'answer' => <<<'EOT_TF'
-Click <strong>Start camera</strong> and point it at an object: the colour under the crosshair is shown live with its <strong>name</strong>, <strong>HEX</strong>, <strong>RGB</strong> and <strong>HSL</strong> codes. Tap the picture to pick another spot, <strong>Freeze</strong> to hold a reading, and <strong>Save</strong> colours to a palette you can copy.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Camera Color Picker',
+    'updated' => '2026-11-15',
+    'category' => 'device',
+    'order' => 7,
+    'scripts' => ['color.js'],
+    'icon' => 'aperture',
+    'keywords' => 'camera color picker, live color identifier, webcam hex finder, detect color from camera, paint color matcher',
+    'short' => 'Point your camera at anything to get its colour name and HEX code.',
+    'title' => 'Camera Color Picker – Live HEX & RGB Finder',
+    'description' => 'Aim your phone camera or webcam at walls, fabric or prints to detect HEX, RGB and HSL colour codes live and build saved palettes without uploads.',
+    'related' => ['image-color-picker', 'color-converter', 'color-combination-checker', 'outfit-color-matcher'],
+    'answer' => 'Click <strong>Start camera</strong> and point it at an object: the colour under the crosshair is shown live with its <strong>name</strong>, <strong>HEX</strong>, <strong>RGB</strong> and <strong>HSL</strong> codes. Tap the picture to pick another spot, <strong>Freeze</strong> to hold a reading, and <strong>Save</strong> colours to a palette you can copy.',
+    'article' => <<<'EOT_TF'
 <h2>How to identify a colour with your camera</h2>
 <ol>
 <li>Click <strong>Start camera</strong> and allow access. On a phone, the back camera is used.</li>
@@ -46,37 +41,16 @@ EOT_TF,
 
 <h2>No camera? Use a photo</h2>
 <p>To pick colours from a picture you already have, use the <a href="/image-color-picker">image color picker</a>. To convert a code to other formats, use the <a href="/color-converter">color converter</a>.</p>
+
+<h2>Matching Paint &amp; Digital Colours Under Real Lighting</h2>
+<p>Warm indoor LED bulbs shift neutrals toward orange-yellow, whereas cloudy north-facing daylight reveals truer pigments. Take three sample readings across the surface, average or compare their HSL saturation, and test contrast pairings before ordering paint tins or textile swatches.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I find the colour of an object with my phone?',
-      <<<'EOT_TF'
-Open this page on your phone, start the camera and point the crosshair at the object. The colour name and HEX code appear live.
-EOT_TF,
+    'faqs' => [
+        ['How do I find the colour of an object with my phone?', 'Open this page on your phone, start the camera and point the crosshair at the object. The colour name and HEX code appear live.'],
+        ['Why does the colour change as I move?', 'Cameras adjust to the light. Shadows, reflections and warm or cool lighting all change the reading. Use daylight and avoid shiny spots for the most stable result.'],
+        ['Can it match paint colours?', 'It gives the HEX and RGB values you can type into a paint company’s colour finder. Lighting affects the reading, so always check a sample in person.'],
+        ['Is the camera picture uploaded?', 'No. The colour is measured in your browser. Nothing is recorded or sent anywhere.'],
+        ['Can I pick colours from a photo instead?', 'Yes. Use the image color picker to upload a photo and click any pixel to get its colour.'],
     ],
-    [
-      'Why does the colour change as I move?',
-      <<<'EOT_TF'
-Cameras adjust to the light. Shadows, reflections and warm or cool lighting all change the reading. Use daylight and avoid shiny spots for the most stable result.
-EOT_TF,
-    ],
-    [
-      'Can it match paint colours?',
-      <<<'EOT_TF'
-It gives the HEX and RGB values you can type into a paint company’s colour finder. Lighting affects the reading, so always check a sample in person.
-EOT_TF,
-    ],
-    [
-      'Is the camera picture uploaded?',
-      <<<'EOT_TF'
-No. The colour is measured in your browser. Nothing is recorded or sent anywhere.
-EOT_TF,
-    ],
-    [
-      'Can I pick colours from a photo instead?',
-      <<<'EOT_TF'
-Yes. Use the image color picker to upload a photo and click any pixel to get its colour.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Live Camera Color Finder', 'Webcam HEX Color Picker'],
 ];

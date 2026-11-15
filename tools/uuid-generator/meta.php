@@ -1,23 +1,17 @@
 <?php
-// UUID Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'UUID Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'dev',
-  'order' => 2,
-  'icon' => 'fingerprint',
-  'keywords' => 'uuid generator guid generator random uuid v4 uuid v7 bulk uuid online unique id',
-  'short' => 'Generate random UUID v4 or time-ordered v7 IDs, one or a thousand at a time.',
-  'title' => 'UUID Generator: Random UUID v4 & v7 (GUID) Online',
-  'description' => <<<'EOT_TF'
-Generate UUID v4 (random) or UUID v7 (time-ordered) identifiers in bulk, in lowercase, uppercase or without dashes. Uses secure randomness. Free.
-EOT_TF,
-  'related' => ['password-generator', 'hash-generator', 'random-number-generator'],
-  'answer' => <<<'EOT_TF'
-A <strong>UUID</strong> (universally unique identifier, called a GUID by Microsoft) is a 128-bit ID written as 32 hex digits, like <code>3f2b8c1e-9a4d-4e7b-b1c2-5d6e7f8a9b0c</code>. <strong>Version 4</strong> is random. <strong>Version 7</strong> starts with a timestamp, so new IDs sort in order, which makes them faster as database keys.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'UUID Generator',
+    'updated' => '2026-11-15',
+    'category' => 'dev',
+    'order' => 2,
+    'icon' => 'fingerprint',
+    'keywords' => 'uuid generator, guid generator online, uuid v4 v7 bulk, random unique id generator',
+    'short' => 'Generate random UUID v4 or time-ordered v7 IDs, one or a thousand at a time.',
+    'title' => 'UUID Generator – Bulk UUID v4 & v7 (GUID)',
+    'description' => 'Generate RFC-compliant random UUID v4 or timestamp-sorted UUID v7 identifiers in bulk with uppercase, lowercase or hyphen-free output.',
+    'related' => ['password-generator', 'hash-generator', 'random-number-generator'],
+    'answer' => 'A <strong>UUID</strong> (universally unique identifier, called a GUID by Microsoft) is a 128-bit ID written as 32 hex digits, like <code>3f2b8c1e-9a4d-4e7b-b1c2-5d6e7f8a9b0c</code>. <strong>Version 4</strong> is random. <strong>Version 7</strong> starts with a timestamp, so new IDs sort in order, which makes them faster as database keys.',
+    'article' => <<<'EOT_TF'
 <h2>Anatomy of a UUID</h2>
 <div class="formula">xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx
           8    4    4    4    12   hex digits
@@ -56,33 +50,16 @@ C#:          Guid.NewGuid()   ·  Guid.CreateVersion7() in .NET 9+</div>
 <li><strong>Braces</strong> such as <code>{…}</code> are used in the Windows registry and some .NET code.</li>
 </ul>
 <p>UUIDs are generated in your browser. They aren't sent anywhere or stored, so each one is yours alone.</p>
+
+<h2>Why Database Teams Are Adopting UUID v7</h2>
+<p>Purely random UUID v4 inserts scatter rows randomly across PostgreSQL or MySQL B-tree primary key pages, inflating index fragmentation at scale. Embedding a 48-bit Unix millisecond timestamp upfront lets UUID v7 stay globally unique while appending sequentially on disk.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is a UUID?',
-      <<<'EOT_TF'
-A 128-bit universally unique identifier, written as 32 hexadecimal digits in five groups (8-4-4-4-12). Microsoft calls it a GUID.
-EOT_TF,
+    'faqs' => [
+        ['What is a UUID?', 'A 128-bit universally unique identifier, written as 32 hexadecimal digits in five groups (8-4-4-4-12). Microsoft calls it a GUID.'],
+        ['What is the difference between UUID v4 and v7?', 'v4 is fully random. v7 starts with a timestamp, so IDs sort by creation time, which is better for database primary keys.'],
+        ['Are UUIDs really unique?', 'For practical purposes, yes. The chance of two random v4 UUIDs colliding is astronomically small when a secure random generator is used.'],
+        ['Is a GUID the same as a UUID?', 'Yes. GUID is Microsoft’s name for the same 128-bit identifier format.'],
+        ['Can I generate UUIDs in bulk?', 'Yes. Generate up to 1,000 at once, copy them or download them as a text file.'],
     ],
-    [
-      'What is the difference between UUID v4 and v7?',
-      <<<'EOT_TF'
-v4 is fully random. v7 starts with a timestamp, so IDs sort by creation time, which is better for database primary keys.
-EOT_TF,
-    ],
-    [
-      'Are UUIDs really unique?',
-      <<<'EOT_TF'
-For practical purposes, yes. The chance of two random v4 UUIDs colliding is astronomically small when a secure random generator is used.
-EOT_TF,
-    ],
-    [
-      'Is a GUID the same as a UUID?',
-      'Yes. GUID is Microsoft’s name for the same 128-bit identifier format.',
-    ],
-    [
-      'Can I generate UUIDs in bulk?',
-      'Yes. Generate up to 1,000 at once, copy them or download them as a text file.',
-    ],
-  ],
+    'aka' => ['GUID Generator', 'UUID v4 & v7 Creator'],
 ];

@@ -1,23 +1,18 @@
 <?php
-// What Is My Screen Resolution: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'What Is My Screen Resolution',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'device',
-  'order' => 4,
-  'popular' => true,
-  'icon' => 'monitor',
-  'keywords' => 'what is my screen resolution screen size my resolution display resolution viewport size device pixel ratio refresh rate',
-  'short' => 'See your screen resolution, window size, pixel ratio and refresh rate.',
-  'title' => 'What Is My Screen Resolution? Check It Instantly',
-  'description' => <<<'EOT_TF'
-See your screen resolution, real pixel size, browser window size, pixel ratio, aspect ratio and refresh rate at a glance. Updates live as you resize.
-EOT_TF,
-  'related' => ['keyboard-test', 'webcam-test', 'image-resizer', 'cps-test'],
-  'answer' => <<<'EOT_TF'
-Your screen resolution is shown in large numbers at the top. Computers and phones report a <strong>CSS resolution</strong> (the size web pages see) and a <strong>pixel ratio</strong>; multiply them for the screen’s real pixels. The browser window size updates live as you resize, and the refresh rate is measured in about a second.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'What Is My Screen Resolution',
+    'updated' => '2026-11-15',
+    'category' => 'device',
+    'order' => 4,
+    'popular' => true,
+    'icon' => 'monitor',
+    'keywords' => 'what is my screen resolution, viewport size checker, device pixel ratio, screen refresh rate test, display pixels',
+    'short' => 'See your screen resolution, window size, pixel ratio and refresh rate.',
+    'title' => 'What Is My Screen Resolution? – Viewport & DPR',
+    'description' => 'See physical screen pixel resolution, active browser viewport dimensions, device pixel ratio (DPR), aspect ratio and refresh rate live.',
+    'related' => ['keyboard-test', 'webcam-test', 'image-resizer', 'cps-test'],
+    'answer' => 'Your screen resolution is shown in large numbers at the top. Computers and phones report a <strong>CSS resolution</strong> (the size web pages see) and a <strong>pixel ratio</strong>; multiply them for the screen’s real pixels. The browser window size updates live as you resize, and the refresh rate is measured in about a second.',
+    'article' => <<<'EOT_TF'
 <h2>Screen resolution, real pixels and window size</h2>
 <ul>
 <li><strong>Screen resolution (CSS pixels):</strong> the size your operating system tells websites, after display scaling. A laptop with a 1920×1080 panel at 125% scaling reports 1536×864.</li>
@@ -42,37 +37,17 @@ EOT_TF,
 
 <h2>Why designers and support teams ask for it</h2>
 <p>Web designers test layouts at common window sizes, and support teams ask for your resolution to reproduce a display problem. Copy the summary with one click and paste it into your message.</p>
+
+<h2>Why CSS Viewport Pixels Differ From Physical Panel Pixels</h2>
+<p>On a Retina MacBook or modern smartphone with a <code>2x</code> or <code>3x</code> device pixel ratio, a browser reports a crisp CSS viewport (for example 390×844 on mobile or 1440×900 on laptop) while the physical OLED or IPS matrix drives four to nine hardware sub-pixels per CSS pixel—essential context when reporting UI bugs or choosing responsive image widths.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is my screen resolution?',
-      <<<'EOT_TF'
-It’s shown at the top of this page as soon as it opens. The real pixel count is the CSS resolution multiplied by the device pixel ratio, which is also shown.
-EOT_TF,
+    'faqs' => [
+        ['What is my screen resolution?', 'It’s shown at the top of this page as soon as it opens. The real pixel count is the CSS resolution multiplied by the device pixel ratio, which is also shown.'],
+        ['Why is my resolution lower than my monitor’s?', 'Display scaling. At 125% or 150% scaling, Windows reports a smaller size to websites so text isn’t tiny. The real pixel number accounts for this.'],
+        ['What is device pixel ratio?', 'The number of physical pixels in one CSS pixel. A ratio of 2 means each point on a web page is drawn with 2×2 real pixels, which makes text sharper.'],
+        ['How is the refresh rate measured?', 'By counting how many frames the browser draws in one second. It matches your screen’s refresh rate unless the browser is busy or in power-saving mode.'],
+        ['Does this work on phones?', 'Yes. Phones show their CSS size, pixel ratio and real pixels. Turn the phone to see the size change with orientation.'],
+        ['Why does my screen show lower resolution numbers than the manufacturer spec?', 'HiDPI scaling divides hardware pixels by your device pixel ratio (often 1.5x or 2x) to produce crisp CSS viewport dimensions for readable text.'],
     ],
-    [
-      'Why is my resolution lower than my monitor’s?',
-      <<<'EOT_TF'
-Display scaling. At 125% or 150% scaling, Windows reports a smaller size to websites so text isn’t tiny. The real pixel number accounts for this.
-EOT_TF,
-    ],
-    [
-      'What is device pixel ratio?',
-      <<<'EOT_TF'
-The number of physical pixels in one CSS pixel. A ratio of 2 means each point on a web page is drawn with 2×2 real pixels, which makes text sharper.
-EOT_TF,
-    ],
-    [
-      'How is the refresh rate measured?',
-      <<<'EOT_TF'
-By counting how many frames the browser draws in one second. It matches your screen’s refresh rate unless the browser is busy or in power-saving mode.
-EOT_TF,
-    ],
-    [
-      'Does this work on phones?',
-      <<<'EOT_TF'
-Yes. Phones show their CSS size, pixel ratio and real pixels. Turn the phone to see the size change with orientation.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Screen Resolution Checker', 'Viewport Size Detector'],
 ];

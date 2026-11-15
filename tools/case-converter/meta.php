@@ -1,23 +1,17 @@
 <?php
-// Case Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Case Converter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 3,
-  'icon' => 'case-sensitive',
-  'keywords' => 'uppercase lowercase title case sentence case camelcase snake case capitalize',
-  'short' => 'Change text to UPPER, lower, Title or Sentence case, camelCase and more.',
-  'title' => 'Case Converter: Uppercase, Lowercase, Title & Sentence Case',
-  'description' => <<<'EOT_TF'
-Convert text to uppercase, lowercase, Title Case, Sentence case, camelCase, snake_case, kebab-case and more. Fix caps-lock mistakes instantly. Free.
-EOT_TF,
-  'related' => ['word-counter', 'fancy-text-generator', 'remove-duplicate-lines'],
-  'answer' => <<<'EOT_TF'
-Paste your text and pick a style. <strong>Sentence case</strong> capitalises the first letter of each sentence (fixes text typed with caps lock on). <strong>Title Case</strong> capitalises the main words of a headline but keeps short words like "of", "and" and "the" lower case. Programmers can switch between camelCase, snake_case and kebab-case.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Case Converter',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 3,
+    'icon' => 'case-sensitive',
+    'keywords' => 'case converter, uppercase to lowercase, title case converter, sentence case fixer, camelCase snake_case',
+    'short' => 'Change text to UPPER, lower, Title or Sentence case, camelCase and more.',
+    'title' => 'Case Converter – Upper, Lower, Title & Camel',
+    'description' => 'Transform accidental caps-lock text into Title Case, Sentence case, UPPERCASE, lowercase, camelCase, snake_case or kebab-case in one click.',
+    'related' => ['word-counter', 'fancy-text-generator', 'remove-duplicate-lines'],
+    'answer' => 'Paste your text and pick a style. <strong>Sentence case</strong> capitalises the first letter of each sentence (fixes text typed with caps lock on). <strong>Title Case</strong> capitalises the main words of a headline but keeps short words like "of", "and" and "the" lower case. Programmers can switch between camelCase, snake_case and kebab-case.',
+    'article' => <<<'EOT_TF'
 <h2>Every case explained</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>Case</th><th>Example</th><th>Used for</th></tr></thead>
@@ -43,33 +37,16 @@ EOT_TF,
 
 <h2>For developers</h2>
 <p>The programming cases split text into words at spaces, punctuation and existing case changes, so "userAccountID", "user account id" and "user-account-id" all convert cleanly into each other. Each line is converted separately, which makes it easy to rename a whole list of variables at once.</p>
+
+<h2>When to Choose Title Case vs Sentence Case</h2>
+<p>Major US newsrooms and blog headlines prefer Title Case (capitalising major words while lowercasing short prepositions under four letters), whereas modern product interfaces, UK editorial style and clean navigation labels favour Sentence case for quicker scanning.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I change text from uppercase to lowercase?',
-      <<<'EOT_TF'
-Paste the text and click “lower case”. To keep capital letters at the start of sentences, choose “Sentence case” instead.
-EOT_TF,
+    'faqs' => [
+        ['How do I change text from uppercase to lowercase?', 'Paste the text and click “lower case”. To keep capital letters at the start of sentences, choose “Sentence case” instead.'],
+        ['What words are not capitalised in title case?', 'Short articles, conjunctions and prepositions such as a, an, the, and, but, or, of, in, on, at, to and for, unless they are the first or last word of the title.'],
+        ['What is the difference between Title Case and Capitalize Each Word?', 'Title Case keeps small words like “of” and “the” in lower case. Capitalize Each Word capitalises every word.'],
+        ['How do I fix text typed in caps lock?', 'Paste it and choose Sentence case. Then capitalise any names by hand.'],
+        ['Is my text stored?', 'No. Conversion happens in your browser and nothing is sent anywhere.'],
     ],
-    [
-      'What words are not capitalised in title case?',
-      <<<'EOT_TF'
-Short articles, conjunctions and prepositions such as a, an, the, and, but, or, of, in, on, at, to and for, unless they are the first or last word of the title.
-EOT_TF,
-    ],
-    [
-      'What is the difference between Title Case and Capitalize Each Word?',
-      <<<'EOT_TF'
-Title Case keeps small words like “of” and “the” in lower case. Capitalize Each Word capitalises every word.
-EOT_TF,
-    ],
-    [
-      'How do I fix text typed in caps lock?',
-      'Paste it and choose Sentence case. Then capitalise any names by hand.',
-    ],
-    [
-      'Is my text stored?',
-      'No. Conversion happens in your browser and nothing is sent anywhere.',
-    ],
-  ],
+    'aka' => ['Text Case Changer', 'Title & Sentence Case Converter'],
 ];

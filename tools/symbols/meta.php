@@ -1,23 +1,18 @@
 <?php
-// Symbols Copy and Paste: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Symbols Copy and Paste',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 7,
-  'popular' => true,
-  'icon' => 'omega',
-  'keywords' => 'symbols copy and paste check mark symbol heart symbol arrow symbols degree symbol star symbol copy paste special characters alt codes',
-  'short' => 'Copy and paste ✓ ★ → ♥ ° € and hundreds more with one click.',
-  'title' => 'Symbols Copy and Paste: ✓ ★ → ♥ and 500 More',
-  'description' => <<<'EOT_TF'
-Copy and paste symbols in one click: check marks, stars, hearts, arrows, degree, currency and maths. Search by name; see Alt codes and Mac shortcuts.
-EOT_TF,
-  'related' => ['fancy-text-generator', 'character-counter', 'online-notepad', 'case-converter'],
-  'answer' => <<<'EOT_TF'
-Click any symbol to <strong>copy it</strong>, then paste it anywhere with Ctrl+V (⌘+V on a Mac). Search by name, such as “check”, “heart”, “arrow” or “degree”. Each symbol shows its name, Unicode code, HTML code and, where one exists, the <strong>Alt code</strong> for Windows and the shortcut for Mac. Your recent symbols stay at the top.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Symbols Copy and Paste',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 7,
+    'popular' => true,
+    'icon' => 'omega',
+    'keywords' => 'symbols copy paste, checkmark symbol copy, arrow degree unicode, html symbol entity finder',
+    'short' => 'Copy and paste ✓ ★ → ♥ ° € and hundreds more with one click.',
+    'title' => 'Copy & Paste Symbols – Checkmarks, Arrows, Math',
+    'description' => 'Search and copy 500+ Unicode symbols—checkmarks, arrows, stars, currency, degrees and maths operators—with Windows Alt codes and HTML entities.',
+    'related' => ['fancy-text-generator', 'character-counter', 'online-notepad', 'case-converter'],
+    'answer' => 'Click any symbol to <strong>copy it</strong>, then paste it anywhere with Ctrl+V (⌘+V on a Mac). Search by name, such as “check”, “heart”, “arrow” or “degree”. Each symbol shows its name, Unicode code, HTML code and, where one exists, the <strong>Alt code</strong> for Windows and the shortcut for Mac. Your recent symbols stay at the top.',
+    'article' => <<<'EOT_TF'
 <h2>How to use the symbols</h2>
 <ol>
 <li>Find the symbol in a group below, or type its name in the search box.</li>
@@ -46,37 +41,18 @@ EOT_TF,
 
 <h2>Symbols that look broken</h2>
 <p>If a symbol shows as an empty box (□), the font on that device doesn’t include it. Common symbols such as ✓ ★ ♥ → ° € work everywhere; rarer ones may not show on older phones.</p>
+
+<h2>Using HTML Entities &amp; Unicode Across Codebases</h2>
+<p>Pasting raw UTF-8 characters like <code>✓</code>, <code>→</code> or <code>°</code> works safely inside modern HTML5 and CSS documents served as UTF-8, while named entities (<code>&amp;deg;</code>, <code>&amp;mdash;</code>, <code>&amp;times;</code>) remain handy inside plain ASCII templates or email code.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I copy a symbol?',
-      <<<'EOT_TF'
-Click it. The symbol is copied to your clipboard and you can paste it anywhere with Ctrl+V (or ⌘+V on a Mac).
-EOT_TF,
+    'faqs' => [
+        ['How do I copy a symbol?', 'Click it. The symbol is copied to your clipboard and you can paste it anywhere with Ctrl+V (or ⌘+V on a Mac).'],
+        ['How do I type a check mark ✓?', 'Copy it from this page. In Word you can also type 2713 and press Alt+X. There’s no standard Alt code for ✓ on Windows.'],
+        ['How do I type the degree symbol °?', 'On Windows, hold Alt and type 0176 on the number pad. On a Mac, press Option+Shift+8. On phones, press and hold the 0 key.'],
+        ['Will these symbols work on Instagram and WhatsApp?', 'Yes. They are standard Unicode characters that work in bios, captions, messages and usernames where symbols are allowed.'],
+        ['Why does a symbol show as a box?', 'The device’s font doesn’t include that character. Common symbols work everywhere; try a more common alternative if your audience uses older phones.'],
+        ['Why do some copied symbols turn into empty squares on older phones?', 'That device lacks a font glyph covering newer Unicode blocks; stick to standard geometric arrows, stars and math symbols for universal rendering.'],
+        ['How do Windows Alt codes work for common degree and check symbols?', 'Hold Left Alt and type the numeric code on a full number pad (such as Alt+0176 for the degree ° sign), or copy straight from our table.'],
     ],
-    [
-      'How do I type a check mark ✓?',
-      <<<'EOT_TF'
-Copy it from this page. In Word you can also type 2713 and press Alt+X. There’s no standard Alt code for ✓ on Windows.
-EOT_TF,
-    ],
-    [
-      'How do I type the degree symbol °?',
-      <<<'EOT_TF'
-On Windows, hold Alt and type 0176 on the number pad. On a Mac, press Option+Shift+8. On phones, press and hold the 0 key.
-EOT_TF,
-    ],
-    [
-      'Will these symbols work on Instagram and WhatsApp?',
-      <<<'EOT_TF'
-Yes. They are standard Unicode characters that work in bios, captions, messages and usernames where symbols are allowed.
-EOT_TF,
-    ],
-    [
-      'Why does a symbol show as a box?',
-      <<<'EOT_TF'
-The device’s font doesn’t include that character. Common symbols work everywhere; try a more common alternative if your audience uses older phones.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Unicode Symbol Picker', 'Checkmark & Arrow Copy Tool'],
 ];

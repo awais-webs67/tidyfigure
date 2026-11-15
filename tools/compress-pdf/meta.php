@@ -1,30 +1,24 @@
 <?php
-// Compress PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Compress PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 8,
-  'icon' => 'minimize-2',
-  'popular' => true,
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'keywords' => 'reduce pdf size shrink pdf make pdf smaller pdf under 1mb email',
-  'aka' => ['reduce PDF size', 'PDF compressor', 'shrink PDF', 'make PDF smaller'], // other names people search for
-  'short' => 'Shrink scanned and image-heavy PDFs to fit email and upload limits.',
-  'title' => 'Compress PDF: Reduce PDF File Size Online, Free',
-  'description' => <<<'EOT_TF'
-Make scanned and image-heavy PDFs smaller for email and upload forms. Three compression levels, black & white option, no upload, no watermark, no sign-up.
-EOT_TF,
-  'related' => ['delete-pdf-pages', 'image-compressor', 'pdf-to-jpg'],
-  'answer' => <<<'EOT_TF'
-Large PDFs are almost always large because of <strong>images</strong>: scanned pages and photos. This compressor redraws every page as an optimised image, which typically shrinks scanned documents by <strong>50–90%</strong>. Choose "Recommended" for a good balance, "Strong" to hit tight upload limits, and tick black &amp; white for text scans.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Compress PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 8,
+    'icon' => 'minimize-2',
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'keywords' => 'compress pdf, reduce pdf file size online free, shrink scanned pdf no upload, pdf size reducer',
+    'aka' => ['PDF Size Reducer', 'Browser PDF Compressor'],
+    'short' => 'Shrink scanned and image-heavy PDFs to fit email and upload limits.',
+    'title' => 'Compress PDF Online Free – Shrink PDF Size',
+    'description' => 'Shrink bulky scanned or photo-heavy PDFs cleanly for email and portal uploads using quality presets or greyscale mode—zero uploads or signup.',
+    'related' => ['delete-pdf-pages', 'image-compressor', 'pdf-to-jpg'],
+    'answer' => 'Large PDFs are almost always large because of <strong>images</strong>: scanned pages and photos. This compressor redraws every page as an optimised image, which typically shrinks scanned documents by <strong>50–90%</strong>. Choose "Recommended" for a good balance, "Strong" to hit tight upload limits, and tick black &amp; white for text scans.',
+    'article' => <<<'EOT_TF'
 <h2>What makes a PDF big?</h2>
 <p>Text and vector graphics take very little space: a 50-page text report can be under 500 KB. Scans and photos are different. A single page scanned at 600 DPI in colour can be 5 MB or more, so a 10-page scanned contract easily reaches 40 MB, far above most email and upload limits.</p>
 
@@ -51,28 +45,16 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>Compression runs in your browser. Your document is never uploaded, which matters for IDs, payslips and contracts, the documents people most often need to shrink for official forms.</p>
+
+<h2>Why Vector-Text PDFs Shrink Less Than Scanned Images</h2>
+<p>PDFs exported directly from Word or Google Docs already hold tiny compressed text streams—their bulk usually comes from uncropped full-resolution PNG screenshots or 300-DPI scans. Switching multi-page scans to crisp 150 DPI black-and-white cuts megabytes dramatically while keeping letters razor sharp.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I reduce the size of a PDF?',
-      <<<'EOT_TF'
-Open it here, choose a compression level and press Compress. Scanned and image-heavy PDFs typically shrink by 50–90%.
-EOT_TF,
+    'faqs' => [
+        ['How do I reduce the size of a PDF?', 'Open it here, choose a compression level and press Compress. Scanned and image-heavy PDFs typically shrink by 50–90%.'],
+        ['How do I compress a PDF to under 1 MB?', 'Choose Strong and tick black & white for text scans. If it’s still too big, remove pages you don’t need first.'],
+        ['Why can’t I select text after compressing?', 'Pages are redrawn as images to save space. Keep the original PDF if you need selectable text.'],
+        ['Why didn’t my PDF get smaller?', 'Text-only PDFs are already efficient. Compression helps PDFs that contain scans and photos.'],
+        ['Is my PDF uploaded?', 'No. Compression happens on your device.'],
+        ['Will shrinking embedded PDF images lower readable vector font sharpness?', 'Normal vector text streams stay crisp while oversized embedded JPEGs downsample cleanly to selected DPI presets.'],
     ],
-    [
-      'How do I compress a PDF to under 1 MB?',
-      <<<'EOT_TF'
-Choose Strong and tick black & white for text scans. If it’s still too big, remove pages you don’t need first.
-EOT_TF,
-    ],
-    [
-      'Why can’t I select text after compressing?',
-      'Pages are redrawn as images to save space. Keep the original PDF if you need selectable text.',
-    ],
-    [
-      'Why didn’t my PDF get smaller?',
-      'Text-only PDFs are already efficient. Compression helps PDFs that contain scans and photos.',
-    ],
-    ['Is my PDF uploaded?', 'No. Compression happens on your device.'],
-  ],
 ];

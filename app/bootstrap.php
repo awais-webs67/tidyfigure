@@ -92,7 +92,7 @@ function tf_setting_defaults(): array
         'social_profiles' => '',   // one URL per line (used in Organization schema and the footer)
         'indexnow_key' => '',
         'robots_extra' => '',
-        'title_suffix' => '0',     // '1' adds " | Site name" to tool titles that are short enough
+        'title_suffix' => '1',     // '1' adds " | Site name" to tool titles that are short enough
         // Hosted QR codes
         'qr_enabled' => '1', 'qr_days' => '30', 'qr_max_mb' => '10', 'qr_per_hour' => '20', 'qr_blocked' => '',
         // Share pages (friendship quiz, giveaway, wedding invitation)

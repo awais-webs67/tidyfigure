@@ -1,26 +1,18 @@
 <?php
-// Tile Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Tile Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'home',
-  'order' => 2,
-  'icon' => 'grid-3x3',
-  'appCategory' => 'LifestyleApplication',
-  'keywords' => <<<'EOT_TF'
-tile calculator how many tiles do i need floor tiles wall tiles boxes square metres square feet bathroom kitchen
-EOT_TF,
-  'short' => 'How many floor or wall tiles and boxes to buy, with extra for cuts.',
-  'title' => 'Tile Calculator: How Many Tiles & Boxes Do I Need?',
-  'description' => <<<'EOT_TF'
-Work out how many floor or wall tiles you need from the area and tile size, with extra for cuts and breakage, plus the number of boxes and cost. Metric or feet.
-EOT_TF,
-  'related' => ['paint-calculator', 'concrete-calculator', 'unit-converter'],
-  'answer' => <<<'EOT_TF'
-Tiles needed = <strong>area ÷ area of one tile</strong>, plus 10% for cuts and breakage. A 3.6 × 2.4 m floor is 8.64 m²; 30 × 30 cm tiles cover 0.09 m² each, so you need 96 tiles, or <strong>106 with 10% extra</strong>. At 11 tiles a box, that's 10 boxes.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Tile Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'home',
+    'order' => 2,
+    'icon' => 'grid-3x3',
+    'appCategory' => 'LifestyleApplication',
+    'keywords' => 'tile calculator, how many tiles do i need, floor tile calculator, square foot tile boxes, bathroom tile estimator',
+    'short' => 'How many floor or wall tiles and boxes to buy, with extra for cuts.',
+    'title' => 'Tile Calculator – Floor & Wall Boxes + Waste',
+    'description' => 'Count how many floor or wall tiles and boxes you need from room size, tile dimensions and 10–15% breakage waste in metric or square feet.',
+    'related' => ['paint-calculator', 'concrete-calculator', 'unit-converter'],
+    'answer' => 'Tiles needed = <strong>area ÷ area of one tile</strong>, plus 10% for cuts and breakage. A 3.6 × 2.4 m floor is 8.64 m²; 30 × 30 cm tiles cover 0.09 m² each, so you need 96 tiles, or <strong>106 with 10% extra</strong>. At 11 tiles a box, that\'s 10 boxes.',
+    'article' => <<<'EOT_TF'
 <h2>The tile formula</h2>
 <div class="formula">Area        = length × width (minus anything you won't tile)
 Tile area   = tile length × tile width
@@ -62,32 +54,12 @@ Example: 3.6 × 2.4 = 8.64 m²
 </ul>
 <p>Painting the walls too? Use the <a href="/paint-calculator">paint calculator</a>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How many tiles do I need?',
-      <<<'EOT_TF'
-Divide the area by the area of one tile, then add 10% for cuts and breakage. For 8.64 m² with 30 × 30 cm tiles, that is 96 tiles, or 106 with extra.
-EOT_TF,
+    'faqs' => [
+        ['How many tiles do I need?', 'Divide the area by the area of one tile, then add 10% for cuts and breakage. For 8.64 m² with 30 × 30 cm tiles, that is 96 tiles, or 106 with extra.'],
+        ['How many 12 × 12 tiles do I need for 100 square feet?', 'Each covers 1 sq ft, so 100 tiles, plus 10% extra: 110 tiles.'],
+        ['How much extra tile should I buy?', 'About 10% for most rooms, 15% for diagonal or herringbone layouts, and up to 20% for complex rooms or large tiles.'],
+        ['How many tiles are in a box?', 'It depends on the tile size and brand. Check the box, which also shows the area it covers, and enter the number above.'],
+        ['Do I need to allow for grout lines?', 'Not usually. Ignoring grout gaps gives a small extra margin.'],
     ],
-    [
-      'How many 12 × 12 tiles do I need for 100 square feet?',
-      'Each covers 1 sq ft, so 100 tiles, plus 10% extra: 110 tiles.',
-    ],
-    [
-      'How much extra tile should I buy?',
-      <<<'EOT_TF'
-About 10% for most rooms, 15% for diagonal or herringbone layouts, and up to 20% for complex rooms or large tiles.
-EOT_TF,
-    ],
-    [
-      'How many tiles are in a box?',
-      <<<'EOT_TF'
-It depends on the tile size and brand. Check the box, which also shows the area it covers, and enter the number above.
-EOT_TF,
-    ],
-    [
-      'Do I need to allow for grout lines?',
-      'Not usually. Ignoring grout gaps gives a small extra margin.',
-    ],
-  ],
+    'aka' => ['Floor & Wall Tile Estimator', 'Tile Box Calculator'],
 ];

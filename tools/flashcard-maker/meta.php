@@ -1,26 +1,18 @@
 <?php
-// Flashcard Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Flashcard Maker',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'study',
-  'order' => 4,
-  'icon' => 'layers',
-  'appCategory' => 'EducationalApplication',
-  'keywords' => <<<'EOT_TF'
-flashcard maker online flashcards study cards quizlet alternative revision vocabulary memorize printable flash cards
-EOT_TF,
-  'short' => 'Paste terms and answers, then study them as flip cards that repeat the ones you miss.',
-  'title' => 'Flashcard Maker: Make & Study Online Flashcards, Free',
-  'description' => <<<'EOT_TF'
-Make flashcards in seconds by pasting term – answer pairs. Study with flip cards that repeat the ones you miss, share decks with a link or print them. Free.
-EOT_TF,
-  'related' => ['grade-calculator', 'gpa-calculator', 'typing-speed-test'],
-  'answer' => <<<'EOT_TF'
-Type or paste one card per line with the term and answer separated by a dash, colon or tab, such as <strong>Mitochondria - Produces the cell's energy</strong>, then press <strong>Study</strong>. Tap a card to flip it and mark it <strong>Got it</strong> or <strong>Again</strong>; missed cards come back a few cards later until you know the whole deck.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Flashcard Maker',
+    'updated' => '2026-11-15',
+    'category' => 'study',
+    'order' => 4,
+    'icon' => 'layers',
+    'appCategory' => 'EducationalApplication',
+    'keywords' => 'flashcard maker, online flashcards study, spaced repetition cards free, quizlet alternative no signup',
+    'short' => 'Paste terms and answers, then study them as flip cards that repeat the ones you miss.',
+    'title' => 'Flashcard Maker – Spaced Repetition & Study',
+    'description' => 'Paste term-definition pairs to study interactive flip flashcards with spaced repetition, printable cards and shareable deck links without login.',
+    'related' => ['grade-calculator', 'gpa-calculator', 'typing-speed-test'],
+    'answer' => 'Type or paste one card per line with the term and answer separated by a dash, colon or tab, such as <strong>Mitochondria - Produces the cell\'s energy</strong>, then press <strong>Study</strong>. Tap a card to flip it and mark it <strong>Got it</strong> or <strong>Again</strong>; missed cards come back a few cards later until you know the whole deck.',
+    'article' => <<<'EOT_TF'
 <h2>How to make flashcards</h2>
 <ol>
 <li>Write one card per line: the question or term, a separator, then the answer. These separators all work:
@@ -63,32 +55,12 @@ le chien	the dog          (tab, e.g. pasted from a spreadsheet)</div></li>
 </ul>
 <p>Planning revision for exams? Work out what you need with the <a href="/grade-calculator">grade calculator</a>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make flashcards online?',
-      <<<'EOT_TF'
-Type one card per line with the term and answer separated by a dash, colon or tab, then press Study these cards.
-EOT_TF,
+    'faqs' => [
+        ['How do I make flashcards online?', 'Type one card per line with the term and answer separated by a dash, colon or tab, then press Study these cards.'],
+        ['Can I share my flashcards?', 'Yes. Copy share link puts the whole deck in a link. Anyone who opens it gets the same cards, with nothing uploaded.'],
+        ['Are my flashcards saved?', 'Your deck is saved in this browser on this device. Use the share link to move it to another device.'],
+        ['Can I import cards from a spreadsheet?', 'Yes. Copy two columns (term and answer) from Excel or Google Sheets and paste them in; the tab between columns works as the separator.'],
+        ['Can I print the flashcards?', 'Yes. Print cards makes a sheet with questions and answers side by side to cut out and fold.'],
     ],
-    [
-      'Can I share my flashcards?',
-      <<<'EOT_TF'
-Yes. Copy share link puts the whole deck in a link. Anyone who opens it gets the same cards, with nothing uploaded.
-EOT_TF,
-    ],
-    [
-      'Are my flashcards saved?',
-      'Your deck is saved in this browser on this device. Use the share link to move it to another device.',
-    ],
-    [
-      'Can I import cards from a spreadsheet?',
-      <<<'EOT_TF'
-Yes. Copy two columns (term and answer) from Excel or Google Sheets and paste them in; the tab between columns works as the separator.
-EOT_TF,
-    ],
-    [
-      'Can I print the flashcards?',
-      'Yes. Print cards makes a sheet with questions and answers side by side to cut out and fold.',
-    ],
-  ],
+    'aka' => ['Online Flashcards Study Tool', 'Spaced Repetition Deck Maker'],
 ];

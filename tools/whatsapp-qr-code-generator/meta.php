@@ -1,25 +1,19 @@
 <?php
-// WhatsApp QR Code Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'WhatsApp QR Code Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'qr',
-  'order' => 3,
-  'icon' => 'message-circle',
-  'use' => 'qr-code-generator',
-  'preset' => 'wa',
-  'keywords' => 'whatsapp qr code chat link wa.me qr business whatsapp',
-  'short' => 'A QR code that opens a WhatsApp chat with you, with a ready-typed message.',
-  'title' => 'WhatsApp QR Code Generator: Start a Chat With One Scan',
-  'description' => <<<'EOT_TF'
-Create a QR code that opens a WhatsApp chat with your number, with an optional pre-filled message. Great for shops, menus, flyers and business cards. Free.
-EOT_TF,
-  'related' => ['qr-code-generator', 'vcard-qr-code-generator', 'bulk-qr-code-generator'],
-  'answer' => <<<'EOT_TF'
-Enter your WhatsApp number <strong>with the country code</strong> (for example +44 7700 900123) and an optional message, then download the code. Anyone who scans it lands in a WhatsApp chat with you, with the message already typed, so customers can reach you without saving your number first.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'WhatsApp QR Code Generator',
+    'updated' => '2026-11-15',
+    'category' => 'qr',
+    'order' => 3,
+    'icon' => 'message-circle',
+    'use' => 'qr-code-generator',
+    'preset' => 'wa',
+    'keywords' => 'whatsapp qr code generator, wa me qr maker, whatsapp chat link qr, business storefront whatsapp qr',
+    'short' => 'A QR code that opens a WhatsApp chat with you, with a ready-typed message.',
+    'title' => 'WhatsApp QR Code Generator – Direct Chat Link',
+    'description' => 'Generate a permanent QR code that launches a WhatsApp chat straight to your number with an optional pre-filled greeting message for customers.',
+    'related' => ['qr-code-generator', 'vcard-qr-code-generator', 'bulk-qr-code-generator'],
+    'answer' => 'Enter your WhatsApp number <strong>with the country code</strong> (for example +44 7700 900123) and an optional message, then download the code. Anyone who scans it lands in a WhatsApp chat with you, with the message already typed, so customers can reach you without saving your number first.',
+    'article' => <<<'EOT_TF'
 <h2>How it works</h2>
 <p>WhatsApp supports "click to chat" links in the form <code>https://wa.me/447700900123?text=Hello</code>. The QR code contains that link. Scanning it opens WhatsApp (or WhatsApp Business) on the phone, starts a chat with your number and fills in the message. The customer just presses send.</p>
 
@@ -45,27 +39,19 @@ EOT_TF,
 
 <h2>Privacy</h2>
 <p>The code works without any third-party service: it's a direct WhatsApp link, so it never expires and no one tracks the scans. Your number is processed only in your browser while you make the code.</p>
+
+<h2>Pre-Filled Lead Messages That Save Customer Typing</h2>
+<p>Encoding a short pre-filled prompt such as <code>"Hi, I’d like today’s menu / quote"</code> via the official <code>https://wa.me/</code> URL format lets shop visitors or flyer readers start an enquiry in two taps instead of saving phone digits manually—especially effective on packaging, delivery inserts and storefront glass.</p>
+
+<h2>Country Code Formatting Without Plus Signs or Zeros</h2>
+<p>Omit leading zeroes and spaces when entering international phone digits (for instance, write UK numbers starting <code>447...</code> or Pakistan starting <code>923...</code>) so both iOS and Android WhatsApp open immediately.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a WhatsApp QR code?',
-      'Enter your WhatsApp number with the country code, add an optional message, and download the QR code.',
+    'faqs' => [
+        ['How do I make a WhatsApp QR code?', 'Enter your WhatsApp number with the country code, add an optional message, and download the QR code.'],
+        ['Does it work with WhatsApp Business?', 'Yes. The same link format opens chats with WhatsApp Business numbers.'],
+        ['Why does the QR code open the wrong number?', 'Check the country code and remove the leading zero of your local number.'],
+        ['Does a WhatsApp QR code expire?', 'No. It is a static link that works as long as your number uses WhatsApp.'],
+        ['Can I change the message later?', 'The message is part of the code, so make a new code to change it.'],
     ],
-    [
-      'Does it work with WhatsApp Business?',
-      'Yes. The same link format opens chats with WhatsApp Business numbers.',
-    ],
-    [
-      'Why does the QR code open the wrong number?',
-      'Check the country code and remove the leading zero of your local number.',
-    ],
-    [
-      'Does a WhatsApp QR code expire?',
-      'No. It is a static link that works as long as your number uses WhatsApp.',
-    ],
-    [
-      'Can I change the message later?',
-      'The message is part of the code, so make a new code to change it.',
-    ],
-  ],
+    'aka' => ['WhatsApp Chat QR Maker', 'wa.me Link QR Code'],
 ];

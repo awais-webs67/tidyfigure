@@ -1,23 +1,17 @@
 <?php
-// Color Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Color Converter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'convert',
-  'order' => 4,
-  'icon' => 'palette',
-  'keywords' => 'hex to rgb rgb to hex hsl cmyk color picker contrast checker',
-  'short' => 'HEX ↔ RGB ↔ HSL ↔ CMYK, with a colour picker, contrast check and shades.',
-  'title' => 'Color Converter: HEX to RGB, HSL & CMYK + Color Picker',
-  'description' => <<<'EOT_TF'
-Convert colours between HEX, RGB, HSL, HSV and CMYK. Pick any colour, check text contrast against WCAG, and get a palette of tints and shades. Free.
-EOT_TF,
-  'related' => ['unit-converter', 'image-converter', 'json-formatter'],
-  'answer' => <<<'EOT_TF'
-Pick a colour or type it in any format (<strong>#0B7F5E</strong>, <strong>rgb(11, 127, 94)</strong>, <strong>hsl(163, 84%, 27%)</strong> or a name like "teal") to see it in HEX, RGB, HSL, HSV and CMYK at once. The contrast check tells you whether white or black text on that colour is readable, and the strip below gives you lighter tints and darker shades.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Color Converter',
+    'updated' => '2026-11-15',
+    'category' => 'convert',
+    'order' => 4,
+    'icon' => 'palette',
+    'keywords' => 'hex to rgb, rgb to hex, color converter, hsl to hex, cmyk converter, css color picker, tint and shade generator',
+    'short' => 'HEX ↔ RGB ↔ HSL ↔ CMYK, with a colour picker, contrast check and shades.',
+    'title' => 'Color Converter – HEX, RGB, HSL, CMYK & Picker',
+    'description' => 'Convert colours cleanly between HEX, RGB, RGBA, HSL, HSV and print CMYK, generate matching shades and test WCAG contrast ratios in your browser.',
+    'related' => ['unit-converter', 'image-converter', 'json-formatter'],
+    'answer' => 'Pick a colour or type it in any format (<strong>#0B7F5E</strong>, <strong>rgb(11, 127, 94)</strong>, <strong>hsl(163, 84%, 27%)</strong> or a name like "teal") to see it in HEX, RGB, HSL, HSV and CMYK at once. The contrast check tells you whether white or black text on that colour is readable, and the strip below gives you lighter tints and darker shades.',
+    'article' => <<<'EOT_TF'
 <h2>Colour formats explained</h2>
 <ul>
 <li><strong>HEX</strong> (#RRGGBB) is the most common format on the web. Each pair of characters is a red, green or blue value from 00 to FF (0 to 255) in hexadecimal. #FF0000 is pure red; #3AF is short for #33AAFF.</li>
@@ -43,34 +37,12 @@ EOT_TF,
 <h2>Supported input</h2>
 <p>You can type any colour CSS understands: 3-, 6- or 8-digit HEX (with or without #), <code>rgb()</code>, <code>hsl()</code>, and all 148 named CSS colours such as "tomato", "rebeccapurple" and "dodgerblue".</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I convert HEX to RGB?',
-      <<<'EOT_TF'
-Split the HEX code into three pairs and convert each from hexadecimal to decimal. #0B7F5E becomes 11, 127, 94. Or paste it above to convert instantly.
-EOT_TF,
+    'faqs' => [
+        ['How do I convert HEX to RGB?', 'Split the HEX code into three pairs and convert each from hexadecimal to decimal. #0B7F5E becomes 11, 127, 94. Or paste it above to convert instantly.'],
+        ['How do I convert RGB to HEX?', 'Convert each value from 0–255 into a two-digit hexadecimal number and join them. rgb(255, 99, 71) becomes #FF6347.'],
+        ['What is a good contrast ratio for text?', 'At least 4.5:1 for normal text and 3:1 for large text to meet WCAG AA. 7:1 meets the stricter AAA level.'],
+        ['What is the difference between HSL and HSV?', 'Both use hue and saturation. HSL uses lightness, where 50% is the pure colour; HSV uses value, where 100% is the brightest version of the colour.'],
+        ['Can I use colour names?', 'Yes. Type any CSS colour name, such as “teal” or “tomato”, and it is converted to all formats.'],
     ],
-    [
-      'How do I convert RGB to HEX?',
-      <<<'EOT_TF'
-Convert each value from 0–255 into a two-digit hexadecimal number and join them. rgb(255, 99, 71) becomes #FF6347.
-EOT_TF,
-    ],
-    [
-      'What is a good contrast ratio for text?',
-      <<<'EOT_TF'
-At least 4.5:1 for normal text and 3:1 for large text to meet WCAG AA. 7:1 meets the stricter AAA level.
-EOT_TF,
-    ],
-    [
-      'What is the difference between HSL and HSV?',
-      <<<'EOT_TF'
-Both use hue and saturation. HSL uses lightness, where 50% is the pure colour; HSV uses value, where 100% is the brightest version of the colour.
-EOT_TF,
-    ],
-    [
-      'Can I use colour names?',
-      'Yes. Type any CSS colour name, such as “teal” or “tomato”, and it is converted to all formats.',
-    ],
-  ],
+    'aka' => ['HEX to RGB Converter', 'RGB to HEX Tool', 'HSL CMYK Color Picker'],
 ];

@@ -1,25 +1,19 @@
 <?php
-// Voice Recorder: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Voice Recorder',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 6,
-  'icon' => 'mic',
-  'scripts' => ['media.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'online voice recorder record audio microphone mp3 mic test voice memo dictation',
-  'short' => 'Record your voice from the microphone and download it as MP3. Free, no sign-up.',
-  'title' => 'Online Voice Recorder: Record Audio & Save as MP3, Free',
-  'description' => <<<'EOT_TF'
-Record your voice with your microphone right in the browser. Pause and resume, see the sound level, and download as MP3. No sign-up and no upload.
-EOT_TF,
-  'related' => ['audio-cutter', 'screen-recorder', 'video-to-mp3'],
-  'answer' => <<<'EOT_TF'
-To record your voice online, press <strong>Start recording</strong>, allow the browser to use your microphone and speak. Press <strong>Stop & save</strong> when you're done, listen back, and download the recording as an MP3. Recordings stay on your device and are never uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Voice Recorder',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 6,
+    'icon' => 'mic',
+    'scripts' => ['media.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'voice recorder online, record audio to mp3, browser mic recorder, free audio memo recorder no upload',
+    'short' => 'Record your voice from the microphone and download it as MP3. Free, no sign-up.',
+    'title' => 'Online Voice Recorder – Record & Save MP3 Free',
+    'description' => 'Capture clear microphone voice notes with pause/resume controls, live input level meter and direct MP3 download without logins or cloud storage.',
+    'related' => ['audio-cutter', 'screen-recorder', 'video-to-mp3'],
+    'answer' => 'To record your voice online, press <strong>Start recording</strong>, allow the browser to use your microphone and speak. Press <strong>Stop & save</strong> when you\'re done, listen back, and download the recording as an MP3. Recordings stay on your device and are never uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>How to record audio online</h2>
 <ol>
 <li>Press <strong>Start recording</strong>. The first time, your browser asks for permission to use the microphone: choose <strong>Allow</strong>.</li>
@@ -55,32 +49,12 @@ EOT_TF,
 <p>The microphone is only active while you're recording, and your browser shows an indicator while it's in use. The sound is recorded and converted on your device. Nothing is sent to a server.</p>
 <p>Before recording other people, such as in a meeting or a phone call, ask their permission. In many places it's required by law.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I record my voice on my computer?',
-      <<<'EOT_TF'
-Press Start recording, allow microphone access, speak, then press Stop & save. Download the recording as an MP3.
-EOT_TF,
+    'faqs' => [
+        ['How do I record my voice on my computer?', 'Press Start recording, allow microphone access, speak, then press Stop & save. Download the recording as an MP3.'],
+        ['Does the voice recorder work on phones?', 'Yes. It works in Safari on iPhone and Chrome on Android. Allow microphone access when asked.'],
+        ['Is there a time limit?', 'No fixed limit. Long recordings use more memory, so for recordings over an hour, stop and save in parts.'],
+        ['Why can’t it access my microphone?', 'Permission may be blocked. Click the microphone or lock icon in the address bar, allow the microphone, and reload the page. Check that no other app is using it.'],
+        ['Are my recordings uploaded?', 'No. Recordings are made and stored on your device only, until you close the page.'],
     ],
-    [
-      'Does the voice recorder work on phones?',
-      'Yes. It works in Safari on iPhone and Chrome on Android. Allow microphone access when asked.',
-    ],
-    [
-      'Is there a time limit?',
-      <<<'EOT_TF'
-No fixed limit. Long recordings use more memory, so for recordings over an hour, stop and save in parts.
-EOT_TF,
-    ],
-    [
-      'Why can’t it access my microphone?',
-      <<<'EOT_TF'
-Permission may be blocked. Click the microphone or lock icon in the address bar, allow the microphone, and reload the page. Check that no other app is using it.
-EOT_TF,
-    ],
-    [
-      'Are my recordings uploaded?',
-      'No. Recordings are made and stored on your device only, until you close the page.',
-    ],
-  ],
+    'aka' => ['Online Audio Recorder', 'MP3 Voice Memo Tool'],
 ];

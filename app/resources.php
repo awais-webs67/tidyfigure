@@ -152,7 +152,7 @@ function tf_res_page(array $r): string
 </article>
 ' . $moreHtml . $toolsHtml . '
 </main>';
-    return tf_layout(['title' => $r['title'] . ' | ' . $site, 'description' => $r['summary'] ?: $r['title'], 'slug' => 'r/' . $r['slug'], 'schema' => $schema, 'scripts' => '', 'css' => ['share.css'],
+    return tf_layout(['title' => $r['title'] . ' | ' . $site, 'description' => $r['summary'] ?: $r['title'], 'slug' => 'r/' . $r['slug'], 'schema' => $schema, 'noindex' => true, 'scripts' => '', 'css' => ['share.css'],
         'og' => $img ? (preg_match('~^https?://~', $img) ? $img : tf_base_url() . preg_replace('~^' . preg_quote(TF_BASE, '~') . '~', '', $img)) : null], $body);
 }
 
@@ -170,5 +170,5 @@ function tf_res_index(): string
 <header class="res-head"><p class="kicker">Hand-picked</p><h1>Free resources</h1><p class="res-sum">Free courses, guides and useful links we recommend, with everything you need in one place.</p></header>
 ' . ($list ? '<div class="res-grid">' . implode('', array_map('tf_res_card', $list)) . '</div>' : '<p class="sub">Nothing here yet. Check back soon.</p>') . '</main>';
     $schema = [tf_breadcrumbs([['Home', tf_abs()], ['Resources', tf_abs('resources')]])];
-    return tf_layout(['title' => 'Free Resources: Courses, Guides & Links | ' . $site, 'description' => 'Hand-picked free resources: free courses, guides and useful links, with all the details in one place.', 'slug' => 'resources', 'schema' => $schema, 'scripts' => '', 'css' => ['share.css'], 'noindex' => !$list], $body);
+    return tf_layout(['title' => 'Free Resources: Courses, Guides & Links | ' . $site, 'description' => 'Hand-picked free resources: free courses, guides and useful links, with all the details in one place.', 'slug' => 'resources', 'schema' => $schema, 'scripts' => '', 'css' => ['share.css'], 'noindex' => true], $body);
 }

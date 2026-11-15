@@ -1,29 +1,23 @@
 <?php
-// QR Code Scanner: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'QR Code Scanner',
-  'updated' => '2026-10-28', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'qr',
-  'order' => 5,
-  'icon' => 'scan-line',
-  'popular' => true,
-  'libs' => [
-    'vendor/zxing-0.21.3.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
-  ],
-  'scripts' => ['scan.js'],
-  'keywords' => 'scan qr code online qr reader from image camera decode qr',
-  'short' => 'Scan a QR code with your camera or from a screenshot or photo.',
-  'title' => 'QR Code Scanner Online: Scan From Camera or Image, Free',
-  'description' => <<<'EOT_TF'
-Scan QR codes online with your phone or laptop camera, or upload a screenshot or photo. See links, Wi-Fi passwords and contacts safely before opening. Free.
-EOT_TF,
-  'related' => ['qr-code-generator', 'barcode-reader', 'wifi-qr-code-generator'],
-  'answer' => <<<'EOT_TF'
-Press <strong>Scan with camera</strong> and point it at the code, or <strong>upload an image</strong>, such as a screenshot of a QR code someone sent you. The result is shown before anything opens: links show their real address, Wi-Fi codes show the network and password, and contact cards show the details.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'QR Code Scanner',
+    'updated' => '2026-11-15',
+    'category' => 'qr',
+    'order' => 5,
+    'icon' => 'scan-line',
+    'popular' => true,
+    'libs' => [
+        'vendor/zxing-0.21.3.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js',
+    ],
+    'scripts' => ['scan.js'],
+    'keywords' => 'qr code scanner online, scan qr from image, read qr screenshot, webcam qr decoder free',
+    'short' => 'Scan a QR code with your camera or from a screenshot or photo.',
+    'title' => 'QR Code Scanner Online – Camera or Screenshot',
+    'description' => 'Decode QR codes safely from your webcam, phone camera or uploaded screenshot and inspect the full destination URL before clicking.',
+    'related' => ['qr-code-generator', 'barcode-reader', 'wifi-qr-code-generator'],
+    'answer' => 'Press <strong>Scan with camera</strong> and point it at the code, or <strong>upload an image</strong>, such as a screenshot of a QR code someone sent you. The result is shown before anything opens: links show their real address, Wi-Fi codes show the network and password, and contact cards show the details.',
+    'article' => <<<'EOT_TF'
 <h2>Scanning a QR code from a screenshot</h2>
 <p>Phone cameras can't scan a QR code that's on the same phone's screen. That's where this scanner helps: take a screenshot (or save the image from a message or email), choose "Upload an image", and the code is read straight from the picture. It also works for QR codes inside photos and PDFs you've saved as images.</p>
 
@@ -49,26 +43,16 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>The camera feed and images are processed in your browser by the open-source ZXing library. Nothing is uploaded or recorded.</p>
+
+<h2>Inspecting Shortened Links Before You Tap</h2>
+<p>Scanning suspicious posters or unsolicited screenshots inside a browser sandbox reveals the raw destination string (such as payment URLs, plain text or Wi-Fi credentials) so you can verify domains carefully instead of letting a phone camera launch unknown redirects blindly.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I scan a QR code from a screenshot?',
-      'Choose “Upload an image” and select the screenshot. The code is read from the picture.',
+    'faqs' => [
+        ['How do I scan a QR code from a screenshot?', 'Choose “Upload an image” and select the screenshot. The code is read from the picture.'],
+        ['Can I scan a QR code on my laptop?', 'Yes. Press “Scan with camera”, allow camera access, and hold the code in front of the webcam.'],
+        ['How do I see the Wi-Fi password in a QR code?', 'Scan the Wi-Fi QR code here. The network name and password are shown as text.'],
+        ['Is it safe to scan QR codes?', 'The code itself is harmless, but it can lead to scam sites. This scanner shows the link before opening it so you can check it.'],
+        ['Is the camera image uploaded?', 'No. Scanning happens entirely in your browser.'],
     ],
-    [
-      'Can I scan a QR code on my laptop?',
-      'Yes. Press “Scan with camera”, allow camera access, and hold the code in front of the webcam.',
-    ],
-    [
-      'How do I see the Wi-Fi password in a QR code?',
-      'Scan the Wi-Fi QR code here. The network name and password are shown as text.',
-    ],
-    [
-      'Is it safe to scan QR codes?',
-      <<<'EOT_TF'
-The code itself is harmless, but it can lead to scam sites. This scanner shows the link before opening it so you can check it.
-EOT_TF,
-    ],
-    ['Is the camera image uploaded?', 'No. Scanning happens entirely in your browser.'],
-  ],
+    'aka' => ['Online QR Reader', 'Screenshot QR Decoder'],
 ];

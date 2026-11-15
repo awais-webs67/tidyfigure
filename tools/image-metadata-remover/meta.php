@@ -1,26 +1,20 @@
 <?php
-// Image Metadata Remover: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Image Metadata Remover',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 9,
-  'icon' => 'shield-off',
-  'popular' => true,
-  'files' => true,
-  'libs' => ['vendor/exifr-7.1.3.full.js'],
-  'keywords' => 'remove exif data photo gps location remover exif viewer strip metadata',
-  'short' => 'See and remove hidden EXIF data from photos, including GPS location.',
-  'title' => 'Remove EXIF Data & GPS Location From Photos, Free',
-  'description' => <<<'EOT_TF'
-View and remove hidden photo metadata: GPS location, camera, date and software. Lossless for JPG and PNG, batch support, nothing uploaded. Free EXIF remover.
-EOT_TF,
-  'related' => ['pdf-metadata-remover', 'image-compressor', 'add-watermark-to-image'],
-  'answer' => <<<'EOT_TF'
-Photos from phones and cameras carry hidden <strong>EXIF metadata</strong>: the exact <strong>GPS location</strong> where they were taken, the date and time, the camera or phone model and the editing software. Drop photos here to see what they reveal, then download clean copies. JPG and PNG files are cleaned <strong>without re-compressing</strong>, so quality is untouched.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Image Metadata Remover',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 9,
+    'icon' => 'shield-off',
+    'popular' => true,
+    'files' => true,
+    'libs' => ['vendor/exifr-7.1.3.full.js'],
+    'keywords' => 'exif remover, strip gps from photo, remove image metadata online, clean camera exif privacy',
+    'short' => 'See and remove hidden EXIF data from photos, including GPS location.',
+    'title' => 'EXIF Metadata Remover – Strip GPS From Photos',
+    'description' => 'Inspect and wipe hidden EXIF GPS coordinates, camera serials and shoot dates losslessly from JPG and PNG images in batches on your device.',
+    'related' => ['pdf-metadata-remover', 'image-compressor', 'add-watermark-to-image'],
+    'answer' => 'Photos from phones and cameras carry hidden <strong>EXIF metadata</strong>: the exact <strong>GPS location</strong> where they were taken, the date and time, the camera or phone model and the editing software. Drop photos here to see what they reveal, then download clean copies. JPG and PNG files are cleaned <strong>without re-compressing</strong>, so quality is untouched.',
+    'article' => <<<'EOT_TF'
 <h2>Why remove photo metadata?</h2>
 <p>Most phones record the GPS coordinates of every photo by default. Share a picture taken at home, and anyone who downloads the original file can find your address to within a few metres. The same goes for photos of your children's school, your car outside your workplace, or items you're selling online. Metadata can also reveal when you were somewhere, what device you own, and the software you used to edit the image.</p>
 
@@ -46,29 +40,12 @@ EOT_TF,
 <h2>Private by design</h2>
 <p>Checking for hidden data by uploading your photo to a website would defeat the purpose. This tool reads and cleans your photos entirely in your browser.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I remove the location from a photo?',
-      <<<'EOT_TF'
-Drop the photo here and download the clean copy. GPS coordinates and all other EXIF data are removed.
-EOT_TF,
+    'faqs' => [
+        ['How do I remove the location from a photo?', 'Drop the photo here and download the clean copy. GPS coordinates and all other EXIF data are removed.'],
+        ['How can I see if my photo has GPS data?', 'Open it here. If it has a location, you’ll see a warning and a map link to the exact spot.'],
+        ['Does removing EXIF reduce quality?', 'Not for JPG and PNG: the metadata is removed without re-compressing the image. Photos that need rotating are re-saved at 95% quality.'],
+        ['Do WhatsApp and Instagram remove EXIF data?', 'They remove it from images shown in the app, but not when files are sent as documents, emailed or shared through cloud links.'],
+        ['Are my photos uploaded?', 'No. Everything happens in your browser.'],
     ],
-    [
-      'How can I see if my photo has GPS data?',
-      'Open it here. If it has a location, you’ll see a warning and a map link to the exact spot.',
-    ],
-    [
-      'Does removing EXIF reduce quality?',
-      <<<'EOT_TF'
-Not for JPG and PNG: the metadata is removed without re-compressing the image. Photos that need rotating are re-saved at 95% quality.
-EOT_TF,
-    ],
-    [
-      'Do WhatsApp and Instagram remove EXIF data?',
-      <<<'EOT_TF'
-They remove it from images shown in the app, but not when files are sent as documents, emailed or shared through cloud links.
-EOT_TF,
-    ],
-    ['Are my photos uploaded?', 'No. Everything happens in your browser.'],
-  ],
+    'aka' => ['Photo EXIF & GPS Cleaner', 'Image Privacy Scrubber'],
 ];

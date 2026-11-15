@@ -1,30 +1,24 @@
 <?php
-// Merge PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Merge PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 1,
-  'icon' => 'files',
-  'popular' => true,
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'keywords' => 'combine pdf join pdf files merge documents',
-  'aka' => ['combine PDF', 'PDF merger', 'join PDF files', 'PDF combiner'], // other names people search for
-  'short' => 'Combine several PDF files into one, in the order you choose.',
-  'title' => 'Merge PDF: Combine PDF Files Into One, Free & Private',
-  'description' => <<<'EOT_TF'
-Merge PDF files into one document in seconds. Reorder files before combining. Works in your browser: no upload, no watermark, no sign-up, no limits.
-EOT_TF,
-  'related' => ['split-pdf', 'jpg-to-pdf', 'image-compressor'],
-  'answer' => <<<'EOT_TF'
-To merge PDFs, add the files, put them in the order you want, and combine them into a single document. Every page keeps its original quality, links and text. This tool merges the files <strong>on your device</strong>, so contracts, bank statements and other private documents are never uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Merge PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 1,
+    'icon' => 'files',
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'keywords' => 'merge pdf, combine pdf files into one free, join pdf documents no upload, pdf binder online',
+    'aka' => ['PDF Combiner', 'Join Multiple PDFs Tool'],
+    'short' => 'Combine several PDF files into one, in the order you choose.',
+    'title' => 'Merge PDF Files Free – Combine PDFs Locally',
+    'description' => 'Combine multiple PDF documents cleanly into one ordered file right inside your browser—drag thumbnails to reorder, zero page caps or uploads.',
+    'related' => ['split-pdf', 'jpg-to-pdf', 'image-compressor'],
+    'answer' => 'To merge PDFs, add the files, put them in the order you want, and combine them into a single document. Every page keeps its original quality, links and text. This tool merges the files <strong>on your device</strong>, so contracts, bank statements and other private documents are never uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>How to merge PDF files</h2>
 <ol>
 <li><strong>Add your PDFs.</strong> Drop them on the box or click to choose them. You can add files in several batches.</li>
@@ -55,32 +49,11 @@ EOT_TF,
 <li>Password-protected PDFs may not open. Remove the password in your PDF reader first (you'll need to know it).</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I combine PDF files into one?',
-      <<<'EOT_TF'
-Add the PDF files to the tool, use the arrows to set their order, and press Merge PDFs. The combined document downloads straight away.
-EOT_TF,
+    'faqs' => [
+        ['How do I combine PDF files into one?', 'Add the PDF files to the tool, use the arrows to set their order, and press Merge PDFs. The combined document downloads straight away.'],
+        ['Is it safe to merge PDFs online here?', 'Yes. The files are merged inside your browser and never uploaded to a server, so they stay private.'],
+        ['Is there a limit on the number of files or pages?', 'There is no set limit. Very large files (hundreds of megabytes) depend on your device’s memory, but typical documents merge in seconds.'],
+        ['Will merging reduce the quality of my PDF?', 'No. Pages are copied exactly, so text, images and page sizes stay the same as in the original files.'],
+        ['Can I merge PDFs on my phone?', 'Yes. The tool works in mobile browsers on iPhone and Android. Choose files from your Files or Downloads folder.'],
     ],
-    [
-      'Is it safe to merge PDFs online here?',
-      'Yes. The files are merged inside your browser and never uploaded to a server, so they stay private.',
-    ],
-    [
-      'Is there a limit on the number of files or pages?',
-      <<<'EOT_TF'
-There is no set limit. Very large files (hundreds of megabytes) depend on your device’s memory, but typical documents merge in seconds.
-EOT_TF,
-    ],
-    [
-      'Will merging reduce the quality of my PDF?',
-      'No. Pages are copied exactly, so text, images and page sizes stay the same as in the original files.',
-    ],
-    [
-      'Can I merge PDFs on my phone?',
-      <<<'EOT_TF'
-Yes. The tool works in mobile browsers on iPhone and Android. Choose files from your Files or Downloads folder.
-EOT_TF,
-    ],
-  ],
 ];

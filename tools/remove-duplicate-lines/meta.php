@@ -1,23 +1,17 @@
 <?php
-// Remove Duplicate Lines: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Remove Duplicate Lines',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 5,
-  'icon' => 'list-x',
-  'keywords' => 'dedupe list remove duplicates unique lines email list sort lines',
-  'short' => 'Delete repeated lines from a list, ignore case or spaces, and sort the result.',
-  'title' => 'Remove Duplicate Lines: Dedupe Any List Online, Free',
-  'description' => <<<'EOT_TF'
-Remove duplicate lines from any list: emails, names, keywords or URLs. Ignore case and spaces, drop empty lines, and sort A–Z. Instant and private.
-EOT_TF,
-  'related' => ['word-counter', 'case-converter', 'random-number-generator'],
-  'answer' => <<<'EOT_TF'
-Paste a list with one item per line and every repeated line is removed, keeping the <strong>first time each item appears</strong>. Turn on "ignore case" so that "Apple" and "apple" count as the same, and "ignore spaces" to catch lines that only differ by stray spaces. You can sort the result A to Z, by number or by length.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Remove Duplicate Lines',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 5,
+    'icon' => 'list-x',
+    'keywords' => 'remove duplicate lines, list deduplicator online, deduplicate email keyword list, sort and unique lines',
+    'short' => 'Delete repeated lines from a list, ignore case or spaces, and sort the result.',
+    'title' => 'Remove Duplicate Lines – Dedupe & Sort Lists',
+    'description' => 'Strip repeated lines from emails, URL lists, keywords or CSV columns with case-insensitive matching, whitespace trimming and A–Z sorting locally.',
+    'related' => ['word-counter', 'case-converter', 'random-number-generator'],
+    'answer' => 'Paste a list with one item per line and every repeated line is removed, keeping the <strong>first time each item appears</strong>. Turn on "ignore case" so that "Apple" and "apple" count as the same, and "ignore spaces" to catch lines that only differ by stray spaces. You can sort the result A to Z, by number or by length.',
+    'article' => <<<'EOT_TF'
 <h2>How duplicates are found</h2>
 <p>The tool reads your text line by line and remembers every line it has seen. When a line comes up again, it's dropped. The first copy stays where it was, so your list keeps its original order unless you choose to sort it.</p>
 <p>Two settings decide what counts as "the same":</p>
@@ -43,33 +37,16 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>Your list never leaves your browser. That matters for customer emails and other personal data, which you shouldn't paste into tools that send it to a server.</p>
+
+<h2>Why Trailing Spaces Hide Subtle Duplicates</h2>
+<p>Copied spreadsheet columns frequently hide trailing spaces or mixed uppercase letters (<code>John@site.com </code> versus <code>john@site.com</code>). Enabling whitespace trimming alongside case-insensitive matching eliminates phantom duplicates cleanly before importing contacts.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I remove duplicate lines from a list?',
-      <<<'EOT_TF'
-Paste the list with one item per line. Duplicates are removed instantly, and you can copy the cleaned list with one click.
-EOT_TF,
+    'faqs' => [
+        ['How do I remove duplicate lines from a list?', 'Paste the list with one item per line. Duplicates are removed instantly, and you can copy the cleaned list with one click.'],
+        ['Does it keep the original order?', 'Yes. The first occurrence of each line stays in its original position. Choose a sort option only if you want the result sorted.'],
+        ['Can it ignore differences in capital letters?', 'Yes. With “Ignore upper/lower case” on, “Apple” and “apple” count as the same line.'],
+        ['How many lines can it handle?', 'Hundreds of thousands of lines work fine in a modern browser, as long as your device has enough memory.'],
+        ['Is my list uploaded?', 'No. Everything happens in your browser, so email lists and other personal data stay private.'],
     ],
-    [
-      'Does it keep the original order?',
-      <<<'EOT_TF'
-Yes. The first occurrence of each line stays in its original position. Choose a sort option only if you want the result sorted.
-EOT_TF,
-    ],
-    [
-      'Can it ignore differences in capital letters?',
-      'Yes. With “Ignore upper/lower case” on, “Apple” and “apple” count as the same line.',
-    ],
-    [
-      'How many lines can it handle?',
-      <<<'EOT_TF'
-Hundreds of thousands of lines work fine in a modern browser, as long as your device has enough memory.
-EOT_TF,
-    ],
-    [
-      'Is my list uploaded?',
-      'No. Everything happens in your browser, so email lists and other personal data stay private.',
-    ],
-  ],
+    'aka' => ['Line Deduplicator', 'Unique List Sorter'],
 ];

@@ -1,24 +1,18 @@
 <?php
-// Giveaway Picker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Giveaway Picker',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'social',
-  'order' => 3,
-  'icon' => 'gift',
-  'popular' => true,
-  'keywords' => 'giveaway picker instagram comment picker random winner picker contest raffle',
-  'short' => 'Pick fair random giveaway winners from comments, with tag and duplicate rules.',
-  'title' => 'Giveaway Picker: Random Winner From Comments, Free',
-  'description' => <<<'EOT_TF'
-Pick random giveaway winners from a list of comments or entries. Remove duplicates, require tagged friends or a keyword, choose back-up winners. Fair and free.
-EOT_TF,
-  'related' => ['spin-the-wheel', 'random-number-generator', 'remove-duplicate-lines'],
-  'answer' => <<<'EOT_TF'
-Copy the comments or entries from your post, paste them in, set your rules (one entry per person, tag at least one friend, include a hashtag) and press <strong>Pick winner</strong>. Winners are drawn with a secure random generator from the entries that qualify, and you can copy a timestamped result to share for transparency.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Giveaway Picker',
+    'updated' => '2026-11-15',
+    'category' => 'social',
+    'order' => 3,
+    'icon' => 'gift',
+    'popular' => true,
+    'keywords' => 'giveaway picker, random comment picker, instagram giveaway winner, contest name drawer, raffle picker online',
+    'short' => 'Pick fair random giveaway winners from comments, with tag and duplicate rules.',
+    'title' => 'Giveaway Picker – Random Winner From Comments',
+    'description' => 'Draw fair random contest winners from pasted comments or entrant lists with duplicate filtering, keyword requirements and backup winner slots.',
+    'related' => ['spin-the-wheel', 'random-number-generator', 'remove-duplicate-lines'],
+    'answer' => 'Copy the comments or entries from your post, paste them in, set your rules (one entry per person, tag at least one friend, include a hashtag) and press <strong>Pick winner</strong>. Winners are drawn with a secure random generator from the entries that qualify, and you can copy a timestamped result to share for transparency.',
+    'article' => <<<'EOT_TF'
 <h2>How to run a fair giveaway</h2>
 <ol>
 <li><strong>Collect the entries.</strong> Copy comments from Instagram, Facebook, YouTube or TikTok (on desktop, select the comments and copy), or paste any list of names, emails or ticket numbers.</li>
@@ -43,27 +37,19 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>The entries you paste stay in your browser and aren't uploaded or stored.</p>
+
+<h2>Auditable Duplicate &amp; Rule Filtering</h2>
+<p>Pasting raw comment exports straight from a spreadsheet or post often mixes duplicate entries and stray mentions. Applying keyword filtering and single-entry deduplication before drawing ensures every eligible participant holds equal probability, while backup draws cover unresponsive winners without restarting.</p>
+
+<h2>Exporting &amp; Publishing Proof of a Fair Draw</h2>
+<p>Recording a short screen capture while filtering duplicates, verifying keyword matches and clicking pick gives entrants transparent confidence that winners were selected cleanly without manual cherry-picking.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I pick a random winner from Instagram comments?',
-      'Copy the comments, paste them here, set your rules and press Pick winner.',
+    'faqs' => [
+        ['How do I pick a random winner from Instagram comments?', 'Copy the comments, paste them here, set your rules and press Pick winner.'],
+        ['Can I make sure each person only enters once?', 'Yes. Keep “One entry per person” ticked to remove duplicates.'],
+        ['Can I require entrants to tag friends?', 'Yes. Choose the minimum number of @mentions an entry must include.'],
+        ['Is the giveaway picker random?', 'Yes. Eligible entries are shuffled with a cryptographically secure random generator.'],
+        ['Can I pick more than one winner?', 'Yes. Set the number of winners and back-up winners before drawing.'],
     ],
-    [
-      'Can I make sure each person only enters once?',
-      'Yes. Keep “One entry per person” ticked to remove duplicates.',
-    ],
-    [
-      'Can I require entrants to tag friends?',
-      'Yes. Choose the minimum number of @mentions an entry must include.',
-    ],
-    [
-      'Is the giveaway picker random?',
-      'Yes. Eligible entries are shuffled with a cryptographically secure random generator.',
-    ],
-    [
-      'Can I pick more than one winner?',
-      'Yes. Set the number of winners and back-up winners before drawing.',
-    ],
-  ],
+    'aka' => ['Comment Winner Picker', 'Random Contest Drawer'],
 ];

@@ -1,24 +1,18 @@
 <?php
-// Flip a Coin: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Flip a Coin',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'random',
-  'order' => 5,
-  'icon' => 'coins',
-  'popular' => true,
-  'keywords' => 'coin flip heads or tails coin toss',
-  'short' => 'Heads or tails? A fair virtual coin toss with a running count and streaks.',
-  'title' => 'Flip a Coin: Heads or Tails Coin Toss Online',
-  'description' => <<<'EOT_TF'
-Flip a virtual coin for heads or tails. Fair 50/50 coin toss with animation, flip 10 or 100 times at once, and track heads, tails and streaks. Free.
-EOT_TF,
-  'related' => ['roll-a-dice', 'spin-the-wheel', 'random-number-generator'],
-  'answer' => <<<'EOT_TF'
-Tap the coin or the button to flip. Each toss has an <strong>exactly 50% chance</strong> of heads and 50% of tails, decided by a secure random number. Flip 10 or 100 times at once to see how the results even out, and watch the count of heads, tails and the longest streak.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Flip a Coin',
+    'updated' => '2026-11-15',
+    'category' => 'random',
+    'order' => 5,
+    'icon' => 'coins',
+    'popular' => true,
+    'keywords' => 'flip a coin, coin flip online, heads or tails, coin toss generator, fair 50/50 coin flip',
+    'short' => 'Heads or tails? A fair virtual coin toss with a running count and streaks.',
+    'title' => 'Flip a Coin Online – 50/50 Heads or Tails Toss',
+    'description' => 'Toss a fair 50/50 virtual coin using cryptographic browser randomness, flip 10 or 100 times at once and track streaks with zero rigging.',
+    'related' => ['roll-a-dice', 'spin-the-wheel', 'random-number-generator'],
+    'answer' => 'Tap the coin or the button to flip. Each toss has an <strong>exactly 50% chance</strong> of heads and 50% of tails, decided by a secure random number. Flip 10 or 100 times at once to see how the results even out, and watch the count of heads, tails and the longest streak.',
+    'article' => <<<'EOT_TF'
 <h2>Is a virtual coin flip fair?</h2>
 <p>Yes, and in one way it's fairer than a real coin. Studies of real coin tosses have found a small bias: a flipped coin lands on the same side it started on slightly more often than half the time, about 51%. This virtual coin uses your browser's cryptographically secure random generator, so heads and tails are exactly equally likely on every flip.</p>
 
@@ -41,27 +35,16 @@ Chance of n heads in a row = (1 ÷ 2)ⁿ
 
 <h2>Heads or tails?</h2>
 <p>On most real coins "heads" is the side with a portrait or national emblem, and "tails" is the other side. The name dates back centuries; British coins traditionally showed the monarch's head on the front.</p>
+
+<h2>Probability Checks &amp; Multi-Toss Decisions</h2>
+<p>Even over 100 independent tosses, runs of five or six identical heads or tails in a row occur routinely by chance. Using a multi-toss mode or "best of three" settles tied choices cleanly while recording exact session counts so you can verify long-run convergence toward 50%.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Is this coin flip really 50/50?',
-      'Yes. Each flip uses a secure random number, giving heads and tails exactly equal chances.',
+    'faqs' => [
+        ['Is this coin flip really 50/50?', 'Yes. Each flip uses a secure random number, giving heads and tails exactly equal chances.'],
+        ['What are the odds of getting heads 3 times in a row?', '1 in 8, or 12.5%. Each flip is 1/2, so three in a row is 1/2 × 1/2 × 1/2.'],
+        ['If I get heads 5 times, is tails more likely next?', 'No. Every flip is independent, so the next one is still exactly 50/50.'],
+        ['Can I flip a coin many times at once?', 'Yes. Use “Flip 10 times” or “Flip 100 times” to see the totals and the longest streak instantly.'],
+        ['Which side is heads?', 'Heads is the side with the portrait or main emblem. Tails is the other side.'],
     ],
-    [
-      'What are the odds of getting heads 3 times in a row?',
-      '1 in 8, or 12.5%. Each flip is 1/2, so three in a row is 1/2 × 1/2 × 1/2.',
-    ],
-    [
-      'If I get heads 5 times, is tails more likely next?',
-      'No. Every flip is independent, so the next one is still exactly 50/50.',
-    ],
-    [
-      'Can I flip a coin many times at once?',
-      'Yes. Use “Flip 10 times” or “Flip 100 times” to see the totals and the longest streak instantly.',
-    ],
-    [
-      'Which side is heads?',
-      'Heads is the side with the portrait or main emblem. Tails is the other side.',
-    ],
-  ],
+    'aka' => ['Virtual Coin Toss', 'Heads or Tails Simulator'],
 ];

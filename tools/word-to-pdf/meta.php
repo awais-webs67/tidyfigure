@@ -1,27 +1,28 @@
 <?php
-// Word to PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Word to PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 25,
-  'popular' => true,
-  'files' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js', 'https://cdn.jsdelivr.net/npm/docx-preview@0.3.2/dist/docx-preview.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js', 'vendor/fontkit-1.1.1.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
-  'scripts' => ['dom-pdf.js'],
-  'icon' => 'file-type',
-  'keywords' => 'word to pdf converter online free convert docx to pdf doc to pdf save word document as pdf without word microsoft word to pdf',
-  'aka' => ['DOCX to PDF', 'convert Word to PDF', 'DOC to PDF'], // other names people search for
-  'short' => 'Convert Word documents (.docx) to PDF with fonts, colours, tables, lists and pictures, and selectable text.',
-  'title' => 'Word to PDF Converter Online Free (DOCX to PDF)',
-  'description' => <<<'EOT_TF'
-Convert Word to PDF online: .docx files become PDFs with their fonts, colours, tables, lists, pictures and selectable text. Free, no sign-up, nothing uploaded.
-EOT_TF,
-  'related' => ['pdf-to-word', 'compress-pdf', 'merge-pdf'],
-  'answer' => <<<'EOT_TF'
-Drop a Word document (<strong>.docx</strong>) and press <strong>Convert to PDF</strong>. Its text, fonts, colours, tables, lists, pictures, headers and footers are laid out on PDF pages of the same size, and the text stays <strong>selectable and searchable</strong>. You don't need Microsoft Word, and the file never leaves your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Word to PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 25,
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
+        'https://cdn.jsdelivr.net/npm/docx-preview@0.3.2/dist/docx-preview.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+        'vendor/fontkit-1.1.1.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+    ],
+    'scripts' => ['dom-pdf.js'],
+    'icon' => 'file-type',
+    'keywords' => 'word to pdf converter, docx to pdf free no upload, convert word resume to pdf browser',
+    'aka' => ['DOCX to PDF Converter', 'Word Document PDF Exporter'],
+    'short' => 'Convert Word documents (.docx) to PDF with fonts, colours, tables, lists and pictures, and selectable text.',
+    'title' => 'Word to PDF Converter – DOCX to PDF Free',
+    'description' => 'Convert Microsoft Word .docx documents into crisp selectable-text PDFs preserving headings, tables, images and bullet formatting cleanly locally.',
+    'related' => ['pdf-to-word', 'compress-pdf', 'merge-pdf'],
+    'answer' => 'Drop a Word document (<strong>.docx</strong>) and press <strong>Convert to PDF</strong>. Its text, fonts, colours, tables, lists, pictures, headers and footers are laid out on PDF pages of the same size, and the text stays <strong>selectable and searchable</strong>. You don\'t need Microsoft Word, and the file never leaves your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to convert Word to PDF</h2>
 <ol>
 <li>Drop your .docx file in the box, or try the sample document.</li>
@@ -48,36 +49,12 @@ EOT_TF,
 <h2>Private and free</h2>
 <p>Most Word to PDF converters upload your document to a server. This one lays the pages out in your browser, so the document never leaves your device, with no sign-up, limit or watermark. To go the other way, use <a href="/pdf-to-word">PDF to Word</a>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I convert Word to PDF for free?',
-      <<<'EOT_TF'
-Drop the .docx file here and press Convert to PDF, then download the PDF. It is free with no sign-up, and you don’t need Microsoft Word.
-EOT_TF,
+    'faqs' => [
+        ['How do I convert Word to PDF for free?', 'Drop the .docx file here and press Convert to PDF, then download the PDF. It is free with no sign-up, and you don’t need Microsoft Word.'],
+        ['Will my document look the same?', 'Very close. Page size, margins, formatting, tables, lists, pictures, headers and footers are kept, and Office fonts are replaced by free fonts with the same letter widths, so lines break in the same places.'],
+        ['Can I convert an old .doc file?', 'Not directly. Open it in Word, Google Docs or LibreOffice and save it as .docx, then convert that.'],
+        ['Is the text in the PDF selectable?', 'Yes. The PDF contains real text that you can select, copy and search.'],
+        ['Is my document uploaded?', 'No. The document is converted in your browser and never leaves your device.'],
+        ['Will custom bullet lists and embedded tables stay intact in PDF?', 'Yes. Standard .docx paragraphs, tables, bullet hierarchies and inline photos export cleanly as selectable PDF text locally.'],
     ],
-    [
-      'Will my document look the same?',
-      <<<'EOT_TF'
-Very close. Page size, margins, formatting, tables, lists, pictures, headers and footers are kept, and Office fonts are replaced by free fonts with the same letter widths, so lines break in the same places.
-EOT_TF,
-    ],
-    [
-      'Can I convert an old .doc file?',
-      <<<'EOT_TF'
-Not directly. Open it in Word, Google Docs or LibreOffice and save it as .docx, then convert that.
-EOT_TF,
-    ],
-    [
-      'Is the text in the PDF selectable?',
-      <<<'EOT_TF'
-Yes. The PDF contains real text that you can select, copy and search.
-EOT_TF,
-    ],
-    [
-      'Is my document uploaded?',
-      <<<'EOT_TF'
-No. The document is converted in your browser and never leaves your device.
-EOT_TF,
-    ],
-  ],
 ];

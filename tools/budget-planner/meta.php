@@ -1,25 +1,23 @@
 <?php
-// Budget Planner (50/30/20): page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Budget Planner (50/30/20)',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 17,
-  'icon' => 'chart-pie',
-  'popular' => true,
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'budget calculator 50 30 20 rule monthly budget planner needs wants savings spending plan',
-  'short' => 'Split your income into needs, wants and savings and see where you’re over budget.',
-  'title' => '50/30/20 Budget Calculator: Free Monthly Budget Planner',
-  'description' => <<<'EOT_TF'
-Plan your monthly budget with the 50/30/20 rule. List your spending as needs, wants or savings and see your targets, what’s left over and where you overspend.
-EOT_TF,
-  'related' => ['savings-goal-calculator', 'debt-payoff-planner', 'net-worth-calculator'],
-  'answer' => <<<'EOT_TF'
-The <strong>50/30/20 rule</strong> splits your take-home pay three ways: <strong>50% for needs</strong> (rent, food, bills, transport), <strong>30% for wants</strong> (eating out, hobbies, subscriptions) and <strong>20% for savings and extra debt payments</strong>. On 3,500 a month, that's 1,750 for needs, 1,050 for wants and 700 for savings.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Budget Planner (50/30/20)',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 17,
+    'icon' => 'chart-pie',
+    'popular' => true,
+    'appCategory' => 'FinanceApplication',
+    'keywords' => '50 30 20 budget calculator, monthly budget planner free, personal expense tracker no login, salary budget split',
+    'short' => 'Split your income into needs, wants and savings and see where you’re over budget.',
+    'title' => '50/30/20 Budget Planner – Monthly Money Split',
+    'description' => 'Organise take-home pay into 50% essentials, 30% flexible wants and 20% savings or debt repayment to spot cash leaks privately in your browser.',
+    'related' => ['savings-goal-calculator', 'debt-payoff-planner', 'net-worth-calculator'],
+    'answer' => 'The <strong>50/30/20 rule</strong> splits your take-home pay three ways: <strong>50% for needs</strong> (rent, food, bills, transport), <strong>30% for wants</strong> (eating out, hobbies, subscriptions) and <strong>20% for savings and extra debt payments</strong>. On 3,500 a month, that\'s 1,750 for needs, 1,050 for wants and 700 for savings.',
+    'sources' => [
+        ['CFPB – Budgeting Tools & Spending Trackers', 'https://www.consumerfinance.gov/consumer-tools/money-as-you-grow/'],
+        ['MoneyHelper (UK) – Budget Planner & 50/30/20 Guidance', 'https://www.moneyhelper.org.uk/en/everyday-money/budgeting/budget-planner'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How the 50/30/20 rule works</h2>
 <p>The rule was popularised by US Senator Elizabeth Warren and her daughter Amelia Warren Tyagi in their book <em>All Your Worth</em>. Instead of tracking dozens of categories, you sort every expense into one of three buckets and check each bucket against a simple percentage of your <strong>take-home pay</strong> (after tax).</p>
 <div class="formula">Needs   = take-home pay × 50%
@@ -61,34 +59,12 @@ Savings = take-home pay × 20%
 </ul>
 <p>Your figures stay in your browser. Nothing is sent or stored.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is the 50/30/20 budget rule?',
-      'Spend 50% of take-home pay on needs, 30% on wants, and put 20% into savings and extra debt payments.',
+    'faqs' => [
+        ['What is the 50/30/20 budget rule?', 'Spend 50% of take-home pay on needs, 30% on wants, and put 20% into savings and extra debt payments.'],
+        ['Is 50/30/20 based on gross or net income?', 'Net (take-home) income, after tax. If pension contributions come out of your salary, you can count them as savings.'],
+        ['What if my needs are more than 50%?', 'That is common where housing is expensive. Use 60/20/20, keep saving something, and look for savings on your biggest fixed costs.'],
+        ['Are debt payments needs or savings?', 'Minimum payments are needs. Anything you pay above the minimum counts towards the 20% savings and debt bucket.'],
+        ['How much should I save each month?', 'The rule suggests 20% of take-home pay. If that isn’t possible yet, start smaller and increase it over time.'],
     ],
-    [
-      'Is 50/30/20 based on gross or net income?',
-      <<<'EOT_TF'
-Net (take-home) income, after tax. If pension contributions come out of your salary, you can count them as savings.
-EOT_TF,
-    ],
-    [
-      'What if my needs are more than 50%?',
-      <<<'EOT_TF'
-That is common where housing is expensive. Use 60/20/20, keep saving something, and look for savings on your biggest fixed costs.
-EOT_TF,
-    ],
-    [
-      'Are debt payments needs or savings?',
-      <<<'EOT_TF'
-Minimum payments are needs. Anything you pay above the minimum counts towards the 20% savings and debt bucket.
-EOT_TF,
-    ],
-    [
-      'How much should I save each month?',
-      <<<'EOT_TF'
-The rule suggests 20% of take-home pay. If that isn’t possible yet, start smaller and increase it over time.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['50/30/20 Rule Calculator', 'Monthly Take-Home Budget Planner'],
 ];

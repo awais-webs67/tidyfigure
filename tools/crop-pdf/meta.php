@@ -1,25 +1,23 @@
 <?php
-// Crop PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Crop PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 16,
-  'files' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js'],
-  'icon' => 'crop',
-  'keywords' => 'crop pdf online free trim pdf margins cut pdf page remove white margins crop pdf pages resize pdf page',
-  'aka' => ['trim PDF', 'cut PDF pages', 'remove PDF margins'], // other names people search for
-  'short' => 'Trim the margins of PDF pages: drag a box, type margins or remove white borders automatically.',
-  'title' => 'Crop PDF Online Free: Trim Margins & Cut PDF Pages',
-  'description' => <<<'EOT_TF'
-Crop PDF pages online: drag a box or remove white margins automatically, for every page or just one. Free, no sign-up, and your PDF never leaves your device.
-EOT_TF,
-  'related' => ['edit-pdf', 'rotate-pdf', 'organize-pdf'],
-  'answer' => <<<'EOT_TF'
-To crop a PDF, open it and <strong>drag the edges of the box</strong> over the page to the area you want to keep, or press <strong>Remove white margins</strong> to trim empty borders automatically. Choose whether to crop every page, only this page, or each page to its own content, then download. It's free and the file never leaves your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Crop PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 16,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'icon' => 'crop',
+    'keywords' => 'crop pdf online free, trim white borders pdf, remove pdf margins browser, resize pdf page viewbox',
+    'aka' => ['PDF Margin Trimmer', 'Online PDF Page Cropper'],
+    'short' => 'Trim the margins of PDF pages: drag a box, type margins or remove white borders automatically.',
+    'title' => 'Crop PDF Pages Online – Trim White Margins',
+    'description' => 'Drag custom crop boxes or auto-trim excessive white margins across single pages or entire PDFs locally for cleaner mobile reading and printing.',
+    'related' => ['edit-pdf', 'rotate-pdf', 'organize-pdf'],
+    'answer' => 'To crop a PDF, open it and <strong>drag the edges of the box</strong> over the page to the area you want to keep, or press <strong>Remove white margins</strong> to trim empty borders automatically. Choose whether to crop every page, only this page, or each page to its own content, then download. It\'s free and the file never leaves your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to crop a PDF</h2>
 <ol>
 <li>Drop your PDF in the box, or try the sample. The first page appears with a crop box around it.</li>
@@ -41,37 +39,15 @@ EOT_TF,
 <li>Keep one figure or table from a page to send on its own.</li>
 <li>Remove printer marks and bleed from a print-ready PDF.</li>
 </ul>
+
+<h2>Fitting Textbook Slides &amp; Shipping Labels Cleanly</h2>
+<p>Trimming wide 1-inch printer margins off research papers makes two-column text dramatically larger on e-readers and tablets, while cropping around thermal shipping labels keeps carrier barcodes centred cleanly on 4×6 sticker stock.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I crop a PDF for free?',
-      <<<'EOT_TF'
-Open the PDF here, drag the crop box to the area you want, choose which pages to crop and press Crop PDF. It is free, without sign-up or watermark.
-EOT_TF,
+    'faqs' => [
+        ['How do I crop a PDF for free?', 'Open the PDF here, drag the crop box to the area you want, choose which pages to crop and press Crop PDF. It is free, without sign-up or watermark.'],
+        ['Can I crop just one page of a PDF?', 'Yes. Choose This page only. The other pages stay exactly as they were.'],
+        ['How do I remove white margins from a PDF?', 'Press Remove white margins. The tool finds the content on the page and trims the empty border around it. Choose Each page to its content to trim every page separately.'],
+        ['Does cropping delete the hidden part?', 'No. Cropping hides the area outside the box in every reader and when printing, but the content is still inside the file. To remove information for good, use Redact PDF.'],
+        ['Is my PDF uploaded?', 'No. The PDF is cropped in your browser and never leaves your device.'],
     ],
-    [
-      'Can I crop just one page of a PDF?',
-      <<<'EOT_TF'
-Yes. Choose This page only. The other pages stay exactly as they were.
-EOT_TF,
-    ],
-    [
-      'How do I remove white margins from a PDF?',
-      <<<'EOT_TF'
-Press Remove white margins. The tool finds the content on the page and trims the empty border around it. Choose Each page to its content to trim every page separately.
-EOT_TF,
-    ],
-    [
-      'Does cropping delete the hidden part?',
-      <<<'EOT_TF'
-No. Cropping hides the area outside the box in every reader and when printing, but the content is still inside the file. To remove information for good, use Redact PDF.
-EOT_TF,
-    ],
-    [
-      'Is my PDF uploaded?',
-      <<<'EOT_TF'
-No. The PDF is cropped in your browser and never leaves your device.
-EOT_TF,
-    ],
-  ],
 ];

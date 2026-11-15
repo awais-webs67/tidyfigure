@@ -1,26 +1,22 @@
 <?php
-// Email Signature Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Email Signature Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 24,
-  'icon' => 'mail',
-  'appCategory' => 'BusinessApplication',
-  'keywords' => <<<'EOT_TF'
-email signature generator gmail signature outlook signature professional html email signature template free
-EOT_TF,
-  'short' => 'Make a professional email signature for Gmail, Outlook or Apple Mail and copy it in one click.',
-  'title' => 'Free Email Signature Generator for Gmail & Outlook',
-  'description' => <<<'EOT_TF'
-Create a professional HTML email signature with your name, title, phone, website, photo and social links. Copy it into Gmail, Outlook or Apple Mail. Free.
-EOT_TF,
-  'related' => ['qr-code-generator', 'vcard-qr-code-generator', 'invoice-generator'],
-  'answer' => <<<'EOT_TF'
-Fill in your details, pick a style and colour, then press <strong>Copy signature</strong> and paste it into your email app's signature settings. In Gmail that's <strong>Settings → See all settings → General → Signature</strong>; in Outlook, <strong>Settings → Mail → Compose and reply</strong>. The signature uses simple table layouts and inline styles, which email apps display reliably.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Email Signature Generator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 24,
+    'icon' => 'mail',
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'email signature generator, free html gmail signature maker, outlook professional signature builder',
+    'short' => 'Make a professional email signature for Gmail, Outlook or Apple Mail and copy it in one click.',
+    'title' => 'Email Signature Generator – Gmail & Outlook',
+    'description' => 'Build a crisp clickable HTML email signature with headshot, company role, phone and social icons to paste straight into Gmail, Outlook or Mail.',
+    'related' => ['qr-code-generator', 'vcard-qr-code-generator', 'invoice-generator'],
+    'answer' => 'Fill in your details, pick a style and colour, then press <strong>Copy signature</strong> and paste it into your email app\'s signature settings. In Gmail that\'s <strong>Settings → See all settings → General → Signature</strong>; in Outlook, <strong>Settings → Mail → Compose and reply</strong>. The signature uses simple table layouts and inline styles, which email apps display reliably.',
+    'sources' => [
+        ['Google Workspace Learning Center – Create a Gmail Signature', 'https://support.google.com/mail/answer/8395'],
+        ['Microsoft Support – Create & Add an Email Signature in Outlook', 'https://support.microsoft.com/en-us/office/create-and-add-an-email-signature-in-outlook-8ee5d4f4-68fd-464a-a1c1-0e1c80bb27f2'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How to add your signature</h2>
 <h3>Gmail (web)</h3>
 <ol>
@@ -63,34 +59,12 @@ EOT_TF,
 </ul>
 <p>Everything is generated in your browser. Your details aren't stored or sent anywhere.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make an email signature?',
-      <<<'EOT_TF'
-Fill in your details above, choose a style and colour, press Copy signature, then paste it into your email app’s signature settings.
-EOT_TF,
+    'faqs' => [
+        ['How do I make an email signature?', 'Fill in your details above, choose a style and colour, press Copy signature, then paste it into your email app’s signature settings.'],
+        ['How do I add a signature in Gmail?', 'Gear icon → See all settings → General → Signature → Create new. Paste the signature, set it as default and click Save changes.'],
+        ['Why doesn’t my photo show in the signature?', 'The image must be online at a public https:// link. Images on your computer aren’t kept, and some recipients block images until they choose to show them.'],
+        ['Does it work in Outlook?', 'Yes. The signature uses tables and inline styles, which Outlook displays correctly. Paste it in Settings → Mail → Compose and reply.'],
+        ['Is the email signature generator free?', 'Yes. It is free with no sign-up and no branding added to your signature.'],
     ],
-    [
-      'How do I add a signature in Gmail?',
-      <<<'EOT_TF'
-Gear icon → See all settings → General → Signature → Create new. Paste the signature, set it as default and click Save changes.
-EOT_TF,
-    ],
-    [
-      'Why doesn’t my photo show in the signature?',
-      <<<'EOT_TF'
-The image must be online at a public https:// link. Images on your computer aren’t kept, and some recipients block images until they choose to show them.
-EOT_TF,
-    ],
-    [
-      'Does it work in Outlook?',
-      <<<'EOT_TF'
-Yes. The signature uses tables and inline styles, which Outlook displays correctly. Paste it in Settings → Mail → Compose and reply.
-EOT_TF,
-    ],
-    [
-      'Is the email signature generator free?',
-      'Yes. It is free with no sign-up and no branding added to your signature.',
-    ],
-  ],
+    'aka' => ['HTML Email Signature Maker', 'Gmail & Outlook Signature Builder'],
 ];

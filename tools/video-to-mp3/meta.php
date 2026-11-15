@@ -1,28 +1,22 @@
 <?php
-// Video to MP3 Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Video to MP3 Converter',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 1,
-  'icon' => 'file-music',
-  'popular' => true,
-  'files' => true,
-  'scripts' => ['media.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'mp4 to mp3 extract audio from video convert video to audio sound wav mov webm music',
-  'aka' => ['MP4 to MP3', 'extract audio from video', 'video to audio converter'], // other names people search for
-  'short' => 'Pull the sound out of any video as an MP3 or WAV, at the quality you choose.',
-  'title' => 'Video to MP3 Converter: Extract Audio from MP4, MOV & WebM',
-  'description' => <<<'EOT_TF'
-Convert MP4, MOV, WebM or MKV video to MP3 or WAV in your browser. Choose 96 to 320 kbps, stereo or mono, and cut a part. No upload, no sign-up.
-EOT_TF,
-  'related' => ['audio-cutter', 'video-compressor', 'video-cutter'],
-  'answer' => <<<'EOT_TF'
-To turn a video into an MP3, choose the video file below, pick a quality (192 kbps is a good default) and download the MP3. The converter reads the video's sound track <strong>on your device</strong>, so nothing is uploaded, and you can keep the whole track or set a start and end time to save just one part.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Video to MP3 Converter',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 1,
+    'icon' => 'file-music',
+    'popular' => true,
+    'files' => true,
+    'scripts' => ['media.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'video to mp3, mp4 to mp3 converter, extract audio from video, mov to mp3 no upload, convert clip to mp3',
+    'aka' => ['MP4 to MP3 Converter', 'Audio Extractor Online'],
+    'short' => 'Pull the sound out of any video as an MP3 or WAV, at the quality you choose.',
+    'title' => 'Video to MP3 Converter – Extract MP4 Audio',
+    'description' => 'Extract clear MP3 or WAV audio from MP4, MOV, WebM or MKV videos locally in your browser from 96 to 320 kbps with optional start/end trimming.',
+    'related' => ['audio-cutter', 'video-compressor', 'video-cutter'],
+    'answer' => 'To turn a video into an MP3, choose the video file below, pick a quality (192 kbps is a good default) and download the MP3. The converter reads the video\'s sound track <strong>on your device</strong>, so nothing is uploaded, and you can keep the whole track or set a start and end time to save just one part.',
+    'article' => <<<'EOT_TF'
 <h2>How to convert a video to MP3</h2>
 <ol>
 <li>Drop a video into the box, or tap it to choose one from your phone or computer. MP4, MOV (iPhone), WebM and MKV all work, and so do audio files such as M4A, WAV or OGG.</li>
@@ -59,32 +53,11 @@ EOT_TF,
 <h2>Using the audio you extract</h2>
 <p>Use this for videos you recorded yourself, such as a voice memo filmed on your phone, a lecture you're allowed to record, a family video, or your own music performance. Music and films made by other people are usually protected by copyright, so check you have permission before you copy or share their sound.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I convert MP4 to MP3?',
-      <<<'EOT_TF'
-Choose the MP4 file above, pick a quality such as 192 kbps, and press Download MP3. The conversion happens in your browser in a few seconds.
-EOT_TF,
+    'faqs' => [
+        ['How do I convert MP4 to MP3?', 'Choose the MP4 file above, pick a quality such as 192 kbps, and press Download MP3. The conversion happens in your browser in a few seconds.'],
+        ['Does this upload my video?', 'No. The sound track is read and converted on your own device. The video is never sent to a server.'],
+        ['What is the best MP3 quality?', '320 kbps is the highest MP3 quality. For most music 192 kbps sounds the same to most people and makes a smaller file. For speech, 96 kbps is enough.'],
+        ['Can I convert only part of a video?', 'Yes. Type a start and end time, such as 0:30 and 1:45, and only that part is saved.'],
+        ['Does it work on iPhone and Android?', 'Yes. It works in Safari, Chrome and other modern browsers on phones, tablets and computers. iPhone MOV videos are supported.'],
     ],
-    [
-      'Does this upload my video?',
-      'No. The sound track is read and converted on your own device. The video is never sent to a server.',
-    ],
-    [
-      'What is the best MP3 quality?',
-      <<<'EOT_TF'
-320 kbps is the highest MP3 quality. For most music 192 kbps sounds the same to most people and makes a smaller file. For speech, 96 kbps is enough.
-EOT_TF,
-    ],
-    [
-      'Can I convert only part of a video?',
-      'Yes. Type a start and end time, such as 0:30 and 1:45, and only that part is saved.',
-    ],
-    [
-      'Does it work on iPhone and Android?',
-      <<<'EOT_TF'
-Yes. It works in Safari, Chrome and other modern browsers on phones, tablets and computers. iPhone MOV videos are supported.
-EOT_TF,
-    ],
-  ],
 ];

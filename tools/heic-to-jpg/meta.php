@@ -1,26 +1,22 @@
 <?php
-// HEIC to JPG Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'HEIC to JPG Converter',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 3,
-  'icon' => 'image',
-  'popular' => true,
-  'files' => true,
-  'libs' => ['vendor/heic2any-0.0.4.min.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'heic to jpg converter iphone photo heic to png heif to jpg convert heic online free batch windows open heic',
-  'aka' => ['HEIC converter', 'iPhone photo to JPG', 'HEIC to JPEG'], // other names people search for
-  'short' => 'Convert iPhone HEIC photos to JPG or PNG in bulk, with a preview of each.',
-  'title' => 'HEIC to JPG Converter: Convert iPhone Photos Free, in Bulk',
-  'description' => 'Convert iPhone HEIC and HEIF photos to JPG or PNG in your browser. Batch convert, preview every photo, choose the quality. No upload, no sign-up.',
-  'related' => ['image-converter', 'image-compressor', 'image-metadata-remover'],
-  'answer' => <<<'EOT_TF'
-To convert HEIC to JPG, drop your iPhone photos below, check the previews, and download them as JPG (or PNG). You can convert many at once. HEIC is the format iPhones save photos in by default; JPG opens on every computer, phone and website. The conversion happens <strong>on your device</strong>, so private photos aren’t uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'HEIC to JPG Converter',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 3,
+    'icon' => 'image',
+    'popular' => true,
+    'files' => true,
+    'libs' => ['vendor/heic2any-0.0.4.min.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'heic to jpg converter, convert iphone heic batch, heif to jpeg no upload, open heic on windows free',
+    'aka' => ['Batch HEIC to JPEG Tool', 'iPhone HEIF Converter'],
+    'short' => 'Convert iPhone HEIC photos to JPG or PNG in bulk, with a preview of each.',
+    'title' => 'HEIC to JPG Converter – Batch iPhone Photos',
+    'description' => 'Convert Apple iPhone HEIC and HEIF photos into universal JPG or PNG images in bulk right inside your browser—strip EXIF GPS or pick quality.',
+    'related' => ['image-converter', 'image-compressor', 'image-metadata-remover'],
+    'answer' => 'To convert HEIC to JPG, drop your iPhone photos below, check the previews, and download them as JPG (or PNG). You can convert many at once. HEIC is the format iPhones save photos in by default; JPG opens on every computer, phone and website. The conversion happens <strong>on your device</strong>, so private photos aren’t uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>What is a HEIC file?</h2>
 <p>Since iOS 11, iPhones and iPads save photos as <strong>HEIC</strong> (High Efficiency Image Container), based on the HEIF standard. HEIC files are about half the size of a JPG of the same quality, which saves storage. The catch is compatibility: many Windows programs, older Android phones, websites, printing services and online forms can't open them. Converting to JPG solves that.</p>
 
@@ -49,12 +45,16 @@ EOT_TF,
 
 <h2>Live Photos and bursts</h2>
 <p>A HEIC file can hold more than one image, for example from a burst or a Live Photo. The converter saves the main (first) image.</p>
+
+<h2>Keeping Batch Speed Fast on Dozens of iPhone Shots</h2>
+<p>Because WebAssembly decodes High Efficiency Image Containers directly on your CPU, dragging 30 holiday shots at 85–90% JPEG quality converts cleanly without waiting in slow cloud upload queues or risking personal family snapshots on third-party servers.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I convert HEIC to JPG on Windows?', 'Open this page in any browser, drop the HEIC files in, and download the JPGs. Nothing needs installing.'],
-    ['Can I convert many HEIC photos at once?', 'Yes. Select as many as you like; each is converted and previewed, and Download all saves them together.'],
-    ['Does converting reduce quality?', 'At 90% JPG quality the difference is invisible. Choose PNG if you need a lossless copy.'],
-    ['Are my photos uploaded?', 'No. The conversion runs in your browser on your own device.'],
-    ['Why won’t some HEIC files convert?', 'A few unusual HEIC variants (some from non-Apple cameras) aren’t supported. The tool tells you which files failed.'],
-  ],
+    'faqs' => [
+        ['How do I convert HEIC to JPG on Windows?', 'Open this page in any browser, drop the HEIC files in, and download the JPGs. Nothing needs installing.'],
+        ['Can I convert many HEIC photos at once?', 'Yes. Select as many as you like; each is converted and previewed, and Download all saves them together.'],
+        ['Does converting reduce quality?', 'At 90% JPG quality the difference is invisible. Choose PNG if you need a lossless copy.'],
+        ['Are my photos uploaded?', 'No. The conversion runs in your browser on your own device.'],
+        ['Why won’t some HEIC files convert?', 'A few unusual HEIC variants (some from non-Apple cameras) aren’t supported. The tool tells you which files failed.'],
+        ['How do I keep or wipe GPS photo coordinates during HEIC conversion?', 'Converting straight to canvas JPG naturally removes private iPhone EXIF GPS tags—protecting home addresses before uploading pictures publicly.'],
+    ],
 ];

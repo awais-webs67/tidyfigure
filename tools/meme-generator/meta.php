@@ -1,23 +1,17 @@
 <?php
-// Meme Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Meme Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 11,
-  'icon' => 'laugh',
-  'keywords' => 'meme maker make a meme top bottom text impact font caption image',
-  'short' => 'Add classic top and bottom meme text, or modern caption bars, to any image.',
-  'title' => 'Meme Generator: Make a Meme From Your Own Picture, Free',
-  'description' => <<<'EOT_TF'
-Make memes from your own image: classic white text with a black outline, or modern caption bars. Adjust size and colours, then download. No watermark.
-EOT_TF,
-  'related' => ['add-watermark-to-image', 'crop-image', 'fancy-text-generator'],
-  'answer' => <<<'EOT_TF'
-Upload a picture (or start from a plain background), type the <strong>top and bottom text</strong>, and download your meme. The classic style uses bold white letters with a black outline, which stays readable on any photo; the caption-bar style puts black text on white bars above and below, like modern social media memes. There's <strong>no watermark</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Meme Generator',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 11,
+    'icon' => 'laugh',
+    'keywords' => 'meme generator no watermark, make meme from photo, impact font text meme maker, white bar caption',
+    'short' => 'Add classic top and bottom meme text, or modern caption bars, to any image.',
+    'title' => 'Meme Generator – Classic Impact & Caption Bar',
+    'description' => 'Create custom memes from your own image with Impact black-outline captions or top white bars, font sizing and instant download with zero watermark.',
+    'related' => ['add-watermark-to-image', 'crop-image', 'fancy-text-generator'],
+    'answer' => 'Upload a picture (or start from a plain background), type the <strong>top and bottom text</strong>, and download your meme. The classic style uses bold white letters with a black outline, which stays readable on any photo; the caption-bar style puts black text on white bars above and below, like modern social media memes. There\'s <strong>no watermark</strong>.',
+    'article' => <<<'EOT_TF'
 <h2>How to make a meme</h2>
 <ol>
 <li><strong>Choose an image.</strong> Your own photo, a screenshot, or a plain coloured square for text-only memes.</li>
@@ -45,23 +39,21 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>Your image is processed in your browser and never uploaded.</p>
+
+<h2>Sizing Captions So Punchlines Read Easily on Mobile Feeds</h2>
+<p>Limit top and bottom lines to five or six bold words, scale text cleanly above vertical scroll bars, and avoid stretching narrow stickers across high-res photos before exporting PNG or JPEG.</p>
+
+<h2>Keeping Classic Font Legibility Across Bright Photos</h2>
+<p>Heavy black strokes around crisp uppercase captions keep text effortless to read even across snow, skies or busy street textures.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a meme with my own picture?',
-      'Upload your image, type the top and bottom text, adjust the size, and press Download.',
+    'faqs' => [
+        ['How do I make a meme with my own picture?', 'Upload your image, type the top and bottom text, adjust the size, and press Download.'],
+        ['What font do memes use?', 'Classic memes use Impact: bold white capitals with a black outline. This tool uses Anton, a free font with the same look.'],
+        ['Does the meme have a watermark?', 'No. Your meme downloads without any watermark.'],
+        ['Can I make a meme without a picture?', 'Yes. Choose a plain white, black or orange background and add text.'],
+        ['Is my image uploaded?', 'No. Memes are made in your browser.'],
+        ['Are memes stamped with a site logo watermark?', 'Never. Downloaded memes export completely clean without any site badge in the corner.'],
+        ['What aspect ratios work best for Reddit, Discord and WhatsApp memes?', 'Square 1:1 or standard 4:3 frames display cleanly inside group chat previews without awkward top-and-bottom mobile feed cropping.'],
     ],
-    [
-      'What font do memes use?',
-      <<<'EOT_TF'
-Classic memes use Impact: bold white capitals with a black outline. This tool uses Anton, a free font with the same look.
-EOT_TF,
-    ],
-    ['Does the meme have a watermark?', 'No. Your meme downloads without any watermark.'],
-    [
-      'Can I make a meme without a picture?',
-      'Yes. Choose a plain white, black or orange background and add text.',
-    ],
-    ['Is my image uploaded?', 'No. Memes are made in your browser.'],
-  ],
+    'aka' => ['Watermark-Free Meme Maker', 'Custom Photo Caption Tool'],
 ];

@@ -1,24 +1,22 @@
 <?php
-// Tip Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Tip Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 23,
-  'icon' => 'hand-coins',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'tip calculator split the bill gratuity how much to tip restaurant percentage per person',
-  'short' => 'Work out the tip and split the bill between friends, with rounding.',
-  'title' => 'Tip Calculator: Work Out the Tip & Split the Bill',
-  'description' => <<<'EOT_TF'
-Calculate the tip on a restaurant bill at any percentage, split the total between any number of people, tip before tax and round each share up. Free.
-EOT_TF,
-  'related' => ['group-expense-splitter', 'percentage-calculator', 'discount-calculator'],
-  'answer' => <<<'EOT_TF'
-Tip = <strong>bill × tip percentage</strong>. An 18% tip on an 84.50 bill is 15.21, making 99.71 in total, or 33.24 each for three people. A quick way to do 20% in your head: move the decimal point one place left (8.45) and double it (16.90).
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Tip Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 23,
+    'icon' => 'hand-coins',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'tip calculator, split restaurant bill evenly, pre tax tip calculator, 15 18 20 percent tip',
+    'short' => 'Work out the tip and split the bill between friends, with rounding.',
+    'title' => 'Tip Calculator – Split Restaurant Bill & Tip',
+    'description' => 'Compute restaurant gratuity before or after tax at custom percentages, split total bill evenly across guests and round shares cleanly.',
+    'related' => ['group-expense-splitter', 'percentage-calculator', 'discount-calculator'],
+    'answer' => 'Tip = <strong>bill × tip percentage</strong>. An 18% tip on an 84.50 bill is 15.21, making 99.71 in total, or 33.24 each for three people. A quick way to do 20% in your head: move the decimal point one place left (8.45) and double it (16.90).',
+    'sources' => [
+        ['IRS – Tip Recordkeeping & Service Charges Overview', 'https://www.irs.gov/businesses/small-businesses-self-employed/tip-recordkeeping-and-reporting'],
+        ['GOV.UK – Tips, Gratuities & Service Charges', 'https://www.gov.uk/tips-at-work'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How to calculate a tip</h2>
 <div class="formula">Tip       = bill × tip % ÷ 100
 Total     = bill + tip
@@ -55,35 +53,16 @@ Per person = total ÷ number of people
 
 <h2>Splitting the bill fairly</h2>
 <p>Rounding each person's share up to a whole number makes paying with cash or a payment app easier, and the small extra goes to the tip. In the example, three shares of 33.24 round up to 34 each, so the group pays 102, a tip of 17.50 (20.7%). If people ordered very different amounts, use the <a href="/group-expense-splitter">group expense splitter</a> so each person pays for what they had.</p>
+
+<h2>Checking Auto-Gratuity &amp; Kitchen Service Fees</h2>
+<p>Before adding 18–20% manually on group dinners of six or more, scan the itemised check for an already included automatic gratuity or kitchen surcharge so the party does not tip twice by mistake.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate a 20% tip?',
-      <<<'EOT_TF'
-Multiply the bill by 0.2, or find 10% by moving the decimal point one place left and double it. On 84.50, the tip is 16.90.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate a 20% tip?', 'Multiply the bill by 0.2, or find 10% by moving the decimal point one place left and double it. On 84.50, the tip is 16.90.'],
+        ['How much should I tip at a restaurant?', 'It depends on the country. In the US 15–20% is standard; in the UK 10–12.5%; in much of Europe rounding up is enough; in Japan tipping isn’t expected.'],
+        ['Should I tip on the total before or after tax?', 'Traditionally before tax, but many people tip on the total. Enter the tax amount to tip on the pre-tax amount.'],
+        ['How do I split the bill with a tip?', 'Add the tip to the bill and divide by the number of people. The calculator does this and can round each share up.'],
+        ['Do I tip if there is a service charge?', 'Usually not. A service charge is already a tip added to the bill.'],
     ],
-    [
-      'How much should I tip at a restaurant?',
-      <<<'EOT_TF'
-It depends on the country. In the US 15–20% is standard; in the UK 10–12.5%; in much of Europe rounding up is enough; in Japan tipping isn’t expected.
-EOT_TF,
-    ],
-    [
-      'Should I tip on the total before or after tax?',
-      <<<'EOT_TF'
-Traditionally before tax, but many people tip on the total. Enter the tax amount to tip on the pre-tax amount.
-EOT_TF,
-    ],
-    [
-      'How do I split the bill with a tip?',
-      <<<'EOT_TF'
-Add the tip to the bill and divide by the number of people. The calculator does this and can round each share up.
-EOT_TF,
-    ],
-    [
-      'Do I tip if there is a service charge?',
-      'Usually not. A service charge is already a tip added to the bill.',
-    ],
-  ],
+    'aka' => ['Gratuity & Bill Splitter', 'Restaurant Tip Calculator'],
 ];

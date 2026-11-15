@@ -1,22 +1,16 @@
 <?php
-// Dinner Timing Planner: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Dinner Timing Planner',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'life',
-  'order' => 6,
-  'icon' => 'chef-hat',
-  'short' => 'Get every dish ready at the same time. Works backwards from when you serve.',
-  'title' => 'Dinner Timing Planner: Get Every Dish Ready at Once',
-  'description' => <<<'EOT_TF'
-Plan a dinner so every dish is ready together. Enter serving time plus prep, cook and rest times, and get a step-by-step cooking timeline. Free.
-EOT_TF,
-  'related' => ['recipe-scaler', 'baking-pan-converter', 'pizza-size-calculator'],
-  'answer' => <<<'EOT_TF'
-To have every dish ready together, <strong>work backwards from the time you want to eat</strong>. For each dish, subtract its resting time, then its cooking time, then its prep time. The dish with the longest total starts first. This planner does the subtraction for every dish and gives you a single timeline to follow.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Dinner Timing Planner',
+    'updated' => '2026-11-15',
+    'category' => 'life',
+    'order' => 6,
+    'icon' => 'chef-hat',
+    'short' => 'Get every dish ready at the same time. Works backwards from when you serve.',
+    'title' => 'Dinner Timing Planner – Sync Multi-Dish Meals',
+    'description' => 'Schedule roasts, sides and sauces backwards from serving time so every dish hits the table hot together on one clear step-by-step timeline.',
+    'related' => ['recipe-scaler', 'baking-pan-converter', 'pizza-size-calculator'],
+    'answer' => 'To have every dish ready together, <strong>work backwards from the time you want to eat</strong>. For each dish, subtract its resting time, then its cooking time, then its prep time. The dish with the longest total starts first. This planner does the subtraction for every dish and gives you a single timeline to follow.',
+    'article' => <<<'EOT_TF'
 <h2>Why dinners go wrong</h2>
 <p>Cooking several dishes at once is a scheduling problem, not a cooking problem. Each dish might be easy on its own, but the roast needs resting, the potatoes take an hour, the vegetables take ten minutes, and the gravy needs the roasting pan juices. Get the order wrong and something is cold, overcooked or still raw when everyone sits down.</p>
 <p>Professional kitchens solve this with "backwards timing": they start from the moment the plate goes out and count back. This planner does the same thing for your kitchen.</p>
@@ -51,36 +45,13 @@ Start prepping    = start cooking − prep time</div>
 <li><strong>Copy the timeline</strong> and stick it on the fridge, or set phone alarms for each step.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I time multiple dishes to finish at the same time?',
-      <<<'EOT_TF'
-Work backwards from serving time. For each dish subtract resting, cooking and prep time to find when it must start. Then follow all the start times in order, earliest first.
-EOT_TF,
+    'faqs' => [
+        ['How do I time multiple dishes to finish at the same time?', 'Work backwards from serving time. For each dish subtract resting, cooking and prep time to find when it must start. Then follow all the start times in order, earliest first.'],
+        ['When should I start cooking a roast for a 7 pm dinner?', 'Add up prep, cooking and resting time and subtract it from 7 pm. A chicken with 20 minutes prep, 80 minutes cooking and 15 minutes resting needs you to start at 5:05 pm.'],
+        ['Should resting time be included in cooking time?', 'No. Resting happens after the meat comes off the heat. Enter it separately so the planner can tell you when to take the dish out.'],
+        ['What if two dishes need the oven at different temperatures?', 'The planner doesn’t know about oven space. Cook the dish that holds its heat better earlier and give it a longer rest time, or move one dish to the hob or air fryer.'],
+        ['Does this work for dinners that go past midnight?', 'Yes. Times are worked out on a 24-hour clock, so a late-night meal or an early-morning bake schedules correctly.'],
     ],
-    [
-      'When should I start cooking a roast for a 7 pm dinner?',
-      <<<'EOT_TF'
-Add up prep, cooking and resting time and subtract it from 7 pm. A chicken with 20 minutes prep, 80 minutes cooking and 15 minutes resting needs you to start at 5:05 pm.
-EOT_TF,
-    ],
-    [
-      'Should resting time be included in cooking time?',
-      <<<'EOT_TF'
-No. Resting happens after the meat comes off the heat. Enter it separately so the planner can tell you when to take the dish out.
-EOT_TF,
-    ],
-    [
-      'What if two dishes need the oven at different temperatures?',
-      <<<'EOT_TF'
-The planner doesn’t know about oven space. Cook the dish that holds its heat better earlier and give it a longer rest time, or move one dish to the hob or air fryer.
-EOT_TF,
-    ],
-    [
-      'Does this work for dinners that go past midnight?',
-      <<<'EOT_TF'
-Yes. Times are worked out on a 24-hour clock, so a late-night meal or an early-morning bake schedules correctly.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'dinner timing planner, meal prep countdown timeline, roast dinner schedule, coordinate cooking dishes',
+    'aka' => ['Roast Dinner Timeline Maker', 'Meal Timing Calculator'],
 ];

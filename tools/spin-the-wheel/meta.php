@@ -1,24 +1,18 @@
 <?php
-// Spin the Wheel: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Spin the Wheel',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'random',
-  'order' => 4,
-  'icon' => 'ferris-wheel',
-  'popular' => true,
-  'keywords' => 'wheel spinner random name picker decision wheel wheel of names yes no wheel',
-  'short' => 'A fair, random wheel spinner for names, prizes, choices and yes/no decisions.',
-  'title' => 'Spin the Wheel: Random Name Picker & Decision Wheel',
-  'description' => <<<'EOT_TF'
-Spin a random wheel to pick names, winners, prizes or what to eat. Add your own entries, remove winners, shuffle, or use the yes/no wheel. Free and fair.
-EOT_TF,
-  'related' => ['random-number-generator', 'flip-a-coin', 'roll-a-dice'],
-  'answer' => <<<'EOT_TF'
-Type your entries, one per line, and spin. The winner is chosen by a <strong>secure random number</strong> before the wheel starts turning, so every entry has <strong>exactly the same chance</strong>, no matter where it sits on the wheel. Tick "remove the winner" to draw several winners in a row, like a raffle.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Spin the Wheel',
+    'updated' => '2026-11-15',
+    'category' => 'random',
+    'order' => 4,
+    'icon' => 'ferris-wheel',
+    'popular' => true,
+    'keywords' => 'spin the wheel, wheel of names, random name picker wheel, decision wheel spinner, raffle wheel online',
+    'short' => 'A fair, random wheel spinner for names, prizes, choices and yes/no decisions.',
+    'title' => 'Spin the Wheel – Random Name & Prize Picker',
+    'description' => 'Spin a custom prize wheel to pick names, winners, classroom turns or dinner choices, remove past picks and shuffle entries fairly in your browser.',
+    'related' => ['random-number-generator', 'flip-a-coin', 'roll-a-dice'],
+    'answer' => 'Type your entries, one per line, and spin. The winner is chosen by a <strong>secure random number</strong> before the wheel starts turning, so every entry has <strong>exactly the same chance</strong>, no matter where it sits on the wheel. Tick "remove the winner" to draw several winners in a row, like a raffle.',
+    'article' => <<<'EOT_TF'
 <h2>How the wheel picks a winner</h2>
 <p>Real prize wheels can be unfair: a heavier side, a sticky pointer or a weak spin all change the odds. This wheel uses your browser's cryptographically secure random generator to choose the winner first, then animates the spin so it lands inside that entry's slice. With 8 entries, each has a 1 in 8 (12.5%) chance, every time.</p>
 <div class="formula">Chance of each entry = 1 ÷ number of entries
@@ -44,31 +38,16 @@ Entering a name twice doubles its chance</div>
 
 <h2>Is a wheel spinner really random?</h2>
 <p>Yes. The animation's speed and the number of turns vary each time, but they don't decide the outcome: the secure random number does. That makes the wheel as fair as drawing names from a hat, and fairer than a physical spinner.</p>
+
+<h2>Fair Streamed Drawings &amp; Audience Transparency</h2>
+<p>For live-streamed raffles or classroom games, paste one entry per line, click shuffle to randomise segment order before sharing your screen, and toggle "remove winner after spin" if multiple prizes must go to distinct winners. Cryptographic browser randomness drives the final stopping angle rather than predictable timer loops.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Is the wheel spinner fair?',
-      <<<'EOT_TF'
-Yes. The winner is picked with a cryptographically secure random number before the animation starts, so every entry has exactly the same chance.
-EOT_TF,
+    'faqs' => [
+        ['Is the wheel spinner fair?', 'Yes. The winner is picked with a cryptographically secure random number before the animation starts, so every entry has exactly the same chance.'],
+        ['How do I make one option more likely?', 'Add it more than once. An entry listed twice has twice the chance of being picked.'],
+        ['Can I pick multiple winners without repeats?', 'Yes. Tick “Remove the winner after each spin”, then spin again for each winner.'],
+        ['How many entries can I add?', 'As many as you like. The text shrinks as slices get smaller, and over 100 entries still works.'],
+        ['Can I use the wheel for a giveaway?', 'Yes. Paste the entrants’ names, spin on screen so everyone can see, and take a screenshot of the result.'],
     ],
-    [
-      'How do I make one option more likely?',
-      'Add it more than once. An entry listed twice has twice the chance of being picked.',
-    ],
-    [
-      'Can I pick multiple winners without repeats?',
-      'Yes. Tick “Remove the winner after each spin”, then spin again for each winner.',
-    ],
-    [
-      'How many entries can I add?',
-      'As many as you like. The text shrinks as slices get smaller, and over 100 entries still works.',
-    ],
-    [
-      'Can I use the wheel for a giveaway?',
-      <<<'EOT_TF'
-Yes. Paste the entrants’ names, spin on screen so everyone can see, and take a screenshot of the result.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Wheel of Names Picker', 'Decision Wheel Spinner', 'Raffle Prize Wheel'],
 ];

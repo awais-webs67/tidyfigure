@@ -1,30 +1,24 @@
 <?php
-// Barcode Reader: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Barcode Reader',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'qr',
-  'order' => 6,
-  'icon' => 'scan-barcode',
-  'use' => 'qr-code-scanner',
-  'preset' => 'all',
-  'libs' => [
-    'vendor/zxing-0.21.3.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js',
-  ],
-  'scripts' => ['scan.js'],
-  'keywords' => 'barcode scanner online read barcode from image ean upc code 128 scan',
-  'short' => 'Read EAN, UPC, Code 128, Data Matrix and other barcodes with a camera or image.',
-  'title' => 'Barcode Reader Online: Scan Barcodes With Camera or Image',
-  'description' => <<<'EOT_TF'
-Scan barcodes online with your camera or from a photo: EAN-13, UPC-A, Code 128, Code 39, ITF, Data Matrix, PDF417 and QR. Free, private, works on phones.
-EOT_TF,
-  'related' => ['barcode-generator', 'qr-code-scanner', 'unit-price-calculator'],
-  'answer' => <<<'EOT_TF'
-Point your camera at a barcode or upload a photo of one, and the number or text it contains appears instantly, with the barcode type. It reads <strong>product barcodes</strong> (EAN-13, EAN-8, UPC-A, UPC-E), <strong>shipping and inventory codes</strong> (Code 128, Code 39, ITF) and 2D codes like Data Matrix, PDF417 and QR.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Barcode Reader',
+    'updated' => '2026-11-15',
+    'category' => 'qr',
+    'order' => 6,
+    'icon' => 'scan-barcode',
+    'use' => 'qr-code-scanner',
+    'preset' => 'all',
+    'libs' => [
+        'vendor/zxing-0.21.3.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js',
+    ],
+    'scripts' => ['scan.js'],
+    'keywords' => 'barcode reader online, scan barcode from image, upc scanner webcam, ean 13 code reader browser',
+    'short' => 'Read EAN, UPC, Code 128, Data Matrix and other barcodes with a camera or image.',
+    'title' => 'Barcode Reader Online – Scan EAN, UPC & 128',
+    'description' => 'Scan retail EAN-13, UPC-A, Code 128, Code 39, ITF and QR codes via live webcam or uploaded photo locally in your browser with zero uploads.',
+    'related' => ['barcode-generator', 'qr-code-scanner', 'unit-price-calculator'],
+    'answer' => 'Point your camera at a barcode or upload a photo of one, and the number or text it contains appears instantly, with the barcode type. It reads <strong>product barcodes</strong> (EAN-13, EAN-8, UPC-A, UPC-E), <strong>shipping and inventory codes</strong> (Code 128, Code 39, ITF) and 2D codes like Data Matrix, PDF417 and QR.',
+    'article' => <<<'EOT_TF'
 <h2>Barcode types it reads</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>Type</th><th>Where you'll see it</th></tr></thead>
@@ -69,29 +63,12 @@ EOT_TF,
 <li><strong>Damaged or tiny codes:</strong> take a sharp photo instead and use the image option, then zoom in on the photo before choosing it.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I scan a barcode online?',
-      <<<'EOT_TF'
-Press “Scan with camera” and hold the barcode in view, or upload a photo of it. The number appears instantly.
-EOT_TF,
+    'faqs' => [
+        ['How do I scan a barcode online?', 'Press “Scan with camera” and hold the barcode in view, or upload a photo of it. The number appears instantly.'],
+        ['Can I read a barcode from a picture?', 'Yes. Choose “Upload an image” and select a clear photo or screenshot of the barcode.'],
+        ['Which barcode types are supported?', 'EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF, Codabar, Data Matrix, PDF417, Aztec and QR.'],
+        ['Why won’t my barcode scan?', 'Make sure it is sharp, well lit and flat, with the white margins visible. Glare on shiny packaging is the most common problem.'],
+        ['Is my camera feed uploaded?', 'No. Everything is processed on your device.'],
     ],
-    [
-      'Can I read a barcode from a picture?',
-      'Yes. Choose “Upload an image” and select a clear photo or screenshot of the barcode.',
-    ],
-    [
-      'Which barcode types are supported?',
-      <<<'EOT_TF'
-EAN-13, EAN-8, UPC-A, UPC-E, Code 128, Code 39, Code 93, ITF, Codabar, Data Matrix, PDF417, Aztec and QR.
-EOT_TF,
-    ],
-    [
-      'Why won’t my barcode scan?',
-      <<<'EOT_TF'
-Make sure it is sharp, well lit and flat, with the white margins visible. Glare on shiny packaging is the most common problem.
-EOT_TF,
-    ],
-    ['Is my camera feed uploaded?', 'No. Everything is processed on your device.'],
-  ],
+    'aka' => ['Online Barcode Scanner', 'Photo Barcode Decoder'],
 ];

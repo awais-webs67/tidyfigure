@@ -1,23 +1,17 @@
 <?php
-// JWT Decoder: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'JWT Decoder',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'dev',
-  'order' => 6,
-  'icon' => 'key-round',
-  'keywords' => 'jwt decoder decode jwt token json web token parser verify hs256 signature exp claim online',
-  'short' => 'Decode a JSON Web Token’s header and payload, check expiry and verify HS256 signatures.',
-  'title' => 'JWT Decoder: Decode & Verify JSON Web Tokens Online',
-  'description' => <<<'EOT_TF'
-Paste a JWT to decode its header and payload, see when it was issued and expires, and verify HS256, HS384 or HS512 signatures with your secret. Runs locally.
-EOT_TF,
-  'related' => ['base64-encoder-decoder', 'json-formatter', 'hash-generator'],
-  'answer' => <<<'EOT_TF'
-A <strong>JWT</strong> (JSON Web Token) is three Base64URL-encoded parts separated by dots: <strong>header.payload.signature</strong>. Paste one below to read its header and claims as JSON, see whether it has expired, and (for HS256/384/512 tokens) verify the signature with your secret. Decoding happens entirely in your browser.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'JWT Decoder',
+    'updated' => '2026-11-15',
+    'category' => 'dev',
+    'order' => 6,
+    'icon' => 'key-round',
+    'keywords' => 'jwt decoder, json web token debugger, inspect jwt payload, check jwt exp timestamp, verify hs256 jwt',
+    'short' => 'Decode a JSON Web Token’s header and payload, check expiry and verify HS256 signatures.',
+    'title' => 'JWT Decoder – Inspect & Verify JSON Web Tokens',
+    'description' => 'Inspect JWT header algorithms, claims and expiration timestamps immediately, plus verify HS256/HS384/HS512 signatures cleanly inside your browser.',
+    'related' => ['base64-encoder-decoder', 'json-formatter', 'hash-generator'],
+    'answer' => 'A <strong>JWT</strong> (JSON Web Token) is three Base64URL-encoded parts separated by dots: <strong>header.payload.signature</strong>. Paste one below to read its header and claims as JSON, see whether it has expired, and (for HS256/384/512 tokens) verify the signature with your secret. Decoding happens entirely in your browser.',
+    'article' => <<<'EOT_TF'
 <h2>The three parts of a JWT</h2>
 <div class="formula">eyJhbGciOiJIUzI1NiJ9 . eyJzdWIiOiIxMjMifQ . SflKxwRJSMeKKF2QT4fw…
        header               payload              signature
@@ -59,32 +53,12 @@ Signature: HMAC-SHA256(header + "." + payload, secret)</div>
 </ul>
 <p>The sample token above is generated in your browser and signed with the secret <code>my-secret-key</code>, so you can try verification.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I decode a JWT?',
-      <<<'EOT_TF'
-Paste it in the box. The header and payload are Base64URL-decoded and shown as formatted JSON, with dates converted to readable times.
-EOT_TF,
+    'faqs' => [
+        ['How do I decode a JWT?', 'Paste it in the box. The header and payload are Base64URL-decoded and shown as formatted JSON, with dates converted to readable times.'],
+        ['Is a JWT encrypted?', 'No. A standard JWT is only signed. Anyone can read its contents, so never store secrets in it. Encrypted tokens (JWE) have five parts instead of three.'],
+        ['How do I check if a JWT has expired?', 'Look at the exp claim. The decoder converts it to a date and shows whether the token has expired.'],
+        ['Can this verify the signature?', 'Yes, for HS256, HS384 and HS512 tokens: enter the shared secret. RSA and ECDSA tokens need the issuer’s public key.'],
+        ['Is my token sent to a server?', 'No. Decoding and verification happen in your browser with the Web Crypto API.'],
     ],
-    [
-      'Is a JWT encrypted?',
-      <<<'EOT_TF'
-No. A standard JWT is only signed. Anyone can read its contents, so never store secrets in it. Encrypted tokens (JWE) have five parts instead of three.
-EOT_TF,
-    ],
-    [
-      'How do I check if a JWT has expired?',
-      'Look at the exp claim. The decoder converts it to a date and shows whether the token has expired.',
-    ],
-    [
-      'Can this verify the signature?',
-      <<<'EOT_TF'
-Yes, for HS256, HS384 and HS512 tokens: enter the shared secret. RSA and ECDSA tokens need the issuer’s public key.
-EOT_TF,
-    ],
-    [
-      'Is my token sent to a server?',
-      'No. Decoding and verification happen in your browser with the Web Crypto API.',
-    ],
-  ],
+    'aka' => ['JSON Web Token Decoder', 'JWT Claim Inspector'],
 ];

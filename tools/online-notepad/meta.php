@@ -1,23 +1,18 @@
 <?php
-// Online Notepad: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Online Notepad',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 2,
-  'popular' => true,
-  'icon' => 'notebook-pen',
-  'keywords' => 'online notepad notepad online notes online text editor online no login autosave notes in browser',
-  'short' => 'Write notes that save automatically in your browser. No login.',
-  'title' => 'Online Notepad: Free, Saves Automatically, No Login',
-  'description' => <<<'EOT_TF'
-A clean online notepad that saves as you type, right in your browser. Keep several notes, see word count, open and download text files. No account needed.
-EOT_TF,
-  'related' => ['word-counter', 'remove-line-breaks', 'case-converter', 'pomodoro-timer'],
-  'answer' => <<<'EOT_TF'
-Just start typing: every note <strong>saves automatically</strong> in your browser as you write, so it’s still there when you come back, even after closing the tab. Create as many notes as you like, see the word and character count, open a .txt file, or download a note to keep it. No sign-up and nothing is uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Online Notepad',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 2,
+    'popular' => true,
+    'icon' => 'notebook-pen',
+    'keywords' => 'online notepad, browser scratchpad autosave, plain text note maker no login, download txt notes',
+    'short' => 'Write notes that save automatically in your browser. No login.',
+    'title' => 'Online Notepad – Auto-Save Browser Scratchpad',
+    'description' => 'Write and save plain-text notes automatically inside local browser storage across multiple tabs with live word count and TXT export—no login.',
+    'related' => ['word-counter', 'remove-line-breaks', 'case-converter', 'pomodoro-timer'],
+    'answer' => 'Just start typing: every note <strong>saves automatically</strong> in your browser as you write, so it’s still there when you come back, even after closing the tab. Create as many notes as you like, see the word and character count, open a .txt file, or download a note to keep it. No sign-up and nothing is uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>A notepad that remembers</h2>
 <p>Use it for quick notes, to-do lists, drafts, meeting notes, or as a place to paste text and clean it up. Bookmark the page and your notes are waiting every time you open it.</p>
 <ul>
@@ -41,37 +36,20 @@ EOT_TF,
 <li><strong>Ctrl/⌘ + S:</strong> save and download the current note as a .txt file.</li>
 <li><strong>Tab:</strong> inserts a tab instead of leaving the editor.</li>
 </ul>
+
+<h2>Keyboard Workflow &amp; Backing Up Long Notes</h2>
+<p>Because drafts persist inside browser site storage rather than cloud servers, notes open instantly even offline and stay invisible to outsiders. Clearing browser site data erases local storage, so hit Download TXT after finishing long meeting minutes or articles.</p>
+
+<h2>Quick Formatting &amp; Word Count Tracking for Writers</h2>
+<p>Live word and character totals sit at the corner without toolbar clutter, making this browser pad ideal for social threads, code snippets, shopping lists and interview prep notes.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Are my notes saved if I close the browser?',
-      <<<'EOT_TF'
-Yes. Notes are saved in your browser’s storage on this device and are still there when you return, unless you clear your browsing data.
-EOT_TF,
+    'faqs' => [
+        ['Are my notes saved if I close the browser?', 'Yes. Notes are saved in your browser’s storage on this device and are still there when you return, unless you clear your browsing data.'],
+        ['Do I need an account?', 'No. There’s no sign-up. Your notes stay on your device and are never uploaded.'],
+        ['Can I access my notes on another device?', 'No, because they’re stored only in this browser. Download a note as a text file to move it to another device.'],
+        ['Is there a size limit?', 'Browsers allow about 5 MB of storage per site, which is roughly a million words of plain text.'],
+        ['Does it work offline?', 'Once the page has loaded, yes. Typing and saving happen entirely in your browser.'],
+        ['Are my notes synced across my phone and laptop?', 'No. Everything stays stored privately in the single browser you type in unless you export a TXT file.'],
     ],
-    [
-      'Do I need an account?',
-      <<<'EOT_TF'
-No. There’s no sign-up. Your notes stay on your device and are never uploaded.
-EOT_TF,
-    ],
-    [
-      'Can I access my notes on another device?',
-      <<<'EOT_TF'
-No, because they’re stored only in this browser. Download a note as a text file to move it to another device.
-EOT_TF,
-    ],
-    [
-      'Is there a size limit?',
-      <<<'EOT_TF'
-Browsers allow about 5 MB of storage per site, which is roughly a million words of plain text.
-EOT_TF,
-    ],
-    [
-      'Does it work offline?',
-      <<<'EOT_TF'
-Once the page has loaded, yes. Typing and saving happen entirely in your browser.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Browser Text Pad', 'Private Auto-Save Notes'],
 ];

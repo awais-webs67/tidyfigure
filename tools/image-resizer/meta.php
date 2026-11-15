@@ -1,26 +1,20 @@
 <?php
-// Image Resizer: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Image Resizer',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 2,
-  'icon' => 'scaling',
-  'popular' => true,
-  'files' => true,
-  'keywords' => 'resize photo pixels dimensions instagram crop scale picture',
-  'aka' => ['resize image', 'photo resizer', 'picture resizer', 'change image size'], // other names people search for
-  'short' => 'Resize photos to exact pixels or a percentage, with Instagram and YouTube presets.',
-  'title' => 'Image Resizer: Resize Photos to Any Size in Pixels, Free',
-  'description' => <<<'EOT_TF'
-Resize JPG, PNG and WebP images to exact pixel sizes or by percentage. Presets for Instagram, Facebook and YouTube, batch resize, no upload needed.
-EOT_TF,
-  'related' => ['image-compressor', 'image-converter', 'jpg-to-pdf'],
-  'answer' => <<<'EOT_TF'
-To resize an image without stretching it, set the width and let the height follow automatically, so the proportions stay the same. For an exact size like <strong>1080 × 1080</strong> for Instagram, the resizer fills the frame and trims the edges evenly (a centre crop) instead of squashing the photo. Everything happens on your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Image Resizer',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 2,
+    'icon' => 'scaling',
+    'popular' => true,
+    'files' => true,
+    'keywords' => 'image resizer, resize photo pixels online, scale jpg png width height, instagram youtube pixel presets',
+    'aka' => ['Pixel Image Resizer', 'Batch Photo Dimension Changer'],
+    'short' => 'Resize photos to exact pixels or a percentage, with Instagram and YouTube presets.',
+    'title' => 'Image Resizer – Change Pixel Size or % Free',
+    'description' => 'Resize JPG, PNG and WebP images to exact pixel width/height, percentage scale or social presets in batches—runs locally without quality loss.',
+    'related' => ['image-compressor', 'image-converter', 'jpg-to-pdf'],
+    'answer' => 'To resize an image without stretching it, set the width and let the height follow automatically, so the proportions stay the same. For an exact size like <strong>1080 × 1080</strong> for Instagram, the resizer fills the frame and trims the edges evenly (a centre crop) instead of squashing the photo. Everything happens on your device.',
+    'article' => <<<'EOT_TF'
 <h2>Resize by pixels or by percentage</h2>
 <p><strong>By pixels</strong> is for when a website, form or social network asks for a specific size. Type a width, leave the height empty, and the height is calculated to keep the original shape. <strong>By percentage</strong> is quicker when you just want the photo smaller: 50% halves both the width and the height, which leaves a quarter of the pixels.</p>
 
@@ -49,35 +43,15 @@ EOT_TF,
 
 <h2>Resizing versus compressing</h2>
 <p>Resizing changes the dimensions; compressing changes how efficiently those pixels are stored. Both reduce file size, and they work best together: resize first to the size you'll actually display, then use the image compressor to bring the file size down further.</p>
+
+<h2>Locking Aspect Ratio vs Cropping Distortion</h2>
+<p>Always leave aspect-ratio lock enabled when scaling portraits or landscapes so faces never stretch skinny or wide; crop excess edges first if you specifically need square 1080×1080 or 16:9 framing.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I resize an image without losing quality?',
-      <<<'EOT_TF'
-Make it smaller rather than bigger, keep the proportions locked, and save it at high quality. This resizer saves at 92% quality, which keeps photos sharp.
-EOT_TF,
+    'faqs' => [
+        ['How do I resize an image without losing quality?', 'Make it smaller rather than bigger, keep the proportions locked, and save it at high quality. This resizer saves at 92% quality, which keeps photos sharp.'],
+        ['How do I resize a photo for Instagram?', 'Click the Instagram square preset for 1080 × 1080, or the portrait preset for 1080 × 1350. The photo fills the frame and is centre-cropped so nothing is stretched.'],
+        ['How do I make an image a specific size in KB?', 'Resizing reduces the number of pixels, which shrinks the file. For an exact file-size limit, resize first and then use the Image Compressor to lower the quality until it fits.'],
+        ['Can I resize multiple images at once?', 'Yes. Drop several images and they are all resized with the same settings. Download them one by one or all together.'],
+        ['Are my photos uploaded?', 'No. Resizing happens in your browser, and your photos never leave your device.'],
     ],
-    [
-      'How do I resize a photo for Instagram?',
-      <<<'EOT_TF'
-Click the Instagram square preset for 1080 × 1080, or the portrait preset for 1080 × 1350. The photo fills the frame and is centre-cropped so nothing is stretched.
-EOT_TF,
-    ],
-    [
-      'How do I make an image a specific size in KB?',
-      <<<'EOT_TF'
-Resizing reduces the number of pixels, which shrinks the file. For an exact file-size limit, resize first and then use the Image Compressor to lower the quality until it fits.
-EOT_TF,
-    ],
-    [
-      'Can I resize multiple images at once?',
-      <<<'EOT_TF'
-Yes. Drop several images and they are all resized with the same settings. Download them one by one or all together.
-EOT_TF,
-    ],
-    [
-      'Are my photos uploaded?',
-      'No. Resizing happens in your browser, and your photos never leave your device.',
-    ],
-  ],
 ];

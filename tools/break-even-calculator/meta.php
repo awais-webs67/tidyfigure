@@ -1,26 +1,22 @@
 <?php
-// Break-Even Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Break-Even Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 19,
-  'icon' => 'chart-line',
-  'appCategory' => 'BusinessApplication',
-  'keywords' => <<<'EOT_TF'
-break even point calculator units sales fixed costs variable costs contribution margin small business
-EOT_TF,
-  'short' => 'How many units you must sell to cover your costs, and to hit a profit target.',
-  'title' => 'Break-Even Calculator: Units & Sales to Cover Your Costs',
-  'description' => <<<'EOT_TF'
-Find your break-even point in units and sales from fixed costs, price and variable cost. Shows contribution margin, units for a profit target and safety margin.
-EOT_TF,
-  'related' => ['profit-margin-calculator', 'freelance-rate-calculator', 'roi-calculator'],
-  'answer' => <<<'EOT_TF'
-Break-even units = <strong>fixed costs ÷ (price − variable cost per unit)</strong>. With 6,000 of fixed costs a month, a price of 25 and a variable cost of 10, each sale contributes 15, so you break even at <strong>400 units</strong> (10,000 in sales). To make 3,000 profit, you need 600 units.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Break-Even Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 19,
+    'icon' => 'chart-line',
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'break even calculator, breakeven point units revenue, contribution margin calculator, startup fixed cost analysis',
+    'short' => 'How many units you must sell to cover your costs, and to hit a profit target.',
+    'title' => 'Break-Even Calculator – Units, Sales & Margin',
+    'description' => 'Find exact unit and revenue break-even points from fixed overheads, variable cost per unit and selling price—plus target-profit sales volume.',
+    'related' => ['profit-margin-calculator', 'freelance-rate-calculator', 'roi-calculator'],
+    'answer' => 'Break-even units = <strong>fixed costs ÷ (price − variable cost per unit)</strong>. With 6,000 of fixed costs a month, a price of 25 and a variable cost of 10, each sale contributes 15, so you break even at <strong>400 units</strong> (10,000 in sales). To make 3,000 profit, you need 600 units.',
+    'sources' => [
+        ['U.S. Small Business Administration – Calculate Your Break-Even Point', 'https://www.sba.gov/business-guide/plan-your-business/calculate-your-startup-costs'],
+        ['GOV.UK – Business Finance & Pricing Basics', 'https://www.gov.uk/business-finance-support'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The break-even formula</h2>
 <div class="formula">Contribution per unit = price − variable cost per unit
 Break-even units      = fixed costs ÷ contribution per unit
@@ -60,32 +56,12 @@ For 3,000 profit: (6,000 + 3,000) ÷ 15 = 600 units</div>
 <h2>Limits of a simple break-even</h2>
 <p>The calculation assumes the price and variable cost per unit stay the same at every volume, and that you sell everything you make. In real life, discounts, bulk buying and extra staff at higher volumes change the numbers. It's still one of the most useful quick checks before launching a product, setting a price or signing a lease. To check pricing on a single product, use the <a href="/profit-margin-calculator">profit margin calculator</a>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate the break-even point?',
-      <<<'EOT_TF'
-Divide your fixed costs by the contribution per unit (selling price minus variable cost per unit). The result is the number of units you must sell.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate the break-even point?', 'Divide your fixed costs by the contribution per unit (selling price minus variable cost per unit). The result is the number of units you must sell.'],
+        ['What is contribution margin?', 'The amount each sale contributes to fixed costs and profit: price minus variable cost. As a ratio, divide that by the price.'],
+        ['How do I calculate break-even in sales value?', 'Multiply the break-even units by the price, or divide fixed costs by the contribution margin ratio.'],
+        ['What if my price is lower than my variable cost?', 'Then you lose money on every sale and can never break even. Raise the price or lower the cost per unit.'],
+        ['How many units do I need to sell to make a profit?', 'Add your target profit to fixed costs and divide by the contribution per unit.'],
     ],
-    [
-      'What is contribution margin?',
-      <<<'EOT_TF'
-The amount each sale contributes to fixed costs and profit: price minus variable cost. As a ratio, divide that by the price.
-EOT_TF,
-    ],
-    [
-      'How do I calculate break-even in sales value?',
-      'Multiply the break-even units by the price, or divide fixed costs by the contribution margin ratio.',
-    ],
-    [
-      'What if my price is lower than my variable cost?',
-      <<<'EOT_TF'
-Then you lose money on every sale and can never break even. Raise the price or lower the cost per unit.
-EOT_TF,
-    ],
-    [
-      'How many units do I need to sell to make a profit?',
-      'Add your target profit to fixed costs and divide by the contribution per unit.',
-    ],
-  ],
+    'aka' => ['Breakeven Point Calculator', 'Contribution Margin Estimator'],
 ];

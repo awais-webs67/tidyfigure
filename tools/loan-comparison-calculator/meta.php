@@ -1,24 +1,22 @@
 <?php
-// Loan Comparison Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Loan Comparison Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 13,
-  'icon' => 'scale',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'compare loans emi comparison two loans which loan is cheaper apr fees personal loan car loan offers',
-  'short' => 'Compare 2–4 loan offers side by side: monthly payment, interest, fees and total cost.',
-  'title' => 'Loan Comparison Calculator: Compare EMI, Interest & Fees',
-  'description' => <<<'EOT_TF'
-Compare up to four loan offers side by side. See the monthly payment (EMI), total interest, fees, APR and total cost of each, and which loan is cheapest.
-EOT_TF,
-  'related' => ['loan-calculator', 'credit-card-payoff-calculator', 'debt-payoff-planner'],
-  'answer' => <<<'EOT_TF'
-To compare loans, look at the <strong>total cost of borrowing</strong> (all interest plus fees), not just the rate or the monthly payment. Enter each offer's amount, rate, term and fees: for 20,000 over 5 years, a 5.9% loan with a 500 fee costs 3,643.60 in total, slightly less than a 6.9% loan with no fee at 3,704.86.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Loan Comparison Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 13,
+    'icon' => 'scale',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'loan comparison calculator, compare loan emi fees, lowest total cost loan checker, auto mortgage quote compare',
+    'short' => 'Compare 2–4 loan offers side by side: monthly payment, interest, fees and total cost.',
+    'title' => 'Loan Comparison Calculator – Compare 4 Offers',
+    'description' => 'Compare up to four bank or lender quotes side by side by monthly EMI, origination fees, true APR and total out-of-pocket repayment cost.',
+    'related' => ['loan-calculator', 'credit-card-payoff-calculator', 'debt-payoff-planner'],
+    'answer' => 'To compare loans, look at the <strong>total cost of borrowing</strong> (all interest plus fees), not just the rate or the monthly payment. Enter each offer\'s amount, rate, term and fees: for 20,000 over 5 years, a 5.9% loan with a 500 fee costs 3,643.60 in total, slightly less than a 6.9% loan with no fee at 3,704.86.',
+    'sources' => [
+        ['CFPB – Shopping & Comparing Loan Offers', 'https://www.consumerfinance.gov/owning-a-home/compare/'],
+        ['MoneyHelper – Comparing Personal Loans & APR', 'https://www.moneyhelper.org.uk/en/everyday-money/credit/comparing-loans'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>Three numbers to compare</h2>
 <ul>
 <li><strong>Monthly payment (EMI):</strong> what you pay each month. It needs to fit your budget comfortably.</li>
@@ -58,36 +56,12 @@ P = amount, i = yearly rate ÷ 1,200, n = months</div>
 <p>For a full repayment schedule of one loan, or to see how overpaying shortens it, use the <a href="/loan-calculator">loan calculator</a>.</p>
 <p><em>Results are estimates for comparison. Your lender's documents show the exact figures.</em></p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I compare two loans?',
-      <<<'EOT_TF'
-Compare the total cost of borrowing: all the interest plus any fees. Enter each offer above and the calculator highlights the cheapest.
-EOT_TF,
+    'faqs' => [
+        ['How do I compare two loans?', 'Compare the total cost of borrowing: all the interest plus any fees. Enter each offer above and the calculator highlights the cheapest.'],
+        ['Is a lower interest rate always cheaper?', 'No. A fee can make a lower-rate loan cost more, and a longer term increases total interest even at the same rate.'],
+        ['Is it better to take a shorter loan term?', 'A shorter term costs less interest in total but has higher monthly payments. Choose the shortest term whose payment you can comfortably afford.'],
+        ['What is APR?', 'The annual percentage rate includes interest and compulsory fees, expressed as a yearly rate. It is designed to make loan offers easier to compare.'],
+        ['Can I compare car loans and personal loans?', 'Yes. Any fixed-rate loan with equal monthly payments can be compared, including car, personal, student and home loans.'],
     ],
-    [
-      'Is a lower interest rate always cheaper?',
-      <<<'EOT_TF'
-No. A fee can make a lower-rate loan cost more, and a longer term increases total interest even at the same rate.
-EOT_TF,
-    ],
-    [
-      'Is it better to take a shorter loan term?',
-      <<<'EOT_TF'
-A shorter term costs less interest in total but has higher monthly payments. Choose the shortest term whose payment you can comfortably afford.
-EOT_TF,
-    ],
-    [
-      'What is APR?',
-      <<<'EOT_TF'
-The annual percentage rate includes interest and compulsory fees, expressed as a yearly rate. It is designed to make loan offers easier to compare.
-EOT_TF,
-    ],
-    [
-      'Can I compare car loans and personal loans?',
-      <<<'EOT_TF'
-Yes. Any fixed-rate loan with equal monthly payments can be compared, including car, personal, student and home loans.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Side-by-Side Loan Quote Checker', 'Lender Offer Comparator'],
 ];

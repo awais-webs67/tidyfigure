@@ -1,22 +1,16 @@
 <?php
-// Decision Matrix Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Decision Matrix Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'life',
-  'order' => 9,
-  'icon' => 'scale',
-  'short' => 'Weigh up jobs, flats, cars or anything else, and see how close the call really is.',
-  'title' => 'Decision Matrix Calculator: Weighted Scoring for Big Choices',
-  'description' => <<<'EOT_TF'
-Compare options with a weighted decision matrix. Score jobs, homes, cars or schools on what matters to you, then see if the result holds up. Free.
-EOT_TF,
-  'related' => ['furniture-fit-calculator', 'rent-split-calculator', 'unit-price-calculator'],
-  'answer' => <<<'EOT_TF'
-A decision matrix scores each option on the factors that matter, multiplies each score by how important that factor is, and adds them up. The highest total is the best fit <em>for your priorities</em>. This calculator also checks whether the winner would change if you'd weighted one factor differently, so you know if it's a clear result or a close call.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Decision Matrix Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'life',
+    'order' => 9,
+    'icon' => 'scale',
+    'short' => 'Weigh up jobs, flats, cars or anything else, and see how close the call really is.',
+    'title' => 'Decision Matrix Calculator – Weighted Scoring',
+    'description' => 'Rank tough choices—job offers, houses, cars or universities—by scoring criteria weights objectively and checking sensitivity to small tweaks.',
+    'related' => ['furniture-fit-calculator', 'rent-split-calculator', 'unit-price-calculator'],
+    'answer' => 'A decision matrix scores each option on the factors that matter, multiplies each score by how important that factor is, and adds them up. The highest total is the best fit <em>for your priorities</em>. This calculator also checks whether the winner would change if you\'d weighted one factor differently, so you know if it\'s a clear result or a close call.',
+    'article' => <<<'EOT_TF'
 <h2>What a weighted decision matrix is</h2>
 <p>Big decisions get stuck because we compare options on several things at once. One flat is cheaper, the other is brighter, the third is closer to work. A decision matrix (also called a weighted scoring model or Pugh matrix) breaks the decision into factors, makes you say how much each factor matters, and then scores every option on every factor.</p>
 <p>It doesn't make the decision for you. It shows you what your own priorities imply, which is often surprisingly different from your gut feeling, and that difference is useful in itself.</p>
@@ -47,36 +41,13 @@ Maximum possible             = Σ (factor weight × 10)</div>
 <li><strong>Notice your reaction.</strong> If you feel disappointed by the winner, a factor is missing or a weight is wrong.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do you make a weighted decision matrix?',
-      <<<'EOT_TF'
-List your options and the factors that matter. Give each factor a weight for importance, score each option on each factor, multiply scores by weights and add them up. The highest total best fits your priorities.
-EOT_TF,
+    'faqs' => [
+        ['How do you make a weighted decision matrix?', 'List your options and the factors that matter. Give each factor a weight for importance, score each option on each factor, multiply scores by weights and add them up. The highest total best fits your priorities.'],
+        ['What is the difference between a decision matrix and a pros and cons list?', 'A pros and cons list treats every point as equally important. A weighted matrix makes you say how much each factor matters and scores every option on the same factors, so options can be compared fairly.'],
+        ['How many criteria should a decision matrix have?', 'Five to seven factors works well for most personal decisions. Too few misses important differences; too many makes small factors add up and drown out the ones that matter most.'],
+        ['What if two options have almost the same score?', 'Look at the sensitivity note. It shows which factor’s weight decides the result. Think carefully about that one factor, or gather more information about it.'],
+        ['Can I use this for job offers or choosing a car?', 'Yes. Rename the options and factors to anything: salary, growth and commute for a job; price, running costs and reliability for a car.'],
     ],
-    [
-      'What is the difference between a decision matrix and a pros and cons list?',
-      <<<'EOT_TF'
-A pros and cons list treats every point as equally important. A weighted matrix makes you say how much each factor matters and scores every option on the same factors, so options can be compared fairly.
-EOT_TF,
-    ],
-    [
-      'How many criteria should a decision matrix have?',
-      <<<'EOT_TF'
-Five to seven factors works well for most personal decisions. Too few misses important differences; too many makes small factors add up and drown out the ones that matter most.
-EOT_TF,
-    ],
-    [
-      'What if two options have almost the same score?',
-      <<<'EOT_TF'
-Look at the sensitivity note. It shows which factor’s weight decides the result. Think carefully about that one factor, or gather more information about it.
-EOT_TF,
-    ],
-    [
-      'Can I use this for job offers or choosing a car?',
-      <<<'EOT_TF'
-Yes. Rename the options and factors to anything: salary, growth and commute for a job; price, running costs and reliability for a car.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'decision matrix calculator, weighted scoring table, compare job offers houses, pro con weight calculator',
+    'aka' => ['Weighted Decision Table', 'Option Comparison Scorer'],
 ];

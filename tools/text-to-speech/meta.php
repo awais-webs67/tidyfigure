@@ -1,25 +1,20 @@
 <?php
-// Text to Speech: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Text to Speech',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 4,
-  'popular' => true,
-  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
-  'icon' => 'audio-lines',
-  'keywords' => 'text to speech free online natural voice ai voice generator tts mp3 download read text aloud voice over realistic voices',
-  'aka' => ['TTS', 'AI voice generator', 'read text aloud', 'text to MP3'], // other names people search for
-  'short' => 'Turn text into natural-sounding speech with AI voices, and download it as MP3 or WAV.',
-  'title' => 'Text to Speech Free: Natural AI Voices, MP3 Download',
-  'description' => <<<'EOT_TF'
-Turn text into natural AI speech: 20 realistic English voices, speed control and MP3 or WAV download, free with no sign-up or word limit. Runs on your device.
-EOT_TF,
-  'related' => ['audio-to-text', 'video-subtitle-generator', 'word-counter'],
-  'answer' => <<<'EOT_TF'
-Type or paste your text, choose a <strong>voice</strong> and speed, and press <strong>Speak</strong>. An AI voice model (Kokoro) reads it aloud with natural rhythm and intonation, and you can <strong>download the audio as MP3 or WAV</strong> for videos, presentations or listening later. Other languages can be read by your device’s own voices.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Text to Speech',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 4,
+    'popular' => true,
+    'isolate' => true,
+    'icon' => 'audio-lines',
+    'keywords' => 'text to speech free, tts mp3 download, natural voice reader, convert text to audio online, free voiceover generator',
+    'aka' => ['Free TTS Reader', 'Text to MP3 Voice Generator'],
+    'short' => 'Turn text into natural-sounding speech with AI voices, and download it as MP3 or WAV.',
+    'title' => 'Text to Speech Free – AI Voices & MP3 Export',
+    'description' => 'Convert typed scripts and articles into natural spoken audio with adjustable speed and downloadable WAV or MP3 files directly inside your browser.',
+    'related' => ['audio-to-text', 'video-subtitle-generator', 'word-counter'],
+    'answer' => 'Type or paste your text, choose a <strong>voice</strong> and speed, and press <strong>Speak</strong>. An AI voice model (Kokoro) reads it aloud with natural rhythm and intonation, and you can <strong>download the audio as MP3 or WAV</strong> for videos, presentations or listening later. Other languages can be read by your device’s own voices.',
+    'article' => <<<'EOT_TF'
 <h2>How to turn text into speech</h2>
 <ol>
 <li>Type or paste your text (up to about 5,000 characters at a time).</li>
@@ -43,37 +38,15 @@ EOT_TF,
 
 <h2>Free and private</h2>
 <p>The AI runs in your browser, so your text isn't sent anywhere, there's no account, word limit or watermark, and you can use the audio you make, including in videos.</p>
+
+<h2>Formatting Punctuation for Natural Spoken Pauses</h2>
+<p>Insert commas between clauses, spell out abbreviations that you want spoken in full, and separate paragraphs with blank lines so the voice engine inserts crisp half-second breaths instead of rushing straight from one sentence into the next.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Is this text to speech free?',
-      <<<'EOT_TF'
-Yes. There is no sign-up, no word limit and no watermark, and you can download the audio as MP3 or WAV.
-EOT_TF,
+    'faqs' => [
+        ['Is this text to speech free?', 'Yes. There is no sign-up, no word limit and no watermark, and you can download the audio as MP3 or WAV.'],
+        ['Can I use the audio in my YouTube videos?', 'Yes. The Kokoro voice model is released under the Apache 2.0 licence, which allows commercial use, so you can use the speech you make in videos and projects.'],
+        ['Does it work in Urdu or Hindi?', 'The AI voices speak English. Choose Other languages to have Urdu, Hindi and many other languages read by your device’s built-in voices (listen only).'],
+        ['Why is the first time slow?', 'The AI voice model (about 90 MB) downloads once and is then stored by your browser, so later uses start quickly.'],
+        ['Is my text uploaded?', 'No. The speech is made in your browser and your text never leaves your device.'],
     ],
-    [
-      'Can I use the audio in my YouTube videos?',
-      <<<'EOT_TF'
-Yes. The Kokoro voice model is released under the Apache 2.0 licence, which allows commercial use, so you can use the speech you make in videos and projects.
-EOT_TF,
-    ],
-    [
-      'Does it work in Urdu or Hindi?',
-      <<<'EOT_TF'
-The AI voices speak English. Choose Other languages to have Urdu, Hindi and many other languages read by your device’s built-in voices (listen only).
-EOT_TF,
-    ],
-    [
-      'Why is the first time slow?',
-      <<<'EOT_TF'
-The AI voice model (about 90 MB) downloads once and is then stored by your browser, so later uses start quickly.
-EOT_TF,
-    ],
-    [
-      'Is my text uploaded?',
-      <<<'EOT_TF'
-No. The speech is made in your browser and your text never leaves your device.
-EOT_TF,
-    ],
-  ],
 ];

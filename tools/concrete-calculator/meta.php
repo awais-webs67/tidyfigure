@@ -1,26 +1,18 @@
 <?php
-// Concrete Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Concrete Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'home',
-  'order' => 3,
-  'icon' => 'brick-wall',
-  'appCategory' => 'LifestyleApplication',
-  'keywords' => <<<'EOT_TF'
-concrete calculator how much concrete slab cubic yards cubic metres bags of concrete post hole footing volume
-EOT_TF,
-  'short' => 'Concrete volume for a slab, footing or post holes, in m³ or yd³, and bags needed.',
-  'title' => 'Concrete Calculator: Slabs, Footings & Post Holes, in Bags',
-  'description' => <<<'EOT_TF'
-Work out how much concrete you need for a slab, footing, column or post holes, in cubic metres or yards, and how many 20–40 kg or 40–80 lb bags to buy.
-EOT_TF,
-  'related' => ['tile-calculator', 'paint-calculator', 'unit-converter'],
-  'answer' => <<<'EOT_TF'
-Concrete volume = <strong>length × width × thickness</strong>, all in the same unit. A 3 × 3 m slab 10 cm thick needs 3 × 3 × 0.1 = <strong>0.9 m³</strong>, or about 1 m³ with 10% extra. A 10 × 10 ft slab 4 inches thick needs 33.3 cu ft, which is 1.23 cubic yards or about 56 bags of 80 lb concrete (62 with 10% extra).
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Concrete Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'home',
+    'order' => 3,
+    'icon' => 'brick-wall',
+    'appCategory' => 'LifestyleApplication',
+    'keywords' => 'concrete calculator, cubic yards concrete, bags of concrete calculator, slab concrete volume, post hole concrete',
+    'short' => 'Concrete volume for a slab, footing or post holes, in m³ or yd³, and bags needed.',
+    'title' => 'Concrete Calculator – Slabs, Footings & Bags',
+    'description' => 'Estimate concrete volume in cubic yards or cubic metres plus exact 20 kg, 25 kg, 40 kg, 60 lb and 80 lb premix bags for slabs and post holes.',
+    'related' => ['tile-calculator', 'paint-calculator', 'unit-converter'],
+    'answer' => 'Concrete volume = <strong>length × width × thickness</strong>, all in the same unit. A 3 × 3 m slab 10 cm thick needs 3 × 3 × 0.1 = <strong>0.9 m³</strong>, or about 1 m³ with 10% extra. A 10 × 10 ft slab 4 inches thick needs 33.3 cu ft, which is 1.23 cubic yards or about 56 bags of 80 lb concrete (62 with 10% extra).',
+    'article' => <<<'EOT_TF'
 <h2>Concrete volume formulas</h2>
 <div class="formula">Slab or footing:   volume = length × width × thickness
 Round column/hole: volume = π × (diameter ÷ 2)² × depth
@@ -53,31 +45,16 @@ Post hole: π × 0.15² × 0.9 m = 0.064 m³ each</div>
 
 <h2>Curing</h2>
 <p>Concrete gets stronger as it cures, not as it dries. Keep it damp for the first week (cover with plastic or mist with water), protect it from frost and hot sun, and wait before driving on it, usually about a week for cars and longer for heavy vehicles. It reaches most of its design strength after about 28 days.</p>
+
+<h2>Practical Ordering Margin for Forms &amp; Waste</h2>
+<p>Subgrade unevenness, slight bowing in timber formwork and concrete left on wheelbarrow chutes routinely absorb 5–10% more mix than geometric dimensions predict. Ordering 10% extra premix bags (keep unopened paper bags dry and return extras if unused) avoids cold joints caused by running half a bag short mid-pour.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How much concrete do I need for a slab?',
-      <<<'EOT_TF'
-Multiply length × width × thickness in the same unit. A 3 × 3 m slab 10 cm thick needs 0.9 m³, plus 5–10% extra.
-EOT_TF,
+    'faqs' => [
+        ['How much concrete do I need for a slab?', 'Multiply length × width × thickness in the same unit. A 3 × 3 m slab 10 cm thick needs 0.9 m³, plus 5–10% extra.'],
+        ['How many bags of concrete are in a cubic yard?', 'About 45 bags of 80 lb, 60 bags of 60 lb or 90 bags of 40 lb, depending on the brand’s yield.'],
+        ['How many bags for a post hole?', 'A 30 cm (12 in) wide, 90 cm (3 ft) deep hole holds about 0.064 m³ (2.3 cu ft): around four 80 lb bags.'],
+        ['How do I convert cubic feet to cubic yards?', 'Divide by 27. For example, 33.3 cubic feet ÷ 27 = 1.23 cubic yards.'],
+        ['Should I order extra concrete?', 'Yes. Order 5–10% more to cover uneven ground, spillage and formwork movement.'],
     ],
-    [
-      'How many bags of concrete are in a cubic yard?',
-      'About 45 bags of 80 lb, 60 bags of 60 lb or 90 bags of 40 lb, depending on the brand’s yield.',
-    ],
-    [
-      'How many bags for a post hole?',
-      <<<'EOT_TF'
-A 30 cm (12 in) wide, 90 cm (3 ft) deep hole holds about 0.064 m³ (2.3 cu ft): around four 80 lb bags.
-EOT_TF,
-    ],
-    [
-      'How do I convert cubic feet to cubic yards?',
-      'Divide by 27. For example, 33.3 cubic feet ÷ 27 = 1.23 cubic yards.',
-    ],
-    [
-      'Should I order extra concrete?',
-      'Yes. Order 5–10% more to cover uneven ground, spillage and formwork movement.',
-    ],
-  ],
+    'aka' => ['Concrete Volume & Bag Calculator', 'Slab Concrete Estimator'],
 ];

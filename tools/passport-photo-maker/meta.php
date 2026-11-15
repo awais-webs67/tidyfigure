@@ -1,27 +1,23 @@
 <?php
-// Passport Photo Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Passport Photo Maker',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 1,
-  'icon' => 'user-round',
-  'popular' => true,
-  'files' => true,
-  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
-  'scripts' => ['ai.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'passport photo maker online free passport size photo 2x2 photo 35x45 mm visa photo white background print sheet 4x6 id photo',
-  'aka' => ['passport size photo', 'ID photo maker', 'visa photo maker', 'passport picture'], // other names people search for
-  'short' => 'Passport and visa photos for 12 countries: white background, right size, print sheet.',
-  'title' => 'Passport Photo Maker: Free 2×2 in & 35×45 mm Photos Online',
-  'description' => 'Make passport and visa photos online: US 2×2, UK, Schengen, Canada, India, Pakistan and more. AI white background, auto head sizing and a 4×6 print sheet.',
-  'related' => ['remove-background', 'crop-image', 'image-resizer'],
-  'answer' => <<<'EOT_TF'
-Choose your country and document, then a front-facing photo. The AI <strong>replaces the background with white</strong> and <strong>sizes and centres your head</strong> to the official measurements; drag or zoom to fine-tune. Download the single photo at 300 dpi for online applications, or a <strong>4×6 in print sheet</strong> with several copies to print for a few cents at any photo kiosk.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Passport Photo Maker',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 1,
+    'icon' => 'user-round',
+    'popular' => true,
+    'files' => true,
+    'isolate' => true,
+    'scripts' => ['ai.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'passport photo maker free, 2x2 inch visa photo, 35x45mm photo print sheet, ai white background passport',
+    'aka' => ['Visa & ID Photo Sheet Maker', '2x2 & 35x45mm Passport Tool'],
+    'short' => 'Passport and visa photos for 12 countries: white background, right size, print sheet.',
+    'title' => 'Passport Photo Maker – 2×2 in & 35×45 mm',
+    'description' => 'Create compliant US 2×2 inch, UK, Schengen, Canada, India and Pakistan visa photos with AI white backdrop, head alignment and 4×6 print sheet.',
+    'related' => ['remove-background', 'crop-image', 'image-resizer'],
+    'answer' => 'Choose your country and document, then a front-facing photo. The AI <strong>replaces the background with white</strong> and <strong>sizes and centres your head</strong> to the official measurements; drag or zoom to fine-tune. Download the single photo at 300 dpi for online applications, or a <strong>4×6 in print sheet</strong> with several copies to print for a few cents at any photo kiosk.',
+    'article' => <<<'EOT_TF'
 <h2>How to make a passport photo at home</h2>
 <ol>
 <li><strong>Take the photo:</strong> stand about 1–1.5 m from a plain, light wall, facing a window or other even light. Ask someone else to take it at eye level, rather than taking a selfie (selfies distort the face).</li>
@@ -62,11 +58,11 @@ EOT_TF,
 <p>Many countries now accept digital photos for online passport renewals and e-visas. Use the single photo download: it's a high-quality JPG at 300 dpi. If the website asks for a specific pixel size or file size (for example 600×600 pixels for the US), the US 2×2 photo already matches it; for others, use the <a href="/image-resizer">image resizer</a> or <a href="/image-compressor">image compressor</a>.</p>
 <p>Your photo is processed on your device and never uploaded.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I make a passport photo with a white background?', 'Choose your country and a front-facing photo. The AI removes the original background and replaces it with white automatically.'],
-    ['What size is a passport photo?', 'It depends on the country: 2×2 in (51×51 mm) for the US and India, 35×45 mm for the UK, EU, Australia and Pakistan, 50×70 mm for Canada.'],
-    ['How do I print passport photos cheaply?', 'Download the 4×6 in print sheet and print it at 100% scale at any photo kiosk or pharmacy, then cut out the copies.'],
-    ['Can I take a passport photo with my phone?', 'Yes. Ask someone to take it from about 1–1.5 m away at eye level, against a plain light wall in even light.'],
-    ['Will my photo be accepted?', 'The tool matches the official size and head position, but acceptance also depends on lighting, expression and other rules. Check your government’s requirements.'],
-  ],
+    'faqs' => [
+        ['How do I make a passport photo with a white background?', 'Choose your country and a front-facing photo. The AI removes the original background and replaces it with white automatically.'],
+        ['What size is a passport photo?', 'It depends on the country: 2×2 in (51×51 mm) for the US and India, 35×45 mm for the UK, EU, Australia and Pakistan, 50×70 mm for Canada.'],
+        ['How do I print passport photos cheaply?', 'Download the 4×6 in print sheet and print it at 100% scale at any photo kiosk or pharmacy, then cut out the copies.'],
+        ['Can I take a passport photo with my phone?', 'Yes. Ask someone to take it from about 1–1.5 m away at eye level, against a plain light wall in even light.'],
+        ['Will my photo be accepted?', 'The tool matches the official size and head position, but acceptance also depends on lighting, expression and other rules. Check your government’s requirements.'],
+    ],
 ];

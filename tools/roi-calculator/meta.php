@@ -1,24 +1,22 @@
 <?php
-// ROI Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'ROI Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 10,
-  'icon' => 'badge-dollar-sign',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'roi calculator return on investment annualized return cagr investment profit',
-  'short' => 'Return on investment, profit and the annualised (CAGR) return.',
-  'title' => 'ROI Calculator: Return on Investment & Annualised Return',
-  'description' => <<<'EOT_TF'
-Calculate return on investment (ROI) as a percentage, the profit or loss, and the annualised return (CAGR) to compare investments over different time periods.
-EOT_TF,
-  'related' => ['compound-interest-calculator', 'profit-margin-calculator', 'percentage-calculator'],
-  'answer' => <<<'EOT_TF'
-ROI is your <strong>profit divided by what you invested</strong>. Invest 5,000 and get back 6,800, and your ROI is <strong>36%</strong>. Because ROI ignores time, add the number of years to see the <strong>annualised return</strong>: 36% over 3 years is about 10.8% a year, which you can compare fairly with other investments.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'ROI Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 10,
+    'icon' => 'badge-dollar-sign',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'roi calculator, return on investment formula, annualized cagr calculator, compare investment returns',
+    'short' => 'Return on investment, profit and the annualised (CAGR) return.',
+    'title' => 'ROI Calculator – Return & Annualised CAGR',
+    'description' => 'Compute net profit, simple return on investment (ROI) percentage and annualised CAGR to compare multi-year deals on equal footing.',
+    'related' => ['compound-interest-calculator', 'profit-margin-calculator', 'percentage-calculator'],
+    'answer' => 'ROI is your <strong>profit divided by what you invested</strong>. Invest 5,000 and get back 6,800, and your ROI is <strong>36%</strong>. Because ROI ignores time, add the number of years to see the <strong>annualised return</strong>: 36% over 3 years is about 10.8% a year, which you can compare fairly with other investments.',
+    'sources' => [
+        ['SEC Investor.gov – Measuring Investment Returns', 'https://www.investor.gov/introduction-investing/investing-basics/how-stock-markets-work'],
+        ['Corporate Finance Institute / Investor Basics', 'https://www.investor.gov/financial-tools-calculators'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>Formulas</h2>
 <div class="formula">ROI (%)            = (final value − invested) ÷ invested × 100
 Annualised (CAGR)  = (final value ÷ invested)^(1 ÷ years) − 1</div>
@@ -48,33 +46,17 @@ Annualised (CAGR)  = (final value ÷ invested)^(1 ÷ years) − 1</div>
 
 <h2>Using ROI well</h2>
 <p>ROI is simple, which is its strength and its weakness. It ignores how long the money was tied up, so always compare the annualised figure when investments last different lengths of time. It also ignores risk: a safe 6% can be better than a risky 10%. Include every cost in the calculation, such as fees, taxes, maintenance and your own time, or the ROI will look better than reality.</p>
+
+<h2>Why Simple ROI Misleads Without Holding Time</h2>
+<p>A 40% total ROI achieved in 18 months equals roughly <code>25.1%</code> per year (CAGR), dramatically outperforming a 40% ROI spread over six slow years (<code>5.8%</code> annualised)—always check annualised CAGR alongside raw percentage profit.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate ROI?',
-      <<<'EOT_TF'
-Subtract the amount invested from the final value, divide by the amount invested and multiply by 100.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate ROI?', 'Subtract the amount invested from the final value, divide by the amount invested and multiply by 100.'],
+        ['What is a good ROI?', 'It depends on risk and time. Compare the annualised return with alternatives, such as a savings rate or a stock market average.'],
+        ['What is annualised return?', 'The yearly rate that, compounded, turns the investment into the final value over the period. Also called CAGR.'],
+        ['Can ROI be negative?', 'Yes. If you get back less than you invested, ROI is negative and shows the percentage lost.'],
+        ['Should I include fees?', 'Yes. Add all costs to the amount invested and subtract selling costs from the final value.'],
+        ['Should dividends and maintenance expenses be counted in net ROI?', 'Yes. Include dividends earned and subtract brokerage fees, repairs or property taxes so net profit reflects true cash gained.'],
     ],
-    [
-      'What is a good ROI?',
-      <<<'EOT_TF'
-It depends on risk and time. Compare the annualised return with alternatives, such as a savings rate or a stock market average.
-EOT_TF,
-    ],
-    [
-      'What is annualised return?',
-      <<<'EOT_TF'
-The yearly rate that, compounded, turns the investment into the final value over the period. Also called CAGR.
-EOT_TF,
-    ],
-    [
-      'Can ROI be negative?',
-      'Yes. If you get back less than you invested, ROI is negative and shows the percentage lost.',
-    ],
-    [
-      'Should I include fees?',
-      'Yes. Add all costs to the amount invested and subtract selling costs from the final value.',
-    ],
-  ],
+    'aka' => ['Return on Investment & CAGR Tool', 'Net Profit ROI Calculator'],
 ];

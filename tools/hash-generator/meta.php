@@ -1,24 +1,18 @@
 <?php
-// Hash Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Hash Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'dev',
-  'order' => 3,
-  'icon' => 'hash',
-  'files' => true,
-  'keywords' => 'hash generator md5 sha1 sha256 sha512 checksum file hash verify download online',
-  'short' => 'MD5, SHA-1, SHA-256 and SHA-512 hashes of text or files, and checksum checks.',
-  'title' => 'Hash Generator: MD5, SHA-1, SHA-256 & SHA-512 Online',
-  'description' => <<<'EOT_TF'
-Generate MD5, SHA-1, SHA-256, SHA-384 and SHA-512 hashes of text or any file, and verify a download against its checksum. Files never leave your device.
-EOT_TF,
-  'related' => ['base64-encoder-decoder', 'uuid-generator', 'password-generator'],
-  'answer' => <<<'EOT_TF'
-A hash function turns any text or file into a fixed-length fingerprint: change one character and the hash changes completely. The SHA-256 hash of <code>hello world</code> is <code>b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</code>. To check a download, choose the file and paste the checksum from the website: the tool tells you if it matches.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Hash Generator',
+    'updated' => '2026-11-15',
+    'category' => 'dev',
+    'order' => 3,
+    'icon' => 'hash',
+    'files' => true,
+    'keywords' => 'sha256 generator, md5 hash online, file checksum verifier, sha512 hash calculator, compare file checksum',
+    'short' => 'MD5, SHA-1, SHA-256 and SHA-512 hashes of text or files, and checksum checks.',
+    'title' => 'Hash Generator – MD5, SHA-1, SHA-256 & File',
+    'description' => 'Compute cryptographic MD5, SHA-1, SHA-256, SHA-384 and SHA-512 checksums for typed text or entire disk files locally without uploading.',
+    'related' => ['base64-encoder-decoder', 'uuid-generator', 'password-generator'],
+    'answer' => 'A hash function turns any text or file into a fixed-length fingerprint: change one character and the hash changes completely. The SHA-256 hash of <code>hello world</code> is <code>b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9</code>. To check a download, choose the file and paste the checksum from the website: the tool tells you if it matches.',
+    'article' => <<<'EOT_TF'
 <h2>What a hash is</h2>
 <p>A <strong>cryptographic hash function</strong> takes input of any size and produces a fixed-size output, usually shown in hexadecimal. Good hash functions have three key properties:</p>
 <ul>
@@ -56,34 +50,12 @@ Linux:     sha256sum file.iso</div>
 <p>MD5 and SHA hashes are designed to be fast, which makes them unsuitable for passwords: attackers can try billions of guesses per second. Use a dedicated password hashing function such as <strong>Argon2</strong>, <strong>bcrypt</strong> or <strong>scrypt</strong>, which are slow on purpose and add a unique salt to each password.</p>
 <p>Everything is computed in your browser with the built-in Web Crypto API (and the CryptoJS library for MD5). Your text and files never leave your device.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I get the SHA-256 hash of a file?',
-      <<<'EOT_TF'
-Choose File, then select the file. Its SHA-256 hash appears along with MD5, SHA-1, SHA-384 and SHA-512.
-EOT_TF,
+    'faqs' => [
+        ['How do I get the SHA-256 hash of a file?', 'Choose File, then select the file. Its SHA-256 hash appears along with MD5, SHA-1, SHA-384 and SHA-512.'],
+        ['How do I verify a checksum?', 'Select the file and paste the published checksum into Expected hash. The tool tells you whether it matches.'],
+        ['Is MD5 still safe?', 'Not for security, because collisions can be created on purpose. It is still fine for detecting accidental corruption.'],
+        ['Can a hash be reversed?', 'No. Hashes are one-way. Short or common inputs can sometimes be guessed by trying many possibilities, which is why passwords need special slow hashes.'],
+        ['Are my files uploaded?', 'No. Hashes are calculated in your browser, so files never leave your device.'],
     ],
-    [
-      'How do I verify a checksum?',
-      <<<'EOT_TF'
-Select the file and paste the published checksum into Expected hash. The tool tells you whether it matches.
-EOT_TF,
-    ],
-    [
-      'Is MD5 still safe?',
-      <<<'EOT_TF'
-Not for security, because collisions can be created on purpose. It is still fine for detecting accidental corruption.
-EOT_TF,
-    ],
-    [
-      'Can a hash be reversed?',
-      <<<'EOT_TF'
-No. Hashes are one-way. Short or common inputs can sometimes be guessed by trying many possibilities, which is why passwords need special slow hashes.
-EOT_TF,
-    ],
-    [
-      'Are my files uploaded?',
-      'No. Hashes are calculated in your browser, so files never leave your device.',
-    ],
-  ],
+    'aka' => ['SHA-256 & MD5 Checksum Tool', 'File Integrity Hasher'],
 ];

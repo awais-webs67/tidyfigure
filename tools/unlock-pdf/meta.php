@@ -1,24 +1,23 @@
 <?php
-// Unlock PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Unlock PDF (Remove Password)',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 15,
-  'icon' => 'lock-open',
-  'files' => true,
-  'libs' => ['vendor/cantoo-pdf-lib-2.9.2.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js'],
-  'appCategory' => 'UtilitiesApplication',
-  'keywords' => 'unlock pdf remove pdf password decrypt pdf remove restrictions pdf print copy permission password protected pdf',
-  'short' => 'Remove the password and print or copy restrictions from a PDF you can open.',
-  'title' => 'Unlock PDF: Remove PDF Password and Restrictions Free',
-  'description' => 'Remove the password from a PDF you know the password for, and lift print, copy and edit restrictions. Runs in your browser: your PDF is never uploaded.',
-  'related' => ['protect-pdf', 'merge-pdf', 'pdf-to-text'],
-  'answer' => <<<'EOT_TF'
-To remove a password from a PDF, choose the file, type the password once and press <strong>Unlock PDF</strong>. You get a copy that opens without a password and has no print, copy or edit restrictions. Files that only block printing or copying are unlocked without a password. Everything happens in your browser, so the PDF is never uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Unlock PDF (Remove Password)',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 15,
+    'icon' => 'lock-open',
+    'files' => true,
+    'libs' => [
+        'vendor/cantoo-pdf-lib-2.9.2.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+    ],
+    'appCategory' => 'UtilitiesApplication',
+    'keywords' => 'unlock pdf online free, remove pdf password known, enable print copy restricted pdf, decrypt pdf browser',
+    'short' => 'Remove the password and print or copy restrictions from a PDF you can open.',
+    'title' => 'Unlock PDF Online – Remove Password & Locks',
+    'description' => 'Strip known open passwords and print/copy permission restrictions cleanly from your PDF inside the browser so files edit and archive effortlessly.',
+    'related' => ['protect-pdf', 'merge-pdf', 'pdf-to-text'],
+    'answer' => 'To remove a password from a PDF, choose the file, type the password once and press <strong>Unlock PDF</strong>. You get a copy that opens without a password and has no print, copy or edit restrictions. Files that only block printing or copying are unlocked without a password. Everything happens in your browser, so the PDF is never uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>How to remove a password from a PDF</h2>
 <ol>
 <li>Drop the PDF in the box. The tool tells you whether it needs a password to open, or only has restrictions.</li>
@@ -40,12 +39,17 @@ EOT_TF,
 
 <h2>Is it legal and safe?</h2>
 <p>Only unlock PDFs that you own or have permission to use, such as your own bank statements. The tool needs the correct password for locked files and can't open a PDF you don't have access to. Your file never leaves your device, which makes this safer than upload sites for private documents. Once unlocked, anyone with the copy can open it, so store it carefully, or add a new password with <a href="/protect-pdf">Protect PDF</a>.</p>
+
+<h2>Removing Copy/Print Owner Restrictions Without Reprinting</h2>
+<p>Instead of printing a locked statement to PDF—which wipes selectable vector text and breaks accessibility—stripping owner permissions directly restores clean copy-paste, bookmarking and archive printing on your device.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I remove a password from a PDF?', 'Choose the PDF, enter its password and press Unlock PDF. Check the preview, then download the unlocked copy.'],
-    ['Can it unlock a PDF without the password?', 'If the PDF only restricts printing or copying, yes. If it needs a password to open, you must know the password; the tool does not crack passwords.'],
-    ['Is my PDF uploaded?', 'No. Unlocking happens in your browser, so private documents stay on your device.'],
-    ['Does it work with bank statement PDFs?', 'Yes. Enter the password the bank gave you, often your date of birth or part of your account number.'],
-    ['Will it change the content?', 'No. Pages, text, images and links stay the same; only the encryption is removed.'],
-  ],
+    'faqs' => [
+        ['How do I remove a password from a PDF?', 'Choose the PDF, enter its password and press Unlock PDF. Check the preview, then download the unlocked copy.'],
+        ['Can it unlock a PDF without the password?', 'If the PDF only restricts printing or copying, yes. If it needs a password to open, you must know the password; the tool does not crack passwords.'],
+        ['Is my PDF uploaded?', 'No. Unlocking happens in your browser, so private documents stay on your device.'],
+        ['Does it work with bank statement PDFs?', 'Yes. Enter the password the bank gave you, often your date of birth or part of your account number.'],
+        ['Will it change the content?', 'No. Pages, text, images and links stay the same; only the encryption is removed.'],
+        ['Does unlocking remove owner printing and copy-paste blocks cleanly?', 'Yes. Once unlocked with valid user credentials, text copy, bookmark editing and high-res printing work normally in every viewer.'],
+    ],
+    'aka' => ['PDF Password Remover', 'PDF Restriction Unlocker'],
 ];

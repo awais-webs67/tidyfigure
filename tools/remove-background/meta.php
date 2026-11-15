@@ -1,27 +1,23 @@
 <?php
-// Background Remover (AI): page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Background Remover',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 0,
-  'icon' => 'eraser',
-  'popular' => true,
-  'files' => true,
-  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
-  'scripts' => ['ai.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'remove background from image free remove bg ai background remover transparent png product photo white background hd',
-  'aka' => ['background remover', 'remove bg', 'background eraser', 'photo background remover', 'cut out image'], // other names people search for
-  'short' => 'AI removes the background from any photo in seconds. Full HD, free, no upload.',
-  'title' => 'Remove Background from Image Free: AI Background Remover, HD',
-  'description' => 'Remove the background from photos with AI, in full resolution and free. Get a transparent PNG or a white, colour, blurred or custom background. No upload.',
-  'related' => ['passport-photo-maker', 'image-compressor', 'image-resizer'],
-  'answer' => <<<'EOT_TF'
-Choose a photo and the AI cuts out the person or object and removes the background automatically, usually in a few seconds. Download a <strong>transparent PNG</strong> in full resolution, or put the subject on a white, coloured, blurred or custom background. Unlike most background removers, it’s <strong>free in HD</strong> and the photo never leaves your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Background Remover',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 0,
+    'icon' => 'eraser',
+    'popular' => true,
+    'files' => true,
+    'isolate' => true,
+    'scripts' => ['ai.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'remove background from image free, ai transparent png maker, background remover hd no upload',
+    'aka' => ['AI Background Remover HD', 'Transparent Cutout Maker'],
+    'short' => 'AI removes the background from any photo in seconds. Full HD, free, no upload.',
+    'title' => 'Remove Background From Image – Free AI Cutout',
+    'description' => 'Cut out people, products and logos in full resolution with browser AI—export crisp transparent PNG or apply white, solid colour or blur locally.',
+    'related' => ['passport-photo-maker', 'image-compressor', 'image-resizer'],
+    'answer' => 'Choose a photo and the AI cuts out the person or object and removes the background automatically, usually in a few seconds. Download a <strong>transparent PNG</strong> in full resolution, or put the subject on a white, coloured, blurred or custom background. Unlike most background removers, it’s <strong>free in HD</strong> and the photo never leaves your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to remove a background</h2>
 <ol>
 <li>Drop a photo into the box, or tap to choose one from your phone.</li>
@@ -63,11 +59,11 @@ EOT_TF,
 <li><strong>Thumbnails, posters and presentations,</strong> placing a person or product on your own design.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    ['Is this background remover really free in HD?', 'Yes. The AI runs on your device, so there is nothing to pay for: downloads are full resolution with no watermark and no limit.'],
-    ['Is my photo uploaded?', 'No. The photo is processed in your browser. Only the AI model is downloaded, once, from Hugging Face.'],
-    ['How do I make a transparent PNG?', 'Leave the background set to Transparent and press Download PNG. The checkerboard shows the transparent areas.'],
-    ['Can I put a white background behind the subject?', 'Yes. Choose White (or any colour, a blurred version of the original, or your own image) and download a JPG.'],
-    ['Is the first use slow?', 'Only a little. The AI downloads the first time (about 9 MB). The first photo uses the small Quick AI so it is done in seconds, and the Best quality AI loads in the background to sharpen it. After that both are stored in your browser and start instantly.'],
-  ],
+    'faqs' => [
+        ['Is this background remover really free in HD?', 'Yes. The AI runs on your device, so there is nothing to pay for: downloads are full resolution with no watermark and no limit.'],
+        ['Is my photo uploaded?', 'No. The photo is processed in your browser. Only the AI model is downloaded, once, from Hugging Face.'],
+        ['How do I make a transparent PNG?', 'Leave the background set to Transparent and press Download PNG. The checkerboard shows the transparent areas.'],
+        ['Can I put a white background behind the subject?', 'Yes. Choose White (or any colour, a blurred version of the original, or your own image) and download a JPG.'],
+        ['Is the first use slow?', 'Only a little. The AI downloads the first time (about 9 MB). The first photo uses the small Quick AI so it is done in seconds, and the Best quality AI loads in the background to sharpen it. After that both are stored in your browser and start instantly.'],
+    ],
 ];

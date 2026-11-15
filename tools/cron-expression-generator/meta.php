@@ -1,25 +1,17 @@
 <?php
-// Cron Expression Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Cron Expression Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'dev',
-  'order' => 7,
-  'icon' => 'calendar-clock',
-  'keywords' => <<<'EOT_TF'
-cron expression generator crontab guru cron schedule explain cron next run time every 5 minutes cron syntax
-EOT_TF,
-  'short' => 'Build or explain cron schedules in plain English, with the next run times.',
-  'title' => 'Cron Expression Generator & Explainer, with Next Run Times',
-  'description' => <<<'EOT_TF'
-Write or paste a cron expression to see what it means in plain English and the next 8 run times. Presets and builder for crontab, Kubernetes and GitHub Actions.
-EOT_TF,
-  'related' => ['regex-tester', 'days-between-dates', 'online-timer'],
-  'answer' => <<<'EOT_TF'
-A cron expression has five fields: <strong>minute hour day-of-month month day-of-week</strong>. <code>30 9 * * 1-5</code> means "at 9:30 am, Monday to Friday", and <code>*/5 * * * *</code> means every 5 minutes. Type or build an expression below to see it in plain English and the next times it will run.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Cron Expression Generator',
+    'updated' => '2026-11-15',
+    'category' => 'dev',
+    'order' => 7,
+    'icon' => 'calendar-clock',
+    'keywords' => 'cron expression generator, crontab guru alternative, cron schedule explainer, unix cron tester, next cron runs',
+    'short' => 'Build or explain cron schedules in plain English, with the next run times.',
+    'title' => 'Cron Expression Generator & Next Run Time',
+    'description' => 'Build and decode 5-field cron schedules into plain English, view the next 8 execution dates and copy presets for Linux crontab, Kubernetes and CI.',
+    'related' => ['regex-tester', 'days-between-dates', 'online-timer'],
+    'answer' => 'A cron expression has five fields: <strong>minute hour day-of-month month day-of-week</strong>. <code>30 9 * * 1-5</code> means "at 9:30 am, Monday to Friday", and <code>*/5 * * * *</code> means every 5 minutes. Type or build an expression below to see it in plain English and the next times it will run.',
+    'article' => <<<'EOT_TF'
 <h2>Cron syntax</h2>
 <div class="formula">┌───────────── minute (0–59)
 │ ┌─────────── hour (0–23)
@@ -67,23 +59,17 @@ EOT_TF,
 
 <h2>Time zones</h2>
 <p>Cron runs in the server's time zone, which is very often UTC. A job set for <code>0 9 * * *</code> on a UTC server runs at 9:00 UTC: that's 10:00 in London in winter, 4 or 5 am in New York, and 2:30 pm in India. The next runs above are shown in your own time zone, so if your server uses UTC, adjust the hour.</p>
+
+<h2>Catching Off-by-One Weekday &amp; Step Quirks</h2>
+<p>Standard Vixie cron treats both <code>0</code> and <code>7</code> as Sunday in the weekday field, whereas AWS EventBridge and Quartz add seconds or require <code>?</code> in one of the day fields. Double-check UTC versus server local time inside containers so billing or backup scripts don’t fire during peak traffic.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I run a cron job every 5 minutes?',
-      'Use */5 * * * *. The */5 in the minute field means every fifth minute.',
+    'faqs' => [
+        ['How do I run a cron job every 5 minutes?', 'Use */5 * * * *. The */5 in the minute field means every fifth minute.'],
+        ['What does * * * * * mean in cron?', 'Run every minute of every hour of every day.'],
+        ['What time zone does cron use?', 'The server’s time zone, often UTC. GitHub Actions schedules always use UTC.'],
+        ['Is Sunday 0 or 7 in cron?', 'Both. 0 and 7 both mean Sunday in standard cron.'],
+        ['Why does my cron run on more days than expected?', 'If both day-of-month and day-of-week are set, cron runs when either matches. Set one of them to * to limit it.'],
+        ['What does the */5 syntax mean in a cron field?', 'It matches every fifth step starting from zero—for example */5 in the minute field triggers at :00, :05, :10, :15 and so on.'],
     ],
-    ['What does * * * * * mean in cron?', 'Run every minute of every hour of every day.'],
-    [
-      'What time zone does cron use?',
-      'The server’s time zone, often UTC. GitHub Actions schedules always use UTC.',
-    ],
-    ['Is Sunday 0 or 7 in cron?', 'Both. 0 and 7 both mean Sunday in standard cron.'],
-    [
-      'Why does my cron run on more days than expected?',
-      <<<'EOT_TF'
-If both day-of-month and day-of-week are set, cron runs when either matches. Set one of them to * to limit it.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Crontab Schedule Builder', 'Cron Syntax Explainer'],
 ];

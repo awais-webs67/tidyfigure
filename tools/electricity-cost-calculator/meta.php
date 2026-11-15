@@ -1,27 +1,19 @@
 <?php
-// Electricity Cost Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Electricity Cost Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'home',
-  'order' => 4,
-  'icon' => 'plug',
-  'popular' => true,
-  'appCategory' => 'LifestyleApplication',
-  'keywords' => <<<'EOT_TF'
-electricity cost calculator appliance energy cost kwh calculator watts to cost running cost per hour heater ac power bill
-EOT_TF,
-  'short' => 'What your appliances cost to run per day, month and year, from watts and hours.',
-  'title' => 'Electricity Cost Calculator: Appliance Running Costs (kWh)',
-  'description' => <<<'EOT_TF'
-Work out what each appliance costs to run per hour, day, month and year from its watts, hours of use and your price per kWh. Find what uses the most power.
-EOT_TF,
-  'related' => ['unit-converter', 'budget-planner', 'percentage-calculator'],
-  'answer' => <<<'EOT_TF'
-Running cost = <strong>watts × hours ÷ 1,000 × price per kWh</strong>. A 2,000 W heater used 3 hours a day uses 6 kWh; at 0.25 per kWh that's <strong>1.50 a day</strong>, about 45.60 a month. A 100 W TV on for 5 hours uses just 0.5 kWh a day, 0.13 at the same price.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Electricity Cost Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'home',
+    'order' => 4,
+    'icon' => 'plug',
+    'popular' => true,
+    'appCategory' => 'LifestyleApplication',
+    'keywords' => 'electricity cost calculator, appliance kwh calculator, watts to cost per hour, electric bill estimator, power running cost',
+    'short' => 'What your appliances cost to run per day, month and year, from watts and hours.',
+    'title' => 'Electricity Cost Calculator – Watts to kWh Bill',
+    'description' => 'Calculate daily, monthly and yearly appliance running costs from watts, hours used and your electricity kWh tariff before running heaters or ACs.',
+    'related' => ['unit-converter', 'budget-planner', 'percentage-calculator'],
+    'answer' => 'Running cost = <strong>watts × hours ÷ 1,000 × price per kWh</strong>. A 2,000 W heater used 3 hours a day uses 6 kWh; at 0.25 per kWh that\'s <strong>1.50 a day</strong>, about 45.60 a month. A 100 W TV on for 5 hours uses just 0.5 kWh a day, 0.13 at the same price.',
+    'article' => <<<'EOT_TF'
 <h2>The formula</h2>
 <div class="formula">kWh per day = watts × hours per day ÷ 1,000
 Cost per day = kWh × price per kWh
@@ -62,30 +54,12 @@ Heater: 2,000 W × 3 h = 6,000 Wh = 6 kWh × 0.25 = 1.50 a day
 </ul>
 <p>Use the <a href="/budget-planner">budget planner</a> to see how your energy bill fits your monthly spending.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate the cost of running an appliance?',
-      <<<'EOT_TF'
-Multiply the watts by the hours used, divide by 1,000 to get kWh, then multiply by your price per kWh.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate the cost of running an appliance?', 'Multiply the watts by the hours used, divide by 1,000 to get kWh, then multiply by your price per kWh.'],
+        ['How much does it cost to run a 2000W heater?', '2 kWh per hour. At 0.25 per kWh, that is 0.50 an hour, or 1.50 for three hours a day.'],
+        ['How many kWh does a fridge use?', 'A modern fridge-freezer typically uses 200–400 kWh a year, which averages about 25–45 W.'],
+        ['What is a kWh?', 'A kilowatt-hour: the energy used by a 1,000-watt appliance running for one hour. It is the unit on electricity bills.'],
+        ['Where do I find my electricity price?', 'On your bill or your supplier’s tariff page, shown as a price per kWh (sometimes per unit).'],
     ],
-    [
-      'How much does it cost to run a 2000W heater?',
-      '2 kWh per hour. At 0.25 per kWh, that is 0.50 an hour, or 1.50 for three hours a day.',
-    ],
-    [
-      'How many kWh does a fridge use?',
-      'A modern fridge-freezer typically uses 200–400 kWh a year, which averages about 25–45 W.',
-    ],
-    [
-      'What is a kWh?',
-      <<<'EOT_TF'
-A kilowatt-hour: the energy used by a 1,000-watt appliance running for one hour. It is the unit on electricity bills.
-EOT_TF,
-    ],
-    [
-      'Where do I find my electricity price?',
-      'On your bill or your supplier’s tariff page, shown as a price per kWh (sometimes per unit).',
-    ],
-  ],
+    'aka' => ['Appliance Power Cost Calculator', 'kWh Electricity Estimator'],
 ];

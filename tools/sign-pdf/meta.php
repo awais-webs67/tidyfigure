@@ -1,30 +1,24 @@
 <?php
-// Sign PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Sign PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 13,
-  'icon' => 'signature',
-  'popular' => true,
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'keywords' => 'sign pdf online e-signature add signature to pdf draw signature',
-  'aka' => ['e-sign PDF', 'add signature to PDF', 'PDF signer', 'sign document online'], // other names people search for
-  'short' => 'Draw or type your signature and place it anywhere on a PDF.',
-  'title' => 'Sign PDF Online: Draw or Type a Signature, Free',
-  'description' => <<<'EOT_TF'
-Sign a PDF in your browser: draw or type your signature, tap where it goes, add the date and download. No account, no upload, no watermark. Works on phones.
-EOT_TF,
-  'related' => ['watermark-pdf', 'merge-pdf', 'pdf-metadata-remover'],
-  'answer' => <<<'EOT_TF'
-To sign a PDF, <strong>draw your signature</strong> with your mouse or finger (or type your name in a handwriting style), open the PDF, and <strong>tap where the signature should go</strong>. You can add today's date, place signatures or initials on several pages, and download the signed copy. Nothing is uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Sign PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 13,
+    'icon' => 'signature',
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'keywords' => 'sign pdf online free, electronic signature pdf no signup, draw signature on pdf contract, free esign tool',
+    'aka' => ['Free PDF e-Signer', 'Browser Document Signature Tool'],
+    'short' => 'Draw or type your signature and place it anywhere on a PDF.',
+    'title' => 'Sign PDF Online Free – Draw or Type eSign',
+    'description' => 'Draw with trackpad/touch, type signature script or place date/initials directly onto PDF agreements and leases locally—no account or watermark.',
+    'related' => ['watermark-pdf', 'merge-pdf', 'pdf-metadata-remover'],
+    'answer' => 'To sign a PDF, <strong>draw your signature</strong> with your mouse or finger (or type your name in a handwriting style), open the PDF, and <strong>tap where the signature should go</strong>. You can add today\'s date, place signatures or initials on several pages, and download the signed copy. Nothing is uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>How to sign a PDF</h2>
 <ol>
 <li><strong>Create your signature.</strong> Draw it in the box (a phone or tablet with a finger or stylus gives the most natural result) or type your name and pick a handwriting style.</li>
@@ -48,32 +42,12 @@ EOT_TF,
 <h2>Privacy</h2>
 <p>Your signature and document never leave your browser. Nothing is stored after you close the page, so nobody can reuse your signature later. That's safer than services that keep a copy of your signature on their servers.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I sign a PDF for free?',
-      <<<'EOT_TF'
-Draw or type your signature, open the PDF, tap where it goes and download. There is no account, watermark or limit.
-EOT_TF,
+    'faqs' => [
+        ['How do I sign a PDF for free?', 'Draw or type your signature, open the PDF, tap where it goes and download. There is no account, watermark or limit.'],
+        ['Can I sign a PDF on my phone?', 'Yes. Draw your signature with your finger, open the PDF from your phone’s files and tap where to place it.'],
+        ['Is a signature added this way legally binding?', 'Simple electronic signatures are accepted for most everyday documents in most countries. Some documents, like wills and deeds, need witnessed or certified signatures.'],
+        ['Can I add initials to every page?', 'Yes. Type your initials, then go through the pages and tap where each one goes.'],
+        ['Is my signature stored anywhere?', 'No. Your signature and PDF stay in your browser and are gone when you close the page.'],
+        ['Are drawn or typed browser signatures accepted on PDF leases and forms?', 'Yes. Standard visible signature stamps work routinely across NDAs, offer letters, rental forms and invoices unless a regulated notarised certificate is required.'],
     ],
-    [
-      'Can I sign a PDF on my phone?',
-      <<<'EOT_TF'
-Yes. Draw your signature with your finger, open the PDF from your phone’s files and tap where to place it.
-EOT_TF,
-    ],
-    [
-      'Is a signature added this way legally binding?',
-      <<<'EOT_TF'
-Simple electronic signatures are accepted for most everyday documents in most countries. Some documents, like wills and deeds, need witnessed or certified signatures.
-EOT_TF,
-    ],
-    [
-      'Can I add initials to every page?',
-      'Yes. Type your initials, then go through the pages and tap where each one goes.',
-    ],
-    [
-      'Is my signature stored anywhere?',
-      'No. Your signature and PDF stay in your browser and are gone when you close the page.',
-    ],
-  ],
 ];

@@ -1,25 +1,19 @@
 <?php
-// Password Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Password Generator',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'random',
-  'order' => 2,
-  'icon' => 'key-round',
-  'popular' => true,
-  'keywords' => 'strong password random secure generator create password',
-  'aka' => ['strong password generator', 'random password generator', 'password maker'], // other names people search for
-  'short' => 'Create strong, random passwords with a strength meter. Never sent anywhere.',
-  'title' => 'Password Generator: Create Strong, Random Passwords',
-  'description' => <<<'EOT_TF'
-Generate strong, random passwords from 6 to 64 characters with uppercase, numbers and symbols. Strength meter included. Created on your device and never stored.
-EOT_TF,
-  'related' => ['qr-code-generator', 'random-number-generator', 'base64-encoder-decoder'],
-  'answer' => <<<'EOT_TF'
-A strong password is <strong>long and random</strong>. Use at least <strong>16 characters</strong> mixing upper and lower case letters, numbers and symbols, and a different one for every account. The passwords here are made by your browser's cryptographically secure random generator and never leave your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Password Generator',
+    'updated' => '2026-11-15',
+    'category' => 'random',
+    'order' => 2,
+    'icon' => 'key-round',
+    'popular' => true,
+    'keywords' => 'password generator, strong password generator, random password maker, secure password online, password entropy',
+    'aka' => ['Strong Password Generator', 'Random Password Maker', 'Secure Passphrase Tool'],
+    'short' => 'Create strong, random passwords with a strength meter. Never sent anywhere.',
+    'title' => 'Password Generator – Strong Random & Local',
+    'description' => 'Generate 6–64 character cryptographic passwords locally with uppercase, numbers and symbols plus live entropy strength check. Zero transmission.',
+    'related' => ['qr-code-generator', 'random-number-generator', 'base64-encoder-decoder'],
+    'answer' => 'A strong password is <strong>long and random</strong>. Use at least <strong>16 characters</strong> mixing upper and lower case letters, numbers and symbols, and a different one for every account. The passwords here are made by your browser\'s cryptographically secure random generator and never leave your device.',
+    'article' => <<<'EOT_TF'
 <h2>What makes a password strong</h2>
 <p>Attackers don't guess passwords one at a time by hand. They use software that tries billions of combinations per second, starting with common passwords, dictionary words and patterns like "Summer2026!". A password resists this only if it's long and truly random.</p>
 <p>Strength is measured in <strong>bits of entropy</strong>: the number of guesses needed, written as a power of two.</p>
@@ -48,37 +42,15 @@ EOT_TF,
 <li><strong>Turn on two-factor authentication</strong> or passkeys wherever you can.</li>
 <li><strong>Tick "avoid look-alikes"</strong> if you'll ever type the password by hand or read it aloud, so 0 and O or l and 1 can't be confused.</li>
 </ul>
+
+<h2>Entropy Bits vs Character Complexity Tricks</h2>
+<p>A 16-character random password drawn from 94 printable ASCII characters yields over <code>104 bits</code> of entropy—making brute-force guessing computationally infeasible compared with an 8-character password full of predictable substitutions like <code>P@ssw0rd!</code>. Length beats clever spellings every time.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How long should a password be?',
-      <<<'EOT_TF'
-At least 12 characters, and 16 or more for important accounts. Length adds more security than any other rule.
-EOT_TF,
+    'faqs' => [
+        ['How long should a password be?', 'At least 12 characters, and 16 or more for important accounts. Length adds more security than any other rule.'],
+        ['Is it safe to use an online password generator?', 'This one is: passwords are created in your browser with a secure random generator and are never sent or stored. Close the page after copying if you are on a shared computer.'],
+        ['What is a strong password example?', 'Something like k7#Qm2!vRz9@pL4x: 16 random characters from all four types. Don’t use any example you see published, including this one.'],
+        ['Should I use symbols in my password?', 'They help, because they increase the number of possible characters. Making the password longer helps even more.'],
+        ['How do I remember random passwords?', 'Use a password manager. It stores and fills them for you, so you only need to remember one strong master password.'],
     ],
-    [
-      'Is it safe to use an online password generator?',
-      <<<'EOT_TF'
-This one is: passwords are created in your browser with a secure random generator and are never sent or stored. Close the page after copying if you are on a shared computer.
-EOT_TF,
-    ],
-    [
-      'What is a strong password example?',
-      <<<'EOT_TF'
-Something like k7#Qm2!vRz9@pL4x: 16 random characters from all four types. Don’t use any example you see published, including this one.
-EOT_TF,
-    ],
-    [
-      'Should I use symbols in my password?',
-      <<<'EOT_TF'
-They help, because they increase the number of possible characters. Making the password longer helps even more.
-EOT_TF,
-    ],
-    [
-      'How do I remember random passwords?',
-      <<<'EOT_TF'
-Use a password manager. It stores and fills them for you, so you only need to remember one strong master password.
-EOT_TF,
-    ],
-  ],
 ];

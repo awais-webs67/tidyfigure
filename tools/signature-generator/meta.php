@@ -1,25 +1,21 @@
 <?php
-// Signature Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Signature Generator',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 4,
-  'icon' => 'signature',
-  'popular' => true,
-  'files' => true,
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'signature generator online draw signature create signature transparent png handwritten signature maker type signature from photo electronic signature',
-  'aka' => ['signature maker', 'e-signature creator', 'online signature'], // other names people search for
-  'short' => 'Draw, type or photograph your signature and download it as a transparent PNG.',
-  'title' => 'Signature Generator: Draw or Type a Transparent Signature',
-  'description' => 'Create your signature online: draw it, type it in a handwriting font or clean up a photo of it. Download a transparent PNG, JPG or SVG. Free and private.',
-  'related' => ['sign-pdf', 'remove-background', 'email-signature-generator'],
-  'answer' => <<<'EOT_TF'
-Draw your signature with a mouse, finger or stylus, type your name in one of eight handwriting fonts, or <strong>take a photo of your signature on paper</strong> and the paper is removed automatically. The preview shows it on a document, and you download a <strong>transparent PNG</strong> that you can place on any PDF, Word or Google Docs file.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Signature Generator',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 4,
+    'icon' => 'signature',
+    'popular' => true,
+    'files' => true,
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'signature generator, draw transparent png signature, typed cursive e signature, clean photo signature',
+    'aka' => ['Online e-Signature Maker', 'Transparent PNG Signature Tool'],
+    'short' => 'Draw, type or photograph your signature and download it as a transparent PNG.',
+    'title' => 'Signature Generator – Draw or Type eSign PNG',
+    'description' => 'Draw with finger or mouse, choose calligraphic handwriting fonts or clean up a scanned ink signature into transparent PNG, JPG or SVG locally.',
+    'related' => ['sign-pdf', 'remove-background', 'email-signature-generator'],
+    'answer' => 'Draw your signature with a mouse, finger or stylus, type your name in one of eight handwriting fonts, or <strong>take a photo of your signature on paper</strong> and the paper is removed automatically. The preview shows it on a document, and you download a <strong>transparent PNG</strong> that you can place on any PDF, Word or Google Docs file.',
+    'article' => <<<'EOT_TF'
 <h2>Three ways to make your signature</h2>
 <ul>
 <li><strong>Draw:</strong> sign in the box. The line gets thinner when you move fast and thicker when you slow down, like a real pen. Use Undo to remove the last stroke.</li>
@@ -55,11 +51,11 @@ EOT_TF,
 <p>In many countries, electronic signatures (including a signature image added with the signer's consent) are legally valid for most everyday agreements, under laws such as the US ESIGN Act and the EU eIDAS regulation. Some documents, such as wills, property deeds or certain government forms, may need a handwritten or certified digital signature. When it matters, check the requirements for your document and country.</p>
 <p>Keep your signature file private and don't share it publicly, as anyone with the image could misuse it. Everything here is created on your device and never uploaded.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I create a signature online?', 'Draw it in the box, type your name in a handwriting font, or upload a photo of your signature on paper. Then download it as a transparent PNG.'],
-    ['How do I make my signature background transparent?', 'Use the From a photo option: the white paper is removed automatically and the PNG keeps only the ink.'],
-    ['Can I use it to sign a PDF?', 'Yes. Download the PNG and place it with Sign PDF or any PDF editor.'],
-    ['Is my signature stored?', 'No. It is created in your browser and never uploaded or saved on a server.'],
-    ['Is a typed signature legally valid?', 'For many everyday agreements, electronic signatures are valid in most countries, but some documents need a handwritten or certified signature. Check your local rules.'],
-  ],
+    'faqs' => [
+        ['How do I create a signature online?', 'Draw it in the box, type your name in a handwriting font, or upload a photo of your signature on paper. Then download it as a transparent PNG.'],
+        ['How do I make my signature background transparent?', 'Use the From a photo option: the white paper is removed automatically and the PNG keeps only the ink.'],
+        ['Can I use it to sign a PDF?', 'Yes. Download the PNG and place it with Sign PDF or any PDF editor.'],
+        ['Is my signature stored?', 'No. It is created in your browser and never uploaded or saved on a server.'],
+        ['Is a typed signature legally valid?', 'For many everyday agreements, electronic signatures are valid in most countries, but some documents need a handwritten or certified signature. Check your local rules.'],
+    ],
 ];

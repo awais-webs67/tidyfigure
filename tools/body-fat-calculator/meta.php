@@ -1,24 +1,23 @@
 <?php
-// Body Fat Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Body Fat Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  'order' => 4,
-  'icon' => 'ruler',
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'body fat percentage calculator navy method tape measure body fat',
-  'short' => 'Body fat percentage from a tape measure, using the US Navy method.',
-  'title' => 'Body Fat Calculator: Body Fat % With a Tape Measure',
-  'description' => <<<'EOT_TF'
-Estimate your body fat percentage from neck, waist and hip measurements with the US Navy method. See your category, fat mass and lean mass. Free, cm or inches.
-EOT_TF,
-  'related' => ['bmi-calculator', 'ideal-weight-calculator', 'calorie-calculator'],
-  'answer' => <<<'EOT_TF'
-You can estimate body fat with just a tape measure. The <strong>US Navy method</strong> uses your height and the circumference of your neck and waist (plus hips for women), and is usually within about <strong>3–4 percentage points</strong> of lab tests. Healthy ranges are roughly 14–24% for men and 21–31% for women.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Body Fat Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 4,
+    'icon' => 'ruler',
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'body fat calculator, body fat percentage calculator, us navy body fat formula, lean body mass calculator, waist neck body fat',
+    'short' => 'Body fat percentage from a tape measure, using the US Navy method.',
+    'title' => 'Body Fat Calculator – US Navy % & Lean Mass',
+    'description' => 'Estimate body fat percentage, fat mass and lean mass from waist, neck and hip circumference using the U.S. Navy tape-measure method in cm or inches.',
+    'related' => ['bmi-calculator', 'ideal-weight-calculator', 'calorie-calculator'],
+    'answer' => 'You can estimate body fat with just a tape measure. The <strong>US Navy method</strong> uses your height and the circumference of your neck and waist (plus hips for women), and is usually within about <strong>3–4 percentage points</strong> of lab tests. Healthy ranges are roughly 14–24% for men and 21–31% for women.',
+    'sources' => [
+        ['Hodgdon & Beckett – U.S. Navy Body Composition Equations (DTIC)', 'https://apps.dtic.mil/sti/citations/ADA143890'],
+        ['CDC – Assessing Your Weight and Waist Circumference', 'https://www.cdc.gov/healthyweight/assessing/index.html'],
+        ['NIDDK – Body Composition and Weight Management', 'https://www.niddk.nih.gov/health-information/weight-management'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The US Navy formula</h2>
 <div class="formula">Men:   %BF = 495 ÷ (1.0324 − 0.19077 × log10(waist − neck)
                   + 0.15456 × log10(height)) − 450
@@ -56,31 +55,16 @@ Women: %BF = 495 ÷ (1.29579 − 0.35004 × log10(waist + hip − neck)
 
 <h2>Measuring correctly</h2>
 <p>Small measuring errors change the result a lot, so take each measurement twice and use the average. Measure in the morning before eating, standing relaxed, with the tape snug but not pressing into the skin. Measure the neck just below the larynx (Adam's apple), the waist at the navel for men and at the narrowest point for women, and the hips at the widest point. Track the trend over weeks rather than reacting to a single reading.</p>
+
+<h2>Tracking Meaningful Composition Trends</h2>
+<p>A single tape-measure reading can vary by 1–2 percentage points depending on hydration, meal timing or tape tension. To track real fat loss versus water shifts, measure first thing in the morning once a week at the exact same anatomical landmarks, exhale gently without pulling your stomach in, and judge your progress by the 4-week rolling trend alongside waist size.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I measure my body fat at home?',
-      <<<'EOT_TF'
-Measure your height, neck and waist (and hips for women) with a tape measure and enter them here. The US Navy method estimates your body fat percentage.
-EOT_TF,
+    'faqs' => [
+        ['How do I measure my body fat at home?', 'Measure your height, neck and waist (and hips for women) with a tape measure and enter them here. The US Navy method estimates your body fat percentage.'],
+        ['What is a healthy body fat percentage?', 'Roughly 14–24% for men and 21–31% for women, according to the American Council on Exercise.'],
+        ['How accurate is the US Navy body fat formula?', 'Usually within about 3–4 percentage points of laboratory methods, if measurements are taken carefully.'],
+        ['Is body fat percentage better than BMI?', 'For individuals, usually yes, because it distinguishes fat from muscle.'],
+        ['Can I use inches?', 'Yes. Switch to inches and enter every measurement in inches.'],
     ],
-    [
-      'What is a healthy body fat percentage?',
-      'Roughly 14–24% for men and 21–31% for women, according to the American Council on Exercise.',
-    ],
-    [
-      'How accurate is the US Navy body fat formula?',
-      <<<'EOT_TF'
-Usually within about 3–4 percentage points of laboratory methods, if measurements are taken carefully.
-EOT_TF,
-    ],
-    [
-      'Is body fat percentage better than BMI?',
-      'For individuals, usually yes, because it distinguishes fat from muscle.',
-    ],
-    [
-      'Can I use inches?',
-      'Yes. Switch to inches and enter every measurement in inches.',
-    ],
-  ],
+    'aka' => ['Body Fat Percentage Calculator', 'Navy Body Fat Method'],
 ];

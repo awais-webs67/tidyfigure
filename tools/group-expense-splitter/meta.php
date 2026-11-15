@@ -1,22 +1,16 @@
 <?php
-// Group Expense Splitter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Group Expense Splitter',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'life',
-  'order' => 4,
-  'icon' => 'users',
-  'short' => 'Who owes whom after a trip or dinner? Settle up in the fewest payments.',
-  'title' => 'Group Expense Splitter: Who Owes Whom, Fewest Payments',
-  'description' => <<<'EOT_TF'
-Split shared trip, holiday or dinner costs and see exactly who owes whom. Settles a group in the fewest payments, with uneven shares. No app or sign-up.
-EOT_TF,
-  'related' => ['road-trip-cost-splitter', 'rent-split-calculator', 'unit-price-calculator'],
-  'answer' => <<<'EOT_TF'
-Add up everything the group spent, work out each person's fair share, and subtract it from what they actually paid. People with a positive balance get money back; people with a negative balance pay. This calculator then pairs them up so the group settles in <strong>at most one payment fewer than the number of people</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Group Expense Splitter',
+    'updated' => '2026-11-15',
+    'category' => 'life',
+    'order' => 4,
+    'icon' => 'users',
+    'short' => 'Who owes whom after a trip or dinner? Settle up in the fewest payments.',
+    'title' => 'Group Expense Splitter – Fewest IOUs Settled',
+    'description' => 'Track shared trip, flatshare or dinner receipts with custom shares and calculate who pays whom in the fewest possible transfers without signup.',
+    'related' => ['road-trip-cost-splitter', 'rent-split-calculator', 'unit-price-calculator'],
+    'answer' => 'Add up everything the group spent, work out each person\'s fair share, and subtract it from what they actually paid. People with a positive balance get money back; people with a negative balance pay. This calculator then pairs them up so the group settles in <strong>at most one payment fewer than the number of people</strong>.',
+    'article' => <<<'EOT_TF'
 <h2>How splitting group expenses works</h2>
 <p>After a trip, a shared holiday house or a big dinner, payments are usually messy. One person booked the accommodation, another paid for groceries, someone covered the taxi, and a couple of people paid for nothing. Rather than tracking who owes whom for each purchase, it's simpler to look at the totals.</p>
 <ol>
@@ -52,36 +46,13 @@ Negative balance → pays money</div>
 <li><strong>Kids:</strong> many families count a child as 0.5 shares for food costs.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate who owes whom in a group?',
-      <<<'EOT_TF'
-Add up everything everyone paid, divide by the number of people to get each fair share, and subtract that from what each person paid. Negative balances pay positive balances until everyone reaches zero.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate who owes whom in a group?', 'Add up everything everyone paid, divide by the number of people to get each fair share, and subtract that from what each person paid. Negative balances pay positive balances until everyone reaches zero.'],
+        ['What is the minimum number of payments to settle a group?', 'Netting totals first means a group of n people never needs more than n − 1 payments. Sometimes it needs fewer, for example when two people owe exactly what two others are owed.'],
+        ['How do I split costs when some people should pay more?', 'Use shares. Give a couple 2 shares, someone who came for half the trip 0.5 shares, and someone who didn’t take part 0 shares. The fair share is the total multiplied by that person’s share of all shares.'],
+        ['Do I need to enter every receipt?', 'No. You only need each person’s total spending. Add up each person’s receipts first and enter one number per person.'],
+        ['Can I use this for different currencies?', 'Convert everything to one currency first, then enter the totals. The calculator works with any currency because it only uses the numbers.'],
     ],
-    [
-      'What is the minimum number of payments to settle a group?',
-      <<<'EOT_TF'
-Netting totals first means a group of n people never needs more than n − 1 payments. Sometimes it needs fewer, for example when two people owe exactly what two others are owed.
-EOT_TF,
-    ],
-    [
-      'How do I split costs when some people should pay more?',
-      <<<'EOT_TF'
-Use shares. Give a couple 2 shares, someone who came for half the trip 0.5 shares, and someone who didn’t take part 0 shares. The fair share is the total multiplied by that person’s share of all shares.
-EOT_TF,
-    ],
-    [
-      'Do I need to enter every receipt?',
-      <<<'EOT_TF'
-No. You only need each person’s total spending. Add up each person’s receipts first and enter one number per person.
-EOT_TF,
-    ],
-    [
-      'Can I use this for different currencies?',
-      <<<'EOT_TF'
-Convert everything to one currency first, then enter the totals. The calculator works with any currency because it only uses the numbers.
-EOT_TF,
-    ],
-  ],
+    'keywords' => 'group expense splitter, split group bills fewest payments, splitwise alternative no signup, trip expense calculator',
+    'aka' => ['Shared Bill Settler', 'Trip Expense Settlement Tool'],
 ];

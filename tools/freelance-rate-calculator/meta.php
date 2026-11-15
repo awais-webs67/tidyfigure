@@ -1,26 +1,22 @@
 <?php
-// Freelance Rate Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Freelance Rate Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 20,
-  'icon' => 'briefcase',
-  'appCategory' => 'BusinessApplication',
-  'keywords' => <<<'EOT_TF'
-freelance hourly rate calculator how much should i charge day rate contractor consultant pricing self employed
-EOT_TF,
-  'short' => 'Work out the hourly and day rate you need to charge as a freelancer.',
-  'title' => 'Freelance Rate Calculator: What Hourly & Day Rate to Charge',
-  'description' => <<<'EOT_TF'
-Find the hourly and day rate you need as a freelancer or contractor, from your target income, business costs, tax, time off and how many hours you can bill.
-EOT_TF,
-  'related' => ['salary-converter', 'invoice-generator', 'break-even-calculator'],
-  'answer' => <<<'EOT_TF'
-Hourly rate = <strong>(income you want ÷ (1 − tax rate) + business costs) ÷ billable hours a year</strong>. To keep 60,000 after 25% tax, with 6,000 of costs, 7 weeks off and 65% of an 8-hour day billable, you need to invoice 86,000 over 1,170 hours: about <strong>73.50 an hour</strong>, or a <strong>588 day rate</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Freelance Rate Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 20,
+    'icon' => 'briefcase',
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'freelance rate calculator, consultant hourly rate formula, contractor day rate calculator, how much to charge',
+    'short' => 'Work out the hourly and day rate you need to charge as a freelancer.',
+    'title' => 'Freelance Rate Calculator – Hourly & Day Rate',
+    'description' => 'Set sustainable freelance hourly and day rates from target net salary, non-billable admin time, holidays, health/equipment overhead and tax.',
+    'related' => ['salary-converter', 'invoice-generator', 'break-even-calculator'],
+    'answer' => 'Hourly rate = <strong>(income you want ÷ (1 − tax rate) + business costs) ÷ billable hours a year</strong>. To keep 60,000 after 25% tax, with 6,000 of costs, 7 weeks off and 65% of an 8-hour day billable, you need to invoice 86,000 over 1,170 hours: about <strong>73.50 an hour</strong>, or a <strong>588 day rate</strong>.',
+    'sources' => [
+        ['IRS – Self-Employed Individuals Tax Center', 'https://www.irs.gov/businesses/small-businesses-self-employed/self-employed-individuals-tax-center'],
+        ['GOV.UK – Working for Yourself & Sole Trader Costs', 'https://www.gov.uk/working-for-yourself'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The formula</h2>
 <div class="formula">Fees needed     = income you want ÷ (1 − tax rate) + business costs
 Hours worked    = (52 − weeks off) × days per week × hours per day
@@ -63,32 +59,12 @@ Hourly rate     = fees needed ÷ billable hours
 <p>The calculator tells you what you <em>need</em> to charge. Compare it with what clients in your field and location pay. If the market rate is lower, look at your costs, specialise, or target clients with bigger budgets. If it's higher, charge the market rate. Underpricing is one of the most common reasons freelancers give up.</p>
 <p>Tax rates are entered as one combined percentage for simplicity. Real tax depends on your country, allowances and business structure, so check with an accountant. To turn your rate into a salary comparison, try the <a href="/salary-converter">salary converter</a>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate my freelance hourly rate?',
-      <<<'EOT_TF'
-Divide the fees you need in a year (target income grossed up for tax, plus business costs) by the number of hours you can actually bill.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate my freelance hourly rate?', 'Divide the fees you need in a year (target income grossed up for tax, plus business costs) by the number of hours you can actually bill.'],
+        ['What is a good billable percentage?', 'Most freelancers bill 50–75% of their working hours. The rest goes on admin, sales and learning.'],
+        ['How do I convert an hourly rate to a day rate?', 'Multiply by the hours in your working day. At 73.50 an hour and 8 hours, the day rate is 588.'],
+        ['Why is my freelance rate so much higher than a salary?', 'You pay for your own time off, equipment, insurance, pension and the hours spent finding work, which an employer would otherwise cover.'],
+        ['Should I charge by the hour or by the project?', 'Use your hourly rate as the minimum, then quote project prices with a buffer once you can estimate the work well.'],
     ],
-    [
-      'What is a good billable percentage?',
-      'Most freelancers bill 50–75% of their working hours. The rest goes on admin, sales and learning.',
-    ],
-    [
-      'How do I convert an hourly rate to a day rate?',
-      'Multiply by the hours in your working day. At 73.50 an hour and 8 hours, the day rate is 588.',
-    ],
-    [
-      'Why is my freelance rate so much higher than a salary?',
-      <<<'EOT_TF'
-You pay for your own time off, equipment, insurance, pension and the hours spent finding work, which an employer would otherwise cover.
-EOT_TF,
-    ],
-    [
-      'Should I charge by the hour or by the project?',
-      <<<'EOT_TF'
-Use your hourly rate as the minimum, then quote project prices with a buffer once you can estimate the work well.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Consultant Day Rate Calculator', 'Self-Employed Hourly Rate Tool'],
 ];

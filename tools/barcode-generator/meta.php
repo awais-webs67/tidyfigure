@@ -1,26 +1,18 @@
 <?php
-// Barcode Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Barcode Generator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'qr',
-  'order' => 7,
-  'icon' => 'barcode',
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js',
-  ],
-  'keywords' => 'make barcode online ean13 generator code 128 upc barcode label free',
-  'short' => 'Create Code 128, EAN-13, UPC, Code 39 and ITF-14 barcodes as PNG or SVG.',
-  'title' => 'Barcode Generator: Free Code 128, EAN-13 & UPC Barcodes',
-  'description' => <<<'EOT_TF'
-Create barcodes online: Code 128, EAN-13, EAN-8, UPC-A, Code 39, ITF-14, Codabar and more. Check digits added automatically. Download PNG or SVG for printing.
-EOT_TF,
-  'related' => ['barcode-reader', 'qr-code-generator', 'bulk-qr-code-generator'],
-  'answer' => <<<'EOT_TF'
-Choose a barcode type, type the value, and download a sharp <strong>PNG</strong> or print-ready <strong>SVG</strong>. For inventory, asset tags and shipping labels, use <strong>Code 128</strong>, which accepts any text. For products sold in shops, use <strong>EAN-13</strong> (or UPC-A in North America) with a number registered with GS1.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Barcode Generator',
+    'updated' => '2026-11-15',
+    'category' => 'qr',
+    'order' => 7,
+    'icon' => 'barcode',
+    'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.all.min.js'],
+    'keywords' => 'barcode generator, code 128 generator, ean 13 barcode maker, upc barcode png svg, free retail barcode',
+    'short' => 'Create Code 128, EAN-13, UPC, Code 39 and ITF-14 barcodes as PNG or SVG.',
+    'title' => 'Barcode Generator – Code 128, EAN-13 & UPC',
+    'description' => 'Generate crisp print-ready Code 128, EAN-13, EAN-8, UPC-A, Code 39 and ITF barcodes with automatic check digits in SVG or PNG formats.',
+    'related' => ['barcode-reader', 'qr-code-generator', 'bulk-qr-code-generator'],
+    'answer' => 'Choose a barcode type, type the value, and download a sharp <strong>PNG</strong> or print-ready <strong>SVG</strong>. For inventory, asset tags and shipping labels, use <strong>Code 128</strong>, which accepts any text. For products sold in shops, use <strong>EAN-13</strong> (or UPC-A in North America) with a number registered with GS1.',
+    'article' => <<<'EOT_TF'
 <h2>Which barcode should I use?</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>Type</th><th>Characters</th><th>Use it for</th></tr></thead>
@@ -50,24 +42,19 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>Barcodes are drawn in your browser with the open-source JsBarcode library. Nothing is uploaded.</p>
+
+<h2>Leaving Quiet Zones Around Printed Labels</h2>
+<p>Laser and camera barcode scanners locate code boundaries using blank white margins—called <strong>quiet zones</strong>—on both the left and right edges. Always preserve at least 10× the narrowest bar width of clean white padding around printed Code 128 or EAN-13 stickers so dark packaging graphics never trip the scanner.</p>
+
+<h2>Choosing Code 128 vs EAN-13 for Inventory Labels</h2>
+<p>Use EAN-13 or UPC-A strictly with registered retail GTIN numbers; use alphanumeric Code 128 for warehouse bins, serial tags, internal SKU labels and library books.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I create a barcode for free?',
-      'Choose a barcode type, enter the value and download it as PNG or SVG.',
+    'faqs' => [
+        ['How do I create a barcode for free?', 'Choose a barcode type, enter the value and download it as PNG or SVG.'],
+        ['Which barcode type should I use for inventory?', 'Code 128. It accepts letters and numbers and is read by almost every scanner.'],
+        ['Can I make an EAN-13 barcode for my product?', 'You can create the image here, but to sell in shops the number must be registered with GS1.'],
+        ['Do I need to calculate the check digit?', 'No. For EAN, UPC and ITF-14 the check digit is added automatically.'],
+        ['What format is best for printing?', 'SVG, because it stays sharp at any size.'],
     ],
-    [
-      'Which barcode type should I use for inventory?',
-      'Code 128. It accepts letters and numbers and is read by almost every scanner.',
-    ],
-    [
-      'Can I make an EAN-13 barcode for my product?',
-      'You can create the image here, but to sell in shops the number must be registered with GS1.',
-    ],
-    [
-      'Do I need to calculate the check digit?',
-      'No. For EAN, UPC and ITF-14 the check digit is added automatically.',
-    ],
-    ['What format is best for printing?', 'SVG, because it stays sharp at any size.'],
-  ],
+    'aka' => ['EAN-13 & UPC Maker', 'Code 128 Barcode Generator'],
 ];

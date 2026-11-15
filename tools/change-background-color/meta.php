@@ -1,28 +1,25 @@
 <?php
-// Change Background Color: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Change Background Color',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 3,
-  'files' => true,
-  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
-  'scripts' => ['ai.js'],
-  'use' => 'remove-background',
-  'preset' => json_decode('{"bg": "#4A86E8"}', true),
-  'icon' => 'palette',
-  'keywords' => 'change background color of photo change photo background colour background changer photo background colour blue red background photo editor online free',
-  'short' => 'Change the background colour of a photo to any colour or gradient.',
-  'title' => 'Change Background Color of Photo: Free, Any Color',
-  'description' => <<<'EOT_TF'
-Change the background colour of any photo with AI: blue, red, white, grey, any custom colour or a gradient. Full resolution, free, and your photo stays private.
-EOT_TF,
-  'appCategory' => 'MultimediaApplication',
-  'related' => ['remove-background', 'white-background-maker', 'passport-photo-maker', 'photo-editor'],
-  'answer' => <<<'EOT_TF'
-Upload a photo and the AI separates the subject from the background. Then tap any of the <strong>23 colours</strong>, a <strong>gradient</strong>, a blurred version of the original or your own picture, or pick <strong>any colour</strong> with the colour picker. The preview changes instantly, and you download the full-size result as a JPG.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Change Background Color',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 3,
+    'files' => true,
+    'isolate' => true,
+    'scripts' => ['ai.js'],
+    'use' => 'remove-background',
+    'preset' => [
+        'bg' => '#4A86E8',
+    ],
+    'icon' => 'palette',
+    'keywords' => 'change photo background color, blue white background photo maker, passport id background changer ai',
+    'short' => 'Change the background colour of a photo to any colour or gradient.',
+    'title' => 'Change Photo Background Color – AI Cutout HD',
+    'description' => 'Replace busy photo backgrounds with crisp blue, red, grey, white, custom HEX colours or soft gradients using AI cutout locally in full HD.',
+    'appCategory' => 'MultimediaApplication',
+    'related' => ['remove-background', 'white-background-maker', 'passport-photo-maker', 'photo-editor'],
+    'answer' => 'Upload a photo and the AI separates the subject from the background. Then tap any of the <strong>23 colours</strong>, a <strong>gradient</strong>, a blurred version of the original or your own picture, or pick <strong>any colour</strong> with the colour picker. The preview changes instantly, and you download the full-size result as a JPG.',
+    'article' => <<<'EOT_TF'
 <h2>How to change the background colour of a photo</h2>
 <ol>
 <li>Choose a photo. The AI removes the background in a few seconds.</li>
@@ -48,37 +45,23 @@ EOT_TF,
 <li>Soft, even light on the subject makes the new background look more realistic.</li>
 <li>For a natural portrait look, try <strong>Blurred original</strong>, which keeps the original scene but softly out of focus.</li>
 </ul>
+
+<h2>Matching Visa, Office Badge &amp; E-Commerce Backdrop Standards</h2>
+<p>Different embassies and HR departments specify contrasting flat backdrops: light blue or white for national ID cards, soft studio grey for LinkedIn headshots, or cohesive pastel HEX brand tones for Shopify skincare listings.</p>
+<h2>Avoiding Colour Cast Along Clothing &amp; Hair Edges</h2>
+<p>Shoot subjects three feet in front of a plain wall under even front lighting; harsh neon wall reflections onto shoulders make crisp studio recolouring noticeably harder for hair edge refinement.</p>
+
+<h2>Gradient vs Flat Solid Studio Backdrops</h2>
+<p>Flat pure colours pass passport and official portal colour-uniformity rules effortlessly, while subtle two-tone vertical studio gradients elevate LinkedIn portraits, Slack team avatars and YouTube channel profile icons cleanly.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I change the background colour of a picture?',
-      <<<'EOT_TF'
-Upload the picture, wait a few seconds for the AI to cut out the subject, then tap a colour or gradient and download.
-EOT_TF,
+    'faqs' => [
+        ['How do I change the background colour of a picture?', 'Upload the picture, wait a few seconds for the AI to cut out the subject, then tap a colour or gradient and download.'],
+        ['Can I use my own colour?', 'Yes. Tap Any colour to choose any shade, such as a brand colour.'],
+        ['Can I put a photo on a blue background for an ID card?', 'Yes. Choose Light blue or Passport blue, then download. For the official size, use the passport photo maker.'],
+        ['Does changing the colour reduce quality?', 'No. The result keeps the full resolution of your photo, up to 4096 pixels on the longest side.'],
+        ['Is my photo uploaded?', 'No. Everything happens in your browser.'],
+        ['Which blue hex code works best for visa and ID photos?', 'Clean medium sky blue around #3B82C4 or pure crisp #FFFFFF white matches most embassy colour guides—check your consulate instructions first.'],
+        ['Can I pick an exact brand hex colour instead of preset studio backgrounds?', 'Yes. Enter any hex code or click the interactive swatch wheel to match website banners or ID specification colours identically.'],
     ],
-    [
-      'Can I use my own colour?',
-      <<<'EOT_TF'
-Yes. Tap Any colour to choose any shade, such as a brand colour.
-EOT_TF,
-    ],
-    [
-      'Can I put a photo on a blue background for an ID card?',
-      <<<'EOT_TF'
-Yes. Choose Light blue or Passport blue, then download. For the official size, use the passport photo maker.
-EOT_TF,
-    ],
-    [
-      'Does changing the colour reduce quality?',
-      <<<'EOT_TF'
-No. The result keeps the full resolution of your photo, up to 4096 pixels on the longest side.
-EOT_TF,
-    ],
-    [
-      'Is my photo uploaded?',
-      <<<'EOT_TF'
-No. Everything happens in your browser.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Photo Background Color Changer', 'ID Photo Color Replacer'],
 ];

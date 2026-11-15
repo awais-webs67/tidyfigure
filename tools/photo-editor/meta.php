@@ -1,25 +1,19 @@
 <?php
-// Photo Editor: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Photo Editor',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 6,
-  'icon' => 'sliders-horizontal',
-  'popular' => true,
-  'files' => true,
-  'keywords' => 'photo filters brightness contrast black and white vintage edit picture online',
-  'short' => 'Adjust brightness, contrast, colour and warmth, or apply one-tap filters.',
-  'title' => 'Free Online Photo Editor: Filters, Brightness & Contrast',
-  'description' => <<<'EOT_TF'
-Edit photos online: brightness, contrast, saturation, warmth, black & white, vintage, blur and vignette. One-tap filters, before/after compare, no upload.
-EOT_TF,
-  'related' => ['crop-image', 'add-watermark-to-image', 'image-compressor'],
-  'answer' => <<<'EOT_TF'
-Open a photo and use the sliders to fix <strong>brightness, contrast, saturation and warmth</strong>, or tap a filter like Vivid, Black &amp; white or Vintage as a starting point. Hold "compare" to see the original. The edited photo downloads at full resolution, and everything runs on your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Photo Editor',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 6,
+    'icon' => 'sliders-horizontal',
+    'popular' => true,
+    'files' => true,
+    'keywords' => 'online photo editor free, adjust brightness contrast picture, vintage bw filter browser, no signup image editor',
+    'short' => 'Adjust brightness, contrast, colour and warmth, or apply one-tap filters.',
+    'title' => 'Online Photo Editor – Filters, Light & Color',
+    'description' => 'Adjust exposure, contrast, saturation, warmth, vignette and instant colour filters with live split before/after preview locally in your tab.',
+    'related' => ['crop-image', 'add-watermark-to-image', 'image-compressor'],
+    'answer' => 'Open a photo and use the sliders to fix <strong>brightness, contrast, saturation and warmth</strong>, or tap a filter like Vivid, Black &amp; white or Vintage as a starting point. Hold "compare" to see the original. The edited photo downloads at full resolution, and everything runs on your device.',
+    'article' => <<<'EOT_TF'
 <h2>What each adjustment does</h2>
 <ul>
 <li><strong>Brightness</strong> lightens or darkens the whole picture. Use it for photos that are under- or over-exposed.</li>
@@ -47,26 +41,18 @@ EOT_TF,
 
 <h2>Quality and privacy</h2>
 <p>Edits are applied to the full-resolution image when you download, not just the preview. JPG photos are saved at 92% quality; PNG and WebP keep their format. All processing happens in your browser, so your photos are never uploaded.</p>
+
+<h2>Subtle Tonal Adjustments Over Heavy Filter Stacking</h2>
+<p>Lifting shadows slightly before nudging vibrance keeps skin tones natural and prevents blown white highlights when prepping real-estate shots, food photos or family albums for printing.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I brighten a dark photo?',
-      <<<'EOT_TF'
-Raise Brightness until the subject is clear, then add a little Contrast so it doesn’t look washed out.
-EOT_TF,
+    'faqs' => [
+        ['How do I brighten a dark photo?', 'Raise Brightness until the subject is clear, then add a little Contrast so it doesn’t look washed out.'],
+        ['How do I make a photo black and white?', 'Tap the Black & white filter, or move the Black & white slider to 100%.'],
+        ['How do I fix a yellow indoor photo?', 'Move the Warmth slider to the left (cooler) until whites look neutral.'],
+        ['Will editing reduce the resolution?', 'No. The download is the full original size with your edits applied.'],
+        ['Are my photos uploaded?', 'No. Editing happens on your device.'],
+        ['Can I compare edits against the original before saving?', 'Yes. Hold or toggle the before/after compare control anytime to check your photo against the unedited original.'],
+        ['Does applying brightness and filter edits upload images to any server?', 'No. Every WebGL/canvas colour curve executes live on your own GPU memory inside the browser tab.'],
     ],
-    [
-      'How do I make a photo black and white?',
-      'Tap the Black & white filter, or move the Black & white slider to 100%.',
-    ],
-    [
-      'How do I fix a yellow indoor photo?',
-      'Move the Warmth slider to the left (cooler) until whites look neutral.',
-    ],
-    [
-      'Will editing reduce the resolution?',
-      'No. The download is the full original size with your edits applied.',
-    ],
-    ['Are my photos uploaded?', 'No. Editing happens on your device.'],
-  ],
+    'aka' => ['Browser Photo Filter Editor', 'Light & Colour Photo Adjuster'],
 ];

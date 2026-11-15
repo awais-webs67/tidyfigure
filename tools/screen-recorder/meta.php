@@ -1,27 +1,19 @@
 <?php
-// Screen Recorder: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Screen Recorder',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 7,
-  'icon' => 'monitor-dot',
-  'scripts' => ['media.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => <<<'EOT_TF'
-online screen recorder record screen with audio capture tab window webcam tutorial chrome no download
-EOT_TF,
-  'short' => 'Record your screen, a window or a browser tab with sound. No app, no watermark.',
-  'title' => 'Free Online Screen Recorder: Record Screen with Audio',
-  'description' => <<<'EOT_TF'
-Record your whole screen, one window or a browser tab with system sound and your microphone, right in the browser. No install, no watermark, no time limit.
-EOT_TF,
-  'related' => ['voice-recorder', 'video-cutter', 'video-compressor'],
-  'answer' => <<<'EOT_TF'
-To record your screen, press <strong>Start screen recording</strong>, choose the screen, window or tab to share, and do what you want to record. Press <strong>Stop recording</strong> (or the browser's Stop sharing button) and download the video. It works in Chrome, Edge, Firefox and Safari on computers, with no app to install and no watermark.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Screen Recorder',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 7,
+    'icon' => 'monitor-dot',
+    'scripts' => ['media.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'screen recorder online, free screen capture with audio, record browser tab, no watermark screen recorder',
+    'short' => 'Record your screen, a window or a browser tab with sound. No app, no watermark.',
+    'title' => 'Online Screen Recorder – Screen & Mic No App',
+    'description' => 'Record your full display, app window or browser tab alongside microphone and tab audio—unlimited duration with zero watermark or install.',
+    'related' => ['voice-recorder', 'video-cutter', 'video-compressor'],
+    'answer' => 'To record your screen, press <strong>Start screen recording</strong>, choose the screen, window or tab to share, and do what you want to record. Press <strong>Stop recording</strong> (or the browser\'s Stop sharing button) and download the video. It works in Chrome, Edge, Firefox and Safari on computers, with no app to install and no watermark.',
+    'article' => <<<'EOT_TF'
 <h2>How to record your screen</h2>
 <ol>
 <li>Choose your options: tick <strong>Record my microphone</strong> to talk over the recording, and keep <strong>Record system or tab sound</strong> on to capture the sound from a video or app.</li>
@@ -61,32 +53,12 @@ EOT_TF,
 </ul>
 <p>Your recording is made on your device and never uploaded.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I record my screen with audio?',
-      <<<'EOT_TF'
-Tick Record system or tab sound (and the microphone if you want to talk), press Start, choose a tab or your entire screen, and make sure the share audio option is ticked in the browser window.
-EOT_TF,
+    'faqs' => [
+        ['How do I record my screen with audio?', 'Tick Record system or tab sound (and the microphone if you want to talk), press Start, choose a tab or your entire screen, and make sure the share audio option is ticked in the browser window.'],
+        ['Is there a time limit or watermark?', 'No. There is no watermark and no fixed time limit. Long recordings use more memory, so very long sessions are best split into parts.'],
+        ['Can I record my screen on a phone?', 'Mobile browsers don’t allow it. Use the screen recorder built into iPhone (Control Centre) or Android (Quick Settings).'],
+        ['Do I need to install anything?', 'No. It works in Chrome, Edge, Firefox and Safari on Windows, Mac, Linux and ChromeOS.'],
+        ['Is the recording uploaded?', 'No. The video is recorded on your device and you download it directly.'],
     ],
-    [
-      'Is there a time limit or watermark?',
-      <<<'EOT_TF'
-No. There is no watermark and no fixed time limit. Long recordings use more memory, so very long sessions are best split into parts.
-EOT_TF,
-    ],
-    [
-      'Can I record my screen on a phone?',
-      <<<'EOT_TF'
-Mobile browsers don’t allow it. Use the screen recorder built into iPhone (Control Centre) or Android (Quick Settings).
-EOT_TF,
-    ],
-    [
-      'Do I need to install anything?',
-      'No. It works in Chrome, Edge, Firefox and Safari on Windows, Mac, Linux and ChromeOS.',
-    ],
-    [
-      'Is the recording uploaded?',
-      'No. The video is recorded on your device and you download it directly.',
-    ],
-  ],
+    'aka' => ['Browser Screen Recorder', 'Online Screen & Audio Capture'],
 ];

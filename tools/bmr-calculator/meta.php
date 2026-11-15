@@ -1,29 +1,22 @@
 <?php
-// BMR Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'BMR Calculator',
-  'updated' => '2026-10-30', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'health',
-  // Published sources for the method on this page (shown as a Sources list).
-  'sources' => [
-    ['Mifflin MD, St Jeor ST et al. (1990). A new predictive equation for resting energy expenditure in healthy individuals. Am J Clin Nutr.', 'https://pubmed.ncbi.nlm.nih.gov/2305711/'],
-    ['Roza AM, Shizgal HM (1984). The Harris Benedict equation reevaluated. Am J Clin Nutr.', 'https://pubmed.ncbi.nlm.nih.gov/6741850/'],
-  ],
-  'order' => 2,
-  'icon' => 'gauge',
-  'appCategory' => 'HealthApplication',
-  'keywords' => 'basal metabolic rate calculator resting metabolism mifflin st jeor harris benedict katch mcardle',
-  'short' => 'Your basal metabolic rate with three equations, plus daily burn by activity.',
-  'title' => 'BMR Calculator: Basal Metabolic Rate (3 Formulas)',
-  'description' => <<<'EOT_TF'
-Calculate your basal metabolic rate (BMR) with the Mifflin-St Jeor, Harris-Benedict and Katch-McArdle equations, and see calories burned at each activity level.
-EOT_TF,
-  'related' => ['calorie-calculator', 'macro-calculator', 'body-fat-calculator'],
-  'answer' => <<<'EOT_TF'
-Your <strong>BMR</strong> is the energy your body uses at complete rest just to stay alive: breathing, circulation, keeping warm and repairing cells. For most adults it's <strong>1,200–2,000 kcal a day</strong>, about 60–70% of everything you burn. Enter your details to compare three standard equations.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'BMR Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'health',
+    'order' => 2,
+    'icon' => 'gauge',
+    'appCategory' => 'HealthApplication',
+    'keywords' => 'bmr calculator, basal metabolic rate calculator, resting metabolic rate, mifflin st jeor, katch mcardle calculator',
+    'short' => 'Your basal metabolic rate with three equations, plus daily burn by activity.',
+    'title' => 'BMR Calculator – Basal Metabolic Rate & TDEE',
+    'description' => 'Estimate resting daily calorie burn (BMR) using Mifflin-St Jeor, Harris-Benedict and Katch-McArdle formulas, plus activity-adjusted TDEE.',
+    'related' => ['calorie-calculator', 'macro-calculator', 'body-fat-calculator'],
+    'answer' => 'Your <strong>BMR</strong> is the energy your body uses at complete rest just to stay alive: breathing, circulation, keeping warm and repairing cells. For most adults it\'s <strong>1,200–2,000 kcal a day</strong>, about 60–70% of everything you burn. Enter your details to compare three standard equations.',
+    'sources' => [
+        ['Mifflin MD, St Jeor ST et al. (1990). A new predictive equation for resting energy expenditure in healthy individuals. Am J Clin Nutr.', 'https://pubmed.ncbi.nlm.nih.gov/2305711/'],
+        ['Roza AM, Shizgal HM (1984). The Harris Benedict equation reevaluated. Am J Clin Nutr.', 'https://pubmed.ncbi.nlm.nih.gov/6741850/'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The three BMR equations</h2>
 <div class="formula">Mifflin-St Jeor (1990)
   Men:   10 × kg + 6.25 × cm − 5 × age + 5
@@ -55,35 +48,19 @@ Katch-McArdle
 
 <h2>Can you raise your BMR?</h2>
 <p>Building muscle through strength training is the most effective way. Eating enough protein and sleeping well help preserve muscle during weight loss. "Metabolism-boosting" foods and supplements have tiny effects at best.</p>
+
+<h2>Which BMR Equation Should You Pick?</h2>
+<p><strong>Mifflin-St Jeor</strong> (1990) is the clinical default used by the Academy of Nutrition and Dietetics for most adults because it matches modern measured resting energy expenditure closer than the older 1919 Harris-Benedict formula. However, if you already measured a reliable body-fat percentage (giving lean body mass), <strong>Katch-McArdle</strong> often predicts resting burn more accurately for very lean athletes or heavily muscled lifters.</p>
+
+<h2>Practical Tip Before Cutting Calories Too Hard</h2>
+<p>Never treat bare BMR as a daily dieting target—because eating only your resting metabolic rate ignores all walking, digestion (thermic effect of food) and daily movement, creating an unnecessarily steep deficit.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is a normal BMR?',
-      <<<'EOT_TF'
-Most adult women have a BMR of about 1,200–1,500 kcal a day and men 1,500–1,900 kcal, depending on size, age and muscle.
-EOT_TF,
+    'faqs' => [
+        ['What is a normal BMR?', 'Most adult women have a BMR of about 1,200–1,500 kcal a day and men 1,500–1,900 kcal, depending on size, age and muscle.'],
+        ['Which BMR formula is most accurate?', 'Mifflin-St Jeor is the most accurate general formula. Katch-McArdle can be better if you know your body fat percentage accurately.'],
+        ['Should I eat my BMR in calories?', 'No. BMR is only the energy used at rest. To maintain weight you need your TDEE, which is BMR multiplied by your activity level.'],
+        ['Does BMR decrease with age?', 'Yes, slowly, mostly because muscle mass declines. Strength training helps slow this.'],
+        ['How can I measure my BMR exactly?', 'Clinics and some gyms measure it with indirect calorimetry, which analyses the oxygen you breathe in and the carbon dioxide you breathe out.'],
     ],
-    [
-      'Which BMR formula is most accurate?',
-      <<<'EOT_TF'
-Mifflin-St Jeor is the most accurate general formula. Katch-McArdle can be better if you know your body fat percentage accurately.
-EOT_TF,
-    ],
-    [
-      'Should I eat my BMR in calories?',
-      <<<'EOT_TF'
-No. BMR is only the energy used at rest. To maintain weight you need your TDEE, which is BMR multiplied by your activity level.
-EOT_TF,
-    ],
-    [
-      'Does BMR decrease with age?',
-      'Yes, slowly, mostly because muscle mass declines. Strength training helps slow this.',
-    ],
-    [
-      'How can I measure my BMR exactly?',
-      <<<'EOT_TF'
-Clinics and some gyms measure it with indirect calorimetry, which analyses the oxygen you breathe in and the carbon dioxide you breathe out.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Basal Metabolic Rate Calculator', 'Resting Calorie Burn Calculator'],
 ];

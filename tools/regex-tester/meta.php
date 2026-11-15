@@ -1,26 +1,18 @@
 <?php
-// Regex Tester: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Regex Tester',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'dev',
-  'order' => 1,
-  'icon' => 'regex',
-  'popular' => true,
-  'keywords' => <<<'EOT_TF'
-regex tester regular expression tester javascript regex online match highlight capture groups replace
-EOT_TF,
-  'short' => 'Test regular expressions live, with highlighted matches, capture groups and replace.',
-  'title' => 'Regex Tester: Test JavaScript Regular Expressions Online',
-  'description' => <<<'EOT_TF'
-Test regular expressions with live match highlighting, capture groups and find-and-replace. JavaScript syntax, flags g, i, m, s, u, plus common patterns.
-EOT_TF,
-  'related' => ['json-formatter', 'url-encoder-decoder', 'remove-duplicate-lines'],
-  'answer' => <<<'EOT_TF'
-Type a pattern and some test text: every match is highlighted as you type, with a table of capture groups and positions. Patterns use <strong>JavaScript</strong> regex syntax, and flags go in the separate box: <strong>g</strong> for all matches, <strong>i</strong> to ignore case, <strong>m</strong> so ^ and $ match each line, <strong>s</strong> so . matches newlines.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Regex Tester',
+    'updated' => '2026-11-15',
+    'category' => 'dev',
+    'order' => 1,
+    'icon' => 'regex',
+    'popular' => true,
+    'keywords' => 'regex tester, javascript regular expression tester, regex match highlighter, capture groups debugger',
+    'short' => 'Test regular expressions live, with highlighted matches, capture groups and replace.',
+    'title' => 'Regex Tester – JavaScript Pattern & Replace',
+    'description' => 'Test regular expressions with instant match highlighting, numbered capture groups, find-and-replace previews and g/i/m/s/u flags in your tab.',
+    'related' => ['json-formatter', 'url-encoder-decoder', 'remove-duplicate-lines'],
+    'answer' => 'Type a pattern and some test text: every match is highlighted as you type, with a table of capture groups and positions. Patterns use <strong>JavaScript</strong> regex syntax, and flags go in the separate box: <strong>g</strong> for all matches, <strong>i</strong> to ignore case, <strong>m</strong> so ^ and $ match each line, <strong>s</strong> so . matches newlines.',
+    'article' => <<<'EOT_TF'
 <h2>Regex cheat sheet</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>Pattern</th><th>Matches</th></tr></thead>
@@ -69,30 +61,12 @@ Replace:  $3/$2/$1</div>
 <h2>Other languages</h2>
 <p>Most syntax here works the same in Python, PHP (PCRE), Java and .NET, but details differ: lookbehind support, named group syntax (<code>(?P&lt;name&gt;…)</code> in Python) and flags are written differently. In code, remember to double backslashes inside normal string literals. Your text is tested in your browser and never sent anywhere.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I test a regex online?',
-      <<<'EOT_TF'
-Type the pattern in the first box and your text below. Matches are highlighted instantly, with capture groups listed in a table.
-EOT_TF,
+    'faqs' => [
+        ['How do I test a regex online?', 'Type the pattern in the first box and your text below. Matches are highlighted instantly, with capture groups listed in a table.'],
+        ['Which regex flavour does this use?', 'JavaScript (ECMAScript), the same engine as Chrome and Node.js. Most patterns also work in Python, PHP and Java.'],
+        ['Why does my regex only find one match?', 'Add the g (global) flag to find every match instead of only the first.'],
+        ['How do I use capture groups in a replacement?', 'Put parts of the pattern in brackets, then use $1, $2 and so on in the Replace box.'],
+        ['How do I match a dot or a bracket?', 'Escape it with a backslash: \\. for a dot, \\( for a bracket, \\? for a question mark.'],
     ],
-    [
-      'Which regex flavour does this use?',
-      <<<'EOT_TF'
-JavaScript (ECMAScript), the same engine as Chrome and Node.js. Most patterns also work in Python, PHP and Java.
-EOT_TF,
-    ],
-    [
-      'Why does my regex only find one match?',
-      'Add the g (global) flag to find every match instead of only the first.',
-    ],
-    [
-      'How do I use capture groups in a replacement?',
-      'Put parts of the pattern in brackets, then use $1, $2 and so on in the Replace box.',
-    ],
-    [
-      'How do I match a dot or a bracket?',
-      'Escape it with a backslash: \\. for a dot, \\( for a bracket, \\? for a question mark.',
-    ],
-  ],
+    'aka' => ['Regular Expression Debugger', 'JS Regex Playground'],
 ];

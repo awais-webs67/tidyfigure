@@ -4,8 +4,8 @@
 return [
     'image' => [
         'slug' => 'image-tools',
-        'title' => 'Free Image Tools: Compress, Resize, Convert & Edit Photos',
-        'description' => 'Free online image tools that run in your browser: compress, resize, crop, convert, remove backgrounds, add watermarks and strip metadata. No upload, no sign-up.',
+        'title' => 'Image Tools: Compress, Resize, Convert & Remove BG',
+        'description' => 'Compress photos to exact KB limits, resize, crop, convert HEIC or WebP, remove backgrounds and strip EXIF metadata locally in your browser with no uploads.',
         'intro' => '<p>Everything you need to get a photo ready for email, the web, social media or print. Shrink large phone photos so they upload faster, resize them to exact pixel sizes for Instagram or YouTube, convert HEIC, PNG and WebP to JPG, crop and rotate, add a watermark, or remove the hidden location data before you share a picture.</p><p>Unlike most image websites, these tools never upload your photos. Your browser does the work on your own device, so private pictures stay private and even large batches are processed quickly.</p>',
         'faqs' => [
             ['Are these image tools really free?', 'Yes. Every tool is free with no sign-up, no watermark and no daily limit.'],
@@ -15,8 +15,8 @@ return [
     ],
     'pdf' => [
         'slug' => 'pdf-tools',
-        'title' => 'Free PDF Tools: Merge, Split, Compress, Sign & Convert PDFs',
-        'description' => 'Free online PDF tools: merge, split, compress, rotate, reorder, sign, watermark, number pages and convert PDF to JPG or text. Files stay on your device.',
+        'title' => 'PDF Tools Online: Merge, Split, Compress & Sign Free',
+        'description' => 'Merge, split, compress to 100 KB, rotate, sign, watermark and convert PDFs right inside your browser. Zero file uploads keep contracts and IDs private.',
         'intro' => '<p>Combine scanned pages into one document, pull a few pages out of a long report, shrink a PDF so it fits an email attachment, sign a form, add page numbers or a watermark, or turn pages into images. Each tool does one job well and shows you a preview before you download.</p><p>Your PDFs are opened and edited inside your browser. They are never uploaded, which makes these tools safe for contracts, bank statements, IDs and other private documents.</p>',
         'faqs' => [
             ['Is it safe to use these PDF tools for private documents?', 'Yes. PDFs are processed on your device and never sent to a server.'],
@@ -27,7 +27,7 @@ return [
     'device' => [
         'slug' => 'device-tests',
         'title' => 'Online Device Tests: Mic, Webcam, Keyboard & Screen',
-        'description' => 'Free online device tests: check your microphone, webcam, keyboard keys, mouse clicks and screen resolution in seconds. Private: nothing is recorded or uploaded.',
+        'description' => 'Test your microphone, webcam, keyboard keys, mouse click speed and screen resolution directly in your browser. Private hardware checks with zero recording.',
         'intro' => '<p>Before a video call, an online exam or a gaming session, make sure your hardware works. Test your microphone with a live sound meter, check your webcam picture and resolution, press every key on your keyboard, measure your clicks per second, find your exact screen resolution, or use your camera as a mirror.</p><p>Every test runs in your browser. Sound and video stay on your device: nothing is recorded on a server or sent anywhere.</p>',
         'faqs' => [
             ['Is it safe to allow camera and microphone access?', 'Yes. The tests only show your picture and sound level on your own screen. Nothing is recorded on a server or uploaded, and access stops when you close the page.'],
@@ -37,8 +37,8 @@ return [
     ],
     'text' => [
         'slug' => 'text-tools',
-        'title' => 'Free Text Tools: Word Counter, Case Converter & More',
-        'description' => 'Free text tools for writers and students: count words and characters, change case, compare two texts, check readability, make slugs, hashtags and fancy fonts.',
+        'title' => 'Online Text Tools: Word Counter, Case & Diff Checker',
+        'description' => 'Count words and characters, convert text case, compare two drafts side by side, clean formatting, make URL slugs and check readability without sign-up.',
         'intro' => '<p>Quick tools for anyone who writes: count words and characters for an essay or a social post, fix the capitalisation of a heading, compare two versions of a document, check how easy your writing is to read, remove duplicate lines from a list, or create clean URL slugs and hashtags.</p><p>Text you paste stays in your browser. Nothing is stored or sent anywhere.</p>',
         'faqs' => [
             ['Is my text saved anywhere?', 'No. Text is processed in your browser and disappears when you close the page.'],
@@ -47,8 +47,8 @@ return [
     ],
     'media' => [
         'slug' => 'video-audio-tools',
-        'title' => 'Free Video & Audio Tools: MP3, Compress, Cut & GIF',
-        'description' => 'Free online video and audio tools: convert video to MP3, compress and cut videos, make GIFs, trim audio, record your voice or screen and transcribe speech.',
+        'title' => 'Video & Audio Tools: MP4 to MP3, Compress & Cut',
+        'description' => 'Convert video to MP3, compress large phone clips for WhatsApp, trim audio, create GIFs and record your screen or voice in your browser without uploads.',
         'intro' => '<p>Turn a video’s sound into an MP3, make a big phone video small enough for WhatsApp or email, cut out the part you need, make a looping GIF, trim a song into a ringtone, or record your voice and screen without installing anything.</p><p>All of it happens in your browser, so your videos are never uploaded. Choose the quality you want: from small files for sharing to high quality for keeping.</p>',
         'faqs' => [
             ['Do I need to install any software?', 'No. Everything runs in a modern browser such as Chrome, Safari, Edge or Firefox.'],
@@ -58,8 +58,8 @@ return [
     ],
     'qr' => [
         'slug' => 'qr-code-tools',
-        'title' => 'Free QR Code Tools: Generator, Scanner & Dynamic QR',
-        'description' => 'Make QR codes for links, Wi-Fi, WhatsApp and contacts, dynamic QR codes with scan counts, verification and file QR codes, scan QR codes and barcodes. Free.',
+        'title' => 'QR Code Tools: Generator, Scanner & Dynamic QR',
+        'description' => 'Create static or dynamic QR codes for links, Wi-Fi, WhatsApp and contacts, scan QR codes and barcodes with your camera, and download crisp PNG or SVG.',
         'intro' => '<p>Create QR codes for websites, Wi-Fi passwords, WhatsApp chats, contact cards and more, add your logo, and download them as PNG or SVG. Need to change where a printed code points, or count how often it’s scanned? Make a dynamic QR code. You can also host a document or a verification page behind a QR code, or scan QR codes and barcodes with your camera.</p><p>Static QR codes work forever and never expire. Hosted codes (dynamic, file and verification) are kept for 30 days.</p>',
         'faqs' => [
             ['Do these QR codes expire?', 'Normal QR codes never expire because the information is stored in the code itself. Dynamic, file and verification QR codes are hosted for 30 days.'],
@@ -69,8 +69,8 @@ return [
     ],
     'random' => [
         'slug' => 'generators',
-        'title' => 'Random Generators: Passwords, Numbers, Wheel & Dice',
-        'description' => 'Free random generators: strong passwords, random numbers, spin the wheel, giveaway picker, roll dice and flip a coin. Fair, secure randomness every time.',
+        'title' => 'Online Random Generators: Password, Wheel & Picker',
+        'description' => 'Generate strong passwords, pick random giveaway winners, spin a decision wheel, roll dice or flip a coin using cryptographically secure randomness.',
         'intro' => '<p>Generate strong passwords, pick random numbers or a giveaway winner, spin a decision wheel, roll dice or flip a coin. Every generator uses your browser’s cryptographically secure random number generator, the same kind used for encryption, so results are genuinely fair and unpredictable.</p>',
         'faqs' => [
             ['Are the results really random?', 'Yes. The tools use crypto.getRandomValues, a secure random source built into your browser.'],
@@ -79,8 +79,8 @@ return [
     ],
     'health' => [
         'slug' => 'health-calculators',
-        'title' => 'Health & Fitness Calculators: BMI, Calories, Macros & More',
-        'description' => 'Free health calculators: BMI, daily calories, BMR, macros, body fat, ideal weight, water intake, sleep, heart rate zones, pregnancy and ovulation dates.',
+        'title' => 'Health & Fitness Calculators: BMI, Calories & TDEE',
+        'description' => 'Calculate BMI, daily calories, BMR, macros, body fat, water intake, heart rate zones, sleep cycles and pregnancy due dates with published clinical formulas.',
         'intro' => '<p>Understand your body with calculators based on the formulas doctors and dietitians use: body mass index, calories to maintain or lose weight, macronutrients, body fat percentage, ideal weight, water intake, heart rate training zones, sleep cycles, due dates and fertile days.</p><p>Each page explains the formula with a worked example. Results are estimates for healthy adults, not medical advice, so speak to a doctor about any health decision.</p>',
         'faqs' => [
             ['How accurate are these calculators?', 'They use well-established formulas such as Mifflin-St Jeor for calories and the WHO BMI categories. Results are good estimates, but individual needs vary.'],
@@ -89,8 +89,8 @@ return [
     ],
     'money' => [
         'slug' => 'finance-calculators',
-        'title' => 'Free Finance Calculators: Loan, Savings & Retirement',
-        'description' => 'Free finance and business calculators: loans and EMI, mortgages, compound interest, savings, budgets, debt payoff, retirement, FIRE, VAT, invoices and quotes.',
+        'title' => 'Finance Calculators: Loan, EMI, Compound & Invoice',
+        'description' => 'Plan loans, mortgages, compound interest, debt payoff, retirement, budgets and VAT, or build PDF invoices and quotes in your browser with worked formulas.',
         'intro' => '<p>Make better money decisions with clear, honest calculators. Compare loan offers, see what house you can afford, plan a budget with the 50/30/20 rule, build a debt payoff plan, watch savings grow with compound interest, and work out when you can retire.</p><p>For small businesses and freelancers there are invoice, quotation and receipt makers, break-even, profit margin and VAT calculators, and a tool to set your freelance rate. Every calculator shows its formula and a worked example so you can check the result.</p>',
         'faqs' => [
             ['Do these calculators work in any currency?', 'Yes. Enter amounts in your own currency; the calculations are the same.'],
@@ -99,8 +99,8 @@ return [
     ],
     'study' => [
         'slug' => 'student-tools',
-        'title' => 'Free Student Tools: GPA, Grades, Citations & Typing',
-        'description' => 'Free tools for students: GPA and final grade calculators, APA, MLA, Harvard and Chicago citations, flashcards, typing speed test and resume builder.',
+        'title' => 'Student Tools: GPA Calculator, Citations & Resume',
+        'description' => 'Work out college GPA and needed final exam scores, format APA, MLA, Harvard or Chicago citations, study with flashcards, test typing speed and build a CV.',
         'intro' => '<p>Tools that make studying and assignments easier: work out your GPA and the score you need on the final, cite sources correctly in APA, MLA, Harvard or Chicago style, learn with flashcards that repeat what you miss, and check your typing speed.</p>',
         'faqs' => [
             ['Which citation styles are supported?', 'APA 7th, MLA 9th, Harvard (Cite Them Right) and Chicago 18th, for websites, books and journal articles.'],
@@ -127,8 +127,8 @@ return [
     ],
     'convert' => [
         'slug' => 'converters',
-        'title' => 'Free Converters: Units, Measurements and Colour Codes',
-        'description' => 'Convert units of length, weight, temperature, volume, speed and more, and convert colours between HEX, RGB and HSL. Free, instant and accurate.',
+        'title' => 'Unit & Colour Converters: Metric, Imperial, HEX & RGB',
+        'description' => 'Convert length, weight, temperature, volume, speed and data units instantly, plus translate colours between HEX, RGB and HSL with exact formulas.',
         'intro' => '<p>Convert between metric and imperial units for length, weight, temperature, volume, area, speed and data, and translate colours between HEX, RGB and HSL for design work.</p>',
         'faqs' => [
             ['How accurate are the conversions?', 'They use exact conversion factors (for example, 1 inch = 2.54 cm exactly) and show results to sensible precision.'],
@@ -136,8 +136,8 @@ return [
     ],
     'dev' => [
         'slug' => 'developer-tools',
-        'title' => 'Free Developer Tools: JSON, Regex, Base64, JWT & More',
-        'description' => 'Free online developer tools: JSON formatter, regex tester, Base64, URL encoder, hash generator, JWT decoder, UUID generator, cron explainer and CSS gradients.',
+        'title' => 'Developer Tools: JSON, Regex, Base64, Hash & JWT',
+        'description' => 'Format JSON, test regex patterns, decode JWT tokens, encode Base64 or URLs, generate UUIDs and hashes, and explain cron schedules locally in your tab.',
         'intro' => '<p>Everyday utilities for developers: format and validate JSON, test regular expressions with highlighted matches, encode and decode Base64 and URLs, generate hashes and UUIDs, decode JWTs, explain cron schedules and design CSS gradients.</p><p>Everything runs locally in your browser, so API responses, tokens and config files are never sent to a server.</p>',
         'faqs' => [
             ['Is it safe to paste tokens and data here?', 'The tools run entirely in your browser and send nothing to a server. Still, avoid pasting live production secrets into any website.'],
@@ -146,7 +146,7 @@ return [
     'home' => [
         'slug' => 'home-diy-calculators',
         'title' => 'Home & DIY Calculators: Paint, Tiles & Concrete',
-        'description' => 'Free home and DIY calculators: how much paint, tiles and concrete you need, and what your appliances cost to run. Metric and imperial units.',
+        'description' => 'Estimate paint tins, floor or wall tiles, concrete bags and appliance running electricity costs in both metric and imperial measurements before buying.',
         'intro' => '<p>Plan home projects without over-buying: work out the paint for a room, the tiles and boxes for a floor or wall, the concrete for a slab or post holes, and what each appliance adds to your electricity bill.</p>',
         'faqs' => [
             ['Do the calculators work in feet and inches?', 'Yes. Each one has metric and imperial units.'],
@@ -154,8 +154,8 @@ return [
     ],
     'share' => [
         'slug' => 'create-and-share',
-        'title' => 'Create & Share: Friendship Quiz, Giveaway, Wedding Invite',
-        'description' => 'Free create-and-share tools: a “How well do you know me?” quiz, an online giveaway with countdown and random winner, and a wedding invitation with RSVP.',
+        'title' => 'Create & Share: Friendship Quiz, Giveaway & Invites',
+        'description' => 'Build a friendship quiz, launch a timed online giveaway with a random winner draw, or send digital wedding invitations with RSVP via a single private link.',
         'intro' => '<p>Make something, send one link, and watch the replies come in. Build a <strong>friendship quiz</strong> and see which friend knows you best, run a <strong>giveaway</strong> with a live countdown and a fair random draw, or send an <strong>online wedding invitation</strong> with the card, venues, directions and RSVP. No sign-up: you get a secret code to see the results and make changes.</p>',
         'faqs' => [
             ['Do I need an account?', 'No. When you make something you get a secret code. Keep it: with it you can see the entries, edit and delete, from any device.'],
@@ -165,8 +165,8 @@ return [
     ],
     'social' => [
         'slug' => 'social-media-tools',
-        'title' => 'Social Media Tools: YouTube, Thumbnails & Giveaways',
-        'description' => 'Free social media tools: live YouTube subscriber counter, thumbnail downloader, giveaway picker, birthday card maker and personalised wish pages.',
+        'title' => 'Social Media Tools: YouTube Counter, Thumbnails & Cards',
+        'description' => 'Track live YouTube subscriber counts, download high-res video thumbnails, draw random giveaway winners and create custom birthday cards and wish pages.',
         'intro' => '<p>Tools for creators and celebrations: watch a YouTube channel’s subscriber count update live, save a video’s thumbnail in full resolution, pick fair giveaway winners from comments, and make birthday cards and personalised wish pages to share.</p>',
         'faqs' => [
             ['How does the live subscriber counter work?', 'It uses YouTube’s official API and refreshes every few seconds. YouTube rounds public counts for large channels.'],
@@ -174,8 +174,8 @@ return [
     ],
     'life' => [
         'slug' => 'everyday-tools',
-        'title' => 'Everyday Life Tools: Split Bills, Rent, Trips & Recipes',
-        'description' => 'Free everyday tools: split rent fairly, share group expenses and road trip costs, scale recipes, convert baking pans, plan dinner timing and make decisions.',
+        'title' => 'Everyday Life Tools: Split Rent, Bills, Trips & Recipes',
+        'description' => 'Split rent fairly by room size, settle group bills or road trip expenses, scale recipes, convert baking pan sizes, time dinner dishes and compare choices.',
         'intro' => '<p>Practical helpers for daily life: split rent fairly by room size, settle group expenses with the fewest payments, share road trip costs, scale a recipe up or down, convert between baking tin sizes, time every dish of a big dinner, and weigh up decisions with a simple matrix.</p>',
         'faqs' => [
             ['Do I need an account to save my work?', 'No account is needed. Some tools let you share results with a link.'],

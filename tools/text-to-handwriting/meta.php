@@ -1,24 +1,19 @@
 <?php
-// Text to Handwriting: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Text to Handwriting',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 8,
-  'popular' => true,
-  'icon' => 'feather',
-  'keywords' => 'text to handwriting converter handwriting generator typed text to handwritten assignment handwriting font notebook paper ruled page pdf',
-  'aka' => ['handwriting generator', 'text to handwritten', 'assignment handwriting maker', 'typed text to handwriting'], // other names people search for
-  'short' => 'Turn typed text into realistic handwriting on notebook, ruled or plain paper.',
-  'title' => 'Text to Handwriting Converter: Notebook Paper, PDF',
-  'description' => <<<'EOT_TF'
-Turn typed text into realistic handwriting on ruled, notebook, bordered or plain paper. Format it like Word, pick from 16 styles, download PNG or PDF.
-EOT_TF,
-  'related' => ['signature-generator', 'online-notepad', 'fancy-text-generator', 'jpg-to-pdf'],
-  'answer' => <<<'EOT_TF'
-Type or paste your text into the editor and format it like in Word: <strong>bold</strong>, <em>italic</em>, underline, size, colour, highlighter, alignment (including justify) and lists. Pick a handwriting style and paper (ruled notebook, plain, bordered, grid and more): the writing sits neatly on the lines and flows onto as many pages as needed. Download PNG, JPG or one PDF.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Text to Handwriting',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 8,
+    'popular' => true,
+    'icon' => 'feather',
+    'keywords' => 'text to handwriting converter, assignment handwriting pdf maker, lined paper font generator',
+    'aka' => ['Handwriting Assignment Maker', 'Typed Text to Ink PDF'],
+    'short' => 'Turn typed text into realistic handwriting on notebook, ruled or plain paper.',
+    'title' => 'Text to Handwriting Converter – Lined Paper PDF',
+    'description' => 'Turn typed assignments and letters into natural handwritten pages across 16 pen fonts on ruled, notebook or plain sheets and export PNG or PDF.',
+    'related' => ['signature-generator', 'online-notepad', 'fancy-text-generator', 'jpg-to-pdf'],
+    'answer' => 'Type or paste your text into the editor and format it like in Word: <strong>bold</strong>, <em>italic</em>, underline, size, colour, highlighter, alignment (including justify) and lists. Pick a handwriting style and paper (ruled notebook, plain, bordered, grid and more): the writing sits neatly on the lines and flows onto as many pages as needed. Download PNG, JPG or one PDF.',
+    'article' => <<<'EOT_TF'
 <h2>How to convert text to handwriting</h2>
 <ol>
 <li>Type or paste your text into the editor. Use the toolbar to make words bold, italic or underlined, change their size or ink colour, highlight them, align paragraphs (left, centre, right or justified) and make lists.</li>
@@ -53,36 +48,11 @@ EOT_TF,
 <h2>Languages</h2>
 <p>The handwriting styles cover English and most Latin-script languages (French, Spanish, German, Turkish and more). <strong>Kalam</strong> also writes Hindi (Devanagari). Characters a style doesn’t include are drawn in a standard font.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I convert typed text to handwriting?',
-      <<<'EOT_TF'
-Paste your text into the editor, format it with the toolbar, choose a handwriting style and paper, then download the pages as images or a PDF.
-EOT_TF,
+    'faqs' => [
+        ['How do I convert typed text to handwriting?', 'Paste your text into the editor, format it with the toolbar, choose a handwriting style and paper, then download the pages as images or a PDF.'],
+        ['Can I make words bold, coloured or underlined?', 'Yes. The toolbar works like Word: bold, italic, underline, strikethrough, text size, ink colour, highlighter, alignment, justify and lists.'],
+        ['Does the writing sit on the lines?', 'Yes. Each handwriting style is measured so the letters sit right on the ruled lines, and long text continues on new pages automatically.'],
+        ['Can I download it as a PDF?', 'Yes. Download PDF saves every page in one file. You can also download each page as PNG or JPG.'],
+        ['Is my text uploaded?', 'No. The pages are drawn in your browser. Only the handwriting font is downloaded, from Google Fonts.'],
     ],
-    [
-      'Can I make words bold, coloured or underlined?',
-      <<<'EOT_TF'
-Yes. The toolbar works like Word: bold, italic, underline, strikethrough, text size, ink colour, highlighter, alignment, justify and lists.
-EOT_TF,
-    ],
-    [
-      'Does the writing sit on the lines?',
-      <<<'EOT_TF'
-Yes. Each handwriting style is measured so the letters sit right on the ruled lines, and long text continues on new pages automatically.
-EOT_TF,
-    ],
-    [
-      'Can I download it as a PDF?',
-      <<<'EOT_TF'
-Yes. Download PDF saves every page in one file. You can also download each page as PNG or JPG.
-EOT_TF,
-    ],
-    [
-      'Is my text uploaded?',
-      <<<'EOT_TF'
-No. The pages are drawn in your browser. Only the handwriting font is downloaded, from Google Fonts.
-EOT_TF,
-    ],
-  ],
 ];

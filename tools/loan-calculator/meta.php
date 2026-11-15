@@ -1,24 +1,22 @@
 <?php
-// Loan Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Loan Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 3,
-  'icon' => 'landmark',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'emi calculator monthly payment car loan personal loan mortgage amortization',
-  'short' => 'Monthly payment, total interest and a yearly schedule for any loan.',
-  'title' => 'Loan Calculator: Monthly Payment (EMI) & Total Interest',
-  'description' => <<<'EOT_TF'
-Work out the monthly payment (EMI) for a car, personal or home loan, the total interest you’ll pay, and how much overpaying saves. With yearly schedule.
-EOT_TF,
-  'related' => ['percentage-calculator', 'discount-calculator', 'days-between-dates'],
-  'answer' => <<<'EOT_TF'
-For a standard repayment loan, the monthly payment is <strong>P × i ÷ (1 − (1 + i)<sup>−n</sup>)</strong>, where P is the amount borrowed, i the monthly interest rate and n the number of months. Borrowing 25,000 at 7.5% a year over 5 years costs <strong>500.95 a month</strong> and about 5,057 in total interest.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Loan Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 3,
+    'icon' => 'landmark',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'loan calculator, monthly emi calculator, auto loan amortization schedule, extra payment interest savings',
+    'short' => 'Monthly payment, total interest and a yearly schedule for any loan.',
+    'title' => 'Loan Calculator – Monthly EMI & Amortization',
+    'description' => 'Calculate monthly EMI payments, lifetime interest and savings from extra monthly overpayments on personal, car or home loans with yearly schedule.',
+    'related' => ['percentage-calculator', 'discount-calculator', 'days-between-dates'],
+    'answer' => 'For a standard repayment loan, the monthly payment is <strong>P × i ÷ (1 − (1 + i)<sup>−n</sup>)</strong>, where P is the amount borrowed, i the monthly interest rate and n the number of months. Borrowing 25,000 at 7.5% a year over 5 years costs <strong>500.95 a month</strong> and about 5,057 in total interest.',
+    'sources' => [
+        ['CFPB – Exploring Loan Options & Amortization', 'https://www.consumerfinance.gov/consumer-tools/mortgages/'],
+        ['Federal Reserve – Truth in Lending APR Disclosures', 'https://www.federalreserve.gov/supervisionreg/regzcg.htm'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>The loan payment formula</h2>
 <p>Most car loans, personal loans and mortgages are <strong>amortising</strong> loans: you pay the same amount every month, and each payment covers that month's interest plus a slice of the amount you borrowed (the principal). The fixed payment that clears the loan exactly on time is:</p>
 <div class="formula">Monthly payment = P × i ÷ (1 − (1 + i)^−n)
@@ -51,36 +49,13 @@ n = number of monthly payments (5 years → 60)
 
 <p><em>This calculator is for estimates. Your lender's figures may differ slightly because of fees, rounding or how they count days.</em></p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How is the monthly loan payment calculated?',
-      <<<'EOT_TF'
-Monthly payment = P × i ÷ (1 − (1 + i)^−n), where P is the loan amount, i is the yearly rate divided by 1,200, and n is the number of months.
-EOT_TF,
+    'faqs' => [
+        ['How is the monthly loan payment calculated?', 'Monthly payment = P × i ÷ (1 − (1 + i)^−n), where P is the loan amount, i is the yearly rate divided by 1,200, and n is the number of months.'],
+        ['What is EMI?', 'EMI stands for equated monthly instalment: the fixed monthly payment on a loan. It uses the same formula as this calculator.'],
+        ['How much interest will I pay on my loan?', 'Total interest is the monthly payment multiplied by the number of months, minus the amount borrowed. The calculator shows it directly.'],
+        ['Does paying extra reduce my loan?', 'Yes. Extra payments reduce the principal, so you pay less interest and finish sooner. Enter an extra amount to see the saving.'],
+        ['Can I use this for a mortgage?', 'Yes, for a standard repayment mortgage. Enter the amount borrowed, the interest rate and the term in years. Taxes and insurance are not included.'],
+        ['Does a shorter loan term always cut total borrowing cost?', 'Yes. Halving a loan term cuts the number of months interest compounds against principal, drastically lowering lifetime interest even though monthly payments rise.'],
     ],
-    [
-      'What is EMI?',
-      <<<'EOT_TF'
-EMI stands for equated monthly instalment: the fixed monthly payment on a loan. It uses the same formula as this calculator.
-EOT_TF,
-    ],
-    [
-      'How much interest will I pay on my loan?',
-      <<<'EOT_TF'
-Total interest is the monthly payment multiplied by the number of months, minus the amount borrowed. The calculator shows it directly.
-EOT_TF,
-    ],
-    [
-      'Does paying extra reduce my loan?',
-      <<<'EOT_TF'
-Yes. Extra payments reduce the principal, so you pay less interest and finish sooner. Enter an extra amount to see the saving.
-EOT_TF,
-    ],
-    [
-      'Can I use this for a mortgage?',
-      <<<'EOT_TF'
-Yes, for a standard repayment mortgage. Enter the amount borrowed, the interest rate and the term in years. Taxes and insurance are not included.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Monthly EMI Calculator', 'Loan Amortization Estimator'],
 ];

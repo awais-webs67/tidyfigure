@@ -1,23 +1,17 @@
 <?php
-// Character Counter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Character Counter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'text',
-  'order' => 2,
-  'icon' => 'letter-text',
-  'keywords' => 'count characters letters limit twitter sms meta description title length',
-  'short' => 'Count characters and check limits for X, SMS, meta descriptions and more.',
-  'title' => 'Character Counter: Count Characters With & Without Spaces',
-  'description' => <<<'EOT_TF'
-Count characters with and without spaces, words and lines. Check your text against limits for X (Twitter), SMS, Instagram, SEO titles and meta descriptions.
-EOT_TF,
-  'related' => ['word-counter', 'case-converter', 'fancy-text-generator'],
-  'answer' => <<<'EOT_TF'
-Paste your text to count its characters instantly, <strong>with and without spaces</strong>. The bars show how much room you have left for common limits: <strong>280</strong> for an X post, <strong>160</strong> for an SMS or meta description, and <strong>60</strong> for a search result title. Emoji and accented letters count as one character each.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Character Counter',
+    'updated' => '2026-11-15',
+    'category' => 'text',
+    'order' => 2,
+    'icon' => 'letter-text',
+    'keywords' => 'character counter, character count without spaces, seo title length checker, sms 160 character limit',
+    'short' => 'Count characters and check limits for X, SMS, meta descriptions and more.',
+    'title' => 'Character Counter – With/Without Spaces & SEO',
+    'description' => 'Track live characters with and without spaces, word totals and platform bars for Google titles, meta descriptions, X/Twitter, Instagram and SMS.',
+    'related' => ['word-counter', 'case-converter', 'fancy-text-generator'],
+    'answer' => 'Paste your text to count its characters instantly, <strong>with and without spaces</strong>. The bars show how much room you have left for common limits: <strong>280</strong> for an X post, <strong>160</strong> for an SMS or meta description, and <strong>60</strong> for a search result title. Emoji and accented letters count as one character each.',
+    'article' => <<<'EOT_TF'
 <h2>What counts as a character?</h2>
 <p>Every letter, number, space, punctuation mark and line break is a character. This counter counts characters the way you see them: an emoji like 🚀, a flag, or a letter with an accent such as "é" counts as one, even though computers sometimes store them as two or more pieces. That's how most social networks and text fields count, too.</p>
 <p>"Without spaces" removes spaces, tabs and line breaks. Some essay and application forms set limits this way, so check which one your form uses.</p>
@@ -46,35 +40,16 @@ EOT_TF,
 <li><strong>Use numerals:</strong> "3" instead of "three".</li>
 <li><strong>Check after editing:</strong> the counter updates as you type, so you can trim until the bar turns green.</li>
 </ul>
+
+<h2>Why Emoji &amp; Non-ASCII Symbols Shrink SMS Limits</h2>
+<p>Plain English GSM-7 SMS messages fit 160 characters per segment, yet inserting a single smart quote or smiling emoji switches the entire carrier payload to UTF-16—cutting each billable SMS chunk down to just 70 characters.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'Do spaces count as characters?',
-      <<<'EOT_TF'
-Yes, in most places. Social networks, SMS and SEO tags all count spaces. Some forms count characters without spaces, which this tool also shows.
-EOT_TF,
+    'faqs' => [
+        ['Do spaces count as characters?', 'Yes, in most places. Social networks, SMS and SEO tags all count spaces. Some forms count characters without spaces, which this tool also shows.'],
+        ['How many characters is an emoji?', 'Visually one, and this counter counts it as one. Some systems store emoji as two characters, and an emoji also switches an SMS to the 70-character limit.'],
+        ['What is the character limit for a meta description?', 'Google shows roughly 155–160 characters on desktop before cutting it off. Aim for 120–155 characters.'],
+        ['How long can an SEO title be?', 'Google shows about 60 characters (more precisely, about 600 pixels). Keep titles under 60 characters so they are not cut off.'],
+        ['Is my text saved?', 'No. Counting happens in your browser, and your text is never uploaded.'],
     ],
-    [
-      'How many characters is an emoji?',
-      <<<'EOT_TF'
-Visually one, and this counter counts it as one. Some systems store emoji as two characters, and an emoji also switches an SMS to the 70-character limit.
-EOT_TF,
-    ],
-    [
-      'What is the character limit for a meta description?',
-      <<<'EOT_TF'
-Google shows roughly 155–160 characters on desktop before cutting it off. Aim for 120–155 characters.
-EOT_TF,
-    ],
-    [
-      'How long can an SEO title be?',
-      <<<'EOT_TF'
-Google shows about 60 characters (more precisely, about 600 pixels). Keep titles under 60 characters so they are not cut off.
-EOT_TF,
-    ],
-    [
-      'Is my text saved?',
-      'No. Counting happens in your browser, and your text is never uploaded.',
-    ],
-  ],
+    'aka' => ['Letter & Space Counter', 'Meta Title Length Checker'],
 ];

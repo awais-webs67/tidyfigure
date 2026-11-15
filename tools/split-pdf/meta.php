@@ -1,30 +1,24 @@
 <?php
-// Split PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Split PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 3,
-  'icon' => 'scissors',
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
-  ],
-  'keywords' => 'extract pages separate pdf remove pages cut pdf',
-  'aka' => ['PDF splitter', 'extract pages from PDF', 'separate PDF pages'], // other names people search for
-  'short' => 'Extract pages from a PDF, or split it into single pages or equal parts.',
-  'title' => 'Split PDF: Extract Pages or Split a PDF Into Files, Free',
-  'description' => <<<'EOT_TF'
-Split a PDF into separate files or extract just the pages you need, like 1-3, 5, 8-10. Split every page or every N pages. Private, no upload needed.
-EOT_TF,
-  'related' => ['merge-pdf', 'jpg-to-pdf', 'image-compressor'],
-  'answer' => <<<'EOT_TF'
-To take pages out of a PDF, list the pages you want, such as <strong>1-3, 5, 8-10</strong>, and save them as a new file. The original stays untouched. You can also split a document into single pages or into equal parts of any size, which download together as a .zip file.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Split PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 3,
+    'icon' => 'scissors',
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js',
+    ],
+    'keywords' => 'split pdf online free, extract pages from pdf, separate pdf pages into zip, split pdf by range',
+    'aka' => ['PDF Page Extractor', 'PDF Range Splitter'],
+    'short' => 'Extract pages from a PDF, or split it into single pages or equal parts.',
+    'title' => 'Split PDF Online – Extract Pages or By Range',
+    'description' => 'Extract exact pages (like 1-3, 5, 8-10), burst every sheet into single PDFs or split every N pages cleanly into a local ZIP without limits.',
+    'related' => ['merge-pdf', 'jpg-to-pdf', 'image-compressor'],
+    'answer' => 'To take pages out of a PDF, list the pages you want, such as <strong>1-3, 5, 8-10</strong>, and save them as a new file. The original stays untouched. You can also split a document into single pages or into equal parts of any size, which download together as a .zip file.',
+    'article' => <<<'EOT_TF'
 <h2>Three ways to split a PDF</h2>
 <h3>Extract pages</h3>
 <p>Type the pages you want to keep, separated by commas. Use a dash for ranges. Pages are saved in the order you type them, so "5, 1-3" puts page 5 first. This is the quickest way to pull a single form out of a long pack, or to remove pages you don't need by listing only the ones you do.</p>
@@ -52,29 +46,16 @@ EOT_TF,
 <li><strong>Combine pages from different PDFs:</strong> extract what you need from each, then use Merge PDF.</li>
 <li><strong>Make a PDF smaller:</strong> extract only the pages you need to send. Fewer pages means a smaller file.</li>
 </ul>
+
+<h2>Extracting Non-Contiguous Chapters Cleanly by Range</h2>
+<p>Combine commas and dashes such as <code>1-3, 7, 12-15</code> to pull out executive summaries and signature sheets into one tailored recipient pack cleanly without leaking full audit books.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I extract certain pages from a PDF?',
-      <<<'EOT_TF'
-Open the PDF, choose “Extract pages”, and type the pages you want, such as 1-3, 5. Press Split PDF to download a new file with just those pages.
-EOT_TF,
+    'faqs' => [
+        ['How do I extract certain pages from a PDF?', 'Open the PDF, choose “Extract pages”, and type the pages you want, such as 1-3, 5. Press Split PDF to download a new file with just those pages.'],
+        ['How do I delete a page from a PDF?', 'List every page except the one you want to remove. For a 10-page PDF without page 4, type 1-3, 5-10.'],
+        ['How do I split a PDF into individual pages?', 'Choose “Every page” and press Split PDF. You get a .zip file containing one PDF per page.'],
+        ['Does splitting reduce the quality?', 'No. Pages are copied exactly as they are, with no re-compression.'],
+        ['Is my PDF uploaded anywhere?', 'No. Splitting happens in your browser and the file never leaves your device.'],
+        ['Will hyperlinked bookmarks or vector fonts blur when splitting PDF chapters?', 'No. Page extraction keeps native vector typography and sharp embedded drawings intact without rasterising pages into blurry bitmaps.'],
     ],
-    [
-      'How do I delete a page from a PDF?',
-      'List every page except the one you want to remove. For a 10-page PDF without page 4, type 1-3, 5-10.',
-    ],
-    [
-      'How do I split a PDF into individual pages?',
-      'Choose “Every page” and press Split PDF. You get a .zip file containing one PDF per page.',
-    ],
-    [
-      'Does splitting reduce the quality?',
-      'No. Pages are copied exactly as they are, with no re-compression.',
-    ],
-    [
-      'Is my PDF uploaded anywhere?',
-      'No. Splitting happens in your browser and the file never leaves your device.',
-    ],
-  ],
 ];

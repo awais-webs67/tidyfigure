@@ -1,25 +1,19 @@
 <?php
-// Unit Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Unit Converter',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'convert',
-  'order' => 1,
-  'icon' => 'ruler',
-  'popular' => true,
-  'keywords' => 'convert km to miles kg to lbs celsius to fahrenheit cm to inches liters gallons',
-  'aka' => ['measurement converter', 'metric converter', 'conversion calculator'], // other names people search for
-  'short' => 'Length, weight, temperature, volume, area, speed, time and data in one place.',
-  'title' => 'Unit Converter: km to Miles, kg to lb, °C to °F & More',
-  'description' => <<<'EOT_TF'
-Convert length, weight, temperature, volume, area, speed, time and data units instantly. km to miles, kg to lbs, Celsius to Fahrenheit, cm to inches and more.
-EOT_TF,
-  'related' => ['color-converter', 'percentage-calculator', 'bmi-calculator'],
-  'answer' => <<<'EOT_TF'
-Pick a category, type a value and choose the units. Every conversion uses the <strong>exact international definitions</strong>, such as 1 inch = 2.54 cm, 1 pound = 0.45359237 kg and 1 mile = 1.609344 km, and you also see your value in every other unit at once.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Unit Converter',
+    'updated' => '2026-11-15',
+    'category' => 'convert',
+    'order' => 1,
+    'icon' => 'ruler',
+    'popular' => true,
+    'keywords' => 'unit converter, metric converter, kg to lbs, km to miles, celsius to fahrenheit, cm to inches, liters to gallons',
+    'aka' => ['Metric to Imperial Converter', 'Measurement Converter'],
+    'short' => 'Length, weight, temperature, volume, area, speed, time and data in one place.',
+    'title' => 'Unit Converter – Length, Weight, Temp & Data',
+    'description' => 'Convert metric and imperial units for length, weight, temperature, volume, area, speed, time and digital storage with exact NIST/SI factors.',
+    'related' => ['color-converter', 'percentage-calculator', 'bmi-calculator'],
+    'answer' => 'Pick a category, type a value and choose the units. Every conversion uses the <strong>exact international definitions</strong>, such as 1 inch = 2.54 cm, 1 pound = 0.45359237 kg and 1 mile = 1.609344 km, and you also see your value in every other unit at once.',
+    'article' => <<<'EOT_TF'
 <h2>Most-used conversions</h2>
 <div class="scroll"><table class="tbl">
 <thead><tr><th>From</th><th>To</th><th>Multiply by</th></tr></thead>
@@ -62,29 +56,15 @@ K  = °C + 273.15
 <li>1 knot = 1 nautical mile per hour = 1.852 km/h, used at sea and in aviation.</li>
 <li>A year in the converter is 365.25 days, the average including leap years.</li>
 </ul>
+
+<h2>Exact Defined Constants Used in Engineering</h2>
+<p>Since the 1959 International Yard and Pound Agreement, core customary units are legally defined against SI metric constants rather than physical artifacts: one international inch equals exactly <code>25.4 mm</code>, one international mile equals <code>1,609.344 m</code>, and one avoirdupois pound equals <code>0.45359237 kg</code>. Temperature scales do not share a zero point, so converting °C to °F requires multiplying by <code>9/5</code> and adding <code>32</code>.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I convert km to miles?',
-      'Multiply kilometres by 0.621371. For example, 10 km is about 6.21 miles.',
+    'faqs' => [
+        ['How do I convert km to miles?', 'Multiply kilometres by 0.621371. For example, 10 km is about 6.21 miles.'],
+        ['How do I convert kg to pounds?', 'Multiply kilograms by 2.20462. For example, 70 kg is about 154.3 lb.'],
+        ['How do I convert Celsius to Fahrenheit?', 'Multiply by 9/5 and add 32. For example, 25 °C × 1.8 + 32 = 77 °F.'],
+        ['How many centimetres are in an inch?', 'Exactly 2.54 centimetres. That is the international definition of the inch.'],
+        ['Why does my 1 TB drive show less space?', 'Drive makers use 1 TB = 1,000,000,000,000 bytes, but Windows counts in units of 1024, so it shows about 931 GB (GiB).'],
     ],
-    [
-      'How do I convert kg to pounds?',
-      'Multiply kilograms by 2.20462. For example, 70 kg is about 154.3 lb.',
-    ],
-    [
-      'How do I convert Celsius to Fahrenheit?',
-      'Multiply by 9/5 and add 32. For example, 25 °C × 1.8 + 32 = 77 °F.',
-    ],
-    [
-      'How many centimetres are in an inch?',
-      'Exactly 2.54 centimetres. That is the international definition of the inch.',
-    ],
-    [
-      'Why does my 1 TB drive show less space?',
-      <<<'EOT_TF'
-Drive makers use 1 TB = 1,000,000,000,000 bytes, but Windows counts in units of 1024, so it shows about 931 GB (GiB).
-EOT_TF,
-    ],
-  ],
 ];

@@ -1,29 +1,23 @@
 <?php
-// Rotate PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Rotate PDF',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 4,
-  'icon' => 'rotate-cw',
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'scripts' => ['pdf-pages.js'],
-  'keywords' => 'rotate pdf pages turn pdf sideways fix upside down scan',
-  'short' => 'Turn sideways or upside-down PDF pages, one page or all at once.',
-  'title' => 'Rotate PDF: Turn PDF Pages and Save Permanently, Free',
-  'description' => <<<'EOT_TF'
-Rotate PDF pages 90°, 180° or 270° and save the result permanently. Rotate a single page or the whole document. Works in your browser, no upload needed.
-EOT_TF,
-  'related' => ['organize-pdf', 'delete-pdf-pages', 'merge-pdf'],
-  'answer' => <<<'EOT_TF'
-To rotate a PDF, open it, turn the pages that are sideways or upside down, and save. You can rotate <strong>every page at once</strong> or <strong>just one page</strong> by clicking ⟲ or ⟳ under it. The rotation is saved in the file itself, so it opens the right way up in every PDF reader, on every device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Rotate PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 4,
+    'icon' => 'rotate-cw',
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'scripts' => ['pdf-pages.js'],
+    'keywords' => 'rotate pdf permanently, fix sideways pdf page orientation, turn pdf 90 degrees save free',
+    'short' => 'Turn sideways or upside-down PDF pages, one page or all at once.',
+    'title' => 'Rotate PDF Pages Permanently – 90° & 180°',
+    'description' => 'Fix upside-down or sideways scanned PDF sheets permanently at 90°, 180° or 270° across single pages or all pages at once in your browser.',
+    'related' => ['organize-pdf', 'delete-pdf-pages', 'merge-pdf'],
+    'answer' => 'To rotate a PDF, open it, turn the pages that are sideways or upside down, and save. You can rotate <strong>every page at once</strong> or <strong>just one page</strong> by clicking ⟲ or ⟳ under it. The rotation is saved in the file itself, so it opens the right way up in every PDF reader, on every device.',
+    'article' => <<<'EOT_TF'
 <h2>Why PDF pages end up sideways</h2>
 <p>Scanners and phone apps often save landscape pages, receipts and ID cards at the wrong angle. Rotating the view in your PDF reader only fixes it on your screen, temporarily. The next person who opens the file, or the website you upload it to, still sees it sideways. This tool changes the rotation stored in the PDF, so the fix is permanent.</p>
 
@@ -48,28 +42,20 @@ EOT_TF,
 <li>Need to remove or reorder pages as well? Use <strong>Organize PDF</strong>, which can rotate, delete and reorder in one go.</li>
 <li>Combining several scans into one document? Rotate them, then use <strong>Merge PDF</strong>.</li>
 </ul>
+
+<h2>Lossless Metadata Angle Updates Without Quality Drop</h2>
+<p>Rotating a PDF merely updates each page dictionary’s integer rotation property rather than re-encoding embedded scans—keeping every crisp letter and halftone signature completely lossless across unlimited rotations.</p>
+
+<h2>Fixing Sideways Landscape Charts Inside Portrait Reports</h2>
+<p>Rotate wide financial spreadsheets or engineering blueprints permanently without flipping accompanying narrative prose—ensuring colleagues never tilt heads when scrolling through mixed briefings.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I rotate a PDF and save it?',
-      <<<'EOT_TF'
-Open the PDF, rotate the pages with the buttons, and press Save. The downloaded file keeps the new rotation permanently.
-EOT_TF,
+    'faqs' => [
+        ['How do I rotate a PDF and save it?', 'Open the PDF, rotate the pages with the buttons, and press Save. The downloaded file keeps the new rotation permanently.'],
+        ['Can I rotate just one page of a PDF?', 'Yes. Use the ⟲ or ⟳ buttons under that page. Other pages stay as they are.'],
+        ['Does rotating a PDF reduce quality?', 'No. Only the page’s rotation setting changes. Nothing is re-compressed, so quality and file size stay the same.'],
+        ['How do I fix an upside-down scan?', 'Rotate the page twice (180°) and save.'],
+        ['Is my PDF uploaded?', 'No. Rotation happens in your browser and the file never leaves your device.'],
+        ['Are rotation changes saved inside the file permanently or just visually rotated in screen view?', 'Rotating saves permanently into the PDF page dictionary so every email client, mobile phone and print shop displays upright pages cleanly.'],
     ],
-    [
-      'Can I rotate just one page of a PDF?',
-      'Yes. Use the ⟲ or ⟳ buttons under that page. Other pages stay as they are.',
-    ],
-    [
-      'Does rotating a PDF reduce quality?',
-      <<<'EOT_TF'
-No. Only the page’s rotation setting changes. Nothing is re-compressed, so quality and file size stay the same.
-EOT_TF,
-    ],
-    ['How do I fix an upside-down scan?', 'Rotate the page twice (180°) and save.'],
-    [
-      'Is my PDF uploaded?',
-      'No. Rotation happens in your browser and the file never leaves your device.',
-    ],
-  ],
+    'aka' => ['PDF Page Rotator', 'Save Oriented PDF Tool'],
 ];

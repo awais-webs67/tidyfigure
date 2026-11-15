@@ -1,24 +1,18 @@
 <?php
-// Birthday Card Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Birthday Card Maker',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'social',
-  'order' => 4,
-  'icon' => 'cake',
-  'popular' => true,
-  'keywords' => 'birthday card maker online free happy birthday image with name photo card',
-  'short' => 'Make a birthday card with their name, age, photo and your message.',
-  'title' => 'Birthday Card Maker: Free Card With Name & Photo',
-  'description' => <<<'EOT_TF'
-Create a free birthday card online with their name, age, photo and your message. Five designs, square, story or printable size. Download and share instantly.
-EOT_TF,
-  'related' => ['wish-maker', 'meme-generator', 'fancy-text-generator'],
-  'answer' => <<<'EOT_TF'
-Pick a design, type the birthday person's name and your message, add their age or a photo if you like, and download the card as an image. It's sized for <strong>WhatsApp and Instagram</strong> (square), <strong>stories</strong> (9:16) or <strong>printing</strong> at 5 × 7 inches. No sign-up, no watermark.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Birthday Card Maker',
+    'updated' => '2026-11-15',
+    'category' => 'social',
+    'order' => 4,
+    'icon' => 'cake',
+    'popular' => true,
+    'keywords' => 'birthday card maker, happy birthday image with name, printable birthday card, photo birthday card online',
+    'short' => 'Make a birthday card with their name, age, photo and your message.',
+    'title' => 'Birthday Card Maker – Add Name & Photo Free',
+    'description' => 'Create downloadable birthday cards with custom name, age, photo and message across print, square and WhatsApp/Instagram Story sizes.',
+    'related' => ['wish-maker', 'meme-generator', 'fancy-text-generator'],
+    'answer' => 'Pick a design, type the birthday person\'s name and your message, add their age or a photo if you like, and download the card as an image. It\'s sized for <strong>WhatsApp and Instagram</strong> (square), <strong>stories</strong> (9:16) or <strong>printing</strong> at 5 × 7 inches. No sign-up, no watermark.',
+    'article' => <<<'EOT_TF'
 <h2>How to make your card</h2>
 <ol>
 <li><strong>Choose a design:</strong> Confetti, Balloons, Gold &amp; navy, Minimal or Kids.</li>
@@ -60,24 +54,16 @@ EOT_TF,
 <li><strong>Keep the main greeting short</strong> so it reads well on a phone screen, and put the longer message underneath.</li>
 <li><strong>Send it at the right moment:</strong> first thing in the morning on the day feels most personal.</li>
 </ul>
+
+<h2>Choosing the Right Aspect Ratio for Sharing or Printing</h2>
+<p>Pick the <strong>square format</strong> for Instagram posts or WhatsApp chats where details stay legible without cropping, the <strong>vertical story format</strong> for full-screen mobile status updates, and the <strong>printable layout</strong> when saving high-resolution PNG cards to print on thick cardstock at home.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a birthday card with a name online?',
-      'Pick a design, type the name and your message, and download the card as an image.',
+    'faqs' => [
+        ['How do I make a birthday card with a name online?', 'Pick a design, type the name and your message, and download the card as an image.'],
+        ['Can I add a photo to the birthday card?', 'Yes. Upload a photo and it appears in a circle at the top of the card.'],
+        ['What size is best for WhatsApp?', 'Square (1080 × 1080) works best in chats; use Story size for WhatsApp Status.'],
+        ['Can I print the card?', 'Yes. Choose Printable 5 × 7 in, which prints sharply on standard photo paper.'],
+        ['Is there a watermark?', 'No. Cards download without any watermark.'],
     ],
-    [
-      'Can I add a photo to the birthday card?',
-      'Yes. Upload a photo and it appears in a circle at the top of the card.',
-    ],
-    [
-      'What size is best for WhatsApp?',
-      'Square (1080 × 1080) works best in chats; use Story size for WhatsApp Status.',
-    ],
-    [
-      'Can I print the card?',
-      'Yes. Choose Printable 5 × 7 in, which prints sharply on standard photo paper.',
-    ],
-    ['Is there a watermark?', 'No. Cards download without any watermark.'],
-  ],
+    'aka' => ['Photo Birthday Card Creator', 'Custom Birthday Card Maker'],
 ];

@@ -1,25 +1,19 @@
 <?php
-// Typing Speed Test: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Typing Speed Test',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'study',
-  'order' => 5,
-  'icon' => 'keyboard',
-  'popular' => true,
-  'appCategory' => 'EducationalApplication',
-  'keywords' => 'typing test wpm typing speed test words per minute accuracy keyboard practice 1 minute typing test',
-  'short' => 'Test your typing speed in words per minute and accuracy, in 30 seconds to 3 minutes.',
-  'title' => 'Typing Speed Test: Check Your WPM & Accuracy, Free',
-  'description' => <<<'EOT_TF'
-Take a free typing test and see your speed in words per minute (WPM) and your accuracy. Choose 30 seconds to 3 minutes and easy, normal or hard text.
-EOT_TF,
-  'related' => ['word-counter', 'flashcard-maker', 'character-counter'],
-  'answer' => <<<'EOT_TF'
-Choose a test length, click the box and type the text shown. The timer starts with your first key. Your speed is measured in <strong>words per minute (WPM)</strong>, where one "word" is 5 characters: type 200 correct characters in one minute and you score 40 WPM. The average adult types about <strong>35–40 WPM</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Typing Speed Test',
+    'updated' => '2026-11-15',
+    'category' => 'study',
+    'order' => 5,
+    'icon' => 'keyboard',
+    'popular' => true,
+    'appCategory' => 'EducationalApplication',
+    'keywords' => 'typing speed test, wpm test free, words per minute typing check, typing accuracy test online',
+    'short' => 'Test your typing speed in words per minute and accuracy, in 30 seconds to 3 minutes.',
+    'title' => 'Typing Speed Test – Free WPM & Accuracy Check',
+    'description' => 'Measure net typing speed in words per minute (WPM), keystroke accuracy and error rate across 30s to 3m timed tests at easy, normal or hard tiers.',
+    'related' => ['word-counter', 'flashcard-maker', 'character-counter'],
+    'answer' => 'Choose a test length, click the box and type the text shown. The timer starts with your first key. Your speed is measured in <strong>words per minute (WPM)</strong>, where one "word" is 5 characters: type 200 correct characters in one minute and you score 40 WPM. The average adult types about <strong>35–40 WPM</strong>.',
+    'article' => <<<'EOT_TF'
 <h2>How WPM is calculated</h2>
 <div class="formula">WPM     = correct characters ÷ 5 ÷ minutes
 Raw WPM = all characters typed ÷ 5 ÷ minutes
@@ -58,32 +52,12 @@ Example: 230 correct characters in 1 minute → 230 ÷ 5 = 46 WPM</div>
 </ul>
 <p>Pasting is turned off so the result is fair. On a phone, the test measures your touchscreen typing speed, which is usually 30–40 WPM for experienced users.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is a good WPM?',
-      'Around 40 WPM is average for adults. 60 WPM and above is fast, and 80 WPM or more is very fast.',
+    'faqs' => [
+        ['What is a good WPM?', 'Around 40 WPM is average for adults. 60 WPM and above is fast, and 80 WPM or more is very fast.'],
+        ['How is typing speed calculated?', 'Every 5 correct characters, including spaces, count as one word. WPM is that number of words divided by the minutes taken.'],
+        ['What is the difference between WPM and raw WPM?', 'WPM counts only correct characters. Raw WPM counts everything you typed, including mistakes.'],
+        ['How can I improve my typing speed?', 'Learn touch typing on the home row, use all ten fingers, stop looking at the keys, and practise for 10–15 minutes every day, focusing on accuracy first.'],
+        ['Does the typing test work on mobile?', 'Yes. It measures your typing speed on a touchscreen keyboard, which is usually slower than a physical keyboard.'],
     ],
-    [
-      'How is typing speed calculated?',
-      <<<'EOT_TF'
-Every 5 correct characters, including spaces, count as one word. WPM is that number of words divided by the minutes taken.
-EOT_TF,
-    ],
-    [
-      'What is the difference between WPM and raw WPM?',
-      'WPM counts only correct characters. Raw WPM counts everything you typed, including mistakes.',
-    ],
-    [
-      'How can I improve my typing speed?',
-      <<<'EOT_TF'
-Learn touch typing on the home row, use all ten fingers, stop looking at the keys, and practise for 10–15 minutes every day, focusing on accuracy first.
-EOT_TF,
-    ],
-    [
-      'Does the typing test work on mobile?',
-      <<<'EOT_TF'
-Yes. It measures your typing speed on a touchscreen keyboard, which is usually slower than a physical keyboard.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Online WPM Test', 'Words Per Minute Typing Check'],
 ];

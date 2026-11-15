@@ -1,25 +1,19 @@
 <?php
-// Age Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Age Calculator',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'time',
-  'order' => 3,
-  'icon' => 'cake',
-  'popular' => true,
-  'keywords' => 'how old am i date of birth age in days months next birthday',
-  'aka' => ['date of birth calculator', 'how old am I', 'age finder'], // other names people search for
-  'short' => 'Exact age in years, months and days, plus your next birthday.',
-  'title' => 'Age Calculator: How Old Am I in Years, Months & Days?',
-  'description' => <<<'EOT_TF'
-Calculate exact age from date of birth in years, months and days, plus total months, weeks, days and hours. See the day you were born and your next birthday.
-EOT_TF,
-  'related' => ['days-between-dates', 'online-timer', 'percentage-calculator'],
-  'answer' => <<<'EOT_TF'
-Your age is the number of <strong>full years</strong> since your date of birth, then the full months since your last birthday, then the remaining days. Enter a date of birth to see your exact age, your age in total months, weeks, days and hours, the weekday you were born, and how many days until your next birthday.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Age Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'time',
+    'order' => 3,
+    'icon' => 'cake',
+    'popular' => true,
+    'keywords' => 'age calculator, calculate age from dob, how old am i exact days, age difference calculator',
+    'aka' => ['Date of Birth Age Calculator', 'Chronological Age Finder'],
+    'short' => 'Exact age in years, months and days, plus your next birthday.',
+    'title' => 'Age Calculator – Exact Years, Months & Days',
+    'description' => 'Calculate exact chronological age from date of birth in years, months, weeks, days and hours, plus birth weekday and countdown to next birthday.',
+    'related' => ['days-between-dates', 'online-timer', 'percentage-calculator'],
+    'answer' => 'Your age is the number of <strong>full years</strong> since your date of birth, then the full months since your last birthday, then the remaining days. Enter a date of birth to see your exact age, your age in total months, weeks, days and hours, the weekday you were born, and how many days until your next birthday.',
+    'article' => <<<'EOT_TF'
 <h2>How age is calculated</h2>
 <p>Age is counted in completed units, the same way you'd count it on your fingers:</p>
 <ol>
@@ -48,33 +42,15 @@ Age:    31 years, 4 months and 7 days</div>
 <li><strong>Retirement and pensions:</strong> check your exact age on a future date.</li>
 <li><strong>Pets:</strong> enter your pet's adoption or birth date.</li>
 </ul>
+
+<h2>Using Past or Future Target Dates for Applications</h2>
+<p>Switch the "as of" reference date to verify cut-off eligibility for school admissions, marathon entries, passport renewals or pension milestones without counting irregular 30-day and 31-day calendar months manually.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate my exact age?',
-      <<<'EOT_TF'
-Count the full years since your birth date, then the full months since your last birthday, then the days left over. Enter your date of birth above to get it instantly.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate my exact age?', 'Count the full years since your birth date, then the full months since your last birthday, then the days left over. Enter your date of birth above to get it instantly.'],
+        ['How old will I be on a certain date?', 'Change “Age on this date” to the future date. The calculator shows your exact age on that day.'],
+        ['How many days old am I?', 'The calculator shows your age in total days, counting every day including leap days, along with weeks, months and hours.'],
+        ['How is age calculated for someone born on 29 February?', 'In common years the birthday is treated as 28 February, which is the convention used in most countries.'],
+        ['What day of the week was I born?', 'The calculator shows the weekday of your date of birth under the results.'],
     ],
-    [
-      'How old will I be on a certain date?',
-      'Change “Age on this date” to the future date. The calculator shows your exact age on that day.',
-    ],
-    [
-      'How many days old am I?',
-      <<<'EOT_TF'
-The calculator shows your age in total days, counting every day including leap days, along with weeks, months and hours.
-EOT_TF,
-    ],
-    [
-      'How is age calculated for someone born on 29 February?',
-      <<<'EOT_TF'
-In common years the birthday is treated as 28 February, which is the convention used in most countries.
-EOT_TF,
-    ],
-    [
-      'What day of the week was I born?',
-      'The calculator shows the weekday of your date of birth under the results.',
-    ],
-  ],
 ];

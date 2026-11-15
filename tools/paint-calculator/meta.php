@@ -1,25 +1,19 @@
 <?php
-// Paint Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Paint Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'home',
-  'order' => 1,
-  'icon' => 'paint-roller',
-  'popular' => true,
-  'appCategory' => 'LifestyleApplication',
-  'keywords' => 'paint calculator how much paint do i need room walls litres gallons coverage ceiling coats',
-  'short' => 'How much paint you need for a room, in litres or gallons, and which tins to buy.',
-  'title' => 'Paint Calculator: How Much Paint Do I Need for a Room?',
-  'description' => <<<'EOT_TF'
-Work out how much paint you need for your walls and ceiling from the room size, doors, windows and number of coats. In litres or gallons, with tins to buy.
-EOT_TF,
-  'related' => ['tile-calculator', 'concrete-calculator', 'furniture-fit-calculator'],
-  'answer' => <<<'EOT_TF'
-Paint needed = <strong>wall area × coats ÷ coverage</strong>. A 4 × 3.5 m room with 2.5 m walls has 37.5 m² of wall; minus one door and two windows that's 32.6 m². Two coats at 10 m² per litre need 6.5 litres, or about <strong>7.2 litres</strong> with 10% extra: a 5 L and a 2.5 L tin.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Paint Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'home',
+    'order' => 1,
+    'icon' => 'paint-roller',
+    'popular' => true,
+    'appCategory' => 'LifestyleApplication',
+    'keywords' => 'paint calculator, how much paint do i need, wall paint estimator, paint coverage calculator litres gallons',
+    'short' => 'How much paint you need for a room, in litres or gallons, and which tins to buy.',
+    'title' => 'Paint Calculator – Walls, Ceiling & Litres/Gal',
+    'description' => 'Work out wall and ceiling paint volume in litres or gallons after subtracting doors and windows across 1–3 coats so you buy the right tins.',
+    'related' => ['tile-calculator', 'concrete-calculator', 'furniture-fit-calculator'],
+    'answer' => 'Paint needed = <strong>wall area × coats ÷ coverage</strong>. A 4 × 3.5 m room with 2.5 m walls has 37.5 m² of wall; minus one door and two windows that\'s 32.6 m². Two coats at 10 m² per litre need 6.5 litres, or about <strong>7.2 litres</strong> with 10% extra: a 5 L and a 2.5 L tin.',
+    'article' => <<<'EOT_TF'
 <h2>The paint formula</h2>
 <div class="formula">Wall area   = 2 × (length + width) × height
 Paint area  = wall area − doors − windows
@@ -62,30 +56,12 @@ Example: 2 × (4 + 3.5) × 2.5 = 37.5 m²
 </ul>
 <p>Doing the floor as well? The <a href="/tile-calculator">tile calculator</a> works out how many tiles to buy.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How much paint do I need for a room?',
-      <<<'EOT_TF'
-Multiply the wall area (minus doors and windows) by the number of coats and divide by the coverage on the tin. A typical 4 × 3.5 m bedroom needs about 6.5–7.5 litres for two coats.
-EOT_TF,
+    'faqs' => [
+        ['How much paint do I need for a room?', 'Multiply the wall area (minus doors and windows) by the number of coats and divide by the coverage on the tin. A typical 4 × 3.5 m bedroom needs about 6.5–7.5 litres for two coats.'],
+        ['How many square metres does a litre of paint cover?', 'About 10–14 m² per coat on smooth walls. Rough or new surfaces need more paint.'],
+        ['How much paint for a 12 × 12 ft room?', 'With 8 ft walls, the wall area is 384 sq ft, about 330 sq ft after a door and two windows. Two coats at 375 sq ft per gallon need about 1.8 gallons, so buy 2 gallons.'],
+        ['Do I need two coats of paint?', 'Usually yes, for even colour. One coat can work when repainting the same colour with good paint.'],
+        ['Should I buy extra paint?', 'Adding about 10% covers spills, absorbent patches and touch-ups later.'],
     ],
-    [
-      'How many square metres does a litre of paint cover?',
-      'About 10–14 m² per coat on smooth walls. Rough or new surfaces need more paint.',
-    ],
-    [
-      'How much paint for a 12 × 12 ft room?',
-      <<<'EOT_TF'
-With 8 ft walls, the wall area is 384 sq ft, about 330 sq ft after a door and two windows. Two coats at 375 sq ft per gallon need about 1.8 gallons, so buy 2 gallons.
-EOT_TF,
-    ],
-    [
-      'Do I need two coats of paint?',
-      'Usually yes, for even colour. One coat can work when repainting the same colour with good paint.',
-    ],
-    [
-      'Should I buy extra paint?',
-      'Adding about 10% covers spills, absorbent patches and touch-ups later.',
-    ],
-  ],
+    'aka' => ['Room Paint Estimator', 'Wall Coverage Calculator'],
 ];

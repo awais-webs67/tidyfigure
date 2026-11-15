@@ -1,26 +1,22 @@
 <?php
-// Debt Payoff Planner: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Debt Payoff Planner',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 16,
-  'icon' => 'trending-down',
-  'appCategory' => 'FinanceApplication',
-  'keywords' => <<<'EOT_TF'
-debt snowball calculator debt avalanche calculator pay off debt faster credit cards multiple debts debt free date
-EOT_TF,
-  'short' => 'Snowball or avalanche: your debt-free date, pay-off order and interest saved.',
-  'title' => 'Debt Payoff Planner: Snowball vs Avalanche Calculator',
-  'description' => <<<'EOT_TF'
-List your debts and see your debt-free date, the order to pay them off, and how much interest the snowball or avalanche method saves over minimum payments.
-EOT_TF,
-  'related' => ['credit-card-payoff-calculator', 'budget-planner', 'loan-calculator'],
-  'answer' => <<<'EOT_TF'
-Pay the minimum on every debt, then put every spare penny on one target debt. The <strong>avalanche</strong> method targets the highest interest rate first and saves the most money; the <strong>snowball</strong> method targets the smallest balance first for quick wins. In the example, avalanche clears 14,500 of debt in 25 months with 1,485 of interest, against 82 months and 5,339 paying minimums only.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Debt Payoff Planner',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 16,
+    'icon' => 'trending-down',
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'debt payoff planner, debt snowball vs avalanche calculator, multiple debt payoff timeline, fastest debt free plan',
+    'short' => 'Snowball or avalanche: your debt-free date, pay-off order and interest saved.',
+    'title' => 'Debt Payoff Planner – Snowball vs Avalanche',
+    'description' => 'Compare Snowball (smallest balance first) against Avalanche (highest APR first) payoff timelines, rollover order and exact interest dollars saved.',
+    'related' => ['credit-card-payoff-calculator', 'budget-planner', 'loan-calculator'],
+    'answer' => 'Pay the minimum on every debt, then put every spare penny on one target debt. The <strong>avalanche</strong> method targets the highest interest rate first and saves the most money; the <strong>snowball</strong> method targets the smallest balance first for quick wins. In the example, avalanche clears 14,500 of debt in 25 months with 1,485 of interest, against 82 months and 5,339 paying minimums only.',
+    'sources' => [
+        ['CFPB – Strategies for Paying Off Debt', 'https://www.consumerfinance.gov/about-us/blog/how-reduce-your-debt/'],
+        ['MoneyHelper – Prioritising & Clearing Debts', 'https://www.moneyhelper.org.uk/en/money-troubles/dealing-with-debt/use-our-debt-advice-locator'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How the plan works</h2>
 <ol>
 <li>Every month, pay the minimum on <strong>every</strong> debt, so nothing goes into arrears.</li>
@@ -68,36 +64,12 @@ EOT_TF,
 <p>Interest is charged monthly at the yearly rate ÷ 12, rates don't change, and minimum payments stay fixed. Real credit card minimums often fall as the balance falls, which is why paying only the minimum takes even longer than shown. If a minimum payment doesn't cover the monthly interest, the planner warns you.</p>
 <p>If you're struggling to make minimum payments, free debt advice services can help you negotiate with lenders.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is the debt snowball method?',
-      <<<'EOT_TF'
-Pay minimums on everything, then put all extra money on the smallest balance. When it is paid off, roll its payment into the next smallest.
-EOT_TF,
+    'faqs' => [
+        ['What is the debt snowball method?', 'Pay minimums on everything, then put all extra money on the smallest balance. When it is paid off, roll its payment into the next smallest.'],
+        ['What is the debt avalanche method?', 'The same, but you target the debt with the highest interest rate first. It costs the least interest overall.'],
+        ['Which is better, snowball or avalanche?', 'Avalanche saves the most money. Snowball gives faster wins, which helps many people stay motivated. The planner shows the difference for your debts.'],
+        ['How can I pay off debt faster?', 'Add an extra monthly payment, even a small one, and keep your total payment the same as debts are cleared, rolling freed-up minimums into the next debt.'],
+        ['Does this include mortgages?', 'You can add any fixed-rate debt, but most plans leave the mortgage out and focus on higher-interest debts first.'],
     ],
-    [
-      'What is the debt avalanche method?',
-      <<<'EOT_TF'
-The same, but you target the debt with the highest interest rate first. It costs the least interest overall.
-EOT_TF,
-    ],
-    [
-      'Which is better, snowball or avalanche?',
-      <<<'EOT_TF'
-Avalanche saves the most money. Snowball gives faster wins, which helps many people stay motivated. The planner shows the difference for your debts.
-EOT_TF,
-    ],
-    [
-      'How can I pay off debt faster?',
-      <<<'EOT_TF'
-Add an extra monthly payment, even a small one, and keep your total payment the same as debts are cleared, rolling freed-up minimums into the next debt.
-EOT_TF,
-    ],
-    [
-      'Does this include mortgages?',
-      <<<'EOT_TF'
-You can add any fixed-rate debt, but most plans leave the mortgage out and focus on higher-interest debts first.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Debt Snowball & Avalanche Calculator', 'Multi-Debt Payoff Schedule'],
 ];

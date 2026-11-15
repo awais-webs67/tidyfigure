@@ -1,25 +1,23 @@
 <?php
-// SIP Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'SIP Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 2,
-  'icon' => 'piggy-bank',
-  'popular' => true,
-  'appCategory' => 'FinanceApplication',
-  'keywords' => 'sip calculator mutual fund monthly investment step up sip returns',
-  'short' => 'Future value of a monthly investment (SIP), with optional yearly step-up.',
-  'title' => 'SIP Calculator: Monthly Investment Returns With Step-Up',
-  'description' => <<<'EOT_TF'
-Calculate the future value of a SIP (systematic investment plan) in mutual funds. Monthly amount, expected return, years and optional yearly step-up. Free.
-EOT_TF,
-  'related' => ['compound-interest-calculator', 'savings-goal-calculator', 'retirement-calculator'],
-  'answer' => <<<'EOT_TF'
-A SIP (systematic investment plan) invests a fixed amount every month. At 12% a year, investing <strong>5,000 a month for 15 years</strong> puts in 900,000 and could grow to about <strong>2.4 million</strong>. A yearly step-up, raising the amount as your income grows, makes a big difference over long periods.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'SIP Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 2,
+    'icon' => 'piggy-bank',
+    'popular' => true,
+    'appCategory' => 'FinanceApplication',
+    'keywords' => 'sip calculator, systematic investment plan calculator, mutual fund step up sip, monthly sip wealth projection',
+    'short' => 'Future value of a monthly investment (SIP), with optional yearly step-up.',
+    'title' => 'SIP Calculator – Mutual Fund Step-Up Returns',
+    'description' => 'Project mutual fund SIP wealth over 1–40 years with monthly amount, expected annual return and yearly step-up percentage increments.',
+    'related' => ['compound-interest-calculator', 'savings-goal-calculator', 'retirement-calculator'],
+    'answer' => 'A SIP (systematic investment plan) invests a fixed amount every month. At 12% a year, investing <strong>5,000 a month for 15 years</strong> puts in 900,000 and could grow to about <strong>2.4 million</strong>. A yearly step-up, raising the amount as your income grows, makes a big difference over long periods.',
+    'sources' => [
+        ['AMFI India – Systematic Investment Plan (SIP) Investor Guide', 'https://www.amfiindia.com/investor-corner/knowledge-center/systematic-investment-plan.html'],
+        ['SEBI Investor Education – Mutual Fund Compounding', 'https://investor.sebi.gov.in/'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>How SIP returns are calculated</h2>
 <div class="formula">Future value = P × [((1 + i)^n − 1) ÷ i] × (1 + i)
 
@@ -49,35 +47,17 @@ n = number of months</div>
 <li>Market ups and downs: real returns arrive unevenly, not at a steady rate</li>
 </ul>
 <p><em>For illustration only. Mutual fund investments are subject to market risks; read the scheme documents and consider professional advice.</em></p>
+
+<h2>Rupee/Dollar-Cost Averaging Through Market Dips</h2>
+<p>Fixed monthly SIP contributions automatically purchase more fund units when NAV prices dip and fewer when markets rally—smoothing average buy-in price automatically without needing to time market bottoms.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How is SIP return calculated?',
-      <<<'EOT_TF'
-Using the future value of a series of monthly payments: P × [((1 + i)^n − 1) ÷ i] × (1 + i), with i as the monthly rate and n the number of months.
-EOT_TF,
+    'faqs' => [
+        ['How is SIP return calculated?', 'Using the future value of a series of monthly payments: P × [((1 + i)^n − 1) ÷ i] × (1 + i), with i as the monthly rate and n the number of months.'],
+        ['How much will a 5,000 monthly SIP be worth in 15 years?', 'At a 12% yearly return, about 2.4 million, from 900,000 invested.'],
+        ['What is a step-up SIP?', 'A SIP where the monthly amount increases every year by a set percentage, usually in line with salary increases.'],
+        ['Is SIP return guaranteed?', 'No. Returns depend on market performance and can be higher or lower than expected, including negative.'],
+        ['What is the difference between SIP and lump sum?', 'A SIP invests a fixed amount every month; a lump sum invests everything at once. Use the Compound Interest Calculator for lump sums.'],
+        ['Should I pick a fixed monthly SIP or a 10% yearly step-up?', 'Adding even an 8–10% annual step-up in line with salary raises can nearly double final 20-year SIP wealth compared with flat deposits.'],
     ],
-    [
-      'How much will a 5,000 monthly SIP be worth in 15 years?',
-      'At a 12% yearly return, about 2.4 million, from 900,000 invested.',
-    ],
-    [
-      'What is a step-up SIP?',
-      <<<'EOT_TF'
-A SIP where the monthly amount increases every year by a set percentage, usually in line with salary increases.
-EOT_TF,
-    ],
-    [
-      'Is SIP return guaranteed?',
-      <<<'EOT_TF'
-No. Returns depend on market performance and can be higher or lower than expected, including negative.
-EOT_TF,
-    ],
-    [
-      'What is the difference between SIP and lump sum?',
-      <<<'EOT_TF'
-A SIP invests a fixed amount every month; a lump sum invests everything at once. Use the Compound Interest Calculator for lump sums.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Mutual Fund SIP Estimator', 'Step-Up SIP Growth Calculator'],
 ];

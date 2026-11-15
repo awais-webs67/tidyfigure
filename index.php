@@ -140,7 +140,7 @@ header('Content-Type: text/html; charset=utf-8');
 header('Cache-Control: public, max-age=120, s-maxage=600');
 
 if ($path === '') {
-    echo tf_page_home();
+    echo tf_page_home(trim((string) ($_GET['q'] ?? '')));
     exit;
 }
 if ($html = tf_page_simple($path)) {

@@ -1,27 +1,23 @@
 <?php
-// Audio & Video to Text (transcription): page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Audio to Text (Transcription)',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 0,
-  'icon' => 'audio-lines',
-  'popular' => true,
-  'files' => true,
-  'isolate' => true, // AI tool: may use every CPU core (see tf_tool_isolated)
-  'scripts' => ['ai.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'audio to text converter free transcription speech to text video to text mp3 to text subtitle generator srt voice note transcribe urdu hindi whisper',
-  'aka' => ['speech to text', 'transcribe audio', 'voice to text', 'audio transcription'], // other names people search for
-  'short' => 'Turn speech in audio or video into text and subtitles (SRT), in 20+ languages.',
-  'title' => 'Audio to Text: Free AI Transcription & SRT Subtitles',
-  'description' => 'Transcribe audio and video to text with AI, free: MP3, voice notes, MP4. 20+ languages incl. Urdu, Hindi and Arabic, timestamps, SRT subtitles. No upload.',
-  'related' => ['video-to-mp3', 'voice-recorder', 'audio-cutter'],
-  'answer' => <<<'EOT_TF'
-Choose an audio or video file (an MP3, a WhatsApp voice note, an interview or a lecture), pick the language, and press <strong>Transcribe</strong>. The AI writes out everything that was said, with <strong>timestamps</strong>, and you can download the text or <strong>SRT and VTT subtitles</strong> for your videos. It can also translate speech straight into English. Recordings never leave your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Audio to Text (Transcription)',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 0,
+    'icon' => 'audio-lines',
+    'popular' => true,
+    'files' => true,
+    'isolate' => true,
+    'scripts' => ['ai.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'audio to text, free ai transcription, mp3 to text, audio to srt subtitles, speech to text urdu hindi english',
+    'aka' => ['Free Audio Transcriber', 'Speech to Text Converter'],
+    'short' => 'Turn speech in audio or video into text and subtitles (SRT), in 20+ languages.',
+    'title' => 'Audio to Text – Free AI Transcription & SRT',
+    'description' => 'Transcribe MP3, voice notes and MP4 clips into clean text or timestamped SRT subtitles across 20+ languages locally with zero file upload.',
+    'related' => ['video-to-mp3', 'voice-recorder', 'audio-cutter'],
+    'answer' => 'Choose an audio or video file (an MP3, a WhatsApp voice note, an interview or a lecture), pick the language, and press <strong>Transcribe</strong>. The AI writes out everything that was said, with <strong>timestamps</strong>, and you can download the text or <strong>SRT and VTT subtitles</strong> for your videos. It can also translate speech straight into English. Recordings never leave your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to convert audio to text</h2>
 <ol>
 <li>Drop your file in the box. MP3, M4A, WAV, OGG and Opus voice notes, and MP4, MOV or WebM videos all work.</li>
@@ -51,11 +47,11 @@ EOT_TF,
 <h2>About the AI</h2>
 <p>The tool uses <strong>Whisper</strong>, an open-source speech-recognition model released by OpenAI under the MIT licence, trained on hundreds of thousands of hours of speech in nearly 100 languages. Here it runs entirely in your browser, so private recordings, such as meetings, interviews or medical notes, are never uploaded to a server. Need the sound from a video first? <a href="/video-to-mp3">Video to MP3</a> extracts it.</p>
 EOT_TF,
-  'faqs' => [
-    ['How do I convert an audio file to text?', 'Drop the file in, choose the language and press Transcribe. Copy the text or download it as a .txt file.'],
-    ['Can it transcribe WhatsApp voice notes?', 'Yes. Save the voice note (.opus or .ogg) to your device and choose it. Urdu, Hindi, Arabic and English are all supported.'],
-    ['How do I make subtitles for a video?', 'Choose the video, press Transcribe, then download the .srt file and upload it to YouTube or your video editor.'],
-    ['Is my recording uploaded?', 'No. The Whisper AI runs in your browser. Only the model is downloaded, once.'],
-    ['Is it free?', 'Yes, with no minutes limit, no sign-up and no watermark on the subtitles.'],
-  ],
+    'faqs' => [
+        ['How do I convert an audio file to text?', 'Drop the file in, choose the language and press Transcribe. Copy the text or download it as a .txt file.'],
+        ['Can it transcribe WhatsApp voice notes?', 'Yes. Save the voice note (.opus or .ogg) to your device and choose it. Urdu, Hindi, Arabic and English are all supported.'],
+        ['How do I make subtitles for a video?', 'Choose the video, press Transcribe, then download the .srt file and upload it to YouTube or your video editor.'],
+        ['Is my recording uploaded?', 'No. The Whisper AI runs in your browser. Only the model is downloaded, once.'],
+        ['Is it free?', 'Yes, with no minutes limit, no sign-up and no watermark on the subtitles.'],
+    ],
 ];

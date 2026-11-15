@@ -1,26 +1,24 @@
 <?php
-// Redact PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Redact PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 17,
-  'files' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js', 'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js'],
-  'scripts' => ['pdf-engine.js'],
-  'icon' => 'square-dashed',
-  'keywords' => 'redact pdf online free black out text in pdf remove sensitive information pdf censor pdf hide text permanently anonymize pdf',
-  'aka' => ['black out PDF', 'censor PDF', 'anonymise PDF'], // other names people search for
-  'short' => 'Black out names, numbers and other private details in a PDF so they can’t be read, copied or recovered.',
-  'title' => 'Redact PDF Online Free: Black Out Text Permanently',
-  'description' => <<<'EOT_TF'
-Redact PDFs online: black out text, find every email or phone number and remove it for good, not just cover it. Free, private, and nothing is uploaded.
-EOT_TF,
-  'related' => ['edit-pdf', 'pdf-metadata-remover', 'protect-pdf'],
-  'answer' => <<<'EOT_TF'
-To redact a PDF, open it and <strong>drag black boxes</strong> over anything private, or type a word and press <strong>Find &amp; mark</strong> to mark every place it appears (there are quick finds for emails, phone numbers and long numbers). Press <strong>Redact PDF</strong>: the text under the boxes is <strong>deleted from the file</strong>, not just covered, and the result is checked before you download it.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Redact PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 17,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'scripts' => ['pdf-engine.js'],
+    'icon' => 'square-dashed',
+    'keywords' => 'redact pdf online free, permanently blackout text in pdf, remove confidential data pdf no upload',
+    'aka' => ['Permanent PDF Redactor', 'Sanitise Confidential PDF Text'],
+    'short' => 'Black out names, numbers and other private details in a PDF so they can’t be read, copied or recovered.',
+    'title' => 'Redact PDF Online Free – Black Out Permanently',
+    'description' => 'Permanently scrub names, SSNs, emails, phone numbers and confidential clauses out of PDF layers—not merely hidden under black boxes—locally.',
+    'related' => ['edit-pdf', 'pdf-metadata-remover', 'protect-pdf'],
+    'answer' => 'To redact a PDF, open it and <strong>drag black boxes</strong> over anything private, or type a word and press <strong>Find &amp; mark</strong> to mark every place it appears (there are quick finds for emails, phone numbers and long numbers). Press <strong>Redact PDF</strong>: the text under the boxes is <strong>deleted from the file</strong>, not just covered, and the result is checked before you download it.',
+    'article' => <<<'EOT_TF'
 <h2>How to redact a PDF</h2>
 <ol>
 <li>Drop your PDF in the box, or try the sample.</li>
@@ -46,36 +44,11 @@ EOT_TF,
 <h2>Private by design</h2>
 <p>A document you need to redact is, by definition, sensitive. That's why this tool runs entirely in your browser: the PDF is never uploaded, stored or seen by anyone else.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I redact a PDF for free?',
-      <<<'EOT_TF'
-Open it here, drag boxes over what you want to hide or use Find & mark, then press Redact PDF and download. It is free with no sign-up.
-EOT_TF,
+    'faqs' => [
+        ['How do I redact a PDF for free?', 'Open it here, drag boxes over what you want to hide or use Find & mark, then press Redact PDF and download. It is free with no sign-up.'],
+        ['Is the redacted text really removed?', 'Yes. The letters under each box are deleted from the PDF, not covered. Pages where a box covers part of an image are turned into images with the box burned in. The tool then searches the new file to confirm the text is gone.'],
+        ['Can I black out every place a name appears?', 'Yes. Type the name and press Find & mark. Every match on every page is marked, and you can remove any box you don’t want before redacting.'],
+        ['Does it work on scanned PDFs?', 'Yes. Draw boxes over the parts to hide; scanned pages with boxes are turned into new images with the boxes burned in. Find & mark needs real text, so it doesn’t find words in a scan.'],
+        ['Is my PDF uploaded?', 'No. Everything happens in your browser and the file never leaves your device.'],
     ],
-    [
-      'Is the redacted text really removed?',
-      <<<'EOT_TF'
-Yes. The letters under each box are deleted from the PDF, not covered. Pages where a box covers part of an image are turned into images with the box burned in. The tool then searches the new file to confirm the text is gone.
-EOT_TF,
-    ],
-    [
-      'Can I black out every place a name appears?',
-      <<<'EOT_TF'
-Yes. Type the name and press Find & mark. Every match on every page is marked, and you can remove any box you don’t want before redacting.
-EOT_TF,
-    ],
-    [
-      'Does it work on scanned PDFs?',
-      <<<'EOT_TF'
-Yes. Draw boxes over the parts to hide; scanned pages with boxes are turned into new images with the boxes burned in. Find & mark needs real text, so it doesn’t find words in a scan.
-EOT_TF,
-    ],
-    [
-      'Is my PDF uploaded?',
-      <<<'EOT_TF'
-No. Everything happens in your browser and the file never leaves your device.
-EOT_TF,
-    ],
-  ],
 ];

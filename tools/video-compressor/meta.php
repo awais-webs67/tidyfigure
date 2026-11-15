@@ -1,27 +1,21 @@
 <?php
-// Video Compressor: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Video Compressor',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 2,
-  'icon' => 'file-video',
-  'popular' => true,
-  'files' => true,
-  'scripts' => ['media.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'compress mp4 reduce video size mb whatsapp email discord shrink video file smaller 720p 480p',
-  'short' => 'Make a video file smaller for WhatsApp, email or Discord, with your choice of quality.',
-  'title' => 'Video Compressor: Reduce MP4 & MOV File Size Online, Free',
-  'description' => <<<'EOT_TF'
-Compress MP4, MOV and WebM videos in your browser. Pick 1080p, 720p or 480p, a quality level or a target size in MB. No upload, no watermark.
-EOT_TF,
-  'related' => ['video-cutter', 'video-to-mp3', 'image-compressor'],
-  'answer' => <<<'EOT_TF'
-To compress a video, choose it below, pick a lower resolution (720p suits most phones and chats) and a quality level, then press <strong>Compress video</strong>. You can also type a target size, such as 25 MB, and the bitrate is set to hit it. The video is processed on your device and never uploaded.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Video Compressor',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 2,
+    'icon' => 'file-video',
+    'popular' => true,
+    'files' => true,
+    'scripts' => ['media.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'video compressor, compress mp4 online, reduce video file size, compress video for whatsapp, shrink mov no upload',
+    'short' => 'Make a video file smaller for WhatsApp, email or Discord, with your choice of quality.',
+    'title' => 'Video Compressor – Shrink MP4 & MOV to Size',
+    'description' => 'Reduce large MP4, MOV and WebM files to 1080p, 720p, 480p or a target megabyte size for WhatsApp, Discord or email locally without upload.',
+    'related' => ['video-cutter', 'video-to-mp3', 'image-compressor'],
+    'answer' => 'To compress a video, choose it below, pick a lower resolution (720p suits most phones and chats) and a quality level, then press <strong>Compress video</strong>. You can also type a target size, such as 25 MB, and the bitrate is set to hit it. The video is processed on your device and never uploaded.',
+    'article' => <<<'EOT_TF'
 <h2>What makes a video file big?</h2>
 <p>A video's size depends on three things: how long it is, its <strong>resolution</strong> (how many pixels each frame has), and its <strong>bitrate</strong> (how much data is used for each second). Modern phones film in 1080p or 4K at very high bitrates, often 15 to 50 megabits per second, so a one-minute clip can be 100 MB or more. That's far more detail than you need to watch it on a phone screen or send it in a chat.</p>
 <div class="formula">File size (MB) ≈ (video bitrate + audio bitrate) in Mbps × seconds ÷ 8
@@ -61,32 +55,12 @@ Example: 2.5 Mbps video + 0.128 Mbps audio, 60 seconds
 <li>Videos with lots of movement (sports, shaky phone footage) need more bitrate than calm ones (talking heads, slides).</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'How can I reduce the size of a video?',
-      <<<'EOT_TF'
-Lower its resolution (for example 1080p to 720p) and its bitrate. Choose those settings above and press Compress video. A 720p medium-quality video is usually 70–90% smaller than a phone original.
-EOT_TF,
+    'faqs' => [
+        ['How can I reduce the size of a video?', 'Lower its resolution (for example 1080p to 720p) and its bitrate. Choose those settings above and press Compress video. A 720p medium-quality video is usually 70–90% smaller than a phone original.'],
+        ['How do I compress a video to 25 MB for email?', 'Type 25 in the target size box. The tool sets the bitrate so the finished file comes out just under 25 MB.'],
+        ['Is my video uploaded?', 'No. The video is re-recorded inside your browser, on your device. It is never sent to a server.'],
+        ['Why is compression slow?', 'The browser plays the video once to re-record it, so it takes about as long as the video. Keep the tab open until it finishes.'],
+        ['Will the compressed video have a watermark?', 'No. There is no watermark, no sign-up and no limit on how many videos you compress.'],
     ],
-    [
-      'How do I compress a video to 25 MB for email?',
-      <<<'EOT_TF'
-Type 25 in the target size box. The tool sets the bitrate so the finished file comes out just under 25 MB.
-EOT_TF,
-    ],
-    [
-      'Is my video uploaded?',
-      'No. The video is re-recorded inside your browser, on your device. It is never sent to a server.',
-    ],
-    [
-      'Why is compression slow?',
-      <<<'EOT_TF'
-The browser plays the video once to re-record it, so it takes about as long as the video. Keep the tab open until it finishes.
-EOT_TF,
-    ],
-    [
-      'Will the compressed video have a watermark?',
-      'No. There is no watermark, no sign-up and no limit on how many videos you compress.',
-    ],
-  ],
+    'aka' => ['MP4 Size Reducer', 'WhatsApp Video Compressor'],
 ];

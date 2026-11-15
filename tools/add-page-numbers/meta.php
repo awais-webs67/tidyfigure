@@ -1,28 +1,22 @@
 <?php
-// Add Page Numbers to PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Add Page Numbers to PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 9,
-  'icon' => 'list-ordered',
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'keywords' => 'number pdf pages pagination insert page numbers pdf',
-  'short' => 'Number PDF pages: position, format like "Page 1 of 10", skip the cover.',
-  'title' => 'Add Page Numbers to PDF: Number Pages Online, Free',
-  'description' => <<<'EOT_TF'
-Add page numbers to any PDF. Choose the position, format (1, Page 1, Page 1 of 10), starting number and font size, and skip the cover page. Private and free.
-EOT_TF,
-  'related' => ['watermark-pdf', 'organize-pdf', 'merge-pdf'],
-  'answer' => <<<'EOT_TF'
-Open your PDF, pick where the numbers go (bottom centre is the most common), choose a format like <strong>"Page 1 of 10"</strong>, and download. You can start from any number and leave the cover page unnumbered. A live preview shows exactly how the numbers will look before you save.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Add Page Numbers to PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 9,
+    'icon' => 'list-ordered',
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'keywords' => 'add page numbers to pdf, number pdf pages online free, pdf footer numbering no upload',
+    'short' => 'Number PDF pages: position, format like "Page 1 of 10", skip the cover.',
+    'title' => 'Add Page Numbers to PDF – Footer & Skip Cover',
+    'description' => 'Stamp crisp sequential page numbers onto any PDF header or footer, choose style (1, Page 1 of 10), starting index and skip title pages locally.',
+    'related' => ['watermark-pdf', 'organize-pdf', 'merge-pdf'],
+    'answer' => 'Open your PDF, pick where the numbers go (bottom centre is the most common), choose a format like <strong>"Page 1 of 10"</strong>, and download. You can start from any number and leave the cover page unnumbered. A live preview shows exactly how the numbers will look before you save.',
+    'article' => <<<'EOT_TF'
 <h2>Why number your pages?</h2>
 <p>Page numbers make long documents easy to navigate, refer to and print. Many universities, courts, tenders and publishers require them, and they're essential when a PDF will be printed and could get shuffled. They also help when you merge several files into one pack and need a single, continuous numbering.</p>
 
@@ -47,24 +41,20 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>Your PDF is edited in your browser and never uploaded. There's no watermark and no page limit.</p>
+
+<h2>Numbering Legal Bundles, Theses &amp; Bates Prefixes</h2>
+<p>Thesis committees, court filings and multi-author reports routinely combine chapters exported from different apps. Starting numbering on Page 2 skips cover art cleanly while stamping Page X of Y confirms no appendix sheets went missing when printed.</p>
+
+<h2>Matching Position Margins Without Overlapping Stamps</h2>
+<p>Check existing letterheads or court filing stamps before stamping bottom-centre page digits; moving labels smoothly toward bottom-right avoids touching signatures cleanly.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I add page numbers to a PDF?',
-      'Open the PDF, choose the position and format, check the preview, and download the numbered PDF.',
+    'faqs' => [
+        ['How do I add page numbers to a PDF?', 'Open the PDF, choose the position and format, check the preview, and download the numbered PDF.'],
+        ['Can I start numbering from page 2?', 'Yes. Tick “Don’t number the first page”. The second page gets the starting number.'],
+        ['Can I use the format “Page 1 of 10”?', 'Yes. Choose it in the Format menu; the total is calculated automatically.'],
+        ['Will page numbers cover my content?', 'They sit about 1 cm from the edge. If your document has a footer there, choose a top position.'],
+        ['Is my document uploaded?', 'No. Numbers are added in your browser.'],
+        ['Can I add page numbers to an already merged multi-document PDF?', 'Yes. Combine your files first with Merge PDF, then stamp continuous numbering across all pages in one browser pass.'],
     ],
-    [
-      'Can I start numbering from page 2?',
-      'Yes. Tick “Don’t number the first page”. The second page gets the starting number.',
-    ],
-    [
-      'Can I use the format “Page 1 of 10”?',
-      'Yes. Choose it in the Format menu; the total is calculated automatically.',
-    ],
-    [
-      'Will page numbers cover my content?',
-      'They sit about 1 cm from the edge. If your document has a footer there, choose a top position.',
-    ],
-    ['Is my document uploaded?', 'No. Numbers are added in your browser.'],
-  ],
+    'aka' => ['PDF Page Numberer', 'Header Footer PDF Number Tool'],
 ];

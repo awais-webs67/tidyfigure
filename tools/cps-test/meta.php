@@ -1,23 +1,18 @@
 <?php
-// CPS Test: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'CPS Test',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'device',
-  'order' => 5,
-  'popular' => true,
-  'icon' => 'mouse-pointer-click',
-  'keywords' => 'cps test click speed test clicks per second click test 5 second 10 second jitter click butterfly click mouse test',
-  'short' => 'How many clicks per second can you do? 1 to 60-second tests.',
-  'title' => 'CPS Test: Check Your Clicks Per Second, Free',
-  'description' => <<<'EOT_TF'
-How fast can you click? Take the CPS test for 1, 5, 10, 30 or 60 seconds, see your clicks per second and beat your best score. Works with mouse and touch.
-EOT_TF,
-  'related' => ['keyboard-test', 'typing-speed-test', 'online-timer', 'what-is-my-screen-resolution'],
-  'answer' => <<<'EOT_TF'
-Choose a time, then click (or tap) the big box as fast as you can. The test starts with your first click and shows your <strong>clicks per second (CPS)</strong> live. Most people score 6–7 CPS; gamers using jitter or butterfly clicking reach 10–15. Your best score for each length is saved in your browser.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'CPS Test',
+    'updated' => '2026-11-15',
+    'category' => 'device',
+    'order' => 5,
+    'popular' => true,
+    'icon' => 'mouse-pointer-click',
+    'keywords' => 'cps test, clicks per second test, click speed test, kohi click test, jitter click test, spacebar counter',
+    'short' => 'How many clicks per second can you do? 1 to 60-second tests.',
+    'title' => 'CPS Test – Check Your Clicks Per Second Online',
+    'description' => 'Measure mouse or touchscreen clicks per second over 1, 5, 10, 30 or 60 seconds, view jitter/butterfly peaks and beat your personal CPS score.',
+    'related' => ['keyboard-test', 'typing-speed-test', 'online-timer', 'what-is-my-screen-resolution'],
+    'answer' => 'Choose a time, then click (or tap) the big box as fast as you can. The test starts with your first click and shows your <strong>clicks per second (CPS)</strong> live. Most people score 6–7 CPS; gamers using jitter or butterfly clicking reach 10–15. Your best score for each length is saved in your browser.',
+    'article' => <<<'EOT_TF'
 <h2>How the CPS test works</h2>
 <p>Pick a duration and click the box as quickly as you can. The timer starts on your first click, so you don’t lose any time. When it ends, your score is the number of clicks divided by the seconds: 55 clicks in 5 seconds is 11 CPS.</p>
 
@@ -45,37 +40,20 @@ EOT_TF,
 <li>Use a light mouse with a crisp button; worn switches can miss or double clicks.</li>
 <li>Warm up with a few 5-second rounds before trying the 60-second test.</li>
 </ul>
+
+<h2>Why 1-Second Burst vs 10-Second Stamina Differ</h2>
+<p>Short 1-second or 5-second trials measure peak finger twitch speed—where butterfly or drag clicking easily tops 12–18 CPS—while 30-second and 60-second runs reveal forearm fatigue and steady accuracy. Compare mouse switch actuation against laptop trackpad taps to pick the crispest input device for fast-paced PvP or rhythm games.</p>
+
+<h2>Comparing Jitter, Butterfly &amp; Normal Click Mechanics</h2>
+<p>Standard single-finger clicking tops out near 6–8 CPS cleanly with minimal mouse wobble, whereas jitter clicking tenses wrist muscles to vibrate 10–14 CPS briefly and butterfly clicking alternates index and middle fingers across wide mouse buttons—always check server rules before using high-CPS methods online.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'What is the average CPS?',
-      <<<'EOT_TF'
-Most people click 6 to 7 times per second. Gamers who practise jitter or butterfly clicking often reach 10 to 15.
-EOT_TF,
+    'faqs' => [
+        ['What is the average CPS?', 'Most people click 6 to 7 times per second. Gamers who practise jitter or butterfly clicking often reach 10 to 15.'],
+        ['What is the world record CPS?', 'Records vary by technique and test length, but drag clicking has produced scores above 40 CPS over short tests. With normal clicking, 14–16 CPS is exceptional.'],
+        ['Does the timer start immediately?', 'No. It starts with your first click, so you get the full time.'],
+        ['Can I take the test on my phone?', 'Yes. Tap the box with one or more fingers; each tap counts as a click.'],
+        ['Are my scores saved?', 'Your best score for each test length is saved in your browser on this device. Nothing is sent to a server.'],
+        ['Does a touchscreen or laptop trackpad work for the CPS test?', 'Yes. Desktop mice, laptop trackpads and phone touchscreens all register clicks cleanly, though lightweight external gaming mice typically score 2–4 CPS higher than stiff trackpads.'],
     ],
-    [
-      'What is the world record CPS?',
-      <<<'EOT_TF'
-Records vary by technique and test length, but drag clicking has produced scores above 40 CPS over short tests. With normal clicking, 14–16 CPS is exceptional.
-EOT_TF,
-    ],
-    [
-      'Does the timer start immediately?',
-      <<<'EOT_TF'
-No. It starts with your first click, so you get the full time.
-EOT_TF,
-    ],
-    [
-      'Can I take the test on my phone?',
-      <<<'EOT_TF'
-Yes. Tap the box with one or more fingers; each tap counts as a click.
-EOT_TF,
-    ],
-    [
-      'Are my scores saved?',
-      <<<'EOT_TF'
-Your best score for each test length is saved in your browser on this device. Nothing is sent to a server.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Clicks Per Second Test', 'Click Speed Tester'],
 ];

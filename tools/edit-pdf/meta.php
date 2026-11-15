@@ -1,31 +1,27 @@
 <?php
-// PDF editor: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Edit PDF',
-  'updated' => '2026-10-31', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 1,
-  'icon' => 'file-pen-line',
-  'popular' => true,
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-    'vendor/fontkit-1.1.1.min.js',
-  ],
-  'scripts' => ['pdf-engine.js'],
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'edit pdf online free pdf editor add text to pdf edit text in pdf write on pdf whiteout pdf annotate pdf highlight pdf underline pdf strikethrough pdf comment on pdf sticky note pdf draw on pdf add image to pdf sign pdf fill pdf',
-  'aka' => ['PDF editor', 'edit PDF text', 'write on PDF', 'annotate PDF'], // other names people search for
-  'short' => 'Edit PDFs online: change existing text, add text, images, signatures, comments, highlights and shapes, and turn, add or delete pages.',
-  'title' => 'Edit PDF Online Free: Change Text, Sign & Annotate',
-  'description' => 'Free online PDF editor: change existing text, add text, images and signatures, highlight, draw and white out. No sign-up or watermark; your PDF stays private.',
-  'related' => ['sign-pdf', 'merge-pdf', 'compress-pdf'],
-  'answer' => <<<'EOT_TF'
-To edit a PDF, open it and choose <strong>Edit text</strong>, then click any line and type. The text is rewritten in the PDF's <strong>own font, size and colour</strong>, not pasted on top. <strong>Delete</strong> truly removes text, images and shapes, and you can add text, signatures, images and drawings. Press <strong>Preview &amp; download</strong> to check the finished PDF. It's free, with no watermark, and the file never leaves your device.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Edit PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 1,
+    'icon' => 'file-pen-line',
+    'popular' => true,
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+        'vendor/fontkit-1.1.1.min.js',
+    ],
+    'scripts' => ['pdf-engine.js'],
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'edit pdf online free, modify text in pdf no signup, pdf annotator whiteout free, sign fill pdf browser',
+    'aka' => ['Online PDF Editor', 'Browser PDF Text & Signature Editor'],
+    'short' => 'Edit PDFs online: change existing text, add text, images, signatures, comments, highlights and shapes, and turn, add or delete pages.',
+    'title' => 'Edit PDF Online Free – Text, Sign & Annotate',
+    'description' => 'Modify existing PDF wording, type new notes, draw signatures, white out typos and drop stamps locally in your browser without signup or watermarks.',
+    'related' => ['sign-pdf', 'merge-pdf', 'compress-pdf'],
+    'answer' => 'To edit a PDF, open it and choose <strong>Edit text</strong>, then click any line and type. The text is rewritten in the PDF\'s <strong>own font, size and colour</strong>, not pasted on top. <strong>Delete</strong> truly removes text, images and shapes, and you can add text, signatures, images and drawings. Press <strong>Preview &amp; download</strong> to check the finished PDF. It\'s free, with no watermark, and the file never leaves your device.',
+    'article' => <<<'EOT_TF'
 <h2>How to edit a PDF online</h2>
 <ol>
 <li>Drop your PDF in the box, or try the sample. The pages open in the editor, with thumbnails on the left to jump between pages.</li>
@@ -70,15 +66,15 @@ EOT_TF,
 <h2>More PDF tools</h2>
 <p>To put pages in order use <a href="/organize-pdf">Organize PDF</a>, to combine files use <a href="/merge-pdf">Merge PDF</a>, and to make the edited PDF smaller use <a href="/compress-pdf">Compress PDF</a>. A password-protected PDF must be unlocked with <a href="/unlock-pdf">Unlock PDF</a> before you can edit it.</p>
 EOT_TF,
-  'faqs' => [
-    ['How can I edit a PDF for free?', 'Open it in this editor, use the toolbar to change or add text, images, signatures and shapes, then press Preview & download. It is free with no sign-up or watermark.'],
-    ['Can I change existing text in a PDF in the same font?', 'Yes. Choose Edit text, click a line and type. The old text is removed and your text is written in the PDF’s own embedded font, size and colour. Letters the font doesn’t include use the closest standard font.'],
-    ['Can I delete text or a section from a PDF?', 'Yes. Choose Delete and click a line, image or shape, or drag a box over a section. The content is removed from the file, not just covered.'],
-    ['Is my PDF uploaded?', 'No. The editor runs in your browser and the PDF never leaves your device.'],
-    ['Can I sign a PDF with this editor?', 'Yes. Press Sign, then draw, type or upload your signature and drag it into place.'],
-    ['Can I add comments to a PDF?', 'Yes. Choose Comment, click where it belongs and type. It is saved as a real PDF comment (a sticky note) that opens in Adobe Acrobat, Preview, Chrome and other readers.'],
-    ['Can I rotate, add or delete pages while editing?', 'Yes. The page menu in the toolbar turns the current page, adds a blank page after it or deletes it, and Ctrl+Z undoes it.'],
-    ['Does it work on a phone?', 'Yes. The editor works on phones and tablets: tap a tool, then tap or drag on the page.'],
-    ['Why can’t I open my PDF?', 'Password-protected PDFs need to be unlocked first with Unlock PDF. Damaged files may not open at all.'],
-  ],
+    'faqs' => [
+        ['How can I edit a PDF for free?', 'Open it in this editor, use the toolbar to change or add text, images, signatures and shapes, then press Preview & download. It is free with no sign-up or watermark.'],
+        ['Can I change existing text in a PDF in the same font?', 'Yes. Choose Edit text, click a line and type. The old text is removed and your text is written in the PDF’s own embedded font, size and colour. Letters the font doesn’t include use the closest standard font.'],
+        ['Can I delete text or a section from a PDF?', 'Yes. Choose Delete and click a line, image or shape, or drag a box over a section. The content is removed from the file, not just covered.'],
+        ['Is my PDF uploaded?', 'No. The editor runs in your browser and the PDF never leaves your device.'],
+        ['Can I sign a PDF with this editor?', 'Yes. Press Sign, then draw, type or upload your signature and drag it into place.'],
+        ['Can I add comments to a PDF?', 'Yes. Choose Comment, click where it belongs and type. It is saved as a real PDF comment (a sticky note) that opens in Adobe Acrobat, Preview, Chrome and other readers.'],
+        ['Can I rotate, add or delete pages while editing?', 'Yes. The page menu in the toolbar turns the current page, adds a blank page after it or deletes it, and Ctrl+Z undoes it.'],
+        ['Does it work on a phone?', 'Yes. The editor works on phones and tablets: tap a tool, then tap or drag on the page.'],
+        ['Why can’t I open my PDF?', 'Password-protected PDFs need to be unlocked first with Unlock PDF. Damaged files may not open at all.'],
+    ],
 ];

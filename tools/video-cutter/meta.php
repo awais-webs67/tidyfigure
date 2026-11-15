@@ -1,26 +1,20 @@
 <?php
-// Video Cutter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Video Cutter',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'media',
-  'order' => 3,
-  'icon' => 'scissors',
-  'files' => true,
-  'scripts' => ['media.js'],
-  'appCategory' => 'MultimediaApplication',
-  'keywords' => 'trim video cut mp4 clip shorten video online crop length split video part',
-  'short' => 'Trim the start and end off a video and save just the part you want.',
-  'title' => 'Video Cutter: Trim & Cut MP4 Videos Online, No Upload',
-  'description' => <<<'EOT_TF'
-Cut a part out of any MP4, MOV or WebM video in your browser. Drag to choose the start and end, preview it and download the clip. Free, no watermark.
-EOT_TF,
-  'related' => ['video-compressor', 'video-to-gif', 'video-to-mp3'],
-  'answer' => <<<'EOT_TF'
-To cut a video, choose it below, drag the two sliders (or type times like <strong>0:12</strong> and <strong>0:45</strong>) to mark the part you want to keep, press <strong>Play selection</strong> to check it, then <strong>Cut video</strong>. The clip is made on your device, with no upload and no watermark.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Video Cutter',
+    'updated' => '2026-11-15',
+    'category' => 'media',
+    'order' => 3,
+    'icon' => 'scissors',
+    'files' => true,
+    'scripts' => ['media.js'],
+    'appCategory' => 'MultimediaApplication',
+    'keywords' => 'video cutter, trim mp4 online, cut video clip free, shorten mov video browser, clip trimmer',
+    'short' => 'Trim the start and end off a video and save just the part you want.',
+    'title' => 'Video Cutter Online – Trim MP4 & MOV Clips',
+    'description' => 'Trim unwanted starts and ends from MP4, MOV and WebM clips using exact timestamps right in your browser—no watermarks and no server uploads.',
+    'related' => ['video-compressor', 'video-to-gif', 'video-to-mp3'],
+    'answer' => 'To cut a video, choose it below, drag the two sliders (or type times like <strong>0:12</strong> and <strong>0:45</strong>) to mark the part you want to keep, press <strong>Play selection</strong> to check it, then <strong>Cut video</strong>. The clip is made on your device, with no upload and no watermark.',
+    'article' => <<<'EOT_TF'
 <h2>How to trim a video</h2>
 <ol>
 <li>Drop the video in the box or tap to choose it. Phone videos (MP4 and iPhone MOV) and WebM files work.</li>
@@ -56,34 +50,12 @@ EOT_TF,
 <h2>File formats</h2>
 <p>The clip is saved as <strong>MP4</strong> in Safari and recent Chrome, and as <strong>WebM</strong> in other browsers. WebM plays in Chrome, Firefox, Edge, Android, VLC and on almost every website, including YouTube and WhatsApp Web.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I cut part of a video?',
-      <<<'EOT_TF'
-Choose the video, drag the sliders to the start and end of the part you want, press Play selection to check, then press Cut video and download the clip.
-EOT_TF,
+    'faqs' => [
+        ['How do I cut part of a video?', 'Choose the video, drag the sliders to the start and end of the part you want, press Play selection to check, then press Cut video and download the clip.'],
+        ['Can I cut a video on my phone?', 'Yes. The cutter works in Safari and Chrome on iPhone and Android. Use the Set start and Set end buttons for precise cuts on a small screen.'],
+        ['Does cutting reduce quality?', 'With Same as original selected, the clip keeps the original resolution and a high bitrate, so it looks the same. Choose Smaller file for a lighter clip.'],
+        ['Is my video uploaded?', 'No. The video is cut inside your browser and never leaves your device.'],
+        ['Is there a watermark or length limit?', 'No watermark and no sign-up. Very long videos take as long as the selected part to process, so cut long clips with the tab open.'],
     ],
-    [
-      'Can I cut a video on my phone?',
-      <<<'EOT_TF'
-Yes. The cutter works in Safari and Chrome on iPhone and Android. Use the Set start and Set end buttons for precise cuts on a small screen.
-EOT_TF,
-    ],
-    [
-      'Does cutting reduce quality?',
-      <<<'EOT_TF'
-With Same as original selected, the clip keeps the original resolution and a high bitrate, so it looks the same. Choose Smaller file for a lighter clip.
-EOT_TF,
-    ],
-    [
-      'Is my video uploaded?',
-      'No. The video is cut inside your browser and never leaves your device.',
-    ],
-    [
-      'Is there a watermark or length limit?',
-      <<<'EOT_TF'
-No watermark and no sign-up. Very long videos take as long as the selected part to process, so cut long clips with the tab open.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Online Video Trimmer', 'MP4 Clip Cutter'],
 ];

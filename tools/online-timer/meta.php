@@ -1,24 +1,18 @@
 <?php
-// Online Timer: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Online Timer',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'time',
-  'order' => 1,
-  'icon' => 'timer',
-  'popular' => true,
-  'keywords' => 'countdown timer 5 minute timer 10 minute timer alarm pomodoro',
-  'short' => 'A countdown timer with an alarm: 1, 5, 10, 25 minutes or any time you set.',
-  'title' => 'Online Timer: Countdown Timer With Alarm, Free',
-  'description' => <<<'EOT_TF'
-Free online countdown timer with alarm. Set any time or use quick presets: 1, 5, 10, 15, 25 (Pomodoro) or 30 minutes. Keeps exact time in background tabs.
-EOT_TF,
-  'related' => ['stopwatch', 'days-between-dates', 'age-calculator'],
-  'answer' => <<<'EOT_TF'
-Set hours, minutes and seconds, or tap a preset like <strong>5 min</strong> or <strong>25 min (Pomodoro)</strong>, and press Start. The timer counts down in big digits, shows the time left in your browser tab, and plays an alarm when it reaches zero. It keeps exact time even if you switch to another tab.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Online Timer',
+    'updated' => '2026-11-15',
+    'category' => 'time',
+    'order' => 1,
+    'icon' => 'timer',
+    'popular' => true,
+    'keywords' => 'online timer, countdown alarm clock, browser timer sound, 10 minute timer, study cooking countdown',
+    'short' => 'A countdown timer with an alarm: 1, 5, 10, 25 minutes or any time you set.',
+    'title' => 'Online Timer – Countdown Alarm Clock Free',
+    'description' => 'Run a browser countdown timer with loud alert sound and instant 1, 5, 10, 15, 25 and 30 minute presets—stays accurate even in background tabs.',
+    'related' => ['stopwatch', 'days-between-dates', 'age-calculator'],
+    'answer' => 'Set hours, minutes and seconds, or tap a preset like <strong>5 min</strong> or <strong>25 min (Pomodoro)</strong>, and press Start. The timer counts down in big digits, shows the time left in your browser tab, and plays an alarm when it reaches zero. It keeps exact time even if you switch to another tab.',
+    'article' => <<<'EOT_TF'
 <h2>How to use the timer</h2>
 <ol>
 <li>Type the hours, minutes and seconds, or tap a preset (presets start immediately).</li>
@@ -48,33 +42,16 @@ EOT_TF,
 
 <h2>Timers in the classroom</h2>
 <p>A big, visible countdown helps students manage time during activities, tests and transitions. Put the page on the projector, press F11 (or use your browser's full-screen mode) for an uncluttered view, and the progress bar shows at a glance how much time remains.</p>
+
+<h2>Why Timestamp-Based Timers Don’t Drift When Tabs Sleep</h2>
+<p>Desktop browsers throttle JavaScript intervals on background tabs to save battery. Tracking target epoch wall-clock timestamps instead of counting ticks ensures the final alarm rings precisely on time even while you work in another window.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I set a 10-minute timer?',
-      'Tap the “10 min” preset. It sets the time and starts counting down straight away.',
+    'faqs' => [
+        ['How do I set a 10-minute timer?', 'Tap the “10 min” preset. It sets the time and starts counting down straight away.'],
+        ['Will the timer keep running if I switch tabs?', 'Yes. It measures time against the clock, so it stays accurate in a background tab. Keep the tab open.'],
+        ['Why didn’t I hear the alarm?', 'Check that your device volume is up and “Play an alarm” is ticked. Browsers only allow sound after you’ve clicked on the page, which pressing Start does.'],
+        ['Can I pause the timer?', 'Yes. Press Pause (or the space bar) and press Resume to carry on from where it stopped.'],
+        ['What is a Pomodoro timer?', 'A 25-minute focus timer followed by a 5-minute break, repeated four times before a longer break. Use the 25 min preset.'],
     ],
-    [
-      'Will the timer keep running if I switch tabs?',
-      <<<'EOT_TF'
-Yes. It measures time against the clock, so it stays accurate in a background tab. Keep the tab open.
-EOT_TF,
-    ],
-    [
-      'Why didn’t I hear the alarm?',
-      <<<'EOT_TF'
-Check that your device volume is up and “Play an alarm” is ticked. Browsers only allow sound after you’ve clicked on the page, which pressing Start does.
-EOT_TF,
-    ],
-    [
-      'Can I pause the timer?',
-      'Yes. Press Pause (or the space bar) and press Resume to carry on from where it stopped.',
-    ],
-    [
-      'What is a Pomodoro timer?',
-      <<<'EOT_TF'
-A 25-minute focus timer followed by a 5-minute break, repeated four times before a longer break. Use the 25 min preset.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Browser Countdown Alarm', 'Preset Study & Kitchen Timer'],
 ];

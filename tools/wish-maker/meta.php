@@ -1,24 +1,18 @@
 <?php
-// Wish Maker: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Wish Maker',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'social',
-  'order' => 5,
-  'icon' => 'party-popper',
-  'popular' => true,
-  'keywords' => 'birthday wish link personalised greeting eid mubarak wishes link diwali wishes whatsapp greeting',
-  'short' => 'Make a personalised greeting page with confetti and share the link.',
-  'title' => 'Wish Maker: Personalised Greeting Link With Confetti',
-  'description' => <<<'EOT_TF'
-Create a personalised wish for birthdays, Eid, Diwali, Christmas, New Year and more: their name, your message and confetti, shared as a link on WhatsApp. Free.
-EOT_TF,
-  'related' => ['birthday-card-maker', 'fancy-text-generator', 'meme-generator'],
-  'answer' => <<<'EOT_TF'
-Choose the occasion, type their name, yours and a message, and you get a <strong>personal link</strong>. When they open it, a full-screen greeting appears with their name and falling confetti. Share it on WhatsApp or anywhere you can paste a link. Works for <strong>birthdays, anniversaries, Eid, Ramadan, Diwali, Christmas, New Year</strong> and more.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Wish Maker',
+    'updated' => '2026-11-15',
+    'category' => 'social',
+    'order' => 5,
+    'icon' => 'party-popper',
+    'popular' => true,
+    'keywords' => 'wish maker, personalized birthday wish link, eid mubarak greeting link, online wish card, animated confetti message',
+    'short' => 'Make a personalised greeting page with confetti and share the link.',
+    'title' => 'Wish Maker – Custom Birthday & Eid Link',
+    'description' => 'Create personalised greeting pages with confetti for birthdays, Eid, Diwali, New Year and anniversaries—share one festive link without login.',
+    'related' => ['birthday-card-maker', 'fancy-text-generator', 'meme-generator'],
+    'answer' => 'Choose the occasion, type their name, yours and a message, and you get a <strong>personal link</strong>. When they open it, a full-screen greeting appears with their name and falling confetti. Share it on WhatsApp or anywhere you can paste a link. Works for <strong>birthdays, anniversaries, Eid, Ramadan, Diwali, Christmas, New Year</strong> and more.',
+    'article' => <<<'EOT_TF'
 <h2>How it works</h2>
 <ol>
 <li>Pick an occasion. A suggested message appears; tap "Suggest another message" for more, or write your own.</li>
@@ -44,21 +38,20 @@ EOT_TF,
 
 <h2>Prefer an image?</h2>
 <p>For a card you can post on Instagram or print, use the Birthday Card Maker, which creates a downloadable image with their name, age and photo.</p>
+
+<h2>Writing Meaningful Personal Wishes</h2>
+<p>Even two specific lines—naming a shared memory from the past year and wishing them something concrete for the next—stand out dramatically over copied forward messages. Opening an animated confetti page addressed by their name feels warm and deliberate in group or one-to-one chats.</p>
+
+<h2>Works Instantly on Phones Without Downloading an App</h2>
+<p>Every greeting opens smoothly inside mobile WhatsApp, iMessage or Instagram in-app browsers—so elderly relatives and busy friends see the celebration confetti in one tap.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make a personalised birthday wish link?',
-      'Choose Birthday, type their name, your name and message, then copy the link or share it on WhatsApp.',
+    'faqs' => [
+        ['How do I make a personalised birthday wish link?', 'Choose Birthday, type their name, your name and message, then copy the link or share it on WhatsApp.'],
+        ['Can I make an Eid Mubarak wish?', 'Yes. Choose Eid Mubarak or Ramadan Mubarak from the occasion list.'],
+        ['Is my message saved on your server?', 'No. It’s stored inside the link itself and shown in the recipient’s browser.'],
+        ['Can I write the message in Urdu, Hindi or Arabic?', 'Yes. Any language and emoji work.'],
+        ['Can I edit the wish after sending?', 'No. Make a new link with the changes and send that instead.'],
+        ['Can I create Eid, Diwali, graduation or anniversary links here too?', 'Yes. Pick any preset occasion theme or type your own celebration title, custom message and sender name before copying your private link.'],
     ],
-    [
-      'Can I make an Eid Mubarak wish?',
-      'Yes. Choose Eid Mubarak or Ramadan Mubarak from the occasion list.',
-    ],
-    [
-      'Is my message saved on your server?',
-      'No. It’s stored inside the link itself and shown in the recipient’s browser.',
-    ],
-    ['Can I write the message in Urdu, Hindi or Arabic?', 'Yes. Any language and emoji work.'],
-    ['Can I edit the wish after sending?', 'No. Make a new link with the changes and send that instead.'],
-  ],
+    'aka' => ['Personalised Greeting Link', 'Birthday & Eid Wish Creator'],
 ];

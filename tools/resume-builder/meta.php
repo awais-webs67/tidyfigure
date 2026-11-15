@@ -1,25 +1,24 @@
 <?php
-// Resume Builder: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Resume Builder',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'study',
-  'order' => 0,
-  'icon' => 'file-user',
-  'popular' => true,
-  'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js', 'vendor/fontkit-1.1.1.min.js'],
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'resume builder free cv maker online resume template pdf ats friendly resume no sign up curriculum vitae download free',
-  'aka' => ['CV maker', 'resume maker', 'CV builder', 'free resume template'], // other names people search for
-  'short' => 'Make a professional, ATS-friendly resume and download it as a PDF. Free, no sign-up.',
-  'title' => 'Free Resume Builder: ATS-Friendly CV Templates, PDF Download',
-  'description' => 'Build a professional resume in minutes with three ATS-friendly templates and a live preview. Download a real text PDF, free, with no sign-up and no watermark.',
-  'related' => ['cover-letter-generator', 'email-signature-generator', 'gpa-calculator'],
-  'answer' => <<<'EOT_TF'
-Fill in your details, experience and skills, pick a template and colour, and watch the <strong>live preview</strong> update. Download a <strong>text-based PDF</strong> that applicant tracking systems (ATS) can read, with no watermark and no sign-up. Most resume builders let you write for free and then charge to download; this one doesn’t.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Resume Builder',
+    'updated' => '2026-11-15',
+    'category' => 'study',
+    'order' => 0,
+    'icon' => 'file-user',
+    'popular' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+        'vendor/fontkit-1.1.1.min.js',
+    ],
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'free resume builder, ats resume maker pdf, online cv builder no watermark, simple cv templates free',
+    'aka' => ['ATS Resume Maker', 'Free CV Builder PDF'],
+    'short' => 'Make a professional, ATS-friendly resume and download it as a PDF. Free, no sign-up.',
+    'title' => 'Free Resume Builder – ATS Templates & PDF',
+    'description' => 'Create clean, ATS-friendly resumes with live preview across three classic layouts and export a selectable-text PDF with no watermark or signup.',
+    'related' => ['cover-letter-generator', 'email-signature-generator', 'gpa-calculator'],
+    'answer' => 'Fill in your details, experience and skills, pick a template and colour, and watch the <strong>live preview</strong> update. Download a <strong>text-based PDF</strong> that applicant tracking systems (ATS) can read, with no watermark and no sign-up. Most resume builders let you write for free and then charge to download; this one doesn’t.',
+    'article' => <<<'EOT_TF'
 <h2>How to build your resume</h2>
 <ol>
 <li>Choose a template: <strong>Modern</strong> (sidebar with skills and an optional photo), <strong>Classic</strong> (traditional serif headings, centred) or <strong>Compact</strong> (fits more on one page).</li>
@@ -48,11 +47,11 @@ EOT_TF,
 <p>In the US and Canada, a <em>resume</em> is a short summary for job applications, while a <em>CV</em> is a long academic record. In the UK, Ireland, India, Pakistan and much of the world, "CV" simply means what Americans call a resume. This builder works for both.</p>
 <p>Everything is created in your browser and nothing is uploaded. Need a matching cover letter? Use the <a href="/cover-letter-generator">cover letter generator</a>.</p>
 EOT_TF,
-  'faqs' => [
-    ['Is this resume builder really free?', 'Yes. Writing, previewing and downloading the PDF are all free, with no watermark and no account.'],
-    ['Is the PDF ATS-friendly?', 'Yes. It contains real, selectable text with standard headings and a simple structure that applicant tracking systems can read.'],
-    ['Will my resume be saved?', 'It is saved automatically in this browser on this device. Use Save as file to keep a copy or move it to another device.'],
-    ['How long should my resume be?', 'One page if you have under 10 years of experience, and no more than two pages for most jobs.'],
-    ['Should I include a photo on my resume?', 'In the US, UK, Canada and Australia, usually not. In much of Europe, the Middle East and Asia, a professional photo is common.'],
-  ],
+    'faqs' => [
+        ['Is this resume builder really free?', 'Yes. Writing, previewing and downloading the PDF are all free, with no watermark and no account.'],
+        ['Is the PDF ATS-friendly?', 'Yes. It contains real, selectable text with standard headings and a simple structure that applicant tracking systems can read.'],
+        ['Will my resume be saved?', 'It is saved automatically in this browser on this device. Use Save as file to keep a copy or move it to another device.'],
+        ['How long should my resume be?', 'One page if you have under 10 years of experience, and no more than two pages for most jobs.'],
+        ['Should I include a photo on my resume?', 'In the US, UK, Canada and Australia, usually not. In much of Europe, the Middle East and Asia, a professional photo is common.'],
+    ],
 ];

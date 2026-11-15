@@ -1,28 +1,22 @@
 <?php
-// Watermark PDF: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Watermark PDF',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 10,
-  'icon' => 'stamp',
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'keywords' => 'add watermark to pdf confidential draft stamp text pdf',
-  'short' => 'Stamp “Confidential”, “Draft” or any text across every PDF page.',
-  'title' => 'Watermark PDF: Add Text Watermark to PDF Online, Free',
-  'description' => <<<'EOT_TF'
-Add a text watermark like CONFIDENTIAL, DRAFT or your name to every page of a PDF. Diagonal, tiled or footer layouts, any colour and opacity. Private and free.
-EOT_TF,
-  'related' => ['add-page-numbers', 'sign-pdf', 'pdf-metadata-remover'],
-  'answer' => <<<'EOT_TF'
-A watermark is text printed faintly across a page to show its status ("DRAFT"), who it belongs to, or that it mustn't be shared ("CONFIDENTIAL"). Type your text, choose a diagonal, tiled or footer layout, adjust colour and transparency, and download. A preview updates as you change the settings.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Watermark PDF',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 10,
+    'icon' => 'stamp',
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'keywords' => 'watermark pdf online free, add confidential draft stamp pdf, diagonal text watermark no upload',
+    'short' => 'Stamp “Confidential”, “Draft” or any text across every PDF page.',
+    'title' => 'Watermark PDF Free – Diagonal & Footer Stamp',
+    'description' => 'Add crisp diagonal, tiled or footer text stamps like CONFIDENTIAL, DRAFT or copy ownership across PDF pages with custom colour and opacity.',
+    'related' => ['add-page-numbers', 'sign-pdf', 'pdf-metadata-remover'],
+    'answer' => 'A watermark is text printed faintly across a page to show its status ("DRAFT"), who it belongs to, or that it mustn\'t be shared ("CONFIDENTIAL"). Type your text, choose a diagonal, tiled or footer layout, adjust colour and transparency, and download. A preview updates as you change the settings.',
+    'article' => <<<'EOT_TF'
 <h2>When to watermark a PDF</h2>
 <ul>
 <li><strong>Drafts:</strong> stop an early version being mistaken for the final one.</li>
@@ -47,28 +41,20 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>The watermark is added in your browser. Your document is never uploaded, which matters most for exactly the kind of files people watermark.</p>
+
+<h2>Choosing Opacity So Underlying Body Text Stays Legible</h2>
+<p>Setting muted mid-grey watermarks around 15–25% opacity warns readers clearly of draft or internal status while keeping black financial tables and clause numbers completely effortless to scan on screens and laser prints.</p>
+
+<h2>Stamping Version Dates &amp; Confidential Draft Notices</h2>
+<p>Stamping shared quotes or unreleased manuscripts with a diagonal red or grey draft label alongside issue dates protects intellectual property cleanly without modifying core text streams.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I add a watermark to a PDF?',
-      <<<'EOT_TF'
-Open the PDF, type your watermark text, choose a layout, colour and opacity, and download. Every page gets the watermark.
-EOT_TF,
+    'faqs' => [
+        ['How do I add a watermark to a PDF?', 'Open the PDF, type your watermark text, choose a layout, colour and opacity, and download. Every page gets the watermark.'],
+        ['Can I make the watermark transparent?', 'Yes. Use the opacity slider; 15–25% keeps the page readable.'],
+        ['Can a watermark be removed?', 'Someone with PDF editing software can remove a text watermark. A tiled watermark is much harder to remove.'],
+        ['Can I watermark a copy of my ID?', 'Yes. Add a line like “Copy for XYZ bank only, 2026” so the copy can’t easily be reused elsewhere.'],
+        ['Is my PDF uploaded?', 'No. The watermark is added on your device.'],
+        ['Can I watermark only interior pages and leave the cover clean?', 'Yes. Choose page-range exclusions or apply uniform stamps across every sheet directly before local download.'],
     ],
-    [
-      'Can I make the watermark transparent?',
-      'Yes. Use the opacity slider; 15–25% keeps the page readable.',
-    ],
-    [
-      'Can a watermark be removed?',
-      <<<'EOT_TF'
-Someone with PDF editing software can remove a text watermark. A tiled watermark is much harder to remove.
-EOT_TF,
-    ],
-    [
-      'Can I watermark a copy of my ID?',
-      'Yes. Add a line like “Copy for XYZ bank only, 2026” so the copy can’t easily be reused elsewhere.',
-    ],
-    ['Is my PDF uploaded?', 'No. The watermark is added on your device.'],
-  ],
+    'aka' => ['PDF Text Watermarker', 'Confidential Stamp PDF Tool'],
 ];

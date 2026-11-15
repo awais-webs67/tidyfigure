@@ -1,24 +1,19 @@
 <?php
-// Time Zone Converter: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Time Zone Converter',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'time',
-  'order' => 1,
-  'popular' => true,
-  'icon' => 'earth',
-  'keywords' => 'time zone converter time difference est to ist pst to est gmt to est utc converter world clock meeting planner what time is it in',
-  'aka' => ['time converter', 'world time converter', 'time difference calculator'], // other names people search for
-  'short' => 'Convert a time between cities and find a meeting time for everyone.',
-  'title' => 'Time Zone Converter: Compare Times in Any City',
-  'description' => <<<'EOT_TF'
-Convert a time between any cities and time zones, with daylight saving handled for you. See the time difference and find a meeting time that suits everyone.
-EOT_TF,
-  'related' => ['days-between-dates', 'online-timer', 'countdown', 'what-week-is-it'],
-  'answer' => <<<'EOT_TF'
-Pick the date and time, choose the time zone it’s in, then add the cities you want to compare. Each city shows its local time, date and difference, with <strong>daylight saving time handled automatically</strong>. The meeting planner below colours each hour green (working hours), yellow (early or late) or grey (night) for every city.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Time Zone Converter',
+    'updated' => '2026-11-15',
+    'category' => 'time',
+    'order' => 1,
+    'popular' => true,
+    'icon' => 'earth',
+    'keywords' => 'time zone converter, world clock meeting planner, est to gmt ist pkt converter, dst time difference',
+    'aka' => ['World Clock & Meeting Planner', 'Global Time Difference Tool'],
+    'short' => 'Convert a time between cities and find a meeting time for everyone.',
+    'title' => 'Time Zone Converter – Cities, UTC & Meetings',
+    'description' => 'Compare current times and schedule meetings across world cities with automatic Daylight Saving Time (DST) adjustments and time-offset math.',
+    'related' => ['days-between-dates', 'online-timer', 'countdown', 'what-week-is-it'],
+    'answer' => 'Pick the date and time, choose the time zone it’s in, then add the cities you want to compare. Each city shows its local time, date and difference, with <strong>daylight saving time handled automatically</strong>. The meeting planner below colours each hour green (working hours), yellow (early or late) or grey (night) for every city.',
+    'article' => <<<'EOT_TF'
 <h2>How to convert time between zones</h2>
 <ol>
 <li>Set the <strong>date and time</strong> you want to convert. It starts at the current time.</li>
@@ -54,36 +49,11 @@ EOT_TF,
 <li>Asia and the US barely overlap in office hours: one side usually takes an early or late call. Rotate who gets the awkward slot.</li>
 </ul>
 EOT_TF,
-  'faqs' => [
-    [
-      'Does the converter handle daylight saving time?',
-      <<<'EOT_TF'
-Yes. It uses your browser’s time zone database, which knows each country’s daylight saving rules for any date, past or future.
-EOT_TF,
+    'faqs' => [
+        ['Does the converter handle daylight saving time?', 'Yes. It uses your browser’s time zone database, which knows each country’s daylight saving rules for any date, past or future.'],
+        ['What is the time difference between EST and IST?', 'India (IST) is 10 hours 30 minutes ahead of US Eastern Standard Time, and 9 hours 30 minutes ahead when the US is on daylight time (EDT).'],
+        ['Is GMT the same as UTC?', 'For everyday use, yes: both are UTC+0. UTC is the scientific time standard; GMT is also the name of the UK’s winter time zone. In summer the UK uses BST (UTC+1).'],
+        ['How do I find a good meeting time?', 'Add everyone’s city and look at the meeting planner. Hours that are green for every city fall within 9 am–6 pm for all of them.'],
+        ['Why are some time zones 30 or 45 minutes off?', 'Some countries chose offsets that fit their geography, such as India (UTC+5:30), Nepal (UTC+5:45) and parts of Australia (UTC+9:30).'],
     ],
-    [
-      'What is the time difference between EST and IST?',
-      <<<'EOT_TF'
-India (IST) is 10 hours 30 minutes ahead of US Eastern Standard Time, and 9 hours 30 minutes ahead when the US is on daylight time (EDT).
-EOT_TF,
-    ],
-    [
-      'Is GMT the same as UTC?',
-      <<<'EOT_TF'
-For everyday use, yes: both are UTC+0. UTC is the scientific time standard; GMT is also the name of the UK’s winter time zone. In summer the UK uses BST (UTC+1).
-EOT_TF,
-    ],
-    [
-      'How do I find a good meeting time?',
-      <<<'EOT_TF'
-Add everyone’s city and look at the meeting planner. Hours that are green for every city fall within 9 am–6 pm for all of them.
-EOT_TF,
-    ],
-    [
-      'Why are some time zones 30 or 45 minutes off?',
-      <<<'EOT_TF'
-Some countries chose offsets that fit their geography, such as India (UTC+5:30), Nepal (UTC+5:45) and parts of Australia (UTC+9:30).
-EOT_TF,
-    ],
-  ],
 ];

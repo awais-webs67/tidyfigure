@@ -1,24 +1,18 @@
 <?php
-// Rotate & Flip Image: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Rotate & Flip Image',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'image',
-  'order' => 5,
-  'icon' => 'rotate-cw-square',
-  'files' => true,
-  'keywords' => 'rotate photo flip image mirror picture straighten horizon',
-  'short' => 'Rotate photos 90°, flip or mirror them, and straighten tilted horizons.',
-  'title' => 'Rotate Image Online: Rotate, Flip & Straighten Photos',
-  'description' => <<<'EOT_TF'
-Rotate images 90° left or right, flip or mirror them, and straighten a tilted horizon with automatic cropping. Free, private, works on phone and desktop.
-EOT_TF,
-  'related' => ['crop-image', 'image-resizer', 'photo-editor'],
-  'answer' => <<<'EOT_TF'
-Use <strong>⟲ / ⟳</strong> to turn a photo by 90°, <strong>flip</strong> to mirror it, and the <strong>straighten</strong> slider to fix a tilted horizon by up to 45°. When straightening, the corners are cropped automatically so there are no empty triangles. Download the result at full resolution.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Rotate & Flip Image',
+    'updated' => '2026-11-15',
+    'category' => 'image',
+    'order' => 5,
+    'icon' => 'rotate-cw-square',
+    'files' => true,
+    'keywords' => 'rotate image online, fix sideways photo orientation, mirror flip jpg png, straighten tilted horizon',
+    'short' => 'Rotate photos 90°, flip or mirror them, and straighten tilted horizons.',
+    'title' => 'Rotate Image Online – 90°, Flip & Straighten',
+    'description' => 'Rotate sideways photos 90°/180°, mirror flip horizontally/vertically or straighten crooked horizons cleanly with auto-crop in your browser.',
+    'related' => ['crop-image', 'image-resizer', 'photo-editor'],
+    'answer' => 'Use <strong>⟲ / ⟳</strong> to turn a photo by 90°, <strong>flip</strong> to mirror it, and the <strong>straighten</strong> slider to fix a tilted horizon by up to 45°. When straightening, the corners are cropped automatically so there are no empty triangles. Download the result at full resolution.',
+    'article' => <<<'EOT_TF'
 <h2>Rotate, flip or straighten?</h2>
 <ul>
 <li><strong>Rotate 90°:</strong> fixes photos that show up sideways, which happens when a phone saves orientation in a way some apps ignore.</li>
@@ -39,24 +33,20 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>Everything happens in your browser, so your photos are never uploaded.</p>
+
+<h2>Re-Saving EXIF Orientation Permanently Into Pixel Rows</h2>
+<p>Because browsers and older Windows viewers occasionally ignore camera EXIF rotation flags, rotating and exporting a fresh copy physically reorders pixel rows so photos sit upright on every upload portal and printer.</p>
+
+<h2>Why Scanned Forms &amp; Screenshots Benefit From 90° Fixes</h2>
+<p>Fixing portrait-versus-landscape orientation before pasting documents into slide decks or PDF forms keeps reviewers from twisting laptops sideways.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I rotate a picture 90 degrees?',
-      'Open the image and press Left 90° or Right 90°, then download.',
+    'faqs' => [
+        ['How do I rotate a picture 90 degrees?', 'Open the image and press Left 90° or Right 90°, then download.'],
+        ['How do I mirror a selfie?', 'Press Flip horizontal. Text in the photo will read the right way round.'],
+        ['How do I straighten a crooked photo?', 'Move the Straighten slider until the horizon is level. The corners are cropped automatically.'],
+        ['Will rotating reduce quality?', '90° turns and flips don’t lose quality. Small-angle straightening softens the image very slightly.'],
+        ['Is my photo uploaded?', 'No. Rotation happens in your browser.'],
+        ['What is the difference between rotating 180° and flipping vertically?', 'Rotating 180° turns the picture upside down identically clockwise, whereas flipping creates a horizontal or vertical mirror reflection.'],
     ],
-    [
-      'How do I mirror a selfie?',
-      'Press Flip horizontal. Text in the photo will read the right way round.',
-    ],
-    [
-      'How do I straighten a crooked photo?',
-      'Move the Straighten slider until the horizon is level. The corners are cropped automatically.',
-    ],
-    [
-      'Will rotating reduce quality?',
-      '90° turns and flips don’t lose quality. Small-angle straightening softens the image very slightly.',
-    ],
-    ['Is my photo uploaded?', 'No. Rotation happens in your browser.'],
-  ],
+    'aka' => ['Photo Rotator & Horizon Straightener', 'Image Mirror Flipper'],
 ];

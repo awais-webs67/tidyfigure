@@ -1,26 +1,24 @@
 <?php
-// Invoice Generator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Invoice Generator',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'money',
-  'order' => 11,
-  'icon' => 'file-spreadsheet',
-  'popular' => true,
-  'appCategory' => 'BusinessApplication',
-  'keywords' => 'free invoice generator invoice template pdf freelancer invoice maker vat invoice',
-  'aka' => ['invoice maker', 'free invoice template', 'bill generator'], // other names people search for
-  'short' => 'Create a professional invoice with tax, discount and your logo, as a PDF.',
-  'title' => 'Free Invoice Generator: Create & Download PDF Invoices',
-  'description' => <<<'EOT_TF'
-Make professional invoices online: your logo, line items, VAT or sales tax, discounts and payment details. Download as PDF. No sign-up, no watermark, free.
-EOT_TF,
-  'related' => ['vat-calculator', 'profit-margin-calculator', 'salary-converter'],
-  'answer' => <<<'EOT_TF'
-Fill in your business and client details, add line items with quantity, price and tax rate, and download a clean <strong>PDF invoice</strong>. Totals, discounts and tax are calculated for you, and your business details can be remembered on this device for next time. There's <strong>no sign-up and no watermark</strong>.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Invoice Generator',
+    'updated' => '2026-11-15',
+    'category' => 'money',
+    'order' => 11,
+    'icon' => 'file-spreadsheet',
+    'popular' => true,
+    'appCategory' => 'BusinessApplication',
+    'keywords' => 'free invoice generator, pdf invoice maker no signup, freelance bill creator, vat invoice template',
+    'aka' => ['Online PDF Invoice Maker', 'Freelance Bill Generator'],
+    'short' => 'Create a professional invoice with tax, discount and your logo, as a PDF.',
+    'title' => 'Free Invoice Generator – PDF With Logo & Tax',
+    'description' => 'Create itemised client invoices with business logo, tax/VAT lines, discounts and bank details, exporting a clean watermark-free PDF locally.',
+    'related' => ['vat-calculator', 'profit-margin-calculator', 'salary-converter'],
+    'answer' => 'Fill in your business and client details, add line items with quantity, price and tax rate, and download a clean <strong>PDF invoice</strong>. Totals, discounts and tax are calculated for you, and your business details can be remembered on this device for next time. There\'s <strong>no sign-up and no watermark</strong>.',
+    'sources' => [
+        ['GOV.UK – Invoicing and Taking Payment from Customers', 'https://www.gov.uk/invoicing-and-taking-payment-from-customers'],
+        ['U.S. Small Business Administration – Managing Invoices & Cash Flow', 'https://www.sba.gov/business-guide/manage-your-business/manage-your-finances'],
+    ],
+    'article' => <<<'EOT_TF'
 <h2>What every invoice should include</h2>
 <ul>
 <li><strong>The word "Invoice"</strong> and a <strong>unique invoice number</strong>, in sequence (INV-001, INV-002…).</li>
@@ -49,31 +47,15 @@ EOT_TF,
 <p>The invoice is built and turned into a PDF in your browser; nothing is uploaded. If you tick "Remember my business details", your name, address, notes and currency are saved only in this browser on this device, so you don't retype them next time. Client details aren't saved.</p>
 
 <p>The PDF is an image of the invoice, so it looks identical everywhere and supports every language and currency symbol. Keep your own record of each invoice number you issue.</p>
+
+<h2>Sequential Invoice Numbers &amp; Clear Payment Terms</h2>
+<p>Tax authorities and accounting audits expect unbroken sequential invoice IDs (such as <code>INV-2026-041</code>) alongside explicit Net-14 or Net-30 due dates and IBAN/routing instructions right on the summary footer.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I make an invoice for free?',
-      <<<'EOT_TF'
-Enter your details, your client’s details and the items, then press Download PDF. There is no sign-up or watermark.
-EOT_TF,
+    'faqs' => [
+        ['How do I make an invoice for free?', 'Enter your details, your client’s details and the items, then press Download PDF. There is no sign-up or watermark.'],
+        ['What should be on an invoice?', 'A unique number, dates, both parties’ details, itemised charges, tax, the total due and how to pay.'],
+        ['Can I add VAT or GST to my invoice?', 'Yes. Enter the tax rate on each line; tax is calculated and shown by rate.'],
+        ['Can I add my logo?', 'Yes. Upload your logo and it appears at the top of the invoice.'],
+        ['Is my invoice data stored online?', 'No. Invoices are created in your browser. Business details are only remembered on your device if you choose.'],
     ],
-    [
-      'What should be on an invoice?',
-      'A unique number, dates, both parties’ details, itemised charges, tax, the total due and how to pay.',
-    ],
-    [
-      'Can I add VAT or GST to my invoice?',
-      'Yes. Enter the tax rate on each line; tax is calculated and shown by rate.',
-    ],
-    [
-      'Can I add my logo?',
-      'Yes. Upload your logo and it appears at the top of the invoice.',
-    ],
-    [
-      'Is my invoice data stored online?',
-      <<<'EOT_TF'
-No. Invoices are created in your browser. Business details are only remembered on your device if you choose.
-EOT_TF,
-    ],
-  ],
 ];

@@ -1,29 +1,23 @@
 <?php
-// Delete PDF Pages: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Delete PDF Pages',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 5,
-  'icon' => 'file-minus',
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'scripts' => ['pdf-pages.js'],
-  'keywords' => 'remove pages from pdf delete page pdf blank page',
-  'short' => 'Remove unwanted or blank pages from a PDF by tapping them.',
-  'title' => 'Delete PDF Pages: Remove Pages From a PDF Online, Free',
-  'description' => <<<'EOT_TF'
-Remove pages from a PDF in seconds. See every page as a thumbnail, tap the ones to delete, and save a new PDF. Private: works in your browser, no upload.
-EOT_TF,
-  'related' => ['organize-pdf', 'split-pdf', 'rotate-pdf'],
-  'answer' => <<<'EOT_TF'
-To delete pages from a PDF, open it, <strong>tap each page you want to remove</strong>, and save. Removed pages are greyed out so you can see the result before saving, and tapping a page again brings it back. The remaining pages keep their original quality, text and links.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Delete PDF Pages',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 5,
+    'icon' => 'file-minus',
+    'files' => true,
+    'libs' => [
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
+    ],
+    'scripts' => ['pdf-pages.js'],
+    'keywords' => 'delete pdf pages online, remove pages from pdf free, extract pdf without page, delete blank pdf page',
+    'short' => 'Remove unwanted or blank pages from a PDF by tapping them.',
+    'title' => 'Delete PDF Pages Online – Remove Unwanted',
+    'description' => 'Preview all PDF thumbnails visually, tap unwanted blank, cover or confidential pages to remove them cleanly and export a fresh PDF on device.',
+    'related' => ['organize-pdf', 'split-pdf', 'rotate-pdf'],
+    'answer' => 'To delete pages from a PDF, open it, <strong>tap each page you want to remove</strong>, and save. Removed pages are greyed out so you can see the result before saving, and tapping a page again brings it back. The remaining pages keep their original quality, text and links.',
+    'article' => <<<'EOT_TF'
 <h2>How to remove pages from a PDF</h2>
 <ol>
 <li><strong>Open the PDF</strong> by dropping it on the box or choosing it.</li>
@@ -51,23 +45,20 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>The PDF is edited inside your browser and never uploaded, which matters for bank statements, medical letters, contracts and anything else with personal details.</p>
+
+<h2>Why Thumbnail Previews Prevent Costly Slip-Ups</h2>
+<p>Typing raw page ranges blindly often deletes the wrong annex when PDF front-matter uses Roman numerals (i–iv) ahead of Page 1. Tapping exact page thumbnails visually guarantees appendix exhibits, signature sheets and blank backs stay or go precisely as intended.</p>
+
+<h2>Splitting Confidential Schedules Out Before Sharing Client Copies</h2>
+<p>Stripping internal pricing schedules or blank duplex backs takes two clicks on thumbnail cards—producing a clean recipient PDF without exposing internal calculations or messy draft dividers.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I delete a page from a PDF for free?',
-      <<<'EOT_TF'
-Open the PDF here, tap the page you want to remove, and press Save. The new PDF downloads without that page.
-EOT_TF,
+    'faqs' => [
+        ['How do I delete a page from a PDF for free?', 'Open the PDF here, tap the page you want to remove, and press Save. The new PDF downloads without that page.'],
+        ['Can I delete several pages at once?', 'Yes. Tap every page you want to remove, then save once.'],
+        ['Will deleting pages change the rest of the PDF?', 'No. The remaining pages are copied exactly, with the same quality, text and links.'],
+        ['Can I undo a deleted page?', 'Yes, before saving. Tap the page again to keep it, or press “Keep all pages”.'],
+        ['Is my file uploaded to a server?', 'No. Everything happens in your browser.'],
+        ['Does deleting PDF pages downgrade image sharpness on remaining sheets?', 'Never. Kept pages copy losslessly without re-compressing embedded photos or flattening vector fonts.'],
     ],
-    ['Can I delete several pages at once?', 'Yes. Tap every page you want to remove, then save once.'],
-    [
-      'Will deleting pages change the rest of the PDF?',
-      'No. The remaining pages are copied exactly, with the same quality, text and links.',
-    ],
-    [
-      'Can I undo a deleted page?',
-      'Yes, before saving. Tap the page again to keep it, or press “Keep all pages”.',
-    ],
-    ['Is my file uploaded to a server?', 'No. Everything happens in your browser.'],
-  ],
+    'aka' => ['Remove PDF Pages Tool', 'PDF Page Deleter'],
 ];

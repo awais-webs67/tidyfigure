@@ -1,27 +1,19 @@
 <?php
-// PDF Metadata Remover: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'PDF Metadata Remover',
-  'updated' => '2026-10-29', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'pdf',
-  'order' => 12,
-  'icon' => 'eraser',
-  'files' => true,
-  'libs' => [
-    'https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js',
-  ],
-  'keywords' => 'remove pdf metadata author name edit pdf properties title privacy',
-  'short' => 'See and remove hidden PDF properties like author name, software and dates.',
-  'title' => 'PDF Metadata Remover: View, Edit & Remove PDF Properties',
-  'description' => <<<'EOT_TF'
-See the hidden metadata in a PDF (author, title, software, creation dates) and remove it all in one click, or edit it. Private: runs in your browser, free.
-EOT_TF,
-  'related' => ['image-metadata-remover', 'watermark-pdf', 'compress-pdf'],
-  'answer' => <<<'EOT_TF'
-Every PDF can carry hidden <strong>metadata</strong>: the author's name, the document title, the software used and when it was created and changed. Open a PDF to see everything it contains, then <strong>remove it all</strong> in one click or edit the fields, for example to set a proper title before publishing.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'PDF Metadata Remover',
+    'updated' => '2026-11-15',
+    'category' => 'pdf',
+    'order' => 12,
+    'icon' => 'eraser',
+    'files' => true,
+    'libs' => ['https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js'],
+    'keywords' => 'pdf metadata remover, remove author from pdf free, scrub pdf document properties, clean pdf exif',
+    'short' => 'See and remove hidden PDF properties like author name, software and dates.',
+    'title' => 'PDF Metadata Remover – Wipe Author & Properties',
+    'description' => 'Inspect and scrub hidden PDF document properties—author name, software version, creation timestamp and keywords—on your device with zero uploads.',
+    'related' => ['image-metadata-remover', 'watermark-pdf', 'compress-pdf'],
+    'answer' => 'Every PDF can carry hidden <strong>metadata</strong>: the author\'s name, the document title, the software used and when it was created and changed. Open a PDF to see everything it contains, then <strong>remove it all</strong> in one click or edit the fields, for example to set a proper title before publishing.',
+    'article' => <<<'EOT_TF'
 <h2>What PDF metadata reveals</h2>
 <p>Word, Google Docs, scanners and design tools quietly write information into every PDF they create. Anyone can see it in their PDF reader's "Document properties" window:</p>
 <ul>
@@ -50,25 +42,16 @@ EOT_TF,
 <h2>Private by design</h2>
 <p>Photos have their own hidden data too, including GPS location. Use the Image Metadata Remover for those before sharing.</p>
 <p>The whole point is privacy, so the tool runs entirely in your browser. Your PDF is never uploaded.</p>
+
+<h2>Inspecting Both Classic Info Dict &amp; Embedded XMP Streams</h2>
+<p>Many PDF editors update only the basic Title field while leaving legacy XMP XML streams hiding former employee names or internal project codenames. Scrubbing both Info dictionaries and XMP packets guarantees truly clean anonymous public releases.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I remove metadata from a PDF?',
-      <<<'EOT_TF'
-Open the PDF here and press “Remove all metadata”. A clean copy downloads with author, title, software and dates removed.
-EOT_TF,
+    'faqs' => [
+        ['How do I remove metadata from a PDF?', 'Open the PDF here and press “Remove all metadata”. A clean copy downloads with author, title, software and dates removed.'],
+        ['How can I see who created a PDF?', 'Open it here. The Author, Creator and Producer fields show the person and software, if they were recorded.'],
+        ['Does removing metadata change the document?', 'No. Only the hidden properties are removed. Pages, text and images stay the same.'],
+        ['Can I change the PDF title?', 'Yes. Edit the Title field and press “Save my edits”.'],
+        ['Is my PDF uploaded?', 'No. Everything happens in your browser.'],
     ],
-    [
-      'How can I see who created a PDF?',
-      <<<'EOT_TF'
-Open it here. The Author, Creator and Producer fields show the person and software, if they were recorded.
-EOT_TF,
-    ],
-    [
-      'Does removing metadata change the document?',
-      'No. Only the hidden properties are removed. Pages, text and images stay the same.',
-    ],
-    ['Can I change the PDF title?', 'Yes. Edit the Title field and press “Save my edits”.'],
-    ['Is my PDF uploaded?', 'No. Everything happens in your browser.'],
-  ],
+    'aka' => ['PDF Property Cleaner', 'PDF Author & Date Scrubber'],
 ];

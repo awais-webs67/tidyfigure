@@ -1,23 +1,18 @@
 <?php
-// Countdown to a Date: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Countdown to a Date',
-  'updated' => '2026-10-26', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'time',
-  'order' => 2,
-  'popular' => true,
-  'icon' => 'hourglass',
-  'keywords' => 'countdown timer to date days until countdown clock event countdown how many days until christmas new year birthday countdown share',
-  'short' => 'A live countdown to any date or holiday, with a link to share.',
-  'title' => 'Countdown Timer to Any Date: Make and Share Yours',
-  'description' => <<<'EOT_TF'
-Count down the days, hours, minutes and seconds to any date: Christmas, New Year, Ramadan, a birthday, a trip or an exam. Share a live countdown link. Free.
-EOT_TF,
-  'related' => ['days-between-dates', 'online-timer', 'age-calculator', 'time-zone-converter'],
-  'answer' => <<<'EOT_TF'
-Type an event name, pick the date (and time if you like) or tap a holiday, and the countdown starts straight away, showing <strong>days, hours, minutes and seconds</strong>. Click <strong>Copy share link</strong> to send a live countdown to friends: the link opens this page with your event already set.
-EOT_TF,
-  'article' => <<<'EOT_TF'
+    'name' => 'Countdown to a Date',
+    'updated' => '2026-11-15',
+    'category' => 'time',
+    'order' => 2,
+    'popular' => true,
+    'icon' => 'hourglass',
+    'keywords' => 'countdown to date, event countdown clock, exam wedding countdown link, days until date calculator',
+    'short' => 'A live countdown to any date or holiday, with a link to share.',
+    'title' => 'Countdown Timer to Any Date – Shareable Link',
+    'description' => 'Build a live countdown clock in days, hours, minutes and seconds for exams, weddings, Ramadan, holidays or launches and share a link cleanly.',
+    'related' => ['days-between-dates', 'online-timer', 'age-calculator', 'time-zone-converter'],
+    'answer' => 'Type an event name, pick the date (and time if you like) or tap a holiday, and the countdown starts straight away, showing <strong>days, hours, minutes and seconds</strong>. Click <strong>Copy share link</strong> to send a live countdown to friends: the link opens this page with your event already set.',
+    'article' => <<<'EOT_TF'
 <h2>How to make a countdown</h2>
 <ol>
 <li>Type what you’re counting down to, such as “Trip to Istanbul” or “Final exams”.</li>
@@ -45,37 +40,16 @@ EOT_TF,
 
 <h2>Counting days</h2>
 <p>The large number shows complete days left. The table under it shows the same time in weeks, total hours and minutes, plus the number of working days (Monday to Friday). For the number of days between any two dates, use the <a href="/days-between-dates">days between dates calculator</a>.</p>
+
+<h2>Browser-Accurate Timezone Handling</h2>
+<p>Shareable target timestamps adjust automatically to each visitor’s device clock and local timezone so friends abroad see the exact moment an international event, webinar or New Year midnight begins.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How many days until Christmas?',
-      <<<'EOT_TF'
-Tap Christmas in the holiday list and the countdown shows the exact days, hours, minutes and seconds left until 25 December.
-EOT_TF,
+    'faqs' => [
+        ['How many days until Christmas?', 'Tap Christmas in the holiday list and the countdown shows the exact days, hours, minutes and seconds left until 25 December.'],
+        ['Can I share my countdown?', 'Yes. Click Copy share link and send it. The link opens this page with your event name and date already set.'],
+        ['Which time zone does the countdown use?', 'Your device’s time zone. A shared link counts down to the same moment for everyone, shown in each person’s local time.'],
+        ['How are Ramadan and Eid dates worked out?', 'From the Umm al-Qura Islamic calendar built into your browser. The real start may differ by a day depending on the local moon sighting.'],
+        ['Does the countdown keep running if I close the page?', 'The countdown is worked out from the date, so it’s always right when you open the page or your share link again.'],
     ],
-    [
-      'Can I share my countdown?',
-      <<<'EOT_TF'
-Yes. Click Copy share link and send it. The link opens this page with your event name and date already set.
-EOT_TF,
-    ],
-    [
-      'Which time zone does the countdown use?',
-      <<<'EOT_TF'
-Your device’s time zone. A shared link counts down to the same moment for everyone, shown in each person’s local time.
-EOT_TF,
-    ],
-    [
-      'How are Ramadan and Eid dates worked out?',
-      <<<'EOT_TF'
-From the Umm al-Qura Islamic calendar built into your browser. The real start may differ by a day depending on the local moon sighting.
-EOT_TF,
-    ],
-    [
-      'Does the countdown keep running if I close the page?',
-      <<<'EOT_TF'
-The countdown is worked out from the date, so it’s always right when you open the page or your share link again.
-EOT_TF,
-    ],
-  ],
+    'aka' => ['Shareable Event Countdown', 'Days Until Date Clock'],
 ];

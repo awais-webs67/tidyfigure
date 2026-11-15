@@ -1,23 +1,17 @@
 <?php
-// JSON Formatter & Validator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'JSON Formatter & Validator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'dev',
-  'order' => 2,
-  'icon' => 'braces',
-  'keywords' => 'json beautifier json validator pretty print json minify json lint',
-  'short' => 'Pretty-print, validate and minify JSON, with clear error locations.',
-  'title' => 'JSON Formatter & Validator: Beautify and Minify JSON',
-  'description' => <<<'EOT_TF'
-Format, validate and minify JSON online. Pretty-print with 2 or 4 spaces, sort keys, and see exactly where errors are with fix tips. Private, runs in browser.
-EOT_TF,
-  'related' => ['base64-encoder-decoder', 'remove-duplicate-lines', 'case-converter'],
-  'answer' => <<<'EOT_TF'
-Paste JSON to check it and format it with readable indentation. If it's invalid, you'll see the <strong>line and column</strong> of the error and a hint for the usual culprits: single quotes, unquoted keys and trailing commas. "Minify" removes all whitespace for the smallest possible size. Your data never leaves your browser.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'JSON Formatter & Validator',
+    'updated' => '2026-11-15',
+    'category' => 'dev',
+    'order' => 2,
+    'icon' => 'braces',
+    'keywords' => 'json formatter, json validator online, beautify json, json minifier, fix json trailing comma',
+    'short' => 'Pretty-print, validate and minify JSON, with clear error locations.',
+    'title' => 'JSON Formatter & Validator – Beautify, Minify',
+    'description' => 'Pretty-print messy JSON with 2 or 4 spaces, sort keys alphabetically, minify payloads and pinpoint syntax trailing-comma errors locally.',
+    'related' => ['base64-encoder-decoder', 'remove-duplicate-lines', 'case-converter'],
+    'answer' => 'Paste JSON to check it and format it with readable indentation. If it\'s invalid, you\'ll see the <strong>line and column</strong> of the error and a hint for the usual culprits: single quotes, unquoted keys and trailing commas. "Minify" removes all whitespace for the smallest possible size. Your data never leaves your browser.',
+    'article' => <<<'EOT_TF'
 <h2>What is JSON?</h2>
 <p>JSON (JavaScript Object Notation) is the most common format for sending data between apps, websites and APIs. It's plain text made of two structures: <strong>objects</strong> (key–value pairs in curly braces) and <strong>arrays</strong> (ordered lists in square brackets). Values can be strings, numbers, true, false, null, or more objects and arrays.</p>
 <div class="formula">{
@@ -46,33 +40,16 @@ EOT_TF,
 
 <h2>Private by design</h2>
 <p>API responses and config files often contain tokens, emails and other sensitive data. This formatter uses your browser's built-in JSON parser and never sends your data to a server, so it's safe to paste production data.</p>
+
+<h2>Quick Checks for Valid Strict RFC 8259 JSON</h2>
+<p>Unlike JavaScript object literals, strict JSON requires double quotes around every object key and string value, prohibits single-line <code>//</code> or block comments, rejects trailing commas after final array/object items and disallows raw unescaped newlines inside strings—all highlighted automatically before export.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I format JSON?',
-      <<<'EOT_TF'
-Paste it into the box. It is checked and pretty-printed with indentation automatically. Copy or download the result.
-EOT_TF,
+    'faqs' => [
+        ['How do I format JSON?', 'Paste it into the box. It is checked and pretty-printed with indentation automatically. Copy or download the result.'],
+        ['How do I find the error in my JSON?', 'If the JSON is invalid, the tool shows the error message, the line and column, the text around the problem, and a tip for common mistakes.'],
+        ['Why is my JSON invalid with single quotes?', 'The JSON standard only allows double quotes for strings and keys. Replace single quotes with double quotes.'],
+        ['Does minifying JSON change the data?', 'No. It only removes whitespace. The values and structure are identical.'],
+        ['Is it safe to paste sensitive JSON here?', 'Yes. Parsing and formatting happen in your browser and nothing is uploaded.'],
     ],
-    [
-      'How do I find the error in my JSON?',
-      <<<'EOT_TF'
-If the JSON is invalid, the tool shows the error message, the line and column, the text around the problem, and a tip for common mistakes.
-EOT_TF,
-    ],
-    [
-      'Why is my JSON invalid with single quotes?',
-      <<<'EOT_TF'
-The JSON standard only allows double quotes for strings and keys. Replace single quotes with double quotes.
-EOT_TF,
-    ],
-    [
-      'Does minifying JSON change the data?',
-      'No. It only removes whitespace. The values and structure are identical.',
-    ],
-    [
-      'Is it safe to paste sensitive JSON here?',
-      'Yes. Parsing and formatting happen in your browser and nothing is uploaded.',
-    ],
-  ],
+    'aka' => ['JSON Beautifier', 'JSON Syntax Validator'],
 ];

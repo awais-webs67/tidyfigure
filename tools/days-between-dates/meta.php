@@ -1,23 +1,17 @@
 <?php
-// Days Between Dates: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'Days Between Dates',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'time',
-  'order' => 4,
-  'icon' => 'calendar-range',
-  'keywords' => 'date calculator how many days until count days business days add days to date',
-  'short' => 'Count the days between two dates, or add and subtract days from a date.',
-  'title' => 'Days Between Dates Calculator: Count Days, Weeks & Weekdays',
-  'description' => <<<'EOT_TF'
-Count the days between two dates, with weeks, months and weekdays. Or add or subtract days and business days from any date. Free date calculator.
-EOT_TF,
-  'related' => ['age-calculator', 'online-timer', 'loan-calculator'],
-  'answer' => <<<'EOT_TF'
-Subtract the earlier date from the later one to get the number of days between them. By default the start date is counted and the end date isn't (1 to 2 June is <strong>1 day</strong>); tick "include the end date" to count both (<strong>2 days</strong>), as you would for a hotel stay's calendar days or an event. You also get weeks, months and weekdays.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'Days Between Dates',
+    'updated' => '2026-11-15',
+    'category' => 'time',
+    'order' => 4,
+    'icon' => 'calendar-range',
+    'keywords' => 'days between dates calculator, date duration counter, business days calculator, add days to date',
+    'short' => 'Count the days between two dates, or add and subtract days from a date.',
+    'title' => 'Days Between Dates – Exact Days & Weekdays',
+    'description' => 'Count calendar days, weeks, months and Monday–Friday working days between two dates, or add and subtract business days for project deadlines.',
+    'related' => ['age-calculator', 'online-timer', 'loan-calculator'],
+    'answer' => 'Subtract the earlier date from the later one to get the number of days between them. By default the start date is counted and the end date isn\'t (1 to 2 June is <strong>1 day</strong>); tick "include the end date" to count both (<strong>2 days</strong>), as you would for a hotel stay\'s calendar days or an event. You also get weeks, months and weekdays.',
+    'article' => <<<'EOT_TF'
 <h2>Two ways to count days</h2>
 <p>"How many days between Monday and Friday?" has two right answers, depending on what you're counting:</p>
 <ul>
@@ -46,30 +40,12 @@ EOT_TF,
 <h2>Leap years and time zones</h2>
 <p>All calculations use whole calendar dates, so leap days (29 February) are counted correctly and changes to daylight saving time can't make the answer off by one. A year has 365 days, or 366 in a leap year: every year divisible by 4, except century years not divisible by 400 (2000 was a leap year; 2100 won't be).</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate the number of days between two dates?',
-      <<<'EOT_TF'
-Enter the start and end dates. The calculator subtracts them and shows the days, weeks, months and weekdays in between.
-EOT_TF,
+    'faqs' => [
+        ['How do I calculate the number of days between two dates?', 'Enter the start and end dates. The calculator subtracts them and shows the days, weeks, months and weekdays in between.'],
+        ['Does the day count include the start and end date?', 'By default it counts the start date but not the end date. Tick “Include the end date” to count both.'],
+        ['How many weekdays are between two dates?', 'The calculator shows weekdays (Monday to Friday) separately. Public holidays are not removed because they vary by country.'],
+        ['What date is 90 days from today?', 'Choose “Add or subtract days”, keep today as the start date and enter 90.'],
+        ['How do I subtract days from a date?', 'In “Add or subtract days” mode, enter a negative number, such as −30.'],
     ],
-    [
-      'Does the day count include the start and end date?',
-      'By default it counts the start date but not the end date. Tick “Include the end date” to count both.',
-    ],
-    [
-      'How many weekdays are between two dates?',
-      <<<'EOT_TF'
-The calculator shows weekdays (Monday to Friday) separately. Public holidays are not removed because they vary by country.
-EOT_TF,
-    ],
-    [
-      'What date is 90 days from today?',
-      'Choose “Add or subtract days”, keep today as the start date and enter 90.',
-    ],
-    [
-      'How do I subtract days from a date?',
-      'In “Add or subtract days” mode, enter a negative number, such as −30.',
-    ],
-  ],
+    'aka' => ['Date Duration Calculator', 'Working Days Counter'],
 ];

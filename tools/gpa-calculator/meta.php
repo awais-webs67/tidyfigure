@@ -1,27 +1,19 @@
 <?php
-// GPA Calculator: page content and settings. tool.html is the tool's markup and tool.js its script.
 return [
-  'name' => 'GPA Calculator',
-  'updated' => '2026-10-22', // date the tool or its text last really changed (shown on the page and in the sitemap)
-  'category' => 'study',
-  'order' => 1,
-  'icon' => 'graduation-cap',
-  'popular' => true,
-  'appCategory' => 'EducationalApplication',
-  'keywords' => <<<'EOT_TF'
-gpa calculator cgpa cumulative gpa semester gpa college grade point average 4.0 scale letter grades credits
-EOT_TF,
-  'short' => 'Semester and cumulative GPA from letter grades and credits, on a 4.0 or 4.3 scale.',
-  'title' => 'GPA Calculator: Semester & Cumulative GPA (4.0 Scale)',
-  'description' => <<<'EOT_TF'
-Calculate your semester GPA from letter grades and credit hours, and your new cumulative GPA. Supports the 4.0 and 4.3 scales. Free, instant, no sign-up.
-EOT_TF,
-  'related' => ['grade-calculator', 'percentage-calculator', 'flashcard-maker'],
-  'answer' => <<<'EOT_TF'
-GPA = <strong>total grade points ÷ total credits</strong>, where each course's grade points are its credits × the grade value (A = 4.0, B = 3.0 and so on). For example, A- in a 4-credit course, B+ in 3 credits, B in 4 credits and A in 3 credits gives 48.7 ÷ 14 = a <strong>3.48</strong> GPA.
-EOT_TF,
-  'article' => <<<'EOT_TF'
-
+    'name' => 'GPA Calculator',
+    'updated' => '2026-11-15',
+    'category' => 'study',
+    'order' => 1,
+    'icon' => 'graduation-cap',
+    'popular' => true,
+    'appCategory' => 'EducationalApplication',
+    'keywords' => 'gpa calculator, college gpa calculator 4.0, semester cumulative gpa, credit hour weighted grade calculator',
+    'short' => 'Semester and cumulative GPA from letter grades and credits, on a 4.0 or 4.3 scale.',
+    'title' => 'GPA Calculator – Semester & Cumulative 4.0',
+    'description' => 'Calculate weighted semester GPA from course letter grades and credit hours plus updated cumulative GPA on 4.0 and 4.3 scales instantaneously.',
+    'related' => ['grade-calculator', 'percentage-calculator', 'flashcard-maker'],
+    'answer' => 'GPA = <strong>total grade points ÷ total credits</strong>, where each course\'s grade points are its credits × the grade value (A = 4.0, B = 3.0 and so on). For example, A- in a 4-credit course, B+ in 3 credits, B in 4 credits and A in 3 credits gives 48.7 ÷ 14 = a <strong>3.48</strong> GPA.',
+    'article' => <<<'EOT_TF'
 <h2>How GPA is calculated</h2>
 <div class="formula">Grade points for a course = credits × grade value
 GPA = sum of grade points ÷ sum of credits
@@ -66,29 +58,16 @@ Total: 48.7 ÷ 14 credits = 3.48</div>
 
 <h2>Other grading systems</h2>
 <p>Many countries use different systems: percentages, 10-point CGPA scales (India and Pakistan), 1–5 or 1–7 scales, or degree classes in the UK. Converting between them isn't exact, and universities usually publish their own conversion tables, so use those for applications. To find what you need on a final exam, use the <a href="/grade-calculator">grade calculator</a>.</p>
+
+<h2>Pass/Fail, Withdrawn &amp; Repeated Course Credits</h2>
+<p>Pass/Fail (P/NP) and Withdrawn (W) entries typically add zero grade points and sit outside the GPA credit-hour denominator, whereas an F counts credit hours in the denominator with 0.0 points—pulling average GPA sharply down. Check your university registrar’s grade-replacement policy before modelling retaken modules.</p>
 EOT_TF,
-  'faqs' => [
-    [
-      'How do I calculate my GPA?',
-      'Multiply each course’s credits by its grade value, add them up, and divide by the total credits.',
+    'faqs' => [
+        ['How do I calculate my GPA?', 'Multiply each course’s credits by its grade value, add them up, and divide by the total credits.'],
+        ['What is the difference between GPA and cumulative GPA?', 'Term GPA covers one semester. Cumulative GPA covers every course you have completed.'],
+        ['Is an A+ worth more than an A?', 'On the standard 4.0 scale both are 4.0. Some schools use a 4.3 scale where A+ is worth 4.3.'],
+        ['How can I raise my GPA quickly?', 'Do well in courses with the most credits, and retake failed courses if your school replaces the old grade.'],
+        ['Do pass/fail courses count in GPA?', 'Usually not. Pass/fail courses earn credits but no grade points, so leave them out.'],
     ],
-    [
-      'What is the difference between GPA and cumulative GPA?',
-      'Term GPA covers one semester. Cumulative GPA covers every course you have completed.',
-    ],
-    [
-      'Is an A+ worth more than an A?',
-      'On the standard 4.0 scale both are 4.0. Some schools use a 4.3 scale where A+ is worth 4.3.',
-    ],
-    [
-      'How can I raise my GPA quickly?',
-      <<<'EOT_TF'
-Do well in courses with the most credits, and retake failed courses if your school replaces the old grade.
-EOT_TF,
-    ],
-    [
-      'Do pass/fail courses count in GPA?',
-      'Usually not. Pass/fail courses earn credits but no grade points, so leave them out.',
-    ],
-  ],
+    'aka' => ['College GPA Calculator', 'Weighted 4.0 GPA Tool'],
 ];
